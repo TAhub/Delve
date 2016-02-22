@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class Map;
+
 //TODO: DESIGN GOAL: this should contain NO info on graphics, besides storing personal colors and stuff
 //all graphics should be generated in the controller
 
 @interface Creature : NSObject
 
--(id)init;
+-(id)initWithX:(int)x andY:(int)y onMap:(Map *)map;
 
 #pragma mark: basic mechanical identity
 @property (strong, nonatomic) NSString *race;
@@ -34,6 +36,8 @@
 -(int) maxBlocks; //blocks are a war-skill-only "super" defense type, and recharge only on their own when you get kills (to reward offense)
 -(int) maxHacks; //hacks are used to unlock doors, chests, and to turn off traps if you step in them; it's refilled on map transition
 -(int) metabolism; //metabolism is a percentage bonus to how much healing items heal you
+
+-(BOOL) dead;
 
 #pragma mark: equipment
 @property (strong, nonatomic) NSArray *armors; //an array of NSStrings

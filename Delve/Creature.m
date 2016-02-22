@@ -7,18 +7,20 @@
 //
 
 #import "Creature.h"
+#import "Map.h"
+#import "Tile.h"
 #import "Constants.h"
 
 @interface Creature()
 
-
+@property (weak, nonatomic) Map *map;
 
 @end
 
 
 @implementation Creature
 
--(id)init
+-(id)initWithX:(int)x andY:(int)y onMap:(Map *)map
 {
 	if (self = [super init])
 	{
@@ -31,7 +33,9 @@
 		_armors = [NSArray arrayWithObjects:@"rusty chestplate", @"rusty helmet", nil];
 		_good = YES;
 		
-		//TODO: position
+		_x = x;
+		_y = y;
+		_map = map;
 		
 		[self initializeMisc];
 		
@@ -61,8 +65,10 @@
 
 #pragma mark: public interface functions
 
--(BOOL) validTargetSpotFor:(NSString *)attack atX:(int)x andY:(int)y
+-(BOOL) validTargetSpotFor:(NSString *)attack atX:(int)x andY:(int)y openSpotsAreFine:(BOOL)openSpots
 {
+	//set openSpotsAreFine to true if you want to find any place you can theoretically attack, not just places with people to hit
+	
 	if (!loadValueBool(@"Attacks", attack, @"range"))
 	{
 		//it's a 0-range attack
@@ -73,28 +79,55 @@
 	{
 		//are you in range?
 		int range = loadValueNumber(@"Attacks", attack, @"range").intValue;
-		if (ABS(x - self.x) + ABS(y - self.y) > range)
+		int distance = ABS(x - self.x) + ABS(y - self.y);
+		if (distance > range || //maximum range
+			(distance == 1 && range > 1)) //minimum range
+			return false;
+		
+		//make sure it's not a solid wall
+		Tile *targetTile = self.map.tiles[self.storedAttackY][self.storedAttackX];
+		if (targetTile.solid)
 			return false;
 		
 		//TODO: might want to check for line of sight
 		//maybe via some kind of line of sight storage map
 		//so nobody can target a square you can't see, that should be fine
 		
-		if (loadValueBool(@"Attacks", attack, @"teleport"))
+		if (openSpots || loadValueBool(@"Attacks", attack, @"teleport"))
 		{
-			//TODO: as long as the target square doesn't have a wall
-			//and doesn't have an ally
-			//this is an okay spot
-			//don't bother checking AoEs, there won't be AoE teleports
+			//it's ok as long as there isn't an ally there
+			return (targetTile.inhabitant == nil || targetTile.inhabitant.good == self.good);
 		}
 		else
 		{
-			//TODO: is there any valid target (IE anybody not on your side) in the aoe?
-			//where a no-area attack has an effective AoE of 1, for this purpose
+			//is there any valid target (IE anybody not on your side) in the aoe?
+			__block BOOL anyValid = false;
+			BOOL good = self.good;
+			[self applyBlock:
+			^void (Tile *tile){
+				if (tile.inhabitant != nil && tile.inhabitant.good != good)
+					anyValid = true;
+			} forAttack:attack onX:x andY:y];
+			return anyValid;
 		}
-		
-		return true;
 	}
+}
+
+-(void)applyBlock:(void (^)(Tile *))block forAttack:(NSString *)attack onX:(int)x andY:(int)y
+{
+	int radius = 0;
+	if (loadValueBool(@"Attacks", attack, @"radius"))
+		radius = (loadValueNumber(@"Attacks", attack, @"radius").intValue - 1) / 2;
+	int startX = MAX(x - radius, 0);
+	int startY = MAX(y - radius, 0);
+	int endX = MIN(x + radius, self.map.width - 1);
+	int endY = MIN(y + radius, self.map.height - 1);
+	for (int y = startY; y <= endY; y++)
+		for (int x = startX; x <= endX; x++)
+		{
+			Tile *tile = self.map.tiles[y][x];
+			block(tile);
+		}
 }
 
 -(void) useAttackWithTreeNumber:(int)treeNumber andName:(NSString *)name onX:(int)x andY:(int)y
@@ -104,7 +137,7 @@
 	//or attacks if you have the cooldown over 0
 	
 	//check to see if you can target that spot
-	if (![self validTargetSpotFor:name atX:x andY:y])
+	if (![self validTargetSpotFor:name atX:x andY:y openSpotsAreFine:NO])
 		return;
 	
 	self.storedAttack = name;
@@ -125,6 +158,10 @@
 
 -(void) unleashAttack
 {
+	//TODO: this should probably signal the start of some animation
+	//and only run the actual effect code afterwards
+	
+	
 	//get the implement
 	NSString *implement = @"";
 	if ([self.storedAttack isEqualToString:@"attack"]) //the implement should be your weapon
@@ -144,27 +181,42 @@
 	//TODO: element override from implement (ie flaming sword does burn, whatever)
 	
 	
-	//TODO: get the real person/people you hit, based on the AoE
-	Creature *hit = self;
-	
-	if (!loadValueBool(@"Attacks", self.storedAttack, @"range") || //if it's a self-targeting attack
-		(hit.good != self.good)) //or if it's targeting an enemy
-		[hit takeAttack:self.storedAttack withPower:power andElement:element];
-	
-	
-	//teleport, if that's what the skill asks for
-	if (loadValueBool(@"Attacks", self.storedAttack, @"teleport"))
-	{
-		if (hit != nil)
+	__weak typeof(self) weakSelf = self;
+	[self applyBlock:
+	^void (Tile *tile){
+		if (tile.inhabitant != nil)
 		{
-			hit.x = self.x;
-			hit.y = self.y;
+			Creature *hit = tile.inhabitant;
+			
+			//apply attack
+			if ((!loadValueBool(@"Attacks", weakSelf.storedAttack, @"range") || //if it's a self-targeting attack
+				 (hit.good != weakSelf.good)) && //or if it's targeting an enemy
+				!hit.dead) //don't hit dead people
+			{
+				[hit takeAttack:weakSelf.storedAttack withPower:power andElement:element];
+				if (hit.dead)
+				{
+					//you killed someone!
+					weakSelf.blocks = MIN(weakSelf.blocks + 1, weakSelf.maxBlocks);
+					//TODO: any other bennies for getting a kill
+				}
+			}
+			
+			//teleport, if that's what the skill asks for
+			if (loadValueBool(@"Attacks", weakSelf.storedAttack, @"teleport"))
+			{
+				if (hit != nil)
+				{
+					hit.x = weakSelf.x;
+					hit.y = weakSelf.y;
+				}
+				weakSelf.x = weakSelf.storedAttackX;
+				weakSelf.y = weakSelf.storedAttackY;
+				
+				//TODO: this might need to update sprites, etc
+			}
 		}
-		self.x = self.storedAttackX;
-		self.y = self.storedAttackY;
-		
-		//TODO: this might need to update sprites, etc
-	}
+	} forAttack:self.storedAttack onX:self.storedAttackX andY:self.storedAttackY];
 	
 	
 	self.storedAttack = nil;
@@ -271,6 +323,11 @@
 
 
 #pragma mark: derived statistics
+-(BOOL) dead
+{
+	return self.health == 0;
+}
+
 -(int) damageBonus
 {
 	return [self totalBonus:@"damage bonus"];
