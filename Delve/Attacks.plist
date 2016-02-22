@@ -24,9 +24,23 @@
 		<key>interrupt aoe</key> <true/>
 		<key>hurt user</key> <integer>10</integer>
 		<key>forcefield</key> <integer>50</integer>
+		<key>teleport</key> <true/>
 	</dict>
 	
 	<!-- real attacks -->
+	
+	<!-- monster-only attacks -->
+	<!-- TODO: I had some ideas here, assign them to enemies! -->
+	<key>slalom</key>
+	<dict>
+		<key>power</key> <integer>25</integer>
+		<key>element</key> <string>cut</string>
+		<key>range</key> <integer>1</integer>
+		<key>cooldown</key> <integer>4</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+		<key>teleport</key> <true/>
+	</dict>
 	
 	<!-- melee damaging attacks -->
 	<key>attack</key>
@@ -319,7 +333,7 @@
 		<key>cooldown</key> <integer>11</integer>
 		<key>friendly</key> <true/>
 		<!-- special effects -->
-		<!-- TODO: switch places with whomever is in the target location -->
+		<key>teleport</key> <true/>
 	</dict>
 	
 </dict>

@@ -61,14 +61,51 @@
 
 #pragma mark: public interface functions
 
+-(BOOL) validTargetSpotFor:(NSString *)attack atX:(int)x andY:(int)y
+{
+	if (!loadValueBool(@"Attacks", attack, @"range"))
+	{
+		//it's a 0-range attack
+		//so it can only target your own square
+		return (x == self.x && y == self.y);
+	}
+	else
+	{
+		//are you in range?
+		int range = loadValueNumber(@"Attacks", attack, @"range").intValue;
+		if (ABS(x - self.x) + ABS(y - self.y) > range)
+			return false;
+		
+		//TODO: might want to check for line of sight
+		//maybe via some kind of line of sight storage map
+		//so nobody can target a square you can't see, that should be fine
+		
+		if (loadValueBool(@"Attacks", attack, @"teleport"))
+		{
+			//TODO: as long as the target square doesn't have a wall
+			//and doesn't have an ally
+			//this is an okay spot
+			//don't bother checking AoEs, there won't be AoE teleports
+		}
+		else
+		{
+			//TODO: is there any valid target (IE anybody not on your side) in the aoe?
+			//where a no-area attack has an effective AoE of 1, for this purpose
+		}
+		
+		return true;
+	}
+}
+
 -(void) useAttackWithTreeNumber:(int)treeNumber andName:(NSString *)name onX:(int)x andY:(int)y
 {
-	//TODO: a range-0 attack always targets your square
-	//but that should be done in the targeting phase, not here
-	
-	//TODO: also, you shouldn't be able to use hurt-self attacks if you are under half the health cost
+	//TODO: you shouldn't be able to use hurt-self attacks if you are under half the health cost
 	//or ammo-using attacks if you don't have ammo
 	//or attacks if you have the cooldown over 0
+	
+	//check to see if you can target that spot
+	if (![self validTargetSpotFor:name atX:x andY:y])
+		return;
 	
 	self.storedAttack = name;
 	self.storedAttackSlot = treeNumber;
@@ -78,6 +115,11 @@
 	if (!loadValueBool(@"Attacks", name, @"area"))
 		[self unleashAttack]; //release the attack immediately
 	
+	
+	//pay costs
+	if (loadValueBool(@"Attacks", self.storedAttack, @"hurt user"))
+		self.health = MAX(self.health - loadValueNumber(@"Attacks", self.storedAttack, @"hurt user").intValue, 1);
+	//TODO: use ammo
 	//TODO: set cooldown
 }
 
@@ -90,8 +132,10 @@
 	else
 		implement = self.implements[self.storedAttackSlot];
 	
+	
 	//get the power
 	int power = self.damageBonus + [self bonusFromImplement:implement withName:@"power"];
+	
 	
 	//get the element
 	NSString *element = @"no element";
@@ -99,16 +143,28 @@
 		element = loadValueString(@"Attacks", self.storedAttack, @"element");
 	//TODO: element override from implement (ie flaming sword does burn, whatever)
 	
+	
 	//TODO: get the real person/people you hit, based on the AoE
 	Creature *hit = self;
 	
-	[hit takeAttack:self.storedAttack withPower:power andElement:element];
+	if (!loadValueBool(@"Attacks", self.storedAttack, @"range") || //if it's a self-targeting attack
+		(hit.good != self.good)) //or if it's targeting an enemy
+		[hit takeAttack:self.storedAttack withPower:power andElement:element];
 	
 	
-	//pay costs
-	if (loadValueBool(@"Attacks", self.storedAttack, @"hurt user"))
-		self.health = MAX(self.health - loadValueNumber(@"Attacks", self.storedAttack, @"hurt user").intValue, 1);
-	//TODO: use ammo
+	//teleport, if that's what the skill asks for
+	if (loadValueBool(@"Attacks", self.storedAttack, @"teleport"))
+	{
+		if (hit != nil)
+		{
+			hit.x = self.x;
+			hit.y = self.y;
+		}
+		self.x = self.storedAttackX;
+		self.y = self.storedAttackY;
+		
+		//TODO: this might need to update sprites, etc
+	}
 	
 	
 	self.storedAttack = nil;
