@@ -143,7 +143,7 @@
 	<dict>
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>smash</string>
-		<key>range</key> <integer>5</integer>
+		<key>range</key> <integer>3</integer>
 		<key>cooldown</key> <integer>4</integer>
 		<key>dodgeable</key> <true/>
 		<!-- special effects -->
@@ -152,7 +152,7 @@
 	<dict>
 		<key>power</key> <integer>15</integer>
 		<key>element</key> <string>cut</string>
-		<key>range</key> <integer>6</integer>
+		<key>range</key> <integer>4</integer>
 		<key>cooldown</key> <integer>1</integer>
 		<key>dodgeable</key> <true/>
 		<!-- special effects -->
@@ -161,7 +161,7 @@
 	<dict>
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>shock</string>
-		<key>range</key> <integer>6</integer>
+		<key>range</key> <integer>4</integer>
 		<key>cooldown</key> <integer>1</integer>
 		<key>dodgeable</key> <true/>
 		<!-- TODO: this should cost a crystal -->
@@ -171,7 +171,7 @@
 	<dict>
 		<key>power</key> <integer>35</integer>
 		<key>element</key> <string>shock</string>
-		<key>range</key> <integer>6</integer>
+		<key>range</key> <integer>4</integer>
 		<key>area</key> <integer>1</integer>
 		<key>cooldown</key> <integer>4</integer>
 		<!-- TODO: this should cost a crystal -->
@@ -181,7 +181,7 @@
 	<dict>
 		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>cut</string>
-		<key>range</key> <integer>5</integer>
+		<key>range</key> <integer>4</integer>
 		<key>cooldown</key> <integer>11</integer>
 		<key>dodgeable</key> <true/>
 		<!-- special effects -->
@@ -200,7 +200,7 @@
 	<dict>
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>burn</string>
-		<key>range</key> <integer>5</integer>
+		<key>range</key> <integer>4</integer>
 		<key>cooldown</key> <integer>11</integer>
 		<key>dodgeable</key> <true/>
 		<!-- special effects -->
@@ -209,7 +209,7 @@
 	<dict>
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>shock</string>
-		<key>range</key> <integer>5</integer>
+		<key>range</key> <integer>4</integer>
 		<key>cooldown</key> <integer>11</integer>
 		<!-- special effects -->
 	</dict>
@@ -217,7 +217,7 @@
 	<dict>
 		<key>power</key> <integer>40</integer>
 		<key>element</key> <string>smash</string>
-		<key>range</key> <integer>4</integer>
+		<key>range</key> <integer>3</integer>
 		<key>area</key> <integer>1</integer>
 		<key>cooldown</key> <integer>11</integer>
 		<key>dodgeable</key> <true/>
@@ -238,7 +238,7 @@
 	<dict>
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>cut</string>
-		<key>range</key> <integer>6</integer>
+		<key>range</key> <integer>4</integer>
 		<key>area</key> <integer>3</integer>
 		<key>cooldown</key> <integer>15</integer>
 		<key>dodgeable</key> <true/>
@@ -267,7 +267,7 @@
 	<dict>
 		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>burn</string>
-		<key>range</key> <integer>4</integer>
+		<key>range</key> <integer>3</integer>
 		<key>area</key> <integer>3</integer>
 		<key>cooldown</key> <integer>4</integer>
 		<key>dodgeable</key> <true/>
@@ -329,7 +329,7 @@
 	</dict>
 	<key>blink</key>
 	<dict>
-		<key>range</key> <integer>6</integer>
+		<key>range</key> <integer>4</integer>
 		<key>cooldown</key> <integer>11</integer>
 		<key>friendly</key> <true/>
 		<!-- special effects -->

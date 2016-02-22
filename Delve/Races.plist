@@ -39,6 +39,8 @@
 			<string>tail ornament</string>
 			<string>jewelry</string>
 		</array>
+		<!-- appearance -->
+		<!-- TODO: appearance data -->
 	</dict>
 	
 	<!-- design goal -->
@@ -74,6 +76,8 @@
 			<string>body armor</string>
 			<string>helmet</string>
 		</array>
+		<!-- appearance -->
+		<!-- TODO: appearance data -->
 	</dict>
 	
 	<!-- eolings -->
@@ -103,6 +107,8 @@
 			<string>small clothes</string>
 			<string>tail ornament</string>
 		</array>
+		<!-- appearance -->
+		<!-- TODO: appearance data -->
 	</dict>
 	
 	<!-- highborn -->
@@ -131,6 +137,8 @@
 			<string>body armor</string>
 			<string>jewelry</string>
 		</array>
+		<!-- appearance -->
+		<!-- TODO: appearance data -->
 	</dict>
 	
 	<!-- raider -->
@@ -160,27 +168,76 @@
 			<string>helmet</string>
 			<string>tail ornament</string>
 		</array>
+		<!-- appearance -->
+		<!-- TODO: appearance data -->
 	</dict>
 	
 	<!-- design goal -->
-	<!-- weak enemy races should have a disadvantage of 3 -->
-	<!-- medium enemy races, a disadvantage of 1 -->
-	<!-- strong enemy races, an advantage of 1.5 -->
+	<!-- weak enemy races should have a disadvantage of 2 -->
+	<!-- medium enemy races, an advantage of 0.5 -->
+	<!-- strong enemy races, an advantage of 3.5 -->
+	<!-- note that enemy races are made with the assumption that they have no armor at all -->
 	<!-- TODO: don't modify the metabolism, enemies shouldn't try to use health pickups anyway -->
 	
 	<!-- enemy races -->
 	
 	<!-- ruin feeder -->
-	<!-- ruin feeders are a weak, somewhat dodgy enemy race -->
+	<!-- ruin feeders are a weak, somewhat dodgy enemy -->
 	<key>ruin feeder</key>
 	<dict>
 		<!-- stats -->
-		<key>damage bonus</key> <integer>63</integer>
+		<key>damage bonus</key> <integer>88</integer>
 		<key>health</key> <integer>50</integer>
 		<key>smash resistance</key> <integer>1</integer>
 		<key>dodges</key> <integer>3</integer>
 		<key>metabolism</key> <integer>100</integer>
 		<!-- slots -->
+		<!-- appearance -->
+		<!-- TODO: appearance data -->
+	</dict>
+	
+	<!-- sentry -->
+	<!-- sentries are a weak melee robot enemy type, characterized by having high burn resistance -->
+	<key>sentry</key>
+	<dict>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>75</integer>
+		<key>health</key> <integer>88</integer>
+		<key>burn resistance</key> <integer>3</integer>
+		<key>dodges</key> <integer>1</integer>
+		<key>metabolism</key> <integer>100</integer>
+		<!-- slots -->
+		<!-- appearance -->
+		<!-- TODO: appearance data -->
+	</dict>
+	
+	<!-- android -->
+	<!-- androids are a versatile medium robot enemy type; they are the dodgiest robot -->
+	<key>android</key>
+	<dict>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>100</integer>
+		<key>health</key> <integer>112</integer>
+		<key>dodges</key> <integer>2</integer>
+		<key>metabolism</key> <integer>100</integer>
+		<!-- slots -->
+		<!-- appearance -->
+		<!-- TODO: appearance data -->
+	</dict>
+	
+	<!-- war bot -->
+	<!-- war bots are a tough enemy type, that are heavily hardened against cuts -->
+	<key>war bot</key>
+	<dict>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>125</integer>
+		<key>health</key> <integer>163</integer>
+		<key>cut resistance</key> <integer>4</integer>
+		<key>blocks</key> <integer>1</integer>
+		<key>metabolism</key> <integer>100</integer>
+		<!-- slots -->
+		<!-- appearance -->
+		<!-- TODO: appearance data -->
 	</dict>
 </dict>
 </plist>

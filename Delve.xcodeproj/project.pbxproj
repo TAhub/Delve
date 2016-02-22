@@ -20,6 +20,7 @@
 		E459C6AE1C7BB36C00422B0A /* Map.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C6AD1C7BB36C00422B0A /* Map.m */; };
 		E459C6B21C7BB4BD00422B0A /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C6B11C7BB4BD00422B0A /* Tile.m */; };
 		E459C6B41C7BBCC400422B0A /* EnemyTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = E459C6B31C7BBCC400422B0A /* EnemyTypes.plist */; };
+		E459C6B71C7BC57E00422B0A /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C6B61C7BC57E00422B0A /* MapView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,8 @@
 		E459C6B01C7BB4B300422B0A /* Tile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tile.h; sourceTree = "<group>"; };
 		E459C6B11C7BB4BD00422B0A /* Tile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tile.m; sourceTree = "<group>"; };
 		E459C6B31C7BBCC400422B0A /* EnemyTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EnemyTypes.plist; sourceTree = "<group>"; };
+		E459C6B51C7BC57E00422B0A /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView.h; sourceTree = "<group>"; };
+		E459C6B61C7BC57E00422B0A /* MapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,8 @@
 		E459C69D1C7AB31100422B0A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E459C6B51C7BC57E00422B0A /* MapView.h */,
+				E459C6B61C7BC57E00422B0A /* MapView.m */,
 				E459C68F1C7AB2E800422B0A /* Main.storyboard */,
 			);
 			name = View;
@@ -208,6 +213,7 @@
 				E459C6B21C7BB4BD00422B0A /* Tile.m in Sources */,
 				E459C6AE1C7BB36C00422B0A /* Map.m in Sources */,
 				E459C6881C7AB2E800422B0A /* main.m in Sources */,
+				E459C6B71C7BC57E00422B0A /* MapView.m in Sources */,
 				E459C6A11C7AB34300422B0A /* Creature.m in Sources */,
 				E459C6A91C7B602100422B0A /* Constants.m in Sources */,
 			);
