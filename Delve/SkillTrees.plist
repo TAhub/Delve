@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   SkillTrees.plist
+   Delve
+
+   Created by Theodore Abshire on 2/21/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+	<key>template</key>
+	<array>
+		<dict> <!-- rank 1 -->
+			<key>damage bonus</key> <integer>0</integer>
+			<key>health</key> <integer>0</integer>
+			<key>smash resistance</key> <integer>0</integer>
+			<key>cut resistance</key> <integer>0</integer>
+			<key>shock resistance</key> <integer>0</integer>
+			<key>burn resistance</key> <integer>0</integer>
+			<key>dodges</key> <integer>0</integer>
+			<key>blocks</key> <integer>0</integer>
+			<!-- TOOD: active skill -->
+		</dict>
+		<dict> <!-- rank 2 -->
+			<key>damage bonus</key> <integer>0</integer>
+			<key>health</key> <integer>0</integer>
+			<key>smash resistance</key> <integer>0</integer>
+			<key>cut resistance</key> <integer>0</integer>
+			<key>shock resistance</key> <integer>0</integer>
+			<key>burn resistance</key> <integer>0</integer>
+			<key>dodges</key> <integer>0</integer>
+			<key>blocks</key> <integer>0</integer>
+			<!-- TOOD: active skill -->
+		</dict>
+		<dict> <!-- rank 3 -->
+			<key>damage bonus</key> <integer>0</integer>
+			<key>health</key> <integer>0</integer>
+			<key>smash resistance</key> <integer>0</integer>
+			<key>cut resistance</key> <integer>0</integer>
+			<key>shock resistance</key> <integer>0</integer>
+			<key>burn resistance</key> <integer>0</integer>
+			<key>dodges</key> <integer>0</integer>
+			<key>blocks</key> <integer>0</integer>
+			<!-- TOOD: active skill -->
+		</dict>
+		<dict> <!-- rank 4 -->
+			<key>damage bonus</key> <integer>0</integer>
+			<key>health</key> <integer>0</integer>
+			<key>smash resistance</key> <integer>0</integer>
+			<key>cut resistance</key> <integer>0</integer>
+			<key>shock resistance</key> <integer>0</integer>
+			<key>burn resistance</key> <integer>0</integer>
+			<key>dodges</key> <integer>0</integer>
+			<key>blocks</key> <integer>0</integer>
+			<!-- TOOD: active skill -->
+		</dict>
+	</array>
+	
+	<!-- design guidelines -->
+	<!-- passive-only skill ranks give about 1 of the following (feel free to split the difference) -->
+	<!-- 25 health, 25 damage bonus, 2 resistance, 1 dodge, 1 block -->
+	<!-- active skills give the active skill plus about half of a passive, less for a powerful active skill -->
+	<!-- everything should have at least a little bit of health or whatever -->
+	
+	<!-- patterns -->
+	<!-- A: active, passive, active, passive (mainline active-skill-based skill) -->
+	<!-- B: active, active, active, active (purely active skill) -->
+	<!-- C: passive, active, passive, active (balanced skill) -->
+	<!-- D: passive, passive, active, passive (mostly passive skill) -->
+	<!-- E: passive, passive, passive, passive (pure passive skill, should have THREE stats raised) -->
+	
+	
+	<!-- war skills -->
+	<!-- war skills mostly focus on low- or no-cooldown basic attacks, and are usually pattern A or pattern C -->
+	
+	<!-- shield (pattern C) -->
+	<!-- a defensive war skill that focuses on blocks, with some utility attacks -->
+	<!-- raises block and cut resistance -->
+	<!-- implement: shields -->
+	<key>shield</key>
+	<array>
+		<dict> <!-- rank 1 -->
+			<key>blocks</key> <integer>1</integer>
+		</dict>
+		<dict> <!-- rank 2 -->
+			<key>cut resistance</key> <integer>1</integer>
+			<!-- TOOD: shield bash skill -->
+		</dict>
+		<dict> <!-- rank 3 -->
+			<key>blocks</key> <integer>1</integer>
+			<!-- TOOD: active skill -->
+		</dict>
+		<dict> <!-- rank 4 -->
+			<key>cut resistance</key> <integer>1</integer>
+			<!-- TOOD: shield boomerang skill -->
+		</dict>
+	</array>
+	
+	<!-- hammer (pattern A) -->
+	<!-- an offensive war skill that focuses on 1x1 AoE delay attacks -->
+	<!-- raises damage and cut resistance -->
+	<!-- implement: hammers -->
+	<key>hammer</key>
+	<array>
+		<dict> <!-- rank 1 -->
+			<key>damage bonus</key> <integer>10</integer>
+			<!-- TOOD: power swing skill -->
+		</dict>
+		<dict> <!-- rank 2 -->
+			<key>cut resistance</key> <integer>2</integer>
+		</dict>
+		<dict> <!-- rank 3 -->
+			<key>damage bonus</key> <integer>10</integer>
+			<!-- TOOD: earthquake slam skill -->
+		</dict>
+		<dict> <!-- rank 4 -->
+			<key>damage bonus</key> <integer>20</integer>
+			<key>cut resistance</key> <integer>1</integer>
+		</dict>
+	</array>
+	
+	<!-- spear (pattern A) -->
+	<!-- a semi-defensive war skill that focuses on 2-range attacks -->
+	<!-- raises health burn resistance -->
+	<!-- implement: spears -->
+	<key>spear</key>
+	<array>
+		<dict> <!-- rank 1 -->
+			<key>burn resistance</key> <integer>1</integer>
+			<!-- TOOD: thrust skill -->
+		</dict>
+		<dict> <!-- rank 2 -->
+			<key>health</key> <integer>25</integer>
+		</dict>
+		<dict> <!-- rank 3 -->
+			<key>burn resistance</key> <integer>1</integer>
+			<!-- TOOD: jab skill -->
+		</dict>
+		<dict> <!-- rank 4 -->
+			<key>damage bonus</key> <integer>5</integer>
+			<key>health</key> <integer>25</integer>
+		</dict>
+	</array>
+	
+	<!-- bow (pattern A) -->
+	<!-- a ranged war skill that focuses on weak but free no-cooldown ranged attacks -->
+	<!-- raises shock resistance and damage -->
+	<key>template</key>
+	<array>
+		<dict> <!-- rank 1 -->
+			<key>damage bonus</key> <integer>10</integer>
+			<!-- TOOD: bowshot skill -->
+		</dict>
+		<dict> <!-- rank 2 -->
+			<key>damage bonus</key> <integer>10</integer>
+			<key>shock resistance</key> <integer>1</integer>
+		</dict>
+		<dict> <!-- rank 3 -->
+			<key>shock resistance</key> <integer>1</integer>
+			<!-- TOOD: arrow storm skill -->
+		</dict>
+		<dict> <!-- rank 4 -->
+			<key>damage bonus</key> <integer>15</integer>
+			<key>dodges</key> <integer>1</integer>
+		</dict>
+	</array>
+	
+	<!-- body skills -->
+	<!-- body skills usually focus heavily on passives, and are usually type D or type E -->
+	<!-- TODO: add -->
+	
+	<!-- sacred skills -->
+	<!-- sacred skills focus on active skills that cost ammo, and are usually type A or type B -->
+	<!-- TODO: add -->
+	
+	<!-- ritual skills -->
+	<!-- ritual skills focus on lots of active abilities, which always have cooldown 11, and are usually type A or type B -->
+	<!-- TODO: add -->
+</dict>
+</plist>

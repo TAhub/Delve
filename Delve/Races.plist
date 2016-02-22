@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Races.plist
+   Delve
+
+   Created by Theodore Abshire on 2/21/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+	<key>template</key>
+	<dict>
+		<key>damage bonus</key> <integer>100</integer>
+		<key>health</key> <integer>100</integer>
+		<key>smash resistance</key> <integer>0</integer>
+		<key>cut resistance</key> <integer>0</integer>
+		<key>shock resistance</key> <integer>0</integer>
+		<key>burn resistance</key> <integer>0</integer>
+		<key>dodges</key> <integer>3</integer>
+		<key>blocks</key> <integer>0</integer>
+		<!-- TODO: skill slot types (player-only) -->
+		<!-- TODO: armor slots -->
+	</dict>
+	
+	<!-- design goal -->
+	<!-- player races don't need to be 100% balanced with each other, since they don't directly compete, but they should be at least somewhat balanced -->
+	<!-- in general you should have a 1.5 bonus on the template (see the skill tree definition) -->
+	<!-- more armor shoulds should mean weaker stats, less stronger stats -->
+	
+	<!-- real player races -->
+	<key>human</key>
+	<dict>
+		<key>damage bonus</key> <integer>100</integer>
+		<key>health</key> <integer>125</integer>
+		<key>burn resistance</key> <integer>1</integer>
+		<key>dodges</key> <integer>3</integer>
+		<!-- TODO: skill slot types -->
+		<!-- TODO: armor slots (body and helmet) -->
+	</dict>
+	<!-- TODO: other races with different focuses (fragile dodgy race? magic race? whatever) -->
+</dict>
+</plist>
