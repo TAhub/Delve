@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   EnemyTypes.plist
+   Delve
+
+   Created by Theodore Abshire on 2/22/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+	<key>template</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>template</string>
+		<!-- TODO: AI -->
+		<key>skills</key>
+		<array>
+			<string>template</string>
+			<string>template</string>
+			<string>template</string>
+			<string>template</string>
+			<string>template</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>template</string>
+			<string>template</string>
+			<string>template</string>
+			<string>template</string>
+			<string>template</string>
+		</array>
+		<key>armors</key>
+		<array>
+			<string>template</string>
+			<string>template</string>
+		</array>
+		<key>weapon</key> <string>template</string>
+	</dict>
+	
+	<!-- real enemy types -->
+	
+	<!-- ruin feeder -->
+	<!-- basic weak rat-ish enemy -->
+	<key>ruin feeder</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>ruin feeder</string>
+		<!-- TODO: AI -->
+		<key>skills</key>
+		<array>
+			<string>dodgy monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>weapon</key> <string>teeth</string>
+	</dict>
+</dict>
+</plist>

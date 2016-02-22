@@ -20,6 +20,37 @@
 
 @implementation Creature
 
+-(id)initWithX:(int)x andY:(int)y onMap:(Map *)map ofEnemyType:(NSString *)type
+{
+	if (self = [super init])
+	{
+		_race = loadValueString(@"EnemyTypes", type, @"race");
+		_skillTrees = loadValueArray(@"EnemyTypes", type, @"skills");
+		_skillTreeLevels = [NSArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
+		if (loadValueBool(@"EnemyTypes", type, @"implements"))
+			_implements = loadValueArray(@"EnemyTypes", type, @"implements");
+		else
+			_implements = [NSArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
+		if (loadValueBool(@"EnemyTypes", type, @"armors"))
+			_armors = loadValueArray(@"EnemyTypes", type, @"armors");
+		else
+			_armors = [NSArray new];
+		_weapon = loadValueString(@"EnemyTypes", type, @"weapon");
+		_good = NO;
+		
+		//TODO: raise skill levels appropriately for your level
+		//IE a level 3 enemy should raise 2 of its skills
+		
+		_x = x;
+		_y = y;
+		_map = map;
+		
+		[self initializeMisc];
+		
+	}
+	return self;
+}
+
 -(id)initWithX:(int)x andY:(int)y onMap:(Map *)map
 {
 	if (self = [super init])

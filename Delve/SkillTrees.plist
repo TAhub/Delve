@@ -86,6 +86,75 @@
 	<!-- it's totally ok to change one or two of the damage bonuses into something else -->
 	
 	
+	<!-- enemy-only skills -->
+	<key>filler monster skill</key>
+	<dict>
+		<key>type</key> <string>invalid</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>damage bonus</key> <integer>8</integer>
+				<key>health</key> <integer>8</integer>
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>damage bonus</key> <integer>8</integer>
+				<key>health</key> <integer>8</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>damage bonus</key> <integer>8</integer>
+				<key>health</key> <integer>8</integer>
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>damage bonus</key> <integer>8</integer>
+				<key>health</key> <integer>8</integer>
+			</dict>
+		</array>
+	</dict>
+	<key>dodgy monster skill</key>
+	<dict>
+		<key>type</key> <string>invalid</string>
+		<key>implement</key> <string>shield</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>dodges</key> <integer>1</integer>
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>health</key> <integer>20</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>dodges</key> <integer>1</integer>
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>health</key> <integer>20</integer>
+			</dict>
+		</array>
+	</dict>
+	<key>tough monster skill</key>
+	<dict>
+		<key>type</key> <string>invalid</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>damage bonus</key> <integer>10</integer>
+				<key>health</key> <integer>15</integer>
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>damage bonus</key> <integer>10</integer>
+				<key>health</key> <integer>15</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>damage bonus</key> <integer>10</integer>
+				<key>health</key> <integer>15</integer>
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>damage bonus</key> <integer>10</integer>
+				<key>health</key> <integer>15</integer>
+			</dict>
+		</array>
+	</dict>
+	
+	
 	<!-- war skills -->
 	<!-- war skills mostly focus on low- or no-cooldown basic attacks, and are usually pattern A or pattern C -->
 	

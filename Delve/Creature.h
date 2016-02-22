@@ -16,6 +16,7 @@
 @interface Creature : NSObject
 
 -(id)initWithX:(int)x andY:(int)y onMap:(Map *)map;
+-(id)initWithX:(int)x andY:(int)y onMap:(Map *)map ofEnemyType:(NSString *)type;
 
 #pragma mark: basic mechanical identity
 @property (strong, nonatomic) NSString *race;

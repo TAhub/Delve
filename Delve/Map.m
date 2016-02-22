@@ -38,7 +38,7 @@
 		//add creatures
 		Creature *player = [[Creature alloc] initWithX:2 andY:2 onMap:self];
 		((Tile *)_tiles[2][2]).inhabitant = player;
-		Creature *enemy = [[Creature alloc] initWithX:5 andY:5 onMap:self];
+		Creature *enemy = [[Creature alloc] initWithX:5 andY:5 onMap:self ofEnemyType:@"ruin feeder"];
 		((Tile *)_tiles[5][5]).inhabitant = enemy;
 		[_creatures addObject:player];
 		[_creatures addObject:enemy];

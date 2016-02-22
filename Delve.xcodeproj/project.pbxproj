@@ -19,6 +19,7 @@
 		E459C6AC1C7B7FC300422B0A /* Attacks.plist in Resources */ = {isa = PBXBuildFile; fileRef = E459C6AB1C7B7FC300422B0A /* Attacks.plist */; };
 		E459C6AE1C7BB36C00422B0A /* Map.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C6AD1C7BB36C00422B0A /* Map.m */; };
 		E459C6B21C7BB4BD00422B0A /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C6B11C7BB4BD00422B0A /* Tile.m */; };
+		E459C6B41C7BBCC400422B0A /* EnemyTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = E459C6B31C7BBCC400422B0A /* EnemyTypes.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		E459C6AF1C7BB37400422B0A /* Map.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
 		E459C6B01C7BB4B300422B0A /* Tile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tile.h; sourceTree = "<group>"; };
 		E459C6B11C7BB4BD00422B0A /* Tile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tile.m; sourceTree = "<group>"; };
+		E459C6B31C7BBCC400422B0A /* EnemyTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EnemyTypes.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		E459C6861C7AB2E800422B0A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E459C6B31C7BBCC400422B0A /* EnemyTypes.plist */,
 				E459C6AB1C7B7FC300422B0A /* Attacks.plist */,
 				E459C6A41C7ABB5200422B0A /* Races.plist */,
 				E459C6A61C7ABB6400422B0A /* SkillTrees.plist */,
@@ -190,6 +193,7 @@
 				E459C6A71C7ABB6400422B0A /* SkillTrees.plist in Resources */,
 				E459C6AC1C7B7FC300422B0A /* Attacks.plist in Resources */,
 				E459C6A51C7ABB5200422B0A /* Races.plist in Resources */,
+				E459C6B41C7BBCC400422B0A /* EnemyTypes.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

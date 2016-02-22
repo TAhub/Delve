@@ -161,5 +161,26 @@
 			<string>tail ornament</string>
 		</array>
 	</dict>
+	
+	<!-- design goal -->
+	<!-- weak enemy races should have a disadvantage of 3 -->
+	<!-- medium enemy races, a disadvantage of 1 -->
+	<!-- strong enemy races, an advantage of 1.5 -->
+	<!-- TODO: don't modify the metabolism, enemies shouldn't try to use health pickups anyway -->
+	
+	<!-- enemy races -->
+	
+	<!-- ruin feeder -->
+	<!-- ruin feeders are a weak, somewhat dodgy enemy race -->
+	<key>ruin feeder</key>
+	<dict>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>63</integer>
+		<key>health</key> <integer>50</integer>
+		<key>smash resistance</key> <integer>1</integer>
+		<key>dodges</key> <integer>3</integer>
+		<key>metabolism</key> <integer>100</integer>
+		<!-- slots -->
+	</dict>
 </dict>
 </plist>
