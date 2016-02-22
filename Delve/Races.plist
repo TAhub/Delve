@@ -50,6 +50,7 @@
 	
 	<!-- humans -->
 	<!-- the warlike race -->
+	<!-- appearance: ...human -->
 	<!-- a little bit tanky -->
 	<key>human</key>
 	<dict>
@@ -77,6 +78,7 @@
 	
 	<!-- eolings -->
 	<!-- the short person race; tend to be religious (or heretics) -->
+	<!-- appearance: short hairy people with hair-colored tails -->
 	<!-- a bit dodgy and ranged-focused -->
 	<key>eoling</key>
 	<dict>
@@ -105,6 +107,7 @@
 	
 	<!-- highborn -->
 	<!-- the magic race; very cultured, and they're big eaters -->
+	<!-- appearance: horned people with hoofs -->
 	<!-- they're big on nuking -->
 	<key>highborn</key>
 	<dict>
@@ -132,6 +135,7 @@
 	
 	<!-- raider -->
 	<!-- the orcs, basically; they're big and tough and kinda primitive -->
+	<!-- appearance tall big-bodied people with flesh-colored tails (should have the same end as eolings, so they can also use tail ornaments) -->
 	<!-- they live in a very rigid society, so they don't get much choice in skill types -->
 	<key>raider</key>
 	<dict>

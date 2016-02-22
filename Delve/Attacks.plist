@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Attacks.plist
+   Delve
+
+   Created by Theodore Abshire on 2/22/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+	<key>template</key>
+	<dict>
+		<key>power</key> <integer>25</integer>
+		<key>element</key> <string>cut</string>
+		<key>range</key> <integer>1</integer>
+		<key>area</key> <integer>1</integer>
+		<key>cooldown</key> <integer>11</integer>
+		<key>dodgeable</key> <true/>
+		<key>friendly</key> <true/>
+		<!-- special effects -->
+		<key>stun</key> <true/>
+		<key>dodge restore</key> <integer>1</integer>
+		<key>interrupt aoe</key> <true/>
+		<key>hurt user</key> <integer>10</integer>
+		<key>forcefield</key> <integer>50</integer>
+	</dict>
+	
+	<!-- real attacks -->
+	
+	<!-- melee damaging attacks -->
+	<key>attack</key>
+	<dict>
+		<key>power</key> <integer>25</integer>
+		<key>element</key> <string>smash</string>
+		<key>range</key> <integer>1</integer>
+		<key>cooldown</key> <integer>1</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+	</dict>
+	<key>shield bash</key>
+	<dict>
+		<key>power</key> <integer>25</integer>
+		<key>element</key> <string>smash</string>
+		<key>range</key> <integer>1</integer>
+		<key>cooldown</key> <integer>15</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+		<key>interrupt aoe</key> <true/>
+	</dict>
+	<key>tackle</key>
+	<dict>
+		<key>power</key> <integer>35</integer>
+		<key>element</key> <string>smash</string>
+		<key>range</key> <integer>1</integer>
+		<key>cooldown</key> <integer>15</integer>
+		<!-- special effects -->
+	</dict>
+	<key>kick</key>
+	<dict>
+		<key>power</key> <integer>10</integer>
+		<key>element</key> <string>smash</string>
+		<key>range</key> <integer>1</integer>
+		<key>cooldown</key> <integer>4</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+		<key>interrupt aoe</key> <true/>
+	</dict>
+	<key>haymaker</key>
+	<dict>
+		<key>power</key> <integer>40</integer>
+		<key>element</key> <string>smash</string>
+		<key>range</key> <integer>1</integer>
+		<key>area</key> <integer>1</integer>
+		<key>cooldown</key> <integer>4</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+	</dict>
+	<key>thrust</key>
+	<dict>
+		<key>power</key> <integer>25</integer>
+		<key>element</key> <string>cut</string>
+		<key>range</key> <integer>2</integer>
+		<key>cooldown</key> <integer>1</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+	</dict>
+	<key>jab</key>
+	<dict>
+		<key>power</key> <integer>20</integer>
+		<key>element</key> <string>cut</string>
+		<key>range</key> <integer>2</integer>
+		<key>cooldown</key> <integer>1</integer>
+		<!-- special effects -->
+	</dict>
+	<key>power swing</key>
+	<dict>
+		<key>power</key> <integer>30</integer>
+		<key>element</key> <string>smash</string>
+		<key>range</key> <integer>1</integer>
+		<key>area</key> <integer>1</integer>
+		<key>cooldown</key> <integer>1</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+	</dict>
+	<key>flame punch</key>
+	<dict>
+		<key>power</key> <integer>30</integer>
+		<key>element</key> <string>burn</string>
+		<key>range</key> <integer>1</integer>
+		<key>cooldown</key> <integer>1</integer>
+		<key>dodgeable</key> <true/>
+		<!-- TODO: this should cost a crystal -->
+		<!-- special effects -->
+	</dict>
+	<key>holy chop</key>
+	<dict>
+		<key>power</key> <integer>35</integer>
+		<key>element</key> <string>shock</string>
+		<key>range</key> <integer>1</integer>
+		<key>cooldown</key> <integer>1</integer>
+		<key>dodgeable</key> <true/>
+		<!-- TODO: this should cost a crystal -->
+		<!-- special effects -->
+	</dict>
+	
+	<!-- ranged damaging attacks -->
+	<key>shield boomerang</key>
+	<dict>
+		<key>power</key> <integer>25</integer>
+		<key>element</key> <string>smash</string>
+		<key>range</key> <integer>5</integer>
+		<key>cooldown</key> <integer>4</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+	</dict>
+	<key>bow shot</key>
+	<dict>
+		<key>power</key> <integer>15</integer>
+		<key>element</key> <string>cut</string>
+		<key>range</key> <integer>6</integer>
+		<key>cooldown</key> <integer>1</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+	</dict>
+	<key>holy shot</key>
+	<dict>
+		<key>power</key> <integer>25</integer>
+		<key>element</key> <string>shock</string>
+		<key>range</key> <integer>6</integer>
+		<key>cooldown</key> <integer>1</integer>
+		<key>dodgeable</key> <true/>
+		<!-- TODO: this should cost a crystal -->
+		<!-- special effects -->
+	</dict>
+	<key>patience shot</key>
+	<dict>
+		<key>power</key> <integer>35</integer>
+		<key>element</key> <string>shock</string>
+		<key>range</key> <integer>6</integer>
+		<key>area</key> <integer>1</integer>
+		<key>cooldown</key> <integer>4</integer>
+		<!-- TODO: this should cost a crystal -->
+		<!-- special effects -->
+	</dict>
+	<key>dart of spite</key>
+	<dict>
+		<key>power</key> <integer>30</integer>
+		<key>element</key> <string>cut</string>
+		<key>range</key> <integer>5</integer>
+		<key>cooldown</key> <integer>11</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+		<key>hurt user</key> <integer>10</integer>
+	</dict>
+	<key>twin sacrifice</key>
+	<dict>
+		<key>power</key> <integer>50</integer>
+		<key>element</key> <string>no element</string>
+		<key>range</key> <integer>3</integer>
+		<key>cooldown</key> <integer>11</integer>
+		<!-- special effects -->
+		<key>hurt user</key> <integer>50</integer>
+	</dict>
+	<key>flame bolt</key>
+	<dict>
+		<key>power</key> <integer>25</integer>
+		<key>element</key> <string>burn</string>
+		<key>range</key> <integer>5</integer>
+		<key>cooldown</key> <integer>11</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+	</dict>
+	<key>holy flash</key>
+	<dict>
+		<key>power</key> <integer>25</integer>
+		<key>element</key> <string>shock</string>
+		<key>range</key> <integer>5</integer>
+		<key>cooldown</key> <integer>11</integer>
+		<!-- special effects -->
+	</dict>
+	<key>stone pillar</key>
+	<dict>
+		<key>power</key> <integer>40</integer>
+		<key>element</key> <string>smash</string>
+		<key>range</key> <integer>4</integer>
+		<key>area</key> <integer>1</integer>
+		<key>cooldown</key> <integer>11</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+	</dict>
+	
+	<!-- (REAL) area of effect damaging attacks -->
+	<key>light orb eruption</key>
+	<dict>
+		<key>power</key> <integer>30</integer>
+		<key>element</key> <string>shock</string>
+		<key>area</key> <integer>3</integer>
+		<key>cooldown</key> <integer>15</integer>
+		<!-- TODO: this should cost a crystal -->
+		<!-- special effects -->
+	</dict>
+	<key>arrow storm</key>
+	<dict>
+		<key>power</key> <integer>25</integer>
+		<key>element</key> <string>cut</string>
+		<key>range</key> <integer>6</integer>
+		<key>area</key> <integer>3</integer>
+		<key>cooldown</key> <integer>15</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+	</dict>
+	<key>shatter</key>
+	<dict>
+		<key>power</key> <integer>25</integer>
+		<key>element</key> <string>cut</string>
+		<key>range</key> <integer>3</integer>
+		<key>area</key> <integer>3</integer>
+		<key>cooldown</key> <integer>11</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+	</dict>
+	<key>earthquake slam</key>
+	<dict>
+		<key>power</key> <integer>30</integer>
+		<key>element</key> <string>smash</string>
+		<key>range</key> <integer>1</integer>
+		<key>area</key> <integer>3</integer>
+		<key>cooldown</key> <integer>15</integer>
+		<!-- special effects -->
+	</dict>
+	<key>crytal grenade</key>
+	<dict>
+		<key>power</key> <integer>30</integer>
+		<key>element</key> <string>burn</string>
+		<key>range</key> <integer>4</integer>
+		<key>area</key> <integer>3</integer>
+		<key>cooldown</key> <integer>4</integer>
+		<key>dodgeable</key> <true/>
+		<!-- TODO: this should cost a crystal -->
+		<!-- special effects -->
+	</dict>
+	
+	<!-- self-targeting utility/defensive attacks -->
+	<key>defense</key>
+	<dict>
+		<key>friendly</key> <true/>
+		<key>cooldown</key> <integer>1</integer>
+		<!-- special effects -->
+		<key>dodge restore</key> <integer>1</integer>
+	</dict>
+	<key>activate light orb</key>
+	<dict>
+		<key>cooldown</key> <integer>1</integer>
+		<key>friendly</key> <true/>
+		<!-- TODO: this should cost a crystal -->
+		<!-- special effects -->
+		<key>forcefield</key> <integer>50</integer>
+	</dict>
+	<key>blur move</key>
+	<dict>
+		<key>element</key> <string>cut</string>
+		<key>cooldown</key> <integer>15</integer>
+		<key>friendly</key> <true/>
+		<!-- special effects -->
+		<key>dodge restore</key> <integer>3</integer>
+	</dict>
+	
+	<!-- other-targeting utility/defensive attacks -->
+	<key>bamboozle</key>
+	<dict>
+		<key>range</key> <integer>3</integer>
+		<key>cooldown</key> <integer>15</integer>
+		<key>friendly</key> <true/>
+		<!-- special effects -->
+		<key>stun</key> <true/>
+	</dict>
+	<key>flirt</key>
+	<dict>
+		<key>range</key> <integer>1</integer>
+		<key>area</key> <integer>1</integer>
+		<key>cooldown</key> <integer>15</integer>
+		<key>friendly</key> <true/>
+		<!-- special effects -->
+		<!-- TODO: this should have some powerful special effect, besides stun -->
+	</dict>
+	<key>dazzle</key>
+	<dict>
+		<key>power</key> <integer>5</integer>
+		<key>element</key> <string>burn</string>
+		<key>range</key> <integer>4</integer>
+		<key>cooldown</key> <integer>11</integer>
+		<!-- special effects -->
+		<key>stun</key> <true/>
+	</dict>
+	<key>blink</key>
+	<dict>
+		<key>range</key> <integer>6</integer>
+		<key>cooldown</key> <integer>11</integer>
+		<key>friendly</key> <true/>
+		<!-- special effects -->
+		<!-- TODO: switch places with whomever is in the target location -->
+	</dict>
+	
+</dict>
+</plist>

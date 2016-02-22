@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #pragma mark creature constants
-
+#define CREATURE_RESISTANCEFACTOR 35
 
 #pragma mark gameplay constants
 

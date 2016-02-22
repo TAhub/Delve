@@ -47,12 +47,170 @@
 	self.blocks = self.maxBlocks;
 	self.hacks = self.maxHacks;
 	
+	//TODO: initialize cooldowns
+	self.cooldowns = [NSMutableDictionary new];
+	//each key-value pair should be "attackName string" : "cooldown NSNumber"
+	
 	//status effect flags
 	self.forceField = 0;
 	self.stunned = NO;
 	
 	//organizational flags
-	//TODO: add them
+	self.storedAttack = nil;
+}
+
+#pragma mark: public interface functions
+
+-(void) useAttackWithTreeNumber:(int)treeNumber andName:(NSString *)name onX:(int)x andY:(int)y
+{
+	//TODO: a range-0 attack always targets your square
+	//but that should be done in the targeting phase, not here
+	
+	//TODO: also, you shouldn't be able to use hurt-self attacks if you are under half the health cost
+	//or ammo-using attacks if you don't have ammo
+	//or attacks if you have the cooldown over 0
+	
+	self.storedAttack = name;
+	self.storedAttackSlot = treeNumber;
+	self.storedAttackX = x;
+	self.storedAttackY = y;
+	
+	if (!loadValueBool(@"Attacks", name, @"area"))
+		[self unleashAttack]; //release the attack immediately
+	
+	//TODO: set cooldown
+}
+
+-(void) unleashAttack
+{
+	//get the implement
+	NSString *implement = @"";
+	if ([self.storedAttack isEqualToString:@"attack"]) //the implement should be your weapon
+		implement = self.weapon;
+	else
+		implement = self.implements[self.storedAttackSlot];
+	
+	//get the power
+	int power = self.damageBonus + [self bonusFromImplement:implement withName:@"power"];
+	
+	//get the element
+	NSString *element = @"no element";
+	if (loadValueBool(@"Attacks", self.storedAttack, @"element"))
+		element = loadValueString(@"Attacks", self.storedAttack, @"element");
+	//TODO: element override from implement (ie flaming sword does burn, whatever)
+	
+	//TODO: get the real person/people you hit, based on the AoE
+	Creature *hit = self;
+	
+	[hit takeAttack:self.storedAttack withPower:power andElement:element];
+	
+	
+	//pay costs
+	if (loadValueBool(@"Attacks", self.storedAttack, @"hurt user"))
+		self.health = MAX(self.health - loadValueNumber(@"Attacks", self.storedAttack, @"hurt user").intValue, 1);
+	//TODO: use ammo
+	
+	
+	self.storedAttack = nil;
+}
+
+-(void) takeAttack:(NSString *)attackType withPower:(int)power andElement:(NSString *)element
+{
+	if (!loadValueBool(@"Attacks", attackType, @"friendly"))
+	{
+		//don't apply damage, dodge, block, etc on friendly attacks
+		
+		if (loadValueBool(@"Attacks", attackType, @"dodgeable") && self.dodges > 0)
+		{
+			self.dodges -= 1;
+			NSLog(@"Dodged!");
+			return;
+		}
+		
+		if (self.blocks > 0)
+		{
+			self.blocks -= 1;
+			NSLog(@"Blocked!");
+			return;
+		}
+		
+		if (loadValueBool(@"Attacks", attackType, @"power"))
+		{
+			//apply damage
+			int finalPower = loadValueNumber(@"Attacks", attackType, @"power").intValue;
+			
+			int resistance = 0;
+			if ([element isEqualToString:@"cut"])
+				resistance = self.cutResistance;
+			else if ([element isEqualToString:@"smash"])
+				resistance = self.smashResistance;
+			else if ([element isEqualToString:@"burn"])
+				resistance = self.burnResistance;
+			else if ([element isEqualToString:@"shock"])
+				resistance = self.shockResistance;
+			
+			finalPower = (power * finalPower) / (100 + resistance * CREATURE_RESISTANCEFACTOR);
+			
+			if (self.forceField >= finalPower)
+			{
+				self.forceField -= finalPower;
+				NSLog(@"Totally blocked by force field!");
+			}
+			else
+			{
+				if (self.forceField > 0)
+				{
+					NSLog(@"Partially blocked by force field!");
+					finalPower -= self.forceField;
+					self.forceField = 0;
+				}
+				
+				NSLog(@"Took %i damage!", finalPower);
+				self.health = MAX(self.health - finalPower, 0);
+			}
+		}
+	}
+	
+	//apply special effects
+	if (loadValueBool(@"Attacks", attackType, @"stun"))
+	{
+		self.stunned = true;
+		self.storedAttack = nil;
+	}
+	if (loadValueBool(@"Attacks", attackType, @"interrupt aoe"))
+		self.storedAttack = nil;
+	if (loadValueBool(@"Attacks", attackType, @"dodge restore"))
+		self.dodges = MIN(self.dodges + loadValueNumber(@"Attacks", attackType, @"dodge restore").intValue, self.maxDodges);
+	if (loadValueBool(@"Attacks", attackType, @"forcefield"))
+	{
+		int forceFieldPower = loadValueNumber(@"Attacks", attackType, @"forcefield").intValue;
+		forceFieldPower = (forceFieldPower * power) / 100;
+		self.forceField += forceFieldPower;
+	}
+}
+
+-(BOOL) startTurn
+{
+	self.forceField = 0;
+	
+	//reduce all cooldowns
+	for (NSString *attack in self.cooldowns.allKeys)
+	{
+		NSNumber *cooldown = self.cooldowns[attack];
+		self.cooldowns[attack] = @(MAX(cooldown.intValue - 1, 0));
+	}
+	
+	if (self.storedAttack != nil)
+		[self unleashAttack];
+	
+	if (self.stunned)
+	{
+		self.stunned = false;
+		
+		return false;
+	}
+	
+	return true;
 }
 
 

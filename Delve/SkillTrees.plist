@@ -26,7 +26,7 @@
 				<key>blocks</key> <integer>0</integer>
 				<key>hacks</key> <integer>0</integer>
 				<key>metabolism</key> <integer>0</integer>
-				<!-- TOOD: active skill -->
+				<key>attack</key> <string>template</string>
 			</dict>
 			<dict> <!-- rank 2 -->
 				<key>damage bonus</key> <integer>0</integer>
@@ -39,7 +39,7 @@
 				<key>blocks</key> <integer>0</integer>
 				<key>hacks</key> <integer>0</integer>
 				<key>metabolism</key> <integer>0</integer>
-				<!-- TOOD: active skill -->
+				<key>attack</key> <string>template</string>
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>damage bonus</key> <integer>0</integer>
@@ -52,7 +52,7 @@
 				<key>blocks</key> <integer>0</integer>
 				<key>hacks</key> <integer>0</integer>
 				<key>metabolism</key> <integer>0</integer>
-				<!-- TOOD: active skill -->
+				<key>attack</key> <string>template</string>
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>damage bonus</key> <integer>0</integer>
@@ -65,7 +65,7 @@
 				<key>blocks</key> <integer>0</integer>
 				<key>hacks</key> <integer>0</integer>
 				<key>metabolism</key> <integer>0</integer>
-				<!-- TOOD: active skill -->
+				<key>attack</key> <string>template</string>
 			</dict>
 		</array>
 	</dict>
@@ -105,7 +105,7 @@
 			</dict>
 			<dict> <!-- rank 2 -->
 				<key>burn resistance</key> <integer>1</integer>
-				<!-- TOOD: shield bash skill -->
+				<key>attack</key> <string>shield bash</string>
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>blocks</key> <integer>1</integer>
@@ -113,7 +113,7 @@
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>health</key> <integer>15</integer>
-				<!-- TOOD: shield boomerang skill -->
+				<key>attack</key> <string>shield boomerang</string>
 			</dict>
 		</array>
 	</dict>
@@ -130,14 +130,14 @@
 		<array>
 			<dict> <!-- rank 1 -->
 				<key>damage bonus</key> <integer>10</integer>
-				<!-- TOOD: power swing skill -->
+				<key>attack</key> <string>power swing</string>
 			</dict>
 			<dict> <!-- rank 2 -->
 				<key>cut resistance</key> <integer>2</integer>
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>metabolism</key> <integer>12</integer>
-				<!-- TOOD: earthquake slam skill -->
+				<key>attack</key> <string>earthquake slam</string>
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>damage bonus</key> <integer>20</integer>
@@ -158,14 +158,14 @@
 		<array>
 			<dict> <!-- rank 1 -->
 				<key>burn resistance</key> <integer>1</integer>
-				<!-- TOOD: thrust skill -->
+				<key>attack</key> <string>thrust</string>
 			</dict>
 			<dict> <!-- rank 2 -->
 				<key>health</key> <integer>25</integer>
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>burn resistance</key> <integer>1</integer>
-				<!-- TOOD: jab skill -->
+				<key>attack</key> <string>jab</string>
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>damage bonus</key> <integer>5</integer>
@@ -186,7 +186,7 @@
 		<array>
 			<dict> <!-- rank 1 -->
 				<key>damage bonus</key> <integer>10</integer>
-				<!-- TOOD: bowshot skill -->
+				<key>attack</key> <string>bow shot</string>
 			</dict>
 			<dict> <!-- rank 2 -->
 				<key>damage bonus</key> <integer>10</integer>
@@ -194,7 +194,7 @@
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>shock resistance</key> <integer>1</integer>
-				<!-- TOOD: arrow storm skill -->
+				<key>attack</key> <string>arrow storm</string>
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>damage bonus</key> <integer>15</integer>
@@ -223,7 +223,7 @@
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>smash resistance</key> <integer>1</integer>
-				<!-- TOOD: blur move skill -->
+				<key>attack</key> <string>blur move</string>
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>dodges</key> <integer>1</integer>
@@ -252,7 +252,7 @@
 			<dict> <!-- rank 3 -->
 				<key>damage bonus</key> <integer>6</integer>
 				<key>metabolism</key> <integer>10</integer>
-				<!-- TOOD: tackle skill -->
+				<key>attack</key> <string>tackle</string>
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>metabolism</key> <integer>15</integer>
@@ -275,14 +275,14 @@
 			</dict>
 			<dict> <!-- rank 2 -->
 				<key>smash resistance</key> <integer>1</integer>
-				<!-- TOOD: kick skill -->
+				<key>attack</key> <string>kick</string>
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>damage bonus</key> <integer>25</integer>
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>burn resistance</key> <integer>1</integer>
-				<!-- TOOD: haymaker skill -->
+				<key>attack</key> <string>haymaker</string>
 			</dict>
 		</array>
 	</dict>
@@ -297,7 +297,7 @@
 		<array>
 			<dict> <!-- rank 1 -->
 				<key>health</key> <integer>10</integer>
-				<!-- TOOD: bamboozle skill -->
+				<key>attack</key> <string>bamboozle</string>
 			</dict>
 			<dict> <!-- rank 2 -->
 				<key>health</key> <integer>10</integer>
@@ -305,7 +305,7 @@
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>health</key> <integer>10</integer>
-				<!-- TOOD: flirt skill -->
+				<key>attack</key> <string>flirt</string>
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>health</key> <integer>10</integer>
@@ -329,7 +329,7 @@
 		<array>
 			<dict> <!-- rank 1 -->
 				<key>shock resistance</key> <integer>1</integer>
-				<!-- TOOD: activate light orb skill -->
+				<key>attack</key> <string>activate light orb</string>
 			</dict>
 			<dict> <!-- rank 2 -->
 				<key>burn resistance</key> <integer>1</integer>
@@ -337,7 +337,7 @@
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>burn resistance</key> <integer>1</integer>
-				<!-- TOOD: light orb eruption skill -->
+				<key>attack</key> <string>light orb eruption</string>
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>shock resistance</key> <integer>1</integer>
@@ -358,14 +358,14 @@
 		<array>
 			<dict> <!-- rank 1 -->
 				<key>health</key> <integer>10</integer>
-				<!-- TOOD: holy shot skill -->
+				<key>attack</key> <string>holy shot</string>
 			</dict>
 			<dict> <!-- rank 2 -->
 				<key>damage bonus</key> <integer>25</integer>
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>health</key> <integer>10</integer>
-				<!-- TOOD: patience shot skill -->
+				<key>attack</key> <string>patience shot</string>
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>damage bonus</key> <integer>25</integer>
@@ -391,7 +391,7 @@
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>shock resistance</key> <integer>1</integer>
-				<!-- TOOD: crystal grenade skill -->
+				<key>attack</key> <string>crystal grenade</string>
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>shock resistance</key> <integer>1</integer>
@@ -412,14 +412,14 @@
 		<array>
 			<dict> <!-- rank 1 -->
 				<key>burn resistance</key> <integer>1</integer>
-				<!-- TOOD: flame punch skill -->
+				<key>attack</key> <string>flame punch</string>
 			</dict>
 			<dict> <!-- rank 2 -->
 				<key>metabolism</key> <integer>30</integer>
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>burn resistance</key> <integer>1</integer>
-				<!-- TOOD: holy chop skill -->
+				<key>attack</key> <string>holy chop</string>
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>health</key> <integer>15</integer>
@@ -443,14 +443,14 @@
 		<array>
 			<dict> <!-- rank 1 -->
 				<key>metabolism</key> <integer>10</integer>
-				<!-- TOOD: dart of spite skill -->
+				<key>attack</key> <string>dart of spite</string>
 			</dict>
 			<dict> <!-- rank 2 -->
 				<key>health</key> <integer>25</integer>
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>metabolism</key> <integer>10</integer>
-				<!-- TOOD: twin sacrifice skill -->
+				<key>attack</key> <string>twin sacrifice</string>
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>health</key> <integer>25</integer>
@@ -470,14 +470,14 @@
 		<array>
 			<dict> <!-- rank 1 -->
 				<key>damage bonus</key> <integer>10</integer>
-				<!-- TOOD: dazzle skill -->
+				<key>attack</key> <string>blink</string>
 			</dict>
 			<dict> <!-- rank 2 -->
 				<key>smash resistance</key> <integer>2</integer>
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>hacks</key> <integer>1</integer>
-				<!-- TOOD: teleport skill -->
+				<key>attack</key> <string>dazzle</string>
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>metabolism</key> <integer>15</integer>
@@ -499,19 +499,19 @@
 		<array>
 			<dict> <!-- rank 1 -->
 				<key>damage bonus</key> <integer>10</integer>
-				<!-- TOOD: flame bolt skill -->
+				<key>attack</key> <string>flame bolt</string>
 			</dict>
 			<dict> <!-- rank 2 -->
 				<key>damage bonus</key> <integer>10</integer>
-				<!-- TOOD: shatter skill -->
+				<key>attack</key> <string>shatter</string>
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>damage bonus</key> <integer>10</integer>
-				<!-- TOOD: holy flash skill -->
+				<key>attack</key> <string>holy flash</string>
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>damage bonus</key> <integer>10</integer>
-				<!-- TOOD: stone pillar skill -->
+				<key>attack</key> <string>stone pillar</string>
 			</dict>
 		</array>
 	</dict>

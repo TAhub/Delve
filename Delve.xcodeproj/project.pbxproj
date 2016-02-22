@@ -16,6 +16,7 @@
 		E459C6A51C7ABB5200422B0A /* Races.plist in Resources */ = {isa = PBXBuildFile; fileRef = E459C6A41C7ABB5200422B0A /* Races.plist */; };
 		E459C6A71C7ABB6400422B0A /* SkillTrees.plist in Resources */ = {isa = PBXBuildFile; fileRef = E459C6A61C7ABB6400422B0A /* SkillTrees.plist */; };
 		E459C6A91C7B602100422B0A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C6A81C7B602100422B0A /* Constants.m */; };
+		E459C6AC1C7B7FC300422B0A /* Attacks.plist in Resources */ = {isa = PBXBuildFile; fileRef = E459C6AB1C7B7FC300422B0A /* Attacks.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		E459C6A61C7ABB6400422B0A /* SkillTrees.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SkillTrees.plist; sourceTree = "<group>"; };
 		E459C6A81C7B602100422B0A /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		E459C6AA1C7B602A00422B0A /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		E459C6AB1C7B7FC300422B0A /* Attacks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Attacks.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 		E459C6861C7AB2E800422B0A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E459C6AB1C7B7FC300422B0A /* Attacks.plist */,
 				E459C6A41C7ABB5200422B0A /* Races.plist */,
 				E459C6A61C7ABB6400422B0A /* SkillTrees.plist */,
 				E459C6971C7AB2E800422B0A /* Info.plist */,
@@ -175,6 +178,7 @@
 				E459C6931C7AB2E800422B0A /* Assets.xcassets in Resources */,
 				E459C6911C7AB2E800422B0A /* Main.storyboard in Resources */,
 				E459C6A71C7ABB6400422B0A /* SkillTrees.plist in Resources */,
+				E459C6AC1C7B7FC300422B0A /* Attacks.plist in Resources */,
 				E459C6A51C7ABB5200422B0A /* Races.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

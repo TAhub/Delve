@@ -49,9 +49,19 @@
 @property int dodges;
 @property int blocks;
 @property int hacks;
-//TODO: some kind of variable to store position
+@property int x;
+@property int y;
+@property (strong, nonatomic) NSMutableDictionary *cooldowns;
 
 #pragma mark: organizational flags
-//TODO: some kind of variables to store "I am going to hit an area centered at square X with skill Y at the start of my next turn"
+@property (strong, nonatomic) NSString *storedAttack;
+@property int storedAttackSlot;
+@property int storedAttackX;
+@property int storedAttackY;
+
+#pragma mark public interface functions
+-(void) takeAttack:(NSString *)attackType withPower:(int)power andElement:(NSString *)element;
+-(void) useAttackWithTreeNumber:(int)treeNumber andName:(NSString *)name onX:(int)x andY:(int)y;
+-(BOOL) startTurn;
 
 @end
