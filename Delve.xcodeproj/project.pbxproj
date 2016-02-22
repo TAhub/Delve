@@ -21,6 +21,7 @@
 		E459C6B21C7BB4BD00422B0A /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C6B11C7BB4BD00422B0A /* Tile.m */; };
 		E459C6B41C7BBCC400422B0A /* EnemyTypes.plist in Resources */ = {isa = PBXBuildFile; fileRef = E459C6B31C7BBCC400422B0A /* EnemyTypes.plist */; };
 		E459C6B71C7BC57E00422B0A /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C6B61C7BC57E00422B0A /* MapView.m */; };
+		E459C6BA1C7BD25F00422B0A /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C6B91C7BD25F00422B0A /* GameViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,8 @@
 		E459C6B31C7BBCC400422B0A /* EnemyTypes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EnemyTypes.plist; sourceTree = "<group>"; };
 		E459C6B51C7BC57E00422B0A /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView.h; sourceTree = "<group>"; };
 		E459C6B61C7BC57E00422B0A /* MapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView.m; sourceTree = "<group>"; };
+		E459C6B81C7BD25F00422B0A /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		E459C6B91C7BD25F00422B0A /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +134,8 @@
 		E459C69F1C7AB31B00422B0A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E459C6B81C7BD25F00422B0A /* GameViewController.h */,
+				E459C6B91C7BD25F00422B0A /* GameViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -209,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E459C6BA1C7BD25F00422B0A /* GameViewController.m in Sources */,
 				E459C68B1C7AB2E800422B0A /* AppDelegate.m in Sources */,
 				E459C6B21C7BB4BD00422B0A /* Tile.m in Sources */,
 				E459C6AE1C7BB36C00422B0A /* Map.m in Sources */,

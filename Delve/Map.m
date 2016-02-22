@@ -20,13 +20,11 @@
 		_tiles = [NSMutableArray new];
 		
 		//make initial map
-		int width = 10;
+		int width = 8;
 		int height = 10;
-		for (int i = 0; i < height; i++)
-			[_tiles addObject:[NSMutableArray new]];
 		for (int y = 0; y < height; y++)
 		{
-			NSMutableArray *row = _tiles[y];
+			NSMutableArray *row = [NSMutableArray new];
 			for (int x = 0; x < width; x++)
 			{
 				Tile *tile = [[Tile alloc] initWithType:((x == 0 || y == 0 || x == width - 1 || y == height - 1) ? @"wall" : @"floor")];

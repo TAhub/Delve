@@ -13,8 +13,8 @@
 
 #pragma mark gameplay constants
 
-#define GAMEPLAY_SCREEN_WIDTH 10
-#define GAMEPLAY_SCREEN_HEIGHT 8
+#define GAMEPLAY_SCREEN_WIDTH 8
+#define GAMEPLAY_SCREEN_HEIGHT 10
 #define GAMEPLAY_TILE_SIZE 40
 
 #pragma mark enums

@@ -25,4 +25,9 @@
 	return [self.type isEqualToString:@"wall"];
 }
 
+-(UIColor *) color
+{
+	return (self.solid ? [UIColor grayColor] : [UIColor whiteColor]);
+}
+
 @end

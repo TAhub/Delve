@@ -6,59 +6,62 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Game View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="GameViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8TG-ed-Jwf">
-                                <rect key="frame" x="148" y="0.0" width="400" height="320"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8TG-ed-Jwf" customClass="MapView">
+                                <rect key="frame" x="0.0" y="168" width="320" height="400"/>
                                 <color key="backgroundColor" red="1" green="0.2373469599177821" blue="0.18635518906661352" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="320" id="PTL-so-5ub"/>
-                                    <constraint firstAttribute="width" constant="400" id="Wdb-BK-9aT"/>
+                                    <constraint firstAttribute="height" constant="400" id="PTL-so-5ub"/>
+                                    <constraint firstAttribute="width" constant="320" id="Wdb-BK-9aT"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdj-KX-CmV">
-                                <rect key="frame" x="20" y="0.0" width="128" height="320"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="feh-tG-XLx">
+                                <rect key="frame" x="0.0" y="28" width="320" height="140"/>
+                                <color key="backgroundColor" red="0.20358598267026806" green="0.38706738132902896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
+                            <constraint firstItem="feh-tG-XLx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="G9M-pF-kd1"/>
                             <constraint firstItem="8TG-ed-Jwf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GrU-5K-uqc"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="rdj-KX-CmV" secondAttribute="bottom" id="S4v-eK-fWG"/>
-                            <constraint firstItem="rdj-KX-CmV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="XcE-V1-LKK"/>
-                            <constraint firstItem="rdj-KX-CmV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="eY8-Np-gLo"/>
-                            <constraint firstItem="rdj-KX-CmV" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="gLV-Ux-V7u"/>
+                            <constraint firstItem="8TG-ed-Jwf" firstAttribute="top" secondItem="feh-tG-XLx" secondAttribute="bottom" id="VbX-7h-EOL"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8TG-ed-Jwf" secondAttribute="bottom" id="eo2-oB-XYe"/>
+                            <constraint firstItem="feh-tG-XLx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="fNU-QV-orW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8TG-ed-Jwf" secondAttribute="trailing" id="hOh-Ah-vik"/>
-                            <constraint firstItem="rdj-KX-CmV" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="nbf-Hc-X1H"/>
-                            <constraint firstItem="8TG-ed-Jwf" firstAttribute="leading" secondItem="rdj-KX-CmV" secondAttribute="trailing" id="qkK-d4-Gem"/>
+                            <constraint firstItem="8TG-ed-Jwf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uLt-du-rol"/>
                             <constraint firstItem="8TG-ed-Jwf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="vlx-Y4-URV"/>
+                            <constraint firstItem="feh-tG-XLx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ydT-Y1-rTF"/>
                             <constraint firstItem="8TG-ed-Jwf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="zI5-uY-3n4"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="XcE-V1-LKK"/>
                                 <exclude reference="GrU-5K-uqc"/>
+                                <exclude reference="hOh-Ah-vik"/>
+                                <exclude reference="vlx-Y4-URV"/>
                                 <exclude reference="zI5-uY-3n4"/>
-                                <exclude reference="S4v-eK-fWG"/>
                             </mask>
                         </variation>
                     </view>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="mapView" destination="8TG-ed-Jwf" id="bWQ-DB-nod"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="349" y="271"/>
+            <point key="canvasLocation" x="335" y="255"/>
         </scene>
     </scenes>
 </document>

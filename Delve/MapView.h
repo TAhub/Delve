@@ -20,7 +20,9 @@
 @property (weak, nonatomic) id<MapViewDelegate> delegate;
 
 -(void)initializeMapAtX:(int)x andY:(int)y;
-
 -(void)setPositionWithX:(int)x andY:(int)y;
+
+-(int)xOffset;
+-(int)yOffset;
 
 @end

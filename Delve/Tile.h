@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class Creature;
 
@@ -18,6 +19,7 @@
 
 @property (strong, nonatomic) NSString *type;
 -(BOOL) solid;
+-(UIColor *) color;
 @property (weak, nonatomic) Creature *inhabitant;
 
 @end

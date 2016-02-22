@@ -6,7 +6,7 @@
 //  Copyright © 2016 Theodore Abshire. All rights reserved.
 //
 
-#define INNER_YMULT 999
+#define INNER_YMULT 99999
 
 #import "MapView.h"
 #import "Constants.h"
@@ -25,13 +25,22 @@
 
 @implementation MapView
 
+-(int)xOffset
+{
+	return GAMEPLAY_TILE_SIZE * ((GAMEPLAY_SCREEN_WIDTH / 2) - self.x);
+}
+-(int)yOffset
+{
+	return GAMEPLAY_TILE_SIZE * ((GAMEPLAY_SCREEN_HEIGHT / 2) - self.y);
+}
+
 -(int)xTranslate:(int)x
 {
-	return (x - self.x + (GAMEPLAY_SCREEN_WIDTH / 2)) * GAMEPLAY_TILE_SIZE + GAMEPLAY_TILE_SIZE / 2;
+	return (x - self.x + (GAMEPLAY_SCREEN_WIDTH / 2)) * GAMEPLAY_TILE_SIZE;
 }
 -(int)yTranslate:(int)y
 {
-	return (y - self.y + (GAMEPLAY_SCREEN_HEIGHT / 2)) * GAMEPLAY_TILE_SIZE + GAMEPLAY_TILE_SIZE / 2;
+	return (y - self.y + (GAMEPLAY_SCREEN_HEIGHT / 2)) * GAMEPLAY_TILE_SIZE;
 }
 
 -(UIView *)makeTileAtX:(int)x andY:(int)y
@@ -42,6 +51,9 @@
 		return tileView;
 	
 	tileView = [self.delegate viewAtTileWithX:x andY:y];
+	
+	if (tileView == nil)
+		return nil;
 	
 	tileView.frame = CGRectMake([self xTranslate:x], [self yTranslate:y], GAMEPLAY_TILE_SIZE, GAMEPLAY_TILE_SIZE);
 	[self addSubview:tileView];
@@ -57,15 +69,16 @@
 	self.y = y;
 	
 	self.tileDict = [NSMutableDictionary new];
-	[self makeTileAtX:x andY:y];
+	[self generateTilesAroundX:x andY:y];
 }
 
 -(void)generateTilesAroundX:(int)x andY:(int)y
 {
 	int xStart = x - GAMEPLAY_SCREEN_WIDTH / 2;
 	int yStart = y - GAMEPLAY_SCREEN_WIDTH / 2;
-	for (int x = xStart; x < xStart + GAMEPLAY_SCREEN_WIDTH; x++)
-		for (int y = yStart; y < yStart + GAMEPLAY_SCREEN_HEIGHT; y++)
+	
+	for (int x = xStart - 1; x <= xStart + GAMEPLAY_SCREEN_WIDTH; x++)
+		for (int y = yStart - 1; y <= yStart + GAMEPLAY_SCREEN_HEIGHT; y++)
 			[self makeTileAtX:x andY:y];
 }
 
@@ -97,8 +110,8 @@
 		{
 			int x = index.intValue % INNER_YMULT;
 			int y = index.intValue / INNER_YMULT;
-			if (x < weakSelf.x - GAMEPLAY_SCREEN_WIDTH / 2 || y < weakSelf.y - GAMEPLAY_SCREEN_HEIGHT ||
-				x >= weakSelf.x + GAMEPLAY_SCREEN_WIDTH / 2 || y >= weakSelf.y + GAMEPLAY_SCREEN_HEIGHT)
+			if (x < weakSelf.x - GAMEPLAY_SCREEN_WIDTH / 2 - 1 || y < weakSelf.y - GAMEPLAY_SCREEN_HEIGHT - 1 ||
+				x > weakSelf.x + GAMEPLAY_SCREEN_WIDTH / 2 || y > weakSelf.y + GAMEPLAY_SCREEN_HEIGHT)
 			{
 				[((UIView *) weakSelf.tileDict[index]) removeFromSuperview];
 				weakSelf.tileDict[index] = nil;

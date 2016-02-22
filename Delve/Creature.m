@@ -57,9 +57,9 @@
 	{
 		//TODO: these are all just temporary variables
 		_race = @"human";
-		_skillTrees = [NSArray arrayWithObjects:@"shield", @"dodge", @"axe", @"spear", @"conditioning", nil];
+		_skillTrees = [NSArray arrayWithObjects:@"shield", @"dodge", @"hammer", @"spear", @"conditioning", nil];
 		_skillTreeLevels = [NSArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
-		_implements = [NSArray arrayWithObjects:@"rusty shield", @"", @"rusty axe", @"wooden spear", @"", nil];
+		_implements = [NSArray arrayWithObjects:@"rusty shield", @"", @"rusty hammer", @"wooden spear", @"", nil];
 		_weapon = @"rusty sword";
 		_armors = [NSArray arrayWithObjects:@"rusty chestplate", @"rusty helmet", nil];
 		_good = YES;
