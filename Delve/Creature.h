@@ -32,6 +32,8 @@
 -(int) burnResistance; //burn damage is the "anti-ranged" damage type, so melee type skills should give this resistance
 -(int) maxDodges; //dodges are the "common" defense type, accessable by anyone
 -(int) maxBlocks; //blocks are a war-skill-only "super" defense type, and recharge only on their own when you get kills (to reward offense)
+-(int) maxHacks; //hacks are used to unlock doors, chests, and to turn off traps if you step in them; it's refilled on map transition
+-(int) metabolism; //metabolism is a percentage bonus to how much healing items heal you
 
 #pragma mark: equipment
 @property (strong, nonatomic) NSArray *armors; //an array of NSStrings
@@ -46,6 +48,7 @@
 @property int health;
 @property int dodges;
 @property int blocks;
+@property int hacks;
 //TODO: some kind of variable to store position
 
 #pragma mark: organizational flags

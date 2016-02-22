@@ -7,6 +7,7 @@
 //
 
 #import "Creature.h"
+#import "Constants.h"
 
 @interface Creature()
 
@@ -44,6 +45,7 @@
 	self.health = self.maxHealth;
 	self.dodges = self.maxDodges;
 	self.blocks = self.maxBlocks;
+	self.hacks = self.maxHacks;
 	
 	//status effect flags
 	self.forceField = 0;
@@ -87,6 +89,14 @@
 {
 	return [self totalBonus:@"blocks"];
 }
+-(int) maxHacks
+{
+	return [self totalBonus:@"hacks"];
+}
+-(int) metabolism
+{
+	return [self totalBonus:@"metabolism"];
+}
 
 
 #pragma mark: helpers
@@ -112,23 +122,32 @@
 
 -(int)bonusFromSkillTree:(NSString *)tree ofRank:(int)rank withName:(NSString *)name
 {
-	//TODO: find the skill pasive bonus with name "name" from the skill number "rank" from the tree "tree"
-	//TODO: keep in mind that the starting rank is 1, not 0; so it doesn't map directly to array index
+	//find the skill pasive bonus with name "name" from the skill number "rank" from the tree "tree"
+	
+	NSArray *skillInfoArray = loadValueArray(@"SkillTrees", tree, @"skills");
+	int bonus = 0;
+	for (int i = 0; i < rank; i++)
+	{
+		NSDictionary *skill = skillInfoArray[i];
+		if (skill[name] != nil)
+			bonus += ((NSNumber *)skill[name]).intValue;
+	}
 	return 0;
 }
 
 -(int)totalBonus:(NSString *)name
 {
-	//TODO: get the base bonus from your race
+	//get the base bonus from your race
 	int bonus = 0;
+	if (loadValueBool(@"Races", self.race, name))
+		bonus += loadValueNumber(@"Races", self.race, name).intValue;
 	
 	//get the skill passive bonuses
 	for (int i = 0; i < self.skillTrees.count; i++)
 	{
 		NSString *skillTreeName = self.skillTrees[i];
 		int ranks = ((NSNumber *)self.skillTreeLevels[i]).intValue;
-		for (int j = 1; j <= ranks; j++)
-			bonus += [self bonusFromSkillTree:skillTreeName ofRank:j withName:name];
+		bonus += [self bonusFromSkillTree:skillTreeName ofRank:ranks withName:name];
 	}
 	
 	//get the armor bonuses

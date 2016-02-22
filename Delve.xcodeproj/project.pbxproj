@@ -15,6 +15,7 @@
 		E459C6A11C7AB34300422B0A /* Creature.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C6A01C7AB34300422B0A /* Creature.m */; };
 		E459C6A51C7ABB5200422B0A /* Races.plist in Resources */ = {isa = PBXBuildFile; fileRef = E459C6A41C7ABB5200422B0A /* Races.plist */; };
 		E459C6A71C7ABB6400422B0A /* SkillTrees.plist in Resources */ = {isa = PBXBuildFile; fileRef = E459C6A61C7ABB6400422B0A /* SkillTrees.plist */; };
+		E459C6A91C7B602100422B0A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C6A81C7B602100422B0A /* Constants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,8 @@
 		E459C6A31C7AB37E00422B0A /* Creature.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Creature.h; sourceTree = "<group>"; };
 		E459C6A41C7ABB5200422B0A /* Races.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Races.plist; sourceTree = "<group>"; };
 		E459C6A61C7ABB6400422B0A /* SkillTrees.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SkillTrees.plist; sourceTree = "<group>"; };
+		E459C6A81C7B602100422B0A /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		E459C6AA1C7B602A00422B0A /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +101,8 @@
 			children = (
 				E459C6A31C7AB37E00422B0A /* Creature.h */,
 				E459C6A01C7AB34300422B0A /* Creature.m */,
+				E459C6AA1C7B602A00422B0A /* Constants.h */,
+				E459C6A81C7B602100422B0A /* Constants.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 				E459C68B1C7AB2E800422B0A /* AppDelegate.m in Sources */,
 				E459C6881C7AB2E800422B0A /* main.m in Sources */,
 				E459C6A11C7AB34300422B0A /* Creature.m in Sources */,
+				E459C6A91C7B602100422B0A /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

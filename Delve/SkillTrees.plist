@@ -10,56 +10,69 @@
 <plist version="1.0">
 <dict>
 	<key>template</key>
-	<array>
-		<dict> <!-- rank 1 -->
-			<key>damage bonus</key> <integer>0</integer>
-			<key>health</key> <integer>0</integer>
-			<key>smash resistance</key> <integer>0</integer>
-			<key>cut resistance</key> <integer>0</integer>
-			<key>shock resistance</key> <integer>0</integer>
-			<key>burn resistance</key> <integer>0</integer>
-			<key>dodges</key> <integer>0</integer>
-			<key>blocks</key> <integer>0</integer>
-			<!-- TOOD: active skill -->
-		</dict>
-		<dict> <!-- rank 2 -->
-			<key>damage bonus</key> <integer>0</integer>
-			<key>health</key> <integer>0</integer>
-			<key>smash resistance</key> <integer>0</integer>
-			<key>cut resistance</key> <integer>0</integer>
-			<key>shock resistance</key> <integer>0</integer>
-			<key>burn resistance</key> <integer>0</integer>
-			<key>dodges</key> <integer>0</integer>
-			<key>blocks</key> <integer>0</integer>
-			<!-- TOOD: active skill -->
-		</dict>
-		<dict> <!-- rank 3 -->
-			<key>damage bonus</key> <integer>0</integer>
-			<key>health</key> <integer>0</integer>
-			<key>smash resistance</key> <integer>0</integer>
-			<key>cut resistance</key> <integer>0</integer>
-			<key>shock resistance</key> <integer>0</integer>
-			<key>burn resistance</key> <integer>0</integer>
-			<key>dodges</key> <integer>0</integer>
-			<key>blocks</key> <integer>0</integer>
-			<!-- TOOD: active skill -->
-		</dict>
-		<dict> <!-- rank 4 -->
-			<key>damage bonus</key> <integer>0</integer>
-			<key>health</key> <integer>0</integer>
-			<key>smash resistance</key> <integer>0</integer>
-			<key>cut resistance</key> <integer>0</integer>
-			<key>shock resistance</key> <integer>0</integer>
-			<key>burn resistance</key> <integer>0</integer>
-			<key>dodges</key> <integer>0</integer>
-			<key>blocks</key> <integer>0</integer>
-			<!-- TOOD: active skill -->
-		</dict>
-	</array>
+	<dict>
+		<key>type</key> <string>invalid</string>
+		<key>implement</key> <string>shield</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>damage bonus</key> <integer>0</integer>
+				<key>health</key> <integer>0</integer>
+				<key>smash resistance</key> <integer>0</integer>
+				<key>cut resistance</key> <integer>0</integer>
+				<key>shock resistance</key> <integer>0</integer>
+				<key>burn resistance</key> <integer>0</integer>
+				<key>dodges</key> <integer>0</integer>
+				<key>blocks</key> <integer>0</integer>
+				<key>hacks</key> <integer>0</integer>
+				<key>metabolism</key> <integer>0</integer>
+				<!-- TOOD: active skill -->
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>damage bonus</key> <integer>0</integer>
+				<key>health</key> <integer>0</integer>
+				<key>smash resistance</key> <integer>0</integer>
+				<key>cut resistance</key> <integer>0</integer>
+				<key>shock resistance</key> <integer>0</integer>
+				<key>burn resistance</key> <integer>0</integer>
+				<key>dodges</key> <integer>0</integer>
+				<key>blocks</key> <integer>0</integer>
+				<key>hacks</key> <integer>0</integer>
+				<key>metabolism</key> <integer>0</integer>
+				<!-- TOOD: active skill -->
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>damage bonus</key> <integer>0</integer>
+				<key>health</key> <integer>0</integer>
+				<key>smash resistance</key> <integer>0</integer>
+				<key>cut resistance</key> <integer>0</integer>
+				<key>shock resistance</key> <integer>0</integer>
+				<key>burn resistance</key> <integer>0</integer>
+				<key>dodges</key> <integer>0</integer>
+				<key>blocks</key> <integer>0</integer>
+				<key>hacks</key> <integer>0</integer>
+				<key>metabolism</key> <integer>0</integer>
+				<!-- TOOD: active skill -->
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>damage bonus</key> <integer>0</integer>
+				<key>health</key> <integer>0</integer>
+				<key>smash resistance</key> <integer>0</integer>
+				<key>cut resistance</key> <integer>0</integer>
+				<key>shock resistance</key> <integer>0</integer>
+				<key>burn resistance</key> <integer>0</integer>
+				<key>dodges</key> <integer>0</integer>
+				<key>blocks</key> <integer>0</integer>
+				<key>hacks</key> <integer>0</integer>
+				<key>metabolism</key> <integer>0</integer>
+				<!-- TOOD: active skill -->
+			</dict>
+		</array>
+	</dict>
 	
 	<!-- design guidelines -->
 	<!-- passive-only skill ranks give about 1 of the following (feel free to split the difference) -->
-	<!-- 25 health, 25 damage bonus, 2 resistance, 1 dodge, 1 block -->
+	<!-- 25 health, 25 damage bonus, 2 resistance, 1 dodge, 1 block, 30 metabolism, 1 hack -->
 	<!-- active skills give the active skill plus about half of a passive, less for a powerful active skill -->
 	<!-- everything should have at least a little bit of health or whatever -->
 	
@@ -68,7 +81,9 @@
 	<!-- B: active, active, active, active (purely active skill) -->
 	<!-- C: passive, active, passive, active (balanced skill) -->
 	<!-- D: passive, passive, active, passive (mostly passive skill) -->
-	<!-- E: passive, passive, passive, passive (pure passive skill, should have THREE stats raised) -->
+	
+	<!-- note that the "raises X" things are just a guideline, if I check the diagnostics and they say there are too many damage bonuses or w/e -->
+	<!-- it's totally ok to change one or two of the damage bonuses into something else -->
 	
 	
 	<!-- war skills -->
@@ -79,103 +94,426 @@
 	<!-- raises block and cut resistance -->
 	<!-- implement: shields -->
 	<key>shield</key>
-	<array>
-		<dict> <!-- rank 1 -->
-			<key>blocks</key> <integer>1</integer>
-		</dict>
-		<dict> <!-- rank 2 -->
-			<key>cut resistance</key> <integer>1</integer>
-			<!-- TOOD: shield bash skill -->
-		</dict>
-		<dict> <!-- rank 3 -->
-			<key>blocks</key> <integer>1</integer>
-			<!-- TOOD: active skill -->
-		</dict>
-		<dict> <!-- rank 4 -->
-			<key>cut resistance</key> <integer>1</integer>
-			<!-- TOOD: shield boomerang skill -->
-		</dict>
-	</array>
+	<dict>
+		<key>type</key> <string>war</string>
+		<key>implement</key> <string>shield</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>blocks</key> <integer>1</integer>
+				<key>cut resistance</key> <integer>1</integer>
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>burn resistance</key> <integer>1</integer>
+				<!-- TOOD: shield bash skill -->
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>blocks</key> <integer>1</integer>
+				<key>cut resistance</key> <integer>1</integer>
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>health</key> <integer>15</integer>
+				<!-- TOOD: shield boomerang skill -->
+			</dict>
+		</array>
+	</dict>
 	
 	<!-- hammer (pattern A) -->
 	<!-- an offensive war skill that focuses on 1x1 AoE delay attacks -->
-	<!-- raises damage and cut resistance -->
+	<!-- raises damage, metabolism, and cut resistance -->
 	<!-- implement: hammers -->
 	<key>hammer</key>
-	<array>
-		<dict> <!-- rank 1 -->
-			<key>damage bonus</key> <integer>10</integer>
-			<!-- TOOD: power swing skill -->
-		</dict>
-		<dict> <!-- rank 2 -->
-			<key>cut resistance</key> <integer>2</integer>
-		</dict>
-		<dict> <!-- rank 3 -->
-			<key>damage bonus</key> <integer>10</integer>
-			<!-- TOOD: earthquake slam skill -->
-		</dict>
-		<dict> <!-- rank 4 -->
-			<key>damage bonus</key> <integer>20</integer>
-			<key>cut resistance</key> <integer>1</integer>
-		</dict>
-	</array>
+	<dict>
+		<key>type</key> <string>war</string>
+		<key>implement</key> <string>hammer</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>damage bonus</key> <integer>10</integer>
+				<!-- TOOD: power swing skill -->
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>cut resistance</key> <integer>2</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>metabolism</key> <integer>12</integer>
+				<!-- TOOD: earthquake slam skill -->
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>damage bonus</key> <integer>20</integer>
+				<key>cut resistance</key> <integer>1</integer>
+			</dict>
+		</array>
+	</dict>
 	
 	<!-- spear (pattern A) -->
 	<!-- a semi-defensive war skill that focuses on 2-range attacks -->
 	<!-- raises health burn resistance -->
 	<!-- implement: spears -->
 	<key>spear</key>
-	<array>
-		<dict> <!-- rank 1 -->
-			<key>burn resistance</key> <integer>1</integer>
-			<!-- TOOD: thrust skill -->
-		</dict>
-		<dict> <!-- rank 2 -->
-			<key>health</key> <integer>25</integer>
-		</dict>
-		<dict> <!-- rank 3 -->
-			<key>burn resistance</key> <integer>1</integer>
-			<!-- TOOD: jab skill -->
-		</dict>
-		<dict> <!-- rank 4 -->
-			<key>damage bonus</key> <integer>5</integer>
-			<key>health</key> <integer>25</integer>
-		</dict>
-	</array>
+	<dict>
+		<key>type</key> <string>war</string>
+		<key>implement</key> <string>spear</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>burn resistance</key> <integer>1</integer>
+				<!-- TOOD: thrust skill -->
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>health</key> <integer>25</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>burn resistance</key> <integer>1</integer>
+				<!-- TOOD: jab skill -->
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>damage bonus</key> <integer>5</integer>
+				<key>health</key> <integer>25</integer>
+			</dict>
+		</array>
+	</dict>
 	
 	<!-- bow (pattern A) -->
 	<!-- a ranged war skill that focuses on weak but free no-cooldown ranged attacks -->
 	<!-- raises shock resistance and damage -->
-	<key>template</key>
-	<array>
-		<dict> <!-- rank 1 -->
-			<key>damage bonus</key> <integer>10</integer>
-			<!-- TOOD: bowshot skill -->
-		</dict>
-		<dict> <!-- rank 2 -->
-			<key>damage bonus</key> <integer>10</integer>
-			<key>shock resistance</key> <integer>1</integer>
-		</dict>
-		<dict> <!-- rank 3 -->
-			<key>shock resistance</key> <integer>1</integer>
-			<!-- TOOD: arrow storm skill -->
-		</dict>
-		<dict> <!-- rank 4 -->
-			<key>damage bonus</key> <integer>15</integer>
-			<key>dodges</key> <integer>1</integer>
-		</dict>
-	</array>
+	<!-- implement: bows -->
+	<key>bow</key>
+	<dict>
+		<key>type</key> <string>war</string>
+		<key>implement</key> <string>bow</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>damage bonus</key> <integer>10</integer>
+				<!-- TOOD: bowshot skill -->
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>damage bonus</key> <integer>10</integer>
+				<key>shock resistance</key> <integer>1</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>shock resistance</key> <integer>1</integer>
+				<!-- TOOD: arrow storm skill -->
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>damage bonus</key> <integer>15</integer>
+				<key>dodges</key> <integer>1</integer>
+			</dict>
+		</array>
+	</dict>
 	
 	<!-- body skills -->
-	<!-- body skills usually focus heavily on passives, and are usually type D or type E -->
-	<!-- TODO: add -->
+	<!-- body skills usually focus heavily on passives, and are usually pattern C or pattern D -->
+	
+	<!-- dodge (pattern D) -->
+	<!-- a defensive skill that focuses on passives -->
+	<!-- raises dodges and smash resistance -->
+	<!-- implement: none -->
+	<key>dodge</key>
+	<dict>
+		<key>type</key> <string>body</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>dodges</key> <integer>1</integer>
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>dodges</key> <integer>1</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>smash resistance</key> <integer>1</integer>
+				<!-- TOOD: blur move skill -->
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>dodges</key> <integer>1</integer>
+				<key>smash resistance</key> <integer>1</integer>
+			</dict>
+		</array>
+	</dict>
+	
+	<!-- conditioning (pattern D) -->
+	<!-- a mixed defensive and offensive skill that focuses on passives -->
+	<!-- raises health and metabolism -->
+	<!-- implement: none -->
+	<key>conditioning</key>
+	<dict>
+		<key>type</key> <string>body</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>metabolism</key> <integer>15</integer>
+				<key>health</key> <integer>12</integer>
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>metabolism</key> <integer>15</integer>
+				<key>health</key> <integer>12</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>damage bonus</key> <integer>6</integer>
+				<key>metabolism</key> <integer>10</integer>
+				<!-- TOOD: tackle skill -->
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>metabolism</key> <integer>15</integer>
+				<key>health</key> <integer>12</integer>
+			</dict>
+		</array>
+	</dict>
+	
+	<!-- strength (pattern C) -->
+	<!-- an offensive skill that focuses on passives and no-implement attacks -->
+	<!-- raises damage and smash resistance -->
+	<!-- implement: none -->
+	<key>strength</key>
+	<dict>
+		<key>type</key> <string>body</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>damage bonus</key> <integer>25</integer>
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>smash resistance</key> <integer>1</integer>
+				<!-- TOOD: kick skill -->
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>damage bonus</key> <integer>25</integer>
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>burn resistance</key> <integer>1</integer>
+				<!-- TOOD: haymaker skill -->
+			</dict>
+		</array>
+	</dict>
+	
+	<!-- charm (pattern A) -->
+	<!-- a utility skill that focuses on debuff attacks -->
+	<!-- raises health and a few other things -->
+	<key>charm</key>
+	<dict>
+		<key>type</key> <string>body</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>health</key> <integer>10</integer>
+				<!-- TOOD: bamboozle skill -->
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>health</key> <integer>10</integer>
+				<key>metabolism</key> <integer>20</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>health</key> <integer>10</integer>
+				<!-- TOOD: flirt skill -->
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>health</key> <integer>10</integer>
+				<key>hacks</key> <integer>1</integer>
+			</dict>
+		</array>
+	</dict>
 	
 	<!-- sacred skills -->
-	<!-- sacred skills focus on active skills that cost ammo, and are usually type A or type B -->
-	<!-- TODO: add -->
+	<!-- sacred skills focus on active skills that cost ammo, and are usually pattern A -->
+
+	<!-- sacred light (pattern A) -->
+	<!-- a defensive skill that focuses on temporary self-buffs that use crystals as ammo -->
+	<!-- raises resistances -->
+	<!-- implement: light orb (aka forcefield generator) -->
+	<key>sacred light</key>
+	<dict>
+		<key>type</key> <string>sacred</string>
+		<key>implement</key> <string>light orb</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>shock resistance</key> <integer>1</integer>
+				<!-- TOOD: activate light orb skill -->
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>burn resistance</key> <integer>1</integer>
+				<key>cut resistance</key> <integer>1</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>burn resistance</key> <integer>1</integer>
+				<!-- TOOD: light orb eruption skill -->
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>shock resistance</key> <integer>1</integer>
+				<key>smash resistance</key> <integer>1</integer>
+			</dict>
+		</array>
+	</dict>
+	
+	<!-- holy soldier (pattern A) -->
+	<!-- an offensive skill that focuses on fairly powerful low-cooldown shock damage ranged attacks that use crystals as ammo -->
+	<!-- raises damage -->
+	<!-- implement: holy weapon (aka laser gun) -->	
+	<key>holy soldier</key>
+	<dict>
+		<key>type</key> <string>sacred</string>
+		<key>implement</key> <string>holy weapon</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>health</key> <integer>10</integer>
+				<!-- TOOD: holy shot skill -->
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>damage bonus</key> <integer>25</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>health</key> <integer>10</integer>
+				<!-- TOOD: patience shot skill -->
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>damage bonus</key> <integer>25</integer>
+			</dict>
+		</array>
+	</dict>
+	
+	<!-- heresy (pattern D) -->
+	<!-- sacred skill focused on passives -->
+	<!-- raises hacks and shock resistance -->
+	<!-- implement: none -->
+	<key>heresy</key>
+	<dict>
+		<key>type</key> <string>sacred</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>shock resistance</key> <integer>1</integer>
+				<key>hacks</key> <integer>1</integer>
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>hacks</key> <integer>1</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>shock resistance</key> <integer>1</integer>
+				<!-- TOOD: crystal grenade skill -->
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>shock resistance</key> <integer>1</integer>
+				<key>hacks</key> <integer>1</integer>
+			</dict>
+		</array>
+	</dict>
+	
+	<!-- godly form (pattern A) -->
+	<!-- sacred skill focused on elemental melee attacks that use crystals as ammo -->
+	<!-- raises metabolism and burn resistance -->
+	<!-- implement: godly implant (aka cybernetic implant) -->
+	<key>godly form</key>
+	<dict>
+		<key>type</key> <string>sacred</string>
+		<key>implement</key> <string>godly implant</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>burn resistance</key> <integer>1</integer>
+				<!-- TOOD: flame punch skill -->
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>metabolism</key> <integer>30</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>burn resistance</key> <integer>1</integer>
+				<!-- TOOD: holy chop skill -->
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>health</key> <integer>15</integer>
+				<key>metabolism</key> <integer>15</integer>
+			</dict>
+		</array>
+	</dict>
 	
 	<!-- ritual skills -->
-	<!-- ritual skills focus on lots of active abilities, which always have cooldown 11, and are usually type A or type B -->
-	<!-- TODO: add -->
+	<!-- ritual skills focus on lots of active abilities, which always have cooldown 11, and are usually pattern A or pattern B -->
+	
+	<!-- blood (pattern A) -->
+	<!-- a semi-defensive skill tree that has hard-to-resist attacks that cost the user's health -->
+	<!-- raises health -->
+	<!-- implement: ritual knife -->
+	<key>blood</key>
+	<dict>
+		<key>type</key> <string>ritual</string>
+		<key>implement</key> <string>ritual knife</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>metabolism</key> <integer>10</integer>
+				<!-- TOOD: dart of spite skill -->
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>health</key> <integer>25</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>metabolism</key> <integer>10</integer>
+				<!-- TOOD: twin sacrifice skill -->
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>health</key> <integer>25</integer>
+			</dict>
+		</array>
+	</dict>
+	
+	<!-- wisdom (pattern A) -->
+	<!-- a balanced skill tree that has utility spells and balanced bonuses -->
+	<!-- raises everything, a little bit -->
+	<!-- implement: tome -->
+	<key>wisdom</key>
+	<dict>
+		<key>type</key> <string>ritual</string>
+		<key>implement</key> <string>tome</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>damage bonus</key> <integer>10</integer>
+				<!-- TOOD: dazzle skill -->
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>smash resistance</key> <integer>2</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>hacks</key> <integer>1</integer>
+				<!-- TOOD: teleport skill -->
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>metabolism</key> <integer>15</integer>
+				<key>damage</key> <integer>15</integer>
+				<key>health</key> <integer>10</integer>
+			</dict>
+		</array>
+	</dict>
+	
+	<!-- might (pattern B) -->
+	<!-- the dedicated nuker tree, with one spell for each element -->
+	<!-- raises damage -->
+	<!-- implement: rod -->
+	<key>might</key>
+	<dict>
+		<key>type</key> <string>ritual</string>
+		<key>implement</key> <string>rod</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>damage bonus</key> <integer>10</integer>
+				<!-- TOOD: flame bolt skill -->
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>damage bonus</key> <integer>10</integer>
+				<!-- TOOD: shatter skill -->
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>damage bonus</key> <integer>10</integer>
+				<!-- TOOD: holy flash skill -->
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>damage bonus</key> <integer>10</integer>
+				<!-- TOOD: stone pillar skill -->
+			</dict>
+		</array>
+	</dict>
 </dict>
 </plist>

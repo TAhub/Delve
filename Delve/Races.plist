@@ -11,6 +11,7 @@
 <dict>
 	<key>template</key>
 	<dict>
+		<!-- stats -->
 		<key>damage bonus</key> <integer>100</integer>
 		<key>health</key> <integer>100</integer>
 		<key>smash resistance</key> <integer>0</integer>
@@ -19,8 +20,25 @@
 		<key>burn resistance</key> <integer>0</integer>
 		<key>dodges</key> <integer>3</integer>
 		<key>blocks</key> <integer>0</integer>
-		<!-- TODO: skill slot types (player-only) -->
-		<!-- TODO: armor slots -->
+		<key>hacks</key> <integer>0</integer>
+		<key>metabolism</key> <integer>100</integer>
+		<!-- slots -->
+		<key>skill slot types</key>
+		<array>
+			<string>war</string>
+			<string>body</string>
+			<string>sacred</string>
+			<string>ritual</string>
+			<string>wildcard</string>
+		</array>
+		<key>armor slots</key>
+		<array>
+			<string>body armor</string>
+			<string>helmet</string>
+			<string>small clothes</string>
+			<string>tail ornament</string>
+			<string>jewelry</string>
+		</array>
 	</dict>
 	
 	<!-- design goal -->
@@ -29,15 +47,115 @@
 	<!-- more armor shoulds should mean weaker stats, less stronger stats -->
 	
 	<!-- real player races -->
+	
+	<!-- humans -->
+	<!-- the warlike race -->
+	<!-- a little bit tanky -->
 	<key>human</key>
 	<dict>
+		<!-- stats -->
 		<key>damage bonus</key> <integer>100</integer>
 		<key>health</key> <integer>125</integer>
 		<key>burn resistance</key> <integer>1</integer>
 		<key>dodges</key> <integer>3</integer>
-		<!-- TODO: skill slot types -->
-		<!-- TODO: armor slots (body and helmet) -->
+		<key>metabolism</key> <integer>100</integer>
+		<!-- slots -->
+		<key>skill slot types</key>
+		<array>
+			<string>war</string>
+			<string>body</string>
+			<string>wildcard</string>
+			<string>wildcard</string>
+			<string>wildcard</string>
+		</array>
+		<key>armor slots</key>
+		<array>
+			<string>body armor</string>
+			<string>helmet</string>
+		</array>
 	</dict>
-	<!-- TODO: other races with different focuses (fragile dodgy race? magic race? whatever) -->
+	
+	<!-- eolings -->
+	<!-- the short person race; tend to be religious (or heretics) -->
+	<!-- a bit dodgy and ranged-focused -->
+	<key>eoling</key>
+	<dict>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>110</integer>
+		<key>health</key> <integer>75</integer>
+		<key>shock resistance</key> <integer>1</integer>
+		<key>dodges</key> <integer>4</integer>
+		<key>hacks</key> <integer>1</integer>
+		<key>metabolism</key> <integer>90</integer>
+		<!-- slots -->
+		<key>skill slot types</key>
+		<array>
+			<string>sacred</string>
+			<string>body</string>
+			<string>body</string>
+			<string>wildcard</string>
+			<string>wildcard</string>
+		</array>
+		<key>armor slots</key>
+		<array>
+			<string>small clothes</string>
+			<string>tail ornament</string>
+		</array>
+	</dict>
+	
+	<!-- highborn -->
+	<!-- the magic race; very cultured, and they're big eaters -->
+	<!-- they're big on nuking -->
+	<key>highborn</key>
+	<dict>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>125</integer>
+		<key>health</key> <integer>100</integer>
+		<key>smash resistance</key> <integer>1</integer>
+		<key>dodges</key> <integer>2</integer>
+		<key>metabolism</key> <integer>130</integer>
+		<!-- slots -->
+		<key>skill slot types</key>
+		<array>
+			<string>ritual</string>
+			<string>ritual</string>
+			<string>body</string>
+			<string>wildcard</string>
+			<string>wildcard</string>
+		</array>
+		<key>armor slots</key>
+		<array>
+			<string>body armor</string>
+			<string>jewelry</string>
+		</array>
+	</dict>
+	
+	<!-- raider -->
+	<!-- the orcs, basically; they're big and tough and kinda primitive -->
+	<!-- they live in a very rigid society, so they don't get much choice in skill types -->
+	<key>raider</key>
+	<dict>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>115</integer>
+		<key>health</key> <integer>115</integer>
+		<key>cut resistance</key> <integer>1</integer>
+		<key>dodges</key> <integer>2</integer>
+		<key>blocks</key> <integer>1</integer>
+		<key>metabolism</key> <integer>100</integer>
+		<!-- slots -->
+		<key>skill slot types</key>
+		<array>
+			<string>war</string>
+			<string>war</string>
+			<string>body</string>
+			<string>body</string>
+			<string>wildcard</string>
+		</array>
+		<key>armor slots</key>
+		<array>
+			<string>helmet</string>
+			<string>tail ornament</string>
+		</array>
+	</dict>
 </dict>
 </plist>
