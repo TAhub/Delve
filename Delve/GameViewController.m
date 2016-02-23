@@ -104,6 +104,8 @@
 	
 	[self drawArmorsOf:cr withLayer:2 inArray:images withYAdds:yAdds];
 	
+	NSLog(@"image layers: %i", images.count);
+	
 	UIImageView *imageView = [[UIImageView alloc] initWithImage:mergeImages(images, CGPointMake(0.5f, 1.0f), yAdds)];
 	imageView.frame = CGRectMake(GAMEPLAY_TILE_SIZE / 2 - imageView.frame.size.width / 2, GAMEPLAY_TILE_SIZE - imageView.frame.size.height, imageView.frame.size.width, imageView.frame.size.height);
 	[view addSubview:imageView];
@@ -111,38 +113,45 @@
 
 -(void)drawArmorsOf:(Creature *)cr withLayer:(int)layer inArray:(NSMutableArray *)spriteArray withYAdds:(NSMutableArray *)yAdds
 {
-	for (NSString *armor in cr.armors)
+	for (int i = 0; i < cr.armors.count; i++)
+	{
+		NSString *armor = cr.armors[i];
 		if (armor.length > 0 && loadValueBool(@"Armors", armor, @"sprite"))
 		{
 			//lock to layer
+			BOOL rightLayer = false;
 			switch(layer)
 			{
 				case 0: //below layer
-					if (!loadValueBool(@"Armors", armor, @"sprite back"))
-						return;
+					rightLayer = loadValueBool(@"Armors", armor, @"sprite back");
 					break;
 				case 1: //below hair layer
-					if (loadValueBool(@"Armors", armor, @"sprite over hair"))
-						return;
+					rightLayer = !loadValueBool(@"Armors", armor, @"sprite over hair");
 					break;
 				case 2: //over hair layer
-					if (!loadValueBool(@"Armors", armor, @"sprite over hair"))
-						return;
+					rightLayer = loadValueBool(@"Armors", armor, @"sprite over hair");
 					break;
 			}
 			
-			NSString *spriteName = loadValueString(@"Armors", armor, @"sprite");
-			if (layer == 0)
-				spriteName = [NSString stringWithFormat:@"%@_back", spriteName];
-			if (loadValueBool(@"Armors", armor, @"sprite gender"))
-				spriteName = [NSString stringWithFormat:@"%@_%@", spriteName, cr.gender ? @"f" : @"m"];
-			
-			//draw armor sprite
-			UIImage *sprite = [UIImage imageNamed:spriteName];
-			UIImage *coloredSprite = colorImage(sprite, loadColorFromName(loadValueString(@"Armors", armor, @"color")));
-			[spriteArray addObject:coloredSprite];
-			[yAdds addObject:@(0)];
+			if (rightLayer)
+			{
+				//TODO: get the yAdd from the race
+				int yAdd = 0;
+				
+				NSString *spriteName = loadValueString(@"Armors", armor, @"sprite");
+				if (layer == 0)
+					spriteName = [NSString stringWithFormat:@"%@_back", spriteName];
+				if (loadValueBool(@"Armors", armor, @"sprite gender"))
+					spriteName = [NSString stringWithFormat:@"%@_%@", spriteName, cr.gender ? @"f" : @"m"];
+				
+				//draw armor sprite
+				UIImage *sprite = [UIImage imageNamed:spriteName];
+				UIImage *coloredSprite = colorImage(sprite, loadColorFromName(loadValueString(@"Armors", armor, @"color")));
+				[spriteArray addObject:coloredSprite];
+				[yAdds addObject:@(yAdd)];
+			}
 		}
+	}
 }
 
 -(void)viewDidAppear:(BOOL)animated

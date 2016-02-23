@@ -49,7 +49,7 @@
 	
 	<!-- rusty helmet -->
 	<!-- level 1 light armor helmet -->
-	<key>bandit helmet</key>
+	<key>rusty helmet</key>
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
