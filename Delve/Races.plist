@@ -43,7 +43,13 @@
 		</array>
 		<!-- appearance -->
 		<key>sprite</key> <string>template</string>
-		<!-- TODO: colorations -->
+		<key>colorations</key>
+		<array>
+			<dict>
+				<key>skin</key> <string>iron</string>
+				<key>hair</key> <string>iron</string>
+			</dict>
+		</array>
 		<!-- TODO: hairs -->
 		<!-- TODO: armor slot y offsets -->
 		<key>has gender</key> <true/>
@@ -85,7 +91,13 @@
 		</array>
 		<!-- appearance -->
 		<key>sprite</key> <string>human</string>
-		<!-- TODO: colorations --> <!-- coloration: tan skin, brown or dirty blonde hair -->
+		<key>colorations</key> <!-- coloration: tan skin, brown or dirty blonde hair -->
+		<array>
+			<dict>
+				<key>skin</key> <string>tan skin</string>
+				<key>hair</key> <string>brown hair</string>
+			</dict>
+		</array>
 		<!-- TODO: hairs -->
 		<!-- TODO: armor slot y offsets -->
 		<key>has gender</key> <true/>

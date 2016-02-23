@@ -9,8 +9,16 @@
 -->
 <plist version="1.0">
 <dict>
+	<!-- material colors -->
 	<key>iron</key> <string>999999</string>
 	<key>steel</key> <string>AAAABB</string>
 	<key>rusty</key> <string>AA8888</string>
+	<key>gold</key> <string>FFDD00</string>
+	<key>leather</key> <string>997755</string>
+	<key>white fabric</key> <string>FFEEDD</string>
+	<!-- body colors -->
+	<key>pale skin</key> <string>FFF0F0</string>
+	<key>tan skin</key> <string>DDCCBB</string>
+	<key>brown hair</key> <string>DDAA66</string>
 </dict>
 </plist>

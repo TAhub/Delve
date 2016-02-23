@@ -62,15 +62,30 @@
 		<key>sprite over hair</key> <true/>
 	</dict>
 	
-	<!-- bandit helmet -->
+	<!-- skullcap -->
 	<!-- level 2 light armor helmet -->
+	<key>skullcap</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>helmet</string>
+		<!-- stats -->
+		<key>smash resistance</key> <integer>2</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>skullcap</string>
+		<key>color</key> <string>iron</string>
+		<key>sprite back</key> <true/>
+		<key>sprite over hair</key> <true/>
+	</dict>
+	
+	<!-- bandit helmet -->
+	<!-- level 3 light armor helmet -->
 	<key>bandit helmet</key>
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>10</integer>
-		<key>smash resistance</key> <integer>1</integer>
+		<key>smash resistance</key> <integer>2</integer>
 		<!-- appearance -->
 		<key>sprite</key> <string>bandit_helmet</string>
 		<key>color</key> <string>steel</string>
@@ -116,26 +131,16 @@
 	
 	<!-- knight helmet -->
 	<!-- level 4 heavy armor helmet -->
-	<key>knight</key>
+	<key>knight helmet</key>
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
 		<!-- stats -->
-		<key>damage bonus</key> <integer>0</integer>
-		<key>health</key> <integer>0</integer>
-		<key>smash resistance</key> <integer>0</integer>
-		<key>cut resistance</key> <integer>0</integer>
-		<key>shock resistance</key> <integer>0</integer>
-		<key>burn resistance</key> <integer>0</integer>
-		<key>dodges</key> <integer>0</integer>
-		<key>blocks</key> <integer>0</integer>
-		<key>hacks</key> <integer>0</integer>
-		<key>metabolism</key> <integer>0</integer>
+		<key>health</key> <integer>10</integer>
+		<key>cut resistance</key> <integer>3</integer>
 		<!-- appearance -->
-		<key>sprite</key> <string>helmet</string>
-		<key>color</key> <string>iron</string>
-		<key>sprite back</key> <true/>
-		<key>sprite gender</key> <true/>
+		<key>sprite</key> <string>knight_helmet</string>
+		<key>color</key> <string>steel</string>
 		<key>sprite over hair</key> <true/>
 	</dict>
 	
@@ -164,10 +169,53 @@
 	<!-- all headgear are at par -->
 	<!-- they mostly give misc bonuses -->
 	
+	<!-- goggles -->
+	<!-- level 2 goggles -->
+	<key>goggles</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>headgear</string>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>20</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>goggles</string>
+		<key>color</key> <string>iron</string>
+		<key>sprite over hair</key> <true/>
+	</dict>
+	
+	<!-- gold tiara -->
+	<!-- level 4 head jewelry -->
+	<key>gold tiara</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>headgear</string>
+		<!-- stats -->
+		<key>shock resistance</key> <integer>2</integer>
+		<key>burn resistance</key> <integer>2</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>tiara</string>
+		<key>color</key> <string>gold</string>
+		<key>sprite over hair</key> <true/>
+	</dict>
+	
 	
 	<!-- small clothes -->
 	<!-- all small clothes are at par -->
 	<!-- they give smash resistance or misc bonuses -->
+	
+	<!-- eoling robe -->
+	<!-- level 1 small clothes -->
+	<key>eoling robe</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>small clothes</string>
+		<!-- stats -->
+		<key>smash resistance</key> <integer>1</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>eoling_robe</string>
+		<key>color</key> <string>white fabric</string>
+		<key>sprite gender</key> <true/>
+	</dict>
 	
 	
 	<!-- jewelry -->
@@ -202,9 +250,65 @@
 	<!-- all tail ornaments get a 0.5 advantage -->
 	<!-- they give misc bonuses -->
 	
+	<!-- iron tail ring -->
+	<!-- level 1 tail ornament -->
+	<key>iron tail ring</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>tail ornament</string>
+		<!-- stats -->
+		<key>metabolism</key> <integer>30</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>tail_ring</string>
+		<key>color</key> <string>iron</string>
+		<key>sprite over hair</key> <true/>
+	</dict>
+	
+	<!-- white tail banner -->
+	<!-- level 1 tail banner -->
+	<key>white tail banner</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>tail ornament</string>
+		<!-- stats -->
+		<key>dodges</key> <integer>1</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>tail_banner</string>
+		<key>color</key> <string>white fabric</string>
+		<key>sprite over hair</key> <true/>
+	</dict>
+	
 	
 	<!-- shoes -->
 	<!-- all shoes are at par -->
 	<!-- they give burn/shock resistance or misc bonuses -->
+	
+	<!-- steel-toed boots -->
+	<!-- level 3 boots -->
+	<key>steel-toed boots</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>shoes</string>
+		<!-- stats -->
+		<key>health</key> <integer>12</integer>
+		<key>burn resistance</key> <integer>2</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>steel_toed_boots</string>
+		<key>color</key> <string>steel</string>
+	</dict>
+	
+	<!-- leather shoes -->
+	<!-- level 2 shoes -->
+	<key>leather shoes</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>shoes</string>
+		<!-- stats -->
+		<key>health</key> <integer>12</integer>
+		<key>shock resistance</key> <integer>1</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>shoes</string>
+		<key>color</key> <string>leather</string>
+	</dict>
 </dict>
 </plist>

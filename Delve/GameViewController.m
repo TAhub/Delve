@@ -69,8 +69,6 @@
 		[self.creatureView addSubview:view];
 		[self.creatureViews addObject:view];
 		
-		view.backgroundColor = [UIColor blackColor];
-		
 		[self regenerateCreatureSprite:cr];
 	}
 }
@@ -86,8 +84,12 @@
 	for (UIView *subView in view.subviews)
 		[subView removeFromSuperview];
 	
-	//add creature view sprites
-	//TODO: add (including armor parts)
+	//TODO: get actual coloration
+	NSArray *colorations = loadValueArray(@"Races", cr.race, @"colorations");
+	NSDictionary *coloration = colorations[0];
+	UIColor *skinColor = loadColorFromName((NSString *)coloration[@"skin"]);
+	UIColor *hairColor = loadColorFromName((NSString *)coloration[@"hair"]);
+	
 	
 	NSMutableArray *images = [NSMutableArray new];
 	NSMutableArray *yAdds = [NSMutableArray new];
@@ -95,12 +97,15 @@
 	[self drawArmorsOf:cr withLayer:0 inArray:images withYAdds:yAdds];
 	
 	NSString *bodySprite = [NSString stringWithFormat:@"%@_%@", loadValueString(@"Races", cr.race, @"sprite"), cr.gender ? @"f" : @"m"];
-	[images addObject:[UIImage imageNamed:bodySprite]];
+	[images addObject:colorImage([UIImage imageNamed:bodySprite], skinColor)];
 	[yAdds addObject:@(0)];
 	
 	[self drawArmorsOf:cr withLayer:1 inArray:images withYAdds:yAdds];
 	
-	//TODO: draw hair sprite
+	//TODO: get the real hair sprite
+	NSString *hairSprite = [NSString stringWithFormat:@"%@_hair1_%@", loadValueString(@"Races", cr.race, @"sprite"), cr.gender ? @"f" : @"m"];
+	[images addObject:colorImage([UIImage imageNamed:hairSprite], hairColor)];
+	[yAdds addObject:@(0)];
 	
 	[self drawArmorsOf:cr withLayer:2 inArray:images withYAdds:yAdds];
 	
