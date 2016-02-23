@@ -94,8 +94,13 @@
 
 -(void)setPositionWithX:(int)x andY:(int)y
 {
+	NSLog(@"Moving map to %i %i", x, y);
+	
 	//add all tiles that are going to be visible after this position change
-	[self makeTileAtX:x andY:y];
+	[self generateTilesAroundX:x andY:y];
+	
+	self.x = x;
+	self.y = y;
 	
 	//use animations to shift everything over
 	__weak typeof(self) weakSelf = self;
@@ -119,14 +124,20 @@
 		{
 			int x = index.intValue % INNER_YMULT;
 			int y = index.intValue / INNER_YMULT;
-			if (x < weakSelf.x - GAMEPLAY_SCREEN_WIDTH / 2 - 1 || y < weakSelf.y - GAMEPLAY_SCREEN_HEIGHT - 1 ||
-				x > weakSelf.x + GAMEPLAY_SCREEN_WIDTH / 2 || y > weakSelf.y + GAMEPLAY_SCREEN_HEIGHT)
+			
+			if (![weakSelf isPointOnscreenWithX:x andY:y])
 			{
 				[((UIView *) weakSelf.tileDict[index]) removeFromSuperview];
 				weakSelf.tileDict[index] = nil;
 			}
 		}
 	}];
+}
+
+-(BOOL)isPointOnscreenWithX:(int)x andY:(int)y
+{
+	return x >= self.x - GAMEPLAY_SCREEN_WIDTH / 2 && y >= self.y - GAMEPLAY_SCREEN_HEIGHT / 2 &&
+			x <= self.x + GAMEPLAY_SCREEN_WIDTH / 2 && y <= self.y + GAMEPLAY_SCREEN_HEIGHT / 2;
 }
 
 @end

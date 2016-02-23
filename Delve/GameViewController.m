@@ -33,7 +33,7 @@
 	self.map.delegate = self;
 	
 	self.mapView.delegate = self;
-	[self.mapView initializeMapAtX:self.map.width / 2 andY:self.map.height / 2];
+	[self.mapView initializeMapAtX:self.map.player.x andY:self.map.player.y];
 	
 	[self.map update];
 	
@@ -130,6 +130,15 @@
 	} completion:
 	^(BOOL finished)
 	{
+		//recalculate hidden
+		for (int i = 0; i < weakSelf.creatureViews.count; i++)
+		{
+			Creature *cr = weakSelf.map.creatures[i];
+			UIView *view = weakSelf.creatureViews[i];
+			view.hidden = !((Tile *)weakSelf.map.tiles[cr.y][cr.x]).visible || !([self.mapView isPointOnscreenWithX:cr.x andY:cr.y]);
+		}
+		
+		//the action is over
 		weakSelf.animating = false;
 		block();
 	}];

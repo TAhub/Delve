@@ -13,6 +13,8 @@
 
 @interface Map()
 
+@property int personOn;
+
 @end
 
 @implementation Map
@@ -25,8 +27,8 @@
 		_tiles = [NSMutableArray new];
 		
 		//make initial map
-		int width = 8;
-		int height = 10;
+		int width = 30;
+		int height = 30;
 		for (int y = 0; y < height; y++)
 		{
 			NSMutableArray *row = [NSMutableArray new];
@@ -47,7 +49,8 @@
 		[_creatures addObject:player];
 		[_creatures addObject:enemy];
 		
-		[self recalculateVisibility];
+		//start right before the player's turn
+		_personOn = self.creatures.count - 1;
 	}
 	return self;
 }
@@ -55,10 +58,27 @@
 -(void)update
 {
 	[self recalculateVisibility];
+	
+	//keep going for next
+	while (true)
+	{
+		self.personOn = (self.personOn + 1) % self.creatures.count;
+		Creature *cr = self.creatures[self.personOn];
+		if (!cr.dead && [cr startTurn])
+			break;
+	}
+}
+
+-(BOOL)yourTurn
+{
+	return self.creatures[self.personOn] == self.player;
 }
 
 -(BOOL)moveWithX:(int)x andY:(int)y
 {
+	if (!self.yourTurn)
+		return NO;
+	
 	if ([self.player moveWithX:x andY:y])
 	{
 		__weak typeof(self) weakSelf = self;

@@ -28,6 +28,7 @@
 
 -(int)width;
 -(int)height;
+-(BOOL)yourTurn;
 
 -(void)update;
 

@@ -28,4 +28,6 @@
 -(int)xCorner;
 -(int)yCorner;
 
+-(BOOL)isPointOnscreenWithX:(int)x andY:(int)y;
+
 @end

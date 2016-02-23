@@ -404,10 +404,13 @@
 	{
 		//TODO: AI action
 		
-		//TODO: AIs shouldnt pursue the player if the AI isn't visible (IE it's offscreen or in a non-visible tile) and the player is stealthed
+		//TODO: AIs shouldnt pursue the player if the AI isn't visible (IE it's far away or in a non-visible tile) AND the player is stealthed
+		
+		//for now, just return false to notify that you are skipping your turn
+		return NO;
 	}
 	
-	return true;
+	return self.good || self.awake;
 }
 
 
