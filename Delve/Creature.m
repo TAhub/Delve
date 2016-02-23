@@ -61,7 +61,7 @@
 		_skillTreeLevels = [NSArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
 		_implements = [NSArray arrayWithObjects:@"rusty shield", @"", @"rusty hammer", @"wooden spear", @"", nil];
 		_weapon = @"rusty sword";
-		_armors = [NSArray arrayWithObjects:@"rusty chestplate", @"rusty helmet", nil];
+		_armors = [NSArray arrayWithObjects:@"chestplate", @"bandit helmet", nil];
 		_good = YES;
 		
 		_x = x;
@@ -479,7 +479,9 @@
 	if (type.length == 0)
 		return 0;
 	
-	//TODO: find the armor bonus with name "name" from armor of type "type"
+	//find the armor bonus with name "name" from armor of type "type"
+	if (loadValueBool(@"Armors", type, name))
+		return loadValueNumber(@"Armors", type, name).intValue;
 	return 0;
 }
 

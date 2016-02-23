@@ -27,8 +27,8 @@
 		_tiles = [NSMutableArray new];
 		
 		//make initial map
-		int width = 30;
-		int height = 30;
+		int width = 20;
+		int height = 20;
 		for (int y = 0; y < height; y++)
 		{
 			NSMutableArray *row = [NSMutableArray new];

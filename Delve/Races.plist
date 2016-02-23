@@ -40,7 +40,12 @@
 			<string>jewelry</string>
 		</array>
 		<!-- appearance -->
-		<!-- TODO: appearance data -->
+		<key>sprite</key> <string>template</string>
+		<!-- TODO: skin colors -->
+		<!-- TODO: hairs -->
+		<!-- TODO: hair colors -->
+		<!-- TODO: armor slot y offsets -->
+		<key>has gender</key> <true/>
 	</dict>
 	
 	<!-- design goal -->
@@ -77,7 +82,12 @@
 			<string>helmet</string>
 		</array>
 		<!-- appearance -->
-		<!-- TODO: appearance data -->
+		<key>sprite</key> <string>human</string>
+		<!-- TODO: skin colors -->
+		<!-- TODO: hairs -->
+		<!-- TODO: hair colors -->
+		<!-- TODO: armor slot y offsets -->
+		<key>has gender</key> <true/>
 	</dict>
 	
 	<!-- eolings -->
@@ -108,7 +118,12 @@
 			<string>tail ornament</string>
 		</array>
 		<!-- appearance -->
-		<!-- TODO: appearance data -->
+		<key>sprite</key> <string>eoling</string>
+		<!-- TODO: skin colors -->
+		<!-- TODO: hairs -->
+		<!-- TODO: hair colors -->
+		<!-- TODO: armor slot y offsets -->
+		<key>has gender</key> <true/>
 	</dict>
 	
 	<!-- highborn -->
@@ -138,7 +153,12 @@
 			<string>jewelry</string>
 		</array>
 		<!-- appearance -->
-		<!-- TODO: appearance data -->
+		<key>sprite</key> <string>highborn</string>
+		<!-- TODO: skin colors -->
+		<!-- TODO: hairs -->
+		<!-- TODO: hair colors -->
+		<!-- TODO: armor slot y offsets -->
+		<key>has gender</key> <true/>
 	</dict>
 	
 	<!-- raider -->
@@ -169,7 +189,12 @@
 			<string>tail ornament</string>
 		</array>
 		<!-- appearance -->
-		<!-- TODO: appearance data -->
+		<key>sprite</key> <string>raider</string>
+		<!-- TODO: skin colors -->
+		<!-- TODO: hairs -->
+		<!-- TODO: hair colors -->
+		<!-- TODO: armor slot y offsets -->
+		<key>has gender</key> <true/>
 	</dict>
 	
 	<!-- design goal -->

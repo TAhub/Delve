@@ -33,7 +33,7 @@
 	self.map.delegate = self;
 	
 	self.mapView.delegate = self;
-	[self.mapView initializeMapAtX:self.map.player.x andY:self.map.player.y];
+	[self.mapView initializeMapAtX:self.map.player.x - (GAMEPLAY_SCREEN_WIDTH / 2) andY:self.map.player.y - (GAMEPLAY_SCREEN_HEIGHT / 2)];
 	
 	[self.map update];
 	
@@ -48,9 +48,12 @@
 		float x = cr.x * GAMEPLAY_TILE_SIZE + self.mapView.xOffset;
 		float y = cr.y * GAMEPLAY_TILE_SIZE + self.mapView.yOffset;
 		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(x, y, GAMEPLAY_TILE_SIZE, GAMEPLAY_TILE_SIZE)];
-		view.backgroundColor = cr.good ? [UIColor greenColor] : [UIColor redColor];
 		[self.creatureView addSubview:view];
 		[self.creatureViews addObject:view];
+		
+		//add creature view sprites
+		//TODO: add (including armor parts)
+		view.backgroundColor = [UIColor redColor];
 	}
 }
 
@@ -105,12 +108,21 @@
 	return tileView;
 }
 
+-(int)mapWidth
+{
+	return self.map.width;
+}
+-(int)mapHeight
+{
+	return self.map.height;
+}
+
 #pragma mark: map delegate
 
 -(void)moveCreature:(Creature *)creature withBlock:(void (^)(void))block
 {
 	if (creature == self.map.player)
-		[self.mapView setPositionWithX:creature.x andY:creature.y];
+		[self.mapView setPositionWithX:creature.x - (GAMEPLAY_SCREEN_WIDTH / 2) andY:creature.y - (GAMEPLAY_SCREEN_HEIGHT / 2)];
 	
 	__weak typeof(self) weakSelf = self;
 	self.animating = true;

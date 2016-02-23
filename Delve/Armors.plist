@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Armors.plist
+   Delve
+
+   Created by Theodore Abshire on 2/22/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+	<key>template</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>helmet</string>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>0</integer>
+		<key>health</key> <integer>0</integer>
+		<key>smash resistance</key> <integer>0</integer>
+		<key>cut resistance</key> <integer>0</integer>
+		<key>shock resistance</key> <integer>0</integer>
+		<key>burn resistance</key> <integer>0</integer>
+		<key>dodges</key> <integer>0</integer>
+		<key>blocks</key> <integer>0</integer>
+		<key>hacks</key> <integer>0</integer>
+		<key>metabolism</key> <integer>0</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>helmet</string>
+		<key>color</key> <string>iron</string>
+		<key>sprite back</key> <true/>
+		<key>sprite gender</key> <true/>
+	</dict>
+	
+	<!-- real equipment -->
+	
+	<!-- design goals -->
+	<!-- a level 1 equipment is 0.5 of a level passive -->
+	<!-- a level 2 is 1.0 of a level passive -->
+	<!-- etc -->
+	<!-- each equipment category can have an adjustment, like +0.5 level or whatever -->
+	<!-- TODO: once the armor categories are more solidified, adjust player race stats based on that -->
+	<!-- TODO: actually, maybe just give races more equipment slots, maybe low-effort invisible ones like jewelry -->
+	
+	
+	<!-- helmets -->
+	<!-- all helmets are at par -->
+	
+	<!-- bandit helmet -->
+	<!-- level 1 light armor helmet -->
+	<key>bandit helmet</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>helmet</string>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>6</integer>
+		<key>health</key> <integer>6</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>bandit_helmet</string>
+		<key>color</key> <string>iron</string>
+		<key>sprite back</key> <true/>
+	</dict>
+	
+	
+	<!-- body armor -->
+	<!-- all body armor gets a 0.5 advantage -->
+	
+	<!-- chestplate -->
+	<!-- level 2 heavy armor body armor -->
+	<key>chestplate</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>body armor</string>
+		<!-- stats -->
+		<key>health</key> <integer>12</integer>
+		<key>cut resistance</key> <integer>2</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>chestplate</string>
+		<key>color</key> <string>iron</string>
+		<key>sprite gender</key> <true/>
+	</dict>
+</dict>
+</plist>

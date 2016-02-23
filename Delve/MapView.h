@@ -11,6 +11,8 @@
 @protocol MapViewDelegate
 
 -(UIView *)viewAtTileWithX:(int)x andY:(int)y;
+-(int)mapWidth;
+-(int)mapHeight;
 
 @end
 

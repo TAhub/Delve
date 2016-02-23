@@ -23,33 +23,34 @@
 
 @end
 
+
 @implementation MapView
 
 -(int)xCorner
 {
-	return self.x - GAMEPLAY_SCREEN_WIDTH / 2;
+	return self.x;
 }
 -(int)yCorner
 {
-	return self.y - GAMEPLAY_SCREEN_HEIGHT / 2;
+	return self.y;
 }
 
 -(int)xOffset
 {
-	return GAMEPLAY_TILE_SIZE * ((GAMEPLAY_SCREEN_WIDTH / 2) - self.x);
+	return GAMEPLAY_TILE_SIZE * (0 - self.x);
 }
 -(int)yOffset
 {
-	return GAMEPLAY_TILE_SIZE * ((GAMEPLAY_SCREEN_HEIGHT / 2) - self.y);
+	return GAMEPLAY_TILE_SIZE * (0 - self.y);
 }
 
 -(int)xTranslate:(int)x
 {
-	return (x - self.x + (GAMEPLAY_SCREEN_WIDTH / 2)) * GAMEPLAY_TILE_SIZE;
+	return (x - self.x) * GAMEPLAY_TILE_SIZE;
 }
 -(int)yTranslate:(int)y
 {
-	return (y - self.y + (GAMEPLAY_SCREEN_HEIGHT / 2)) * GAMEPLAY_TILE_SIZE;
+	return (y - self.y) * GAMEPLAY_TILE_SIZE;
 }
 
 -(UIView *)makeTileAtX:(int)x andY:(int)y
@@ -65,6 +66,7 @@
 		return nil;
 	
 	tileView.frame = CGRectMake([self xTranslate:x], [self yTranslate:y], GAMEPLAY_TILE_SIZE, GAMEPLAY_TILE_SIZE);
+	
 	[self addSubview:tileView];
 	self.tileDict[@(x + y * INNER_YMULT)] = tileView;
 	
@@ -76,31 +78,38 @@
 {
 	self.x = x;
 	self.y = y;
+	[self boundCamera];
 	
 	self.tileDict = [NSMutableDictionary new];
-	[self generateTilesAroundX:x andY:y];
+	[self generateTilesAroundX:self.x andY:self.y];
 }
 
 -(void)generateTilesAroundX:(int)x andY:(int)y
 {
-	int xStart = x - GAMEPLAY_SCREEN_WIDTH / 2;
-	int yStart = y - GAMEPLAY_SCREEN_WIDTH / 2;
+	int xStart = x;
+	int yStart = y;
 	
 	for (int x = xStart - 1; x <= xStart + GAMEPLAY_SCREEN_WIDTH; x++)
 		for (int y = yStart - 1; y <= yStart + GAMEPLAY_SCREEN_HEIGHT; y++)
 			[self makeTileAtX:x andY:y];
 }
 
+-(void)boundCamera
+{
+	self.x = MAX(MIN(self.x, self.delegate.mapWidth - GAMEPLAY_SCREEN_WIDTH), 0);
+	self.y = MAX(MIN(self.y, self.delegate.mapHeight - GAMEPLAY_SCREEN_HEIGHT), 0);
+}
 
 -(void)setPositionWithX:(int)x andY:(int)y
 {
 	NSLog(@"Moving map to %i %i", x, y);
 	
 	//add all tiles that are going to be visible after this position change
-	[self generateTilesAroundX:x andY:y];
+	[self generateTilesAroundX:self.x andY:self.y];
 	
 	self.x = x;
 	self.y = y;
+	[self boundCamera];
 	
 	//use animations to shift everything over
 	__weak typeof(self) weakSelf = self;
@@ -136,8 +145,8 @@
 
 -(BOOL)isPointOnscreenWithX:(int)x andY:(int)y
 {
-	return x >= self.x - GAMEPLAY_SCREEN_WIDTH / 2 && y >= self.y - GAMEPLAY_SCREEN_HEIGHT / 2 &&
-			x <= self.x + GAMEPLAY_SCREEN_WIDTH / 2 && y <= self.y + GAMEPLAY_SCREEN_HEIGHT / 2;
+	return x >= self.x && y >= self.y &&
+			x <= self.x + GAMEPLAY_SCREEN_WIDTH && y <= self.y + GAMEPLAY_SCREEN_HEIGHT;
 }
 
 @end

@@ -25,6 +25,7 @@
 #pragma mark plist accessors
 
 UIColor *loadColor(NSString *colorCode);
+UIColor *loadColorFromName(NSString *name);
 NSDictionary *loadEntries(NSString *category);
 NSDictionary *loadEntry(NSString *category, NSString *entry);
 NSArray *loadArrayEntry(NSString *category, NSString *entry);
