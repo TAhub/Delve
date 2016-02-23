@@ -25,6 +25,15 @@
 
 @implementation MapView
 
+-(int)xCorner
+{
+	return self.x - GAMEPLAY_SCREEN_WIDTH / 2;
+}
+-(int)yCorner
+{
+	return self.y - GAMEPLAY_SCREEN_HEIGHT / 2;
+}
+
 -(int)xOffset
 {
 	return GAMEPLAY_TILE_SIZE * ((GAMEPLAY_SCREEN_WIDTH / 2) - self.x);
@@ -90,7 +99,7 @@
 	
 	//use animations to shift everything over
 	__weak typeof(self) weakSelf = self;
-	[UIView animateWithDuration:1.0f animations:
+	[UIView animateWithDuration:GAMEPLAY_MOVE_TIME animations:
 	^()
 	{
 		//shift all tiles over

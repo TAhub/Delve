@@ -256,6 +256,21 @@
 	self.storedAttack = nil;
 }
 
+-(BOOL) moveWithX:(int)x andY:(int)y
+{
+	Tile *tile = self.map.tiles[self.y+y][self.x+x];
+	Tile *oldTile = self.map.tiles[self.y][self.x];
+	if (!tile.solid && tile.inhabitant == nil)
+	{
+		tile.inhabitant = self;
+		oldTile.inhabitant = nil;
+		self.x += x;
+		self.y += y;
+		return true;
+	}
+	return false;
+}
+
 -(void) takeAttack:(NSString *)attackType withPower:(int)power andElement:(NSString *)element
 {
 	if (!self.good && !self.awake)

@@ -30,15 +30,23 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="140"/>
                                 <color key="backgroundColor" red="0.20358598267026806" green="0.38706738132902896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uew-pW-cr7">
+                                <rect key="frame" x="40" y="220" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
+                            <constraint firstItem="Uew-pW-cr7" firstAttribute="centerY" secondItem="8TG-ed-Jwf" secondAttribute="centerY" id="4Ys-ce-vvv"/>
                             <constraint firstItem="feh-tG-XLx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="G9M-pF-kd1"/>
                             <constraint firstItem="8TG-ed-Jwf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GrU-5K-uqc"/>
+                            <constraint firstItem="Uew-pW-cr7" firstAttribute="width" secondItem="8TG-ed-Jwf" secondAttribute="width" id="SZ9-Gc-9xa"/>
+                            <constraint firstItem="Uew-pW-cr7" firstAttribute="height" secondItem="8TG-ed-Jwf" secondAttribute="height" id="Uqr-Ea-YHD"/>
                             <constraint firstItem="8TG-ed-Jwf" firstAttribute="top" secondItem="feh-tG-XLx" secondAttribute="bottom" id="VbX-7h-EOL"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8TG-ed-Jwf" secondAttribute="bottom" id="eo2-oB-XYe"/>
                             <constraint firstItem="feh-tG-XLx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="fNU-QV-orW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8TG-ed-Jwf" secondAttribute="trailing" id="hOh-Ah-vik"/>
+                            <constraint firstItem="Uew-pW-cr7" firstAttribute="centerX" secondItem="8TG-ed-Jwf" secondAttribute="centerX" id="nHS-PE-XlS"/>
                             <constraint firstItem="8TG-ed-Jwf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uLt-du-rol"/>
                             <constraint firstItem="8TG-ed-Jwf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="vlx-Y4-URV"/>
                             <constraint firstItem="feh-tG-XLx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ydT-Y1-rTF"/>
@@ -56,6 +64,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="creatureView" destination="Uew-pW-cr7" id="z2A-zu-aY4"/>
                         <outlet property="mapView" destination="8TG-ed-Jwf" id="bWQ-DB-nod"/>
                     </connections>
                 </viewController>

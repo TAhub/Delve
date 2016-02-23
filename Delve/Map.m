@@ -13,8 +13,6 @@
 
 @interface Map()
 
-@property (weak, nonatomic) Creature *player;
-
 @end
 
 @implementation Map
@@ -57,6 +55,21 @@
 -(void)update
 {
 	[self recalculateVisibility];
+}
+
+-(BOOL)moveWithX:(int)x andY:(int)y
+{
+	if ([self.player moveWithX:x andY:y])
+	{
+		__weak typeof(self) weakSelf = self;
+		[self.delegate moveCreature:self.player withBlock:
+		^()
+		{
+			[weakSelf update];
+		}];
+		return YES;
+	}
+	return NO;
 }
 
 -(void)recalculateVisibility

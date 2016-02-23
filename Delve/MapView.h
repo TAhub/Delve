@@ -25,4 +25,7 @@
 -(int)xOffset;
 -(int)yOffset;
 
+-(int)xCorner;
+-(int)yCorner;
+
 @end
