@@ -15,11 +15,25 @@
 
 @interface GameViewController () <MapViewDelegate, MapDelegate>
 
-@property (strong, nonatomic) Map* map;
 @property (weak, nonatomic) IBOutlet MapView *mapView;
 @property (weak, nonatomic) IBOutlet UIView *creatureView;
+@property (weak, nonatomic) IBOutlet UIView *uiView;
+
+@property (weak, nonatomic) IBOutlet UIView *mainPanel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *mainPanelCord;
+
+@property (weak, nonatomic) IBOutlet UIView *attackSelectPanel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *attackSelectPanelCord;
+
+@property (weak, nonatomic) IBOutlet UIView *attackConfirmPanel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *attackConfirmPanelCord;
+
+
+@property (strong, nonatomic) Map* map;
 @property (strong, nonatomic) NSMutableArray *creatureViews;
 @property BOOL animating;
+@property BOOL uiAnimating;
+@property (weak, nonatomic) NSLayoutConstraint *activePanelCord;
 
 @end
 
@@ -28,6 +42,10 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+	
+	self.activePanelCord = nil;
+	self.animating = false;
+	self.uiAnimating = false;
 	
 	self.map = [Map new];
 	self.map.delegate = self;
@@ -57,9 +75,47 @@
 	}
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	
+	//swing in the main UI
+	[self switchToPanel:self.mainPanelCord];
+}
+
+//TODO: make sure that all panel buttons that do something check animating and uiAnimating
+//and all panel buttons that just switch panels check uiAnimating
+
+-(void)switchToPanel:(NSLayoutConstraint *)panelCord
+{
+	if (self.uiAnimating)
+		return;
+	self.uiAnimating = true;
+	
+	//TODO: there should be a duration constant
+	
+	panelCord.constant = -self.view.frame.size.width;
+	[self.uiView layoutIfNeeded];
+	
+	__weak typeof(self) weakSelf = self;
+	[UIView animateWithDuration:0.75f animations:
+	^()
+	{
+		if (weakSelf.activePanelCord != nil)
+			weakSelf.activePanelCord.constant = weakSelf.view.frame.size.width;
+		panelCord.constant = 0;
+		[weakSelf.uiView layoutIfNeeded];
+	} completion:
+	^(BOOL finished)
+	{
+		weakSelf.uiAnimating = false;
+		weakSelf.activePanelCord = panelCord;
+	}];
+}
+
 -(void)tapGesture:(UITapGestureRecognizer *)sender
 {
-	if (self.animating)
+	if (self.animating || self.uiAnimating)
 		return;
 	
 	CGPoint touchPoint = [sender locationInView:self.mapView];
