@@ -19,6 +19,11 @@
 	<!-- body colors -->
 	<key>pale skin</key> <string>FFF0F0</string>
 	<key>tan skin</key> <string>DDCCBB</string>
+	<key>brown skin</key> <string>663300</string>
+	<key>olive skin</key> <string>556622</string>
 	<key>brown hair</key> <string>DDAA66</string>
+	<key>black hair</key> <string>443322</string>
+	<key>green hair</key> <string>33AA33</string>
+	<key>purple hair</key> <string>9944AA</string>
 </dict>
 </plist>

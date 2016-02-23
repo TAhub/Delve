@@ -30,6 +30,7 @@
 		<key>sprite back</key> <true/>
 		<key>sprite gender</key> <true/>
 		<key>sprite over hair</key> <true/>
+		<key>female y add</key> <integer>0</integer>
 	</dict>
 	
 	<!-- real equipment -->
@@ -60,6 +61,7 @@
 		<key>color</key> <string>rusty</string>
 		<key>sprite back</key> <true/>
 		<key>sprite over hair</key> <true/>
+		<key>female y add</key> <integer>2</integer>
 	</dict>
 	
 	<!-- skullcap -->
@@ -75,6 +77,7 @@
 		<key>color</key> <string>iron</string>
 		<key>sprite back</key> <true/>
 		<key>sprite over hair</key> <true/>
+		<key>female y add</key> <integer>2</integer>
 	</dict>
 	
 	<!-- bandit helmet -->
@@ -91,6 +94,7 @@
 		<key>color</key> <string>steel</string>
 		<key>sprite back</key> <true/>
 		<key>sprite over hair</key> <true/>
+		<key>female y add</key> <integer>2</integer>
 	</dict>
 	
 	<!-- TODO: level 3 light armor helmet -->
@@ -109,6 +113,7 @@
 		<key>color</key> <string>steel</string>
 		<key>sprite back</key> <true/>
 		<key>sprite over hair</key> <true/>
+		<key>female y add</key> <integer>2</integer>
 	</dict>
 	
 	<!-- pot helmet -->
@@ -123,6 +128,7 @@
 		<key>sprite</key> <string>pot_helmet</string>
 		<key>color</key> <string>iron</string>
 		<key>sprite over hair</key> <true/>
+		<key>female y add</key> <integer>2</integer>
 	</dict>
 	
 	<!-- TODO: level 2 heavy armor helmet -->
@@ -142,6 +148,7 @@
 		<key>sprite</key> <string>knight_helmet</string>
 		<key>color</key> <string>steel</string>
 		<key>sprite over hair</key> <true/>
+		<key>female y add</key> <integer>2</integer>
 	</dict>
 	
 	
@@ -181,6 +188,7 @@
 		<key>sprite</key> <string>goggles</string>
 		<key>color</key> <string>iron</string>
 		<key>sprite over hair</key> <true/>
+		<key>female y add</key> <integer>2</integer>
 	</dict>
 	
 	<!-- gold tiara -->
@@ -196,6 +204,7 @@
 		<key>sprite</key> <string>tiara</string>
 		<key>color</key> <string>gold</string>
 		<key>sprite over hair</key> <true/>
+		<key>female y add</key> <integer>2</integer>
 	</dict>
 	
 	

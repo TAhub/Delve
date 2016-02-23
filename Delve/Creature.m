@@ -56,12 +56,18 @@
 	if (self = [super init])
 	{
 		//TODO: these are all just temporary variables
-		_race = @"human";
+//		_race = @"human";
+//		_armors = [NSArray arrayWithObjects:@"chestplate", @"bandit helmet", @"steel-toed boots", nil];
+//		_race = @"eoling";
+//		_armors = [NSArray arrayWithObjects:@"eoling robe", @"goggles", @"white tail banner", nil];
+		_race = @"highborn";
+		_armors = [NSArray arrayWithObjects:@"chestplate", @"gold tiara", @"", nil];
+		
 		_skillTrees = [NSArray arrayWithObjects:@"shield", @"dodge", @"hammer", @"spear", @"conditioning", nil];
 		_skillTreeLevels = [NSArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
 		_implements = [NSArray arrayWithObjects:@"rusty shield", @"", @"rusty hammer", @"wooden spear", @"", nil];
 		_weapon = @"rusty sword";
-		_armors = [NSArray arrayWithObjects:@"chestplate", @"bandit helmet", nil];
+		
 		_good = YES;
 		
 		_x = x;

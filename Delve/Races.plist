@@ -51,7 +51,10 @@
 			</dict>
 		</array>
 		<!-- TODO: hairs -->
-		<!-- TODO: armor slot y offsets -->
+		<key>armor slot y offsets</key>
+		<array>
+			<integer>0</integer>
+		</array>
 		<key>has gender</key> <true/>
 	</dict>
 	
@@ -97,9 +100,15 @@
 				<key>skin</key> <string>tan skin</string>
 				<key>hair</key> <string>brown hair</string>
 			</dict>
+			<!-- TODO: second coloration -->
 		</array>
 		<!-- TODO: hairs -->
-		<!-- TODO: armor slot y offsets -->
+		<key>armor slot y offsets</key>
+		<array>
+			<integer>0</integer>
+			<integer>0</integer>
+			<integer>0</integer>
+		</array>
 		<key>has gender</key> <true/>
 	</dict>
 	
@@ -133,9 +142,24 @@
 		</array>
 		<!-- appearance -->
 		<key>sprite</key> <string>eoling</string>
-		<!-- TODO: colorations --> <!-- coloration deep pale brown skin and white hair, or pale white skin and near-jet-black hair -->
+		<key>colorations</key> <!-- coloration deep pale brown skin and white hair, or pale white skin and near-jet-black hair -->
+		<array>
+			<dict>
+				<key>skin</key> <string>black hair</string>
+				<key>hair</key> <string>pale skin</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>pale skin</string>
+				<key>hair</key> <string>black hair</string>
+			</dict>
+		</array>
 		<!-- TODO: hairs -->
-		<!-- TODO: armor slot y offsets -->
+		<key>armor slot y offsets</key>
+		<array>
+			<integer>0</integer>
+			<integer>6</integer>
+			<integer>0</integer>
+		</array>
 		<key>has gender</key> <true/>
 	</dict>
 	
@@ -168,9 +192,24 @@
 		</array>
 		<!-- appearance -->
 		<key>sprite</key> <string>highborn</string>
-		<!-- TODO: colorations --> <!-- coloration: brown skin and green hair, or olive skin and purplish hair -->
+		<key>colorations</key> <!-- coloration: brown skin and green hair, or olive skin and purplish hair -->
+		<array>
+			<dict>
+				<key>skin</key> <string>brown skin</string>
+				<key>hair</key> <string>green hair</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>olive skin</string>
+				<key>hair</key> <string>purple hair</string>
+			</dict>
+		</array>
 		<!-- TODO: hairs -->
-		<!-- TODO: armor slot y offsets -->
+		<key>armor slot y offsets</key>
+		<array>
+			<integer>1</integer>
+			<integer>1</integer>
+			<integer>0</integer>
+		</array>
 		<key>has gender</key> <true/>
 	</dict>
 	
@@ -204,9 +243,21 @@
 		</array>
 		<!-- appearance -->
 		<key>sprite</key> <string>raider</string>
-		<!-- TODO: colorations --> <!-- coloration: grey skin, orange hair, no exceptions -->
+		<key>colorations</key> <!-- coloration: grey skin, orange hair, no exceptions -->
+		<array>
+			<dict>
+				<!-- TODO: finish this -->
+				<key>skin</key> <string>tan skin</string>
+				<key>hair</key> <string>brown hair</string>
+			</dict>
+		</array>
 		<!-- TODO: hairs -->
-		<!-- TODO: armor slot y offsets -->
+		<key>armor slot y offsets</key>
+		<array>
+			<integer>-2</integer>
+			<integer>0</integer>
+			<integer>0</integer>
+		</array>
 		<key>has gender</key> <true/>
 	</dict>
 	

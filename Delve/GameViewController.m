@@ -118,6 +118,8 @@
 
 -(void)drawArmorsOf:(Creature *)cr withLayer:(int)layer inArray:(NSMutableArray *)spriteArray withYAdds:(NSMutableArray *)yAdds
 {
+	NSArray *raceYAdds = loadValueArray(@"Races", cr.race, @"armor slot y offsets");
+	
 	for (int i = 0; i < cr.armors.count; i++)
 	{
 		NSString *armor = cr.armors[i];
@@ -140,14 +142,15 @@
 			
 			if (rightLayer)
 			{
-				//TODO: get the yAdd from the race
-				int yAdd = 0;
+				int yAdd = ((NSNumber *)raceYAdds[i]).intValue;
 				
 				NSString *spriteName = loadValueString(@"Armors", armor, @"sprite");
 				if (layer == 0)
 					spriteName = [NSString stringWithFormat:@"%@_back", spriteName];
 				if (loadValueBool(@"Armors", armor, @"sprite gender"))
 					spriteName = [NSString stringWithFormat:@"%@_%@", spriteName, cr.gender ? @"f" : @"m"];
+				if (cr.gender && loadValueBool(@"Armors", armor, @"female y add"))
+					yAdd += loadValueNumber(@"Armors", armor, @"female y add").intValue;
 				
 				//draw armor sprite
 				UIImage *sprite = [UIImage imageNamed:spriteName];

@@ -28,7 +28,7 @@
 
 -(UIColor *) color
 {
-	return (self.solid ? [UIColor grayColor] : [UIColor whiteColor]);
+	return (self.solid ? [UIColor grayColor] : [UIColor darkGrayColor]);
 }
 
 @end
