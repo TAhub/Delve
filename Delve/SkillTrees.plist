@@ -72,7 +72,7 @@
 	
 	<!-- design guidelines -->
 	<!-- passive-only skill ranks give about 1 of the following (feel free to split the difference) -->
-	<!-- 25 health, 25 damage bonus, 2 resistance, 1 dodge, 1 block, 30 metabolism, 1 hack -->
+	<!-- 25 health, 25 damage bonus, 2 resistance, 1 dodge, 1 block, 30 metabolism, 2 hacks -->
 	<!-- active skills give the active skill plus about half of a passive, less for a powerful active skill -->
 	<!-- everything should have at least a little bit of health or whatever -->
 	
@@ -378,7 +378,7 @@
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>health</key> <integer>10</integer>
-				<key>hacks</key> <integer>1</integer>
+				<key>hacks</key> <integer>2</integer>
 			</dict>
 		</array>
 	</dict>
@@ -453,10 +453,10 @@
 		<array>
 			<dict> <!-- rank 1 -->
 				<key>shock resistance</key> <integer>1</integer>
-				<key>hacks</key> <integer>1</integer>
+				<key>hacks</key> <integer>2</integer>
 			</dict>
 			<dict> <!-- rank 2 -->
-				<key>hacks</key> <integer>1</integer>
+				<key>hacks</key> <integer>2</integer>
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>shock resistance</key> <integer>1</integer>
@@ -464,7 +464,7 @@
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>shock resistance</key> <integer>1</integer>
-				<key>hacks</key> <integer>1</integer>
+				<key>hacks</key> <integer>2</integer>
 			</dict>
 		</array>
 	</dict>

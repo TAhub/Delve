@@ -16,11 +16,23 @@
 #define GAMEPLAY_SCREEN_WIDTH 8
 #define GAMEPLAY_SCREEN_HEIGHT 9
 #define GAMEPLAY_TILE_SIZE 40
-#define GAMEPLAY_MOVE_TIME 0.35f
+#define GAMEPLAY_MOVE_TIME 0.2f
 
 #pragma mark enums
 
+typedef NS_ENUM(NSInteger, GeneratorRoomExit) {
+	GeneratorRoomExitWall,
+	GeneratorRoomExitDoor,
+	GeneratorRoomExitPathDoor,
+	GeneratorRoomExitLockedDoor,
+	GeneratorRoomExitNoDoor
+};
 
+
+#pragma mark image modification
+
+UIImage *mergeImages(NSArray *images, CGPoint anchorPoint, NSArray *yAdds);
+UIImage *colorImage(UIImage *image, UIColor *color);
 
 #pragma mark plist accessors
 

@@ -65,10 +65,13 @@
 @property int storedAttackY;
 @property BOOL awake;
 
-#pragma mark public interface functions
+#pragma mark: public interface functions
 -(void) takeAttack:(NSString *)attackType withPower:(int)power andElement:(NSString *)element;
 -(void) useAttackWithTreeNumber:(int)treeNumber andName:(NSString *)name onX:(int)x andY:(int)y;
 -(BOOL) startTurn;
 -(BOOL) moveWithX:(int)x andY:(int)y;
+
+#pragma mark: appearance
+@property BOOL gender;
 
 @end

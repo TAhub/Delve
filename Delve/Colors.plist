@@ -10,5 +10,7 @@
 <plist version="1.0">
 <dict>
 	<key>iron</key> <string>999999</string>
+	<key>steel</key> <string>AAAABB</string>
+	<key>rusty</key> <string>AA8888</string>
 </dict>
 </plist>

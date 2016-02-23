@@ -35,9 +35,11 @@
 		<array>
 			<string>body armor</string>
 			<string>helmet</string>
+			<string>headgear</string>
 			<string>small clothes</string>
 			<string>tail ornament</string>
 			<string>jewelry</string>
+			<string>shoes</string>
 		</array>
 		<!-- appearance -->
 		<key>sprite</key> <string>template</string>
@@ -79,6 +81,7 @@
 		<array>
 			<string>body armor</string>
 			<string>helmet</string>
+			<string>shoes</string>
 		</array>
 		<!-- appearance -->
 		<key>sprite</key> <string>human</string>
@@ -97,7 +100,7 @@
 		<!-- stats -->
 		<key>damage bonus</key> <integer>110</integer>
 		<key>health</key> <integer>75</integer>
-		<key>shock resistance</key> <integer>1</integer>
+		<key>shock resistance</key> <integer>2</integer>
 		<key>dodges</key> <integer>4</integer>
 		<key>hacks</key> <integer>1</integer>
 		<key>metabolism</key> <integer>90</integer>
@@ -113,6 +116,7 @@
 		<key>armor slots</key>
 		<array>
 			<string>small clothes</string>
+			<string>headgear</string>
 			<string>tail ornament</string>
 		</array>
 		<!-- appearance -->
@@ -147,6 +151,7 @@
 		<key>armor slots</key>
 		<array>
 			<string>body armor</string>
+			<string>headgear</string>
 			<string>jewelry</string>
 		</array>
 		<!-- appearance -->
@@ -183,6 +188,7 @@
 		<array>
 			<string>helmet</string>
 			<string>tail ornament</string>
+			<string>shoes</string>
 		</array>
 		<!-- appearance -->
 		<key>sprite</key> <string>raider</string>

@@ -9,74 +9,86 @@
 #import "Constants.h"
 #import "Assert.h"
 
-#pragma mark plist accessors
+#pragma mark image modification
 
-//TODO: make image blending functions
-
-
-//TODO: remove this reference once I am done making the functions
-/*
-private func solidColorImage(color:UIColor) -> UIImage
+UIImage *mergeImages(NSArray *images, CGPoint anchorPoint, NSArray *yAdds)
 {
-	let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
+	CGRect boundsRect = CGRectMake(0, 0, 0, 0);
 	
-	//get the color space and context
-	let colorSpace = CGColorSpaceCreateDeviceRGB()
-	let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedLast.rawValue)
-	let bitmapContext = CGBitmapContextCreate(nil, Int(self.size.width), Int(self.size.height), 8, 0, colorSpace, bitmapInfo.rawValue)
-	
-	//draw and fill it
-	CGContextClipToMask(bitmapContext, rect, self.CGImage)
-	CGContextSetFillColorWithColor(bitmapContext, color.CGColor)
-	CGContextFillRect(bitmapContext, rect)
-	
-	//return a snapshot of that
-	return UIImage(CGImage: CGBitmapContextCreateImage(bitmapContext)!)
-}
-
-func colorImage(color:UIColor) -> UIImage
-{
-	//get the color mask image
-	let colorImage = solidColorImage(color)
-	
-	//get other stuff
-	let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
-	UIGraphicsBeginImageContext(self.size)
-	
-	//draw the image
-	self.drawInRect(rect)
-	
-	//draw the color mask
-	colorImage.drawAtPoint(CGPointZero, blendMode: CGBlendMode.Multiply, alpha: 1.0)
-	
-	//get the new image
-	let newImage = UIGraphicsGetImageFromCurrentImageContext()
-	UIGraphicsEndImageContext()
-	return newImage
-}
-
-class func combineImages(images:[UIImage], anchorAt:CGPoint) -> UIImage
-{
-	var largestSize = CGSize(width: 0, height: 0)
-	for image in images
+	//add the images, keeping the bounds in track
+	UIView *combinedView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, GAMEPLAY_TILE_SIZE * 2, GAMEPLAY_TILE_SIZE * 2)];
+	for (int i = 0; i < images.count; i++)
 	{
-		largestSize.width = max(largestSize.width, image.size.width)
-		largestSize.height = max(largestSize.height, image.size.height)
+		UIImage *image = images[i];
+		int yAdd = ((NSNumber *)yAdds[i]).intValue;
+		
+		UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+		[combinedView addSubview:imageView];
+		
+		CGRect imageRect = CGRectMake(0, yAdd, image.size.width, image.size.height);
+		boundsRect = CGRectUnion(boundsRect, imageRect);
 	}
 	
-	UIGraphicsBeginImageContext(largestSize)
-	for image in images
+	//center the images
+	for (int i = 0; i < images.count; i++)
 	{
+		UIImageView *imageView = combinedView.subviews[i];
+		int yAdd = ((NSNumber *)yAdds[i]).intValue;
+		
 		//the anchorAt point is where the views should converge
 		//ie 0.5, 0.5 means they should all be centered
 		//0, 0 means they should all be drawn in the upper-left
-		image.drawAtPoint(CGPoint(x: (largestSize.width - image.size.width) * anchorAt.x, y: (largestSize.height - image.size.height) * anchorAt.y))
+		imageView.frame = CGRectMake((boundsRect.size.width - imageView.frame.size.width) * anchorPoint.x, (boundsRect.size.height - imageView.frame.size.height) * anchorPoint.y + yAdd, imageView.frame.size.width, imageView.frame.size.height);
 	}
-	let newImage = UIGraphicsGetImageFromCurrentImageContext()
-	UIGraphicsEndImageContext()
-	return newImage
+	
+	UIGraphicsBeginImageContext(boundsRect.size);
+	[combinedView.layer renderInContext:UIGraphicsGetCurrentContext()];
+	UIImage *combinedImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	return combinedImage;
 }
-*/
+
+UIImage *solidColorImage(UIImage *image, UIColor *color)
+{
+	CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
+	
+	//get the color space and context
+	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+	u_int32_t bitmapInfo = kCGImageAlphaPremultipliedLast;
+	CGContextRef bitmapContext = CGBitmapContextCreate(nil, (int)image.size.width, (int)image.size.height, 8, 0, colorSpace, bitmapInfo);
+	
+	//draw and fill it
+	CGContextClipToMask(bitmapContext, rect, image.CGImage);
+	CGContextSetFillColorWithColor(bitmapContext, color.CGColor);
+	CGContextFillRect(bitmapContext, rect);
+	
+	CGImageRef snapshot = CGBitmapContextCreateImage(bitmapContext);
+	return [UIImage imageWithCGImage:snapshot];
+}
+
+UIImage *colorImage(UIImage *image, UIColor *color)
+{
+	//get the color mask image
+	UIImage *colorImage = solidColorImage(image, color);
+	
+	//get other stuff
+	CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
+	UIGraphicsBeginImageContext(image.size);
+	
+	//draw the image
+	[image drawInRect:rect];
+	
+	//draw the color mask
+	[colorImage drawAtPoint:CGPointZero blendMode:kCGBlendModeMultiply alpha:1.0];
+	
+	//get the new image
+	UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	return newImage;
+	
+}
+
+#pragma mark plist accessors
 
 UIColor *loadColor(NSString *colorCode)
 {
@@ -226,7 +238,7 @@ void passiveBalanceTest()
 			
 			//calculate points
 			float points = (lHealth / 25.0f) + (lDamageBonus / 25.0f) + (lSmashResistance / 2.0f) + (lCutResistance / 2.0f);
-			points += (lShockResistance / 2.0f) + (lBurnResistance / 2.0f) + (lDodges) + (lBlocks) + (lHacks) + (lMetabolism / 30.0f);
+			points += (lShockResistance / 2.0f) + (lBurnResistance / 2.0f) + (lDodges) + (lBlocks) + (lHacks / 2.0f) + (lMetabolism / 30.0f);
 			NSLog(@"Passive points for %@: %f", treeName, points);
 		}
 	

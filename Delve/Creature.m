@@ -77,6 +77,10 @@
 
 -(void)initializeMisc
 {
+	//appearance
+	self.gender = YES;
+	
+	
 	//base variables
 	self.health = self.maxHealth;
 	self.dodges = self.maxDodges;
