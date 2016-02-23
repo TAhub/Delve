@@ -21,14 +21,11 @@
 
 @property (weak, nonatomic) id<MapViewDelegate> delegate;
 
--(void)initializeMapAtX:(int)x andY:(int)y;
--(void)setPositionWithX:(int)x andY:(int)y;
+-(void)initializeMapAtX:(float)x andY:(float)y;
+-(void)setPositionWithX:(float)x andY:(float)y;
 
 -(int)xOffset;
 -(int)yOffset;
-
--(int)xCorner;
--(int)yCorner;
 
 -(BOOL)isPointOnscreenWithX:(int)x andY:(int)y;
 

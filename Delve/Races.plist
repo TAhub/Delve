@@ -41,9 +41,8 @@
 		</array>
 		<!-- appearance -->
 		<key>sprite</key> <string>template</string>
-		<!-- TODO: skin colors -->
+		<!-- TODO: colorations -->
 		<!-- TODO: hairs -->
-		<!-- TODO: hair colors -->
 		<!-- TODO: armor slot y offsets -->
 		<key>has gender</key> <true/>
 	</dict>
@@ -83,9 +82,8 @@
 		</array>
 		<!-- appearance -->
 		<key>sprite</key> <string>human</string>
-		<!-- TODO: skin colors -->
+		<!-- TODO: colorations --> <!-- coloration: tan skin, brown or dirty blonde hair -->
 		<!-- TODO: hairs -->
-		<!-- TODO: hair colors -->
 		<!-- TODO: armor slot y offsets -->
 		<key>has gender</key> <true/>
 	</dict>
@@ -119,9 +117,8 @@
 		</array>
 		<!-- appearance -->
 		<key>sprite</key> <string>eoling</string>
-		<!-- TODO: skin colors -->
+		<!-- TODO: colorations --> <!-- coloration deep pale brown skin and white hair, or pale white skin and near-jet-black hair -->
 		<!-- TODO: hairs -->
-		<!-- TODO: hair colors -->
 		<!-- TODO: armor slot y offsets -->
 		<key>has gender</key> <true/>
 	</dict>
@@ -154,9 +151,8 @@
 		</array>
 		<!-- appearance -->
 		<key>sprite</key> <string>highborn</string>
-		<!-- TODO: skin colors -->
+		<!-- TODO: colorations --> <!-- coloration: brown skin and green hair, or olive skin and purplish hair -->
 		<!-- TODO: hairs -->
-		<!-- TODO: hair colors -->
 		<!-- TODO: armor slot y offsets -->
 		<key>has gender</key> <true/>
 	</dict>
@@ -190,9 +186,8 @@
 		</array>
 		<!-- appearance -->
 		<key>sprite</key> <string>raider</string>
-		<!-- TODO: skin colors -->
+		<!-- TODO: colorations --> <!-- coloration: grey skin, orange hair, no exceptions -->
 		<!-- TODO: hairs -->
-		<!-- TODO: hair colors -->
 		<!-- TODO: armor slot y offsets -->
 		<key>has gender</key> <true/>
 	</dict>

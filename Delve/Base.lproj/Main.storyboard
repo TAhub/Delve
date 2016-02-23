@@ -31,8 +31,11 @@
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="feh-tG-XLx">
-                                <rect key="frame" x="0.0" y="28" width="320" height="180"/>
+                                <rect key="frame" x="0.0" y="-791" width="320" height="999"/>
                                 <color key="backgroundColor" red="0.20358598267026806" green="0.38706738132902896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="999" id="I63-dB-XW7"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -54,6 +57,7 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="fNU-QV-orW"/>
                                 <exclude reference="GrU-5K-uqc"/>
                                 <exclude reference="hOh-Ah-vik"/>
                                 <exclude reference="vlx-Y4-URV"/>

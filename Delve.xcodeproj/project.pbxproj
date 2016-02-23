@@ -85,8 +85,8 @@
 		E459C6851C7AB2E800422B0A /* Delve */ = {
 			isa = PBXGroup;
 			children = (
-				E459C69F1C7AB31B00422B0A /* Controller */,
 				E459C69E1C7AB31700422B0A /* Model */,
+				E459C69F1C7AB31B00422B0A /* Controller */,
 				E459C69D1C7AB31100422B0A /* View */,
 				E459C6861C7AB2E800422B0A /* Supporting Files */,
 			);

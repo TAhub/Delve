@@ -13,8 +13,8 @@
 
 @interface MapView()
 
-@property int x;
-@property int y;
+@property float x;
+@property float y;
 
 -(int)xTranslate:(int)x;
 -(int)yTranslate:(int)y;
@@ -25,15 +25,6 @@
 
 
 @implementation MapView
-
--(int)xCorner
-{
-	return self.x;
-}
--(int)yCorner
-{
-	return self.y;
-}
 
 -(int)xOffset
 {
@@ -74,7 +65,7 @@
 }
 
 
--(void)initializeMapAtX:(int)x andY:(int)y
+-(void)initializeMapAtX:(float)x andY:(float)y
 {
 	self.x = x;
 	self.y = y;
@@ -84,13 +75,10 @@
 	[self generateTilesAroundX:self.x andY:self.y];
 }
 
--(void)generateTilesAroundX:(int)x andY:(int)y
+-(void)generateTilesAroundX:(float)xStart andY:(float)yStart
 {
-	int xStart = x;
-	int yStart = y;
-	
-	for (int x = xStart - 1; x <= xStart + GAMEPLAY_SCREEN_WIDTH; x++)
-		for (int y = yStart - 1; y <= yStart + GAMEPLAY_SCREEN_HEIGHT; y++)
+	for (int x = (int)floorf(xStart) - 1; x <= (int)ceilf(xStart) + GAMEPLAY_SCREEN_WIDTH; x++)
+		for (int y = (int)floorf(yStart) - 1; y <= (int)ceilf(yStart) + GAMEPLAY_SCREEN_HEIGHT; y++)
 			[self makeTileAtX:x andY:y];
 }
 
@@ -100,9 +88,9 @@
 	self.y = MAX(MIN(self.y, self.delegate.mapHeight - GAMEPLAY_SCREEN_HEIGHT), 0);
 }
 
--(void)setPositionWithX:(int)x andY:(int)y
+-(void)setPositionWithX:(float)x andY:(float)y
 {
-	NSLog(@"Moving map to %i %i", x, y);
+	NSLog(@"Moving map to %f %f", x, y);
 	
 	//add all tiles that are going to be visible after this position change
 	[self generateTilesAroundX:self.x andY:self.y];
@@ -145,8 +133,8 @@
 
 -(BOOL)isPointOnscreenWithX:(int)x andY:(int)y
 {
-	return x >= self.x && y >= self.y &&
-			x <= self.x + GAMEPLAY_SCREEN_WIDTH && y <= self.y + GAMEPLAY_SCREEN_HEIGHT;
+	return x >= (int)floorf(self.x) && y >= (int)floorf(self.y) &&
+			x <= (int)ceilf(self.x) + GAMEPLAY_SCREEN_WIDTH && y <= (int)ceilf(self.y) + GAMEPLAY_SCREEN_HEIGHT;
 }
 
 @end

@@ -96,6 +96,7 @@
 		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>cut</string>
 		<key>range</key> <integer>2</integer>
+		<key>min range</key> <integer>2</integer>
 		<key>cooldown</key> <integer>1</integer>
 		<key>dodgeable</key> <true/>
 		<!-- special effects -->
@@ -105,6 +106,7 @@
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>cut</string>
 		<key>range</key> <integer>2</integer>
+		<key>min range</key> <integer>2</integer>
 		<key>cooldown</key> <integer>1</integer>
 		<!-- special effects -->
 	</dict>

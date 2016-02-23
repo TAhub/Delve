@@ -33,7 +33,7 @@
 	self.map.delegate = self;
 	
 	self.mapView.delegate = self;
-	[self.mapView initializeMapAtX:self.map.player.x - (GAMEPLAY_SCREEN_WIDTH / 2) andY:self.map.player.y - (GAMEPLAY_SCREEN_HEIGHT / 2)];
+	[self.mapView initializeMapAtX:self.map.player.x - GAMEPLAY_SCREEN_WIDTH * 0.5f + 0.5f andY:self.map.player.y - GAMEPLAY_SCREEN_HEIGHT * 0.5f + 0.5f];
 	
 	[self.map update];
 	
@@ -63,8 +63,8 @@
 		return;
 	
 	CGPoint touchPoint = [sender locationInView:self.mapView];
-	int x = (int)floorf(touchPoint.x * GAMEPLAY_SCREEN_WIDTH / self.mapView.frame.size.width) + self.mapView.xCorner;
-	int y = (int)floorf(touchPoint.y * GAMEPLAY_SCREEN_HEIGHT / self.mapView.frame.size.height) + self.mapView.yCorner;
+	int x = ((int)floorf(touchPoint.x) - self.mapView.xOffset) / GAMEPLAY_TILE_SIZE;
+	int y = ((int)floorf(touchPoint.y) - self.mapView.yOffset) / GAMEPLAY_TILE_SIZE;
 
 	NSLog(@"touched (%i %i), player is at (%i %i)", x, y, self.map.player.x, self.map.player.y);
 	
@@ -122,7 +122,7 @@
 -(void)moveCreature:(Creature *)creature withBlock:(void (^)(void))block
 {
 	if (creature == self.map.player)
-		[self.mapView setPositionWithX:creature.x - (GAMEPLAY_SCREEN_WIDTH / 2) andY:creature.y - (GAMEPLAY_SCREEN_HEIGHT / 2)];
+		[self.mapView setPositionWithX:creature.x - GAMEPLAY_SCREEN_WIDTH * 0.5f + 0.5f andY:creature.y - GAMEPLAY_SCREEN_HEIGHT * 0.5f + 0.5f];
 	
 	__weak typeof(self) weakSelf = self;
 	self.animating = true;
