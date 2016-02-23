@@ -63,6 +63,7 @@
 @property int storedAttackSlot;
 @property int storedAttackX;
 @property int storedAttackY;
+@property BOOL awake;
 
 #pragma mark public interface functions
 -(void) takeAttack:(NSString *)attackType withPower:(int)power andElement:(NSString *)element;

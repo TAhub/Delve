@@ -67,6 +67,7 @@
 		_x = x;
 		_y = y;
 		_map = map;
+		_awake = false;
 		
 		[self initializeMisc];
 		
@@ -110,9 +111,11 @@
 	{
 		//are you in range?
 		int range = loadValueNumber(@"Attacks", attack, @"range").intValue;
+		int minRange = 1;
+		if (loadValueBool(@"Attacks", attack, @"min range"))
+			minRange = loadValueNumber(@"Attacks", attack, @"min range").intValue;
 		int distance = ABS(x - self.x) + ABS(y - self.y);
-		if (distance > range || //maximum range
-			(distance == 1 && range > 1)) //minimum range
+		if (distance > range || distance < minRange)
 			return false;
 		
 		//make sure it's not a solid wall
@@ -120,9 +123,9 @@
 		if (targetTile.solid)
 			return false;
 		
-		//TODO: might want to check for line of sight
-		//maybe via some kind of line of sight storage map
-		//so nobody can target a square you can't see, that should be fine
+		//check for line of sight
+		if (!targetTile.visible)
+			return false;
 		
 		if (openSpots || loadValueBool(@"Attacks", attack, @"teleport"))
 		{
@@ -255,6 +258,13 @@
 
 -(void) takeAttack:(NSString *)attackType withPower:(int)power andElement:(NSString *)element
 {
+	if (!self.good && !self.awake)
+	{
+		//this is for if someone is somehow hit while asleep (for instance, by a stealthy player, or with a big AoE)
+		self.awake = true;
+		[self wakeUpNearby];
+	}
+	
 	if (!loadValueBool(@"Attacks", attackType, @"friendly"))
 	{
 		//don't apply damage, dodge, block, etc on friendly attacks
@@ -328,8 +338,34 @@
 	}
 }
 
+-(void) wakeUpNearby
+{
+	//TODO: wake distance should probably be an AI variable
+	//so some AIs are "louder" than others
+	//3 is pretty high, 2 might be a "normal" value
+	int wakeDistance = 3;
+	
+	for (int y = self.y - wakeDistance; y <= self.y + wakeDistance; y++)
+		for (int x = self.x - wakeDistance; x <= self.x + wakeDistance; x++)
+			if (x >= 0 && y >= 0 && x < self.map.width && y < self.map.height)
+			{
+				Tile *tile = self.map.tiles[self.y][self.x];
+				if (tile.inhabitant != nil && !tile.inhabitant.good)
+					tile.inhabitant.awake = true;
+			}
+}
+
 -(BOOL) startTurn
 {
+	//TODO: maybe there can be an "stealth" status that prevents enemies from waking up if you get onscreen?
+	if (!self.awake && !self.good && ((Tile *)self.map.tiles[self.y][self.x]).visible)
+	{
+		self.awake = true;
+		[self wakeUpNearby];
+	}
+	
+	//TODO: awake ais who spend too many rounds offscreen (this should probably be an AI variable) should go asleep again
+	
 	self.forceField = 0;
 	
 	//reduce all cooldowns
@@ -347,6 +383,13 @@
 		self.stunned = false;
 		
 		return false;
+	}
+	
+	if (self.awake)
+	{
+		//TODO: AI action
+		
+		//TODO: AIs shouldnt pursue the player if the AI isn't visible (IE it's offscreen or in a non-visible tile) and the player is stealthed
 	}
 	
 	return true;

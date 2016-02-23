@@ -28,6 +28,8 @@
 	
 	self.mapView.delegate = self;
 	[self.mapView initializeMapAtX:self.map.width / 2 andY:self.map.height / 2];
+	
+	[self.map update];
 }
 
 #pragma mark: map view delegate

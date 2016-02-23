@@ -20,4 +20,6 @@
 -(int)width;
 -(int)height;
 
+-(void)update;
+
 @end

@@ -9,6 +9,13 @@
 #import "Map.h"
 #import "Tile.h"
 #import "Creature.h"
+#import "Constants.h"
+
+@interface Map()
+
+@property (weak, nonatomic) Creature *player;
+
+@end
 
 @implementation Map
 
@@ -35,13 +42,54 @@
 		
 		//add creatures
 		Creature *player = [[Creature alloc] initWithX:2 andY:2 onMap:self];
+		_player = player;
 		((Tile *)_tiles[2][2]).inhabitant = player;
 		Creature *enemy = [[Creature alloc] initWithX:5 andY:5 onMap:self ofEnemyType:@"ruin feeder"];
 		((Tile *)_tiles[5][5]).inhabitant = enemy;
 		[_creatures addObject:player];
 		[_creatures addObject:enemy];
+		
+		[self recalculateVisibility];
 	}
 	return self;
+}
+
+-(void)update
+{
+	[self recalculateVisibility];
+}
+
+-(void)recalculateVisibility
+{
+	for (NSMutableArray *row in self.tiles)
+		for (Tile *tile in row)
+			tile.visible = NO;
+	
+	//project sight-lines from the player
+	//TODO: make this into a constant I guess
+	int sightLineDensity = 30;
+	for (int i = 0; i < sightLineDensity; i++)
+	{
+		float angle = M_PI * 2 * i / sightLineDensity;
+		BOOL hitWall = false;
+		for (int j = 0; j < MAX(GAMEPLAY_SCREEN_WIDTH, GAMEPLAY_SCREEN_HEIGHT); j++)
+		{
+			float x = cos(angle) * j + self.player.x;
+			float y = sin(angle) * j + self.player.y;
+			int rX = roundf(x);
+			int rY = roundf(y);
+			if (rX < 0 || rY < 0 || rX >= self.width || rY >= self.height)
+				break;
+			Tile *tile = self.tiles[rY][rX];
+			if (tile.solid)
+			{
+				if (hitWall)
+					break;
+				hitWall = true;
+			}
+			tile.visible = YES;
+		}
+	}
 }
 
 -(int)width

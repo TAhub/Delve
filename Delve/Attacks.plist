@@ -14,6 +14,7 @@
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>cut</string>
 		<key>range</key> <integer>1</integer>
+		<key>min range</key> <integer>1</integer>
 		<key>area</key> <integer>1</integer>
 		<key>cooldown</key> <integer>11</integer>
 		<key>dodgeable</key> <true/>
@@ -92,7 +93,7 @@
 	</dict>
 	<key>thrust</key>
 	<dict>
-		<key>power</key> <integer>25</integer>
+		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>cut</string>
 		<key>range</key> <integer>2</integer>
 		<key>cooldown</key> <integer>1</integer>
@@ -101,7 +102,7 @@
 	</dict>
 	<key>jab</key>
 	<dict>
-		<key>power</key> <integer>20</integer>
+		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>cut</string>
 		<key>range</key> <integer>2</integer>
 		<key>cooldown</key> <integer>1</integer>
@@ -139,9 +140,12 @@
 	</dict>
 	
 	<!-- ranged damaging attacks -->
+	<!-- design note: now, due to screen sizes, the max range should be 4 -->
+	<!-- because of that, most ranged attacks should be given no-dodge -->
+	<!-- otherwise, most ranged attack stronger than bow shot will be useless, because the enemy will dodge it anyway -->
 	<key>shield boomerang</key>
 	<dict>
-		<key>power</key> <integer>25</integer>
+		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>smash</string>
 		<key>range</key> <integer>3</integer>
 		<key>cooldown</key> <integer>4</integer>
@@ -153,6 +157,7 @@
 		<key>power</key> <integer>15</integer>
 		<key>element</key> <string>cut</string>
 		<key>range</key> <integer>4</integer>
+		<key>min range</key> <integer>3</integer>
 		<key>cooldown</key> <integer>1</integer>
 		<key>dodgeable</key> <true/>
 		<!-- special effects -->
@@ -162,8 +167,8 @@
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>shock</string>
 		<key>range</key> <integer>4</integer>
+		<key>min range</key> <integer>2</integer>
 		<key>cooldown</key> <integer>1</integer>
-		<key>dodgeable</key> <true/>
 		<!-- TODO: this should cost a crystal -->
 		<!-- special effects -->
 	</dict>
@@ -172,6 +177,7 @@
 		<key>power</key> <integer>35</integer>
 		<key>element</key> <string>shock</string>
 		<key>range</key> <integer>4</integer>
+		<key>min range</key> <integer>2</integer>
 		<key>area</key> <integer>1</integer>
 		<key>cooldown</key> <integer>4</integer>
 		<!-- TODO: this should cost a crystal -->
@@ -183,7 +189,6 @@
 		<key>element</key> <string>cut</string>
 		<key>range</key> <integer>4</integer>
 		<key>cooldown</key> <integer>11</integer>
-		<key>dodgeable</key> <true/>
 		<!-- special effects -->
 		<key>hurt user</key> <integer>10</integer>
 	</dict>
@@ -202,7 +207,6 @@
 		<key>element</key> <string>burn</string>
 		<key>range</key> <integer>4</integer>
 		<key>cooldown</key> <integer>11</integer>
-		<key>dodgeable</key> <true/>
 		<!-- special effects -->
 	</dict>
 	<key>holy flash</key>
@@ -210,12 +214,11 @@
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>shock</string>
 		<key>range</key> <integer>4</integer>
-		<key>cooldown</key> <integer>11</integer>
 		<!-- special effects -->
 	</dict>
 	<key>stone pillar</key>
 	<dict>
-		<key>power</key> <integer>40</integer>
+		<key>power</key> <integer>45</integer>
 		<key>element</key> <string>smash</string>
 		<key>range</key> <integer>3</integer>
 		<key>area</key> <integer>1</integer>

@@ -16,6 +16,7 @@
 	{
 		_type = type;
 		_inhabitant = nil;
+		_visible = NO;
 	}
 	return self;
 }

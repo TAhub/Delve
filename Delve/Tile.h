@@ -21,5 +21,6 @@
 -(BOOL) solid;
 -(UIColor *) color;
 @property (weak, nonatomic) Creature *inhabitant;
+@property BOOL visible;
 
 @end
