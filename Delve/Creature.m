@@ -256,17 +256,22 @@
 	
 	if (!loadValueBool(@"Attacks", name, @"area"))
 		[self unleashAttack]; //release the attack immediately
-	else if (!self.good)
+	else
 	{
-		//add targeting warnings
-		[self applyBlock:
-		^(Tile *tile)
+		if (!self.good)
 		{
-			[tile.aoeTargeters addObject:self];
-		} forAttack:name onX:self.storedAttackX andY:self.storedAttackY];
-		[self.map tilesChanged];
+			//add targeting warnings
+			[self applyBlock:
+			^(Tile *tile)
+			{
+				[tile.aoeTargeters addObject:self];
+			} forAttack:name onX:self.storedAttackX andY:self.storedAttackY];
+			[self.map tilesChanged];
+		}
+		
+		[self.map update];
 	}
-	
+
 	
 	//pay costs
 	if (loadValueBool(@"Attacks", name, @"hurt user"))
@@ -281,74 +286,81 @@
 	//and only run the actual effect code afterwards
 	
 	
-	//get the implement
-	NSString *implement = @"";
-	if ([self.storedAttack isEqualToString:@"attack"]) //the implement should be your weapon
-		implement = self.weapon;
-	else
-		implement = self.implements[self.storedAttackSlot];
-	
-	
-	//get the power
-	int power = self.damageBonus + [self bonusFromImplement:implement withName:@"power"];
-	
-	
-	//get the element
-	NSString *element = @"no element";
-	if (loadValueBool(@"Attacks", self.storedAttack, @"element"))
-		element = loadValueString(@"Attacks", self.storedAttack, @"element");
-	//TODO: element override from implement (ie flaming sword does burn, whatever)
-	
-	
 	__weak typeof(self) weakSelf = self;
-	__block BOOL tilesChanged = false;
-	[self applyBlock:
-	^void (Tile *tile)
+	
+	//use the map's delegate stuff to do an attack anim
+	[self.map.delegate attackAnimation:self.storedAttack fromPerson:self targetX:self.storedAttackX andY:self.storedAttackY withEffectBlock:
+	^()
 	{
-		if (!weakSelf.good && [tile.aoeTargeters containsObject:self])
-		{
-			[tile.aoeTargeters removeObject:self];
-			tilesChanged = true;
-		}
 		
-		if (tile.inhabitant != nil)
+		//get the implement
+		NSString *implement = @"";
+		if ([weakSelf.storedAttack isEqualToString:@"attack"]) //the implement should be your weapon
+			implement = weakSelf.weapon;
+		else
+			implement = weakSelf.implements[weakSelf.storedAttackSlot];
+		
+		
+		//get the power
+		int power = weakSelf.damageBonus + [weakSelf bonusFromImplement:implement withName:@"power"];
+		
+		
+		//get the element
+		NSString *element = @"no element";
+		if (loadValueBool(@"Attacks", weakSelf.storedAttack, @"element"))
+			element = loadValueString(@"Attacks", weakSelf.storedAttack, @"element");
+		//TODO: element override from implement (ie flaming sword does burn, whatever)
+		
+		
+		__block BOOL tilesChanged = false;
+		[weakSelf applyBlock:
+		^void (Tile *tile)
 		{
-			Creature *hit = tile.inhabitant;
-			
-			//apply attack
-			if ((!loadValueBool(@"Attacks", weakSelf.storedAttack, @"range") || //if it's a self-targeting attack
-				 (hit.good != weakSelf.good)) && //or if it's targeting an enemy
-				!hit.dead) //don't hit dead people
+			if (!weakSelf.good && [tile.aoeTargeters containsObject:weakSelf])
 			{
-				[hit takeAttack:weakSelf.storedAttack withPower:power andElement:element];
-				if (hit.dead)
-				{
-					//you killed someone!
-					weakSelf.blocks = MIN(weakSelf.blocks + 1, weakSelf.maxBlocks);
-					//TODO: any other bennies for getting a kill
-				}
+				[tile.aoeTargeters removeObject:weakSelf];
+				tilesChanged = true;
 			}
 			
-			//teleport, if that's what the skill asks for
-			if (loadValueBool(@"Attacks", weakSelf.storedAttack, @"teleport"))
+			if (tile.inhabitant != nil)
 			{
-				if (hit != nil)
-				{
-					hit.x = weakSelf.x;
-					hit.y = weakSelf.y;
-				}
-				weakSelf.x = weakSelf.storedAttackX;
-				weakSelf.y = weakSelf.storedAttackY;
+				Creature *hit = tile.inhabitant;
 				
-				//TODO: this might need to update sprites, etc
+				//apply attack
+				if ((!loadValueBool(@"Attacks", weakSelf.storedAttack, @"range") || //if it's a self-targeting attack
+					 (hit.good != weakSelf.good)) && //or if it's targeting an enemy
+					!hit.dead) //don't hit dead people
+				{
+					[hit takeAttack:weakSelf.storedAttack withPower:power andElement:element];
+					if (hit.dead)
+					{
+						//you killed someone!
+						weakSelf.blocks = MIN(weakSelf.blocks + 1, weakSelf.maxBlocks);
+						//TODO: any other bennies for getting a kill
+					}
+				}
+				
+				//teleport, if that's what the skill asks for
+				if (loadValueBool(@"Attacks", weakSelf.storedAttack, @"teleport"))
+				{
+					if (hit != nil)
+					{
+						hit.x = weakSelf.x;
+						hit.y = weakSelf.y;
+					}
+					weakSelf.x = weakSelf.storedAttackX;
+					weakSelf.y = weakSelf.storedAttackY;
+					
+					//TODO: this might need to update sprites, etc
+				}
 			}
-		}
-	} forAttack:self.storedAttack onX:self.storedAttackX andY:self.storedAttackY];
-	
-	if (tilesChanged)
-		[self.map tilesChanged];
-	
-	self.storedAttack = nil;
+		} forAttack:weakSelf.storedAttack onX:weakSelf.storedAttackX andY:weakSelf.storedAttackY];
+		
+		if (tilesChanged)
+			[weakSelf.map tilesChanged];
+		
+		weakSelf.storedAttack = nil;
+	}];
 }
 
 -(BOOL) moveWithX:(int)x andY:(int)y

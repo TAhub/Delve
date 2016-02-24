@@ -496,6 +496,30 @@
 		}];
 }
 
+-(void)attackAnimation:(NSString *)name fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void))block
+{
+	NSLog(@"Attacking");
+	
+	//TODO: do some animations and shit
+	__weak typeof(self) weakSelf = self;
+	self.animating = true;
+	[UIView animateWithDuration:1.0f animations:
+	^()
+	{
+		
+	} completion:
+	^(BOOL finished)
+	{
+		weakSelf.animating = false;
+		
+		//run the effect block
+		block();
+		
+		//and now it's the next turn!
+		[weakSelf.map update];
+	}];
+}
+
 -(void)updateTiles
 {
 	[self.mapView remake];

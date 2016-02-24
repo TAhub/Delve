@@ -35,6 +35,8 @@
 
 -(void)update
 {
+	NSLog(@"Update!");
+	
 	//keep going for next
 	while (true)
 	{
