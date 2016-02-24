@@ -101,7 +101,7 @@
 	
 	//status effect flags
 	self.forceField = 0;
-	self.stunned = NO;
+	self.stunned = 0;
 	
 	//organizational flags
 	self.storedAttack = nil;
@@ -112,6 +112,8 @@
 -(NSArray *) attacks
 {
 	NSMutableArray *result = [NSMutableArray new];
+	[result addObject:@"attack"];
+	[result addObject:@"defend"];
 	for (int i = 0; i < self.skillTrees.count; i++)
 	{
 		NSString *skillTree = self.skillTrees[i];
@@ -227,6 +229,16 @@
 	
 	if (!loadValueBool(@"Attacks", name, @"area"))
 		[self unleashAttack]; //release the attack immediately
+	else if (!self.good)
+	{
+		//add targeting warnings
+		[self applyBlock:
+		^(Tile *tile)
+		{
+			[tile.aoeTargeters addObject:self];
+		} forAttack:self.storedAttack onX:self.storedAttackX andY:self.storedAttackY];
+		[self.map tilesChanged];
+	}
 	
 	
 	//pay costs
@@ -262,8 +274,16 @@
 	
 	
 	__weak typeof(self) weakSelf = self;
+	__block BOOL tilesChanged = false;
 	[self applyBlock:
-	^void (Tile *tile){
+	^void (Tile *tile)
+	{
+		if (!weakSelf.good && [tile.aoeTargeters containsObject:self])
+		{
+			[tile.aoeTargeters removeObject:self];
+			tilesChanged = true;
+		}
+		
 		if (tile.inhabitant != nil)
 		{
 			Creature *hit = tile.inhabitant;
@@ -298,6 +318,8 @@
 		}
 	} forAttack:self.storedAttack onX:self.storedAttackX andY:self.storedAttackY];
 	
+	if (tilesChanged)
+		[self.map tilesChanged];
 	
 	self.storedAttack = nil;
 }
@@ -384,7 +406,7 @@
 	//apply special effects
 	if (loadValueBool(@"Attacks", attackType, @"stun"))
 	{
-		self.stunned = true;
+		self.stunned = 2;
 		self.storedAttack = nil;
 	}
 	if (loadValueBool(@"Attacks", attackType, @"interrupt aoe"))
@@ -439,10 +461,9 @@
 	if (self.storedAttack != nil)
 		[self unleashAttack];
 	
-	if (self.stunned)
+	if (self.stunned > 0)
 	{
-		self.stunned = false;
-		
+		self.stunned -= 1;
 		return false;
 	}
 	

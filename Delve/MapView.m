@@ -88,6 +88,19 @@
 	self.y = MAX(MIN(self.y, self.delegate.mapHeight - GAMEPLAY_SCREEN_HEIGHT), 0);
 }
 
+-(void)remake
+{
+	NSLog(@"Remaking map view");
+	
+	//clear tiles
+	for (UIView *view in self.tileDict.allValues)
+		[view removeFromSuperview];
+	[self.tileDict removeAllObjects];
+	
+	//generate new tiles
+	[self generateTilesAroundX:self.x andY:self.y];
+}
+
 -(void)setPositionWithX:(float)x andY:(float)y
 {
 	NSLog(@"Moving map to %f %f", x, y);
@@ -110,7 +123,8 @@
 			UIView *tileView = weakSelf.tileDict[index];
 			int x = index.intValue % INNER_YMULT;
 			int y = index.intValue / INNER_YMULT;
-			tileView.frame = CGRectMake([weakSelf xTranslate:x], [weakSelf yTranslate:y], GAMEPLAY_TILE_SIZE, GAMEPLAY_TILE_SIZE);
+//			tileView.frame = CGRectMake([weakSelf xTranslate:x], [weakSelf yTranslate:y], GAMEPLAY_TILE_SIZE, GAMEPLAY_TILE_SIZE);
+			tileView.center = CGPointMake([weakSelf xTranslate:x] + GAMEPLAY_TILE_SIZE / 2, [weakSelf yTranslate:y] + GAMEPLAY_TILE_SIZE / 2);
 		}
 		
 	} completion:

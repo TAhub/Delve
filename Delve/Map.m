@@ -35,8 +35,6 @@
 
 -(void)update
 {
-	[self recalculateVisibility];
-	
 	//keep going for next
 	while (true)
 	{
@@ -52,6 +50,11 @@
 	return self.creatures[self.personOn] == self.player;
 }
 
+-(void)tilesChanged
+{
+	[self.delegate updateTiles];
+}
+
 -(BOOL)moveWithX:(int)x andY:(int)y
 {
 	if (!self.yourTurn)
@@ -63,6 +66,7 @@
 		[self.delegate moveCreature:self.player withBlock:
 		^()
 		{
+			[weakSelf recalculateVisibility];
 			[weakSelf update];
 		}];
 		return YES;
@@ -74,19 +78,25 @@
 {
 	for (NSMutableArray *row in self.tiles)
 		for (Tile *tile in row)
+		{
+			tile.lastVisible = tile.visible;
 			tile.visible = NO;
+		}
 	
 	//project sight-lines from the player
+	
+	BOOL visibleChanged = false;
+	
 	//TODO: make this into a constant I guess
-	int sightLineDensity = 30;
+	int sightLineDensity = 80;
 	for (int i = 0; i < sightLineDensity; i++)
 	{
 		float angle = M_PI * 2 * i / sightLineDensity;
 		BOOL hitWall = false;
-		for (int j = 0; j < MAX(GAMEPLAY_SCREEN_WIDTH, GAMEPLAY_SCREEN_HEIGHT); j++)
+		for (int j = 0; j < MAX(GAMEPLAY_SCREEN_WIDTH, GAMEPLAY_SCREEN_HEIGHT) * 3; j++)
 		{
-			float x = cos(angle) * j + self.player.x;
-			float y = sin(angle) * j + self.player.y;
+			float x = cos(angle) * j / 3.0f + self.player.x;
+			float y = sin(angle) * j / 3.0f + self.player.y;
 			int rX = roundf(x);
 			int rY = roundf(y);
 			if (rX < 0 || rY < 0 || rX >= self.width || rY >= self.height)
@@ -99,8 +109,29 @@
 				hitWall = true;
 			}
 			tile.visible = YES;
+			if (!tile.discovered)
+			{
+				tile.discovered = YES;
+				visibleChanged = YES;
+			}
 		}
 	}
+	
+	if (!visibleChanged)
+		for (NSMutableArray *row in self.tiles)
+		{
+			if (visibleChanged)
+				break;
+			for (Tile *tile in row)
+				if (tile.lastVisible != tile.visible)
+				{
+					visibleChanged = YES;
+					break;
+				}
+		}
+	
+	if (visibleChanged)
+		[self.delegate updateTiles];
 }
 
 -(int)width

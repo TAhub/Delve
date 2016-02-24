@@ -16,7 +16,7 @@
 #define GAMEPLAY_SCREEN_WIDTH 8
 #define GAMEPLAY_SCREEN_HEIGHT 9
 #define GAMEPLAY_TILE_SIZE 40
-#define GAMEPLAY_MOVE_TIME 0.2f
+#define GAMEPLAY_MOVE_TIME 0.15f
 
 #pragma mark enums
 

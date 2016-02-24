@@ -53,24 +53,8 @@
 	self.mapView.delegate = self;
 	[self.mapView initializeMapAtX:self.map.player.x - GAMEPLAY_SCREEN_WIDTH * 0.5f + 0.5f andY:self.map.player.y - GAMEPLAY_SCREEN_HEIGHT * 0.5f + 0.5f];
 	
-	[self.map update];
-	
 	UITapGestureRecognizer *tappy = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
 	[self.creatureView addGestureRecognizer:tappy];
-	
-	//make the creature views
-	self.creatureViews = [NSMutableArray new];
-	for (Creature *cr in self.map.creatures)
-	{
-		//make creature views
-		float x = cr.x * GAMEPLAY_TILE_SIZE + self.mapView.xOffset;
-		float y = cr.y * GAMEPLAY_TILE_SIZE + self.mapView.yOffset;
-		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(x, y, GAMEPLAY_TILE_SIZE, GAMEPLAY_TILE_SIZE)];
-		[self.creatureView addSubview:view];
-		[self.creatureViews addObject:view];
-		
-		[self regenerateCreatureSprite:cr];
-	}
 }
 
 -(void)regenerateCreatureSprite:(Creature *)cr
@@ -162,6 +146,36 @@
 	}
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	
+	[self.map recalculateVisibility];
+	[self.map update];
+	
+	//make the creature views
+	self.creatureViews = [NSMutableArray new];
+	for (Creature *cr in self.map.creatures)
+	{
+		//make creature views
+		float x = cr.x * GAMEPLAY_TILE_SIZE + self.mapView.xOffset;
+		float y = cr.y * GAMEPLAY_TILE_SIZE + self.mapView.yOffset;
+		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(x, y, GAMEPLAY_TILE_SIZE, GAMEPLAY_TILE_SIZE)];
+		[self.creatureView addSubview:view];
+		[self.creatureViews addObject:view];
+		
+		[self regenerateCreatureSprite:cr];
+	}
+	
+	//set up UI panels
+	
+	//TODO: set up info panel with info on the player
+	//TODO: set up attacks panel with a list of attacks (greyed out buttons for attacks you can't use)
+	//these panels should all have "remake" functions to call every time you press a button, etc, so they can update
+	
+	//TODO: remember to draw the mask of tiles that are in-range when picking a target for an attack
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
@@ -245,9 +259,32 @@
 	//get the tile
 	Tile *tile = self.map.tiles[y][x];
 	
-	//make the tile view
-	UIView *tileView = [UIView new];
-	tileView.backgroundColor = tile.color;
+	//just don't draw tiles that aren't visible
+	UIView *tileView = nil;
+	if (!tile.visible && !tile.discovered)
+	{
+		//make the tile view
+		tileView = [UIView new];
+		tileView.backgroundColor = tile.color;
+		
+		//discovered but invisible tiles should be transparent
+		if (!tile.visible)
+			tileView.alpha = 0.5; //TODO: this should be a constant
+	}
+	if (tile.aoeTargeters.count > 0)
+	{
+		if (tileView == nil)
+			tileView = [UIView new]; //make an empty container view
+		
+		//TODO: this image should be preloaded probably
+		UIImage *warning = [UIImage imageNamed:@"ui_warning"];
+		warning = colorImage(warning, loadColorFromName(@"warning"));
+		
+		UIImageView *warningView = [[UIImageView alloc] initWithImage:warning];
+		warningView.center = CGPointMake(GAMEPLAY_TILE_SIZE / 2 - warning.size.width / 2, GAMEPLAY_TILE_SIZE / 2 - warning.size.height / 2);
+		[tileView addSubview:warningView];
+	}
+	
 	return tileView;
 }
 
@@ -277,15 +314,16 @@
 		{
 			Creature *cr = weakSelf.map.creatures[i];
 			UIView *view = weakSelf.creatureViews[i];
-			float x = cr.x * GAMEPLAY_TILE_SIZE + weakSelf.mapView.xOffset;
-			float y = cr.y * GAMEPLAY_TILE_SIZE + weakSelf.mapView.yOffset;
-			view.frame = CGRectMake(x, y, GAMEPLAY_TILE_SIZE, GAMEPLAY_TILE_SIZE);
+			float x = (cr.x + 0.5) * GAMEPLAY_TILE_SIZE + weakSelf.mapView.xOffset;
+			float y = (cr.y + 0.5) * GAMEPLAY_TILE_SIZE + weakSelf.mapView.yOffset;
+			view.center = CGPointMake(x, y);
+//			view.frame = CGRectMake(x, y, GAMEPLAY_TILE_SIZE, GAMEPLAY_TILE_SIZE);
 		}
 		
 	} completion:
 	^(BOOL finished)
 	{
-		//recalculate hidden
+		//recalculate who is hidden
 		for (int i = 0; i < weakSelf.creatureViews.count; i++)
 		{
 			Creature *cr = weakSelf.map.creatures[i];
@@ -297,6 +335,11 @@
 		weakSelf.animating = false;
 		block();
 	}];
+}
+
+-(void)updateTiles
+{
+	[self.mapView remake];
 }
 
 @end

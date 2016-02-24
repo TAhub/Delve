@@ -17,6 +17,8 @@
 		_type = type;
 		_inhabitant = nil;
 		_visible = NO;
+		_discovered = NO;
+		_aoeTargeters = [NSMutableSet new];
 	}
 	return self;
 }
@@ -28,6 +30,7 @@
 
 -(UIColor *) color
 {
+	//TODO: if this tile is dicovered but not-visible, its color should be desaturated
 	return (self.solid ? [UIColor grayColor] : [UIColor darkGrayColor]);
 }
 

@@ -47,7 +47,7 @@
 
 #pragma mark: status effect flags
 @property int forceField;
-@property BOOL stunned;
+@property int stunned;
 
 #pragma mark: base variables
 @property int health;

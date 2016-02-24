@@ -270,7 +270,7 @@
 	</dict>
 	<key>crytal grenade</key>
 	<dict>
-		<key>power</key> <integer>30</integer>
+		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>burn</string>
 		<key>range</key> <integer>3</integer>
 		<key>area</key> <integer>3</integer>

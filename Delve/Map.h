@@ -15,6 +15,7 @@
 @protocol MapDelegate
 
 -(void)moveCreature:(Creature *)creature withBlock:(void (^)(void))block;
+-(void)updateTiles;
 
 @end
 
@@ -31,6 +32,8 @@
 -(BOOL)yourTurn;
 
 -(void)update;
+-(void)recalculateVisibility;
+-(void)tilesChanged;
 
 -(BOOL)moveWithX:(int)x andY:(int)y;
 

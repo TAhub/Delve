@@ -246,9 +246,8 @@
 		<key>colorations</key> <!-- coloration: grey skin, orange hair, no exceptions -->
 		<array>
 			<dict>
-				<!-- TODO: finish this -->
-				<key>skin</key> <string>tan skin</string>
-				<key>hair</key> <string>brown hair</string>
+				<key>skin</key> <string>grey skin</string>
+				<key>hair</key> <string>orange hair</string>
 			</dict>
 		</array>
 		<!-- TODO: hairs -->

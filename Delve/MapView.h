@@ -23,6 +23,7 @@
 
 -(void)initializeMapAtX:(float)x andY:(float)y;
 -(void)setPositionWithX:(float)x andY:(float)y;
+-(void)remake;
 
 -(int)xOffset;
 -(int)yOffset;

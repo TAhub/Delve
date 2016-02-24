@@ -20,7 +20,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8TG-ed-Jwf" customClass="MapView">
                                 <rect key="frame" x="0.0" y="208" width="320" height="360"/>
-                                <color key="backgroundColor" red="0.99600285291671753" green="0.99619680643081665" blue="0.99162989854812622" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.069967947900295258" green="0.073193468153476715" blue="0.24978506565093994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="360" id="PTL-so-5ub"/>
                                     <constraint firstAttribute="width" constant="320" id="Wdb-BK-9aT"/>

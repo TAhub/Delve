@@ -22,5 +22,8 @@
 -(UIColor *) color;
 @property (weak, nonatomic) Creature *inhabitant;
 @property BOOL visible;
+@property BOOL lastVisible;
+@property BOOL discovered;
+@property (strong, nonatomic) NSMutableSet *aoeTargeters;
 
 @end
