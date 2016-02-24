@@ -189,8 +189,8 @@
 -(void)applyBlock:(void (^)(Tile *))block forAttack:(NSString *)attack onX:(int)x andY:(int)y
 {
 	int radius = 0;
-	if (loadValueBool(@"Attacks", attack, @"radius"))
-		radius = (loadValueNumber(@"Attacks", attack, @"radius").intValue - 1) / 2;
+	if (loadValueBool(@"Attacks", attack, @"area"))
+		radius = (loadValueNumber(@"Attacks", attack, @"area").intValue - 1) / 2;
 	int startX = MAX(x - radius, 0);
 	int startY = MAX(y - radius, 0);
 	int endX = MIN(x + radius, self.map.width - 1);

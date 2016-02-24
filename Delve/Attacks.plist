@@ -51,8 +51,6 @@
 		<key>range</key> <integer>1</integer>
 		<key>cooldown</key> <integer>1</integer>
 		<key>dodgeable</key> <true/>
-		
-		<key>area</key> <integer>3</integer>
 		<!-- special effects -->
 	</dict>
 	<key>shield bash</key>

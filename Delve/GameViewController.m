@@ -34,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *attackSelectPanelCord;
 
 @property (weak, nonatomic) IBOutlet UIView *attackConfirmPanel;
+@property (weak, nonatomic) IBOutlet UILabel *attackConfirmLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *attackConfirmPanelCord;
 
 
@@ -44,6 +45,7 @@
 @property (weak, nonatomic) NSLayoutConstraint *activePanelCord;
 @property int attackPage;
 @property (strong, nonatomic) NSString *attackChosen;
+@property (weak, nonatomic) UIView *aoeIndicatorView;
 
 @end
 
@@ -231,6 +233,13 @@
 	self.attackNext.hidden = attacks.count <= 6;
 	[self.attackSelectPanel layoutIfNeeded];
 	
+	
+	//set up attack confirm panel
+	if (self.aoeIndicatorView == nil)
+		self.attackConfirmLabel.text = [NSString stringWithFormat:@"Pick a target for %@.", self.attackChosen];
+	else
+		self.attackConfirmLabel.text = [NSString stringWithFormat:@"This is the area %@ will hit.\nTap again to confirm.", self.attackChosen];
+	self.attackConfirmLabel.textColor = loadColorFromName(@"ui text");
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -256,7 +265,7 @@
 	[self.uiView layoutIfNeeded];
 	
 	__weak typeof(self) weakSelf = self;
-	[UIView animateWithDuration:0.75f animations:
+	[UIView animateWithDuration:0.5f animations:
 	^()
 	{
 		if (weakSelf.activePanelCord != nil)
@@ -312,6 +321,23 @@
 	[self switchToPanel:self.mainPanelCord];
 }
 
+- (IBAction)cancelAttack
+{
+	if (self.aoeIndicatorView != nil)
+	{
+		[self.aoeIndicatorView removeFromSuperview];
+		self.aoeIndicatorView = nil;
+		[self reloadPanels];
+	}
+	else
+	{
+		self.attackChosen = nil;
+		[self reloadAttackTargets];
+		[self switchToPanel:self.attackSelectPanelCord];
+	}
+}
+
+
 - (IBAction)attackButton
 {
 	self.attackPage = 0;
@@ -336,13 +362,33 @@
 	{
 		if (tile.targetLevel == TargetLevelTarget)
 		{
-			//use the attack
-			[self.map.player useAttackWithName:self.attackChosen onX:x andY:y];
-			
-			//and switch the UI back
-			self.attackChosen = nil;
-			[self reloadAttackTargets];
-			[self switchToPanel:self.mainPanelCord];
+			if (self.aoeIndicatorView == nil && loadValueBool(@"Attacks", self.attackChosen, @"area") && loadValueNumber(@"Attacks", self.attackChosen, @"area").intValue > 1)
+			{
+				//place an indicator
+				int area = loadValueNumber(@"Attacks", self.attackChosen, @"area").intValue;
+				UIImage *indSprite = [UIImage imageNamed:@"ui_warning"];
+				UIImageView *indicator = [[UIImageView alloc] initWithImage:colorImage(indSprite, loadColorFromName(@"ui warning"))];
+				indicator.frame = CGRectMake(GAMEPLAY_TILE_SIZE * (x - area / 2) + self.mapView.xOffset, GAMEPLAY_TILE_SIZE * (y - area / 2) + self.mapView.yOffset, GAMEPLAY_TILE_SIZE * area, GAMEPLAY_TILE_SIZE * area);
+				[self.creatureView addSubview:indicator];
+				self.aoeIndicatorView = indicator;
+				[self reloadPanels];
+			}
+			else
+			{
+				if (self.aoeIndicatorView != nil)
+				{
+					[self.aoeIndicatorView removeFromSuperview];
+					self.aoeIndicatorView = nil;
+				}
+				
+				//use the attack
+				[self.map.player useAttackWithName:self.attackChosen onX:x andY:y];
+				
+				//and switch the UI back
+				self.attackChosen = nil;
+				[self reloadAttackTargets];
+				[self switchToPanel:self.mainPanelCord];
+			}
 		}
 		return;
 	}

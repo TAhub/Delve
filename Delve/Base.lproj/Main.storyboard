@@ -44,17 +44,26 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HxB-A2-aaI">
                                         <rect key="frame" x="-320" y="0.0" width="320" height="180"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TODO: do you want to use it?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7D4-Aa-ugH">
-                                                <rect key="frame" x="48" y="80" width="224" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgu-g8-gAK">
+                                                <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2oM-5v-k6Y">
+                                                <rect key="frame" x="272" y="150" width="48" height="30"/>
+                                                <state key="normal" title="Cancel"/>
+                                                <connections>
+                                                    <action selector="cancelAttack" destination="BYZ-38-t0r" eventType="touchUpInside" id="cCK-1j-sP5"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.99580436944961548" green="0.99223476648330688" blue="0.99200111627578735" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="7D4-Aa-ugH" firstAttribute="centerY" secondItem="HxB-A2-aaI" secondAttribute="centerY" id="Vlh-Ip-ZCg"/>
-                                            <constraint firstItem="7D4-Aa-ugH" firstAttribute="centerX" secondItem="HxB-A2-aaI" secondAttribute="centerX" id="eMz-in-k9B"/>
+                                            <constraint firstAttribute="trailing" secondItem="2oM-5v-k6Y" secondAttribute="trailing" id="B6M-3K-j5k"/>
+                                            <constraint firstItem="Pgu-g8-gAK" firstAttribute="leading" secondItem="HxB-A2-aaI" secondAttribute="leading" id="NdI-YV-m8T"/>
+                                            <constraint firstItem="Pgu-g8-gAK" firstAttribute="top" secondItem="HxB-A2-aaI" secondAttribute="top" id="kbP-ii-MMw"/>
+                                            <constraint firstAttribute="bottom" secondItem="2oM-5v-k6Y" secondAttribute="bottom" id="s3V-Hc-F0o"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ghM-ST-HWQ">
@@ -142,7 +151,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7kc-CD-6Np">
-                                                <rect key="frame" x="272" y="38" width="48" height="30"/>
+                                                <rect key="frame" x="272" y="150" width="48" height="30"/>
                                                 <state key="normal" title="Cancel"/>
                                                 <connections>
                                                     <action selector="pickCancel" destination="BYZ-38-t0r" eventType="touchUpInside" id="DyB-pm-YMU"/>
@@ -190,6 +199,7 @@
                                             <constraint firstAttribute="bottom" secondItem="Kpm-UH-xR2" secondAttribute="bottom" id="ixf-zN-BpJ"/>
                                             <constraint firstAttribute="bottom" secondItem="bNq-ha-73I" secondAttribute="bottom" id="jHA-ae-rGj"/>
                                             <constraint firstItem="HpB-yw-oQA" firstAttribute="top" secondItem="JmI-Z2-fTU" secondAttribute="top" id="mB9-Bl-XcQ"/>
+                                            <constraint firstAttribute="bottom" secondItem="7kc-CD-6Np" secondAttribute="bottom" id="mZQ-CY-EfD"/>
                                             <constraint firstItem="4bF-PB-ipe" firstAttribute="leading" secondItem="JmI-Z2-fTU" secondAttribute="leading" id="mcM-iV-3vh"/>
                                             <constraint firstItem="HpB-yw-oQA" firstAttribute="leading" secondItem="bNq-ha-73I" secondAttribute="trailing" constant="8" symbolic="YES" id="n8J-xA-rtE"/>
                                             <constraint firstItem="ysT-9t-MUG" firstAttribute="leading" secondItem="Kpm-UH-xR2" secondAttribute="trailing" constant="8" symbolic="YES" id="oBd-Kk-i97"/>
@@ -221,6 +231,9 @@
                                                 <exclude reference="iWw-x7-amb"/>
                                                 <exclude reference="tbr-z3-aVM"/>
                                                 <exclude reference="ySR-4T-CXV"/>
+                                                <exclude reference="HHN-gu-Wg1"/>
+                                                <exclude reference="QBJ-5k-DIn"/>
+                                                <exclude reference="jHA-ae-rGj"/>
                                                 <exclude reference="4oK-NX-gSN"/>
                                                 <exclude reference="8VO-c4-7hE"/>
                                                 <exclude reference="Ebm-C4-Ik8"/>
@@ -231,13 +244,11 @@
                                                 <exclude reference="gKO-kK-Fa0"/>
                                                 <exclude reference="sii-gx-BIs"/>
                                                 <exclude reference="x5p-5N-uyh"/>
-                                                <exclude reference="HHN-gu-Wg1"/>
-                                                <exclude reference="QBJ-5k-DIn"/>
-                                                <exclude reference="jHA-ae-rGj"/>
                                                 <exclude reference="g2y-f2-cYR"/>
                                                 <exclude reference="ixf-zN-BpJ"/>
                                                 <exclude reference="rrV-74-jCt"/>
                                                 <exclude reference="9Wx-Tg-0Cv"/>
+                                                <exclude reference="Rz9-rm-I8L"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -299,6 +310,7 @@
                         <outlet property="attackB4" destination="dan-bR-Z8c" id="eVh-kP-ppY"/>
                         <outlet property="attackB5" destination="bNq-ha-73I" id="wgQ-wM-Bgh"/>
                         <outlet property="attackB6" destination="Kpm-UH-xR2" id="iVH-4X-j3C"/>
+                        <outlet property="attackConfirmLabel" destination="Pgu-g8-gAK" id="s3z-uY-LkN"/>
                         <outlet property="attackConfirmPanel" destination="HxB-A2-aaI" id="O1S-iL-hWN"/>
                         <outlet property="attackConfirmPanelCord" destination="FIB-Fk-Dm5" id="Rsj-vZ-PQU"/>
                         <outlet property="attackNext" destination="ysT-9t-MUG" id="WWD-sM-FN4"/>
