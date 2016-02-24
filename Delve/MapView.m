@@ -101,7 +101,7 @@
 	[self generateTilesAroundX:self.x andY:self.y];
 }
 
--(void)setPositionWithX:(float)x andY:(float)y
+-(void)setPositionWithX:(float)x andY:(float)y withAnimBlock:(void (^)(void))animBlock andCompleteBlock:(void (^)(void))completeBlock
 {
 	NSLog(@"Moving map to %f %f", x, y);
 	
@@ -117,6 +117,8 @@
 	[UIView animateWithDuration:GAMEPLAY_MOVE_TIME animations:
 	^()
 	{
+		animBlock();
+		
 		//shift all tiles over
 		for (NSNumber *index in weakSelf.tileDict.allKeys)
 		{
@@ -126,7 +128,6 @@
 //			tileView.frame = CGRectMake([weakSelf xTranslate:x], [weakSelf yTranslate:y], GAMEPLAY_TILE_SIZE, GAMEPLAY_TILE_SIZE);
 			tileView.center = CGPointMake([weakSelf xTranslate:x] + GAMEPLAY_TILE_SIZE / 2, [weakSelf yTranslate:y] + GAMEPLAY_TILE_SIZE / 2);
 		}
-		
 	} completion:
 	^(BOOL finished)
 	{
@@ -142,6 +143,8 @@
 				weakSelf.tileDict[index] = nil;
 			}
 		}
+		
+		completeBlock();
 	}];
 }
 

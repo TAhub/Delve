@@ -22,7 +22,7 @@
 @property (weak, nonatomic) id<MapViewDelegate> delegate;
 
 -(void)initializeMapAtX:(float)x andY:(float)y;
--(void)setPositionWithX:(float)x andY:(float)y;
+-(void)setPositionWithX:(float)x andY:(float)y withAnimBlock:(void (^)(void))animBlock andCompleteBlock:(void (^)(void))completeBlock;
 -(void)remake;
 
 -(int)xOffset;

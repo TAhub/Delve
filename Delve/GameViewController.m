@@ -261,7 +261,7 @@
 	
 	//just don't draw tiles that aren't visible
 	UIView *tileView = nil;
-	if (!tile.visible && !tile.discovered)
+	if (tile.visible || tile.discovered)
 	{
 		//make the tile view
 		tileView = [UIView new];
@@ -299,42 +299,60 @@
 
 #pragma mark: map delegate
 
+-(void)moveCreatureComplete:(Creature *)creature withBlock:(void (^)(void))block
+{
+	//recalculate who is hidden
+	for (int i = 0; i < self.creatureViews.count; i++)
+	{
+		Creature *cr = self.map.creatures[i];
+		UIView *view = self.creatureViews[i];
+		view.hidden = !((Tile *)self.map.tiles[cr.y][cr.x]).visible || !([self.mapView isPointOnscreenWithX:cr.x andY:cr.y]);
+	}
+	
+	//the action is over
+	self.animating = false;
+	block();
+}
+
+-(void)moveCreatureAnim:(Creature *)creature
+{
+	//move everything, not just the one guy
+	for (int i = 0; i < self.creatureViews.count; i++)
+	{
+		Creature *cr = self.map.creatures[i];
+		UIView *view = self.creatureViews[i];
+		float x = (cr.x + 0.5) * GAMEPLAY_TILE_SIZE + self.mapView.xOffset;
+		float y = (cr.y + 0.5) * GAMEPLAY_TILE_SIZE + self.mapView.yOffset;
+		view.center = CGPointMake(x, y);
+		//view.frame = CGRectMake(x, y, GAMEPLAY_TILE_SIZE, GAMEPLAY_TILE_SIZE);
+	}
+}
+
 -(void)moveCreature:(Creature *)creature withBlock:(void (^)(void))block
 {
-	if (creature == self.map.player)
-		[self.mapView setPositionWithX:creature.x - GAMEPLAY_SCREEN_WIDTH * 0.5f + 0.5f andY:creature.y - GAMEPLAY_SCREEN_HEIGHT * 0.5f + 0.5f];
-	
 	__weak typeof(self) weakSelf = self;
 	self.animating = true;
-	[UIView animateWithDuration:GAMEPLAY_MOVE_TIME animations:
-	^()
-	{
-		//move everything, not just the one guy
-		for (int i = 0; i < weakSelf.creatureViews.count; i++)
+	
+	if (creature == self.map.player)
+		[self.mapView setPositionWithX:creature.x - GAMEPLAY_SCREEN_WIDTH * 0.5f + 0.5f andY:creature.y - GAMEPLAY_SCREEN_HEIGHT * 0.5f + 0.5f withAnimBlock:
+		^()
 		{
-			Creature *cr = weakSelf.map.creatures[i];
-			UIView *view = weakSelf.creatureViews[i];
-			float x = (cr.x + 0.5) * GAMEPLAY_TILE_SIZE + weakSelf.mapView.xOffset;
-			float y = (cr.y + 0.5) * GAMEPLAY_TILE_SIZE + weakSelf.mapView.yOffset;
-			view.center = CGPointMake(x, y);
-//			view.frame = CGRectMake(x, y, GAMEPLAY_TILE_SIZE, GAMEPLAY_TILE_SIZE);
-		}
-		
-	} completion:
-	^(BOOL finished)
-	{
-		//recalculate who is hidden
-		for (int i = 0; i < weakSelf.creatureViews.count; i++)
+			[weakSelf moveCreatureAnim:creature];
+		} andCompleteBlock:
+		^()
 		{
-			Creature *cr = weakSelf.map.creatures[i];
-			UIView *view = weakSelf.creatureViews[i];
-			view.hidden = !((Tile *)weakSelf.map.tiles[cr.y][cr.x]).visible || !([self.mapView isPointOnscreenWithX:cr.x andY:cr.y]);
-		}
-		
-		//the action is over
-		weakSelf.animating = false;
-		block();
-	}];
+			[weakSelf moveCreatureComplete:creature withBlock:block];
+		}];
+	else
+		[UIView animateWithDuration:GAMEPLAY_MOVE_TIME animations:
+		^()
+		{
+			[weakSelf moveCreatureAnim:creature];
+		} completion:
+		^(BOOL finished)
+		{
+			[weakSelf moveCreatureComplete:creature withBlock:block];
+		}];
 }
 
 -(void)updateTiles
