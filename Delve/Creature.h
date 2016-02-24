@@ -70,6 +70,8 @@
 -(void) useAttackWithTreeNumber:(int)treeNumber andName:(NSString *)name onX:(int)x andY:(int)y;
 -(BOOL) startTurn;
 -(BOOL) moveWithX:(int)x andY:(int)y;
+-(NSArray *) attacks;
+-(BOOL) canUseAttack:(NSString *)name;
 
 #pragma mark: appearance
 @property BOOL gender;

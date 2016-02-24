@@ -93,9 +93,11 @@
 	self.blocks = self.maxBlocks;
 	self.hacks = self.maxHacks;
 	
-	//TODO: initialize cooldowns
+	//initialize cooldowns
 	self.cooldowns = [NSMutableDictionary new];
-	//each key-value pair should be "attackName string" : "cooldown NSNumber"
+	NSArray *attacks = [self attacks];
+	for (NSString *attack in attacks)
+		self.cooldowns[attack] = @(0);
 	
 	//status effect flags
 	self.forceField = 0;
@@ -106,6 +108,25 @@
 }
 
 #pragma mark: public interface functions
+
+-(NSArray *) attacks
+{
+	NSMutableArray *result = [NSMutableArray new];
+	for (int i = 0; i < self.skillTrees.count; i++)
+	{
+		NSString *skillTree = self.skillTrees[i];
+		int skillTreeLevel = ((NSNumber *)self.skillTreeLevels[i]).intValue;
+		NSArray *skillTreeArray = loadValueArray(@"SkillTrees", skillTree, @"skills");
+		for (int j = 0; j < skillTreeLevel; j++)
+		{
+			NSDictionary *skill = skillTreeArray[j];
+			NSString *attack = skill[@"attack"];
+			if (attack != nil)
+				[result addObject:attack];
+		}
+	}
+	return result;
+}
 
 -(BOOL) validTargetSpotFor:(NSString *)attack atX:(int)x andY:(int)y openSpotsAreFine:(BOOL)openSpots
 {
@@ -174,11 +195,26 @@
 		}
 }
 
+-(BOOL) canUseAttack:(NSString *)name
+{
+	//is the cooldown high?
+	NSNumber *cooldown = self.cooldowns[name];
+	if (cooldown != nil && cooldown.intValue > 0)
+		return false;
+	
+	//can you (at least kinda) pay the health cost?
+	if (loadValueBool(@"Attacks", name, @"hurt user") && self.health <= loadValueNumber(@"Attacks", name, @"hurt user").intValue / 2)
+		return false;
+		
+	
+	//TODO: check to see if you have ammo
+	
+	return true;
+}
+
 -(void) useAttackWithTreeNumber:(int)treeNumber andName:(NSString *)name onX:(int)x andY:(int)y
 {
 	//TODO: you shouldn't be able to use hurt-self attacks if you are under half the health cost
-	//or ammo-using attacks if you don't have ammo
-	//or attacks if you have the cooldown over 0
 	
 	//check to see if you can target that spot
 	if (![self validTargetSpotFor:name atX:x andY:y openSpotsAreFine:NO])
@@ -197,7 +233,7 @@
 	if (loadValueBool(@"Attacks", self.storedAttack, @"hurt user"))
 		self.health = MAX(self.health - loadValueNumber(@"Attacks", self.storedAttack, @"hurt user").intValue, 1);
 	//TODO: use ammo
-	//TODO: set cooldown
+	self.cooldowns[self.storedAttack] = loadValueNumber(@"Attacks", self.storedAttack, @"cooldown");
 }
 
 -(void) unleashAttack
