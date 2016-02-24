@@ -92,11 +92,8 @@
 	self.blocks = self.maxBlocks;
 	self.hacks = self.maxHacks;
 	
-	//initialize cooldowns
+	//initialize cooldown dict
 	self.cooldowns = [NSMutableDictionary new];
-	NSArray *attacks = [self attacks];
-	for (NSString *attack in attacks)
-		self.cooldowns[attack] = @(0);
 	
 	//status effect flags
 	self.forceField = 0;
@@ -243,6 +240,8 @@
 
 -(void) useAttackWithTreeNumber:(int)treeNumber andName:(NSString *)name onX:(int)x andY:(int)y
 {
+	NSLog(@"Using attack %@ from tree %i", name, treeNumber);
+	
 	//TODO: you shouldn't be able to use hurt-self attacks if you are under half the health cost
 	
 	//check to see if you can target that spot
@@ -278,6 +277,9 @@
 		self.health = MAX(self.health - loadValueNumber(@"Attacks", name, @"hurt user").intValue, 1);
 	//TODO: use ammo
 	self.cooldowns[name] = loadValueNumber(@"Attacks", name, @"cooldown");
+	
+	if (self.good)
+		[self.map statsChanged];
 }
 
 -(void) unleashAttack
@@ -327,7 +329,7 @@
 				Creature *hit = tile.inhabitant;
 				
 				//apply attack
-				if ((!loadValueBool(@"Attacks", weakSelf.storedAttack, @"range") || //if it's a self-targeting attack
+				if (((!loadValueBool(@"Attacks", weakSelf.storedAttack, @"range") && !loadValueBool(@"Attacks", weakSelf.storedAttack, @"area")) || //if it's a non-AOE self-targeting attack
 					 (hit.good != weakSelf.good)) && //or if it's targeting an enemy
 					!hit.dead) //don't hit dead people
 				{
@@ -353,6 +355,9 @@
 					
 					//TODO: this might need to update sprites, etc
 				}
+				
+				if (hit.good)
+					[weakSelf.map statsChanged];
 			}
 		} forAttack:weakSelf.storedAttack onX:weakSelf.storedAttackX andY:weakSelf.storedAttackY];
 		
@@ -479,6 +484,8 @@
 
 -(BOOL) startTurn
 {
+	NSLog(@"Turn started for %@", self.good ? @"player" : @"enemy");
+	
 	//TODO: maybe there can be an "stealth" status that prevents enemies from waking up if you get onscreen?
 	if (!self.awake && !self.good && ((Tile *)self.map.tiles[self.y][self.x]).visible)
 	{
@@ -512,8 +519,13 @@
 		
 		//TODO: AIs shouldnt pursue the player if the AI isn't visible (IE it's far away or in a non-visible tile) AND the player is stealthed
 		
-		//for now, just return false to notify that you are skipping your turn
-		return NO;
+		//TODO: remember to check if you can use an attack (cooldowns, etc) before choosing it
+		
+		
+		//right now I am testing AoEs, so you should use aoes over and over
+		NSLog(@"I AM AI HEAR ME ROAR");
+		[self useAttackWithName:@"light orb eruption" onX:self.x andY:self.y];
+		
 	}
 	
 	return self.good || self.awake;

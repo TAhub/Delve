@@ -56,6 +56,10 @@
 {
 	[self.delegate updateTiles];
 }
+-(void)statsChanged
+{
+	[self.delegate updateStats];
+}
 
 -(BOOL)moveWithX:(int)x andY:(int)y
 {

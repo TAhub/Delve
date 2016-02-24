@@ -465,10 +465,10 @@
 		
 		//TODO: this image should be preloaded probably
 		UIImage *warning = [UIImage imageNamed:@"ui_warning"];
-		warning = colorImage(warning, loadColorFromName(@"warning"));
+		warning = colorImage(warning, loadColorFromName(@"ui warning"));
 		
 		UIImageView *warningView = [[UIImageView alloc] initWithImage:warning];
-		warningView.center = CGPointMake(GAMEPLAY_TILE_SIZE / 2 - warning.size.width / 2, GAMEPLAY_TILE_SIZE / 2 - warning.size.height / 2);
+		warningView.center = CGPointMake(GAMEPLAY_TILE_SIZE / 2, GAMEPLAY_TILE_SIZE / 2);
 		[tileView addSubview:warningView];
 	}
 	
@@ -544,8 +544,6 @@
 
 -(void)attackAnimation:(NSString *)name fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void))block
 {
-	NSLog(@"Attacking");
-	
 	//TODO: do some animations and shit
 	__weak typeof(self) weakSelf = self;
 	self.animating = true;
@@ -569,6 +567,11 @@
 -(void)updateTiles
 {
 	[self.mapView remake];
+}
+
+-(void)updateStats
+{
+	[self reloadPanels];
 }
 
 @end

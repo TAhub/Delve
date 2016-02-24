@@ -17,6 +17,7 @@
 -(void)moveCreature:(Creature *)creature withBlock:(void (^)(void))block;
 -(void)attackAnimation:(NSString *)name fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void))block;
 -(void)updateTiles;
+-(void)updateStats;
 
 @end
 
@@ -35,6 +36,7 @@
 -(void)update;
 -(void)recalculateVisibility;
 -(void)tilesChanged;
+-(void)statsChanged;
 
 -(BOOL)moveWithX:(int)x andY:(int)y;
 
