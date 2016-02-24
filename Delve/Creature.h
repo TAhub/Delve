@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Constants.h"
 
 @class Map;
 
@@ -68,10 +69,12 @@
 #pragma mark: public interface functions
 -(void) takeAttack:(NSString *)attackType withPower:(int)power andElement:(NSString *)element;
 -(void) useAttackWithTreeNumber:(int)treeNumber andName:(NSString *)name onX:(int)x andY:(int)y;
+-(void) useAttackWithName:(NSString *)name onX:(int)x andY:(int)y;
 -(BOOL) startTurn;
 -(BOOL) moveWithX:(int)x andY:(int)y;
 -(NSArray *) attacks;
 -(BOOL) canUseAttack:(NSString *)name;
+-(TargetLevel) targetLevelAtX:(int)x andY:(int)y withAttack:(NSString *)attack;
 
 #pragma mark: appearance
 @property BOOL gender;

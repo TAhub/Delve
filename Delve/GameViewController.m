@@ -20,9 +20,17 @@
 @property (weak, nonatomic) IBOutlet UIView *uiView;
 
 @property (weak, nonatomic) IBOutlet UIView *mainPanel;
+@property (weak, nonatomic) IBOutlet UIView *statView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mainPanelCord;
 
 @property (weak, nonatomic) IBOutlet UIView *attackSelectPanel;
+@property (weak, nonatomic) IBOutlet UIButton *attackB1;
+@property (weak, nonatomic) IBOutlet UIButton *attackB2;
+@property (weak, nonatomic) IBOutlet UIButton *attackB3;
+@property (weak, nonatomic) IBOutlet UIButton *attackB4;
+@property (weak, nonatomic) IBOutlet UIButton *attackB5;
+@property (weak, nonatomic) IBOutlet UIButton *attackB6;
+@property (weak, nonatomic) IBOutlet UIButton *attackNext;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *attackSelectPanelCord;
 
 @property (weak, nonatomic) IBOutlet UIView *attackConfirmPanel;
@@ -34,6 +42,8 @@
 @property BOOL animating;
 @property BOOL uiAnimating;
 @property (weak, nonatomic) NSLayoutConstraint *activePanelCord;
+@property int attackPage;
+@property (strong, nonatomic) NSString *attackChosen;
 
 @end
 
@@ -168,12 +178,59 @@
 	}
 	
 	//set up UI panels
-	
-	//TODO: set up info panel with info on the player
-	//TODO: set up attacks panel with a list of attacks (greyed out buttons for attacks you can't use)
-	//these panels should all have "remake" functions to call every time you press a button, etc, so they can update
+	[self reloadPanels];
 	
 	//TODO: remember to draw the mask of tiles that are in-range when picking a target for an attack
+}
+
+-(void)reloadPanels
+{
+	//reload the info panel
+	for (UIView *subView in self.statView.subviews)
+		[subView removeFromSuperview];
+	UILabel *statLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+	statLabel.text = [NSString stringWithFormat:@"H%i/%i  D%i/%i  B%i/%i  K%i/%i", self.map.player.health, self.map.player.maxHealth, self.map.player.dodges, self.map.player.maxDodges, self.map.player.blocks, self.map.player.maxBlocks, self.map.player.hacks, self.map.player.maxHacks];
+	statLabel.textColor = loadColorFromName(@"ui text");
+	//TODO: display blocks, dodges, and hacks as rows of icons
+	[statLabel sizeToFit];
+	[self.statView addSubview:statLabel];
+	
+	UILabel *statLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(0, statLabel.frame.size.height, 0, 0)];
+	statLabel2.text = [NSString stringWithFormat:@"%i%% dam", self.map.player.damageBonus];
+	//TODO: display resistances as rows of icons
+	[statLabel2 sizeToFit];
+	statLabel2.textColor = loadColorFromName(@"ui text");
+	[self.statView addSubview:statLabel2];
+	
+	
+	//set up attacks panel with a list of attacks (greyed out buttons for attacks you can't use)
+	NSArray *attacks = self.map.player.attacks;
+	self.attackB1.hidden = true;
+	self.attackB2.hidden = true;
+	self.attackB3.hidden = true;
+	self.attackB4.hidden = true;
+	self.attackB5.hidden = true;
+	self.attackB6.hidden = true;
+	for (int i = 0; i < 6 && i < attacks.count - 6 * self.attackPage; i++)
+	{
+		UIButton *b;
+		switch(i)
+		{
+			case 0: b = self.attackB1; break;
+			case 1: b = self.attackB2; break;
+			case 2: b = self.attackB3; break;
+			case 3: b = self.attackB4; break;
+			case 4: b = self.attackB5; break;
+			case 5: b = self.attackB6; break;
+		}
+		[b setTitle:attacks[i] forState:UIControlStateNormal];
+		b.hidden = false;
+		UIColor *color = [self.map.player canUseAttack:attacks[i]] ? loadColorFromName(@"ui text") : loadColorFromName(@"ui text grey");
+		[b setTitleColor:color forState:UIControlStateNormal];
+	}
+	self.attackNext.hidden = attacks.count <= 6;
+	[self.attackSelectPanel layoutIfNeeded];
+	
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -189,7 +246,7 @@
 
 -(void)switchToPanel:(NSLayoutConstraint *)panelCord
 {
-	if (self.uiAnimating)
+	if (self.uiAnimating || self.activePanelCord == panelCord)
 		return;
 	self.uiAnimating = true;
 	
@@ -214,6 +271,55 @@
 	}];
 }
 
+-(void)reloadAttackTargets
+{
+	int yStart = MAX(self.map.player.y - GAMEPLAY_TARGET_RANGE, 0);
+	int xStart = MAX(self.map.player.x - GAMEPLAY_TARGET_RANGE, 0);
+	for (int y = yStart; y < self.map.height && y < self.map.player.y + GAMEPLAY_TARGET_RANGE; y++)
+		for (int x = xStart; x < self.map.width && x < self.map.player.x + GAMEPLAY_TARGET_RANGE; x++)
+		{
+			Tile *tile = self.map.tiles[y][x];
+			if (self.attackChosen == nil)
+				tile.targetLevel = TargetLevelOutOfRange;
+			else
+				tile.targetLevel = [self.map.player targetLevelAtX:x andY:y withAttack:self.attackChosen];
+		}
+	[self updateTiles];
+}
+
+#pragma mark user interaction
+
+- (IBAction)pickAttack:(UIButton *)sender
+{
+	self.attackChosen = self.map.player.attacks[sender.tag];
+	NSLog(@"Picked attack #%i: %@", sender.tag, self.attackChosen);
+	
+	[self reloadAttackTargets];
+	[self reloadPanels];
+	[self switchToPanel:self.attackConfirmPanelCord];
+}
+
+- (IBAction)pickNext
+{
+	NSArray *attacks = self.map.player.attacks;
+	int numberPanels = (int)ceilf(attacks.count / 6.0f);
+	self.attackPage = (self.attackPage + 1) % numberPanels;
+	[self reloadPanels];
+}
+
+- (IBAction)pickCancel
+{
+	[self switchToPanel:self.mainPanelCord];
+}
+
+- (IBAction)attackButton
+{
+	self.attackPage = 0;
+	[self reloadPanels];
+	[self switchToPanel:self.attackSelectPanelCord];
+}
+
+
 -(void)tapGesture:(UITapGestureRecognizer *)sender
 {
 	if (self.animating || self.uiAnimating)
@@ -222,8 +328,29 @@
 	CGPoint touchPoint = [sender locationInView:self.mapView];
 	int x = ((int)floorf(touchPoint.x) - self.mapView.xOffset) / GAMEPLAY_TILE_SIZE;
 	int y = ((int)floorf(touchPoint.y) - self.mapView.yOffset) / GAMEPLAY_TILE_SIZE;
+	Tile *tile = self.map.tiles[y][x];
 
 	NSLog(@"touched (%i %i), player is at (%i %i)", x, y, self.map.player.x, self.map.player.y);
+	
+	if (self.attackChosen != nil)
+	{
+		if (tile.targetLevel == TargetLevelTarget)
+		{
+			//use the attack
+			[self.map.player useAttackWithName:self.attackChosen onX:x andY:y];
+			
+			//and switch the UI back
+			self.attackChosen = nil;
+			[self reloadAttackTargets];
+			[self switchToPanel:self.mainPanelCord];
+		}
+		return;
+	}
+	
+	
+	//cancel whatever you are doing
+	[self switchToPanel:self.mainPanelCord];
+	
 	
 	//move
 	Creature *player = self.map.player;
@@ -267,11 +394,25 @@
 		tileView = [UIView new];
 		tileView.backgroundColor = tile.color;
 		
+		//target color view
+		UIColor *targetColor = nil;
+		if (tile.targetLevel == TargetLevelInRange)
+			targetColor = loadColorFromName(@"ui warning pale");
+		else if (tile.targetLevel == TargetLevelTarget)
+			targetColor = loadColorFromName(@"ui warning");
+		if (targetColor != nil)
+		{
+			UIView *targetView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, GAMEPLAY_TILE_SIZE, GAMEPLAY_TILE_SIZE)];
+			targetView.backgroundColor = targetColor;
+			targetView.alpha = 0.5; //TODO: this should be a constant
+			[tileView addSubview:targetView];
+		}
+		
 		//discovered but invisible tiles should be transparent
-		if (!tile.visible)
+		if (!tile.visible && targetColor == nil)
 			tileView.alpha = 0.5; //TODO: this should be a constant
 	}
-	if (tile.aoeTargeters.count > 0)
+	if (tile.aoeTargeters.count > 0 && self.attackChosen == nil)
 	{
 		if (tileView == nil)
 			tileView = [UIView new]; //make an empty container view

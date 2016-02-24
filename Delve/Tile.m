@@ -19,6 +19,7 @@
 		_visible = NO;
 		_discovered = NO;
 		_aoeTargeters = [NSMutableSet new];
+		_targetLevel = TargetLevelOutOfRange;
 	}
 	return self;
 }

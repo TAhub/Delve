@@ -51,6 +51,8 @@
 		<key>range</key> <integer>1</integer>
 		<key>cooldown</key> <integer>1</integer>
 		<key>dodgeable</key> <true/>
+		
+		<key>area</key> <integer>3</integer>
 		<!-- special effects -->
 	</dict>
 	<key>shield bash</key>
@@ -281,7 +283,7 @@
 	</dict>
 	
 	<!-- self-targeting utility/defensive attacks -->
-	<key>defense</key>
+	<key>defend</key>
 	<dict>
 		<key>friendly</key> <true/>
 		<key>cooldown</key> <integer>1</integer>

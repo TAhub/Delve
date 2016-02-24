@@ -28,6 +28,9 @@
 	<key>purple hair</key> <string>9944AA</string>
 	<key>orange hair</key> <string>DDAA22</string>
 	<!-- ui colors -->
-	<key>warning</key> <string>FF4433</string>
+	<key>ui warning</key> <string>FF4433</string>
+	<key>ui warning pale</key> <string>CC9999</string>
+	<key>ui text</key> <string>111111</string>
+	<key>ui text grey</key> <string>555555</string>
 </dict>
 </plist>

@@ -39,6 +39,24 @@
 		<key>weapon</key> <string>template</string>
 	</dict>
 	
+	<!-- TODO: get rid of this guy -->
+	<key>temporary man</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>human</string>
+		<!-- TODO: AI -->
+		<key>skills</key>
+		<array>
+			<string>dodge</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>weapon</key> <string>rusty sword</string>
+	</dict>
+	
 	<!-- real enemy types -->
 	
 	<!-- ruin feeder -->

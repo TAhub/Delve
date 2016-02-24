@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "Constants.h"
 
 @class Creature;
 
@@ -25,5 +26,6 @@
 @property BOOL lastVisible;
 @property BOOL discovered;
 @property (strong, nonatomic) NSMutableSet *aoeTargeters;
+@property TargetLevel targetLevel;
 
 @end

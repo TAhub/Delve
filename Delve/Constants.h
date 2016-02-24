@@ -17,6 +17,7 @@
 #define GAMEPLAY_SCREEN_HEIGHT 9
 #define GAMEPLAY_TILE_SIZE 40
 #define GAMEPLAY_MOVE_TIME 0.15f
+#define GAMEPLAY_TARGET_RANGE 5
 
 #pragma mark enums
 
@@ -26,6 +27,12 @@ typedef NS_ENUM(NSInteger, GeneratorRoomExit) {
 	GeneratorRoomExitPathDoor,
 	GeneratorRoomExitLockedDoor,
 	GeneratorRoomExitNoDoor
+};
+
+typedef NS_ENUM(NSInteger, TargetLevel) {
+	TargetLevelTarget,
+	TargetLevelInRange,
+	TargetLevelOutOfRange
 };
 
 

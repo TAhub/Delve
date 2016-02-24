@@ -9,7 +9,6 @@
 #import "Creature.h"
 #import "Map.h"
 #import "Tile.h"
-#import "Constants.h"
 
 @interface Creature()
 
@@ -63,7 +62,7 @@
 		_race = @"highborn";
 		_armors = [NSArray arrayWithObjects:@"chestplate", @"gold tiara", @"", nil];
 		
-		_skillTrees = [NSArray arrayWithObjects:@"shield", @"dodge", @"hammer", @"spear", @"conditioning", nil];
+		_skillTrees = [NSArray arrayWithObjects:@"shield", @"wisdom", @"hammer", @"spear", @"conditioning", nil];
 		_skillTreeLevels = [NSArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
 		_implements = [NSArray arrayWithObjects:@"rusty shield", @"", @"rusty hammer", @"wooden spear", @"", nil];
 		_weapon = @"rusty sword";
@@ -130,6 +129,13 @@
 	return result;
 }
 
+-(TargetLevel) targetLevelAtX:(int)x andY:(int)y withAttack:(NSString *)attack
+{
+	if ([self validTargetSpotFor:attack atX:x andY:y openSpotsAreFine:true])
+		return [self validTargetSpotFor:attack atX:x andY:y openSpotsAreFine:false] ? TargetLevelTarget : TargetLevelInRange;
+	return TargetLevelOutOfRange;
+}
+
 -(BOOL) validTargetSpotFor:(NSString *)attack atX:(int)x andY:(int)y openSpotsAreFine:(BOOL)openSpots
 {
 	//set openSpotsAreFine to true if you want to find any place you can theoretically attack, not just places with people to hit
@@ -152,7 +158,7 @@
 			return false;
 		
 		//make sure it's not a solid wall
-		Tile *targetTile = self.map.tiles[self.storedAttackY][self.storedAttackX];
+		Tile *targetTile = self.map.tiles[y][x];
 		if (targetTile.solid)
 			return false;
 		
@@ -163,7 +169,7 @@
 		if (openSpots || loadValueBool(@"Attacks", attack, @"teleport"))
 		{
 			//it's ok as long as there isn't an ally there
-			return (targetTile.inhabitant == nil || targetTile.inhabitant.good == self.good);
+			return (targetTile.inhabitant == nil || targetTile.inhabitant.good != self.good);
 		}
 		else
 		{
@@ -214,6 +220,27 @@
 	return true;
 }
 
+-(void) useAttackWithName:(NSString *)name onX:(int)x andY:(int)y
+{
+	//find which tree has that attack
+	int treeNum = -1;
+	for (int i = 0; i < self.skillTrees.count && treeNum == -1; i++)
+	{
+		NSString *skillTree = self.skillTrees[i];
+		int skillTreeLevel = ((NSNumber *)self.skillTreeLevels[i]).intValue;
+		NSArray *skillTreeArray = loadValueArray(@"SkillTrees", skillTree, @"skills");
+		for (int j = 0; j < skillTreeLevel && treeNum == -1; j++)
+		{
+			NSDictionary *skill = skillTreeArray[j];
+			NSString *attack = skill[@"attack"];
+			if (attack != nil && [attack isEqualToString:name])
+				treeNum = i;
+		}
+	}
+	
+	[self useAttackWithTreeNumber:treeNum == -1 ? 0 : treeNum andName:name onX:x andY:y];
+}
+
 -(void) useAttackWithTreeNumber:(int)treeNumber andName:(NSString *)name onX:(int)x andY:(int)y
 {
 	//TODO: you shouldn't be able to use hurt-self attacks if you are under half the health cost
@@ -236,16 +263,16 @@
 		^(Tile *tile)
 		{
 			[tile.aoeTargeters addObject:self];
-		} forAttack:self.storedAttack onX:self.storedAttackX andY:self.storedAttackY];
+		} forAttack:name onX:self.storedAttackX andY:self.storedAttackY];
 		[self.map tilesChanged];
 	}
 	
 	
 	//pay costs
-	if (loadValueBool(@"Attacks", self.storedAttack, @"hurt user"))
-		self.health = MAX(self.health - loadValueNumber(@"Attacks", self.storedAttack, @"hurt user").intValue, 1);
+	if (loadValueBool(@"Attacks", name, @"hurt user"))
+		self.health = MAX(self.health - loadValueNumber(@"Attacks", name, @"hurt user").intValue, 1);
 	//TODO: use ammo
-	self.cooldowns[self.storedAttack] = loadValueNumber(@"Attacks", self.storedAttack, @"cooldown");
+	self.cooldowns[name] = loadValueNumber(@"Attacks", name, @"cooldown");
 }
 
 -(void) unleashAttack
