@@ -28,7 +28,7 @@
 		[self mapGenerate];
 		
 		//start right before the player's turn
-		_personOn = self.creatures.count - 1;
+		_personOn = (int)self.creatures.count - 1;
 	}
 	return self;
 }
@@ -165,6 +165,8 @@
 	int minNonOrphans = 20;
 	int lockedDoorChance = 50;
 	int noDoorChance = 25;
+	int encounters = 10;
+	int desiredPathLength = 7;
 	
 	NSLog(@"Generating room array");
 	
@@ -284,15 +286,87 @@
 		}
 	}
 	
-	//TODO: find a path between the start and the end
-	//this doesn't have to be the shortest path
-	//in fact, it's probably best if it isn't
-	//and every door along this path should be turned into a GeneratorRoomExitPathDoor
+	NSLog(@"Finding path");
 	
-	//TODO: every GeneratorRoomExitDoor should have a (lockedDoorChance)% chance to turn into a GeneratorRoomExitLockedDoor
+	//find paths from the start to the end
+	NSMutableArray *paths = [NSMutableArray new];
+	NSMutableArray *pathStart = [NSMutableArray arrayWithObject:rooms[rows-1][columns/2]];
+	NSArray *intendedPath = [self pathExplore:pathStart aroundRooms:rooms toExit:rooms[0][columns/2] intoPaths:paths withDesiredLength:desiredPathLength];
+	if (intendedPath == nil)
+	{
+		NSLog(@"--No correct path found, looking for best path");
+		//there was no path of EXACTLY the right length
+		//so look at paths from the path list
+		for (NSArray *path in paths)
+			if (intendedPath == nil || ABS(path.count - desiredPathLength) < ABS(intendedPath.count - desiredPathLength))
+				intendedPath = path;
+	}
 	
-	//TODO: every GeneratorRoom for which .canAddNoDoor is true
-	//should have a (noDoorChance)% chance to have ONE of its GeneratorRoomExitDoor doors turned into a GeneratorRoomExitNoDoor
+	NSLog(@"Marking doors on path");
+	
+	//turn every door down the intended path into a path door
+	for (int i = 0; i < intendedPath.count - 1; i++)
+	{
+		GeneratorRoom *room = intendedPath[i];
+		GeneratorRoom *nextRoom = intendedPath[i + 1];
+		if (room.leftRoom == nextRoom)
+			room.leftDoor = GeneratorRoomExitPathDoor;
+		else if (room.upRoom == nextRoom)
+			room.upDoor = GeneratorRoomExitPathDoor;
+		else if (nextRoom.leftRoom == room)
+			nextRoom.leftDoor = GeneratorRoomExitPathDoor;
+		else
+			nextRoom.upDoor = GeneratorRoomExitPathDoor;
+	}
+	
+	NSLog(@"Adding locked doors");
+	
+	//turn non-path doors into locked doors
+	for (NSArray *row in rooms)
+		for (GeneratorRoom *room in row)
+		{
+			if (room.leftDoor == GeneratorRoomExitDoor && arc4random_uniform(100) < lockedDoorChance)
+				room.leftDoor = GeneratorRoomExitLockedDoor;
+			if (room.rightDoor == GeneratorRoomExitDoor && arc4random_uniform(100) < lockedDoorChance)
+				room.rightDoor = GeneratorRoomExitLockedDoor;
+			if (room.upDoor == GeneratorRoomExitDoor && arc4random_uniform(100) < lockedDoorChance)
+				room.upDoor = GeneratorRoomExitLockedDoor;
+			if (room.downDoor == GeneratorRoomExitDoor && arc4random_uniform(100) < lockedDoorChance)
+				room.downDoor = GeneratorRoomExitLockedDoor;
+		}
+	
+	NSLog(@"Adding no-doors");
+	
+	//turn normal doors into no-doors
+	for (NSArray *row in rooms)
+		for (GeneratorRoom *room in row)
+			if (room.canAddNoDoor && arc4random_uniform(100) < noDoorChance)
+			{
+				int dStart = (int)arc4random_uniform(4);
+				for (int i = 0; i < 4; i++)
+				{
+					int d = (i + dStart) % 4;
+					GeneratorRoom *oRoom;
+					switch(d)
+					{
+						case 0: oRoom = room.y <= 0 ? nil : rooms[room.y-1][room.x]; break;
+						case 1: oRoom = room.y >= rows - 1 ? nil : rooms[room.y+1][room.x]; break;
+						case 2: oRoom = room.x <= 0 ? nil : rooms[room.y][room.x-1]; break;
+						case 3: oRoom = room.x >= columns - 1 ? nil : rooms[room.y][room.x+1]; break;
+					}
+					if (oRoom != nil && oRoom.canAddNoDoor)
+					{
+						switch(d)
+						{
+							case 0: room.upDoor = GeneratorRoomExitNoDoor; break;
+							case 1: room.downDoor = GeneratorRoomExitNoDoor; break;
+							case 2: room.leftDoor = GeneratorRoomExitNoDoor; break;
+							case 3: room.rightDoor = GeneratorRoomExitNoDoor; break;
+						}
+						break;
+					}
+				}
+			}
 	
 	//TODO: go through the rooms and identify which ones you NEED to unlock a door to get to
 	//each room like that should have at least SOMETHING in it
@@ -320,11 +394,6 @@
 	self.player = player;
 	((Tile *)self.tiles[pY][pX]).inhabitant = player;
 	[self.creatures addObject:player];
-	
-	//TODO: temporary enemy
-	Creature *enemy = [[Creature alloc] initWithX:pX andY:pY-1 onMap:self ofEnemyType:@"temporary man"];
-	((Tile *)self.tiles[pY-1][pX]).inhabitant = enemy;
-	[self.creatures addObject:enemy];
 	
 	//translate rooms into tiles
 	for (int y = 0; y < rows; y++)
@@ -362,6 +431,57 @@
 	//cave walls overwrite room walls too
 	//there should be a "masking" layer to determine where overwriting happens
 	//this should probably have some kinds of map generator variables too
+}
+
+-(NSArray *)pathExplore:(NSArray *)path aroundRooms:(NSArray *)rooms toExit:(GeneratorRoom *)exit intoPaths:(NSMutableArray *)paths withDesiredLength:(int)length
+{
+	//what is the room the path is on right now?
+	GeneratorRoom *room = path.lastObject;
+	
+	//find the rooms that you can travel to from that room
+	NSMutableArray *surroundingRooms = [NSMutableArray new];
+	
+	if (room.leftDoor != GeneratorRoomExitWall)
+		[surroundingRooms addObject:rooms[room.y][room.x-1]];
+	if (room.rightDoor != GeneratorRoomExitWall)
+		[surroundingRooms addObject:rooms[room.y][room.x+1]];
+	if (room.upDoor != GeneratorRoomExitWall)
+		[surroundingRooms addObject:rooms[room.y-1][room.x]];
+	if (room.downDoor != GeneratorRoomExitWall)
+		[surroundingRooms addObject:rooms[room.y+1][room.x]];
+	
+	//for each room, if you haven't visited it, branch down that path
+	//but access them in a random order
+	int orderAdd = arc4random_uniform(surroundingRooms.count);
+	for (int i = 0; i < surroundingRooms.count; i++)
+	{
+		GeneratorRoom *nextRoom = surroundingRooms[(i + orderAdd) % surroundingRooms.count];
+		if (![path containsObject:nextRoom])
+		{
+			NSArray *newPath = [path arrayByAddingObject:nextRoom];
+			
+			if (nextRoom == exit)
+			{
+				//it's the end!
+				if (newPath.count == length)
+				{
+					//it's the correct length! end immediately
+					return newPath;
+				}
+				
+				//add the path to the array
+				[paths addObject:newPath];
+			}
+			else
+			{
+				//keep going down
+				NSArray *result = [self pathExplore:newPath aroundRooms:rooms toExit:exit intoPaths:paths withDesiredLength:length];
+				if (result != nil)
+					return result; //just end instantly
+			}
+		}
+	}
+	return nil;
 }
 
 -(void)placeDoorOfType:(GeneratorRoomExit)type atX:(int)x andY:(int)y

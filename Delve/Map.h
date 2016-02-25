@@ -37,7 +37,6 @@
 -(void)recalculateVisibility;
 -(void)tilesChanged;
 -(void)statsChanged;
--(void)someoneTeleported;
 
 -(BOOL)moveWithX:(int)x andY:(int)y;
 -(BOOL)movePerson:(Creature *)person withX:(int)x andY:(int)y;

@@ -89,7 +89,7 @@
 
 -(void)regenerateCreatureSprite:(Creature *)cr
 {
-	int number = [self.map.creatures indexOfObject:cr];
+	int number = (int)[self.map.creatures indexOfObject:cr];
 	UIView *view = self.creatureViews[number];
 	[self regenerateCreatureSprite:cr atView:view];
 }
@@ -123,7 +123,7 @@
 	
 	[self drawArmorsOf:cr withLayer:2 inArray:images withYAdds:yAdds];
 	
-	NSLog(@"image layers: %i", images.count);
+	NSLog(@"image layers: %lu", (unsigned long)images.count);
 	
 	UIImageView *imageView = [[UIImageView alloc] initWithImage:mergeImages(images, CGPointMake(0.5f, 1.0f), yAdds)];
 	imageView.frame = CGRectMake(GAMEPLAY_TILE_SIZE / 2 - imageView.frame.size.width / 2, GAMEPLAY_TILE_SIZE - imageView.frame.size.height, imageView.frame.size.width, imageView.frame.size.height);
@@ -336,7 +336,7 @@
 		return;
 	
 	self.attackChosen = attackChosen;
-	NSLog(@"Picked attack #%i: %@", sender.tag, self.attackChosen);
+	NSLog(@"Picked attack #%li: %@", (long)sender.tag, self.attackChosen);
 	
 	[self reloadAttackTargets];
 	[self reloadPanels];
