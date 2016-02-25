@@ -515,13 +515,60 @@
 	{
 		//TODO: AI action
 		
+		//for now, the AI just moves towards the player and attacks when possible
+		
+		//look for an attack you can use on the player
+		NSArray *attacks = [self attacks];
+		for (int i = 2; i < attacks.count; i++) //skip defend and attack, this is checking your normal attack
+		{
+			NSString *attack = attacks[i];
+			if ([self canUseAttack:attack] && [self validTargetSpotFor:attack atX:self.map.player.x andY:self.map.player.y openSpotsAreFine:NO])
+			{
+				//pick that attack
+				[self useAttackWithName:attack onX:self.map.player.x andY:self.map.player.y];
+				return YES;
+			}
+		}
+		
+		//TODO: maybe smarter AIs should be able to detect if they are in the target area of an AoE?
+		//and walk outside
+		
+		//try to attack
+		if ([self validTargetSpotFor:@"attack" atX:self.map.player.x andY:self.map.player.y openSpotsAreFine:NO])
+		{
+			//use attack
+			[self useAttackWithTreeNumber:0 andName:@"attack" onX:self.map.player.x andY:self.map.player.y];
+			return YES;
+		}
+		
+		//see if you can use any self-targeting attacks
+		for (int i = 2; i < attacks.count; i++) //skip defend and attack, this is checking your normal attack
+		{
+			NSString *attack = attacks[i];
+			if ([self canUseAttack:attack] && [self validTargetSpotFor:attack atX:self.x andY:self.y openSpotsAreFine:NO])
+			{
+				//pick that attack
+				[self useAttackWithName:attack onX:self.x andY:self.y];
+				return YES;
+			}
+		}
+		
+		//otherwise, try to walk towards the player
 		//TODO: AIs shouldnt pursue the player if the AI isn't visible (IE it's far away or in a non-visible tile) AND the player is stealthed
+		int xDif = self.map.player.x - self.x;
+		int yDif = self.map.player.y - self.y;
+		BOOL xFirst = ABS(xDif) > ABS(yDif);
+		if ([self.map movePerson:self withX:(xFirst ? copysign(1, xDif) : 0) andY:(!xFirst ? copysign(1, yDif) : 0)])
+			return YES;
+		if (xDif != 0 && yDif != 0 && [self.map movePerson:self withX:(!xFirst ? copysign(1, xDif) : 0) andY:(xFirst ? copysign(1, yDif) : 0)])
+			return YES;
 		
-		//TODO: remember to check if you can use an attack (cooldowns, etc) before choosing it
+			
 		
 		
-		//right now I am testing AoEs, so you should use aoes over and over
-		[self useAttackWithName:@"light orb eruption" onX:self.x andY:self.y];
+		//otherwise, you are stuck, use defend
+		[self useAttackWithTreeNumber:0 andName:@"defend" onX:self.x andY:self.y];
+		return YES;
 	}
 	
 	return self.good || self.awake;

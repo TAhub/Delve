@@ -39,6 +39,7 @@
 -(void)statsChanged;
 
 -(BOOL)moveWithX:(int)x andY:(int)y;
+-(BOOL)movePerson:(Creature *)person withX:(int)x andY:(int)y;
 
 @property (weak, nonatomic) id<MapDelegate> delegate;
 

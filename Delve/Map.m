@@ -64,10 +64,15 @@
 	if (!self.yourTurn)
 		return NO;
 	
-	if ([self.player moveWithX:x andY:y])
+	return [self movePerson:self.player withX:x andY:y];
+}
+
+-(BOOL)movePerson:(Creature *)person withX:(int)x andY:(int)y;
+{
+	if ([person moveWithX:x andY:y])
 	{
 		__weak typeof(self) weakSelf = self;
-		[self.delegate moveCreature:self.player withBlock:
+		[self.delegate moveCreature:person withBlock:
 		^()
 		{
 			[weakSelf recalculateVisibility];
