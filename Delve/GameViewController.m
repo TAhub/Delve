@@ -37,6 +37,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *attackConfirmLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *attackConfirmPanelCord;
 
+@property (weak, nonatomic) IBOutlet UIView *attackNamePanel;
+@property (weak, nonatomic) IBOutlet UILabel *attackNameLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *attackNamePanelCord;
+
+
 
 @property (strong, nonatomic) Map* map;
 @property (strong, nonatomic) NSMutableArray *creatureViews;
@@ -67,6 +72,19 @@
 	
 	UITapGestureRecognizer *tappy = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
 	[self.creatureView addGestureRecognizer:tappy];
+	
+	//format panels
+	[self formatPanel:self.mainPanel];
+	[self formatPanel:self.attackNamePanel];
+	[self formatPanel:self.attackConfirmPanel];
+	[self formatPanel:self.attackSelectPanel];
+}
+
+-(void)formatPanel:(UIView *)panel
+{
+//	panel.layer.borderWidth = .0;
+//	panel.layer.borderColor = panel.backgroundColor.CGColor;
+	panel.layer.cornerRadius = 5.0;
 }
 
 -(void)regenerateCreatureSprite:(Creature *)cr
@@ -255,9 +273,14 @@
 
 -(void)switchToPanel:(NSLayoutConstraint *)panelCord
 {
-	if (self.uiAnimating || self.activePanelCord == panelCord)
+	[self switchToPanel:panelCord withBlock:nil];
+}
+
+-(void)switchToPanel:(NSLayoutConstraint *)panelCord withBlock:(void (^)(void))block
+{
+	//you can still switch while uiAnimating, so that name labels can appear properly
+	if (/*self.uiAnimating || */self.activePanelCord == panelCord)
 		return;
-	self.uiAnimating = true;
 	
 	//TODO: there should be a duration constant
 	
@@ -265,7 +288,8 @@
 	[self.uiView layoutIfNeeded];
 	
 	__weak typeof(self) weakSelf = self;
-	[UIView animateWithDuration:0.5f animations:
+	self.uiAnimating = true;
+	[UIView animateWithDuration:0.2f animations:
 	^()
 	{
 		if (weakSelf.activePanelCord != nil)
@@ -276,8 +300,11 @@
 	^(BOOL finished)
 	{
 		weakSelf.uiAnimating = false;
-		weakSelf.activePanelCord = panelCord;
+		if (block != nil)
+			block();
 	}];
+	
+	self.activePanelCord = panelCord;
 }
 
 -(void)reloadAttackTargets
@@ -300,6 +327,9 @@
 
 - (IBAction)pickAttack:(UIButton *)sender
 {
+	if (self.animating || self.uiAnimating)
+		return;
+	
 	self.attackChosen = self.map.player.attacks[sender.tag];
 	NSLog(@"Picked attack #%i: %@", sender.tag, self.attackChosen);
 	
@@ -318,11 +348,16 @@
 
 - (IBAction)pickCancel
 {
+	if (self.animating || self.uiAnimating)
+		return;
 	[self switchToPanel:self.mainPanelCord];
 }
 
 - (IBAction)cancelAttack
 {
+	if (self.animating || self.uiAnimating)
+		return;
+	
 	if (self.aoeIndicatorView != nil)
 	{
 		[self.aoeIndicatorView removeFromSuperview];
@@ -340,6 +375,9 @@
 
 - (IBAction)attackButton
 {
+	if (self.animating || self.uiAnimating)
+		return;
+	
 	self.attackPage = 0;
 	[self reloadPanels];
 	[self switchToPanel:self.attackSelectPanelCord];
@@ -387,7 +425,7 @@
 				//and switch the UI back
 				self.attackChosen = nil;
 				[self reloadAttackTargets];
-				[self switchToPanel:self.mainPanelCord];
+//				[self switchToPanel:self.mainPanelCord];
 			}
 		}
 		return;
@@ -544,23 +582,37 @@
 
 -(void)attackAnimation:(NSString *)name fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void))block
 {
-	//TODO: do some animations and shit
+	//announce the attack
 	__weak typeof(self) weakSelf = self;
-	self.animating = true;
-	[UIView animateWithDuration:1.0f animations:
+	self.attackNameLabel.text = [NSString stringWithFormat:@"%@ using %@!", creature.good ? @"Player" : @"Enemy", @"name"];
+	self.attackNameLabel.textColor = loadColorFromName(@"ui text");
+	[self switchToPanel:self.attackNamePanelCord withBlock:
 	^()
 	{
-		
-	} completion:
-	^(BOOL finished)
-	{
-		weakSelf.animating = false;
-		
-		//run the effect block
-		block();
-		
-		//and now it's the next turn!
-		[weakSelf.map update];
+	
+		//TODO: do some animations and shit
+		weakSelf.animating = true;
+		[UIView animateWithDuration:1.2f animations:
+		^()
+		{
+			//TODO: temporary animation so it doesn't insta-end
+			CGFloat rand = arc4random_uniform(1000) * 0.001f;
+			self.view.backgroundColor = [UIColor colorWithHue:rand saturation:0.1f brightness:0.1f alpha:1.0f];
+			
+		} completion:
+		^(BOOL finished)
+		{
+			weakSelf.animating = false;
+			
+			//run the effect block
+			block();
+			
+			//and now it's the next turn!
+			[weakSelf.map update];
+			
+			NSLog(@"SWITCH BACK TO MAiN");
+			[weakSelf switchToPanel:weakSelf.mainPanelCord];
+		}];
 	}];
 }
 

@@ -21,7 +21,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8TG-ed-Jwf" customClass="MapView">
                                 <rect key="frame" x="0.0" y="208" width="320" height="360"/>
-                                <color key="backgroundColor" red="0.069967947900295258" green="0.073193468153476715" blue="0.24978506565093994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.069967947900295258" green="0.073193468153476715" blue="0.24978506565093994" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="360" id="PTL-so-5ub"/>
                                     <constraint firstAttribute="width" constant="320" id="Wdb-BK-9aT"/>
@@ -33,7 +33,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="feh-tG-XLx" userLabel="Map Blocking View">
                                 <rect key="frame" x="0.0" y="-791" width="320" height="999"/>
-                                <color key="backgroundColor" red="0.99600285291671753" green="0.99619680643081665" blue="0.99162989854812622" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.093164794147014618" green="0.2194344699382782" blue="0.60352116823196411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="999" id="I63-dB-XW7"/>
                                 </constraints>
@@ -252,25 +252,45 @@
                                             </mask>
                                         </variation>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ci6-NX-G74">
+                                        <rect key="frame" x="-320" y="0.0" width="320" height="180"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wq-hs-GT3">
+                                                <rect key="frame" x="139" y="80" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="3wq-hs-GT3" firstAttribute="centerY" secondItem="Ci6-NX-G74" secondAttribute="centerY" id="VEo-eG-Rmr"/>
+                                            <constraint firstItem="3wq-hs-GT3" firstAttribute="centerX" secondItem="Ci6-NX-G74" secondAttribute="centerX" id="eOt-XV-GkJ"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.96826761960983276" green="0.26876074075698853" blue="0.052105836570262909" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.96826761960983276" green="0.26876074075698853" blue="0.052105836570262909" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="ghM-ST-HWQ" firstAttribute="width" secondItem="Qgd-z3-fMK" secondAttribute="width" id="0te-bi-GzQ"/>
                                     <constraint firstItem="JmI-Z2-fTU" firstAttribute="centerY" secondItem="Qgd-z3-fMK" secondAttribute="centerY" id="4Qz-bb-qwM"/>
                                     <constraint firstItem="ghM-ST-HWQ" firstAttribute="leading" secondItem="Qgd-z3-fMK" secondAttribute="leading" constant="-320" id="CNH-Vv-wbc"/>
                                     <constraint firstItem="ghM-ST-HWQ" firstAttribute="height" secondItem="Qgd-z3-fMK" secondAttribute="height" id="EhG-qD-QBg"/>
                                     <constraint firstItem="HxB-A2-aaI" firstAttribute="leading" secondItem="Qgd-z3-fMK" secondAttribute="leading" constant="-320" id="FIB-Fk-Dm5"/>
+                                    <constraint firstItem="Ci6-NX-G74" firstAttribute="width" secondItem="Qgd-z3-fMK" secondAttribute="width" id="FR7-Jw-Szf"/>
                                     <constraint firstItem="ghM-ST-HWQ" firstAttribute="centerY" secondItem="Qgd-z3-fMK" secondAttribute="centerY" id="Kok-xz-Fah"/>
                                     <constraint firstItem="JmI-Z2-fTU" firstAttribute="width" secondItem="Qgd-z3-fMK" secondAttribute="width" id="Wkl-45-870"/>
                                     <constraint firstItem="HxB-A2-aaI" firstAttribute="width" secondItem="Qgd-z3-fMK" secondAttribute="width" id="b6T-hs-9Py"/>
                                     <constraint firstItem="HxB-A2-aaI" firstAttribute="height" secondItem="Qgd-z3-fMK" secondAttribute="height" id="bq3-hp-eYl"/>
                                     <constraint firstItem="JmI-Z2-fTU" firstAttribute="leading" secondItem="Qgd-z3-fMK" secondAttribute="leading" constant="-320" id="cSF-q6-HL6"/>
+                                    <constraint firstItem="Ci6-NX-G74" firstAttribute="height" secondItem="Qgd-z3-fMK" secondAttribute="height" id="fYH-AB-I7E"/>
+                                    <constraint firstItem="Ci6-NX-G74" firstAttribute="leading" secondItem="Qgd-z3-fMK" secondAttribute="leading" constant="-320" id="inr-sA-yFt"/>
                                     <constraint firstItem="HxB-A2-aaI" firstAttribute="centerY" secondItem="Qgd-z3-fMK" secondAttribute="centerY" id="nyh-mT-nEU"/>
+                                    <constraint firstItem="Ci6-NX-G74" firstAttribute="centerY" secondItem="Qgd-z3-fMK" secondAttribute="centerY" id="pdg-t5-nbq"/>
                                     <constraint firstItem="JmI-Z2-fTU" firstAttribute="height" secondItem="Qgd-z3-fMK" secondAttribute="height" id="wFA-Xk-CZg"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="backgroundColor" red="0.093164794147014618" green="0.2194344699382782" blue="0.60352116823196411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Qgd-z3-fMK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ERk-ow-NHa"/>
                             <constraint firstItem="feh-tG-XLx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="G9M-pF-kd1"/>
@@ -313,6 +333,9 @@
                         <outlet property="attackConfirmLabel" destination="Pgu-g8-gAK" id="s3z-uY-LkN"/>
                         <outlet property="attackConfirmPanel" destination="HxB-A2-aaI" id="O1S-iL-hWN"/>
                         <outlet property="attackConfirmPanelCord" destination="FIB-Fk-Dm5" id="Rsj-vZ-PQU"/>
+                        <outlet property="attackNameLabel" destination="3wq-hs-GT3" id="TUe-yG-4Mc"/>
+                        <outlet property="attackNamePanel" destination="Ci6-NX-G74" id="67B-HI-8OK"/>
+                        <outlet property="attackNamePanelCord" destination="inr-sA-yFt" id="FiJ-oj-ZwP"/>
                         <outlet property="attackNext" destination="ysT-9t-MUG" id="WWD-sM-FN4"/>
                         <outlet property="attackSelectPanel" destination="JmI-Z2-fTU" id="Jth-hY-S18"/>
                         <outlet property="attackSelectPanelCord" destination="cSF-q6-HL6" id="76V-Fz-Ivs"/>
