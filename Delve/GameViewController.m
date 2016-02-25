@@ -123,8 +123,6 @@
 	
 	[self drawArmorsOf:cr withLayer:2 inArray:images withYAdds:yAdds];
 	
-	NSLog(@"image layers: %lu", (unsigned long)images.count);
-	
 	UIImageView *imageView = [[UIImageView alloc] initWithImage:mergeImages(images, CGPointMake(0.5f, 1.0f), yAdds)];
 	imageView.frame = CGRectMake(GAMEPLAY_TILE_SIZE / 2 - imageView.frame.size.width / 2, GAMEPLAY_TILE_SIZE - imageView.frame.size.height, imageView.frame.size.width, imageView.frame.size.height);
 	[view addSubview:imageView];
@@ -243,9 +241,9 @@
 			case 4: b = self.attackB5; break;
 			case 5: b = self.attackB6; break;
 		}
-		[b setTitle:attacks[i] forState:UIControlStateNormal];
+		[b setTitle:attacks[i + self.attackPage * 6] forState:UIControlStateNormal];
 		b.hidden = false;
-		UIColor *color = [self.map.player canUseAttack:attacks[i]] ? loadColorFromName(@"ui text") : loadColorFromName(@"ui text grey");
+		UIColor *color = [self.map.player canUseAttack:attacks[i + self.attackPage * 6]] ? loadColorFromName(@"ui text") : loadColorFromName(@"ui text grey");
 		[b setTitleColor:color forState:UIControlStateNormal];
 	}
 	self.attackNext.hidden = attacks.count <= 6;
@@ -330,7 +328,7 @@
 	if (self.animating || self.uiAnimating)
 		return;
 	
-	NSString *attackChosen = self.map.player.attacks[sender.tag];
+	NSString *attackChosen = self.map.player.attacks[sender.tag + self.attackPage * 6];
 	
 	if (![self.map.player canUseAttack:attackChosen])
 		return;
@@ -587,11 +585,12 @@
 		}];
 }
 
--(void)attackAnimation:(NSString *)name fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void))block
+-(void)attackAnimation:(NSString *)name withElement:(NSString *)element fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void))block
 {
 	//attack variables to relay to
 	BOOL delayed = loadValueBool(@"Attacks", name, @"area");
 	BOOL teleport = loadValueBool(@"Attacks", name, @"teleport");
+	
 	
 	//announce the attack
 	__weak typeof(self) weakSelf = self;
@@ -601,18 +600,35 @@
 	^()
 	{
 	
-		//TODO: do some animations and shit
+		//TODO: for now, everything has a "projectile" animation
+		UIView *projectileView;
+		projectileView = [[UIView alloc] initWithFrame:CGRectMake((creature.x + 0.25) * GAMEPLAY_TILE_SIZE + weakSelf.mapView.xOffset, (creature.y + 0.25) * GAMEPLAY_TILE_SIZE + weakSelf.mapView.yOffset, GAMEPLAY_TILE_SIZE / 2, GAMEPLAY_TILE_SIZE / 2)];
+		[weakSelf.creatureView addSubview:projectileView];
+		
+		//set attack color by element
+		if (!loadValueBool(@"Attacks", name, @"power"))
+			projectileView.backgroundColor = loadColorFromName(@"element no damage");
+		else
+			projectileView.backgroundColor = loadColorFromName([NSString stringWithFormat:@"element %@", element]);
+		
+
 		weakSelf.animating = true;
 		[UIView animateWithDuration:1.2f animations:
 		^()
 		{
-			//TODO: temporary animation so it doesn't insta-end
-			CGFloat rand = arc4random_uniform(1000) * 0.001f;
-			self.view.backgroundColor = [UIColor colorWithHue:rand saturation:0.1f brightness:0.1f alpha:1.0f];
+			//fling the projectile at the target
+			int projectileExtraSize = 0;
+			if (delayed)
+				projectileExtraSize = (loadValueNumber(@"Attacks", name, @"area").intValue / 2) * GAMEPLAY_TILE_SIZE;
+			projectileView.frame = CGRectMake(x * GAMEPLAY_TILE_SIZE + weakSelf.mapView.xOffset - projectileExtraSize, y * GAMEPLAY_TILE_SIZE + weakSelf.mapView.yOffset - projectileExtraSize, GAMEPLAY_TILE_SIZE + projectileExtraSize * 2, GAMEPLAY_TILE_SIZE + projectileExtraSize * 2);
 			
 		} completion:
 		^(BOOL finished)
 		{
+			//get rid of the projectile
+			[projectileView removeFromSuperview];
+			
+			
 			weakSelf.animating = false;
 			
 			//run the effect block

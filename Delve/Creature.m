@@ -63,7 +63,7 @@
 //		_armors = [NSArray arrayWithObjects:@"chestplate", @"gold tiara", @"", nil];
 		
 		_skillTrees = [NSArray arrayWithObjects:@"shield", @"wisdom", @"hammer", @"spear", @"conditioning", nil];
-		_skillTreeLevels = [NSArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
+		_skillTreeLevels = [NSArray arrayWithObjects:@(4), @(4), @(4), @(4), @(4), nil];
 		_implements = [NSArray arrayWithObjects:@"rusty shield", @"", @"rusty hammer", @"wooden spear", @"", nil];
 		_weapon = @"rusty sword";
 		
@@ -284,34 +284,28 @@
 
 -(void) unleashAttack
 {
-	//TODO: this should probably signal the start of some animation
-	//and only run the actual effect code afterwards
+	//get the implement
+	NSString *implement = @"";
+	if ([self.storedAttack isEqualToString:@"attack"]) //the implement should be your weapon
+		implement = self.weapon;
+	else
+		implement = self.implements[self.storedAttackSlot];
 	
-	__weak typeof(self) weakSelf = self;
+	
+	//get the power
+	int power = self.damageBonus + [self bonusFromImplement:implement withName:@"power"];
+	
+	//get the element
+	NSString *element = @"no element";
+	if (loadValueBool(@"Attacks", self.storedAttack, @"element"))
+		element = loadValueString(@"Attacks", self.storedAttack, @"element");
+	//TODO: element override from implement (ie flaming sword does burn, whatever)
 	
 	//use the map's delegate stuff to do an attack anim
-	[self.map.delegate attackAnimation:self.storedAttack fromPerson:self targetX:self.storedAttackX andY:self.storedAttackY withEffectBlock:
+	__weak typeof(self) weakSelf = self;
+	[self.map.delegate attackAnimation:self.storedAttack withElement:element fromPerson:self targetX:self.storedAttackX andY:self.storedAttackY withEffectBlock:
 	^()
 	{
-		//get the implement
-		NSString *implement = @"";
-		if ([weakSelf.storedAttack isEqualToString:@"attack"]) //the implement should be your weapon
-			implement = weakSelf.weapon;
-		else
-			implement = weakSelf.implements[weakSelf.storedAttackSlot];
-		
-		
-		//get the power
-		int power = weakSelf.damageBonus + [weakSelf bonusFromImplement:implement withName:@"power"];
-		
-		
-		//get the element
-		NSString *element = @"no element";
-		if (loadValueBool(@"Attacks", weakSelf.storedAttack, @"element"))
-			element = loadValueString(@"Attacks", weakSelf.storedAttack, @"element");
-		//TODO: element override from implement (ie flaming sword does burn, whatever)
-		
-		
 		__block BOOL tilesChanged = false;
 		[weakSelf applyBlock:
 		^void (Tile *tile)
