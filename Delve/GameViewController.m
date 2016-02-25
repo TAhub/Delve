@@ -592,6 +592,11 @@
 	BOOL teleport = loadValueBool(@"Attacks", name, @"teleport");
 	
 	
+	//TODO: I actually kinda liked the effect the background color changing thing had
+	//maybe it can be added back, as a rider to the panel switch?
+	//so, ie, the background turns red when someone uses a burn attack
+	
+	
 	//announce the attack
 	__weak typeof(self) weakSelf = self;
 	self.attackNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@!", creature.good ? @"Player" : @"Enemy", delayed ? @"unleashed" : @"used", name];

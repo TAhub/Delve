@@ -20,6 +20,8 @@
 
 @property (strong, nonatomic) NSString *type;
 -(BOOL) solid;
+-(BOOL) canUnlock;
+-(void) unlock;
 -(UIColor *) color;
 @property (weak, nonatomic) Creature *inhabitant;
 @property BOOL visible;

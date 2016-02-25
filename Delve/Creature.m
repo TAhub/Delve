@@ -366,7 +366,15 @@
 {
 	Tile *tile = self.map.tiles[self.y+y][self.x+x];
 	Tile *oldTile = self.map.tiles[self.y][self.x];
-	if (!tile.solid && tile.inhabitant == nil)
+	if (tile.canUnlock && self.good && self.hacks > 0)
+	{
+		[tile unlock];
+		self.hacks -= 1;
+		[self.map statsChanged];
+		[self.map tilesChanged];
+		return true;
+	}
+	else if (!tile.solid && tile.inhabitant == nil)
 	{
 		tile.inhabitant = self;
 		oldTile.inhabitant = nil;

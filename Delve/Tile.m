@@ -26,13 +26,22 @@
 
 -(BOOL)solid
 {
-	return [self.type isEqualToString:@"wall"];
+	return loadValueBool(@"Tiles", self.type, @"solid");
+}
+
+-(BOOL) canUnlock
+{
+	return loadValueBool(@"Tiles", self.type, @"unlocks into");
+}
+-(void) unlock
+{
+	self.type = loadValueString(@"Tiles", self.type, @"unlocks into");
 }
 
 -(UIColor *) color
 {
 	//TODO: if this tile is dicovered but not-visible, its color should be desaturated
-	return (self.solid ? [UIColor grayColor] : [UIColor darkGrayColor]);
+	return loadColorFromName(loadValueString(@"Tiles", self.type, @"color"));
 }
 
 @end

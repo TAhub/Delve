@@ -396,9 +396,9 @@
 	[self.creatures addObject:player];
 	
 	//TODO: temporary enemy
-	Creature *enemy = [[Creature alloc] initWithX:pX andY:pY-1 onMap:self ofEnemyType:@"temporary man"];
-	((Tile *)self.tiles[pY-1][pX]).inhabitant = enemy;
-	[self.creatures addObject:enemy];
+//	Creature *enemy = [[Creature alloc] initWithX:pX andY:pY-1 onMap:self ofEnemyType:@"temporary man"];
+//	((Tile *)self.tiles[pY-1][pX]).inhabitant = enemy;
+//	[self.creatures addObject:enemy];
 	
 	//translate rooms into tiles
 	for (int y = 0; y < rows; y++)
@@ -498,7 +498,7 @@
 			((Tile *)self.tiles[y][x]).type = @"floor"; //TODO: normal door (actually, floor might be ok for this? I dunno)
 			break;
 		case GeneratorRoomExitLockedDoor:
-			((Tile *)self.tiles[y][x]).type = @"floor"; //TODO: locked door
+			((Tile *)self.tiles[y][x]).type = @"locked door"; //TODO: locked door
 			break;
 		default:
 			return;
