@@ -90,8 +90,6 @@
 
 -(void)remake
 {
-	NSLog(@"Remaking map view");
-	
 	//clear tiles
 	for (UIView *view in self.tileDict.allValues)
 		[view removeFromSuperview];

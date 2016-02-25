@@ -287,14 +287,12 @@
 	//TODO: this should probably signal the start of some animation
 	//and only run the actual effect code afterwards
 	
-	
 	__weak typeof(self) weakSelf = self;
 	
 	//use the map's delegate stuff to do an attack anim
 	[self.map.delegate attackAnimation:self.storedAttack fromPerson:self targetX:self.storedAttackX andY:self.storedAttackY withEffectBlock:
 	^()
 	{
-		
 		//get the implement
 		NSString *implement = @"";
 		if ([weakSelf.storedAttack isEqualToString:@"attack"]) //the implement should be your weapon
@@ -399,14 +397,14 @@
 		if (loadValueBool(@"Attacks", attackType, @"dodgeable") && self.dodges > 0)
 		{
 			self.dodges -= 1;
-			NSLog(@"Dodged!");
+			NSLog(@"ATTACK RESULT: Dodged!");
 			return;
 		}
 		
 		if (self.blocks > 0)
 		{
 			self.blocks -= 1;
-			NSLog(@"Blocked!");
+			NSLog(@"ATTACK RESULT: Blocked!");
 			return;
 		}
 		
@@ -430,18 +428,18 @@
 			if (self.forceField >= finalPower)
 			{
 				self.forceField -= finalPower;
-				NSLog(@"Totally blocked by force field!");
+				NSLog(@"ATTACK RESULT: Totally blocked by force field!");
 			}
 			else
 			{
 				if (self.forceField > 0)
 				{
-					NSLog(@"Partially blocked by force field!");
+					NSLog(@"ATTACK RESULT: Partially blocked by force field!");
 					finalPower -= self.forceField;
 					self.forceField = 0;
 				}
 				
-				NSLog(@"Took %i damage!", finalPower);
+				NSLog(@"ATTACK RESULT: Took %i damage!", finalPower);
 				self.health = MAX(self.health - finalPower, 0);
 			}
 		}
@@ -523,9 +521,7 @@
 		
 		
 		//right now I am testing AoEs, so you should use aoes over and over
-		NSLog(@"I AM AI HEAR ME ROAR");
 		[self useAttackWithName:@"light orb eruption" onX:self.x andY:self.y];
-		
 	}
 	
 	return self.good || self.awake;

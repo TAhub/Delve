@@ -20,29 +20,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8TG-ed-Jwf" customClass="MapView">
-                                <rect key="frame" x="0.0" y="208" width="320" height="360"/>
+                                <rect key="frame" x="0.0" y="168" width="320" height="400"/>
                                 <color key="backgroundColor" red="0.069967947900295258" green="0.073193468153476715" blue="0.24978506565093994" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="360" id="PTL-so-5ub"/>
+                                    <constraint firstAttribute="height" constant="400" id="PTL-so-5ub"/>
                                     <constraint firstAttribute="width" constant="320" id="Wdb-BK-9aT"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uew-pW-cr7">
-                                <rect key="frame" x="0.0" y="208" width="320" height="360"/>
+                                <rect key="frame" x="0.0" y="168" width="320" height="400"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="feh-tG-XLx" userLabel="Map Blocking View">
-                                <rect key="frame" x="0.0" y="-791" width="320" height="999"/>
+                                <rect key="frame" x="0.0" y="-831" width="320" height="999"/>
                                 <color key="backgroundColor" red="0.093164794147014618" green="0.2194344699382782" blue="0.60352116823196411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="999" id="I63-dB-XW7"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qgd-z3-fMK" userLabel="UI View">
-                                <rect key="frame" x="0.0" y="28" width="320" height="180"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="140"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HxB-A2-aaI">
-                                        <rect key="frame" x="-320" y="0.0" width="320" height="180"/>
+                                        <rect key="frame" x="-320" y="0.0" width="320" height="140"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgu-g8-gAK">
                                                 <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
@@ -51,7 +51,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2oM-5v-k6Y">
-                                                <rect key="frame" x="272" y="150" width="48" height="30"/>
+                                                <rect key="frame" x="272" y="110" width="48" height="30"/>
                                                 <state key="normal" title="Cancel"/>
                                                 <connections>
                                                     <action selector="cancelAttack" destination="BYZ-38-t0r" eventType="touchUpInside" id="cCK-1j-sP5"/>
@@ -67,14 +67,14 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ghM-ST-HWQ">
-                                        <rect key="frame" x="-320" y="0.0" width="320" height="180"/>
+                                        <rect key="frame" x="-320" y="0.0" width="320" height="140"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kJW-Wn-2TC">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="108"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
                                                 <color key="backgroundColor" red="0.24769073724746704" green="0.99983483552932739" blue="0.19894224405288696" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQT-EW-nNY">
-                                                <rect key="frame" x="268" y="108" width="52" height="72"/>
+                                                <rect key="frame" x="268" y="84" width="52" height="56"/>
                                                 <state key="normal" title="Attacks"/>
                                                 <connections>
                                                     <action selector="attackButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="F6f-DZ-1gd"/>
@@ -99,45 +99,45 @@
                                         </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JmI-Z2-fTU">
-                                        <rect key="frame" x="-320" y="0.0" width="320" height="180"/>
+                                        <rect key="frame" x="-320" y="0.0" width="320" height="140"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bF-PB-ipe">
-                                                <rect key="frame" x="0.0" y="0.0" width="120" height="55"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="41"/>
                                                 <state key="normal" title="Button1"/>
                                                 <connections>
                                                     <action selector="pickAttack:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ki5-Pn-3PJ"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HpB-yw-oQA">
-                                                <rect key="frame" x="128" y="0.0" width="120" height="55"/>
+                                                <rect key="frame" x="128" y="0.0" width="120" height="41"/>
                                                 <state key="normal" title="Button2"/>
                                                 <connections>
                                                     <action selector="pickAttack:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cfl-jD-nv5"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iPT-Mh-VW5">
-                                                <rect key="frame" x="0.0" y="63" width="120" height="54"/>
+                                                <rect key="frame" x="0.0" y="49" width="120" height="42"/>
                                                 <state key="normal" title="Button3"/>
                                                 <connections>
                                                     <action selector="pickAttack:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jbH-OR-xkk"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dan-bR-Z8c">
-                                                <rect key="frame" x="128" y="63" width="120" height="54"/>
+                                                <rect key="frame" x="128" y="49" width="120" height="42"/>
                                                 <state key="normal" title="Button4"/>
                                                 <connections>
                                                     <action selector="pickAttack:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Q2w-yg-Upj"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bNq-ha-73I">
-                                                <rect key="frame" x="0.0" y="125" width="120" height="55"/>
+                                                <rect key="frame" x="0.0" y="99" width="120" height="41"/>
                                                 <state key="normal" title="Button5"/>
                                                 <connections>
                                                     <action selector="pickAttack:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WfG-hR-pli"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kpm-UH-xR2">
-                                                <rect key="frame" x="128" y="125" width="120" height="55"/>
+                                                <rect key="frame" x="128" y="99" width="120" height="41"/>
                                                 <state key="normal" title="Button6"/>
                                                 <connections>
                                                     <action selector="pickAttack:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lz3-ZJ-yGt"/>
@@ -151,7 +151,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7kc-CD-6Np">
-                                                <rect key="frame" x="272" y="150" width="48" height="30"/>
+                                                <rect key="frame" x="272" y="110" width="48" height="30"/>
                                                 <state key="normal" title="Cancel"/>
                                                 <connections>
                                                     <action selector="pickCancel" destination="BYZ-38-t0r" eventType="touchUpInside" id="DyB-pm-YMU"/>
@@ -253,10 +253,10 @@
                                         </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ci6-NX-G74">
-                                        <rect key="frame" x="-320" y="0.0" width="320" height="180"/>
+                                        <rect key="frame" x="-320" y="0.0" width="320" height="140"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wq-hs-GT3">
-                                                <rect key="frame" x="139" y="80" width="42" height="21"/>
+                                                <rect key="frame" x="139" y="60" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>

@@ -340,6 +340,8 @@
 
 - (IBAction)pickNext
 {
+	if (self.animating || self.uiAnimating)
+		return;
 	NSArray *attacks = self.map.player.attacks;
 	int numberPanels = (int)ceilf(attacks.count / 6.0f);
 	self.attackPage = (self.attackPage + 1) % numberPanels;
@@ -584,7 +586,7 @@
 {
 	//announce the attack
 	__weak typeof(self) weakSelf = self;
-	self.attackNameLabel.text = [NSString stringWithFormat:@"%@ using %@!", creature.good ? @"Player" : @"Enemy", @"name"];
+	self.attackNameLabel.text = [NSString stringWithFormat:@"%@ using %@!", creature.good ? @"Player" : @"Enemy", name];
 	self.attackNameLabel.textColor = loadColorFromName(@"ui text");
 	[self switchToPanel:self.attackNamePanelCord withBlock:
 	^()
@@ -607,11 +609,12 @@
 			//run the effect block
 			block();
 			
-			//and now it's the next turn!
-			[weakSelf.map update];
-			
-			NSLog(@"SWITCH BACK TO MAiN");
-			[weakSelf switchToPanel:weakSelf.mainPanelCord];
+			[weakSelf switchToPanel:weakSelf.mainPanelCord withBlock:
+			^()
+			{
+				//and now it's the next turn!
+				[weakSelf.map update];
+			}];
 		}];
 	}];
 }
