@@ -57,10 +57,10 @@
 		//TODO: these are all just temporary variables
 //		_race = @"human";
 //		_armors = [NSArray arrayWithObjects:@"chestplate", @"bandit helmet", @"steel-toed boots", nil];
-//		_race = @"eoling";
-//		_armors = [NSArray arrayWithObjects:@"eoling robe", @"goggles", @"white tail banner", nil];
-		_race = @"highborn";
-		_armors = [NSArray arrayWithObjects:@"chestplate", @"gold tiara", @"", nil];
+		_race = @"eoling";
+		_armors = [NSArray arrayWithObjects:@"eoling robe", @"goggles", @"white tail banner", nil];
+//		_race = @"highborn";
+//		_armors = [NSArray arrayWithObjects:@"chestplate", @"gold tiara", @"", nil];
 		
 		_skillTrees = [NSArray arrayWithObjects:@"shield", @"wisdom", @"hammer", @"spear", @"conditioning", nil];
 		_skillTreeLevels = [NSArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
@@ -322,10 +322,9 @@
 				tilesChanged = true;
 			}
 			
-			if (tile.inhabitant != nil)
+			Creature *hit = tile.inhabitant;
+			if (hit != nil)
 			{
-				Creature *hit = tile.inhabitant;
-				
 				//apply attack
 				if (((!loadValueBool(@"Attacks", weakSelf.storedAttack, @"range") && !loadValueBool(@"Attacks", weakSelf.storedAttack, @"area")) || //if it's a non-AOE self-targeting attack
 					 (hit.good != weakSelf.good)) && //or if it's targeting an enemy
@@ -340,23 +339,26 @@
 					}
 				}
 				
-				//teleport, if that's what the skill asks for
-				if (loadValueBool(@"Attacks", weakSelf.storedAttack, @"teleport"))
-				{
-					if (hit != nil)
-					{
-						hit.x = weakSelf.x;
-						hit.y = weakSelf.y;
-					}
-					weakSelf.x = weakSelf.storedAttackX;
-					weakSelf.y = weakSelf.storedAttackY;
-					
-					//TODO: this might need to update sprites, etc
-				}
-				
 				if (hit.good)
 					[weakSelf.map statsChanged];
 			}
+			
+			//teleport, if that's what the skill asks for
+			if (loadValueBool(@"Attacks", weakSelf.storedAttack, @"teleport"))
+			{
+				if (hit != nil)
+				{
+					((Tile *)weakSelf.map.tiles[weakSelf.y][weakSelf.x]).inhabitant = hit;
+					hit.x = weakSelf.x;
+					hit.y = weakSelf.y;
+				}
+				else
+					((Tile *)weakSelf.map.tiles[weakSelf.y][weakSelf.x]).inhabitant = nil;
+				((Tile *)weakSelf.map.tiles[weakSelf.storedAttackY][weakSelf.storedAttackX]).inhabitant = weakSelf;
+				weakSelf.x = weakSelf.storedAttackX;
+				weakSelf.y = weakSelf.storedAttackY;
+			}
+			
 		} forAttack:weakSelf.storedAttack onX:weakSelf.storedAttackX andY:weakSelf.storedAttackY];
 		
 		if (tilesChanged)
@@ -563,7 +565,9 @@
 		if (xDif != 0 && yDif != 0 && [self.map movePerson:self withX:(!xFirst ? copysign(1, xDif) : 0) andY:(xFirst ? copysign(1, yDif) : 0)])
 			return YES;
 		
-			
+		
+		//TODO: maybe smarter AIs can do some actual pathfinding, within a certain radius?
+		//IE for if the player teleports away, or is behind a small wall or whatever
 		
 		
 		//otherwise, you are stuck, use defend

@@ -330,7 +330,12 @@
 	if (self.animating || self.uiAnimating)
 		return;
 	
-	self.attackChosen = self.map.player.attacks[sender.tag];
+	NSString *attackChosen = self.map.player.attacks[sender.tag];
+	
+	if (![self.map.player canUseAttack:attackChosen])
+		return;
+	
+	self.attackChosen = attackChosen;
 	NSLog(@"Picked attack #%i: %@", sender.tag, self.attackChosen);
 	
 	[self reloadAttackTargets];
@@ -526,7 +531,7 @@
 
 #pragma mark: map delegate
 
--(void)moveCreatureComplete:(Creature *)creature withBlock:(void (^)(void))block
+-(void)moveCreatureCompleteWithBlock:(void (^)(void))block
 {
 	//recalculate who is hidden
 	for (int i = 0; i < self.creatureViews.count; i++)
@@ -541,7 +546,7 @@
 	block();
 }
 
--(void)moveCreatureAnim:(Creature *)creature
+-(void)moveCreatureAnim
 {
 	//move everything, not just the one guy
 	for (int i = 0; i < self.creatureViews.count; i++)
@@ -564,29 +569,33 @@
 		[self.mapView setPositionWithX:creature.x - GAMEPLAY_SCREEN_WIDTH * 0.5f + 0.5f andY:creature.y - GAMEPLAY_SCREEN_HEIGHT * 0.5f + 0.5f withAnimBlock:
 		^()
 		{
-			[weakSelf moveCreatureAnim:creature];
+			[weakSelf moveCreatureAnim];
 		} andCompleteBlock:
 		^()
 		{
-			[weakSelf moveCreatureComplete:creature withBlock:block];
+			[weakSelf moveCreatureCompleteWithBlock:block];
 		}];
 	else
 		[UIView animateWithDuration:GAMEPLAY_MOVE_TIME animations:
 		^()
 		{
-			[weakSelf moveCreatureAnim:creature];
+			[weakSelf moveCreatureAnim];
 		} completion:
 		^(BOOL finished)
 		{
-			[weakSelf moveCreatureComplete:creature withBlock:block];
+			[weakSelf moveCreatureCompleteWithBlock:block];
 		}];
 }
 
 -(void)attackAnimation:(NSString *)name fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void))block
 {
+	//attack variables to relay to
+	BOOL delayed = loadValueBool(@"Attacks", name, @"area");
+	BOOL teleport = loadValueBool(@"Attacks", name, @"teleport");
+	
 	//announce the attack
 	__weak typeof(self) weakSelf = self;
-	self.attackNameLabel.text = [NSString stringWithFormat:@"%@ using %@!", creature.good ? @"Player" : @"Enemy", name];
+	self.attackNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@!", creature.good ? @"Player" : @"Enemy", delayed ? @"unleashed" : @"used", name];
 	self.attackNameLabel.textColor = loadColorFromName(@"ui text");
 	[self switchToPanel:self.attackNamePanelCord withBlock:
 	^()
@@ -612,8 +621,24 @@
 			[weakSelf switchToPanel:weakSelf.mainPanelCord withBlock:
 			^()
 			{
-				//and now it's the next turn!
-				[weakSelf.map update];
+				if (teleport)
+				{
+					//move everyone
+					[weakSelf.mapView setPositionWithX:weakSelf.map.player.x - GAMEPLAY_SCREEN_WIDTH * 0.5f + 0.5f andY:weakSelf.map.player.y - GAMEPLAY_SCREEN_HEIGHT * 0.5f + 0.5f withAnimBlock:
+					^()
+					{
+						[weakSelf moveCreatureAnim];
+					} andCompleteBlock:
+					^()
+					{
+						[weakSelf.map recalculateVisibility];
+						[weakSelf.mapView remake];
+						if (!delayed)
+							[weakSelf.map update];
+					}];
+				}
+				else if (!delayed) //and now it's the next turn!
+					[weakSelf.map update];
 			}];
 		}];
 	}];
