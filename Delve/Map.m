@@ -158,16 +158,40 @@
 {
 	//first, get map generator variables
 	//TODO: get these from data
-	int roomSize = 5; //how big a room is
-	int rows = 10; //the height of the map; most maps should be taller than they are wide, since the game is meant to run in profile
-	int columns = 6; //the width of the map
-	int doorsAtATime = 5; //how many rooms should be added per layer; low values might result in hitting the layer limit
-	int minNonOrphans = 20; //the minimum number of rooms there should be
-	int lockedDoorChance = 50; //what percent chance there should be for rooms to have locked doors
-	int noDoorChance = 25; //what percent chance there should be for rooms to combine into long rooms
-	int desiredPathLength = 7; //how long the "real" path to the end should be
-	int deadRoomFrequency = 5; //how often there are "dead" rooms (no treaure, no encounter); should probably be an odd number
-	float treasuresPerEncounter = 0.75;
+	
+	//how big a room is
+	int roomSize = 5;
+	
+	//the height of the map; most maps should be taller than they are wide, since the game is meant to run in profile
+	int rows = 10;
+	
+	//the width of the map
+	int columns = 6;
+	
+	//this is how much a door's position can vary; set to 0 for evenly-placed doors, don't set over (roomSize / 2) or else Bad Things will happen
+	int maxDoorOffset = 1;
+	
+	//how many rooms should be added per layer; low values might result in hitting the layer limit
+	int doorsAtATime = 5;
+	
+	//the minimum number of rooms there should be
+	int minNonOrphans = 20;
+	
+	//what percent chance there should be for rooms to have locked doors
+	int lockedDoorChance = 50;
+	
+	//what percent chance there should be for rooms to combine into long rooms
+	int noDoorChance = 25;
+	
+	//how long the "real" path to the end should be
+	int desiredPathLength = 7;
+	
+	//how often there are "dead" rooms (no treaure, no encounter); should probably be an odd number
+	int deadRoomFrequency = 5;
+	
+	//the ratio of treasures to encounters; set high for lots of treasure, low for lots of encounters
+	//keep it within 0.85-1.15 or so for balance and performance reasons
+	float treasuresPerEncounter = 0.95;
 	
 	NSLog(@"Generating room array");
 	
@@ -430,8 +454,8 @@
 					}
 				
 				//place doors
-				[self placeDoorOfType:room.upDoor atX:x*(roomSize+1)+1+(roomSize/2) andY:y*(roomSize+1)];
-				[self placeDoorOfType:room.leftDoor atX:x*(roomSize+1) andY:y*(roomSize+1)+1+(roomSize/2)];
+				[self placeDoorOfType:room.upDoor atX:x*(roomSize+1)+1+(roomSize/2) + (maxDoorOffset == 0 ? 0 : (arc4random_uniform(maxDoorOffset * 2 + 1) - maxDoorOffset)) andY:y*(roomSize+1)];
+				[self placeDoorOfType:room.leftDoor atX:x*(roomSize+1) andY:y*(roomSize+1)+1+(roomSize/2) + (maxDoorOffset == 0 ? 0 : (arc4random_uniform(maxDoorOffset * 2 + 1) - maxDoorOffset))];
 				
 				//TODO: place enemies, treasure, etc
 			}
