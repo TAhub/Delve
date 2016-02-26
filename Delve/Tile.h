@@ -31,4 +31,8 @@
 @property TargetLevel targetLevel;
 -(BOOL) validPlacementSpot;
 
+#pragma mark item info
+@property TreasureType treasureType;
+@property (strong, nonatomic) NSString *treasure;
+
 @end

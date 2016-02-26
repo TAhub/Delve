@@ -20,13 +20,15 @@
 		_discovered = NO;
 		_aoeTargeters = [NSMutableSet new];
 		_targetLevel = TargetLevelOutOfRange;
+		_treasureType = TreasureTypeNone;
+		_treasure = nil;
 	}
 	return self;
 }
 
 -(BOOL) validPlacementSpot
 {
-	return self.inhabitant == nil && !self.solid; //TODO: the tile should also have no items
+	return self.inhabitant == nil && !self.solid && self.treasureType == TreasureTypeNone;
 }
 
 -(BOOL)solid
@@ -45,6 +47,10 @@
 
 -(UIColor *) color
 {
+	//TODO: temporary treasure color
+	if (self.treasureType != TreasureTypeNone)
+		return [UIColor greenColor];
+	
 	//TODO: if this tile is dicovered but not-visible, its color should be desaturated
 	return loadColorFromName(loadValueString(@"Tiles", self.type, @"color"));
 }

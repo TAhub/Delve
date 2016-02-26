@@ -50,7 +50,7 @@
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2oM-5v-k6Y">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2oM-5v-k6Y">
                                                 <rect key="frame" x="272" y="110" width="48" height="30"/>
                                                 <state key="normal" title="Cancel"/>
                                                 <connections>
@@ -73,22 +73,32 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
                                                 <color key="backgroundColor" red="0.24769073724746704" green="0.99983483552932739" blue="0.19894224405288696" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQT-EW-nNY">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQT-EW-nNY">
                                                 <rect key="frame" x="268" y="84" width="52" height="56"/>
                                                 <state key="normal" title="Attacks"/>
                                                 <connections>
-                                                    <action selector="attackButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="F6f-DZ-1gd"/>
+                                                    <action selector="attacksButtonPress" destination="BYZ-38-t0r" eventType="touchUpInside" id="Li5-QZ-GuE"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JEe-Qq-0F7">
+                                                <rect key="frame" x="207" y="84" width="53" height="56"/>
+                                                <state key="normal" title="Pick Up"/>
+                                                <connections>
+                                                    <action selector="pickUpButtonPress" destination="BYZ-38-t0r" eventType="touchUpInside" id="ycy-5o-zMZ"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.99580436944961548" green="0.99223476648330688" blue="0.99200111627578735" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="kJW-Wn-2TC" firstAttribute="height" secondItem="ghM-ST-HWQ" secondAttribute="height" multiplier="0.6" id="1PG-Rx-GkX"/>
+                                            <constraint firstItem="kQT-EW-nNY" firstAttribute="leading" secondItem="JEe-Qq-0F7" secondAttribute="trailing" constant="8" symbolic="YES" id="332-i9-7QY"/>
+                                            <constraint firstAttribute="bottom" secondItem="JEe-Qq-0F7" secondAttribute="bottom" id="DJl-qa-hU7"/>
                                             <constraint firstItem="kJW-Wn-2TC" firstAttribute="width" secondItem="ghM-ST-HWQ" secondAttribute="width" id="HJK-kS-jvK"/>
                                             <constraint firstItem="kQT-EW-nNY" firstAttribute="top" secondItem="kJW-Wn-2TC" secondAttribute="bottom" id="JRV-Ik-JLj"/>
                                             <constraint firstAttribute="bottom" secondItem="kQT-EW-nNY" secondAttribute="bottom" id="SeR-ls-q2O"/>
                                             <constraint firstItem="kJW-Wn-2TC" firstAttribute="top" secondItem="ghM-ST-HWQ" secondAttribute="top" id="Wm4-WY-kAI"/>
                                             <constraint firstItem="kQT-EW-nNY" firstAttribute="top" secondItem="kJW-Wn-2TC" secondAttribute="top" id="XgN-4O-of1"/>
+                                            <constraint firstItem="JEe-Qq-0F7" firstAttribute="top" secondItem="kJW-Wn-2TC" secondAttribute="bottom" id="axN-Pr-Y9m"/>
                                             <constraint firstItem="kJW-Wn-2TC" firstAttribute="centerX" secondItem="ghM-ST-HWQ" secondAttribute="centerX" id="g3y-Bv-H0X"/>
                                             <constraint firstAttribute="trailing" secondItem="kQT-EW-nNY" secondAttribute="trailing" id="iHq-AW-dSc"/>
                                         </constraints>
@@ -150,7 +160,7 @@
                                                     <action selector="pickNext" destination="BYZ-38-t0r" eventType="touchUpInside" id="tDd-Gb-mJ9"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7kc-CD-6Np">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7kc-CD-6Np">
                                                 <rect key="frame" x="272" y="110" width="48" height="30"/>
                                                 <state key="normal" title="Cancel"/>
                                                 <connections>
@@ -330,6 +340,8 @@
                         <outlet property="attackB4" destination="dan-bR-Z8c" id="eVh-kP-ppY"/>
                         <outlet property="attackB5" destination="bNq-ha-73I" id="wgQ-wM-Bgh"/>
                         <outlet property="attackB6" destination="Kpm-UH-xR2" id="iVH-4X-j3C"/>
+                        <outlet property="attackCancel" destination="7kc-CD-6Np" id="WiF-kb-Xzk"/>
+                        <outlet property="attackConfirmCancel" destination="2oM-5v-k6Y" id="EIV-kp-SrW"/>
                         <outlet property="attackConfirmLabel" destination="Pgu-g8-gAK" id="s3z-uY-LkN"/>
                         <outlet property="attackConfirmPanel" destination="HxB-A2-aaI" id="O1S-iL-hWN"/>
                         <outlet property="attackConfirmPanelCord" destination="FIB-Fk-Dm5" id="Rsj-vZ-PQU"/>
@@ -339,10 +351,12 @@
                         <outlet property="attackNext" destination="ysT-9t-MUG" id="WWD-sM-FN4"/>
                         <outlet property="attackSelectPanel" destination="JmI-Z2-fTU" id="Jth-hY-S18"/>
                         <outlet property="attackSelectPanelCord" destination="cSF-q6-HL6" id="76V-Fz-Ivs"/>
+                        <outlet property="attacksButton" destination="kQT-EW-nNY" id="POu-sX-uyA"/>
                         <outlet property="creatureView" destination="Uew-pW-cr7" id="z2A-zu-aY4"/>
                         <outlet property="mainPanel" destination="ghM-ST-HWQ" id="zrM-BY-nrS"/>
                         <outlet property="mainPanelCord" destination="CNH-Vv-wbc" id="dn9-Ew-Ge2"/>
                         <outlet property="mapView" destination="8TG-ed-Jwf" id="bWQ-DB-nod"/>
+                        <outlet property="pickUpButton" destination="JEe-Qq-0F7" id="xAL-HH-Olo"/>
                         <outlet property="statView" destination="kJW-Wn-2TC" id="PD8-la-a1t"/>
                         <outlet property="uiView" destination="Qgd-z3-fMK" id="7j9-fO-0zg"/>
                     </connections>

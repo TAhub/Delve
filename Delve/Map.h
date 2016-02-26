@@ -40,6 +40,7 @@
 
 -(BOOL)moveWithX:(int)x andY:(int)y;
 -(BOOL)movePerson:(Creature *)person withX:(int)x andY:(int)y;
+-(BOOL)canPickUp;
 
 @property (weak, nonatomic) id<MapDelegate> delegate;
 

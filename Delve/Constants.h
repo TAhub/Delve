@@ -35,6 +35,13 @@ typedef NS_ENUM(NSInteger, GeneratorRoomExit) {
 	GeneratorRoomExitNoDoor
 };
 
+typedef NS_ENUM(NSInteger, TreasureType) {
+	TreasureTypeLocked,
+	TreasureTypeChest,
+	TreasureTypeFree,
+	TreasureTypeNone
+};
+
 typedef NS_ENUM(NSInteger, TargetLevel) {
 	TargetLevelTarget,
 	TargetLevelInRange,

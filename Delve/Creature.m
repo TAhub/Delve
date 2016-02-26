@@ -380,6 +380,8 @@
 		oldTile.inhabitant = nil;
 		self.x += x;
 		self.y += y;
+		if (self.good)
+			[self.map statsChanged];
 		return true;
 	}
 	return false;

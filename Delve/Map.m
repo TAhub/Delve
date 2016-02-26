@@ -59,6 +59,11 @@
 	[self.delegate updateStats];
 }
 
+-(BOOL)canPickUp
+{
+	return ((Tile *)self.tiles[self.player.y][self.player.x]).treasureType != TreasureTypeNone;
+}
+
 -(BOOL)moveWithX:(int)x andY:(int)y
 {
 	if (!self.yourTurn)
@@ -585,6 +590,8 @@
 			//in general, health, ammo, etc should be on its own
 			//shit equipment should be in unlocked chests
 			//good equipment should be in locked chests
+			TreasureType treasureType = TreasureTypeLocked;
+			NSString *treasure = @"gold tiara";
 			
 			//if at all possible, go to the center of the room
 			int xC = room.x * (roomSize + 1) + 1 + (roomSize / 2);
@@ -592,7 +599,8 @@
 			Tile *centerTile = self.tiles[yC][xC];
 			if (centerTile.validPlacementSpot)
 			{
-				//TODO: place a treasure there
+				centerTile.treasureType = treasureType;
+				centerTile.treasure = treasure;
 			}
 			else
 			{
@@ -604,7 +612,9 @@
 					Tile *randomTile = self.tiles[yR][xR];
 					if (randomTile.validPlacementSpot)
 					{
-						//TODO: place a treasure there
+						randomTile.treasureType = treasureType;
+						randomTile.treasure = treasure;
+						break;
 					}
 				}
 			}

@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIView *uiView;
 
 @property (weak, nonatomic) IBOutlet UIView *mainPanel;
+@property (weak, nonatomic) IBOutlet UIButton *pickUpButton;
+@property (weak, nonatomic) IBOutlet UIButton *attacksButton;
 @property (weak, nonatomic) IBOutlet UIView *statView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mainPanelCord;
 
@@ -31,10 +33,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *attackB5;
 @property (weak, nonatomic) IBOutlet UIButton *attackB6;
 @property (weak, nonatomic) IBOutlet UIButton *attackNext;
+@property (weak, nonatomic) IBOutlet UIButton *attackCancel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *attackSelectPanelCord;
 
 @property (weak, nonatomic) IBOutlet UIView *attackConfirmPanel;
 @property (weak, nonatomic) IBOutlet UILabel *attackConfirmLabel;
+@property (weak, nonatomic) IBOutlet UIButton *attackConfirmCancel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *attackConfirmPanelCord;
 
 @property (weak, nonatomic) IBOutlet UIView *attackNamePanel;
@@ -221,6 +225,14 @@
 	[self.statView addSubview:statLabel2];
 	
 	
+	//set button color
+	[self.attacksButton setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+	[self.pickUpButton setTitleColor:self.map.canPickUp ? loadColorFromName(@"ui text") : loadColorFromName(@"ui text grey") forState:UIControlStateNormal];
+	[self.attackCancel setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+	[self.attackNext setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+	[self.attackConfirmCancel setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+	
+	
 	//set up attacks panel with a list of attacks (greyed out buttons for attacks you can't use)
 	NSArray *attacks = self.map.player.attacks;
 	self.attackB1.hidden = true;
@@ -379,7 +391,7 @@
 }
 
 
-- (IBAction)attackButton
+- (IBAction)attacksButtonPress
 {
 	if (self.animating || self.uiAnimating)
 		return;
@@ -388,6 +400,15 @@
 	[self reloadPanels];
 	[self switchToPanel:self.attackSelectPanelCord];
 }
+
+- (IBAction)pickUpButtonPress
+{
+	if (self.map.canPickUp)
+	{
+		NSLog(@"PICK UP");
+	}
+}
+
 
 
 -(void)tapGesture:(UITapGestureRecognizer *)sender
