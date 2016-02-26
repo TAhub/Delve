@@ -17,7 +17,7 @@
 
 @implementation GeneratorRoom
 
--(id)initWithSize:(int)size atX:(int)x andY:(int)y
+-(id)initWithSize:(int)size atX:(int)x andY:(int)y;
 {
 	if (self = [super init])
 	{
@@ -26,6 +26,7 @@
 		_size = size;
 		_leftRoom = nil;
 		_upRoom = nil;
+		_layer = -1;
 		_downDoorInner = GeneratorRoomExitWall;
 		_rightDoorInner = GeneratorRoomExitWall;
 		_accessable = false;

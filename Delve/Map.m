@@ -158,15 +158,16 @@
 {
 	//first, get map generator variables
 	//TODO: get these from data
-	int roomSize = 5;
-	int rows = 10;
-	int columns = 6;
-	int doorsAtATime = 5;
-	int minNonOrphans = 20;
-	int lockedDoorChance = 50;
-	int noDoorChance = 25;
-	int encounters = 10;
-	int desiredPathLength = 7;
+	int roomSize = 5; //how big a room is
+	int rows = 10; //the height of the map; most maps should be taller than they are wide, since the game is meant to run in profile
+	int columns = 6; //the width of the map
+	int doorsAtATime = 5; //how many rooms should be added per layer; low values might result in hitting the layer limit
+	int minNonOrphans = 20; //the minimum number of rooms there should be
+	int lockedDoorChance = 50; //what percent chance there should be for rooms to have locked doors
+	int noDoorChance = 25; //what percent chance there should be for rooms to combine into long rooms
+	int desiredPathLength = 7; //how long the "real" path to the end should be
+	int deadRoomFrequency = 5; //how often there are "dead" rooms (no treaure, no encounter); should probably be an odd number
+	float treasuresPerEncounter = 0.75;
 	
 	NSLog(@"Generating room array");
 	
@@ -198,10 +199,17 @@
 	//end room is at (columns/2, 0)
 	((GeneratorRoom *)rooms[rows-1][columns/2]).accessable = true;
 	
-	//TODO: should probably put in some escape clause here
-	//that will retry generation after like 100 loops, just in case
-	while (true)
+	for (int layer = 0;; layer += 1)
 	{
+		if (layer == GENERATOR_MAX_LINK_LAYERS)
+		{
+			//TODO: restarting is okay right now because I don't define any permanent variables before this point (tiles, etc)
+			//in the future though, I might add some
+			NSLog(@"--ERROR: hit max link layer! Restarting");
+			[self mapGenerate];
+			return;
+		}
+		
 		NSLog(@"--Making connections");
 		
 		//add some random connections
@@ -265,6 +273,7 @@
 							(room.downDoor != GeneratorRoomExitWall && ((GeneratorRoom *)rooms[y+1][x]).accessable) ||
 							(room.leftDoor != GeneratorRoomExitWall && ((GeneratorRoom *)rooms[y][x-1]).accessable))
 						{
+							room.layer = layer;
 							room.accessable = true;
 							changes = true;
 						}
@@ -370,8 +379,6 @@
 	
 	//TODO: go through the rooms and identify which ones you NEED to unlock a door to get to
 	//each room like that should have at least SOMETHING in it
-	//other rooms can have some probability of having enemies, treasure, whatever
-	
 	
 	NSLog(@"Making tiles");
 	
@@ -436,6 +443,111 @@
 	//cave walls overwrite room walls too
 	//there should be a "masking" layer to determine where overwriting happens
 	//this should probably have some kinds of map generator variables too
+	
+	//TODO: locked-only rooms should never be breached by caves, paint those rooms (and their walls!) out of the cellular mask
+	
+	//TODO: identify rooms that were at least 50% uncovered by the cellular cave generation and mixing
+	//those rooms should be marked as accessable but keep the -1 layer
+ 
+	NSLog(@"Finding treasure and encounter locations");
+	
+	//add encounters and treasures to rooms
+	int numEncounters = 0;
+	int numTreasures = 0;
+	for (NSArray *row in rooms)
+		for (GeneratorRoom *room in row)
+		{
+			BOOL placeTreasure = false;
+			BOOL placeEncounter = false;
+			if ((room.x != columns / 2 || (room.y != rows - 1 && room.y != 0)) && room.accessable) //never place anything in the start room, the exit, or a wall
+			{
+				if (room.layer == -1)
+				{
+					//it's a cave-only room!
+					if (arc4random_uniform(2) == 0)
+						placeTreasure = YES;
+					else
+						placeEncounter = YES;
+					
+				}
+				else if (room.layer % deadRoomFrequency == 0)
+				{
+					//nothing goes here
+					//this is because I want some dead rooms
+				}
+				else if (room.layer % 2 == 0)
+					placeEncounter = YES;
+				else
+					placeTreasure = YES;
+			}
+			
+			if (placeEncounter)
+			{
+				room.encounter = YES;
+				numEncounters += 1;
+			}
+			if (placeTreasure)
+			{
+				room.treasure = YES;
+				numTreasures += 1;
+			}
+		}
+	
+	NSLog(@"Balancing treasure / encounter ratio");
+	
+	//balance up the treasure/encounter ratio by adding one to rooms containing the other
+	int desiredTreasures = floorf(numEncounters * treasuresPerEncounter);
+	for (int i = 0; i < GENERATOR_MAX_BALANCE_TRIES && numTreasures < desiredTreasures; i++)
+	{
+		int randomX = (int)arc4random_uniform((u_int32_t)columns);
+		int randomY = (int)arc4random_uniform((u_int32_t)rows);
+		GeneratorRoom *randomRoom = rooms[randomY][randomX];
+		if (randomRoom.encounter && !randomRoom.treasure)
+		{
+			randomRoom.treasure = true;
+			numTreasures += 1;
+		}
+	}
+	int desiredEncounters = floorf(numTreasures / treasuresPerEncounter);
+	for (int i = 0; i < GENERATOR_MAX_BALANCE_TRIES && numEncounters < desiredEncounters; i++)
+	{
+		int randomX = (int)arc4random_uniform((u_int32_t)columns);
+		int randomY = (int)arc4random_uniform((u_int32_t)rows);
+		GeneratorRoom *randomRoom = rooms[randomY][randomX];
+		if (randomRoom.treasure && !randomRoom.encounter)
+		{
+			randomRoom.encounter = true;
+			numEncounters += 1;
+		}
+	}
+	
+	//the exit always has an encounter
+	((GeneratorRoom *)rooms[columns/2][0]).encounter = true;
+	
+	NSLog(@"Placing treasures");
+	
+	//place treasures
+	//these always go in the center of their respecive rooms
+	for (NSArray *row in rooms)
+		for (GeneratorRoom *room in row)
+		{
+			//TODO: place a treasure there, I guess
+		}
+	
+	
+	NSLog(@"Placing encounters");
+	
+	//place encounters
+	//these go wherever there is space inside the confines of the room
+	for (NSArray *row in rooms)
+		for (GeneratorRoom *room in row)
+		{
+			//TODO: place an encounter, wherever there is open space with no person or treasure
+		}
+	
+	
+	//TODO: if I do any recutting, it should be here
+	//I probably shouldn't though
 }
 
 -(NSArray *)pathExplore:(NSArray *)path aroundRooms:(NSArray *)rooms toExit:(GeneratorRoom *)exit intoPaths:(NSMutableArray *)paths withDesiredLength:(int)length

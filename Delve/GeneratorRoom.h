@@ -16,11 +16,14 @@
 @property int x;
 @property int y;
 @property int size;
+@property int layer;
 
 @property (weak, nonatomic) GeneratorRoom *leftRoom;
 @property (weak, nonatomic) GeneratorRoom *upRoom;
 
 @property BOOL accessable;
+@property BOOL encounter;
+@property BOOL treasure;
 
 @property (nonatomic) GeneratorRoomExit leftDoor;
 @property (nonatomic) GeneratorRoomExit upDoor;

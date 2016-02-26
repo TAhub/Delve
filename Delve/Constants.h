@@ -19,6 +19,11 @@
 #define GAMEPLAY_MOVE_TIME 0.15f
 #define GAMEPLAY_TARGET_RANGE 5
 
+#pragma mark map generator constants
+
+#define GENERATOR_MAX_LINK_LAYERS 100
+#define GENERATOR_MAX_BALANCE_TRIES 200
+
 #pragma mark enums
 
 typedef NS_ENUM(NSInteger, GeneratorRoomExit) {
