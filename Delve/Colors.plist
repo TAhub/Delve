@@ -31,7 +31,7 @@
 	<key>ui warning</key> <string>FF4433</string>
 	<key>ui warning pale</key> <string>CC9999</string>
 	<key>ui text</key> <string>111111</string>
-	<key>ui text grey</key> <string>555555</string>
+	<key>ui text grey</key> <string>888888</string>
 	<!-- element colors -->
 	<key>element cut</key> <string>FF7700</string>
 	<key>element smash</key> <string>BBBBBB</string>

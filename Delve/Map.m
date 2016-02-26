@@ -156,6 +156,18 @@
 
 -(void)mapGenerate
 {
+	for (int try = 1;; try++)
+	{
+		if ([self mapGenerateInner])
+		{
+			NSLog(@"Map generation finished on try #%i, with %i enemies", try, self.creatures.count - 1);
+			return;
+		}
+	}
+}
+
+-(BOOL)mapGenerateInner
+{
 	//first, get map generator variables
 	//TODO: get these from data
 	
@@ -233,8 +245,7 @@
 			//TODO: restarting is okay right now because I don't define any permanent variables before this point (tiles, etc)
 			//in the future though, I might add some
 			NSLog(@"--ERROR: hit max link layer! Restarting");
-			[self mapGenerate];
-			return;
+			return false;
 		}
 		
 		NSLog(@"--Making connections");
@@ -321,8 +332,7 @@
 				//TODO: restarting is okay right now because I don't define any permanent variables before this point (tiles, etc)
 				//in the future though, I might add some
 				NSLog(@"--ERROR: too many accessable rooms! Restarting");
-				[self mapGenerate];
-				return;
+				return false;
 			}
 			
 			//there are enough explorable rooms, and you can get to the exit
@@ -438,11 +448,6 @@
 	((Tile *)self.tiles[pY][pX]).inhabitant = player;
 	[self.creatures addObject:player];
 	
-	//TODO: temporary enemy
-//	Creature *enemy = [[Creature alloc] initWithX:pX andY:pY-1 onMap:self ofEnemyType:@"temporary man"];
-//	((Tile *)self.tiles[pY-1][pX]).inhabitant = enemy;
-//	[self.creatures addObject:enemy];
-	
 	//translate rooms into tiles
 	for (int y = 0; y < rows; y++)
 		for (int x = 0; x < columns; x++)
@@ -533,7 +538,7 @@
 	
 	//balance up the treasure/encounter ratio by adding one to rooms containing the other
 	int desiredTreasures = floorf(numEncounters * treasuresPerEncounter);
-	NSLog(@"--Need %i more treasures", desiredTreasures - numTreasures);
+	NSLog(@"--Need %i more treasures", MAX(desiredTreasures - numTreasures, 0));
 	for (int i = 0; i < GENERATOR_MAX_BALANCE_TRIES && numTreasures < desiredTreasures; i++)
 	{
 		int randomX = (int)arc4random_uniform((u_int32_t)columns);
@@ -546,7 +551,7 @@
 		}
 	}
 	int desiredEncounters = floorf(numTreasures / treasuresPerEncounter);
-	NSLog(@"--Need %i more encounters", desiredEncounters - numEncounters);
+	NSLog(@"--Need %i more encounters", MAX(desiredEncounters - numEncounters, 0));
 	for (int i = 0; i < GENERATOR_MAX_BALANCE_TRIES && numEncounters < desiredEncounters; i++)
 	{
 		int randomX = (int)arc4random_uniform((u_int32_t)columns);
@@ -579,13 +584,54 @@
 	//these go wherever there is space inside the confines of the room
 	for (NSArray *row in rooms)
 		for (GeneratorRoom *room in row)
-		{
-			//TODO: place an encounter, wherever there is open space with no person or treasure
-		}
+			if (room.encounter)
+			{
+				NSLog(@"--Choosing encounter");
+				//TODO: pick a real encounter from a list
+				NSArray *encounter = [NSArray arrayWithObjects:@"temporary man", @"temporary man", nil];
+				
+				NSLog(@"--Finding open spaces");
+				//find every open space for a person in the area
+				NSMutableArray *openSpaces = [NSMutableArray new];
+				for (int y = 0; y < roomSize; y++)
+					for (int x = 0; x < roomSize; x++)
+					{
+						int xA = room.x * (roomSize + 1) + 1 + x;
+						int yA = room.y * (roomSize + 1) + 1 + y;
+						Tile *tile = self.tiles[yA][xA];
+						if (!tile.solid && tile.inhabitant == nil) //TODO: it should also be a tile with no items
+							[openSpaces addObject:@(xA+yA*self.width)];
+					}
+				[self shuffleArray:openSpaces];
+				
+				NSLog(@"--Placing in those %i spaces", openSpaces.count);
+				for (int i = 0; i < openSpaces.count && i < encounter.count; i++)
+				{
+					NSString *type = encounter[i];
+					NSNumber *position = openSpaces[i];
+					int x = position.intValue % self.width;
+					int y = position.intValue / self.width;
+					Tile *tile = self.tiles[y][x];
+					Creature *enemy = [[Creature alloc] initWithX:x andY:y onMap:self ofEnemyType:type];
+					[self.creatures addObject:enemy];
+					tile.inhabitant = enemy;
+				}
+			}
 	
 	
 	//TODO: if I do any recutting, it should be here
 	//I probably shouldn't though
+	
+	return true;
+}
+
+-(void)shuffleArray:(NSMutableArray *)array
+{
+	for (int i = 0; i < array.count; i++)
+	{
+		int rand = arc4random_uniform(array.count);
+		[array exchangeObjectAtIndex:rand withObjectAtIndex:0];
+	}
 }
 
 -(NSArray *)pathExplore:(NSArray *)path aroundRooms:(NSArray *)rooms toExit:(GeneratorRoom *)exit intoPaths:(NSMutableArray *)paths withDesiredLength:(int)length

@@ -241,9 +241,10 @@
 			case 4: b = self.attackB5; break;
 			case 5: b = self.attackB6; break;
 		}
-		[b setTitle:attacks[i + self.attackPage * 6] forState:UIControlStateNormal];
+		NSString *attack = attacks[i + self.attackPage * 6];
+		[b setTitle:attack forState:UIControlStateNormal];
 		b.hidden = false;
-		UIColor *color = [self.map.player canUseAttack:attacks[i + self.attackPage * 6]] ? loadColorFromName(@"ui text") : loadColorFromName(@"ui text grey");
+		UIColor *color = [self.map.player canUseAttack:attack] ? loadColorFromName(@"ui text") : loadColorFromName(@"ui text grey");
 		[b setTitleColor:color forState:UIControlStateNormal];
 	}
 	self.attackNext.hidden = attacks.count <= 6;
