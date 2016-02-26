@@ -177,6 +177,9 @@
 	//the minimum number of rooms there should be
 	int minNonOrphans = 20;
 	
+	//the maximum number of rooms there should be
+	int maxNonOrphans = 35;
+	
 	//what percent chance there should be for rooms to have locked doors
 	int lockedDoorChance = 50;
 	
@@ -313,6 +316,15 @@
 		
 		if (accessableRooms >= minNonOrphans && ((GeneratorRoom *)rooms[0][columns/2]).accessable)
 		{
+			if (accessableRooms > maxNonOrphans)
+			{
+				//TODO: restarting is okay right now because I don't define any permanent variables before this point (tiles, etc)
+				//in the future though, I might add some
+				NSLog(@"--ERROR: too many accessable rooms! Restarting");
+				[self mapGenerate];
+				return;
+			}
+			
 			//there are enough explorable rooms, and you can get to the exit
 			//so the first phase of generation is done
 			break;
@@ -521,6 +533,7 @@
 	
 	//balance up the treasure/encounter ratio by adding one to rooms containing the other
 	int desiredTreasures = floorf(numEncounters * treasuresPerEncounter);
+	NSLog(@"--Need %i more treasures", desiredTreasures - numTreasures);
 	for (int i = 0; i < GENERATOR_MAX_BALANCE_TRIES && numTreasures < desiredTreasures; i++)
 	{
 		int randomX = (int)arc4random_uniform((u_int32_t)columns);
@@ -533,6 +546,7 @@
 		}
 	}
 	int desiredEncounters = floorf(numTreasures / treasuresPerEncounter);
+	NSLog(@"--Need %i more encounters", desiredEncounters - numEncounters);
 	for (int i = 0; i < GENERATOR_MAX_BALANCE_TRIES && numEncounters < desiredEncounters; i++)
 	{
 		int randomX = (int)arc4random_uniform((u_int32_t)columns);
