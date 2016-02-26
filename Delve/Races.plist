@@ -50,7 +50,7 @@
 				<key>hair</key> <string>iron</string>
 			</dict>
 		</array>
-		<!-- TODO: hairs -->
+		<key>hair styles</key> <integer>0</integer>
 		<key>armor slot y offsets</key>
 		<array>
 			<integer>0</integer>
@@ -102,7 +102,7 @@
 			</dict>
 			<!-- TODO: second coloration -->
 		</array>
-		<!-- TODO: hairs -->
+		<key>hair styles</key> <integer>1</integer>
 		<key>armor slot y offsets</key>
 		<array>
 			<integer>0</integer>
@@ -153,7 +153,7 @@
 				<key>hair</key> <string>black hair</string>
 			</dict>
 		</array>
-		<!-- TODO: hairs -->
+		<key>hair styles</key> <integer>1</integer>
 		<key>armor slot y offsets</key>
 		<array>
 			<integer>0</integer>
@@ -203,7 +203,7 @@
 				<key>hair</key> <string>purple hair</string>
 			</dict>
 		</array>
-		<!-- TODO: hairs -->
+		<key>hair styles</key> <integer>1</integer>
 		<key>armor slot y offsets</key>
 		<array>
 			<integer>1</integer>
@@ -250,7 +250,7 @@
 				<key>hair</key> <string>orange hair</string>
 			</dict>
 		</array>
-		<!-- TODO: hairs -->
+		<key>hair styles</key> <integer>1</integer>
 		<key>armor slot y offsets</key>
 		<array>
 			<integer>-2</integer>
@@ -269,9 +269,9 @@
 	
 	<!-- enemy races -->
 	
-	<!-- ruin feeder -->
-	<!-- ruin feeders are a weak, somewhat dodgy enemy -->
-	<key>ruin feeder</key>
+	<!-- ruin feeder runts (weak) -->
+	<!-- ruin feeder runts are a weak, somewhat dodgy enemy -->
+	<key>ruin feeder runt</key>
 	<dict>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>88</integer>
@@ -281,10 +281,73 @@
 		<key>metabolism</key> <integer>100</integer>
 		<!-- slots -->
 		<!-- appearance -->
-		<!-- TODO: appearance data -->
+		<key>sprite</key> <string>ruin_feeder_runt</string>
+		<key>colorations</key>
+		<array>
+			<dict>
+				<key>skin</key> <string>brown hair</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>brown skin</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>orange hair</string>
+			</dict>
+		</array>
 	</dict>
 	
-	<!-- sentry -->
+	<!-- ruin feeder (medium) -->
+	<!-- ruin feeders are a balanced enemy type, a stronger version of the runts basically -->
+	<key>ruin feeder</key>
+	<dict>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>110</integer>
+		<key>health</key> <integer>90</integer>
+		<key>smash resistance</key> <integer>1</integer>
+		<key>dodges</key> <integer>3</integer>
+		<key>metabolism</key> <integer>100</integer>
+		<!-- slots -->
+		<!-- appearance -->
+		<key>sprite</key> <string>ruin_feeder</string>
+		<key>colorations</key>
+		<array>
+			<dict>
+				<key>skin</key> <string>brown hair</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>brown skin</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>orange hair</string>
+			</dict>
+		</array>
+	</dict>
+	
+	<!-- fierce ruin feeder (strong) -->
+	<!-- fierce ruin feeders are the strongest type of ruin feeder -->
+	<key>fierce ruin feeder</key>
+	<dict>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>125</integer>
+		<key>health</key> <integer>112</integer>
+		<key>smash resistance</key> <integer>2</integer>
+		<key>dodges</key> <integer>3</integer>
+		<key>metabolism</key> <integer>100</integer>
+		<!-- slots -->
+		<!-- appearance -->
+		<key>sprite</key> <string>ruin_feeder</string>
+		<key>colorations</key>
+		<array>
+			<dict>
+				<key>skin</key> <string>grey skin</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>iron</string>
+			</dict>
+		</array>
+	</dict>
+	
+	<!-- sentry (weak) -->
 	<!-- sentries are a weak melee robot enemy type, characterized by having high burn resistance -->
 	<key>sentry</key>
 	<dict>
@@ -296,10 +359,39 @@
 		<key>metabolism</key> <integer>100</integer>
 		<!-- slots -->
 		<!-- appearance -->
-		<!-- TODO: appearance data -->
+		<key>sprite</key> <string>sentry</string>
+		<key>colorations</key>
+		<array>
+			<dict>
+				<key>skin</key> <string>steel</string>
+			</dict>
+		</array>
 	</dict>
 	
-	<!-- android -->
+	<!-- scuttler (weak) -->
+	<!-- scuttlers are a weak ranged robot enemy type, meant to have high mobility -->
+	<key>scuttler</key>
+	<dict>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>100</integer>
+		<key>health</key> <integer>88</integer>
+		<key>smash resistance</key> <integer>1</integer>
+		<key>dodges</key> <integer>1</integer>
+		<key>blocks</key> <integer>0</integer>
+		<key>hacks</key> <integer>0</integer>
+		<key>metabolism</key> <integer>100</integer>
+		<!-- slots -->
+		<!-- appearance -->
+		<key>sprite</key> <string>scuttler</string>
+		<key>colorations</key>
+		<array>
+			<dict>
+				<key>skin</key> <string>steel</string>
+			</dict>
+		</array>
+	</dict>
+	
+	<!-- android (medium) -->
 	<!-- androids are a versatile medium robot enemy type; they are the dodgiest robot -->
 	<key>android</key>
 	<dict>
@@ -313,7 +405,7 @@
 		<!-- TODO: appearance data -->
 	</dict>
 	
-	<!-- war bot -->
+	<!-- war bot (strong) -->
 	<!-- war bots are a tough enemy type, that are heavily hardened against cuts -->
 	<key>war bot</key>
 	<dict>

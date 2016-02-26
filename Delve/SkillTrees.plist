@@ -154,6 +154,30 @@
 		</array>
 	</dict>
 	
+	<!-- specific monster skills -->
+	<key>scuttler skill</key>
+	<dict>
+		<key>type</key> <string>invalid</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>damage bonus</key> <integer>10</integer>
+				<key>attack</key> <string>erratic holy shot</string>
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>damage bonus</key> <integer>10</integer>
+				<key>health</key> <integer>15</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>damage bonus</key> <integer>10</integer>
+				<key>attack</key> <string>slalom</string>
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>dodges</key> <integer>1</integer>
+			</dict>
+		</array>
+	</dict>
+	
 	
 	<!-- war skills -->
 	<!-- war skills mostly focus on low- or no-cooldown basic attacks, and are usually pattern A or pattern C -->

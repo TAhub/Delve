@@ -102,39 +102,42 @@
 	for (UIView *subView in view.subviews)
 		[subView removeFromSuperview];
 	
-	//TODO: get actual coloration
+	//get info
 	NSArray *colorations = loadValueArray(@"Races", cr.race, @"colorations");
-	NSDictionary *coloration = colorations[0];
+	NSDictionary *coloration = colorations[cr.coloration];
 	UIColor *skinColor = loadColorFromName((NSString *)coloration[@"skin"]);
-	UIColor *hairColor = loadColorFromName((NSString *)coloration[@"hair"]);
-	
+	UIColor *hairColor = loadValueBool(@"Races", cr.race, @"hair styles") ? loadColorFromName((NSString *)coloration[@"hair"]) : nil;
+	NSString *genderSuffix = loadValueBool(@"Races", cr.race, @"has gender") ? (cr.gender ? @"_f" : @"_m") : @"";
 	
 	NSMutableArray *images = [NSMutableArray new];
 	NSMutableArray *yAdds = [NSMutableArray new];
 	
-	[self drawArmorsOf:cr withLayer:0 inArray:images withYAdds:yAdds];
+	[self drawArmorsOf:cr withLayer:0 inArray:images withYAdds:yAdds genderSuffix:genderSuffix];
 	
-	NSString *bodySprite = [NSString stringWithFormat:@"%@_%@", loadValueString(@"Races", cr.race, @"sprite"), cr.gender ? @"f" : @"m"];
+	NSString *bodySprite = [NSString stringWithFormat:@"%@%@", loadValueString(@"Races", cr.race, @"sprite"), genderSuffix];
 	[images addObject:colorImage([UIImage imageNamed:bodySprite], skinColor)];
 	[yAdds addObject:@(0)];
 	
-	[self drawArmorsOf:cr withLayer:1 inArray:images withYAdds:yAdds];
+	[self drawArmorsOf:cr withLayer:1 inArray:images withYAdds:yAdds genderSuffix:genderSuffix];
 	
-	//TODO: get the real hair sprite
-	NSString *hairSprite = [NSString stringWithFormat:@"%@_hair1_%@", loadValueString(@"Races", cr.race, @"sprite"), cr.gender ? @"f" : @"m"];
-	[images addObject:colorImage([UIImage imageNamed:hairSprite], hairColor)];
-	[yAdds addObject:@(0)];
+	if (hairColor != nil)
+	{
+		NSString *hairSprite = [NSString stringWithFormat:@"%@_hair%i%@", loadValueString(@"Races", cr.race, @"sprite"), cr.hairStyle+1, genderSuffix];
+		[images addObject:colorImage([UIImage imageNamed:hairSprite], hairColor)];
+		[yAdds addObject:@(0)];
+	}
 	
-	[self drawArmorsOf:cr withLayer:2 inArray:images withYAdds:yAdds];
+	[self drawArmorsOf:cr withLayer:2 inArray:images withYAdds:yAdds genderSuffix:genderSuffix];
 	
 	UIImageView *imageView = [[UIImageView alloc] initWithImage:mergeImages(images, CGPointMake(0.5f, 1.0f), yAdds)];
 	imageView.frame = CGRectMake(GAMEPLAY_TILE_SIZE / 2 - imageView.frame.size.width / 2, GAMEPLAY_TILE_SIZE - imageView.frame.size.height, imageView.frame.size.width, imageView.frame.size.height);
 	[view addSubview:imageView];
 }
 
--(void)drawArmorsOf:(Creature *)cr withLayer:(int)layer inArray:(NSMutableArray *)spriteArray withYAdds:(NSMutableArray *)yAdds
+-(void)drawArmorsOf:(Creature *)cr withLayer:(int)layer inArray:(NSMutableArray *)spriteArray withYAdds:(NSMutableArray *)yAdds genderSuffix:(NSString *)gS
 {
-	NSArray *raceYAdds = loadValueArray(@"Races", cr.race, @"armor slot y offsets");
+	NSLog(@"DRAW ARMOR AT LAYER %i", layer);
+	NSArray *raceYAdds = loadValueBool(@"Races", cr.race, @"armor slot y offsets") ? loadValueArray(@"Races", cr.race, @"armor slot y offsets") : nil;
 	
 	for (int i = 0; i < cr.armors.count; i++)
 	{
@@ -158,13 +161,13 @@
 			
 			if (rightLayer)
 			{
-				int yAdd = ((NSNumber *)raceYAdds[i]).intValue;
+				int yAdd = raceYAdds == nil ? 0 : ((NSNumber *)raceYAdds[i]).intValue;
 				
 				NSString *spriteName = loadValueString(@"Armors", armor, @"sprite");
 				if (layer == 0)
 					spriteName = [NSString stringWithFormat:@"%@_back", spriteName];
 				if (loadValueBool(@"Armors", armor, @"sprite gender"))
-					spriteName = [NSString stringWithFormat:@"%@_%@", spriteName, cr.gender ? @"f" : @"m"];
+					spriteName = [NSString stringWithFormat:@"%@%@", spriteName, gS];
 				if (cr.gender && loadValueBool(@"Armors", armor, @"female y add"))
 					yAdd += loadValueNumber(@"Armors", armor, @"female y add").intValue;
 				

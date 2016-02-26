@@ -31,7 +31,6 @@
 	<!-- real attacks -->
 	
 	<!-- monster-only attacks -->
-	<!-- TODO: I had some ideas here, assign them to enemies! -->
 	<key>slalom</key>
 	<dict>
 		<key>power</key> <integer>25</integer>
@@ -41,6 +40,16 @@
 		<key>dodgeable</key> <true/>
 		<!-- special effects -->
 		<key>teleport</key> <true/>
+	</dict>
+	<key>erratic holy shot</key>
+	<dict>
+		<key>power</key> <integer>20</integer>
+		<key>element</key> <string>shock</string>
+		<key>range</key> <integer>4</integer>
+		<key>min range</key> <integer>2</integer>
+		<key>cooldown</key> <integer>1</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
 	</dict>
 	
 	<!-- melee damaging attacks -->

@@ -631,7 +631,7 @@
 			{
 				NSLog(@"--Choosing encounter");
 				//TODO: pick a real encounter from a list
-				NSArray *encounter = [NSArray arrayWithObjects:@"temporary man", @"temporary man", nil];
+				NSArray *encounter = [NSArray arrayWithObjects:@"ruin feeder runt", @"ruin feeder runt", nil];
 				
 				NSLog(@"--Finding open spaces");
 				//find every open space for a person in the area

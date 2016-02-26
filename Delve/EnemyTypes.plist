@@ -39,32 +39,14 @@
 		<key>weapon</key> <string>template</string>
 	</dict>
 	
-	<!-- TODO: get rid of this guy -->
-	<key>temporary man</key>
-	<dict>
-		<!-- identity -->
-		<key>race</key> <string>human</string>
-		<!-- TODO: AI -->
-		<key>skills</key>
-		<array>
-			<string>dodge</string>
-			<string>filler monster skill</string>
-			<string>filler monster skill</string>
-			<string>filler monster skill</string>
-			<string>filler monster skill</string>
-		</array>
-		<!-- equipment -->
-		<key>weapon</key> <string>rusty sword</string>
-	</dict>
-	
 	<!-- real enemy types -->
 	
-	<!-- ruin feeder -->
+	<!-- ruin feeder runt -->
 	<!-- basic weak rat-ish enemy -->
-	<key>ruin feeder</key>
+	<key>ruin feeder runt</key>
 	<dict>
 		<!-- identity -->
-		<key>race</key> <string>ruin feeder</string>
+		<key>race</key> <string>ruin feeder runt</string>
 		<!-- TODO: AI -->
 		<key>skills</key>
 		<array>
@@ -76,6 +58,48 @@
 		</array>
 		<!-- equipment -->
 		<key>weapon</key> <string>teeth</string>
+	</dict>
+	
+	<!-- sentry -->
+	<!-- basic melee robot -->
+	<key>sentry</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>sentry</string>
+		<!-- TODO: AI -->
+		<key>skills</key>
+		<array>
+			<string>tough monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>weapon</key> <string>claw relic</string> <!-- AKA graspy robot hands -->
+	</dict>
+	
+	<!-- scuttler -->
+	<!-- basic ranged robot, with the slalom skill -->
+	<key>scuttler</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>scuttler</string>
+		<!-- TODO: AI -->
+		<!-- TODO: scuttlers should have some "don't use normal attack" flag -->
+		<key>skills</key>
+		<array>
+			<string>scuttler skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>pulse relic</string> <!-- AKA pulse rifle turret at point blank -->
+		</array>
 	</dict>
 </dict>
 </plist>

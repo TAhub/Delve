@@ -78,5 +78,7 @@
 
 #pragma mark: appearance
 @property BOOL gender;
+@property int coloration;
+@property int hairStyle;
 
 @end

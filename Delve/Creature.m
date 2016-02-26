@@ -83,8 +83,10 @@
 -(void)initializeMisc
 {
 	//appearance
-	self.gender = YES;
-	
+	self.gender = loadValueBool(@"Races", self.race, @"has gender") ? arc4random_uniform(2) == 0 : 0;
+	if (loadValueBool(@"Races", self.race, @"hair styles"))
+		self.hairStyle = arc4random_uniform(loadValueNumber(@"Races", self.race, @"hair styles").intValue);
+	self.coloration = arc4random_uniform(loadValueArray(@"Races", self.race, @"colorations").count);
 	
 	//base variables
 	self.health = self.maxHealth;
