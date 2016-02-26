@@ -29,5 +29,6 @@
 @property BOOL discovered;
 @property (strong, nonatomic) NSMutableSet *aoeTargeters;
 @property TargetLevel targetLevel;
+-(BOOL) validPlacementSpot;
 
 @end

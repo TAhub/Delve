@@ -180,6 +180,10 @@
 	//the width of the map
 	int columns = 6;
 	
+	//the chance to reject doors added to undiscovered rooms
+	//100 would mean it refuses to add doors to rooms that aren't discovered
+	int rejectUndiscoveredDoorsChance = 80;
+	
 	//this is how much a door's position can vary; set to 0 for evenly-placed doors, don't set over (roomSize / 2) or else Bad Things will happen
 	int maxDoorOffset = 1;
 	
@@ -256,37 +260,40 @@
 			int x = (int)arc4random_uniform(columns);
 			int y = (int)arc4random_uniform(rows);
 			GeneratorRoom *room = rooms[y][x];
-			int dir = (int)arc4random_uniform(4);
-			switch(dir)
+			if (room.accessable || arc4random_uniform(100) >= rejectUndiscoveredDoorsChance)
 			{
-				case 0:
-					if (x > 0 && room.leftDoor == GeneratorRoomExitWall)
-					{
-						room.leftDoor = GeneratorRoomExitDoor;
-						i += 1;
-					}
-					break;
-				case 1:
-					if (y > 0 && room.upDoor == GeneratorRoomExitWall)
-					{
-						room.upDoor = GeneratorRoomExitDoor;
-						i += 1;
-					}
-					break;
-				case 2:
-					if (x < columns - 1 && room.rightDoor == GeneratorRoomExitWall)
-					{
-						room.rightDoor = GeneratorRoomExitDoor;
-						i += 1;
-					}
-					break;
-				case 3:
-					if (y < rows - 1 && room.downDoor == GeneratorRoomExitWall)
-					{
-						room.downDoor = GeneratorRoomExitDoor;
-						i += 1;
-					}
-					break;
+				int dir = (int)arc4random_uniform(4);
+				switch(dir)
+				{
+					case 0:
+						if (x > 0 && room.leftDoor == GeneratorRoomExitWall)
+						{
+							room.leftDoor = GeneratorRoomExitDoor;
+							i += 1;
+						}
+						break;
+					case 1:
+						if (y > 0 && room.upDoor == GeneratorRoomExitWall)
+						{
+							room.upDoor = GeneratorRoomExitDoor;
+							i += 1;
+						}
+						break;
+					case 2:
+						if (x < columns - 1 && room.rightDoor == GeneratorRoomExitWall)
+						{
+							room.rightDoor = GeneratorRoomExitDoor;
+							i += 1;
+						}
+						break;
+					case 3:
+						if (y < rows - 1 && room.downDoor == GeneratorRoomExitWall)
+						{
+							room.downDoor = GeneratorRoomExitDoor;
+							i += 1;
+						}
+						break;
+				}
 			}
 		}
 		
@@ -488,7 +495,7 @@
 	//TODO: locked-only rooms should never be breached by caves, paint those rooms (and their walls!) out of the cellular mask
 	
 	//TODO: identify rooms that were at least 50% uncovered by the cellular cave generation and mixing
-	//those rooms should be marked as accessable but keep the -1 layer
+	//those rooms should be marked as accessable but keep the -1 layer, so they can have stuff placed in them
  
 	NSLog(@"Finding treasure and encounter locations");
 	
@@ -570,11 +577,37 @@
 	NSLog(@"Placing treasures");
 	
 	//place treasures
-	//these always go in the center of their respecive rooms
+	//these try to go in the center of their respecive rooms
 	for (NSArray *row in rooms)
 		for (GeneratorRoom *room in row)
 		{
-			//TODO: place a treasure there, I guess
+			//TODO: pick the treasure type, and locked-edness
+			//in general, health, ammo, etc should be on its own
+			//shit equipment should be in unlocked chests
+			//good equipment should be in locked chests
+			
+			//if at all possible, go to the center of the room
+			int xC = room.x * (roomSize + 1) + 1 + (roomSize / 2);
+			int yC = room.y * (roomSize + 1) + 1 + (roomSize / 2);
+			Tile *centerTile = self.tiles[yC][xC];
+			if (centerTile.validPlacementSpot)
+			{
+				//TODO: place a treasure there
+			}
+			else
+			{
+				//find a random spot in the tile to place a treasure
+				for (int i = 0; i < GENERATOR_MAX_RANDOM_TREASURE_TRIES; i++)
+				{
+					int xR = room.x * (roomSize + 1) + 1 + arc4random_uniform(roomSize);
+					int yR = room.y * (roomSize + 1) + 1 + arc4random_uniform(roomSize);
+					Tile *randomTile = self.tiles[yR][xR];
+					if (randomTile.validPlacementSpot)
+					{
+						//TODO: place a treasure there
+					}
+				}
+			}
 		}
 	
 	
@@ -599,7 +632,7 @@
 						int xA = room.x * (roomSize + 1) + 1 + x;
 						int yA = room.y * (roomSize + 1) + 1 + y;
 						Tile *tile = self.tiles[yA][xA];
-						if (!tile.solid && tile.inhabitant == nil) //TODO: it should also be a tile with no items
+						if (tile.validPlacementSpot)
 							[openSpaces addObject:@(xA+yA*self.width)];
 					}
 				[self shuffleArray:openSpaces];

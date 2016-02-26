@@ -24,6 +24,11 @@
 	return self;
 }
 
+-(BOOL) validPlacementSpot
+{
+	return self.inhabitant == nil && !self.solid; //TODO: the tile should also have no items
+}
+
 -(BOOL)solid
 {
 	return loadValueBool(@"Tiles", self.type, @"solid");
