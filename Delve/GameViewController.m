@@ -409,6 +409,13 @@
 	if (self.map.canPickUp)
 	{
 		NSLog(@"PICK UP");
+		
+		//TODO: when pressing pick up
+		//if it's ammo or items it just picks up instantly
+		//otherwise it takes you to an equipment menu
+		//where you can see what is there, what you currenly have in that slot, and compare their stats
+		//if the chest is locked, instead you just see "locked chest" and have to unlock it to see what's inside
+		//the equipment menu should slide over the map screen, not the UI screen
 	}
 }
 

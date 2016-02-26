@@ -76,7 +76,7 @@
 			<string>filler monster skill</string>
 		</array>
 		<!-- equipment -->
-		<key>weapon</key> <string>claw relic</string> <!-- AKA graspy robot hands -->
+		<key>weapon</key> <string>basic relic</string> <!-- graspy robot hands -->
 	</dict>
 	
 	<!-- scuttler -->
@@ -98,7 +98,7 @@
 		<!-- equipment -->
 		<key>implements</key>
 		<array>
-			<string>pulse relic</string> <!-- AKA pulse rifle turret at point blank -->
+			<string>basic relic</string> <!-- pulse rifle turret at point blank -->
 		</array>
 	</dict>
 </dict>

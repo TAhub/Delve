@@ -40,8 +40,6 @@
 	<!-- a level 2 is 1.0 of a level passive -->
 	<!-- etc -->
 	<!-- each equipment category can have an adjustment, like +0.5 level or whatever -->
-	<!-- TODO: once the armor categories are more solidified, adjust player race stats based on that -->
-	<!-- TODO: actually, maybe just give races more equipment slots, maybe low-effort invisible ones like jewelry -->
 	
 	
 	<!-- helmets -->

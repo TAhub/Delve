@@ -210,8 +210,14 @@
 	//how long the "real" path to the end should be
 	int desiredPathLength = 7;
 	
+	//how many treasures hsould be equipment
+	int equipmentTreasures = 5;
+	
 	//how often there are "dead" rooms (no treaure, no encounter); should probably be an odd number
 	int deadRoomFrequency = 5;
+	
+	//how many equipment items you are guaranteed to get in the starting room
+	int startEquipmentTreasures = 4;
 	
 	//the ratio of treasures to encounters; set high for lots of treasure, low for lots of encounters
 	//keep it within 0.85-1.15 or so for balance and performance reasons
@@ -260,8 +266,17 @@
 		NSLog(@"--Making connections");
 		
 		//add some random connections
-		for (int i = 0; i < doorsAtATime; )
+		int i = 0;
+		for (int j = 0; i < doorsAtATime; j++)
 		{
+			if (j == GENERATOR_MAX_CONNECTION_TRIES)
+			{
+				//TODO: restarting is okay right now because I don't define any permanent variables before this point (tiles, etc)
+				//in the future though, I might add some
+				NSLog(@"--ERROR: hit max connection tries! Restarting");
+				return false;
+			}
+			
 			int x = (int)arc4random_uniform(columns);
 			int y = (int)arc4random_uniform(rows);
 			GeneratorRoom *room = rooms[y][x];
@@ -575,6 +590,8 @@
 			numEncounters += 1;
 		}
 	}
+
+	//TODO: turn a number of treasures into equipment treasures, equal to equipmentTreasures
 	
 	//the exit always has an encounter
 	((GeneratorRoom *)rooms[columns/2][0]).encounter = true;
@@ -586,22 +603,12 @@
 	for (NSArray *row in rooms)
 		for (GeneratorRoom *room in row)
 		{
-			//TODO: pick the treasure type, and locked-edness
-			//in general, health, ammo, etc should be on its own
-			//shit equipment should be in unlocked chests
-			//good equipment should be in locked chests
-			TreasureType treasureType = TreasureTypeLocked;
-			NSString *treasure = @"gold tiara";
-			
 			//if at all possible, go to the center of the room
 			int xC = room.x * (roomSize + 1) + 1 + (roomSize / 2);
 			int yC = room.y * (roomSize + 1) + 1 + (roomSize / 2);
 			Tile *centerTile = self.tiles[yC][xC];
 			if (centerTile.validPlacementSpot)
-			{
-				centerTile.treasureType = treasureType;
-				centerTile.treasure = treasure;
-			}
+				[self placeTreasureOn:centerTile equipmentTreasure:room.equipmentTreasure isUnlocked:NO];
 			else
 			{
 				//find a random spot in the tile to place a treasure
@@ -612,14 +619,26 @@
 					Tile *randomTile = self.tiles[yR][xR];
 					if (randomTile.validPlacementSpot)
 					{
-						randomTile.treasureType = treasureType;
-						randomTile.treasure = treasure;
+						[self placeTreasureOn:randomTile equipmentTreasure:room.equipmentTreasure isUnlocked:NO];
 						break;
 					}
 				}
 			}
 		}
 	
+	//place unlocked equipment treasures in the start
+	for (int i = 0; i < startEquipmentTreasures-1;)
+	{
+		GeneratorRoom *startRoom = rooms[rows-1][columns/2];
+		int xR = startRoom.x * (roomSize + 1) + 1 + arc4random_uniform(roomSize);
+		int yR = startRoom.y * (roomSize + 1) + 1 + arc4random_uniform(roomSize);
+		Tile *randomTile = self.tiles[yR][xR];
+		if (randomTile.validPlacementSpot)
+		{
+			[self placeTreasureOn:randomTile equipmentTreasure:true isUnlocked:true];
+			i++;
+		}
+	}
 	
 	NSLog(@"Placing encounters");
 	
@@ -666,6 +685,31 @@
 	//I probably shouldn't though
 	
 	return true;
+}
+
+-(void)placeTreasureOn:(Tile *)tile equipmentTreasure:(BOOL)equipment isUnlocked:(BOOL)unlocked
+{
+	if (equipment)
+	{
+		if (unlocked)
+			tile.treasureType = TreasureTypeChest;
+		else
+			tile.treasureType = TreasureTypeLocked;
+		
+		//TODO: pick if it's an implement or an armor
+		
+		//TODO: pick from leveled lists as appropriate
+		//IE for a level 1 implement, check the list "implements 1"
+		//implements go from 1 to 3
+		//armors go from 1 to 4
+		tile.treasure = @"fundamentals";
+	}
+	else
+	{
+		tile.treasureType = TreasureTypeFree;
+		tile.treasure = @"crystal";
+	}
+	
 }
 
 -(void)shuffleArray:(NSMutableArray *)array

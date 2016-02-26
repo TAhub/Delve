@@ -42,8 +42,8 @@
 -(BOOL) dead;
 
 #pragma mark: equipment
-@property (strong, nonatomic) NSArray *armors; //an array of NSStrings
-@property (strong, nonatomic) NSArray *implements; //an array of NSStrings
+@property (strong, nonatomic) NSMutableArray *armors; //an array of NSStrings
+@property (strong, nonatomic) NSMutableArray *implements; //an array of NSStrings
 @property (strong, nonatomic) NSString *weapon;
 
 #pragma mark: status effect flags

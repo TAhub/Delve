@@ -27,13 +27,17 @@
 		_skillTrees = loadValueArray(@"EnemyTypes", type, @"skills");
 		_skillTreeLevels = [NSArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
 		if (loadValueBool(@"EnemyTypes", type, @"implements"))
-			_implements = loadValueArray(@"EnemyTypes", type, @"implements");
+		{
+			_implements = [NSMutableArray arrayWithArray:loadValueArray(@"EnemyTypes", type, @"implements")];
+			while (_implements.count < _skillTrees.count)
+				[_implements addObject:@""];
+		}
 		else
-			_implements = [NSArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
+			_implements = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
 		if (loadValueBool(@"EnemyTypes", type, @"armors"))
-			_armors = loadValueArray(@"EnemyTypes", type, @"armors");
+			_armors = [NSMutableArray arrayWithArray:loadValueArray(@"EnemyTypes", type, @"armors")];
 		else
-			_armors = [NSArray new];
+			_armors = [NSMutableArray new];
 		_weapon = loadValueString(@"EnemyTypes", type, @"weapon");
 		_good = NO;
 		
@@ -54,18 +58,35 @@
 {
 	if (self = [super init])
 	{
-		//TODO: these are all just temporary variables
+		//TODO: temporarily set the race and armor list
 //		_race = @"human";
 //		_armors = [NSArray arrayWithObjects:@"chestplate", @"bandit helmet", @"steel-toed boots", nil];
 		_race = @"eoling";
-		_armors = [NSArray arrayWithObjects:@"eoling robe", @"goggles", @"white tail banner", nil];
+		_armors = [NSMutableArray arrayWithObjects:@"eoling robe", @"goggles", @"white tail banner", nil];
 //		_race = @"highborn";
 //		_armors = [NSArray arrayWithObjects:@"chestplate", @"gold tiara", @"", nil];
 		
 		_skillTrees = [NSArray arrayWithObjects:@"shield", @"wisdom", @"hammer", @"spear", @"conditioning", nil];
 		_skillTreeLevels = [NSArray arrayWithObjects:@(4), @(4), @(4), @(4), @(4), nil];
-		_implements = [NSArray arrayWithObjects:@"rusty shield", @"", @"rusty hammer", @"wooden spear", @"", nil];
-		_weapon = @"rusty sword";
+		_implements = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
+		_weapon = loadValueString(@"Races", _race, @"race start weapon");
+		
+		//load starting implements for your skill trees
+		NSArray *implements = loadArrayEntry(@"Lists", @"starting implements");
+		for (int i = 0; i < _implements.count; i++)
+		{
+			NSString *skillTree = _skillTrees[i];
+			if (loadValueBool(@"SkillTrees", skillTree, @"implement"))
+			{
+				NSString *implementType = loadValueString(@"SkillTrees", skillTree, @"implement");
+				for (NSString *implement in implements)
+					if ([loadValueString(@"Implements", implement, @"type") isEqualToString:implementType])
+					{
+						_implements[i] = implement;
+						break;
+					}
+			}
+		}
 		
 		_good = YES;
 		
@@ -165,7 +186,8 @@
 		if (!targetTile.visible)
 			return false;
 		
-		if (openSpots || loadValueBool(@"Attacks", attack, @"teleport"))
+		if (openSpots || //if you're looking for in-range spots
+			(loadValueBool(@"Attacks", attack, @"teleport") && !loadValueBool(@"Attacks", attack, @"power"))) //damaging teleports are used normally
 		{
 			//it's ok as long as there isn't an ally there
 			return (targetTile.inhabitant == nil || targetTile.inhabitant.good != self.good);
@@ -301,7 +323,8 @@
 	NSString *element = @"no element";
 	if (loadValueBool(@"Attacks", self.storedAttack, @"element"))
 		element = loadValueString(@"Attacks", self.storedAttack, @"element");
-	//TODO: element override from implement (ie flaming sword does burn, whatever)
+	if (implement.length > 0 && loadValueBool(@"Implements", implement, @"element"))
+		element = loadValueString(@"Implements", implement, @"element");
 	
 	//use the map's delegate stuff to do an attack anim
 	__weak typeof(self) weakSelf = self;
@@ -640,9 +663,8 @@
 	if (type.length == 0)
 		return 0;
 	
-	
-	//TODO: find the implement bonus with name "name" from implement of type "type"
-	return 0;
+	//find the implement bonus with name "name" from implement of type "type"
+	return loadValueNumber(@"Implements", type, name);
 }
 
 -(int)bonusFromArmor:(NSString *)type withName:(NSString *)name

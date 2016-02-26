@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Lists.plist
+   Delve
+
+   Created by Theodore Abshire on 2/26/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+	<!-- starting lists -->
+	<key>starting implements</key>
+	<array>
+		<string>mallet</string>
+		<string>wooden spear</string>
+		<string>hunting bow</string>
+		<string>depleted orb</string>
+		<string>holy bolt</string>
+		<string>innocence</string>
+		<string>kitchen knife</string>
+		<string>fundamentals</string>
+	</array>
+	
+	<!-- item drop leveled lists -->
+	<key>implements 1</key>
+	<array>
+		<!-- common stuff -->
+		<string>light hammer</string>
+		<string>iron spear</string>
+		<string>shortbow</string>
+		<string>glimmering orb</string>
+		<string>holy thunder</string>
+		<string>birthright</string>
+		<string>ritual knife</string>
+		<string>ritual compendium</string>
+		<string>shortsword</string>
+		<string>mace</string>
+		<!-- common stuff again -->
+		<string>light hammer</string>
+		<string>iron spear</string>
+		<string>shortbow</string>
+		<string>glimmering orb</string>
+		<string>holy thunder</string>
+		<string>birthright</string>
+		<string>ritual knife</string>
+		<string>ritual compendium</string>
+		<string>shortsword</string>
+		<string>mace</string>
+		<!-- rare stuff -->
+		<string>torch</string>
+	</array>
+	<key>implements 2</key>
+	<array>
+		<!-- common stuff -->
+		<string>warhammer</string>
+		<string>pike</string>
+		<string>longbow</string>
+		<string>glowing orb</string>
+		<string>white lightning</string>
+		<string>faith</string>
+		<string>athame</string>
+		<string>ether dynamics</string>
+		<string>longsword</string>
+		<string>flail</string>
+		<!-- common stuff again -->
+		<string>warhammer</string>
+		<string>pike</string>
+		<string>longbow</string>
+		<string>glowing orb</string>
+		<string>white lightning</string>
+		<string>faith</string>
+		<string>athame</string>
+		<string>ether dynamics</string>
+		<string>longsword</string>
+		<string>flail</string>
+		<!-- rare stuff -->
+		<string>holy baton</string>
+	</array>
+	<key>implements 3</key>
+	<array>
+		<!-- common stuff -->
+		<string>greathammer</string>
+		<string>partisan</string>
+		<string>composite bow</string>
+		<string>radiant orb</string>
+		<string>pearl arsenal</string>
+		<string>conviction</string>
+		<string>relic knife</string>
+		<string>forbidden tome</string>
+		<string>master blade</string>
+		<string>flanged mace</string>
+		<!-- common stuff again -->
+		<string>greathammer</string>
+		<string>partisan</string>
+		<string>composite bow</string>
+		<string>radiant orb</string>
+		<string>pearl arsenal</string>
+		<string>conviction</string>
+		<string>relic knife</string>
+		<string>forbidden tome</string>
+		<string>master blade</string>
+		<string>flanged mace</string>
+		<!-- rare stuff -->
+		<string>burning blade</string>
+		<string>relic edge</string>
+	</array>
+</dict>
+</plist>

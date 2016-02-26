@@ -33,7 +33,7 @@
 	<!-- monster-only attacks -->
 	<key>slalom</key>
 	<dict>
-		<key>power</key> <integer>25</integer>
+		<key>power</key> <integer>20</integer>
 		<key>element</key> <string>cut</string>
 		<key>range</key> <integer>1</integer>
 		<key>cooldown</key> <integer>4</integer>
@@ -334,7 +334,7 @@
 	</dict>
 	<key>dazzle</key>
 	<dict>
-		<key>power</key> <integer>5</integer>
+		<key>power</key> <integer>10</integer>
 		<key>element</key> <string>burn</string>
 		<key>range</key> <integer>4</integer>
 		<key>cooldown</key> <integer>11</integer>

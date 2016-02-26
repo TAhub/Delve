@@ -24,6 +24,7 @@
 @property BOOL accessable;
 @property BOOL encounter;
 @property BOOL treasure;
+@property BOOL equipmentTreasure;
 
 @property (nonatomic) GeneratorRoomExit leftDoor;
 @property (nonatomic) GeneratorRoomExit upDoor;

@@ -41,6 +41,7 @@
 			<string>jewelry</string>
 			<string>shoes</string>
 		</array>
+		<key>race start weapon</key> <string>wooden club</string>
 		<!-- appearance -->
 		<key>sprite</key> <string>template</string>
 		<key>colorations</key>
@@ -92,6 +93,7 @@
 			<string>helmet</string>
 			<string>shoes</string>
 		</array>
+		<key>race start weapon</key> <string>rusty blade</string>
 		<!-- appearance -->
 		<key>sprite</key> <string>human</string>
 		<key>colorations</key> <!-- coloration: tan skin, brown or dirty blonde hair -->
@@ -140,6 +142,7 @@
 			<string>headgear</string>
 			<string>tail ornament</string>
 		</array>
+		<key>race start weapon</key> <string>wooden club</string>
 		<!-- appearance -->
 		<key>sprite</key> <string>eoling</string>
 		<key>colorations</key> <!-- coloration deep pale brown skin and white hair, or pale white skin and near-jet-black hair -->
@@ -190,6 +193,7 @@
 			<string>headgear</string>
 			<string>jewelry</string>
 		</array>
+		<key>race start weapon</key> <string>wooden club</string>
 		<!-- appearance -->
 		<key>sprite</key> <string>highborn</string>
 		<key>colorations</key> <!-- coloration: brown skin and green hair, or olive skin and purplish hair -->
@@ -241,6 +245,7 @@
 			<string>tail ornament</string>
 			<string>shoes</string>
 		</array>
+		<key>race start weapon</key> <string>rusty blade</string>
 		<!-- appearance -->
 		<key>sprite</key> <string>raider</string>
 		<key>colorations</key> <!-- coloration: grey skin, orange hair, no exceptions -->

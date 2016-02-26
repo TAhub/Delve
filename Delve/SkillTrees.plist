@@ -166,11 +166,11 @@
 			</dict>
 			<dict> <!-- rank 2 -->
 				<key>damage bonus</key> <integer>10</integer>
-				<key>health</key> <integer>15</integer>
+				<key>attack</key> <string>slalom</string>
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>damage bonus</key> <integer>10</integer>
-				<key>attack</key> <string>slalom</string>
+				<key>health</key> <integer>15</integer>
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>dodges</key> <integer>1</integer>
@@ -554,11 +554,10 @@
 	<!-- wisdom (pattern A) -->
 	<!-- a balanced skill tree that has utility spells and balanced bonuses -->
 	<!-- raises everything, a little bit -->
-	<!-- implement: tome -->
+	<!-- implement: none -->
 	<key>wisdom</key>
 	<dict>
 		<key>type</key> <string>ritual</string>
-		<key>implement</key> <string>tome</string>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -583,11 +582,11 @@
 	<!-- might (pattern B) -->
 	<!-- the dedicated nuker tree, with one spell for each element -->
 	<!-- raises damage -->
-	<!-- implement: rod -->
+	<!-- implement: tome -->
 	<key>might</key>
 	<dict>
 		<key>type</key> <string>ritual</string>
-		<key>implement</key> <string>rod</string>
+		<key>implement</key> <string>tome</string>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
