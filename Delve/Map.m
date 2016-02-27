@@ -100,14 +100,10 @@
 		}
 	
 	//project sight-lines from the player
-	
 	BOOL visibleChanged = false;
-	
-	//TODO: make this into a constant I guess
-	int sightLineDensity = 80;
-	for (int i = 0; i < sightLineDensity; i++)
+	for (int i = 0; i < GAMEPLAY_SIGHT_LINE_DENSITY; i++)
 	{
-		float angle = M_PI * 2 * i / sightLineDensity;
+		float angle = M_PI * 2 * i / GAMEPLAY_SIGHT_LINE_DENSITY;
 		BOOL hitWall = false;
 		for (int j = 0; j < MAX(GAMEPLAY_SCREEN_WIDTH, GAMEPLAY_SCREEN_HEIGHT) * 3; j++)
 		{

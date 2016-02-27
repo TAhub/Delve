@@ -18,6 +18,7 @@
 #define GAMEPLAY_TILE_SIZE 40
 #define GAMEPLAY_MOVE_TIME 0.15f
 #define GAMEPLAY_TARGET_RANGE 5
+#define GAMEPLAY_SIGHT_LINE_DENSITY 80
 
 #pragma mark map generator constants
 
