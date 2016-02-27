@@ -95,7 +95,22 @@
 		<key>female y add</key> <integer>2</integer>
 	</dict>
 	
-	<!-- TODO: level 3 light armor helmet -->
+	<!-- soldier hat -->
+	<!-- level 3 light armor helmet -->
+	<key>soldier hat</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>helmet</string>
+		<!-- stats -->
+		<key>health</key> <integer>10</integer>
+		<key>smash resistance</key> <integer>2</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>soldier_hat</string>
+		<key>color</key> <string>blue fabric</string>
+		<key>sprite gender</key> <true/>
+		<key>sprite over hair</key> <true/>
+		<key>female y add</key> <integer>2</integer>
+	</dict>
 	
 	<!-- hero helmet -->
 	<!-- level 4 light armor helmet -->
@@ -129,9 +144,38 @@
 		<key>female y add</key> <integer>2</integer>
 	</dict>
 	
-	<!-- TODO: level 2 heavy armor helmet -->
+	<!-- riveted helmet -->
+	<!-- level 2 heavy armor helmet -->
+	<key>riveted helmet</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>helmet</string>
+		<!-- stats -->
+		<key>health</key> <integer>10</integer>
+		<key>cut resistance</key> <integer>1</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>riveted_helmet</string>
+		<key>color</key> <string>steel</string>
+		<key>sprite gender</key> <true/>
+		<key>sprite over hair</key> <true/>
+		<key>female y add</key> <integer>2</integer>
+	</dict>
 	
-	<!-- TODO: level 3 heavy armor helmet -->
+	<!-- winged helmet -->
+	<!-- level 3 heavy armor helmet -->
+	<key>winged helmet</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>helmet</string>
+		<!-- stats -->
+		<key>cut resistance</key> <integer>3</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>winged_helmet</string>
+		<key>color</key> <string>steel</string>
+		<key>sprite gender</key> <true/>
+		<key>sprite over hair</key> <true/>
+		<key>female y add</key> <integer>2</integer>
+	</dict>
 	
 	<!-- knight helmet -->
 	<!-- level 4 heavy armor helmet -->
@@ -154,6 +198,20 @@
 	<!-- all body armor gets a 0.5 advantage -->
 	<!-- they give resistances -->
 	
+	<!-- rusty armor -->
+	<!-- level 1 heavy armor body armor -->
+	<key>rusty armor</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>body armor</string>
+		<!-- stats -->
+		<key>cut resistance</key> <integer>2</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>old_armor</string>
+		<key>color</key> <string>rusty</string>
+		<key>sprite gender</key> <true/>
+	</dict>
+	
 	<!-- chestplate -->
 	<!-- level 2 heavy armor body armor -->
 	<key>chestplate</key>
@@ -169,10 +227,55 @@
 		<key>sprite gender</key> <true/>
 	</dict>
 	
+	<!-- hero armor -->
+	<!-- level 3 heavy armor -->
+	<key>hero armor</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>body armor</string>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>10</integer>
+		<key>cut resistance</key> <integer>3</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>old_armor</string>
+		<key>color</key> <string>steel</string>
+		<key>sprite gender</key> <true/>
+	</dict>
+	
+	<!-- knight armor -->
+	<!-- level 4 heavy armor -->
+	<key>knight armor</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>body armor</string>
+		<!-- stats -->
+		<key>health</key> <integer>10</integer>
+		<key>cut resistance</key> <integer>4</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>knight_armor</string>
+		<key>color</key> <string>steel</string>
+		<key>sprite gender</key> <true/>
+	</dict>
+	
 	
 	<!-- headgear -->
 	<!-- all headgear are at par -->
 	<!-- they mostly give misc bonuses -->
+	
+	<!-- eyeglasses -->
+	<!-- level 1 goggles -->
+	<key>eyeglasses</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>headgear</string>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>10</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>glasses</string>
+		<key>color</key> <string>gold</string>
+		<key>sprite over hair</key> <true/>
+		<key>female y add</key> <integer>2</integer>
+	</dict>
 	
 	<!-- goggles -->
 	<!-- level 2 goggles -->
@@ -185,6 +288,82 @@
 		<!-- appearance -->
 		<key>sprite</key> <string>goggles</string>
 		<key>color</key> <string>iron</string>
+		<key>sprite over hair</key> <true/>
+		<key>female y add</key> <integer>2</integer>
+	</dict>
+	
+	<!-- fine goggles -->
+	<!-- level 3 goggles -->
+	<key>fine goggles</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>headgear</string>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>30</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>goggles</string>
+		<key>color</key> <string>steel</string>
+		<key>sprite over hair</key> <true/>
+		<key>female y add</key> <integer>2</integer>
+	</dict>
+	
+	<!-- relic goggles -->
+	<!-- level 4 goggles -->
+	<key>relic goggles</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>headgear</string>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>40</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>goggles</string>
+		<key>color</key> <string>relic</string>
+		<key>sprite over hair</key> <true/>
+		<key>female y add</key> <integer>2</integer>
+	</dict>
+	
+	<!-- headband -->
+	<!-- level 1 head jewelry -->
+	<key>headband</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>headgear</string>
+		<!-- stats -->
+		<key>smash resistance</key> <integer>1</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>headband</string>
+		<key>color</key> <string>red fabric</string>
+		<key>sprite over hair</key> <true/>
+		<key>female y add</key> <integer>2</integer>
+	</dict>
+	
+	<!-- tiara -->
+	<!-- level 2 head jewelry -->
+	<key>tiara</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>headgear</string>
+		<!-- stats -->
+		<key>shock resistance</key> <integer>1</integer>
+		<key>burn resistance</key> <integer>1</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>tiara</string>
+		<key>color</key> <string>iron</string>
+		<key>sprite over hair</key> <true/>
+		<key>female y add</key> <integer>2</integer>
+	</dict>
+	
+	<!-- silk headband -->
+	<!-- level 3 head jewelry -->
+	<key>silk headband</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>headgear</string>
+		<!-- stats -->
+		<key>smash resistance</key> <integer>3</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>headband</string>
+		<key>color</key> <string>blue fabric</string>
 		<key>sprite over hair</key> <true/>
 		<key>female y add</key> <integer>2</integer>
 	</dict>
@@ -210,6 +389,19 @@
 	<!-- all small clothes are at par -->
 	<!-- they give smash resistance or misc bonuses -->
 	
+	<!-- urchin rags -->
+	<!-- level 0 small clothes -->
+	<key>urchin rags</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>small clothes</string>
+		<!-- stats -->
+		<!-- appearance -->
+		<key>sprite</key> <string>urchin_rags</string>
+		<key>color</key> <string>grey fabric</string>
+		<key>sprite gender</key> <true/>
+	</dict>
+	
 	<!-- eoling robe -->
 	<!-- level 1 small clothes -->
 	<key>eoling robe</key>
@@ -220,7 +412,53 @@
 		<key>smash resistance</key> <integer>1</integer>
 		<!-- appearance -->
 		<key>sprite</key> <string>eoling_robe</string>
-		<key>color</key> <string>white fabric</string>
+		<key>color</key> <string>grey fabric</string>
+		<key>sprite gender</key> <true/>
+	</dict>
+	
+	<!-- eoling mantle -->
+	<!-- level 2 small clothes -->
+	<key>eoling mantle</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>small clothes</string>
+		<!-- stats -->
+		<key>health</key> <integer>10</integer>
+		<key>smash resistance</key> <integer>1</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>eoling_mantle</string>
+		<key>color</key> <string>steel</string>
+		<key>sprite gender</key> <true/>
+	</dict>
+	
+	<!-- temple dancer outfit -->
+	<!-- level 3 small clothes -->
+	<key>temple dancer outfit</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>small clothes</string>
+		<!-- stats -->
+		<key>health</key> <integer>10</integer>
+		<key>dodges</key> <integer>1</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>temple_dancer_outfit</string>
+		<key>color</key> <string>grey fabric</string>
+		<key>sprite gender</key> <true/>
+	</dict>
+	
+	<!-- eoling armor -->
+	<!-- level 4 small clothes -->
+	<key>eoling armor</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>small clothes</string>
+		<!-- stats -->
+		<key>health</key> <integer>20</integer>
+		<key>smash resistance</key> <integer>1</integer>
+		<key>cut resistance</key> <integer>1</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>eoling_armor</string>
+		<key>color</key> <string>steel</string>
 		<key>sprite gender</key> <true/>
 	</dict>
 	
@@ -241,6 +479,42 @@
 		<!-- appearance -->
 	</dict>
 	
+	<!-- plain necklace -->
+	<!-- level 2 defensive jewelry -->
+	<key>plain necklace</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>jewelry</string>
+		<!-- stats -->
+		<key>shock resistance</key> <integer>1</integer>
+		<key>burn resistance</key> <integer>1</integer>
+		<!-- appearance -->
+	</dict>
+	
+	<!-- jeweled ring -->
+	<!-- level 3 defensive jewelry -->
+	<key>jeweled ring</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>jewelry</string>
+		<!-- stats -->
+		<key>smash resistance</key> <integer>1</integer>
+		<key>dodges</key> <integer>1</integer>
+		<!-- appearance -->
+	</dict>
+	
+	<!-- gem necklace -->
+	<!-- level 4 defensive jewelry -->
+	<key>gem necklace</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>jewelry</string>
+		<!-- stats -->
+		<key>shock resistance</key> <integer>2</integer>
+		<key>burn resistance</key> <integer>2</integer>
+		<!-- appearance -->
+	</dict>
+	
 	<!-- rough ring -->
 	<!-- level 1 offensive jewelry -->
 	<key>rough ring</key>
@@ -249,6 +523,39 @@
 		<key>slot</key> <string>jewelry</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>10</integer>
+		<!-- appearance -->
+	</dict>
+	
+	<!-- silver bangle -->
+	<!-- level 2 offensive jewelry -->
+	<key>silver bangle</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>jewelry</string>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>20</integer>
+		<!-- appearance -->
+	</dict>
+	
+	<!-- skull ring -->
+	<!-- level 3 offensive jewelry -->
+	<key>skull ring</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>jewelry</string>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>30</integer>
+		<!-- appearance -->
+	</dict>
+	
+	<!-- gold bangle -->
+	<!-- level 4 offensive jewelry -->
+	<key>gold bangle</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>jewelry</string>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>40</integer>
 		<!-- appearance -->
 	</dict>
 	
@@ -271,6 +578,50 @@
 		<key>sprite over hair</key> <true/>
 	</dict>
 	
+	<!-- steel tail ring -->
+	<!-- level 2 tail ornament -->
+	<key>steel tail ring</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>tail ornament</string>
+		<!-- stats -->
+		<key>metabolism</key> <integer>45</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>tail_ring</string>
+		<key>color</key> <string>steel</string>
+		<key>sprite over hair</key> <true/>
+	</dict>
+	
+	<!-- gold tail ring -->
+	<!-- level 3 tail ornament -->
+	<key>gold tail ring</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>tail ornament</string>
+		<!-- stats -->
+		<key>health</key> <integer>10</integer>
+		<key>metabolism</key> <integer>45</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>tail_ring</string>
+		<key>color</key> <string>gold</string>
+		<key>sprite over hair</key> <true/>
+	</dict>
+	
+	<!-- relic tail ring -->
+	<!-- level 4 tail ornament -->
+	<key>relic tail ring</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>tail ornament</string>
+		<!-- stats -->
+		<key>health</key> <integer>15</integer>
+		<key>metabolism</key> <integer>50</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>tail_ring</string>
+		<key>color</key> <string>relic</string>
+		<key>sprite over hair</key> <true/>
+	</dict>
+	
 	<!-- white tail banner -->
 	<!-- level 1 tail banner -->
 	<key>white tail banner</key>
@@ -285,10 +636,81 @@
 		<key>sprite over hair</key> <true/>
 	</dict>
 	
+	<!-- red tail banner -->
+	<!-- level 2 tail banner -->
+	<key>red tail banner</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>tail ornament</string>
+		<!-- stats -->
+		<key>dodges</key> <integer>1</integer>
+		<key>smash resistance</key> <integer>1</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>tail_banner</string>
+		<key>color</key> <string>red fabric</string>
+		<key>sprite over hair</key> <true/>
+	</dict>
+	
+	<!-- blue tail banner -->
+	<!-- level 3 tail banner -->
+	<key>blue tail banner</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>tail ornament</string>
+		<!-- stats -->
+		<key>dodges</key> <integer>2</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>tail_banner</string>
+		<key>color</key> <string>blue fabric</string>
+		<key>sprite over hair</key> <true/>
+	</dict>
+	
+	<!-- gold tail banner -->
+	<!-- level 4 tail banner -->
+	<key>gold tail banner</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>tail ornament</string>
+		<!-- stats -->
+		<key>dodges</key> <integer>2</integer>
+		<key>smash resistance</key> <integer>1</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>tail_banner</string>
+		<key>color</key> <string>gold</string>
+		<key>sprite over hair</key> <true/>
+	</dict>
+	
 	
 	<!-- shoes -->
 	<!-- all shoes are at par -->
 	<!-- they give burn/shock resistance or misc bonuses -->
+	
+	<!-- boots -->
+	<!-- level 1 boots -->
+	<key>boots</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>shoes</string>
+		<!-- stats -->
+		<key>burn resistance</key> <integer>1</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>boots</string>
+		<key>color</key> <string>iron</string>
+	</dict>
+	
+	<!-- reinforced boots -->
+	<!-- level 2 boots -->
+	<key>reinforced boots</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>shoes</string>
+		<!-- stats -->
+		<key>health</key> <integer>12</integer>
+		<key>burn resistance</key> <integer>1</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>steel_toed_boots</string>
+		<key>color</key> <string>iron</string>
+	</dict>
 	
 	<!-- steel-toed boots -->
 	<!-- level 3 boots -->
@@ -304,6 +726,33 @@
 		<key>color</key> <string>steel</string>
 	</dict>
 	
+	<!-- greaves -->
+	<!-- level 4 boots -->
+	<key>greaves</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>shoes</string>
+		<!-- stats -->
+		<key>health</key> <integer>25</integer>
+		<key>burn resistance</key> <integer>2</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>greaves</string>
+		<key>color</key> <string>steel</string>
+	</dict>
+	
+	<!-- cheap shoes -->
+	<!-- level 1 shoes -->
+	<key>cheap shoes</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>shoes</string>
+		<!-- stats -->
+		<key>shock resistance</key> <integer>1</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>shoes</string>
+		<key>color</key> <string>grey skin</string>
+	</dict>
+	
 	<!-- leather shoes -->
 	<!-- level 2 shoes -->
 	<key>leather shoes</key>
@@ -316,6 +765,34 @@
 		<!-- appearance -->
 		<key>sprite</key> <string>shoes</string>
 		<key>color</key> <string>leather</string>
+	</dict>
+	
+	<!-- fine shoes --> 
+	<!-- level 3 shoes -->
+	<key>fine shoes</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>shoes</string>
+		<!-- stats -->
+		<key>health</key> <integer>12</integer>
+		<key>shock resistance</key> <integer>2</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>shoes</string>
+		<key>color</key> <string>red fabric</string>
+	</dict>
+		
+	<!-- fancy shoes -->
+	<!-- level 4 shoes -->
+	<key>fancy shoes</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>shoes</string>
+		<!-- stats -->
+		<key>health</key> <integer>25</integer>
+		<key>shock resistance</key> <integer>2</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>shoes</string>
+		<key>color</key> <string>blue fabric</string>
 	</dict>
 </dict>
 </plist>

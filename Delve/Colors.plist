@@ -10,12 +10,16 @@
 <plist version="1.0">
 <dict>
 	<!-- material colors -->
+	<key>relic</key> <string>DDDDBB</string>
 	<key>iron</key> <string>999999</string>
 	<key>steel</key> <string>AAAABB</string>
 	<key>rusty</key> <string>AA8888</string>
 	<key>gold</key> <string>FFDD00</string>
 	<key>leather</key> <string>997755</string>
 	<key>white fabric</key> <string>FFEEDD</string>
+	<key>blue fabric</key> <string>AA99FF</string>
+	<key>grey fabric</key> <string>887777</string>
+	<key>red fabric</key> <string>FFAA99</string>
 	<!-- body colors -->
 	<key>pale skin</key> <string>FFF0F0</string>
 	<key>tan skin</key> <string>DDCCBB</string>
@@ -23,6 +27,7 @@
 	<key>brown skin</key> <string>663300</string>
 	<key>olive skin</key> <string>556622</string>
 	<key>brown hair</key> <string>DDAA66</string>
+	<key>blonde hair</key> <string>F0DD99</string>
 	<key>black hair</key> <string>443322</string>
 	<key>green hair</key> <string>33AA33</string>
 	<key>purple hair</key> <string>9944AA</string>

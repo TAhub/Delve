@@ -62,7 +62,7 @@
 //		_race = @"human";
 //		_armors = [NSArray arrayWithObjects:@"chestplate", @"bandit helmet", @"steel-toed boots", nil];
 		_race = @"eoling";
-		_armors = [NSMutableArray arrayWithObjects:@"eoling robe", @"goggles", @"white tail banner", nil];
+		_armors = [NSMutableArray arrayWithObjects:@"temple dancer outfit", @"goggles", @"white tail banner", nil];
 //		_race = @"highborn";
 //		_armors = [NSArray arrayWithObjects:@"chestplate", @"gold tiara", @"", nil];
 		
@@ -664,7 +664,7 @@
 		return 0;
 	
 	//find the implement bonus with name "name" from implement of type "type"
-	return loadValueNumber(@"Implements", type, name);
+	return loadValueNumber(@"Implements", type, name).intValue;
 }
 
 -(int)bonusFromArmor:(NSString *)type withName:(NSString *)name

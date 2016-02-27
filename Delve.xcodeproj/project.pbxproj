@@ -10,10 +10,10 @@
 		E43674AA1C7FACF900B59105 /* Tiles.plist in Resources */ = {isa = PBXBuildFile; fileRef = E43674A91C7FACF900B59105 /* Tiles.plist */; };
 		E43674AC1C80FCAB00B59105 /* Implements.plist in Resources */ = {isa = PBXBuildFile; fileRef = E43674AB1C80FCAB00B59105 /* Implements.plist */; };
 		E43674AE1C80FFBA00B59105 /* Lists.plist in Resources */ = {isa = PBXBuildFile; fileRef = E43674AD1C80FFBA00B59105 /* Lists.plist */; };
+		E43674B01C813CC900B59105 /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E43674AF1C813CC900B59105 /* assets.xcassets */; };
 		E459C6881C7AB2E800422B0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C6871C7AB2E800422B0A /* main.m */; };
 		E459C68B1C7AB2E800422B0A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C68A1C7AB2E800422B0A /* AppDelegate.m */; };
 		E459C6911C7AB2E800422B0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E459C68F1C7AB2E800422B0A /* Main.storyboard */; };
-		E459C6931C7AB2E800422B0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E459C6921C7AB2E800422B0A /* Assets.xcassets */; };
 		E459C6961C7AB2E800422B0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E459C6941C7AB2E800422B0A /* LaunchScreen.storyboard */; };
 		E459C6A11C7AB34300422B0A /* Creature.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C6A01C7AB34300422B0A /* Creature.m */; };
 		E459C6A51C7ABB5200422B0A /* Races.plist in Resources */ = {isa = PBXBuildFile; fileRef = E459C6A41C7ABB5200422B0A /* Races.plist */; };
@@ -34,12 +34,12 @@
 		E43674A91C7FACF900B59105 /* Tiles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tiles.plist; sourceTree = "<group>"; };
 		E43674AB1C80FCAB00B59105 /* Implements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Implements.plist; sourceTree = "<group>"; };
 		E43674AD1C80FFBA00B59105 /* Lists.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Lists.plist; sourceTree = "<group>"; };
+		E43674AF1C813CC900B59105 /* assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = assets.xcassets; sourceTree = "<group>"; };
 		E459C6831C7AB2E800422B0A /* Delve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Delve.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E459C6871C7AB2E800422B0A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E459C6891C7AB2E800422B0A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E459C68A1C7AB2E800422B0A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E459C6901C7AB2E800422B0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E459C6921C7AB2E800422B0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E459C6951C7AB2E800422B0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E459C6971C7AB2E800422B0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E459C6A01C7AB34300422B0A /* Creature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Creature.m; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 				E459C6A41C7ABB5200422B0A /* Races.plist */,
 				E459C6A61C7ABB6400422B0A /* SkillTrees.plist */,
 				E459C6971C7AB2E800422B0A /* Info.plist */,
-				E459C6921C7AB2E800422B0A /* Assets.xcassets */,
+				E43674AF1C813CC900B59105 /* assets.xcassets */,
 				E459C6891C7AB2E800422B0A /* AppDelegate.h */,
 				E459C68A1C7AB2E800422B0A /* AppDelegate.m */,
 				E459C6871C7AB2E800422B0A /* main.m */,
@@ -219,7 +219,7 @@
 			files = (
 				E459C6BE1C7C20AD00422B0A /* Colors.plist in Resources */,
 				E459C6961C7AB2E800422B0A /* LaunchScreen.storyboard in Resources */,
-				E459C6931C7AB2E800422B0A /* Assets.xcassets in Resources */,
+				E43674B01C813CC900B59105 /* assets.xcassets in Resources */,
 				E459C6BC1C7C201D00422B0A /* Armors.plist in Resources */,
 				E459C6911C7AB2E800422B0A /* Main.storyboard in Resources */,
 				E459C6A71C7ABB6400422B0A /* SkillTrees.plist in Resources */,

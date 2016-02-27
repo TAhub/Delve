@@ -105,5 +105,78 @@
 		<string>burning blade</string>
 		<string>relic edge</string>
 	</array>
+	<key>armors 1</key>
+	<array>
+		<!-- common stuff -->
+		<string>rusty helmet</string>
+		<string>pot helmet</string>
+		<string>rusty armor</string>
+		<string>eyeglasses</string>
+		<string>headband</string>
+		<string>eoling robe</string>
+		<string>burnished ring</string>
+		<string>rough ring</string>
+		<string>iron tail ring</string>
+		<string>white tail banner</string>
+		<string>boots</string>
+		<string>cheap shoes</string>
+		<!-- common stuff again -->
+		<!-- rare stuff -->
+	</array>
+	<key>armors 2</key>
+	<array>
+		<!-- common stuff -->
+		<string>skullcap</string>
+		<string>riveted helmet</string>
+		<string>chestplate</string>
+		<string>goggles</string>
+		<string>tiara</string>
+		<string>eoling mantle</string>
+		<string>plain necklace</string>
+		<string>silver bangle</string>
+		<string>steel tail ring</string>
+		<string>red tail banner</string>
+		<string>reinforced boots</string>
+		<string>leather shoes</string>
+		<!-- common stuff again -->
+		<!-- rare stuff -->
+	</array>
+	<key>armors 3</key>
+	<array>
+		<!-- common stuff -->
+		<string>bandit helmet</string>
+		<string>soldier hat</string>
+		<string>winged helmet</string>
+		<string>hero armor</string>
+		<string>fine goggles</string>
+		<string>silk headband</string>
+		<string>temple dancer outfit</string>
+		<string>jeweled ring</string>
+		<string>skull ring</string>
+		<string>gold tail ring</string>
+		<string>blue tail banner</string>
+		<string>steel-toed boots</string>
+		<string>fine shoes</string>
+		<!-- common stuff again -->
+		<!-- rare stuff -->
+	</array>
+	<key>armors 4</key>
+	<array>
+		<!-- common stuff -->
+		<string>hero helmet</string>
+		<string>knight helmet</string>
+		<string>knight armor</string>
+		<string>relic goggles</string>
+		<string>gold tiara</string>
+		<string>eoling armor</string>
+		<string>gem necklace</string>
+		<string>gold bangle</string>
+		<string>relic tail ring</string>
+		<string>gold tail banner</string>
+		<string>greaves</string>
+		<string>fancy shoes</string>
+		<!-- common stuff again -->
+		<!-- rare stuff -->
+	</array>
 </dict>
 </plist>

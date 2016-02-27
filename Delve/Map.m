@@ -29,6 +29,8 @@
 		
 		//start right before the player's turn
 		_personOn = (int)self.creatures.count - 1;
+		
+		[self recalculateVisibility];
 	}
 	return self;
 }
@@ -210,7 +212,7 @@
 	//how long the "real" path to the end should be
 	int desiredPathLength = 7;
 	
-	//how many treasures hsould be equipment
+	//how many treasures should be equipment
 	int equipmentTreasures = 5;
 	
 	//how often there are "dead" rooms (no treaure, no encounter); should probably be an odd number

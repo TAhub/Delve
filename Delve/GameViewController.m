@@ -185,7 +185,6 @@
 {
 	[super viewWillAppear:animated];
 	
-	[self.map recalculateVisibility];
 	[self.map update];
 	
 	//make the creature views
@@ -201,6 +200,7 @@
 		
 		[self regenerateCreatureSprite:cr];
 	}
+	[self recalculateHidden];
 	
 	//set up UI panels
 	[self reloadPanels];
@@ -559,17 +559,22 @@
 	return self.map.height;
 }
 
-#pragma mark: map delegate
-
--(void)moveCreatureCompleteWithBlock:(void (^)(void))block
+-(void)recalculateHidden
 {
-	//recalculate who is hidden
 	for (int i = 0; i < self.creatureViews.count; i++)
 	{
 		Creature *cr = self.map.creatures[i];
 		UIView *view = self.creatureViews[i];
 		view.hidden = !((Tile *)self.map.tiles[cr.y][cr.x]).visible || !([self.mapView isPointOnscreenWithX:cr.x andY:cr.y]);
 	}
+}
+
+#pragma mark: map delegate
+
+-(void)moveCreatureCompleteWithBlock:(void (^)(void))block
+{
+	//recalculate who is hidden
+	[self recalculateHidden];
 	
 	//the action is over
 	self.animating = false;
