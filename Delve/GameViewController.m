@@ -45,6 +45,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *attackNameLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *attackNamePanelCord;
 
+@property (weak, nonatomic) IBOutlet UIView *inventoryPanel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *inventoryPanelCord;
+
 
 
 @property (strong, nonatomic) Map* map;
@@ -82,6 +85,7 @@
 	[self formatPanel:self.attackNamePanel];
 	[self formatPanel:self.attackConfirmPanel];
 	[self formatPanel:self.attackSelectPanel];
+	[self formatPanel:self.inventoryPanel];
 }
 
 -(void)formatPanel:(UIView *)panel
@@ -299,7 +303,8 @@
 	//TODO: there should be a duration constant
 	
 	panelCord.constant = -self.view.frame.size.width;
-	[self.uiView layoutIfNeeded];
+//	[self.uiView layoutIfNeeded];
+	[self.view layoutIfNeeded];
 	
 	__weak typeof(self) weakSelf = self;
 	self.uiAnimating = true;
@@ -309,7 +314,8 @@
 		if (weakSelf.activePanelCord != nil)
 			weakSelf.activePanelCord.constant = weakSelf.view.frame.size.width;
 		panelCord.constant = 0;
-		[weakSelf.uiView layoutIfNeeded];
+//		[weakSelf.uiView layoutIfNeeded];
+		[weakSelf.view layoutIfNeeded];
 	} completion:
 	^(BOOL finished)
 	{
@@ -408,14 +414,14 @@
 {
 	if (self.map.canPickUp)
 	{
-		NSLog(@"PICK UP");
-		
 		//TODO: when pressing pick up
 		//if it's ammo or items it just picks up instantly
 		//otherwise it takes you to an equipment menu
 		//where you can see what is there, what you currenly have in that slot, and compare their stats
 		//if the chest is locked, instead you just see "locked chest" and have to unlock it to see what's inside
 		//the equipment menu should slide over the map screen, not the UI screen
+		
+		[self switchToPanel:self.inventoryPanelCord];
 	}
 }
 
