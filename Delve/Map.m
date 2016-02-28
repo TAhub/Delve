@@ -11,6 +11,7 @@
 #import "Creature.h"
 #import "Constants.h"
 #import "GeneratorRoom.h"
+#import "Item.h"
 
 @interface Map()
 
@@ -700,14 +701,12 @@
 		//IE for a level 1 implement, check the list "implements 1"
 		//implements go from 1 to 3
 		//armors go from 1 to 4
-		tile.treasure = @"eoling armor";
-		tile.treasureItemType = ItemTypeArmor;
+		tile.treasure = [[Item alloc] initWithName:@"eoling armor" andType:ItemTypeArmor];
 	}
 	else
 	{
 		tile.treasureType = TreasureTypeFree;
-		tile.treasure = @"crystal";
-		tile.treasureItemType = ItemTypeInventory;
+		tile.treasure = [[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory];
 	}
 	
 }

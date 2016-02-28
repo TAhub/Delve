@@ -28,6 +28,7 @@
 		E459C6BC1C7C201D00422B0A /* Armors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E459C6BB1C7C201D00422B0A /* Armors.plist */; };
 		E459C6BE1C7C20AD00422B0A /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E459C6BD1C7C20AD00422B0A /* Colors.plist */; };
 		E459C6C01C7CCDB800422B0A /* GeneratorRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C6BF1C7CCDB800422B0A /* GeneratorRoom.m */; };
+		E462381C1C83ACE7009C9FC4 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = E462381B1C83ACE7009C9FC4 /* Item.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,8 @@
 		E459C6BD1C7C20AD00422B0A /* Colors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Colors.plist; sourceTree = "<group>"; };
 		E459C6BF1C7CCDB800422B0A /* GeneratorRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratorRoom.m; sourceTree = "<group>"; };
 		E459C6C11C7CCDC000422B0A /* GeneratorRoom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratorRoom.h; sourceTree = "<group>"; };
+		E462381A1C83ACDD009C9FC4 /* Item.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		E462381B1C83ACE7009C9FC4 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +140,8 @@
 		E459C69E1C7AB31700422B0A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E462381A1C83ACDD009C9FC4 /* Item.h */,
+				E462381B1C83ACE7009C9FC4 /* Item.m */,
 				E459C6A31C7AB37E00422B0A /* Creature.h */,
 				E459C6A01C7AB34300422B0A /* Creature.m */,
 				E459C6AF1C7BB37400422B0A /* Map.h */,
@@ -239,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E462381C1C83ACE7009C9FC4 /* Item.m in Sources */,
 				E459C6BA1C7BD25F00422B0A /* GameViewController.m in Sources */,
 				E459C68B1C7AB2E800422B0A /* AppDelegate.m in Sources */,
 				E459C6B21C7BB4BD00422B0A /* Tile.m in Sources */,

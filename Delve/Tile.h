@@ -11,6 +11,7 @@
 #import "Constants.h"
 
 @class Creature;
+@class Item;
 
 //TODO: DESIGN GOAL: this should contain NO info on graphics
 
@@ -33,7 +34,6 @@
 
 #pragma mark item info
 @property TreasureType treasureType;
-@property (strong, nonatomic) NSString *treasure;
-@property ItemType treasureItemType;
+@property (strong, nonatomic) Item *treasure;
 
 @end

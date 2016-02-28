@@ -10,6 +10,7 @@
 #import "Constants.h"
 
 @class Map;
+@class Item;
 
 //TODO: DESIGN GOAL: this should contain NO info on graphics, besides storing personal colors and stuff
 //all graphics should be generated in the controller
@@ -75,8 +76,8 @@
 -(NSArray *) attacks;
 -(BOOL) canUseAttack:(NSString *)name;
 -(TargetLevel) targetLevelAtX:(int)x andY:(int)y withAttack:(NSString *)attack;
--(int) slotForItemNamed:(NSString *)name withType:(ItemType)type;
--(void) equipArmor:(NSString *)named;
+-(int) slotForItem:(Item *)item;
+-(void) equipArmor:(Item *)item;
 
 #pragma mark: item interface functions
 -(NSString *)weaponDescription:(NSString *)weapon;

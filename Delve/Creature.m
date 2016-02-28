@@ -9,6 +9,7 @@
 #import "Creature.h"
 #import "Map.h"
 #import "Tile.h"
+#import "Item.h"
 
 @interface Creature()
 
@@ -181,13 +182,13 @@
 
 #pragma mark: public interface functions
 
--(void) equipArmor:(NSString *)named
+-(void) equipArmor:(Item *)item
 {
-	int slot = [self slotForItemNamed:named withType:ItemTypeArmor];
+	int slot = [self slotForItem:item];
 	
 	//account for changes in max health
 	float healthPercent = self.health * 1.0f / self.maxHealth;
-	self.armors[slot] = named;
+	self.armors[slot] = item.name;
 	self.health = MIN(MAX(self.maxHealth * healthPercent, 1), self.maxHealth);
 	
 	//account for other maximums
@@ -196,11 +197,11 @@
 	//don't apply max hacks, it'll lead to tears
 }
 
--(int) slotForItemNamed:(NSString *)name withType:(ItemType)type
+-(int) slotForItem:(Item *)item
 {
-	if (type == ItemTypeArmor)
+	if (item.type == ItemTypeArmor)
 	{
-		NSString *armorSlot = loadValueString(@"Armors", name, @"slot");
+		NSString *armorSlot = loadValueString(@"Armors", item.name, @"slot");
 		NSArray *racialArmorSlots = loadValueArray(@"Races", self.race, @"armor slots");
 		for (int i = 0; i < racialArmorSlots.count; i++)
 			if ([armorSlot isEqualToString:racialArmorSlots[i]])
@@ -209,7 +210,7 @@
 	}
 	else
 	{
-		NSString *implementType = loadValueString(@"Implements", name, @"type");
+		NSString *implementType = loadValueString(@"Implements", item.name, @"type");
 		if ([implementType isEqualToString:@"weapon"])
 			return -2;
 		for (int i = 0; i < self.skillTrees.count; i++)

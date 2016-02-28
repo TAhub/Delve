@@ -12,6 +12,7 @@
 #import "MapView.h"
 #import "Creature.h"
 #import "Constants.h"
+#import "Item.h"
 
 @interface GameViewController () <MapViewDelegate, MapDelegate>
 
@@ -60,8 +61,7 @@
 @property (strong, nonatomic) NSString *attackChosen;
 @property (weak, nonatomic) UIView *aoeIndicatorView;
 
-@property (strong, nonatomic) NSString *examinationItem;
-@property ItemType examinationItemType;
+@property (strong, nonatomic) Item *examinationItem;
 
 @end
 
@@ -286,12 +286,12 @@
 	for (UIView *subview in self.inventoryContent.subviews)
 		[subview removeFromSuperview];
 	NSString *inventoryLabelText;
-	switch(self.examinationItemType)
+	switch(self.examinationItem.type)
 	{
 		case ItemTypeArmor:
 		case ItemTypeImplement:
 			{
-				int slot = [self.map.player slotForItemNamed:self.examinationItem withType:self.examinationItemType];
+				int slot = [self.map.player slotForItem:self.examinationItem];
 				if (slot == -1)
 				{
 					//TOOD: get what the item actually breaks down into
@@ -308,7 +308,7 @@
 					if (tile.treasureType == TreasureTypeLocked)
 					{
 						[self.inventoryButtonOne setTitle:@"Unlock" forState:UIControlStateNormal];
-						inventoryLabelText = [NSString stringWithFormat:@"This chest is locked.\nIt seems to contain a%@.", self.examinationItemType == ItemTypeArmor ? @" piece of armor" : @"n implement"];
+						inventoryLabelText = [NSString stringWithFormat:@"This chest is locked.\nIt seems to contain a%@.", self.examinationItem.type == ItemTypeArmor ? @" piece of armor" : @"n implement"];
 						if (self.map.player.hacks > 0)
 							[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 						else
@@ -319,12 +319,12 @@
 						[self.inventoryButtonOne setTitle:@"Equip" forState:UIControlStateNormal];
 						[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 						
-						if (self.examinationItemType == ItemTypeArmor)
+						if (self.examinationItem.type == ItemTypeArmor)
 						{
 							NSString *comparison = self.map.player.armors[slot];
-							NSString *armorDesc = [self.map.player armorDescription:self.examinationItem];
+							NSString *armorDesc = [self.map.player armorDescription:self.examinationItem.name];
 							NSString *eArmorDesc = (comparison == nil ? @"Nothing" : [self.map.player armorDescription:comparison]);
-							inventoryLabelText = [NSString stringWithFormat:@"Equip %@?\n\n%@\n\nVS\n\n%@", self.examinationItem, armorDesc, eArmorDesc];
+							inventoryLabelText = [NSString stringWithFormat:@"Equip %@?\n\n%@\n\nVS\n\n%@", self.examinationItem.name, armorDesc, eArmorDesc];
 						}
 						else
 						{
@@ -333,9 +333,9 @@
 								comparison = self.map.player.weapon;
 							else
 								comparison = self.map.player.implements[slot];
-							NSString *weaponDesc = [self.map.player weaponDescription:self.examinationItem];
+							NSString *weaponDesc = [self.map.player weaponDescription:self.examinationItem.name];
 							NSString *eWeaponDesc = [self.map.player weaponDescription:comparison];
-							inventoryLabelText = [NSString stringWithFormat:@"Equip %@?\n\n%@\n\nVS\n\n%@", self.examinationItem, weaponDesc, eWeaponDesc];
+							inventoryLabelText = [NSString stringWithFormat:@"Equip %@?\n\n%@\n\nVS\n\n%@", self.examinationItem.name, weaponDesc, eWeaponDesc];
 						}
 					}
 
@@ -491,7 +491,7 @@
 - (IBAction)inventoryButtonPress:(UIButton *)sender
 {
 	Tile *tile = self.map.tiles[self.map.player.y][self.map.player.x];
-	switch (self.examinationItemType)
+	switch (self.examinationItem.type)
 	{
 		case ItemTypeArmor:
 		case ItemTypeImplement:
@@ -509,20 +509,20 @@
 					return;
 				}
 				
-				int slot = [self.map.player slotForItemNamed:self.examinationItem withType:self.examinationItemType];
+				int slot = [self.map.player slotForItem:self.examinationItem];
 				if (slot == -1)
 				{
 					//TODO: convert to materials, and put them in your inventory
 					
 					tile.treasure = nil;
-					tile.treasureItemType = TreasureTypeNone;
+					tile.treasureType = TreasureTypeNone;
 				}
 				else
 				{
 					//equip
-					if (self.examinationItemType == ItemTypeArmor)
+					if (self.examinationItem.type == ItemTypeArmor)
 					{
-						tile.treasure = self.map.player.armors[slot];
+						tile.treasure = [[Item alloc] initWithName:self.map.player.armors[slot] andType:ItemTypeArmor];
 						[self.map.player equipArmor:self.examinationItem];
 						[self regenerateCreatureSprite:self.map.player];
 					}
@@ -530,13 +530,13 @@
 					{
 						if (slot == -2)
 						{
-							tile.treasure = self.map.player.weapon;
-							self.map.player.weapon = self.examinationItem;
+							tile.treasure = [[Item alloc] initWithName:self.map.player.weapon andType:ItemTypeImplement];
+							self.map.player.weapon = self.examinationItem.name;
 						}
 						else
 						{
-							tile.treasure = self.map.player.implements[slot];
-							self.map.player.implements[slot] = self.examinationItem;
+							tile.treasure = [[Item alloc] initWithName:self.map.player.implements[slot] andType:ItemTypeImplement];
+							self.map.player.implements[slot] = self.examinationItem.name;
 						}
 					}
 					
@@ -579,7 +579,6 @@
 	{
 		Tile *tile = self.map.tiles[self.map.player.y][self.map.player.x];
 		self.examinationItem = tile.treasure;
-		self.examinationItemType = tile.treasureItemType;
 		[self reloadPanels];
 		[self switchToPanel:self.inventoryPanelCord];
 		
