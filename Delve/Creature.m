@@ -126,7 +126,101 @@
 	self.storedAttack = nil;
 }
 
+#pragma mark: item interface functions
+
+-(NSString *)weaponDescription:(NSString *)weapon
+{
+	NSMutableString *desc = [NSMutableString stringWithFormat:@"%@\n+%i%% power", weapon, loadValueNumber(@"Implements", weapon, @"power").intValue];
+	NSString *type = loadValueString(@"Implements", weapon, @"type");
+	if ([type isEqualToString:@"weapon"])
+	{
+		[desc appendString:@"to normal attacks"];
+		if (!loadValueBool(@"Implements", weapon, @"element"))
+			[desc appendString:@", blunt element"];
+	}
+	else
+		for (NSString *tree in loadEntries(@"SkillTrees").allKeys)
+			if (loadValueBool(@"SkillTrees", tree, @"implement") && [loadValueString(@"SkillTrees", tree, @"implement") isEqualToString:type])
+			{
+				[desc appendFormat:@" to %@ attacks", tree];
+				break;
+			}
+	if (loadValueBool(@"Implements", weapon, @"element"))
+		[desc appendFormat:@", %@ element", loadValueString(@"Implements", weapon, @"element")];
+	return desc;
+	
+}
+-(NSString *)armorDescription:(NSString *)armor
+{
+	NSMutableString *desc = [NSMutableString stringWithFormat:@"%@\n", armor];
+	NSMutableArray *properties = [NSMutableArray new];
+	if (loadValueBool(@"Armors", armor, @"damage bonus"))
+		[properties addObject:[NSString stringWithFormat:@"+%i%% damage", loadValueNumber(@"Armors", armor, @"damage bonus").intValue]];
+	if (loadValueBool(@"Armors", armor, @"health"))
+		[properties addObject:[NSString stringWithFormat:@"+%i health", loadValueNumber(@"Armors", armor, @"health").intValue]];
+	if (loadValueBool(@"Armors", armor, @"smash resistance"))
+		[properties addObject:[NSString stringWithFormat:@"+%i smash resistance", loadValueNumber(@"Armors", armor, @"smash resistance").intValue]];
+	if (loadValueBool(@"Armors", armor, @"cut resistance"))
+		[properties addObject:[NSString stringWithFormat:@"+%i cut resistance", loadValueNumber(@"Armors", armor, @"cut resistance").intValue]];
+	if (loadValueBool(@"Armors", armor, @"burn resistance"))
+		[properties addObject:[NSString stringWithFormat:@"+%i burn resistance", loadValueNumber(@"Armors", armor, @"burn resistance").intValue]];
+	if (loadValueBool(@"Armors", armor, @"shock resistance"))
+		[properties addObject:[NSString stringWithFormat:@"+%i shock resistance", loadValueNumber(@"Armors", armor, @"shock resistance").intValue]];
+	if (loadValueBool(@"Armors", armor, @"dodges"))
+		[properties addObject:[NSString stringWithFormat:@"+%i dodge", loadValueNumber(@"Armors", armor, @"dodges").intValue]];
+	if (loadValueBool(@"Armors", armor, @"blocks"))
+		[properties addObject:[NSString stringWithFormat:@"+%i block", loadValueNumber(@"Armors", armor, @"blocks").intValue]];
+	if (loadValueBool(@"Armors", armor, @"hacks"))
+		[properties addObject:[NSString stringWithFormat:@"+%i hack", loadValueNumber(@"Armors", armor, @"hacks").intValue]];
+	if (loadValueBool(@"Armors", armor, @"metabolism"))
+		[properties addObject:[NSString stringWithFormat:@"+%i%% metabolism", loadValueNumber(@"Armors", armor, @"metabolism").intValue]];
+	if (properties.count > 0)
+		[desc appendString:[properties componentsJoinedByString:@", "]];
+	return desc;
+}
+
 #pragma mark: public interface functions
+
+-(void) equipArmor:(NSString *)named
+{
+	int slot = [self slotForItemNamed:named withType:ItemTypeArmor];
+	
+	//account for changes in max health
+	float healthPercent = self.health * 1.0f / self.maxHealth;
+	self.armors[slot] = named;
+	self.health = MIN(MAX(self.maxHealth * healthPercent, 1), self.maxHealth);
+	
+	//account for other maximums
+	self.dodges = MIN(self.dodges, self.maxDodges);
+	self.blocks = MIN(self.blocks, self.maxBlocks);
+	//don't apply max hacks, it'll lead to tears
+}
+
+-(int) slotForItemNamed:(NSString *)name withType:(ItemType)type
+{
+	if (type == ItemTypeArmor)
+	{
+		NSString *armorSlot = loadValueString(@"Armors", name, @"slot");
+		NSArray *racialArmorSlots = loadValueArray(@"Races", self.race, @"armor slots");
+		for (int i = 0; i < racialArmorSlots.count; i++)
+			if ([armorSlot isEqualToString:racialArmorSlots[i]])
+				return i;
+		return -1;
+	}
+	else
+	{
+		NSString *implementType = loadValueString(@"Implements", name, @"type");
+		if ([implementType isEqualToString:@"weapon"])
+			return -2;
+		for (int i = 0; i < self.skillTrees.count; i++)
+		{
+			NSString *tree = self.skillTrees[i];
+			if (loadValueBool(@"SkillTrees", tree, @"implement") && [loadValueString(@"SkillTrees", tree, @"implement") isEqualToString:implementType])
+				return i;
+		}
+		return -1;
+	}
+}
 
 -(NSArray *) attacks
 {

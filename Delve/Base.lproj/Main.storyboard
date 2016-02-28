@@ -300,16 +300,55 @@
                                 </constraints>
                             </view>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khZ-GA-8u0" userLabel="Big UI View">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="540"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="heJ-Kl-FYi" userLabel="Inventory Panel">
-                                <rect key="frame" x="-320" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="-320" y="28" width="320" height="540"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c2Q-jS-YGD">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="482"/>
+                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVC-zd-UKl">
+                                        <rect key="frame" x="217" y="490" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="inventoryButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uL2-js-I1u"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4R-zs-srk">
+                                        <rect key="frame" x="57" y="490" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="inventoryButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Ce-Pt-2pm"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="P4R-zs-srk" firstAttribute="centerX" secondItem="heJ-Kl-FYi" secondAttribute="centerX" multiplier="0.5" id="6c8-2o-zYf"/>
+                                    <constraint firstItem="P4R-zs-srk" firstAttribute="leading" secondItem="heJ-Kl-FYi" secondAttribute="leading" constant="57" id="KND-my-NTC"/>
+                                    <constraint firstItem="c2Q-jS-YGD" firstAttribute="height" secondItem="heJ-Kl-FYi" secondAttribute="height" multiplier="0.75" id="Nff-yV-CLZ"/>
+                                    <constraint firstItem="c2Q-jS-YGD" firstAttribute="centerX" secondItem="heJ-Kl-FYi" secondAttribute="centerX" id="VVW-Dj-GeL"/>
+                                    <constraint firstItem="c2Q-jS-YGD" firstAttribute="width" secondItem="heJ-Kl-FYi" secondAttribute="width" id="WAl-kR-XbC"/>
+                                    <constraint firstItem="P4R-zs-srk" firstAttribute="top" secondItem="c2Q-jS-YGD" secondAttribute="bottom" constant="8" symbolic="YES" id="hcb-ER-FEn"/>
+                                    <constraint firstAttribute="bottom" secondItem="vVC-zd-UKl" secondAttribute="bottom" constant="20" symbolic="YES" id="mUL-N3-Ktu"/>
+                                    <constraint firstItem="vVC-zd-UKl" firstAttribute="centerX" secondItem="heJ-Kl-FYi" secondAttribute="centerX" multiplier="1.5" id="owQ-xF-XcT"/>
+                                    <constraint firstItem="c2Q-jS-YGD" firstAttribute="top" secondItem="heJ-Kl-FYi" secondAttribute="top" id="qh3-iY-FZe"/>
+                                    <constraint firstAttribute="bottom" secondItem="P4R-zs-srk" secondAttribute="bottom" constant="20" symbolic="YES" id="yph-cw-vHd"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Nff-yV-CLZ"/>
+                                        <exclude reference="KND-my-NTC"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.093164794147014618" green="0.2194344699382782" blue="0.60352116823196411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="khZ-GA-8u0" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="2Vf-xO-4Mh"/>
                             <constraint firstItem="heJ-Kl-FYi" firstAttribute="leading" secondItem="khZ-GA-8u0" secondAttribute="trailing" constant="-320" id="3PG-VB-Cfw"/>
                             <constraint firstItem="heJ-Kl-FYi" firstAttribute="centerX" secondItem="khZ-GA-8u0" secondAttribute="centerX" id="3PP-WO-xPS"/>
                             <constraint firstItem="Qgd-z3-fMK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ERk-ow-NHa"/>
@@ -326,6 +365,7 @@
                             <constraint firstItem="khZ-GA-8u0" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="eaq-kX-Acz"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8TG-ed-Jwf" secondAttribute="bottom" id="eo2-oB-XYe"/>
                             <constraint firstItem="feh-tG-XLx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="fNU-QV-orW"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="khZ-GA-8u0" secondAttribute="bottom" id="geu-Kv-lS6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8TG-ed-Jwf" secondAttribute="trailing" id="hOh-Ah-vik"/>
                             <constraint firstItem="heJ-Kl-FYi" firstAttribute="centerY" secondItem="khZ-GA-8u0" secondAttribute="centerY" id="kRp-E4-JTf"/>
                             <constraint firstItem="heJ-Kl-FYi" firstAttribute="width" secondItem="khZ-GA-8u0" secondAttribute="width" id="kUx-cx-uqf"/>
@@ -343,14 +383,16 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="eaq-kX-Acz"/>
                                 <exclude reference="ueo-Ug-Whg"/>
-                                <exclude reference="3PG-VB-Cfw"/>
-                                <exclude reference="3PP-WO-xPS"/>
-                                <exclude reference="s9f-YZ-djb"/>
+                                <exclude reference="yVb-tw-kSz"/>
                                 <exclude reference="GrU-5K-uqc"/>
                                 <exclude reference="hOh-Ah-vik"/>
                                 <exclude reference="vlx-Y4-URV"/>
                                 <exclude reference="zI5-uY-3n4"/>
+                                <exclude reference="3PG-VB-Cfw"/>
+                                <exclude reference="3PP-WO-xPS"/>
+                                <exclude reference="s9f-YZ-djb"/>
                                 <exclude reference="fNU-QV-orW"/>
                             </mask>
                         </variation>
@@ -377,6 +419,9 @@
                         <outlet property="attackSelectPanelCord" destination="cSF-q6-HL6" id="76V-Fz-Ivs"/>
                         <outlet property="attacksButton" destination="kQT-EW-nNY" id="POu-sX-uyA"/>
                         <outlet property="creatureView" destination="Uew-pW-cr7" id="z2A-zu-aY4"/>
+                        <outlet property="inventoryButtonOne" destination="P4R-zs-srk" id="5o5-id-RHw"/>
+                        <outlet property="inventoryButtonTwo" destination="vVC-zd-UKl" id="hKC-7t-6GB"/>
+                        <outlet property="inventoryContent" destination="c2Q-jS-YGD" id="fC7-qX-hns"/>
                         <outlet property="inventoryPanel" destination="heJ-Kl-FYi" id="pR5-Wc-CxG"/>
                         <outlet property="inventoryPanelCord" destination="Eer-D1-ILz" id="DhH-cq-du2"/>
                         <outlet property="mainPanel" destination="ghM-ST-HWQ" id="zrM-BY-nrS"/>

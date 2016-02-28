@@ -46,9 +46,10 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *attackNamePanelCord;
 
 @property (weak, nonatomic) IBOutlet UIView *inventoryPanel;
+@property (weak, nonatomic) IBOutlet UIView *inventoryContent;
+@property (weak, nonatomic) IBOutlet UIButton *inventoryButtonTwo;
+@property (weak, nonatomic) IBOutlet UIButton *inventoryButtonOne;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inventoryPanelCord;
-
-
 
 @property (strong, nonatomic) Map* map;
 @property (strong, nonatomic) NSMutableArray *creatureViews;
@@ -58,6 +59,9 @@
 @property int attackPage;
 @property (strong, nonatomic) NSString *attackChosen;
 @property (weak, nonatomic) UIView *aoeIndicatorView;
+
+@property (strong, nonatomic) NSString *examinationItem;
+@property ItemType examinationItemType;
 
 @end
 
@@ -140,7 +144,6 @@
 
 -(void)drawArmorsOf:(Creature *)cr withLayer:(int)layer inArray:(NSMutableArray *)spriteArray withYAdds:(NSMutableArray *)yAdds genderSuffix:(NSString *)gS
 {
-	NSLog(@"DRAW ARMOR AT LAYER %i", layer);
 	NSArray *raceYAdds = loadValueBool(@"Races", cr.race, @"armor slot y offsets") ? loadValueArray(@"Races", cr.race, @"armor slot y offsets") : nil;
 	
 	for (int i = 0; i < cr.armors.count; i++)
@@ -227,6 +230,7 @@
 	UILabel *statLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(0, statLabel.frame.size.height, 0, 0)];
 	statLabel2.text = [NSString stringWithFormat:@"%i%% dam", self.map.player.damageBonus];
 	//TODO: display resistances as rows of icons
+	//in this order: blunt, cut, burn, shock
 	[statLabel2 sizeToFit];
 	statLabel2.textColor = loadColorFromName(@"ui text");
 	[self.statView addSubview:statLabel2];
@@ -276,6 +280,80 @@
 	else
 		self.attackConfirmLabel.text = [NSString stringWithFormat:@"This is the area %@ will hit.\nTap again to confirm.", self.attackChosen];
 	self.attackConfirmLabel.textColor = loadColorFromName(@"ui text");
+	
+	
+	//set up inventory panel
+	for (UIView *subview in self.inventoryContent.subviews)
+		[subview removeFromSuperview];
+	NSString *inventoryLabelText;
+	switch(self.examinationItemType)
+	{
+		case ItemTypeArmor:
+		case ItemTypeImplement:
+			{
+				int slot = [self.map.player slotForItemNamed:self.examinationItem withType:self.examinationItemType];
+				if (slot == -1)
+				{
+					//TOOD: get what the item actually breaks down into
+					NSString *material = @"material";
+					inventoryLabelText = [NSString stringWithFormat:@"Break down %@ into %@?", self.examinationItem, material];
+					[self.inventoryButtonOne setTitle:@"Break Down" forState:UIControlStateNormal];
+					[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+					[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
+					[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+				}
+				else
+				{
+					Tile *tile = self.map.tiles[self.map.player.y][self.map.player.x];
+					if (tile.treasureType == TreasureTypeLocked)
+					{
+						[self.inventoryButtonOne setTitle:@"Unlock" forState:UIControlStateNormal];
+						inventoryLabelText = [NSString stringWithFormat:@"This chest is locked.\nIt seems to contain a%@.", self.examinationItemType == ItemTypeArmor ? @" piece of armor" : @"n implement"];
+						if (self.map.player.hacks > 0)
+							[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+						else
+							[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text grey") forState:UIControlStateNormal];
+					}
+					else
+					{
+						[self.inventoryButtonOne setTitle:@"Equip" forState:UIControlStateNormal];
+						[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+						
+						if (self.examinationItemType == ItemTypeArmor)
+						{
+							NSString *comparison = self.map.player.armors[slot];
+							NSString *armorDesc = [self.map.player armorDescription:self.examinationItem];
+							NSString *eArmorDesc = (comparison == nil ? @"Nothing" : [self.map.player armorDescription:comparison]);
+							inventoryLabelText = [NSString stringWithFormat:@"Equip %@?\n\n%@\n\nVS\n\n%@", self.examinationItem, armorDesc, eArmorDesc];
+						}
+						else
+						{
+							NSString *comparison;
+							if (slot == -2)
+								comparison = self.map.player.weapon;
+							else
+								comparison = self.map.player.implements[slot];
+							NSString *weaponDesc = [self.map.player weaponDescription:self.examinationItem];
+							NSString *eWeaponDesc = [self.map.player weaponDescription:comparison];
+							inventoryLabelText = [NSString stringWithFormat:@"Equip %@?\n\n%@\n\nVS\n\n%@", self.examinationItem, weaponDesc, eWeaponDesc];
+						}
+					}
+
+					[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
+					[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+				}
+			}
+			break;
+		case ItemTypeInventory:
+			//TODO: just talk about what you picked up I guess
+			break;
+	}
+	UILabel *inventoryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.inventoryContent.frame.size.width, self.inventoryContent.frame.size.height)];
+	inventoryLabel.text = inventoryLabelText;
+	inventoryLabel.textColor = loadColorFromName(@"ui text");
+	inventoryLabel.numberOfLines = 0;
+	inventoryLabel.lineBreakMode = NSLineBreakByWordWrapping;
+	[self.inventoryContent addSubview:inventoryLabel];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -410,18 +488,103 @@
 	[self switchToPanel:self.attackSelectPanelCord];
 }
 
+- (IBAction)inventoryButtonPress:(UIButton *)sender
+{
+	Tile *tile = self.map.tiles[self.map.player.y][self.map.player.x];
+	switch (self.examinationItemType)
+	{
+		case ItemTypeArmor:
+		case ItemTypeImplement:
+			if (sender.tag == 1)
+			{
+				if (tile.treasureType == TreasureTypeLocked)
+				{
+					//unlock
+					if (self.map.player.hacks > 0)
+					{
+						self.map.player.hacks -= 1;
+						tile.treasureType = TreasureTypeChest;
+						[self reloadPanels];
+					}
+					return;
+				}
+				
+				int slot = [self.map.player slotForItemNamed:self.examinationItem withType:self.examinationItemType];
+				if (slot == -1)
+				{
+					//TODO: convert to materials, and put them in your inventory
+					
+					tile.treasure = nil;
+					tile.treasureItemType = TreasureTypeNone;
+				}
+				else
+				{
+					//equip
+					if (self.examinationItemType == ItemTypeArmor)
+					{
+						tile.treasure = self.map.player.armors[slot];
+						[self.map.player equipArmor:self.examinationItem];
+						[self regenerateCreatureSprite:self.map.player];
+					}
+					else
+					{
+						if (slot == -2)
+						{
+							tile.treasure = self.map.player.weapon;
+							self.map.player.weapon = self.examinationItem;
+						}
+						else
+						{
+							tile.treasure = self.map.player.implements[slot];
+							self.map.player.implements[slot] = self.examinationItem;
+						}
+					}
+					
+					//end turn
+					[self reloadPanels];
+					__weak typeof(self) weakSelf = self;
+					[self switchToPanel:self.mainPanelCord withBlock:
+					^()
+					{
+						[weakSelf.map update];
+					}];
+				}
+			}
+			else
+			{
+				//cancel
+				[self switchToPanel:self.mainPanelCord];
+			}
+			break;
+		case ItemTypeInventory:
+			if (sender.tag == 1)
+			{
+				//TODO: add that item to the inventory
+				tile.treasureType = TreasureTypeNone;
+				[self switchToPanel:self.mainPanelCord];
+			}
+			else
+			{
+				//cancel
+				[self switchToPanel:self.mainPanelCord];
+			}
+			break;
+	}
+}
+
+
 - (IBAction)pickUpButtonPress
 {
 	if (self.map.canPickUp)
 	{
-		//TODO: when pressing pick up
-		//if it's ammo or items it just picks up instantly
-		//otherwise it takes you to an equipment menu
-		//where you can see what is there, what you currenly have in that slot, and compare their stats
-		//if the chest is locked, instead you just see "locked chest" and have to unlock it to see what's inside
-		//the equipment menu should slide over the map screen, not the UI screen
-		
+		Tile *tile = self.map.tiles[self.map.player.y][self.map.player.x];
+		self.examinationItem = tile.treasure;
+		self.examinationItemType = tile.treasureItemType;
+		[self reloadPanels];
 		[self switchToPanel:self.inventoryPanelCord];
+		
+		//TODO: consumable items and crafting materials go into an inventory (NSMutableArray of NSString/Int pairs I guess)
+		//TODO: you should be able to use consumable items out of some inventory UITableView (inside the content view)
 	}
 }
 

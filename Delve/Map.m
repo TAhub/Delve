@@ -625,7 +625,7 @@
 		}
 	
 	//place unlocked equipment treasures in the start
-	for (int i = 0; i < startEquipmentTreasures-1;)
+	for (int i = 0; i < startEquipmentTreasures;)
 	{
 		GeneratorRoom *startRoom = rooms[rows-1][columns/2];
 		int xR = startRoom.x * (roomSize + 1) + 1 + arc4random_uniform(roomSize);
@@ -700,12 +700,14 @@
 		//IE for a level 1 implement, check the list "implements 1"
 		//implements go from 1 to 3
 		//armors go from 1 to 4
-		tile.treasure = @"fundamentals";
+		tile.treasure = @"eoling armor";
+		tile.treasureItemType = ItemTypeArmor;
 	}
 	else
 	{
 		tile.treasureType = TreasureTypeFree;
 		tile.treasure = @"crystal";
+		tile.treasureItemType = ItemTypeInventory;
 	}
 	
 }

@@ -34,5 +34,6 @@
 #pragma mark item info
 @property TreasureType treasureType;
 @property (strong, nonatomic) NSString *treasure;
+@property ItemType treasureItemType;
 
 @end

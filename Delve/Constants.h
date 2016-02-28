@@ -29,6 +29,12 @@
 
 #pragma mark enums
 
+typedef NS_ENUM(NSInteger, ItemType) {
+	ItemTypeInventory,
+	ItemTypeImplement,
+	ItemTypeArmor
+};
+
 typedef NS_ENUM(NSInteger, GeneratorRoomExit) {
 	GeneratorRoomExitWall,
 	GeneratorRoomExitDoor,

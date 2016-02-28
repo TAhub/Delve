@@ -75,6 +75,12 @@
 -(NSArray *) attacks;
 -(BOOL) canUseAttack:(NSString *)name;
 -(TargetLevel) targetLevelAtX:(int)x andY:(int)y withAttack:(NSString *)attack;
+-(int) slotForItemNamed:(NSString *)name withType:(ItemType)type;
+-(void) equipArmor:(NSString *)named;
+
+#pragma mark: item interface functions
+-(NSString *)weaponDescription:(NSString *)weapon;
+-(NSString *)armorDescription:(NSString *)armor;
 
 #pragma mark: appearance
 @property BOOL gender;
