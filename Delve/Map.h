@@ -28,6 +28,7 @@
 @property (strong, nonatomic) NSMutableArray *tiles; //an array of arrays of tiles
 @property (strong, nonatomic) NSMutableArray *creatures; //an array of creatures, for turn order
 @property (weak, nonatomic) Creature *player;
+@property (strong, nonatomic) NSMutableArray *inventory; //an array of items
 
 -(int)width;
 -(int)height;

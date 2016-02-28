@@ -211,8 +211,6 @@
 	
 	//set up UI panels
 	[self reloadPanels];
-	
-	//TODO: remember to draw the mask of tiles that are in-range when picking a target for an attack
 }
 
 -(void)reloadPanels
@@ -345,7 +343,15 @@
 			}
 			break;
 		case ItemTypeInventory:
-			//TODO: just talk about what you picked up I guess
+			inventoryLabelText = [NSString stringWithFormat:@"Pick up %@%@?", self.examinationItem.name, self.examinationItem.number > 1 ? [NSString stringWithFormat:@" x%i", self.examinationItem.number] : @""];
+			
+			//TODO: probably write some kind of description of the item, or something?
+			//or maybe how many you have already, if you have any
+			
+			[self.inventoryButtonOne setTitle:@"Pick Up" forState:UIControlStateNormal];
+			[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+			[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
+			[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 			break;
 	}
 	UILabel *inventoryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.inventoryContent.frame.size.width, self.inventoryContent.frame.size.height)];
@@ -559,7 +565,20 @@
 		case ItemTypeInventory:
 			if (sender.tag == 1)
 			{
-				//TODO: add that item to the inventory
+				//add that item to your inventory
+				
+				//stack the item
+				BOOL stacked = false;
+				for (Item *item in self.map.inventory)
+					if ([item.name isEqualToString:self.examinationItem.name] && item.type == self.examinationItem.type)
+					{
+						item.number += self.examinationItem.number;
+						stacked = true;
+						break;
+					}
+				if (!stacked) //add it to the end of the inventory
+					[self.map.inventory addObject:self.examinationItem];
+				
 				tile.treasureType = TreasureTypeNone;
 				[self switchToPanel:self.mainPanelCord];
 			}
@@ -582,7 +601,6 @@
 		[self reloadPanels];
 		[self switchToPanel:self.inventoryPanelCord];
 		
-		//TODO: consumable items and crafting materials go into an inventory (NSMutableArray of NSString/Int pairs I guess)
 		//TODO: you should be able to use consumable items out of some inventory UITableView (inside the content view)
 	}
 }

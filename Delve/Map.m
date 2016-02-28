@@ -26,6 +26,7 @@
 	if (self = [super init])
 	{
 		_creatures = [NSMutableArray new];
+		_inventory = [NSMutableArray new];
 		[self mapGenerate];
 		
 		//start right before the player's turn
@@ -589,13 +590,21 @@
 			numEncounters += 1;
 		}
 	}
+	
+	//turn some treasures into equipment treasures
+	NSMutableArray *treasureTiles = [NSMutableArray new];
+	for (NSArray *row in rooms)
+		for (GeneratorRoom *room in row)
+			if (room.treasure && !room.equipmentTreasure)
+				[treasureTiles addObject:room];
+	[self shuffleArray:treasureTiles];
+	for (int i = 0; i < equipmentTreasures && i < treasureTiles.count; i++)
+		((GeneratorRoom *)treasureTiles[i]).equipmentTreasure = true;
 
 	//TODO: turn a number of treasures into equipment treasures, equal to equipmentTreasures
 	
 	//the exit always has an encounter
 	((GeneratorRoom *)rooms[columns/2][0]).encounter = true;
-	
-	NSLog(@"Placing treasures");
 	
 	//place treasures
 	//these try to go in the center of their respecive rooms
