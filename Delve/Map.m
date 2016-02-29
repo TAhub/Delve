@@ -71,6 +71,16 @@
 	return ((Tile *)self.tiles[self.player.y][self.player.x]).treasureType != TreasureTypeNone;
 }
 
+-(BOOL)canCraft
+{
+	Tile *tile = self.tiles[self.player.y][self.player.x];
+	if (tile.treasureType != TreasureTypeNone)
+		return false;
+	
+	//TODO: does the player have any crafting recipies they can pay for AND use the item of?
+	return true;
+}
+
 -(BOOL)moveWithX:(int)x andY:(int)y
 {
 	if (!self.yourTurn)
@@ -719,6 +729,13 @@
 	{
 		tile.treasureType = TreasureTypeFree;
 		tile.treasure = [[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory];
+		
+		if ([tile.treasure.name isEqualToString:@"crystal"])
+		{
+			//TODO: increase the number an amount based on the map
+			//IE maybe on floor 1 you get 3 crystals at a time, on floor 10 you get 5
+			//something like that
+		}
 	}
 	
 }

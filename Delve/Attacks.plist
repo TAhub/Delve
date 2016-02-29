@@ -62,6 +62,23 @@
 		<key>dodgeable</key> <true/>
 		<!-- special effects -->
 	</dict>
+	<key>forge iron</key>
+	<dict>
+		<key>power</key> <integer>30</integer>
+		<key>element</key> <string>burn</string>
+		<key>range</key> <integer>1</integer>
+		<key>cooldown</key> <integer>4</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+	</dict>
+	<key>idolatrous spark</key>
+	<dict>
+		<key>power</key> <integer>30</integer>
+		<key>element</key> <string>shock</string>
+		<key>range</key> <integer>2</integer>
+		<key>cooldown</key> <integer>15</integer>
+		<!-- special effects -->
+	</dict>
 	<key>shield bash</key>
 	<dict>
 		<key>power</key> <integer>25</integer>
@@ -211,6 +228,17 @@
 		<key>cooldown</key> <integer>11</integer>
 		<!-- special effects -->
 		<key>hurt user</key> <integer>50</integer>
+	</dict>
+	<key>poison</key>
+	<dict>
+		<key>power</key> <integer>20</integer>
+		<key>element</key> <string>no element</string>
+		<key>range</key> <integer>3</integer>
+		<key>area</key> <integer>1</integer>
+		<key>cooldown</key> <integer>11</integer>
+		<key>friendly</key> <true/>
+		<!-- special effects -->
+		<!-- TODO: inflict target with poison -->
 	</dict>
 	<key>flame bolt</key>
 	<dict>

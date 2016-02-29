@@ -32,6 +32,7 @@
 		E462381E1C83F50D009C9FC4 /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E462381D1C83F50D009C9FC4 /* ItemCell.xib */; };
 		E46238211C83F525009C9FC4 /* ItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E46238201C83F525009C9FC4 /* ItemTableViewCell.m */; };
 		E46238231C83F8A1009C9FC4 /* InventoryItems.plist in Resources */ = {isa = PBXBuildFile; fileRef = E46238221C83F8A1009C9FC4 /* InventoryItems.plist */; };
+		E46238251C84B746009C9FC4 /* Recipies.plist in Resources */ = {isa = PBXBuildFile; fileRef = E46238241C84B746009C9FC4 /* Recipies.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		E462381F1C83F525009C9FC4 /* ItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemTableViewCell.h; sourceTree = "<group>"; };
 		E46238201C83F525009C9FC4 /* ItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemTableViewCell.m; sourceTree = "<group>"; };
 		E46238221C83F8A1009C9FC4 /* InventoryItems.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InventoryItems.plist; sourceTree = "<group>"; };
+		E46238241C84B746009C9FC4 /* Recipies.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Recipies.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 		E459C6861C7AB2E800422B0A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E46238241C84B746009C9FC4 /* Recipies.plist */,
 				E46238221C83F8A1009C9FC4 /* InventoryItems.plist */,
 				E43674AD1C80FFBA00B59105 /* Lists.plist */,
 				E43674AB1C80FCAB00B59105 /* Implements.plist */,
@@ -239,6 +242,7 @@
 				E459C6BC1C7C201D00422B0A /* Armors.plist in Resources */,
 				E462381E1C83F50D009C9FC4 /* ItemCell.xib in Resources */,
 				E459C6911C7AB2E800422B0A /* Main.storyboard in Resources */,
+				E46238251C84B746009C9FC4 /* Recipies.plist in Resources */,
 				E459C6A71C7ABB6400422B0A /* SkillTrees.plist in Resources */,
 				E43674AA1C7FACF900B59105 /* Tiles.plist in Resources */,
 				E43674AC1C80FCAB00B59105 /* Implements.plist in Resources */,

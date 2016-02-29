@@ -27,6 +27,7 @@
 				<key>hacks</key> <integer>0</integer>
 				<key>metabolism</key> <integer>0</integer>
 				<key>attack</key> <string>template</string>
+				<key>recipies</key> <string>template</string>
 			</dict>
 			<dict> <!-- rank 2 -->
 				<key>damage bonus</key> <integer>0</integer>
@@ -40,6 +41,7 @@
 				<key>hacks</key> <integer>0</integer>
 				<key>metabolism</key> <integer>0</integer>
 				<key>attack</key> <string>template</string>
+				<key>recipies</key> <string>template</string>
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>damage bonus</key> <integer>0</integer>
@@ -53,6 +55,7 @@
 				<key>hacks</key> <integer>0</integer>
 				<key>metabolism</key> <integer>0</integer>
 				<key>attack</key> <string>template</string>
+				<key>recipies</key> <string>template</string>
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>damage bonus</key> <integer>0</integer>
@@ -66,6 +69,7 @@
 				<key>hacks</key> <integer>0</integer>
 				<key>metabolism</key> <integer>0</integer>
 				<key>attack</key> <string>template</string>
+				<key>recipies</key> <string>template</string>
 			</dict>
 		</array>
 	</dict>
@@ -241,7 +245,7 @@
 	
 	<!-- spear (pattern A) -->
 	<!-- a semi-defensive war skill that focuses on 2-range attacks -->
-	<!-- raises health burn resistance -->
+	<!-- raises health and damage -->
 	<!-- implement: spears -->
 	<key>spear</key>
 	<dict>
@@ -250,14 +254,14 @@
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
-				<key>burn resistance</key> <integer>1</integer>
+				<key>damage bonus</key> <integer>10</integer>
 				<key>attack</key> <string>thrust</string>
 			</dict>
 			<dict> <!-- rank 2 -->
 				<key>health</key> <integer>25</integer>
 			</dict>
 			<dict> <!-- rank 3 -->
-				<key>burn resistance</key> <integer>1</integer>
+				<key>damage bonus</key> <integer>10</integer>
 				<key>attack</key> <string>jab</string>
 			</dict>
 			<dict> <!-- rank 4 -->
@@ -292,6 +296,35 @@
 			<dict> <!-- rank 4 -->
 				<key>damage bonus</key> <integer>15</integer>
 				<key>dodges</key> <integer>1</integer>
+			</dict>
+		</array>
+	</dict>
+	
+	<!-- smithing (pattern D) -->
+	<!-- the war crafting skill, with a burn attack -->
+	<!-- raises health and burn resistance -->
+	<!-- implement: none -->
+	<key>smithing</key>
+	<dict>
+		<key>type</key> <string>war</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>burn resistance</key> <integer>1</integer>
+				<key>recipies</key> <string>smithing 1</string>
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>burn resistance</key> <integer>1</integer>
+				<key>recipies</key> <string>smithing 2</string>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>health</key> <integer>10</integer>
+				<key>attack</key> <string>forge iron</string>
+				<key>recipies</key> <string>smithing 3</string>
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>health</key> <integer>25</integer>
+				<key>recipies</key> <string>smithing 4</string>
 			</dict>
 		</array>
 	</dict>
@@ -521,6 +554,35 @@
 		</array>
 	</dict>
 	
+	<!-- false prophet (pattern D) -->
+	<!-- the sacred crafting skill, which gives a shock attack -->
+	<!-- raises damage -->
+	<!-- implement: none -->
+	<key>false prophet</key>
+	<dict>
+		<key>type</key> <string>sacred</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>damage bonus</key> <integer>12</integer>
+				<key>recipies</key> <string>false prophet 1</string>
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>damage bonus</key> <integer>12</integer>
+				<key>recipies</key> <string>false prophet 2</string>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>damage bonus</key> <integer>12</integer>
+				<key>attack</key> <string>idolatrous spark</string>
+				<key>recipies</key> <string>false prophet 3</string>
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>damage bonus</key> <integer>12</integer>
+				<key>recipies</key> <string>false prophet 4</string>
+			</dict>
+		</array>
+	</dict>
+	
 	<!-- ritual skills -->
 	<!-- ritual skills focus on lots of active abilities, which always have cooldown 11, and are usually pattern A or pattern B -->
 	
@@ -604,6 +666,35 @@
 			<dict> <!-- rank 4 -->
 				<key>damage bonus</key> <integer>10</integer>
 				<key>attack</key> <string>stone pillar</string>
+			</dict>
+		</array>
+	</dict>
+	
+	<!-- alchemy (pattern abnormal) -->
+	<!-- the ritual crafting tree, with a no element attack -->
+	<!-- raises metabolism -->
+	<!-- implement: none -->
+	<key>alchemy</key>
+	<dict>
+		<key>type</key> <string>ritual</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>metabolism</key> <integer>15</integer>
+				<key>recipies</key> <string>alchemy 1</string>
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>metabolism</key> <integer>15</integer>
+				<key>recipies</key> <string>alchemy 2</string>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>metabolism</key> <integer>15</integer>
+				<key>attack</key> <string>poison</string>
+				<key>recipies</key> <string>alchemy 3</string>
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>metabolism</key> <integer>15</integer>
+				<key>recipies</key> <string>alchemy 4</string>
 			</dict>
 		</array>
 	</dict>

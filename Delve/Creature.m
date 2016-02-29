@@ -137,7 +137,7 @@
 	{
 		[desc appendString:@"to normal attacks"];
 		if (!loadValueBool(@"Implements", weapon, @"element"))
-			[desc appendString:@", blunt element"];
+			[desc appendString:@", smash element"];
 	}
 	else
 		for (NSString *tree in loadEntries(@"SkillTrees").allKeys)

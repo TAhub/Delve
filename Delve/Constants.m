@@ -254,3 +254,72 @@ void passiveBalanceTest()
 	NSLog(@"hacks = %i", hacks);
 	NSLog(@"metabolism = %i", metabolism);
 }
+
+void recipieBalanceTest()
+{
+	NSArray *recipieNames = loadEntries(@"Recipies").allKeys;
+	//TODO: check each non-template recipie and tally up the total ingredient cost of everything
+	//and also check each implement and armor in the spawning lists (AKA non-starting items) and tally up their breakdown materials
+	//see if they seem to be more or less balanced
+	
+	NSMutableDictionary *costs = [NSMutableDictionary new];
+	NSMutableDictionary *supplies = [NSMutableDictionary new];
+	NSMutableDictionary *breakdown = [NSMutableDictionary new];
+	
+	NSDictionary *lists = loadEntries(@"Lists");
+	for (int i = 1; i <= 4; i++)
+	{
+		NSArray *armorList = lists[[NSString stringWithFormat:@"armors %i", i]];
+		for (NSString *armor in armorList)
+		{
+			NSString *breaksDownInto = loadValueString(@"Armors", armor, @"breaks into");
+			supplies[breaksDownInto] = @((supplies[breaksDownInto] != nil ? ((NSNumber *)supplies[breaksDownInto]).intValue : 0) + 1);
+			breakdown[armor] = breaksDownInto;
+		}
+	}
+	for (int i = 1; i <= 3; i++)
+	{
+		NSArray *implementList = lists[[NSString stringWithFormat:@"implements %i", i]];
+		for (NSString *implement in implementList)
+		{
+			NSString *breaksDownInto = loadValueString(@"Implements", implement, @"breaks into");
+			supplies[breaksDownInto] = @((supplies[breaksDownInto] != nil ? ((NSNumber *)supplies[breaksDownInto]).intValue : 0) + 1);
+			breakdown[implement] = breaksDownInto;
+		}
+	}
+	
+	NSLog(@"Breakdown:");
+	for (NSString *name in recipieNames)
+		if (![name isEqualToString:@"template"])
+		{
+			NSString *materialA = loadValueString(@"Recipies", name, @"ingredient a");
+			NSString *materialB = @"";
+			int materialAamount = loadValueNumber(@"Recipies", name, @"ingredient a amount").intValue;
+			costs[materialA] = @((costs[materialA] != nil ? ((NSNumber *)costs[materialA]).intValue : 0) + materialAamount);
+			if (loadValueBool(@"Recipies", name, @"ingredient b"))
+			{
+				materialB = loadValueString(@"Recipies", name, @"ingredient b");
+				int materialBamount = loadValueNumber(@"Recipies", name, @"ingredient b amount").intValue;
+				costs[materialB] = @((costs[materialB] != nil ? ((NSNumber *)costs[materialB]).intValue : 0) + materialBamount);
+			}
+			NSString *result = loadValueString(@"Recipies", name, @"result");
+			if (breakdown[result] == nil)
+				NSLog(@"--%@ has no breakdown", result);
+			else
+				if (![materialA isEqualToString:breakdown[result]] && ![materialB isEqualToString:breakdown[result]])
+					NSLog(@"--ERROR: %@ should cost at least one %@", result, breakdown[result]);
+		}
+	
+	//TODO: check to see if any recipies cost something that the item DOESN'T break down into, and give a warning
+	
+	NSLog(@"Total costs:");
+	for (NSString *key in costs.allKeys)
+	{
+		NSLog(@"--%@: %i", key, ((NSNumber *)costs[key]).intValue);
+	}
+	NSLog(@"Total supplies:");
+	for (NSString *key in supplies.allKeys)
+	{
+		NSLog(@"--%@: %i", key, ((NSNumber *)supplies[key]).intValue);
+	}
+}

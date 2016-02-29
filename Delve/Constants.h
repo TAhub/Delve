@@ -46,6 +46,7 @@ typedef NS_ENUM(NSInteger, GeneratorRoomExit) {
 typedef NS_ENUM(NSInteger, TreasureType) {
 	TreasureTypeLocked,
 	TreasureTypeChest,
+	TreasureTypeBag,
 	TreasureTypeFree,
 	TreasureTypeNone
 };
@@ -78,3 +79,4 @@ BOOL loadValueBool(NSString *category, NSString *entry, NSString *value);
 
 #pragma mark tests
 void passiveBalanceTest();
+void recipieBalanceTest();

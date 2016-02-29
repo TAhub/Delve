@@ -12,6 +12,7 @@
 	<key>template</key>
 	<dict>
 		<key>type</key> <string>template</string>
+		<key>breaks into</key> <string>template</string>
 		<key>power</key> <integer>0</integer>
 		<key>element</key> <string>cut</string>
 	</dict>
@@ -45,18 +46,21 @@
 	<key>shortsword</key>
 	<dict>
 		<key>type</key> <string>weapon</string>
+		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>15</integer>
 		<key>element</key> <string>cut</string>
 	</dict>
 	<key>longsword</key>
 	<dict>
 		<key>type</key> <string>weapon</string>
+		<key>breaks into</key> <string>steel ingot</string>
 		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>cut</string>
 	</dict>
 	<key>master blade</key>
 	<dict>
 		<key>type</key> <string>weapon</string>
+		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>45</integer>
 		<key>element</key> <string>cut</string>
 	</dict>
@@ -68,36 +72,43 @@
 	<key>mace</key>
 	<dict>
 		<key>type</key> <string>weapon</string>
+		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>15</integer>
 	</dict>
 	<key>flail</key>
 	<dict>
 		<key>type</key> <string>weapon</string>
+		<key>breaks into</key> <string>steel ingot</string>
 		<key>power</key> <integer>30</integer>
 	</dict>
 	<key>flanged mace</key>
 	<dict>
 		<key>type</key> <string>weapon</string>
+		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>45</integer>
 	</dict>
 	<key>torch</key>
 	<dict>
 		<key>type</key> <string>burn</string>
+		<key>breaks into</key> <string>herb</string>
 		<key>power</key> <integer>15</integer>
 	</dict>
 	<key>holy baton</key>
 	<dict>
 		<key>type</key> <string>shock</string>
+		<key>breaks into</key> <string>battery</string>
 		<key>power</key> <integer>30</integer>
 	</dict>
 	<key>burning blade</key>
 	<dict>
 		<key>type</key> <string>burn</string>
+		<key>breaks into</key> <string>diamond dust</string>
 		<key>power</key> <integer>45</integer>
 	</dict>
 	<key>relic edge</key>
 	<dict>
 		<key>type</key> <string>shock</string>
+		<key>breaks into</key> <string>circuit</string>
 		<key>power</key> <integer>45</integer>
 	</dict>
 	
@@ -110,16 +121,19 @@
 	<key>buckler</key>
 	<dict>
 		<key>type</key> <string>shield</string>
+		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>15</integer>
 	</dict>
 	<key>kite shield</key>
 	<dict>
 		<key>type</key> <string>shield</string>
+		<key>breaks into</key> <string>steel ingot</string>
 		<key>power</key> <integer>30</integer>
 	</dict>
 	<key>relic shield</key>
 	<dict>
 		<key>type</key> <string>shield</string>
+		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>45</integer>
 	</dict>
 	
@@ -132,16 +146,19 @@
 	<key>light hammer</key>
 	<dict>
 		<key>type</key> <string>hammer</string>
+		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>15</integer>
 	</dict>
 	<key>warhammer</key>
 	<dict>
 		<key>type</key> <string>hammer</string>
+		<key>breaks into</key> <string>steel ingot</string>
 		<key>power</key> <integer>30</integer>
 	</dict>
 	<key>greathammer</key>
 	<dict>
 		<key>type</key> <string>hammer</string>
+		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>45</integer>
 	</dict>
 	
@@ -154,16 +171,19 @@
 	<key>iron spear</key>
 	<dict>
 		<key>type</key> <string>spear</string>
+		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>15</integer>
 	</dict>
 	<key>pike</key>
 	<dict>
 		<key>type</key> <string>spear</string>
+		<key>breaks into</key> <string>steel ingot</string>
 		<key>power</key> <integer>30</integer>
 	</dict>
 	<key>partisan</key>
 	<dict>
 		<key>type</key> <string>spear</string>
+		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>45</integer>
 	</dict>
 	
@@ -176,16 +196,19 @@
 	<key>shortbow</key>
 	<dict>
 		<key>type</key> <string>bow</string>
+		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>15</integer>
 	</dict>
 	<key>longbow</key>
 	<dict>
 		<key>type</key> <string>bow</string>
+		<key>breaks into</key> <string>steel ingot</string>
 		<key>power</key> <integer>30</integer>
 	</dict>
 	<key>composite bow</key>
 	<dict>
 		<key>type</key> <string>bow</string>
+		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>45</integer>
 	</dict>
 	
@@ -198,16 +221,19 @@
 	<key>glimmering orb</key>
 	<dict>
 		<key>type</key> <string>light orb</string>
+		<key>breaks into</key> <string>capacitor</string>
 		<key>power</key> <integer>15</integer>
 	</dict>
 	<key>glowing orb</key>
 	<dict>
 		<key>type</key> <string>light orb</string>
+		<key>breaks into</key> <string>battery</string>
 		<key>power</key> <integer>30</integer>
 	</dict>
 	<key>radiant orb</key>
 	<dict>
 		<key>type</key> <string>light orb</string>
+		<key>breaks into</key> <string>circuit</string>
 		<key>power</key> <integer>45</integer>
 	</dict>
 	
@@ -220,16 +246,19 @@
 	<key>holy thunder</key>
 	<dict>
 		<key>type</key> <string>holy weapon</string>
+		<key>breaks into</key> <string>capacitor</string>
 		<key>power</key> <integer>15</integer>
 	</dict>
 	<key>white lightning</key>
 	<dict>
 		<key>type</key> <string>holy weapon</string>
+		<key>breaks into</key> <string>battery</string>
 		<key>power</key> <integer>30</integer>
 	</dict>
 	<key>pearl arsenal</key>
 	<dict>
 		<key>type</key> <string>holy weapon</string>
+		<key>breaks into</key> <string>circuit</string>
 		<key>power</key> <integer>45</integer>
 	</dict>
 	
@@ -242,16 +271,19 @@
 	<key>birthright</key>
 	<dict>
 		<key>type</key> <string>godly implant</string>
+		<key>breaks into</key> <string>capacitor</string>
 		<key>power</key> <integer>15</integer>
 	</dict>
 	<key>faith</key>
 	<dict>
 		<key>type</key> <string>godly implant</string>
+		<key>breaks into</key> <string>battery</string>
 		<key>power</key> <integer>30</integer>
 	</dict>
 	<key>conviction</key>
 	<dict>
 		<key>type</key> <string>godly implant</string>
+		<key>breaks into</key> <string>circuit</string>
 		<key>power</key> <integer>45</integer>
 	</dict>
 	
@@ -264,16 +296,19 @@
 	<key>ritual knife</key>
 	<dict>
 		<key>type</key> <string>ritual knife</string>
+		<key>breaks into</key> <string>fang</string>
 		<key>power</key> <integer>15</integer>
 	</dict>
 	<key>athame</key>
 	<dict>
 		<key>type</key> <string>ritual knife</string>
+		<key>breaks into</key> <string>quicksilver</string>
 		<key>power</key> <integer>30</integer>
 	</dict>
 	<key>relic knife</key>
 	<dict>
 		<key>type</key> <string>ritual knife</string>
+		<key>breaks into</key> <string>diamond dust</string>
 		<key>power</key> <integer>45</integer>
 	</dict>
 	
@@ -286,16 +321,19 @@
 	<key>ritual compendium</key>
 	<dict>
 		<key>type</key> <string>tome</string>
+		<key>breaks into</key> <string>fang</string>
 		<key>power</key> <integer>15</integer>
 	</dict>
 	<key>ether dynamics</key>
 	<dict>
 		<key>type</key> <string>tome</string>
+		<key>breaks into</key> <string>quicksilver</string>
 		<key>power</key> <integer>30</integer>
 	</dict>
 	<key>forbidden tome</key>
 	<dict>
 		<key>type</key> <string>tome</string>
+		<key>breaks into</key> <string>diamond dust</string>
 		<key>power</key> <integer>45</integer>
 	</dict>
 </dict>

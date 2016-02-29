@@ -13,6 +13,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
+		<key>breaks into</key> <string>template</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>0</integer>
 		<key>health</key> <integer>0</integer>
@@ -52,6 +53,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
+		<key>breaks into</key> <string>iron ingot</string>
 		<!-- stats -->
 		<key>health</key> <integer>12</integer>
 		<!-- appearance -->
@@ -68,11 +70,12 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
+		<key>breaks into</key> <string>steel ingot</string>
 		<!-- stats -->
 		<key>smash resistance</key> <integer>2</integer>
 		<!-- appearance -->
 		<key>sprite</key> <string>skullcap</string>
-		<key>color</key> <string>iron</string>
+		<key>color</key> <string>steel</string>
 		<key>sprite back</key> <true/>
 		<key>sprite over hair</key> <true/>
 		<key>female y add</key> <integer>2</integer>
@@ -84,6 +87,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
+		<key>breaks into</key> <string>refined ingot</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>10</integer>
 		<key>smash resistance</key> <integer>2</integer>
@@ -101,6 +105,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
+		<key>breaks into</key> <string>quicksilver</string>
 		<!-- stats -->
 		<key>health</key> <integer>10</integer>
 		<key>smash resistance</key> <integer>2</integer>
@@ -118,6 +123,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
+		<key>breaks into</key> <string>refined ingot</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>20</integer>
 		<key>smash resistance</key> <integer>2</integer>
@@ -135,6 +141,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
+		<key>breaks into</key> <string>iron ingot</string>
 		<!-- stats -->
 		<key>cut resistance</key> <integer>1</integer>
 		<!-- appearance -->
@@ -150,6 +157,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
+		<key>breaks into</key> <string>steel ingot</string>
 		<!-- stats -->
 		<key>health</key> <integer>10</integer>
 		<key>cut resistance</key> <integer>1</integer>
@@ -167,6 +175,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
+		<key>breaks into</key> <string>refined ingot</string>
 		<!-- stats -->
 		<key>cut resistance</key> <integer>3</integer>
 		<!-- appearance -->
@@ -183,6 +192,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
+		<key>breaks into</key> <string>refined ingot</string>
 		<!-- stats -->
 		<key>health</key> <integer>10</integer>
 		<key>cut resistance</key> <integer>3</integer>
@@ -204,6 +214,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>body armor</string>
+		<key>breaks into</key> <string>iron ingot</string>
 		<!-- stats -->
 		<key>cut resistance</key> <integer>2</integer>
 		<!-- appearance -->
@@ -218,12 +229,13 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>body armor</string>
+		<key>breaks into</key> <string>steel ingot</string>
 		<!-- stats -->
 		<key>health</key> <integer>12</integer>
 		<key>cut resistance</key> <integer>2</integer>
 		<!-- appearance -->
 		<key>sprite</key> <string>chestplate</string>
-		<key>color</key> <string>iron</string>
+		<key>color</key> <string>steel</string>
 		<key>sprite gender</key> <true/>
 	</dict>
 	
@@ -233,6 +245,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>body armor</string>
+		<key>breaks into</key> <string>refined ingot</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>10</integer>
 		<key>cut resistance</key> <integer>3</integer>
@@ -248,6 +261,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>body armor</string>
+		<key>breaks into</key> <string>refined ingot</string>
 		<!-- stats -->
 		<key>health</key> <integer>10</integer>
 		<key>cut resistance</key> <integer>4</integer>
@@ -262,12 +276,13 @@
 	<!-- all headgear are at par -->
 	<!-- they mostly give misc bonuses -->
 	
-	<!-- eyeglasses -->
+	<!-- correction glasses -->
 	<!-- level 1 goggles -->
-	<key>eyeglasses</key>
+	<key>correction glasses</key>
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>headgear</string>
+		<key>breaks into</key> <string>capacitor</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>10</integer>
 		<!-- appearance -->
@@ -283,6 +298,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>headgear</string>
+		<key>breaks into</key> <string>battery</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>20</integer>
 		<!-- appearance -->
@@ -298,6 +314,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>headgear</string>
+		<key>breaks into</key> <string>circuit</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>30</integer>
 		<!-- appearance -->
@@ -313,6 +330,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>headgear</string>
+		<key>breaks into</key> <string>circuit</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>40</integer>
 		<!-- appearance -->
@@ -328,6 +346,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>headgear</string>
+		<key>breaks into</key> <string>fabric</string>
 		<!-- stats -->
 		<key>smash resistance</key> <integer>1</integer>
 		<!-- appearance -->
@@ -343,6 +362,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>headgear</string>
+		<key>breaks into</key> <string>quicksilver</string>
 		<!-- stats -->
 		<key>shock resistance</key> <integer>1</integer>
 		<key>burn resistance</key> <integer>1</integer>
@@ -359,6 +379,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>headgear</string>
+		<key>breaks into</key> <string>silk</string>
 		<!-- stats -->
 		<key>smash resistance</key> <integer>3</integer>
 		<!-- appearance -->
@@ -374,6 +395,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>headgear</string>
+		<key>breaks into</key> <string>diamond dust</string>
 		<!-- stats -->
 		<key>shock resistance</key> <integer>2</integer>
 		<key>burn resistance</key> <integer>2</integer>
@@ -408,6 +430,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>small clothes</string>
+		<key>breaks into</key> <string>fabric</string>
 		<!-- stats -->
 		<key>smash resistance</key> <integer>1</integer>
 		<!-- appearance -->
@@ -422,6 +445,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>small clothes</string>
+		<key>breaks into</key> <string>steel ingot</string>
 		<!-- stats -->
 		<key>health</key> <integer>10</integer>
 		<key>smash resistance</key> <integer>1</integer>
@@ -437,6 +461,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>small clothes</string>
+		<key>breaks into</key> <string>silk</string>
 		<!-- stats -->
 		<key>health</key> <integer>10</integer>
 		<key>dodges</key> <integer>1</integer>
@@ -452,6 +477,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>small clothes</string>
+		<key>breaks into</key> <string>refined ingot</string>
 		<!-- stats -->
 		<key>health</key> <integer>20</integer>
 		<key>smash resistance</key> <integer>1</integer>
@@ -473,6 +499,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>jewelry</string>
+		<key>breaks into</key> <string>iron ingot</string>
 		<!-- stats -->
 		<key>health</key> <integer>10</integer>
 		<key>metabolism</key> <integer>5</integer>
@@ -485,6 +512,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>jewelry</string>
+		<key>breaks into</key> <string>quicksilver</string>
 		<!-- stats -->
 		<key>shock resistance</key> <integer>1</integer>
 		<key>burn resistance</key> <integer>1</integer>
@@ -497,6 +525,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>jewelry</string>
+		<key>breaks into</key> <string>diamond dust</string>
 		<!-- stats -->
 		<key>smash resistance</key> <integer>1</integer>
 		<key>dodges</key> <integer>1</integer>
@@ -509,6 +538,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>jewelry</string>
+		<key>breaks into</key> <string>diamond dust</string>
 		<!-- stats -->
 		<key>shock resistance</key> <integer>2</integer>
 		<key>burn resistance</key> <integer>2</integer>
@@ -521,6 +551,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>jewelry</string>
+		<key>breaks into</key> <string>iron ingot</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>10</integer>
 		<!-- appearance -->
@@ -532,6 +563,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>jewelry</string>
+		<key>breaks into</key> <string>quicksilver</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>20</integer>
 		<!-- appearance -->
@@ -543,6 +575,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>jewelry</string>
+		<key>breaks into</key> <string>refined ingot</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>30</integer>
 		<!-- appearance -->
@@ -554,6 +587,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>jewelry</string>
+		<key>breaks into</key> <string>refined ingot</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>40</integer>
 		<!-- appearance -->
@@ -570,6 +604,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>tail ornament</string>
+		<key>breaks into</key> <string>iron ingot</string>
 		<!-- stats -->
 		<key>metabolism</key> <integer>30</integer>
 		<!-- appearance -->
@@ -584,6 +619,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>tail ornament</string>
+		<key>breaks into</key> <string>steel ingot</string>
 		<!-- stats -->
 		<key>metabolism</key> <integer>45</integer>
 		<!-- appearance -->
@@ -598,6 +634,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>tail ornament</string>
+		<key>breaks into</key> <string>refined ingot</string>
 		<!-- stats -->
 		<key>health</key> <integer>10</integer>
 		<key>metabolism</key> <integer>45</integer>
@@ -613,6 +650,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>tail ornament</string>
+		<key>breaks into</key> <string>refined ingot</string>
 		<!-- stats -->
 		<key>health</key> <integer>15</integer>
 		<key>metabolism</key> <integer>50</integer>
@@ -628,6 +666,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>tail ornament</string>
+		<key>breaks into</key> <string>fabric</string>
 		<!-- stats -->
 		<key>dodges</key> <integer>1</integer>
 		<!-- appearance -->
@@ -642,6 +681,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>tail ornament</string>
+		<key>breaks into</key> <string>fabric</string>
 		<!-- stats -->
 		<key>dodges</key> <integer>1</integer>
 		<key>smash resistance</key> <integer>1</integer>
@@ -657,6 +697,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>tail ornament</string>
+		<key>breaks into</key> <string>silk</string>
 		<!-- stats -->
 		<key>dodges</key> <integer>2</integer>
 		<!-- appearance -->
@@ -671,6 +712,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>tail ornament</string>
+		<key>breaks into</key> <string>silk</string>
 		<!-- stats -->
 		<key>dodges</key> <integer>2</integer>
 		<key>smash resistance</key> <integer>1</integer>
@@ -691,6 +733,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>shoes</string>
+		<key>breaks into</key> <string>fabric</string>
 		<!-- stats -->
 		<key>burn resistance</key> <integer>1</integer>
 		<!-- appearance -->
@@ -704,6 +747,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>shoes</string>
+		<key>breaks into</key> <string>iron ingot</string>
 		<!-- stats -->
 		<key>health</key> <integer>12</integer>
 		<key>burn resistance</key> <integer>1</integer>
@@ -718,6 +762,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>shoes</string>
+		<key>breaks into</key> <string>steel ingot</string>
 		<!-- stats -->
 		<key>health</key> <integer>12</integer>
 		<key>burn resistance</key> <integer>2</integer>
@@ -732,6 +777,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>shoes</string>
+		<key>breaks into</key> <string>refined ingot</string>
 		<!-- stats -->
 		<key>health</key> <integer>25</integer>
 		<key>burn resistance</key> <integer>2</integer>
@@ -746,6 +792,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>shoes</string>
+		<key>breaks into</key> <string>fabric</string>
 		<!-- stats -->
 		<key>shock resistance</key> <integer>1</integer>
 		<!-- appearance -->
@@ -759,6 +806,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>shoes</string>
+		<key>breaks into</key> <string>fabric</string>
 		<!-- stats -->
 		<key>health</key> <integer>12</integer>
 		<key>shock resistance</key> <integer>1</integer>
@@ -773,6 +821,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>shoes</string>
+		<key>breaks into</key> <string>silk</string>
 		<!-- stats -->
 		<key>health</key> <integer>12</integer>
 		<key>shock resistance</key> <integer>2</integer>
@@ -787,6 +836,7 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>shoes</string>
+		<key>breaks into</key> <string>silk</string>
 		<!-- stats -->
 		<key>health</key> <integer>25</integer>
 		<key>shock resistance</key> <integer>2</integer>

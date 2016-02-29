@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *pickUpButton;
 @property (weak, nonatomic) IBOutlet UIButton *attacksButton;
 @property (weak, nonatomic) IBOutlet UIButton *inventoryButton;
+@property (weak, nonatomic) IBOutlet UIButton *craftButton;
 @property (weak, nonatomic) IBOutlet UIView *statView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mainPanelCord;
 
@@ -65,7 +66,9 @@
 
 @property (strong, nonatomic) UITableView *itemTable;
 @property (strong, nonatomic) Item *examinationItem;
+@property (strong, nonatomic) NSArray *examineRecipies;
 -(Item *)inventoryItemPicked;
+-(NSString *)recipiePicked;
 
 @end
 
@@ -245,6 +248,7 @@
 	[self.attackNext setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 	[self.attackConfirmCancel setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 	[self.inventoryButton setTitleColor:self.map.inventory.count > 0 ? loadColorFromName(@"ui text") : loadColorFromName(@"ui text grey") forState:UIControlStateNormal];
+	[self.craftButton setTitleColor:[self.map canCraft] ? loadColorFromName(@"ui text") : loadColorFromName(@"ui text grey") forState:UIControlStateNormal];
 	
 	
 	//set up attacks panel with a list of attacks (greyed out buttons for attacks you can't use)
@@ -292,7 +296,7 @@
 	NSString *inventoryLabelText;
 	if (self.examinationItem == nil)
 	{
-		inventoryLabelText = @"Pick an item to use";
+		inventoryLabelText = self.examineRecipies != nil ? @"Pick a recipie to craft" : @"Pick an item to use";
 	}
 	else
 	{
@@ -524,6 +528,20 @@
 	}
 }
 
+- (IBAction)craftButtonPress
+{
+	if (self.animating || self.uiAnimating)
+		return;
+	
+	if (self.map.canCraft)
+	{
+		//open crafting menu
+		self.examinationItem = nil;
+		self.examineRecipies = [NSArray new];
+		[self reloadPanels];
+		[self switchToPanel:self.inventoryPanelCord];
+	}
+}
 
 - (IBAction)attacksButtonPress
 {
@@ -537,11 +555,43 @@
 
 - (IBAction)inventoryButtonPress:(UIButton *)sender
 {
+	if (self.animating || self.uiAnimating)
+		return;
+	
 	if (self.examinationItem == nil)
 	{
 		//inventory screen
 		if (sender.tag == 1)
 		{
+			if (self.examineRecipies != nil)
+			{
+				NSString *recipie = self.recipiePicked;
+				if (recipie != nil)
+				{
+					//TODO: craft the picked recipie
+					if (false) //TODO: if it's equipment
+					{
+						Tile *tile = self.map.tiles[self.map.player.y][self.map.player.x];
+						tile.treasureType = TreasureTypeBag;
+						//TODO: drop it on the ground as an item
+						[self updateTiles];
+					}
+					else
+					{
+						//TODO: add it to your inventory; maybe make the "add to inventory" code a function
+					}
+					
+					[self reloadPanels];
+					__weak typeof(self) weakSelf = self;
+					[self switchToPanel:self.mainPanelCord withBlock:
+					^()
+					{
+						[weakSelf.map update];
+					}];
+				}
+				return;
+			}
+			
 			Item *item = self.inventoryItemPicked;
 			if (item != nil && item.usable)
 			{
@@ -667,6 +717,14 @@
 	}
 }
 
+-(NSString *)recipiePicked
+{
+	if (self.itemTable == nil || self.itemTable.indexPathForSelectedRow == nil)
+		return nil;
+	int row = self.itemTable.indexPathForSelectedRow.row;
+	return self.examineRecipies[row];
+}
+
 -(Item *)inventoryItemPicked
 {
 	if (self.itemTable == nil || self.itemTable.indexPathForSelectedRow == nil)
@@ -677,10 +735,13 @@
 
 - (IBAction)inventoryOpenButtonPress
 {
+	if (self.animating || self.uiAnimating)
+		return;
 	if (self.map.inventory.count > 0)
 	{
 		//opens the inventory so you can use inventory buttons
 		self.examinationItem = nil;
+		self.examineRecipies = nil;
 		[self reloadPanels];
 		[self switchToPanel:self.inventoryPanelCord];
 	}
@@ -689,10 +750,13 @@
 
 - (IBAction)pickUpButtonPress
 {
+	if (self.animating || self.uiAnimating)
+		return;
 	if (self.map.canPickUp)
 	{
 		Tile *tile = self.map.tiles[self.map.player.y][self.map.player.x];
 		self.examinationItem = tile.treasure;
+		self.examineRecipies = nil;
 		if (self.itemTable == nil)
 		{
 			[self.itemTable removeFromSuperview];
@@ -1005,14 +1069,23 @@
 
 -(int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+	if (self.examineRecipies != nil)
+		return self.examineRecipies.count;
 	return self.map.inventory.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	ItemTableViewCell *itemCell = [tableView dequeueReusableCellWithIdentifier:@"itemCell"];
-	Item *item = self.map.inventory[indexPath.row];
-	itemCell.nameLabel.text = item.name;
+	if (self.examineRecipies == nil)
+	{
+		Item *item = self.map.inventory[indexPath.row];
+		itemCell.nameLabel.text = item.name;
+	}
+	else
+	{
+		//TODO: print the name of that recipie, and details about it
+	}
 	itemCell.nameLabel.textColor = loadColorFromName(@"ui text");
 	return itemCell;
 }

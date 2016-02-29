@@ -35,6 +35,53 @@
 	<!-- TODO: make them -->
 	
 	<!-- crafting material items -->
-	<!-- TODO: make them -->
+	<key>iron ingot</key> <!-- level 1 material -->
+	<dict>
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>steel ingot</key> <!-- level 2 material -->
+	<dict>
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>refined ingot</key> <!-- level 3 material -->
+	<dict>
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>capacitor</key> <!-- level 1 material -->
+	<dict>
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>battery</key> <!-- level 2 material -->
+	<dict>
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>circuit</key> <!-- level 3 material -->
+	<dict>
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>herb</key> <!-- level 1.5 material -->
+	<dict>
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>fang</key>
+	<dict>
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>quicksilver</key> <!-- level 2 material -->
+	<dict>
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>diamond dust</key> <!-- level 3 material -->
+	<dict>
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>fabric</key> <!-- level 1.5 material -->
+	<dict>
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>silk</key> <!-- level 2.5 material -->
+	<dict>
+		<!-- TODO: appearance data -->
+	</dict>
 </dict>
 </plist>

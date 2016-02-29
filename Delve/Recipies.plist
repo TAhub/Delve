@@ -1,0 +1,854 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Recipies.plist
+   Delve
+
+   Created by Theodore Abshire on 2/29/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+	<key>template</key>
+	<dict>
+		<key>ingredient a</key> <string>template</string>
+		<key>ingredient a amount</key> <integer>1</integer>
+		<key>ingredient b</key> <string>template</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>template</string>
+		<key>result type</key> <string>inventory</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	
+	<!-- smithing recipies -->
+	
+	<!-- smithing armors -->
+	<key>rusty helmet</key>
+	<dict>
+		<key>ingredient a</key> <string>iron ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>rusty helmet</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>skullcap</key>
+	<dict>
+		<key>ingredient a</key> <string>steel ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>skullcap</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>bandit helmet</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>bandit helmet</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>soldier hat</key>
+	<dict>
+		<key>ingredient a</key> <string>silk</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>quicksilver</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>soldier hat</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>hero helmet</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>ingredient b</key> <string>diamond dust</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>hero helmet</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>pot helmet</key>
+	<dict>
+		<key>ingredient a</key> <string>iron ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>pot helmet</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>riveted helmet</key>
+	<dict>
+		<key>ingredient a</key> <string>steel ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>riveted helmet</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>winged helmet</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>winged helmet</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>knight helmet</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>ingredient b</key> <string>diamond dust</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>knight helmet</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>rusty armor</key>
+	<dict>
+		<key>ingredient a</key> <string>iron ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>rusty armor</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>chestplate</key>
+	<dict>
+		<key>ingredient a</key> <string>steel ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>chestplate</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>hero armor</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>hero armor</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>knight armor</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>ingredient b</key> <string>diamond dust</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>knight armor</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>eoling robe</key>
+	<dict>
+		<key>ingredient a</key> <string>fabric</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>eoling robe</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>eoling mantle</key>
+	<dict>
+		<key>ingredient a</key> <string>steel ingot</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>fabric</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>eoling mantle</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>temple dancer outfit</key>
+	<dict>
+		<key>ingredient a</key> <string>silk</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>temple dancer outfit</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>eoling armor</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>ingredient b</key> <string>silk</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>eoling armor</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>iron tail ring</key>
+	<dict>
+		<key>ingredient a</key> <string>iron ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>iron tail ring</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>steel tail ring</key>
+	<dict>
+		<key>ingredient a</key> <string>steel ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>steel tail ring</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>gold tail ring</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>gold tail ring</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>relic tail ring</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>ingredient b</key> <string>diamond dust</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>relic tail ring</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>white tail banner</key>
+	<dict>
+		<key>ingredient a</key> <string>fabric</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>white tail banner</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>red tail banner</key>
+	<dict>
+		<key>ingredient a</key> <string>fabric</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>quicksilver</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>red tail banner</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>blue tail banner</key>
+	<dict>
+		<key>ingredient a</key> <string>silk</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>blue tail banner</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>gold tail banner</key>
+	<dict>
+		<key>ingredient a</key> <string>silk</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>ingredient b</key> <string>diamond dust</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>gold tail banner</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>boots</key>
+	<dict>
+		<key>ingredient a</key> <string>fabric</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>boots</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>reinforced boots</key>
+	<dict>
+		<key>ingredient a</key> <string>fabric</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>iron ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>reinforced boots</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>steel-toed boots</key>
+	<dict>
+		<key>ingredient a</key> <string>steel ingot</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>silk</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>steel-toed boots</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>greaves</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>ingredient b</key> <string>silk</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>greaves</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>cheap shoes</key>
+	<dict>
+		<key>ingredient a</key> <string>fabric</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>cheap shoes</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>leather shoes</key>
+	<dict>
+		<key>ingredient a</key> <string>fabric</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>herb</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>leather shoes</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>fine shoes</key>
+	<dict>
+		<key>ingredient a</key> <string>silk</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>fine shoes</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>fancy shoes</key>
+	<dict>
+		<key>ingredient a</key> <string>silk</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>ingredient b</key> <string>diamond dust</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>fancy shoes</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	
+	<!-- smithing implements -->
+	<key>shortsword</key>
+	<dict>
+		<key>ingredient a</key> <string>iron ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>shortsword</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>longsword</key>
+	<dict>
+		<key>ingredient a</key> <string>steel ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>longsword</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>master blade</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>master blade</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>mace</key>
+	<dict>
+		<key>ingredient a</key> <string>iron ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>mace</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>flail</key>
+	<dict>
+		<key>ingredient a</key> <string>steel ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>flail</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>flanged mace</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>flanged mace</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>buckler</key>
+	<dict>
+		<key>ingredient a</key> <string>iron ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>buckler</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>kite shield</key>
+	<dict>
+		<key>ingredient a</key> <string>steel ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>kite shield</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>relic shield</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>relic shield</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>light hammer</key>
+	<dict>
+		<key>ingredient a</key> <string>iron ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>light hammer</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>warhammer</key>
+	<dict>
+		<key>ingredient a</key> <string>steel ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>warhammer</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>greathammer</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>greathammer</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>iron spear</key>
+	<dict>
+		<key>ingredient a</key> <string>iron ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>iron spear</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>pike</key>
+	<dict>
+		<key>ingredient a</key> <string>steel ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>pike</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>partisan</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>partisan</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>shortbow</key>
+	<dict>
+		<key>ingredient a</key> <string>iron ingot</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>fang</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>shortbow</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>longbow</key>
+	<dict>
+		<key>ingredient a</key> <string>steel ingot</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>quicksilver</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>longbow</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>composite bow</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>diamond dust</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>composite bow</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	
+	
+	<!-- false prophet recipies -->
+	
+	<!-- false prophet implements -->
+	<key>holy baton</key>
+	<dict>
+		<key>ingredient a</key> <string>battery</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>steel ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>holy baton</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>relic edge</key>
+	<dict>
+		<key>ingredient a</key> <string>circuit</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>refined ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>relic edge</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>glimmering orb</key>
+	<dict>
+		<key>ingredient a</key> <string>capacitor</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>glimmering orb</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>glowing orb</key>
+	<dict>
+		<key>ingredient a</key> <string>battery</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>glowing orb</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>radiant orb</key>
+	<dict>
+		<key>ingredient a</key> <string>circuit</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>radiant orb</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>holy thunder</key>
+	<dict>
+		<key>ingredient a</key> <string>capacitor</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>iron ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>holy thunder</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>white lightning</key>
+	<dict>
+		<key>ingredient a</key> <string>battery</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>steel ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>white lightning</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>pearl arsenal</key>
+	<dict>
+		<key>ingredient a</key> <string>circuit</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>refined ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>pearl arsenal</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>birthright</key>
+	<dict>
+		<key>ingredient a</key> <string>capacitor</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>fang</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>birthright</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>faith</key>
+	<dict>
+		<key>ingredient a</key> <string>battery</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>quicksilver</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>faith</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>conviction</key>
+	<dict>
+		<key>ingredient a</key> <string>circuit</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>diamond dust</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>conviction</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	
+	<!-- false prophet armors -->
+	<!-- TODO: eoling mech armor (make that) -->
+	<key>correction glasses</key>
+	<dict>
+		<key>ingredient a</key> <string>capacitor</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>iron ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>correction glasses</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>goggles</key>
+	<dict>
+		<key>ingredient a</key> <string>battery</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>steel ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>goggles</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>fine goggles</key>
+	<dict>
+		<key>ingredient a</key> <string>circuit</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>refined ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>fine goggles</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>relic goggles</key>
+	<dict>
+		<key>ingredient a</key> <string>circuit</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>ingredient b</key> <string>refined ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>relic goggles</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	
+	<!-- false prophet consumbles -->
+	<key>crystals A</key>
+	<dict>
+		<key>ingredient a</key> <string>capacitor</string>
+		<key>ingredient a amount</key> <integer>1</integer>
+		<key>result</key> <string>crystal</string>
+		<key>result type</key> <string>inventory</string>
+		<key>result amount</key> <integer>3</integer>
+	</dict>
+	<key>crystals B</key>
+	<dict>
+		<key>ingredient a</key> <string>battery</string>
+		<key>ingredient a amount</key> <integer>1</integer>
+		<key>result</key> <string>crystal</string>
+		<key>result type</key> <string>inventory</string>
+		<key>result amount</key> <integer>4</integer>
+	</dict>
+	<key>crystals C</key>
+	<dict>
+		<key>ingredient a</key> <string>circuit</string>
+		<key>ingredient a amount</key> <integer>1</integer>
+		<key>result</key> <string>crystal</string>
+		<key>result type</key> <string>inventory</string>
+		<key>result amount</key> <integer>5</integer>
+	</dict>
+	<!-- TODO: a bunch of consumable buff items -->
+	
+	
+	<!-- alchemy recipies -->
+	
+	<!-- alchemy implements -->
+	<key>torch</key>
+	<dict>
+		<key>ingredient a</key> <string>herb</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>fang</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>torch</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>burning blade</key>
+	<dict>
+		<key>ingredient a</key> <string>diamond dust</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>refined ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>burning blade</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>ritual knife</key>
+	<dict>
+		<key>ingredient a</key> <string>fang</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>iron ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>ritual knife</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>athame</key>
+	<dict>
+		<key>ingredient a</key> <string>quicksilver</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>steel ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>athame</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>relic knife</key>
+	<dict>
+		<key>ingredient a</key> <string>diamond dust</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>refined ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>relic knife</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>ritual compendium</key>
+	<dict>
+		<key>ingredient a</key> <string>fang</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>ritual compendium</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>ether dynamics</key>
+	<dict>
+		<key>ingredient a</key> <string>quicksilver</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>ether dynamics</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>forbidden tome</key>
+	<dict>
+		<key>ingredient a</key> <string>diamond dust</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>result</key> <string>forbidden tome</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	
+	<!-- alchemy consumables -->
+	<!-- TODO: a bunch of healing items -->
+	
+	<!-- alchemy armors -->
+	<key>headband</key>
+	<dict>
+		<key>ingredient a</key> <string>fabric</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>fang</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>headband</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>tiara</key>
+	<dict>
+		<key>ingredient a</key> <string>steel ingot</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>quicksilver</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>tiara</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>silk headband</key>
+	<dict>
+		<key>ingredient a</key> <string>silk</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>diamond dust</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>silk headband</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>gold tiara</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>diamond dust</string>
+		<key>ingredient b amount</key> <integer>2</integer>
+		<key>result</key> <string>gold tiara</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>burnished ring</key>
+	<dict>
+		<key>ingredient a</key> <string>fang</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>iron ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>burnished ring</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>plain necklace</key>
+	<dict>
+		<key>ingredient a</key> <string>quicksilver</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>steel ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>plain necklace</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>jeweled ring</key>
+	<dict>
+		<key>ingredient a</key> <string>diamond dust</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>refined ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>jeweled ring</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>gem necklace</key>
+	<dict>
+		<key>ingredient a</key> <string>diamond dust</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>ingredient b</key> <string>refined ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>gem necklace</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>rough ring</key>
+	<dict>
+		<key>ingredient a</key> <string>iron ingot</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>fang</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>rough ring</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>silver bangle</key>
+	<dict>
+		<key>ingredient a</key> <string>steel ingot</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>quicksilver</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>silver bangle</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>skull ring</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>diamond dust</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>skull ring</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>gold bangle</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>ingredient b</key> <string>diamond dust</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>gold bangle</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+</dict>
+</plist>

@@ -115,10 +115,9 @@
 	<key>armors 1</key>
 	<array>
 		<!-- common stuff -->
-		<string>rusty helmet</string>
 		<string>pot helmet</string>
 		<string>rusty armor</string>
-		<string>eyeglasses</string>
+		<string>correction glasses</string>
 		<string>headband</string>
 		<string>eoling robe</string>
 		<string>burnished ring</string>
@@ -133,7 +132,6 @@
 	<key>armors 2</key>
 	<array>
 		<!-- common stuff -->
-		<string>skullcap</string>
 		<string>riveted helmet</string>
 		<string>chestplate</string>
 		<string>goggles</string>
@@ -151,7 +149,6 @@
 	<key>armors 3</key>
 	<array>
 		<!-- common stuff -->
-		<string>bandit helmet</string>
 		<string>soldier hat</string>
 		<string>winged helmet</string>
 		<string>hero armor</string>
@@ -184,6 +181,56 @@
 		<string>fancy shoes</string>
 		<!-- common stuff again -->
 		<!-- rare stuff -->
+	</array>
+	
+	<!-- crafting recipies -->
+	<key>smithing 1</key>
+	<array>
+		<string>template</string>
+	</array>
+	<key>smithing 2</key>
+	<array>
+		<string>template</string>
+	</array>
+	<key>smithing 3</key>
+	<array>
+		<string>template</string>
+	</array>
+	<key>smithing 4</key>
+	<array>
+		<string>template</string>
+	</array>
+	<key>false prophet 1</key>
+	<array>
+		<string>crystals A</string>
+	</array>
+	<key>false prophet 2</key>
+	<array>
+		<string>crystals B</string>
+	</array>
+	<key>false prophet 3</key>
+	<array>
+		<string>crystals C</string>
+	</array>
+	<key>false prophet 4</key>
+	<array>
+		<string>template</string>
+	</array>
+	<key>alchemy 1</key>
+	<array>
+		<string>template</string>
+	</array>
+	<key>alchemy 2</key>
+	<array>
+		<string>template</string>
+	</array>
+	<key>alchemy 3</key>
+	<array>
+		<string>template</string>
+	</array>
+	<key>alchemy 4</key>
+	<array>
+		<string>template</string>
 	</array>
 </dict>
 </plist>
