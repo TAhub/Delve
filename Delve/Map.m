@@ -33,6 +33,9 @@
 		_personOn = (int)self.creatures.count - 1;
 		
 		[self recalculateVisibility];
+		
+		//TODO: these are temporary start items
+		[_inventory addObject:[[Item alloc] initWithName:@"bread" andType:ItemTypeInventory]];
 	}
 	return self;
 }

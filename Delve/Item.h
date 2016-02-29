@@ -17,4 +17,7 @@
 @property ItemType type;
 @property int number;
 
+-(int)healing;
+-(BOOL)usable;
+
 @end

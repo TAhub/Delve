@@ -21,4 +21,15 @@
 	return self;
 }
 
+-(int)healing
+{
+	if (loadValueBool(@"InventoryItems", self.name, @"healing"))
+		return loadValueNumber(@"InventoryItems", self.name, @"healing").intValue;
+	return 0;
+}
+-(BOOL)usable
+{
+	return (self.healing > 0);
+}
+
 @end

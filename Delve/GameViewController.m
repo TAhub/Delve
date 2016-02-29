@@ -65,6 +65,7 @@
 
 @property (strong, nonatomic) UITableView *itemTable;
 @property (strong, nonatomic) Item *examinationItem;
+-(Item *)inventoryItemPicked;
 
 @end
 
@@ -243,7 +244,7 @@
 	[self.attackCancel setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 	[self.attackNext setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 	[self.attackConfirmCancel setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
-	[self.inventoryButton setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+	[self.inventoryButton setTitleColor:self.map.inventory.count > 0 ? loadColorFromName(@"ui text") : loadColorFromName(@"ui text grey") forState:UIControlStateNormal];
 	
 	
 	//set up attacks panel with a list of attacks (greyed out buttons for attacks you can't use)
@@ -383,10 +384,14 @@
 			[self.itemTable registerNib:[UINib nibWithNibName:@"ItemCell" bundle:nil] forCellReuseIdentifier:@"itemCell"];
 		}
 		else
+		{
+			NSIndexPath *oldPath = self.itemTable.indexPathForSelectedRow;
 			[self.itemTable reloadData];
+			[self.itemTable selectRowAtIndexPath:oldPath animated:NO scrollPosition:UITableViewScrollPositionTop];
+		}
 		
 		[self.inventoryButtonOne setTitle:@"Use" forState:UIControlStateNormal];
-		[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+		[self.inventoryButtonOne setTitleColor:(self.inventoryItemPicked == nil || !self.inventoryItemPicked.usable ? loadColorFromName(@"ui text grey") : loadColorFromName(@"ui text")) forState:UIControlStateNormal];
 		[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
 		[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 	}
@@ -535,18 +540,29 @@
 	if (self.examinationItem == nil)
 	{
 		//inventory screen
-		
-		
 		if (sender.tag == 1)
 		{
-			//TODO: use item
-			[self reloadPanels];
-			__weak typeof(self) weakSelf = self;
-			[self switchToPanel:self.mainPanelCord withBlock:
-			^()
+			Item *item = self.inventoryItemPicked;
+			if (item != nil && item.usable)
 			{
-				[weakSelf.map update];
-			}];
+				//TODO: use the item
+				item.number -= 1;
+				
+				//remove the item if it's at 0
+				if (item.number == 0)
+					[self.map.inventory removeObject:item];
+				
+				[self.itemTable reloadData];
+				
+				
+				[self reloadPanels];
+				__weak typeof(self) weakSelf = self;
+				[self switchToPanel:self.mainPanelCord withBlock:
+				^()
+				{
+					[weakSelf.map update];
+				}];
+			}
 		}
 		else
 		{
@@ -627,7 +643,7 @@
 			{
 				//add that item to your inventory
 				
-				//stack the item
+				//stack the item if possible
 				BOOL stacked = false;
 				for (Item *item in self.map.inventory)
 					if ([item.name isEqualToString:self.examinationItem.name] && item.type == self.examinationItem.type)
@@ -636,7 +652,7 @@
 						stacked = true;
 						break;
 					}
-				if (!stacked) //add it to the end of the inventory
+				if (!stacked) //otherwise add it to the end of the inventory
 					[self.map.inventory addObject:self.examinationItem];
 				
 				tile.treasureType = TreasureTypeNone;
@@ -651,12 +667,23 @@
 	}
 }
 
+-(Item *)inventoryItemPicked
+{
+	if (self.itemTable == nil || self.itemTable.indexPathForSelectedRow == nil)
+		return nil;
+	int row = self.itemTable.indexPathForSelectedRow.row;
+	return self.map.inventory[row];
+}
+
 - (IBAction)inventoryOpenButtonPress
 {
-	//opens the inventory so you can use inventory buttons
-	self.examinationItem = nil;
-	[self reloadPanels];
-	[self switchToPanel:self.inventoryPanelCord];
+	if (self.map.inventory.count > 0)
+	{
+		//opens the inventory so you can use inventory buttons
+		self.examinationItem = nil;
+		[self reloadPanels];
+		[self switchToPanel:self.inventoryPanelCord];
+	}
 }
 
 
@@ -988,6 +1015,11 @@
 	itemCell.nameLabel.text = item.name;
 	itemCell.nameLabel.textColor = loadColorFromName(@"ui text");
 	return itemCell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	[self reloadPanels];
 }
 
 @end
