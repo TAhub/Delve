@@ -87,23 +87,35 @@
                                                     <action selector="pickUpButtonPress" destination="BYZ-38-t0r" eventType="touchUpInside" id="ycy-5o-zMZ"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KRE-jY-jtU">
+                                                <rect key="frame" x="135" y="92" width="64" height="48"/>
+                                                <state key="normal" title="Inventory"/>
+                                                <connections>
+                                                    <action selector="inventoryOpenButtonPress" destination="BYZ-38-t0r" eventType="touchUpInside" id="NFY-5f-fdf"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.99580436944961548" green="0.99223476648330688" blue="0.99200111627578735" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="kJW-Wn-2TC" firstAttribute="height" secondItem="ghM-ST-HWQ" secondAttribute="height" multiplier="0.6" id="1PG-Rx-GkX"/>
                                             <constraint firstItem="kQT-EW-nNY" firstAttribute="leading" secondItem="JEe-Qq-0F7" secondAttribute="trailing" constant="8" symbolic="YES" id="332-i9-7QY"/>
+                                            <constraint firstItem="KRE-jY-jtU" firstAttribute="trailing" secondItem="JEe-Qq-0F7" secondAttribute="trailing" id="3Nf-2W-j3k"/>
+                                            <constraint firstItem="KRE-jY-jtU" firstAttribute="top" secondItem="kJW-Wn-2TC" secondAttribute="bottom" constant="8" symbolic="YES" id="DBt-3J-7PC"/>
                                             <constraint firstAttribute="bottom" secondItem="JEe-Qq-0F7" secondAttribute="bottom" id="DJl-qa-hU7"/>
                                             <constraint firstItem="kJW-Wn-2TC" firstAttribute="width" secondItem="ghM-ST-HWQ" secondAttribute="width" id="HJK-kS-jvK"/>
                                             <constraint firstItem="kQT-EW-nNY" firstAttribute="top" secondItem="kJW-Wn-2TC" secondAttribute="bottom" id="JRV-Ik-JLj"/>
+                                            <constraint firstAttribute="bottom" secondItem="KRE-jY-jtU" secondAttribute="bottom" id="N7S-BV-7hY"/>
                                             <constraint firstAttribute="bottom" secondItem="kQT-EW-nNY" secondAttribute="bottom" id="SeR-ls-q2O"/>
                                             <constraint firstItem="kJW-Wn-2TC" firstAttribute="top" secondItem="ghM-ST-HWQ" secondAttribute="top" id="Wm4-WY-kAI"/>
                                             <constraint firstItem="kQT-EW-nNY" firstAttribute="top" secondItem="kJW-Wn-2TC" secondAttribute="top" id="XgN-4O-of1"/>
                                             <constraint firstItem="JEe-Qq-0F7" firstAttribute="top" secondItem="kJW-Wn-2TC" secondAttribute="bottom" id="axN-Pr-Y9m"/>
+                                            <constraint firstItem="JEe-Qq-0F7" firstAttribute="leading" secondItem="KRE-jY-jtU" secondAttribute="trailing" constant="8" symbolic="YES" id="ed0-E7-ng1"/>
                                             <constraint firstItem="kJW-Wn-2TC" firstAttribute="centerX" secondItem="ghM-ST-HWQ" secondAttribute="centerX" id="g3y-Bv-H0X"/>
                                             <constraint firstAttribute="trailing" secondItem="kQT-EW-nNY" secondAttribute="trailing" id="iHq-AW-dSc"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
+                                                <exclude reference="3Nf-2W-j3k"/>
                                                 <exclude reference="XgN-4O-of1"/>
                                             </mask>
                                         </variation>
@@ -419,6 +431,7 @@
                         <outlet property="attackSelectPanelCord" destination="cSF-q6-HL6" id="76V-Fz-Ivs"/>
                         <outlet property="attacksButton" destination="kQT-EW-nNY" id="POu-sX-uyA"/>
                         <outlet property="creatureView" destination="Uew-pW-cr7" id="z2A-zu-aY4"/>
+                        <outlet property="inventoryButton" destination="KRE-jY-jtU" id="SuH-JM-Dgu"/>
                         <outlet property="inventoryButtonOne" destination="P4R-zs-srk" id="5o5-id-RHw"/>
                         <outlet property="inventoryButtonTwo" destination="vVC-zd-UKl" id="hKC-7t-6GB"/>
                         <outlet property="inventoryContent" destination="c2Q-jS-YGD" id="fC7-qX-hns"/>

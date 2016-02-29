@@ -29,6 +29,8 @@
 		E459C6BE1C7C20AD00422B0A /* Colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E459C6BD1C7C20AD00422B0A /* Colors.plist */; };
 		E459C6C01C7CCDB800422B0A /* GeneratorRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C6BF1C7CCDB800422B0A /* GeneratorRoom.m */; };
 		E462381C1C83ACE7009C9FC4 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = E462381B1C83ACE7009C9FC4 /* Item.m */; };
+		E462381E1C83F50D009C9FC4 /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E462381D1C83F50D009C9FC4 /* ItemCell.xib */; };
+		E46238211C83F525009C9FC4 /* ItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E46238201C83F525009C9FC4 /* ItemTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +67,9 @@
 		E459C6C11C7CCDC000422B0A /* GeneratorRoom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratorRoom.h; sourceTree = "<group>"; };
 		E462381A1C83ACDD009C9FC4 /* Item.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		E462381B1C83ACE7009C9FC4 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		E462381D1C83F50D009C9FC4 /* ItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemCell.xib; sourceTree = "<group>"; };
+		E462381F1C83F525009C9FC4 /* ItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemTableViewCell.h; sourceTree = "<group>"; };
+		E46238201C83F525009C9FC4 /* ItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +135,9 @@
 		E459C69D1C7AB31100422B0A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E462381D1C83F50D009C9FC4 /* ItemCell.xib */,
+				E462381F1C83F525009C9FC4 /* ItemTableViewCell.h */,
+				E46238201C83F525009C9FC4 /* ItemTableViewCell.m */,
 				E459C6B51C7BC57E00422B0A /* MapView.h */,
 				E459C6B61C7BC57E00422B0A /* MapView.m */,
 				E459C68F1C7AB2E800422B0A /* Main.storyboard */,
@@ -226,6 +234,7 @@
 				E459C6961C7AB2E800422B0A /* LaunchScreen.storyboard in Resources */,
 				E43674B01C813CC900B59105 /* Assets.xcassets in Resources */,
 				E459C6BC1C7C201D00422B0A /* Armors.plist in Resources */,
+				E462381E1C83F50D009C9FC4 /* ItemCell.xib in Resources */,
 				E459C6911C7AB2E800422B0A /* Main.storyboard in Resources */,
 				E459C6A71C7ABB6400422B0A /* SkillTrees.plist in Resources */,
 				E43674AA1C7FACF900B59105 /* Tiles.plist in Resources */,
@@ -249,6 +258,7 @@
 				E459C68B1C7AB2E800422B0A /* AppDelegate.m in Sources */,
 				E459C6B21C7BB4BD00422B0A /* Tile.m in Sources */,
 				E459C6AE1C7BB36C00422B0A /* Map.m in Sources */,
+				E46238211C83F525009C9FC4 /* ItemTableViewCell.m in Sources */,
 				E459C6881C7AB2E800422B0A /* main.m in Sources */,
 				E459C6B71C7BC57E00422B0A /* MapView.m in Sources */,
 				E459C6C01C7CCDB800422B0A /* GeneratorRoom.m in Sources */,

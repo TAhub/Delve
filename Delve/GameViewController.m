@@ -13,8 +13,9 @@
 #import "Creature.h"
 #import "Constants.h"
 #import "Item.h"
+#import "ItemTableViewCell.h"
 
-@interface GameViewController () <MapViewDelegate, MapDelegate>
+@interface GameViewController () <MapViewDelegate, MapDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet MapView *mapView;
 @property (weak, nonatomic) IBOutlet UIView *creatureView;
@@ -23,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIView *mainPanel;
 @property (weak, nonatomic) IBOutlet UIButton *pickUpButton;
 @property (weak, nonatomic) IBOutlet UIButton *attacksButton;
+@property (weak, nonatomic) IBOutlet UIButton *inventoryButton;
 @property (weak, nonatomic) IBOutlet UIView *statView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mainPanelCord;
 
@@ -61,6 +63,7 @@
 @property (strong, nonatomic) NSString *attackChosen;
 @property (weak, nonatomic) UIView *aoeIndicatorView;
 
+@property (strong, nonatomic) UITableView *itemTable;
 @property (strong, nonatomic) Item *examinationItem;
 
 @end
@@ -240,6 +243,7 @@
 	[self.attackCancel setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 	[self.attackNext setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 	[self.attackConfirmCancel setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+	[self.inventoryButton setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 	
 	
 	//set up attacks panel with a list of attacks (greyed out buttons for attacks you can't use)
@@ -282,12 +286,19 @@
 	
 	//set up inventory panel
 	for (UIView *subview in self.inventoryContent.subviews)
-		[subview removeFromSuperview];
+		if (subview != self.itemTable)
+			[subview removeFromSuperview];
 	NSString *inventoryLabelText;
-	switch(self.examinationItem.type)
+	if (self.examinationItem == nil)
 	{
-		case ItemTypeArmor:
-		case ItemTypeImplement:
+		inventoryLabelText = @"Pick an item to use";
+	}
+	else
+	{
+		switch(self.examinationItem.type)
+		{
+			case ItemTypeArmor:
+			case ItemTypeImplement:
 			{
 				int slot = [self.map.player slotForItem:self.examinationItem];
 				if (slot == -1)
@@ -336,29 +347,54 @@
 							inventoryLabelText = [NSString stringWithFormat:@"Equip %@?\n\n%@\n\nVS\n\n%@", self.examinationItem.name, weaponDesc, eWeaponDesc];
 						}
 					}
-
+					
 					[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
 					[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 				}
 			}
-			break;
-		case ItemTypeInventory:
-			inventoryLabelText = [NSString stringWithFormat:@"Pick up %@%@?", self.examinationItem.name, self.examinationItem.number > 1 ? [NSString stringWithFormat:@" x%i", self.examinationItem.number] : @""];
-			
-			//TODO: probably write some kind of description of the item, or something?
-			//or maybe how many you have already, if you have any
-			
-			[self.inventoryButtonOne setTitle:@"Pick Up" forState:UIControlStateNormal];
-			[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
-			[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
-			[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
-			break;
+				break;
+			case ItemTypeInventory:
+				inventoryLabelText = [NSString stringWithFormat:@"Pick up %@%@?", self.examinationItem.name, self.examinationItem.number > 1 ? [NSString stringWithFormat:@" x%i", self.examinationItem.number] : @""];
+				
+				//TODO: probably write some kind of description of the item, or something?
+				//or maybe how many you have already, if you have any
+				
+				[self.inventoryButtonOne setTitle:@"Pick Up" forState:UIControlStateNormal];
+				[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+				[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
+				[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+				break;
+		}
 	}
 	UILabel *inventoryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.inventoryContent.frame.size.width, self.inventoryContent.frame.size.height)];
 	inventoryLabel.text = inventoryLabelText;
 	inventoryLabel.textColor = loadColorFromName(@"ui text");
-	inventoryLabel.numberOfLines = 0;
-	inventoryLabel.lineBreakMode = NSLineBreakByWordWrapping;
+	if (self.examinationItem == nil)
+	{
+		[inventoryLabel sizeToFit];
+		
+		if (self.itemTable == nil)
+		{
+			self.itemTable = [[UITableView alloc] initWithFrame:CGRectMake(0, inventoryLabel.frame.size.height, self.inventoryContent.frame.size.width, self.inventoryContent.frame.size.height - inventoryLabel.frame.size.height)];
+			[self.inventoryContent addSubview:self.itemTable];
+			self.itemTable.delegate = self;
+			self.itemTable.dataSource = self;
+			self.itemTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+			[self.itemTable registerNib:[UINib nibWithNibName:@"ItemCell" bundle:nil] forCellReuseIdentifier:@"itemCell"];
+		}
+		else
+			[self.itemTable reloadData];
+		
+		[self.inventoryButtonOne setTitle:@"Use" forState:UIControlStateNormal];
+		[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+		[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
+		[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+	}
+	else
+	{
+		inventoryLabel.numberOfLines = 0;
+		inventoryLabel.lineBreakMode = NSLineBreakByWordWrapping;
+	}
 	[self.inventoryContent addSubview:inventoryLabel];
 }
 
@@ -496,6 +532,30 @@
 
 - (IBAction)inventoryButtonPress:(UIButton *)sender
 {
+	if (self.examinationItem == nil)
+	{
+		//inventory screen
+		
+		
+		if (sender.tag == 1)
+		{
+			//TODO: use item
+			[self reloadPanels];
+			__weak typeof(self) weakSelf = self;
+			[self switchToPanel:self.mainPanelCord withBlock:
+			^()
+			{
+				[weakSelf.map update];
+			}];
+		}
+		else
+		{
+			//cancel
+			[self switchToPanel:self.mainPanelCord];
+		}
+		return;
+	}
+	
 	Tile *tile = self.map.tiles[self.map.player.y][self.map.player.x];
 	switch (self.examinationItem.type)
 	{
@@ -591,6 +651,14 @@
 	}
 }
 
+- (IBAction)inventoryOpenButtonPress
+{
+	//opens the inventory so you can use inventory buttons
+	self.examinationItem = nil;
+	[self reloadPanels];
+	[self switchToPanel:self.inventoryPanelCord];
+}
+
 
 - (IBAction)pickUpButtonPress
 {
@@ -598,10 +666,13 @@
 	{
 		Tile *tile = self.map.tiles[self.map.player.y][self.map.player.x];
 		self.examinationItem = tile.treasure;
+		if (self.itemTable == nil)
+		{
+			[self.itemTable removeFromSuperview];
+			self.itemTable = nil;
+		}
 		[self reloadPanels];
 		[self switchToPanel:self.inventoryPanelCord];
-		
-		//TODO: you should be able to use consumable items out of some inventory UITableView (inside the content view)
 	}
 }
 
@@ -896,6 +967,27 @@
 -(void)updateStats
 {
 	[self reloadPanels];
+}
+
+#pragma mark table view delegate and datasource
+
+-(int)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 1;
+}
+
+-(int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	return self.map.inventory.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	ItemTableViewCell *itemCell = [tableView dequeueReusableCellWithIdentifier:@"itemCell"];
+	Item *item = self.map.inventory[indexPath.row];
+	itemCell.nameLabel.text = item.name;
+	itemCell.nameLabel.textColor = loadColorFromName(@"ui text");
+	return itemCell;
 }
 
 @end
