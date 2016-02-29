@@ -171,7 +171,7 @@
 	<!-- design note: now, due to screen sizes, the max range should be 4 -->
 	<!-- because of that, most ranged attacks should be given no-dodge -->
 	<!-- otherwise, most ranged attack stronger than bow shot will be useless, because the enemy will dodge it anyway -->
-	<key>shield boomerang</key>
+	<key>shield toss</key>
 	<dict>
 		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>smash</string>

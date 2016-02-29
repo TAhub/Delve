@@ -78,6 +78,7 @@
 -(TargetLevel) targetLevelAtX:(int)x andY:(int)y withAttack:(NSString *)attack;
 -(int) slotForItem:(Item *)item;
 -(void) equipArmor:(Item *)item;
+-(NSArray *) recipies;
 
 #pragma mark: item interface functions
 -(NSString *)weaponDescription:(NSString *)weapon;

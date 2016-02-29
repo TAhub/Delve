@@ -67,7 +67,7 @@
 //		_race = @"highborn";
 //		_armors = [NSArray arrayWithObjects:@"chestplate", @"gold tiara", @"", nil];
 		
-		_skillTrees = [NSArray arrayWithObjects:@"shield", @"wisdom", @"hammer", @"spear", @"conditioning", nil];
+		_skillTrees = [NSArray arrayWithObjects:@"shield", @"wisdom", @"hammer", @"spear", @"smithing", nil];
 		_skillTreeLevels = [NSArray arrayWithObjects:@(4), @(4), @(4), @(4), @(4), nil];
 		_implements = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
 		_weapon = loadValueString(@"Races", _race, @"race start weapon");
@@ -135,7 +135,7 @@
 	NSString *type = loadValueString(@"Implements", weapon, @"type");
 	if ([type isEqualToString:@"weapon"])
 	{
-		[desc appendString:@"to normal attacks"];
+		[desc appendString:@" to normal attacks"];
 		if (!loadValueBool(@"Implements", weapon, @"element"))
 			[desc appendString:@", smash element"];
 	}
@@ -244,6 +244,31 @@
 	return result;
 }
 
+-(NSArray *) recipies
+{
+	NSMutableArray *result = [NSMutableArray new];
+	for (int i = 0; i < self.skillTrees.count; i++)
+	{
+		NSString *skillTree = self.skillTrees[i];
+		int skillTreeLevel = ((NSNumber *)self.skillTreeLevels[i]).intValue;
+		NSArray *skillTreeArray = loadValueArray(@"SkillTrees", skillTree, @"skills");
+		for (int j = 0; j < skillTreeLevel; j++)
+		{
+			NSString *recipieList = skillTreeArray[j][@"recipies"];
+			if (recipieList != nil)
+				for (NSString *recipie in loadArrayEntry(@"Lists", recipieList))
+					if ([self.map canPayForRecipie:recipie]) //can you pay for it?
+					{
+						//make a test item of that type
+						Item *it = [self.map makeItemFromRecipie:recipie];
+						if (it.type == ItemTypeInventory || [self slotForItem:it] != -1) //can you use it?
+							[result addObject:recipie]; //if you can use it, add it to the list
+					}
+		}
+	}
+	return result;
+}
+
 -(TargetLevel) targetLevelAtX:(int)x andY:(int)y withAttack:(NSString *)attack
 {
 	if ([self validTargetSpotFor:attack atX:x andY:y openSpotsAreFine:true])
@@ -331,7 +356,22 @@
 		return false;
 		
 	
-	//TODO: check to see if you have ammo
+	//check to see if you have ammo
+	if (self.good && loadValueBool(@"Attacks", name, @"ammo"))
+	{
+		NSString *ammoType = loadValueString(@"Attacks", name, @"ammo");
+		BOOL hasAmmo = false;
+		for (Item *item in self.map.inventory)
+		{
+			if ([item.name isEqualToString:ammoType])
+			{
+				hasAmmo = true;
+				break;
+			}
+		}
+		if (!hasAmmo)
+			return false;
+	}
 	
 	return true;
 }
@@ -394,7 +434,23 @@
 	//pay costs
 	if (loadValueBool(@"Attacks", name, @"hurt user"))
 		self.health = MAX(self.health - loadValueNumber(@"Attacks", name, @"hurt user").intValue, 1);
-	//TODO: use ammo
+	
+	//use ammo
+	if (self.good && loadValueBool(@"Attacks", name, @"ammo"))
+	{
+		NSString *ammoType = loadValueString(@"Attacks", name, @"ammo");
+		for (Item *item in self.map.inventory)
+		{
+			if ([item.name isEqualToString:ammoType])
+			{
+				item.number -= 1;
+				if (item.number == 0)
+					[self.map.inventory removeObject:item];
+				break;
+			}
+		}
+	}
+	
 	self.cooldowns[name] = loadValueNumber(@"Attacks", name, @"cooldown");
 	
 	if (self.good)

@@ -287,6 +287,12 @@ void recipieBalanceTest()
 			breakdown[implement] = breaksDownInto;
 		}
 	}
+	for (int i = 1; i <= 4; i++)
+	{
+		NSArray *dropsList = lists[[NSString stringWithFormat:@"drops %i", i]];
+		for (NSString *drop in dropsList)
+			supplies[drop] = @((supplies[drop] != nil ? ((NSNumber *)supplies[drop]).intValue : 0) + 1);
+	}
 	
 	NSLog(@"Breakdown:");
 	for (NSString *name in recipieNames)
@@ -321,5 +327,13 @@ void recipieBalanceTest()
 	for (NSString *key in supplies.allKeys)
 	{
 		NSLog(@"--%@: %i", key, ((NSNumber *)supplies[key]).intValue);
+	}
+	NSLog(@"Comparison: (low = plentiful supply for the demand, high = low supply for the demand)");
+	for (NSString *key in supplies.allKeys)
+	{
+		int supply = ((NSNumber *)supplies[key]).intValue;
+		int demand = ((NSNumber *)costs[key]).intValue;
+		float ratio = demand * 1.0f / supply;
+		NSLog(@"--%@: %f", key, ratio);
 	}
 }

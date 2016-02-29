@@ -727,7 +727,44 @@
 	</dict>
 	
 	<!-- alchemy consumables -->
-	<!-- TODO: a bunch of healing items -->
+	<key>herbal draught</key>
+	<dict>
+		<key>ingredient a</key> <string>herb</string>
+		<key>ingredient a amount</key> <integer>1</integer>
+		<key>result</key> <string>herbal draught</string>
+		<key>result type</key> <string>inventory</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>blood pack</key>
+	<dict>
+		<key>ingredient a</key> <string>herb</string>
+		<key>ingredient a amount</key> <integer>1</integer>
+		<key>ingredient b</key> <string>fang</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>blood pack</string>
+		<key>result type</key> <string>inventory</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>silvery salve</key>
+	<dict>
+		<key>ingredient a</key> <string>herb</string>
+		<key>ingredient a amount</key> <integer>1</integer>
+		<key>ingredient b</key> <string>quicksilver</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>silvery salve</string>
+		<key>result type</key> <string>inventory</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>fizzling drink</key>
+	<dict>
+		<key>ingredient a</key> <string>herb</string>
+		<key>ingredient a amount</key> <integer>1</integer>
+		<key>ingredient b</key> <string>diamond dust</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>fizzling drink</string>
+		<key>result type</key> <string>inventory</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
 	
 	<!-- alchemy armors -->
 	<key>headband</key>

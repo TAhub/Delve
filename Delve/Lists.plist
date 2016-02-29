@@ -23,6 +23,53 @@
 		<string>fundamentals</string>
 	</array>
 	
+	<!-- inventory item drop leveled lists -->
+	<key>drops 1</key>
+	<array>
+		<string>herb</string>
+		<string>herb</string>
+		<string>fang</string>
+		<string>fabric</string>
+		<string>bread</string>
+		<string>bread</string>
+		<string>bread</string>
+		<string>crystal</string>
+		<string>crystal</string>
+		<string>crystal</string>
+		<!-- TODO: one buff item -->
+	</array>
+	<key>drops 2</key>
+	<array>
+		<string>herb</string>
+		<string>fabric</string>
+		<string>cheese</string>
+		<string>cheese</string>
+		<string>crystal</string>
+		<string>crystal</string>
+		<!-- TODO: one buff item -->
+	</array>
+	<key>drops 3</key>
+	<array>
+		<string>herb</string>
+		<string>silk</string>
+		<string>ration</string>
+		<string>ration</string>
+		<string>crystal</string>
+		<string>crystal</string>
+		<!-- TODO: one buff item -->
+	</array>
+	<key>drops 4</key>
+	<array>
+		<string>herb</string>
+		<string>diamond dust</string>
+		<string>silk</string>
+		<string>steak</string>
+		<string>steak</string>
+		<string>crystal</string>
+		<string>crystal</string>
+		<!-- TODO: one buff item -->
+	</array>
+	
 	<!-- item drop leveled lists -->
 	<key>implements 1</key>
 	<array>
@@ -186,51 +233,132 @@
 	<!-- crafting recipies -->
 	<key>smithing 1</key>
 	<array>
-		<string>template</string>
+		<string>shortsword</string>
+		<string>mace</string>
+		<string>buckler</string>
+		<string>light hammer</string>
+		<string>iron spear</string>
+		<string>shortbow</string>
+		<string>rusty helmet</string>
+		<string>pot helmet</string>
+		<string>rusty armor</string>
+		<string>eoling robe</string>
+		<string>iron tail ring</string>
+		<string>white tail banner</string>
+		<string>boots</string>
+		<string>cheap shoes</string>
 	</array>
 	<key>smithing 2</key>
 	<array>
-		<string>template</string>
+		<string>longsword</string>
+		<string>flail</string>
+		<string>kite shield</string>
+		<string>warhammer</string>
+		<string>pike</string>
+		<string>longbow</string>
+		<string>skullcap</string>
+		<string>riveted helmet</string>
+		<string>chestplate</string>
+		<string>eoling mantle</string>
+		<string>steel tail ring</string>
+		<string>red tail banner</string>
+		<string>reinforced boots</string>
+		<string>leather shoes</string>
 	</array>
 	<key>smithing 3</key>
 	<array>
-		<string>template</string>
+		<string>master blade</string>
+		<string>flanged mace</string>
+		<string>relic shield</string>
+		<string>greathammer</string>
+		<string>partisan</string>
+		<string>composite bow</string>
+		<string>bandit helmet</string>
+		<string>soldier hat</string>
+		<string>winged helmet</string>
+		<string>hero armor</string>
+		<string>temple dancer outfit</string>
+		<string>gold tail ring</string>
+		<string>blue tail banner</string>
+		<string>steel-toed boots</string>
+		<string>fine shoes</string>
 	</array>
 	<key>smithing 4</key>
 	<array>
-		<string>template</string>
+		<string>hero helmet</string>
+		<string>knight helmet</string>
+		<string>knight armor</string>
+		<string>eoling armor</string>
+		<string>relic tail ring</string>
+		<string>gold tail banner</string>
+		<string>greaves</string>
+		<string>fancy shoes</string>
 	</array>
 	<key>false prophet 1</key>
 	<array>
 		<string>crystals A</string>
+		<string>glimmering orb</string>
+		<string>holy thunder</string>
+		<string>birthright</string>
+		<string>correction glasses</string>
 	</array>
 	<key>false prophet 2</key>
 	<array>
 		<string>crystals B</string>
+		<string>holy baton</string>
+		<string>glowing orb</string>
+		<string>white lightning</string>
+		<string>faith</string>
+		<string>goggles</string>
 	</array>
 	<key>false prophet 3</key>
 	<array>
 		<string>crystals C</string>
+		<string>relic edge</string>
+		<string>radiant orb</string>
+		<string>pearl arsenal</string>
+		<string>conviction</string>
+		<string>fine goggles</string>
 	</array>
 	<key>false prophet 4</key>
 	<array>
-		<string>template</string>
+		<string>relic goggles</string>
 	</array>
 	<key>alchemy 1</key>
 	<array>
-		<string>template</string>
+		<string>herbal draught</string>
+		<string>torch</string>
+		<string>ritual knife</string>
+		<string>ritual compendium</string>
+		<string>headband</string>
+		<string>burnished ring</string>
+		<string>rough ring</string>
 	</array>
 	<key>alchemy 2</key>
 	<array>
-		<string>template</string>
+		<string>blood pack</string>
+		<string>athame</string>
+		<string>ether dynamics</string>
+		<string>tiara</string>
+		<string>plain necklace</string>
+		<string>silver bangle</string>
 	</array>
 	<key>alchemy 3</key>
 	<array>
-		<string>template</string>
+		<string>silvery salve</string>
+		<string>burning blade</string>
+		<string>relic knife</string>
+		<string>forbidden tome</string>
+		<string>silk headband</string>
+		<string>jeweled ring</string>
+		<string>skull ring</string>
 	</array>
 	<key>alchemy 4</key>
 	<array>
-		<string>template</string>
+		<string>fizzling drink</string>
+		<string>gold tiara</string>
+		<string>gem necklace</string>
+		<string>gold bangle</string>
 	</array>
 </dict>
 </plist>

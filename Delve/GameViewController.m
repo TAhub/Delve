@@ -394,13 +394,27 @@
 			[self.itemTable selectRowAtIndexPath:oldPath animated:NO scrollPosition:UITableViewScrollPositionTop];
 		}
 		
-		[self.inventoryButtonOne setTitle:@"Use" forState:UIControlStateNormal];
-		[self.inventoryButtonOne setTitleColor:(self.inventoryItemPicked == nil || !self.inventoryItemPicked.usable ? loadColorFromName(@"ui text grey") : loadColorFromName(@"ui text")) forState:UIControlStateNormal];
+		if (self.examineRecipies != nil)
+		{
+			[self.inventoryButtonOne setTitle:@"Craft" forState:UIControlStateNormal];
+			[self.inventoryButtonOne setTitleColor:(self.recipiePicked == nil ? loadColorFromName(@"ui text grey") : loadColorFromName(@"ui text")) forState:UIControlStateNormal];
+
+		}
+		else
+		{
+			[self.inventoryButtonOne setTitle:@"Use" forState:UIControlStateNormal];
+			[self.inventoryButtonOne setTitleColor:(self.inventoryItemPicked == nil || !self.inventoryItemPicked.usable ? loadColorFromName(@"ui text grey") : loadColorFromName(@"ui text")) forState:UIControlStateNormal];
+		}
 		[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
 		[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 	}
 	else
 	{
+		if (self.itemTable != nil)
+		{
+			[self.itemTable removeFromSuperview];
+			self.itemTable = nil;
+		}
 		inventoryLabel.numberOfLines = 0;
 		inventoryLabel.lineBreakMode = NSLineBreakByWordWrapping;
 	}
@@ -537,7 +551,7 @@
 	{
 		//open crafting menu
 		self.examinationItem = nil;
-		self.examineRecipies = [NSArray new];
+		self.examineRecipies = self.map.player.recipies;
 		[self reloadPanels];
 		[self switchToPanel:self.inventoryPanelCord];
 	}
@@ -568,18 +582,18 @@
 				NSString *recipie = self.recipiePicked;
 				if (recipie != nil)
 				{
-					//TODO: craft the picked recipie
-					if (false) //TODO: if it's equipment
+					Item *it = [self.map makeItemFromRecipie:recipie];
+					[self.map payForRecipie:recipie];
+					
+					if (it.type != ItemTypeInventory)
 					{
 						Tile *tile = self.map.tiles[self.map.player.y][self.map.player.x];
 						tile.treasureType = TreasureTypeBag;
-						//TODO: drop it on the ground as an item
+						tile.treasure = it;
 						[self updateTiles];
 					}
 					else
-					{
-						//TODO: add it to your inventory; maybe make the "add to inventory" code a function
-					}
+						[self.map addItem:it];
 					
 					[self reloadPanels];
 					__weak typeof(self) weakSelf = self;
@@ -644,7 +658,9 @@
 				int slot = [self.map.player slotForItem:self.examinationItem];
 				if (slot == -1)
 				{
-					//TODO: convert to materials, and put them in your inventory
+					//convert to materials, and put them in your inventory
+					NSString *material = loadValueString(self.examinationItem.type == ItemTypeArmor ? @"Armors" : @"Implements", self.examinationItem.name, @"breaks into");
+					[self.map addItem:[[Item alloc] initWithName:material andType:ItemTypeInventory]];
 					
 					tile.treasure = nil;
 					tile.treasureType = TreasureTypeNone;
@@ -694,16 +710,8 @@
 				//add that item to your inventory
 				
 				//stack the item if possible
-				BOOL stacked = false;
-				for (Item *item in self.map.inventory)
-					if ([item.name isEqualToString:self.examinationItem.name] && item.type == self.examinationItem.type)
-					{
-						item.number += self.examinationItem.number;
-						stacked = true;
-						break;
-					}
-				if (!stacked) //otherwise add it to the end of the inventory
-					[self.map.inventory addObject:self.examinationItem];
+				[self.map addItem:self.examinationItem];
+				
 				
 				tile.treasureType = TreasureTypeNone;
 				[self switchToPanel:self.mainPanelCord];
@@ -1084,7 +1092,9 @@
 	}
 	else
 	{
-		//TODO: print the name of that recipie, and details about it
+		//TODO: print recipie details
+		NSString *recipie = self.examineRecipies[indexPath.row];
+		itemCell.nameLabel.text = recipie;
 	}
 	itemCell.nameLabel.textColor = loadColorFromName(@"ui text");
 	return itemCell;

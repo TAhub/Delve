@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class Creature;
+@class Item;
 
 //TODO: DESIGN GOAL: this should contain NO info on graphics
 
@@ -43,6 +44,10 @@
 -(BOOL)movePerson:(Creature *)person withX:(int)x andY:(int)y;
 -(BOOL)canPickUp;
 -(BOOL)canCraft;
+-(BOOL)canPayForRecipie:(NSString *)recipie;
+-(void)payForRecipie:(NSString *)recipie;
+-(Item *)makeItemFromRecipie:(NSString *)recipie;
+-(void)addItem:(Item *)item;
 
 @property (weak, nonatomic) id<MapDelegate> delegate;
 

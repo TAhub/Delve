@@ -26,7 +26,49 @@
 	<!-- healing items -->
 	<key>bread</key>
 	<dict>
+		<key>healing</key> <integer>35</integer>
+		<!-- TODO: status effect data -->
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>herbal draught</key>
+	<dict>
 		<key>healing</key> <integer>40</integer>
+		<!-- TODO: status effect data -->
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>cheese</key>
+	<dict>
+		<key>healing</key> <integer>55</integer>
+		<!-- TODO: status effect data -->
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>blood pack</key>
+	<dict>
+		<key>healing</key> <integer>60</integer>
+		<!-- TODO: status effect data -->
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>ration</key>
+	<dict>
+		<key>healing</key> <integer>70</integer>
+		<!-- TODO: status effect data -->
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>silvery salve</key>
+	<dict>
+		<key>healing</key> <integer>80</integer>
+		<!-- TODO: status effect data -->
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>steak</key>
+	<dict>
+		<key>healing</key> <integer>90</integer>
+		<!-- TODO: status effect data -->
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>fizzling drink</key>
+	<dict>
+		<key>healing</key> <integer>100</integer>
 		<!-- TODO: status effect data -->
 		<!-- TODO: appearance data -->
 	</dict>

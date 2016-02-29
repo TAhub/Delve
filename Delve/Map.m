@@ -35,7 +35,10 @@
 		[self recalculateVisibility];
 		
 		//TODO: these are temporary start items
-		[_inventory addObject:[[Item alloc] initWithName:@"bread" andType:ItemTypeInventory]];
+		[self addItem:[[Item alloc] initWithName:@"bread" andType:ItemTypeInventory]];
+		[self addItem:[[Item alloc] initWithName:@"iron ingot" andType:ItemTypeInventory]];
+		[self addItem:[[Item alloc] initWithName:@"iron ingot" andType:ItemTypeInventory]];
+		[self addItem:[[Item alloc] initWithName:@"iron ingot" andType:ItemTypeInventory]];
 	}
 	return self;
 }
@@ -50,6 +53,20 @@
 		if (!cr.dead && [cr startTurn])
 			break;
 	}
+}
+
+-(void)addItem:(Item *)item
+{
+	BOOL stacked = false;
+	for (Item *eItem in self.inventory)
+		if ([item.name isEqualToString:eItem.name] && item.type == eItem.type)
+		{
+			eItem.number += item.number;
+			stacked = true;
+			break;
+		}
+	if (!stacked) //otherwise add it to the end of the inventory
+		[self.inventory addObject:item];
 }
 
 -(BOOL)yourTurn
@@ -77,8 +94,55 @@
 	if (tile.treasureType != TreasureTypeNone)
 		return false;
 	
-	//TODO: does the player have any crafting recipies they can pay for AND use the item of?
-	return true;
+	//does the player have any crafting recipies they can pay for AND use the item of?
+	return self.player.recipies.count > 0;
+}
+
+-(BOOL)canPayForRecipie:(NSString *)recipie
+{
+	return [self payForRecipie:recipie part:@"a" doPay:false] && [self payForRecipie:recipie part:@"b" doPay:false];
+}
+-(BOOL)payForRecipie:(NSString *)recipie part:(NSString *)part doPay:(BOOL)pay
+{
+	if (!loadValueBool(@"Recipies", recipie, [NSString stringWithFormat:@"ingredient %@", part]))
+		return true;
+	NSString *material = loadValueString(@"Recipies", recipie, [NSString stringWithFormat:@"ingredient %@", part]);
+	int materialAmount = loadValueNumber(@"Recipies", recipie, [NSString stringWithFormat:@"ingredient %@ amount", part]).intValue;
+	
+	for (Item *item in self.inventory)
+	{
+		if ([item.name isEqualToString:material] && item.number >= materialAmount)
+		{
+			if (pay)
+			{
+				item.number -= materialAmount;
+				if (item.number == 0)
+					[self.inventory removeObject:item];
+			}
+			
+			return true;
+		}
+	}
+	return false;
+}
+-(void)payForRecipie:(NSString *)recipie
+{
+	[self payForRecipie:recipie part:@"a" doPay:true];
+	[self payForRecipie:recipie part:@"b" doPay:true];
+}
+-(Item *)makeItemFromRecipie:(NSString *)recipie
+{
+	NSString *name = loadValueString(@"Recipies", recipie, @"result");
+	NSString *type = loadValueString(@"Recipies", recipie, @"result type");
+	Item *it;
+	if ([type isEqualToString:@"armor"])
+		it = [[Item alloc] initWithName:name andType:ItemTypeArmor];
+	else if ([type isEqualToString:@"implement"])
+		it = [[Item alloc] initWithName:name andType:ItemTypeImplement];
+	else
+		it = [[Item alloc] initWithName:name andType:ItemTypeInventory];
+	it.number = loadValueNumber(@"Recipies", recipie, @"result amount").intValue;
+	return it;
 }
 
 -(BOOL)moveWithX:(int)x andY:(int)y
@@ -727,6 +791,9 @@
 	}
 	else
 	{
+		//TODO: pick from leveled lists as appropriate
+		//inventory items go from "drops 1" to "drops 4"
+		//see above
 		tile.treasureType = TreasureTypeFree;
 		tile.treasure = [[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory];
 		

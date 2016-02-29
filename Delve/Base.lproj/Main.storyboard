@@ -95,7 +95,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOn-Wq-CoZ">
-                                                <rect key="frame" x="137" y="55" width="46" height="30"/>
+                                                <rect key="frame" x="139" y="55" width="46" height="30"/>
                                                 <state key="normal" title="Craft"/>
                                                 <connections>
                                                     <action selector="craftButtonPress" destination="BYZ-38-t0r" eventType="touchUpInside" id="3WG-xU-fFL"/>

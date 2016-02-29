@@ -210,7 +210,7 @@
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>health</key> <integer>15</integer>
-				<key>attack</key> <string>shield boomerang</string>
+				<key>attack</key> <string>shield toss</string>
 			</dict>
 		</array>
 	</dict>
