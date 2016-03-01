@@ -14,24 +14,60 @@
 		<key>solid</key> <true/>
 		<key>unlocks into</key> <string>template</string>
 		<key>color</key> <string>iron</string>
+		<key>sprite</key> <string>tile_big_tile</string>
 	</dict>
 	
 	<!-- real tiles -->
 	
-	<key>wall</key>
+	<key>wall red</key>
 	<dict>
 		<key>solid</key> <true/>
-		<key>color</key> <string>iron</string>
+		<key>color</key> <string>tile stone red</string>
+		<key>sprite</key> <string>tile_big_tile</string>
 	</dict>
-	<key>locked door</key>
+	<key>floor red</key>
+	<dict>
+		<key>color</key> <string>tile stone red back</string>
+		<key>sprite</key> <string>tile_small_tiles</string>
+	</dict>
+	<key>rivet wall red</key>
 	<dict>
 		<key>solid</key> <true/>
-		<key>unlocks into</key> <string>floor</string>
-		<key>color</key> <string>gold</string>
+		<key>color</key> <string>tile stone red</string>
+		<key>sprite</key> <string>tile_big_rivet_tile</string>
 	</dict>
-	<key>floor</key>
+	<key>rivet floor red</key>
 	<dict>
-		<key>color</key> <string>rusty</string>
+		<key>color</key> <string>tile stone red back</string>
+		<key>sprite</key> <string>tile_small_rivet_tiles</string>
+	</dict>
+	<key>natural wall red</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>color</key> <string>tile stone red</string>
+		<key>sprite</key> <string>tile_textured</string>
+	</dict>
+	<key>natural floor red</key>
+	<dict>
+		<key>color</key> <string>tile stone red back</string>
+		<key>sprite</key> <string>tile_pebbles</string>
+	</dict>
+	<key>rubble red</key>
+	<dict>
+		<key>color</key> <string>tile stone red back</string>
+		<key>sprite</key> <string>tile_rubble</string>
+	</dict>
+	<key>door floor red</key>
+	<dict>
+		<key>color</key> <string>tile stone red back</string>
+		<key>sprite</key> <string>tile_mechanism</string>
+	</dict>
+	<key>locked door red</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>unlocks into</key> <string>door floor</string>
+		<key>color</key> <string>tile stone red</string>
+		<key>sprite</key> <string>tile_mechanism</string>
 	</dict>
 </dict>
 </plist>

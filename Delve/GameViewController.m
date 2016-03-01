@@ -869,7 +869,16 @@
 	{
 		//make the tile view
 		tileView = [UIView new];
-		tileView.backgroundColor = tile.color;
+		if (loadValueBool(@"Tiles", tile.type, @"sprite"))
+		{
+			//TODO: these should be preloaded
+			NSString *tileSpriteName = loadValueString(@"Tiles", tile.type, @"sprite");
+			UIImage *tileSprite = colorImage([UIImage imageNamed:tileSpriteName], tile.color);
+			UIImageView *tileSpriteView = [[UIImageView alloc] initWithImage:tileSprite];
+			[tileView addSubview:tileSpriteView];
+		}
+		else
+			tileView.backgroundColor = tile.color;
 		
 		//target color view
 		UIColor *targetColor = nil;

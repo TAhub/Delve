@@ -540,7 +540,7 @@
 	{
 		NSMutableArray *row = [NSMutableArray new];
 		for (int x = 0; x < width; x++)
-			[row addObject:[[Tile alloc] initWithType:@"wall"]];
+			[row addObject:[[Tile alloc] initWithType:@"wall red"]];
 		[self.tiles addObject:row];
 	}
 	
@@ -571,7 +571,7 @@
 					{
 						int y3 = y2 + y * (roomSize + 1) + 1;
 						int x3 = x2 + x * (roomSize + 1) + 1;
-						((Tile *)self.tiles[y3][x3]).type = @"floor";
+						((Tile *)self.tiles[y3][x3]).type = @"floor red";
 					}
 				
 				//place doors
@@ -765,7 +765,6 @@
 				}
 			}
 	
-	
 	//TODO: if I do any recutting, it should be here
 	//I probably shouldn't though
 	
@@ -873,10 +872,10 @@
 	{
 		case GeneratorRoomExitPathDoor:
 		case GeneratorRoomExitDoor:
-			((Tile *)self.tiles[y][x]).type = @"floor"; //TODO: normal door (actually, floor might be ok for this? I dunno)
+			((Tile *)self.tiles[y][x]).type = @"door floor red"; //TODO: normal door (actually, floor might be ok for this? I dunno)
 			break;
 		case GeneratorRoomExitLockedDoor:
-			((Tile *)self.tiles[y][x]).type = @"locked door"; //TODO: locked door
+			((Tile *)self.tiles[y][x]).type = @"locked door red"; //TODO: locked door
 			break;
 		default:
 			return;

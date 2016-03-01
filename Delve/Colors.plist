@@ -9,6 +9,9 @@
 -->
 <plist version="1.0">
 <dict>
+	<!-- tile colors -->
+	<key>tile stone red</key> <string>AA7777</string>
+	<key>tile stone red back</key> <string>554444</string>
 	<!-- material colors -->
 	<key>relic</key> <string>DDDDBB</string>
 	<key>iron</key> <string>999999</string>
