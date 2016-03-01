@@ -57,11 +57,18 @@
 		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>cut</string>
 	</dict>
-	<key>master blade</key>
+	<key>bastard sword</key>
 	<dict>
 		<key>type</key> <string>weapon</string>
 		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>45</integer>
+		<key>element</key> <string>cut</string>
+	</dict>
+	<key>masterwork sword</key>
+	<dict>
+		<key>type</key> <string>weapon</string>
+		<key>breaks into</key> <string>refined ingot</string>
+		<key>power</key> <integer>50</integer>
 		<key>element</key> <string>cut</string>
 	</dict>
 	<key>wooden club</key>
@@ -87,6 +94,12 @@
 		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>45</integer>
 	</dict>
+	<key>morning star</key>
+	<dict>
+		<key>type</key> <string>weapon</string>
+		<key>breaks into</key> <string>refined ingot</string>
+		<key>power</key> <integer>50</integer>
+	</dict>
 	<key>torch</key>
 	<dict>
 		<key>type</key> <string>burn</string>
@@ -99,17 +112,17 @@
 		<key>breaks into</key> <string>battery</string>
 		<key>power</key> <integer>30</integer>
 	</dict>
-	<key>burning blade</key>
+	<key>burning blade</key> <!-- level 4 -->
 	<dict>
 		<key>type</key> <string>burn</string>
 		<key>breaks into</key> <string>diamond dust</string>
-		<key>power</key> <integer>45</integer>
+		<key>power</key> <integer>50</integer>
 	</dict>
-	<key>relic edge</key>
+	<key>relic edge</key> <!-- level 4 -->
 	<dict>
 		<key>type</key> <string>shock</string>
 		<key>breaks into</key> <string>circuit</string>
-		<key>power</key> <integer>45</integer>
+		<key>power</key> <integer>50</integer>
 	</dict>
 	
 	<!-- shields -->

@@ -203,6 +203,22 @@
 		<key>female y add</key> <integer>2</integer>
 	</dict>
 	
+	<!-- mind shield -->
+	<!-- level 4 helmet which gives blocks instead of stats -->
+	<key>mind shield</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>helmet</string>
+		<key>breaks into</key> <string>circuit</string>
+		<!-- stats -->
+		<key>dodges</key> <integer>2</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>mind_shield</string>
+		<key>color</key> <string>relic</string>
+		<key>sprite over hair</key> <true/>
+		<key>female y add</key> <integer>2</integer>
+	</dict>
+	
 	
 	<!-- body armor -->
 	<!-- all body armor gets a 0.5 advantage -->
@@ -485,6 +501,36 @@
 		<!-- appearance -->
 		<key>sprite</key> <string>eoling_armor</string>
 		<key>color</key> <string>steel</string>
+		<key>sprite gender</key> <true/>
+	</dict>
+	
+	<!-- strength rig -->
+	<!-- level 2 small clothes -->
+	<key>strength rig</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>small clothes</string>
+		<key>breaks into</key> <string>battery</string>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>25</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>strength_rig</string>
+		<key>color</key> <string>relic</string>
+		<key>sprite gender</key> <true/>
+	</dict>
+	
+	<!-- speed rig -->
+	<!-- level 4 small clothes -->
+	<key>speed rig</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>small clothes</string>
+		<key>breaks into</key> <string>circuit</string>
+		<!-- stats -->
+		<key>dodges</key> <integer>2</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>speed_rig</string>
+		<key>color</key> <string>relic</string>
 		<key>sprite gender</key> <true/>
 	</dict>
 	

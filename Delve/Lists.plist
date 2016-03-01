@@ -141,7 +141,7 @@
 		<string>conviction</string>
 		<string>relic knife</string>
 		<string>forbidden tome</string>
-		<string>master blade</string>
+		<string>bastard sword</string>
 		<string>flanged mace</string>
 		<!-- common stuff again -->
 		<string>relic shield</string>
@@ -153,11 +153,9 @@
 		<string>conviction</string>
 		<string>relic knife</string>
 		<string>forbidden tome</string>
-		<string>master blade</string>
+		<string>bastard sword</string>
 		<string>flanged mace</string>
 		<!-- rare stuff -->
-		<string>burning blade</string>
-		<string>relic edge</string>
 	</array>
 	<key>armors 1</key>
 	<array>
@@ -267,7 +265,7 @@
 	</array>
 	<key>smithing 3</key>
 	<array>
-		<string>master blade</string>
+		<string>bastard sword</string>
 		<string>flanged mace</string>
 		<string>relic shield</string>
 		<string>greathammer</string>
@@ -285,6 +283,8 @@
 	</array>
 	<key>smithing 4</key>
 	<array>
+		<string>masterwork sword</string>
+		<string>morning star</string>
 		<string>hero helmet</string>
 		<string>knight helmet</string>
 		<string>knight armor</string>
@@ -310,11 +310,11 @@
 		<string>white lightning</string>
 		<string>faith</string>
 		<string>goggles</string>
+		<string>strength rig</string>
 	</array>
 	<key>false prophet 3</key>
 	<array>
 		<string>crystals C</string>
-		<string>relic edge</string>
 		<string>radiant orb</string>
 		<string>pearl arsenal</string>
 		<string>conviction</string>
@@ -322,7 +322,10 @@
 	</array>
 	<key>false prophet 4</key>
 	<array>
+		<string>relic edge</string>
 		<string>relic goggles</string>
+		<string>speed rig</string>
+		<string>mind shield</string>
 	</array>
 	<key>alchemy 1</key>
 	<array>
@@ -346,7 +349,6 @@
 	<key>alchemy 3</key>
 	<array>
 		<string>silvery salve</string>
-		<string>burning blade</string>
 		<string>relic knife</string>
 		<string>forbidden tome</string>
 		<string>silk headband</string>
@@ -356,6 +358,7 @@
 	<key>alchemy 4</key>
 	<array>
 		<string>fizzling drink</string>
+		<string>burning blade</string>
 		<string>gold tiara</string>
 		<string>gem necklace</string>
 		<string>gold bangle</string>

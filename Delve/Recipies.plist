@@ -333,11 +333,21 @@
 		<key>result type</key> <string>implement</string>
 		<key>result amount</key> <integer>1</integer>
 	</dict>
-	<key>master blade</key>
+	<key>bastard sword</key>
 	<dict>
 		<key>ingredient a</key> <string>refined ingot</string>
 		<key>ingredient a amount</key> <integer>3</integer>
-		<key>result</key> <string>master blade</string>
+		<key>result</key> <string>bastard sword</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>masterwork sword</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>ingredient b</key> <string>steel ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>masterwork sword</string>
 		<key>result type</key> <string>implement</string>
 		<key>result amount</key> <integer>1</integer>
 	</dict>
@@ -362,6 +372,16 @@
 		<key>ingredient a</key> <string>refined ingot</string>
 		<key>ingredient a amount</key> <integer>3</integer>
 		<key>result</key> <string>flanged mace</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>morning star</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>ingredient b</key> <string>fang</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>morning star</string>
 		<key>result type</key> <string>implement</string>
 		<key>result amount</key> <integer>1</integer>
 	</dict>
@@ -578,7 +598,6 @@
 	</dict>
 	
 	<!-- false prophet armors -->
-	<!-- TODO: eoling mech armor (make that) -->
 	<key>correction glasses</key>
 	<dict>
 		<key>ingredient a</key> <string>capacitor</string>
@@ -616,6 +635,36 @@
 		<key>ingredient b</key> <string>refined ingot</string>
 		<key>ingredient b amount</key> <integer>1</integer>
 		<key>result</key> <string>relic goggles</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>strength rig</key>
+	<dict>
+		<key>ingredient a</key> <string>battery</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>steel ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>strength rig</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>speed rig</key>
+	<dict>
+		<key>ingredient a</key> <string>circuit</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>ingredient b</key> <string>refined ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>speed rig</string>
+		<key>result type</key> <string>armor</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>mind shield</key>
+	<dict>
+		<key>ingredient a</key> <string>circuit</string>
+		<key>ingredient a amount</key> <integer>3</integer>
+		<key>ingredient b</key> <string>diamond dust</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>mind shield</string>
 		<key>result type</key> <string>armor</string>
 		<key>result amount</key> <integer>1</integer>
 	</dict>

@@ -19,6 +19,7 @@
 		<key>cooldown</key> <integer>11</integer>
 		<key>dodgeable</key> <true/>
 		<key>friendly</key> <true/>
+		<key>ammo</key> <string>crystal</string>
 		<!-- special effects -->
 		<key>stun</key> <true/>
 		<key>dodge restore</key> <integer>1</integer>
@@ -153,7 +154,7 @@
 		<key>range</key> <integer>1</integer>
 		<key>cooldown</key> <integer>1</integer>
 		<key>dodgeable</key> <true/>
-		<!-- TODO: this should cost a crystal -->
+		<key>ammo</key> <string>crystal</string>
 		<!-- special effects -->
 	</dict>
 	<key>holy chop</key>
@@ -163,7 +164,7 @@
 		<key>range</key> <integer>1</integer>
 		<key>cooldown</key> <integer>1</integer>
 		<key>dodgeable</key> <true/>
-		<!-- TODO: this should cost a crystal -->
+		<key>ammo</key> <string>crystal</string>
 		<!-- special effects -->
 	</dict>
 	
@@ -197,7 +198,7 @@
 		<key>range</key> <integer>4</integer>
 		<key>min range</key> <integer>2</integer>
 		<key>cooldown</key> <integer>1</integer>
-		<!-- TODO: this should cost a crystal -->
+		<key>ammo</key> <string>crystal</string>
 		<!-- special effects -->
 	</dict>
 	<key>patience shot</key>
@@ -208,7 +209,7 @@
 		<key>min range</key> <integer>2</integer>
 		<key>area</key> <integer>1</integer>
 		<key>cooldown</key> <integer>4</integer>
-		<!-- TODO: this should cost a crystal -->
+		<key>ammo</key> <string>crystal</string>
 		<!-- special effects -->
 	</dict>
 	<key>dart of spite</key>
@@ -273,7 +274,7 @@
 		<key>element</key> <string>shock</string>
 		<key>area</key> <integer>3</integer>
 		<key>cooldown</key> <integer>15</integer>
-		<!-- TODO: this should cost a crystal -->
+		<key>ammo</key> <string>crystal</string>
 		<!-- special effects -->
 	</dict>
 	<key>arrow storm</key>
@@ -313,7 +314,7 @@
 		<key>area</key> <integer>3</integer>
 		<key>cooldown</key> <integer>4</integer>
 		<key>dodgeable</key> <true/>
-		<!-- TODO: this should cost a crystal -->
+		<key>ammo</key> <string>crystal</string>
 		<!-- special effects -->
 	</dict>
 	
@@ -329,7 +330,7 @@
 	<dict>
 		<key>cooldown</key> <integer>1</integer>
 		<key>friendly</key> <true/>
-		<!-- TODO: this should cost a crystal -->
+		<key>ammo</key> <string>crystal</string>
 		<!-- special effects -->
 		<key>forcefield</key> <integer>50</integer>
 	</dict>
