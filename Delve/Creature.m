@@ -148,6 +148,7 @@
 			}
 	if (loadValueBool(@"Implements", weapon, @"element"))
 		[desc appendFormat:@", %@ element", loadValueString(@"Implements", weapon, @"element")];
+	[desc appendFormat:@"\n%@", loadValueString(@"Implements", weapon, @"description")];
 	return desc;
 	
 }
@@ -177,6 +178,7 @@
 		[properties addObject:[NSString stringWithFormat:@"+%i%% metabolism", loadValueNumber(@"Armors", armor, @"metabolism").intValue]];
 	if (properties.count > 0)
 		[desc appendString:[properties componentsJoinedByString:@", "]];
+	//TODO: armor description
 	return desc;
 }
 

@@ -15,6 +15,7 @@
 		<key>breaks into</key> <string>template</string>
 		<key>power</key> <integer>0</integer>
 		<key>element</key> <string>cut</string>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	
 	<!-- design goals -->
@@ -42,6 +43,7 @@
 		<key>type</key> <string>weapon</string>
 		<key>power</key> <integer>0</integer>
 		<key>element</key> <string>cut</string>
+		<key>description</key> <string>A rusty old sword.</string>
 	</dict>
 	<key>shortsword</key>
 	<dict>
@@ -49,6 +51,7 @@
 		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>15</integer>
 		<key>element</key> <string>cut</string>
+		<key>description</key> <string>A simple iron sword.</string>
 	</dict>
 	<key>longsword</key>
 	<dict>
@@ -56,6 +59,7 @@
 		<key>breaks into</key> <string>steel ingot</string>
 		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>cut</string>
+		<key>description</key> <string>A well-made steel sword.</string>
 	</dict>
 	<key>bastard sword</key>
 	<dict>
@@ -63,6 +67,7 @@
 		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>45</integer>
 		<key>element</key> <string>cut</string>
+		<key>description</key> <string>A large, deadly sword.</string>
 	</dict>
 	<key>masterwork sword</key>
 	<dict>
@@ -70,59 +75,73 @@
 		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>50</integer>
 		<key>element</key> <string>cut</string>
+		<key>description</key> <string>A sword made by a master smith.</string>
 	</dict>
 	<key>wooden club</key>
 	<dict>
 		<key>type</key> <string>weapon</string>
 		<key>power</key> <integer>0</integer>
+		<key>description</key> <string>A simple wooden club.</string>
 	</dict>
 	<key>mace</key>
 	<dict>
 		<key>type</key> <string>weapon</string>
 		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>15</integer>
+		<key>description</key> <string>A mace with an iron head.</string>
 	</dict>
 	<key>flail</key>
 	<dict>
 		<key>type</key> <string>weapon</string>
 		<key>breaks into</key> <string>steel ingot</string>
 		<key>power</key> <integer>30</integer>
+		<key>description</key> <string>A powerful steel flail.</string>
 	</dict>
 	<key>flanged mace</key>
 	<dict>
 		<key>type</key> <string>weapon</string>
 		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>45</integer>
+		<key>description</key> <string>An mace with a knobbed head.</string>
 	</dict>
 	<key>morning star</key>
 	<dict>
 		<key>type</key> <string>weapon</string>
 		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>50</integer>
+		<key>description</key> <string>A deadly mace with a spiked head.</string>
 	</dict>
 	<key>torch</key>
 	<dict>
-		<key>type</key> <string>burn</string>
+		<key>type</key> <string>weapon</string>
 		<key>breaks into</key> <string>herb</string>
 		<key>power</key> <integer>15</integer>
+		<key>element</key> <string>burn</string>
+		<key>description</key> <string>A hefty branch burning with eternal fire.</string>
 	</dict>
 	<key>holy baton</key>
 	<dict>
-		<key>type</key> <string>shock</string>
+		<key>type</key> <string>weapon</string>
 		<key>breaks into</key> <string>battery</string>
 		<key>power</key> <integer>30</integer>
+		<key>element</key> <string>shock</string>
+		<key>description</key> <string>A metal baton crackling with power.</string>
 	</dict>
 	<key>burning blade</key> <!-- level 4 -->
 	<dict>
-		<key>type</key> <string>burn</string>
+		<key>type</key> <string>weapon</string>
 		<key>breaks into</key> <string>diamond dust</string>
 		<key>power</key> <integer>50</integer>
+		<key>element</key> <string>burn</string>
+		<key>description</key> <string>An eldritch sword that catches flame on command.</string>
 	</dict>
 	<key>relic edge</key> <!-- level 4 -->
 	<dict>
-		<key>type</key> <string>shock</string>
+		<key>type</key> <string>weapon</string>
 		<key>breaks into</key> <string>circuit</string>
 		<key>power</key> <integer>50</integer>
+		<key>element</key> <string>shock</string>
+		<key>description</key> <string>An ornate axe with a glowing edge.</string>
 	</dict>
 	
 	<!-- shields -->
@@ -130,24 +149,28 @@
 	<dict>
 		<key>type</key> <string>shield</string>
 		<key>power</key> <integer>0</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>buckler</key>
 	<dict>
 		<key>type</key> <string>shield</string>
 		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>15</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>kite shield</key>
 	<dict>
 		<key>type</key> <string>shield</string>
 		<key>breaks into</key> <string>steel ingot</string>
 		<key>power</key> <integer>30</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>relic shield</key>
 	<dict>
 		<key>type</key> <string>shield</string>
 		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>45</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	
 	<!-- hammers -->
@@ -155,24 +178,28 @@
 	<dict>
 		<key>type</key> <string>hammer</string>
 		<key>power</key> <integer>0</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>light hammer</key>
 	<dict>
 		<key>type</key> <string>hammer</string>
 		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>15</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>warhammer</key>
 	<dict>
 		<key>type</key> <string>hammer</string>
 		<key>breaks into</key> <string>steel ingot</string>
 		<key>power</key> <integer>30</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>greathammer</key>
 	<dict>
 		<key>type</key> <string>hammer</string>
 		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>45</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	
 	<!-- spears -->
@@ -180,24 +207,28 @@
 	<dict>
 		<key>type</key> <string>spear</string>
 		<key>power</key> <integer>0</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>iron spear</key>
 	<dict>
 		<key>type</key> <string>spear</string>
 		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>15</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>pike</key>
 	<dict>
 		<key>type</key> <string>spear</string>
 		<key>breaks into</key> <string>steel ingot</string>
 		<key>power</key> <integer>30</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>partisan</key>
 	<dict>
 		<key>type</key> <string>spear</string>
 		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>45</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	
 	<!-- bows -->
@@ -205,24 +236,28 @@
 	<dict>
 		<key>type</key> <string>bow</string>
 		<key>power</key> <integer>0</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>shortbow</key>
 	<dict>
 		<key>type</key> <string>bow</string>
 		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>15</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>longbow</key>
 	<dict>
 		<key>type</key> <string>bow</string>
 		<key>breaks into</key> <string>steel ingot</string>
 		<key>power</key> <integer>30</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>composite bow</key>
 	<dict>
 		<key>type</key> <string>bow</string>
 		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>45</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	
 	<!-- light orbs -->
@@ -230,24 +265,28 @@
 	<dict>
 		<key>type</key> <string>light orb</string>
 		<key>power</key> <integer>0</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>glimmering orb</key>
 	<dict>
 		<key>type</key> <string>light orb</string>
 		<key>breaks into</key> <string>capacitor</string>
 		<key>power</key> <integer>15</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>glowing orb</key>
 	<dict>
 		<key>type</key> <string>light orb</string>
 		<key>breaks into</key> <string>battery</string>
 		<key>power</key> <integer>30</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>radiant orb</key>
 	<dict>
 		<key>type</key> <string>light orb</string>
 		<key>breaks into</key> <string>circuit</string>
 		<key>power</key> <integer>45</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	
 	<!-- holy weapons -->
@@ -255,24 +294,28 @@
 	<dict>
 		<key>type</key> <string>holy weapon</string>
 		<key>power</key> <integer>0</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>holy thunder</key>
 	<dict>
 		<key>type</key> <string>holy weapon</string>
 		<key>breaks into</key> <string>capacitor</string>
 		<key>power</key> <integer>15</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>white lightning</key>
 	<dict>
 		<key>type</key> <string>holy weapon</string>
 		<key>breaks into</key> <string>battery</string>
 		<key>power</key> <integer>30</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>pearl arsenal</key>
 	<dict>
 		<key>type</key> <string>holy weapon</string>
 		<key>breaks into</key> <string>circuit</string>
 		<key>power</key> <integer>45</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	
 	<!-- godly implants -->
@@ -280,24 +323,28 @@
 	<dict>
 		<key>type</key> <string>godly implant</string>
 		<key>power</key> <integer>0</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>birthright</key>
 	<dict>
 		<key>type</key> <string>godly implant</string>
 		<key>breaks into</key> <string>capacitor</string>
 		<key>power</key> <integer>15</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>faith</key>
 	<dict>
 		<key>type</key> <string>godly implant</string>
 		<key>breaks into</key> <string>battery</string>
 		<key>power</key> <integer>30</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>conviction</key>
 	<dict>
 		<key>type</key> <string>godly implant</string>
 		<key>breaks into</key> <string>circuit</string>
 		<key>power</key> <integer>45</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	
 	<!-- ritual knives -->
@@ -305,24 +352,28 @@
 	<dict>
 		<key>type</key> <string>ritual knife</string>
 		<key>power</key> <integer>0</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>ritual knife</key>
 	<dict>
 		<key>type</key> <string>ritual knife</string>
 		<key>breaks into</key> <string>fang</string>
 		<key>power</key> <integer>15</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>athame</key>
 	<dict>
 		<key>type</key> <string>ritual knife</string>
 		<key>breaks into</key> <string>quicksilver</string>
 		<key>power</key> <integer>30</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>relic knife</key>
 	<dict>
 		<key>type</key> <string>ritual knife</string>
 		<key>breaks into</key> <string>diamond dust</string>
 		<key>power</key> <integer>45</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	
 	<!-- tomes -->
@@ -330,24 +381,28 @@
 	<dict>
 		<key>type</key> <string>tome</string>
 		<key>power</key> <integer>0</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>ritual compendium</key>
 	<dict>
 		<key>type</key> <string>tome</string>
 		<key>breaks into</key> <string>fang</string>
 		<key>power</key> <integer>15</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>ether dynamics</key>
 	<dict>
 		<key>type</key> <string>tome</string>
 		<key>breaks into</key> <string>quicksilver</string>
 		<key>power</key> <integer>30</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	<key>forbidden tome</key>
 	<dict>
 		<key>type</key> <string>tome</string>
 		<key>breaks into</key> <string>diamond dust</string>
 		<key>power</key> <integer>45</integer>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 </dict>
 </plist>
