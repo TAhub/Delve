@@ -1000,11 +1000,9 @@
 
 -(void)moveCreatureCompleteWithBlock:(void (^)(void))block
 {
-	//recalculate who is hidden
-	[self recalculateHidden];
-	
 	//the action is over
 	self.animating = false;
+	[self recalculateHidden];
 	block();
 }
 
@@ -1028,6 +1026,23 @@
 	self.animating = true;
 	
 	if (creature == self.map.player)
+	{
+		__block BOOL finishedFirst = true;
+		
+		//do some visibility recalculating on another thread
+		dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^() {
+			[weakSelf.map recalculateVisibility];
+			dispatch_async(dispatch_get_main_queue(), ^() {
+				if (finishedFirst)
+					finishedFirst = false;
+				else
+				{
+					[weakSelf updateTiles];
+					[weakSelf moveCreatureCompleteWithBlock:block];
+				}
+			});
+		});
+		
 		[self.mapView setPositionWithX:creature.x - GAMEPLAY_SCREEN_WIDTH * 0.5f + 0.5f andY:creature.y - GAMEPLAY_SCREEN_HEIGHT * 0.5f + 0.5f withAnimBlock:
 		^()
 		{
@@ -1035,8 +1050,15 @@
 		} andCompleteBlock:
 		^()
 		{
-			[weakSelf moveCreatureCompleteWithBlock:block];
+			if (finishedFirst)
+				finishedFirst = false;
+			else
+			{
+				[weakSelf updateTiles];
+				[weakSelf moveCreatureCompleteWithBlock:block];
+			}
 		}];
+	}
 	else
 	{
 		//invisible moves should be instant

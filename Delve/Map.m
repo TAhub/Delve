@@ -149,7 +149,6 @@
 		[self.delegate moveCreature:person fromX:person.x-x fromY:person.y-y withBlock:
 		^()
 		{
-			[weakSelf recalculateVisibility];
 			[weakSelf update];
 		}];
 		return YES;
@@ -172,7 +171,7 @@
 		}
 	
 	//project sight-lines from the player
-	BOOL visibleChanged = false;
+//	BOOL visibleChanged = false;
 	for (int i = 0; i < GAMEPLAY_SIGHT_LINE_DENSITY; i++)
 	{
 		float angle = M_PI * 2 * i / GAMEPLAY_SIGHT_LINE_DENSITY;
@@ -194,27 +193,27 @@
 			}
 			tile.visible = YES;
 			if (!tile.discovered)
-			{
+//			{
 				tile.discovered = YES;
-				visibleChanged = YES;
-			}
+//				visibleChanged = YES;
+//			}
 		}
 	}
 	
-	if (!visibleChanged)
-		for (int y = yS; y <= yE && !visibleChanged; y++)
-			for (int x = xS; x <= xE; x++)
-			{
-				Tile *tile = self.tiles[y][x];
-				if (tile.lastVisible != tile.visible)
-				{
-					visibleChanged = YES;
-					break;
-				}
-			}
-	
-	if (visibleChanged)
-		[self.delegate updateTiles];
+//	if (!visibleChanged)
+//		for (int y = yS; y <= yE && !visibleChanged; y++)
+//			for (int x = xS; x <= xE; x++)
+//			{
+//				Tile *tile = self.tiles[y][x];
+//				if (tile.lastVisible != tile.visible)
+//				{
+//					visibleChanged = YES;
+//					break;
+//				}
+//			}
+//	
+//	if (visibleChanged)
+//		[self.delegate updateTiles];
 }
 
 -(int)width
