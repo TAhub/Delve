@@ -29,6 +29,7 @@
 @property BOOL visible;
 @property BOOL lastVisible;
 @property BOOL discovered;
+@property BOOL changed;
 @property (strong, nonatomic) NSMutableSet *aoeTargeters;
 @property TargetLevel targetLevel;
 -(BOOL) validPlacementSpot;

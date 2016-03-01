@@ -38,7 +38,8 @@
 	<!-- ui colors -->
 	<key>ui warning</key> <string>FF4433</string>
 	<key>ui warning pale</key> <string>CC9999</string>
-	<key>ui text</key> <string>111111</string>
+	<key>ui text button</key> <string>AAAAFF</string>
+	<key>ui text</key> <string>222222</string>
 	<key>ui text grey</key> <string>888888</string>
 	<!-- element colors -->
 	<key>element cut</key> <string>FF7700</string>

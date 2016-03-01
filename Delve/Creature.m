@@ -425,8 +425,9 @@
 			^(Tile *tile)
 			{
 				[tile.aoeTargeters addObject:self];
+				tile.changed = true;
 			} forAttack:name onX:self.storedAttackX andY:self.storedAttackY];
-			[self.map tilesChanged];
+			[self.map.delegate updateTiles];
 		}
 		
 		[self.map update];
@@ -456,7 +457,7 @@
 	self.cooldowns[name] = loadValueNumber(@"Attacks", name, @"cooldown");
 	
 	if (self.good)
-		[self.map statsChanged];
+		[self.map.delegate updateStats];
 }
 
 -(void) unleashAttack
@@ -491,6 +492,7 @@
 			if (!weakSelf.good && [tile.aoeTargeters containsObject:weakSelf])
 			{
 				[tile.aoeTargeters removeObject:weakSelf];
+				tile.changed = true;
 				tilesChanged = true;
 			}
 			
@@ -516,7 +518,7 @@
 				}
 				
 				if (hit.good)
-					[weakSelf.map statsChanged];
+					[weakSelf.map.delegate updateStats];
 			}
 			
 			//teleport, if that's what the skill asks for
@@ -538,7 +540,7 @@
 		} forAttack:weakSelf.storedAttack onX:weakSelf.storedAttackX andY:weakSelf.storedAttackY];
 		
 		if (tilesChanged)
-			[weakSelf.map tilesChanged];
+			[weakSelf.map.delegate updateTiles];
 		
 		weakSelf.storedAttack = nil;
 	}];
@@ -551,9 +553,10 @@
 	if (tile.canUnlock && self.good && self.hacks > 0)
 	{
 		[tile unlock];
+		tile.changed = true;
 		self.hacks -= 1;
-		[self.map statsChanged];
-		[self.map tilesChanged];
+		[self.map.delegate updateStats];
+		[self.map.delegate updateTiles];
 		return true;
 	}
 	else if (!tile.solid && tile.inhabitant == nil)
@@ -563,7 +566,7 @@
 		self.x += x;
 		self.y += y;
 		if (self.good)
-			[self.map statsChanged];
+			[self.map.delegate updateStats];
 		return true;
 	}
 	return false;
@@ -778,7 +781,7 @@
 			//regenerate dodges and blocks
 			self.dodges = MIN(self.dodges + 1, self.maxDodges);
 			self.blocks = MIN(self.blocks + 1, self.maxBlocks);
-			[self.map statsChanged];
+			[self.map.delegate updateStats];
 		}
 	}
 	

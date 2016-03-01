@@ -71,15 +71,6 @@
 	return self.creatures[self.personOn] == self.player;
 }
 
--(void)tilesChanged
-{
-	[self.delegate updateTiles];
-}
--(void)statsChanged
-{
-	[self.delegate updateStats];
-}
-
 -(BOOL)canPickUp
 {
 	return ((Tile *)self.tiles[self.player.y][self.player.x]).treasureType != TreasureTypeNone;
@@ -168,9 +159,14 @@
 
 -(void)recalculateVisibility
 {
-	for (NSMutableArray *row in self.tiles)
-		for (Tile *tile in row)
+	int yS = MAX(self.player.y - GAMEPLAY_SCREEN_HEIGHT, 0);
+	int yE = MIN(self.player.y + GAMEPLAY_SCREEN_HEIGHT, self.height - 1);
+	int xS = MAX(self.player.x - GAMEPLAY_SCREEN_WIDTH, 0);
+	int xE = MIN(self.player.x + GAMEPLAY_SCREEN_WIDTH, self.width - 1);
+	for (int y = yS; y <= yE; y++)
+		for (int x = xS; x <= xE; x++)
 		{
+			Tile *tile = self.tiles[y][x];
 			tile.lastVisible = tile.visible;
 			tile.visible = NO;
 		}
@@ -206,17 +202,16 @@
 	}
 	
 	if (!visibleChanged)
-		for (NSMutableArray *row in self.tiles)
-		{
-			if (visibleChanged)
-				break;
-			for (Tile *tile in row)
+		for (int y = yS; y <= yE && !visibleChanged; y++)
+			for (int x = xS; x <= xE; x++)
+			{
+				Tile *tile = self.tiles[y][x];
 				if (tile.lastVisible != tile.visible)
 				{
 					visibleChanged = YES;
 					break;
 				}
-		}
+			}
 	
 	if (visibleChanged)
 		[self.delegate updateTiles];
@@ -756,8 +751,8 @@
 					Tile *tile = self.tiles[y][x];
 					Creature *enemy = [[Creature alloc] initWithX:x andY:y onMap:self ofEnemyType:type];
 					//TODO: this is temporarily disabled
-					[self.creatures addObject:enemy];
-					tile.inhabitant = enemy;
+//					[self.creatures addObject:enemy];
+//					tile.inhabitant = enemy;
 				}
 			}
 	

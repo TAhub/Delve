@@ -99,6 +99,23 @@
 	[self formatPanel:self.attackConfirmPanel];
 	[self formatPanel:self.attackSelectPanel];
 	[self formatPanel:self.inventoryPanel];
+	
+	//format buttons
+	[self formatButton:self.attackB1];
+	[self formatButton:self.attackB2];
+	[self formatButton:self.attackB3];
+	[self formatButton:self.attackB4];
+	[self formatButton:self.attackB5];
+	[self formatButton:self.attackB6];
+	[self formatButton:self.attackNext];
+	[self formatButton:self.attackCancel];
+	[self formatButton:self.inventoryButton];
+	[self formatButton:self.pickUpButton];
+	[self formatButton:self.craftButton];
+	[self formatButton:self.attacksButton];
+	[self formatButton:self.attackConfirmCancel];
+	[self formatButton:self.inventoryButtonOne];
+	[self formatButton:self.inventoryButtonTwo];
 }
 
 -(void)preloadTileImageFor:(Tile *)tile
@@ -117,6 +134,14 @@
 		for (Tile *tile in row)
 			[self preloadTileImageFor:tile];
 
+}
+
+-(void)formatButton:(UIButton *)button
+{
+	button.layer.backgroundColor = loadColorFromName(@"ui text button").CGColor;
+	button.layer.borderColor = button.layer.backgroundColor;
+	button.layer.cornerRadius = 5.0;
+	[button setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 }
 
 -(void)formatPanel:(UIView *)panel
@@ -265,11 +290,8 @@
 	
 	
 	//set button color
-	[self.attacksButton setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+	//only bother to do this for buttons that change color
 	[self.pickUpButton setTitleColor:self.map.canPickUp ? loadColorFromName(@"ui text") : loadColorFromName(@"ui text grey") forState:UIControlStateNormal];
-	[self.attackCancel setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
-	[self.attackNext setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
-	[self.attackConfirmCancel setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 	[self.inventoryButton setTitleColor:self.map.inventory.count > 0 ? loadColorFromName(@"ui text") : loadColorFromName(@"ui text grey") forState:UIControlStateNormal];
 	[self.craftButton setTitleColor:[self.map canCraft] ? loadColorFromName(@"ui text") : loadColorFromName(@"ui text grey") forState:UIControlStateNormal];
 	
@@ -889,13 +911,19 @@
 
 #pragma mark: map view delegate
 
--(UIView *)viewAtTileWithX:(int)x andY:(int)y
+-(UIView *)viewAtTileWithX:(int)x andY:(int)y andOldView:(UIView *)oldView
 {
 	if (x < 0 || y < 0 || x >= self.map.width || y >= self.map.height)
 		return nil;
 	
 	//get the tile
 	Tile *tile = self.map.tiles[y][x];
+	
+	if (!tile.changed && oldView != nil && tile.visible == tile.lastVisible)
+		return oldView;
+	
+	//you responded to the change, so set changed to false
+	tile.changed = false;
 	
 	//just don't draw tiles that aren't visible
 	UIView *tileView = nil;

@@ -44,14 +44,14 @@
 	return (y - self.y) * GAMEPLAY_TILE_SIZE;
 }
 
--(UIView *)makeTileAtX:(int)x andY:(int)y
+-(UIView *)makeTileAtX:(int)x andY:(int)y andOldView:(UIView *)oldView
 {
 	//does it already exist?
 	UIView *tileView = self.tileDict[@(x + y * INNER_YMULT)];
 	if (tileView != nil)
 		return tileView;
 	
-	tileView = [self.delegate viewAtTileWithX:x andY:y];
+	tileView = [self.delegate viewAtTileWithX:x andY:y andOldView:oldView];
 	
 	if (tileView == nil)
 		return nil;
@@ -72,14 +72,19 @@
 	[self boundCamera];
 	
 	self.tileDict = [NSMutableDictionary new];
-	[self generateTilesAroundX:self.x andY:self.y];
+	[self generateTilesAroundX:self.x andY:self.y withOldDict:nil];
 }
 
--(void)generateTilesAroundX:(float)xStart andY:(float)yStart
+-(void)generateTilesAroundX:(float)xStart andY:(float)yStart withOldDict:(NSDictionary *)oldDict
 {
 	for (int x = (int)floorf(xStart) - 1; x <= (int)ceilf(xStart) + GAMEPLAY_SCREEN_WIDTH; x++)
 		for (int y = (int)floorf(yStart) - 1; y <= (int)ceilf(yStart) + GAMEPLAY_SCREEN_HEIGHT; y++)
-			[self makeTileAtX:x andY:y];
+		{
+			UIView *oldView = nil;
+			if (oldDict != nil)
+				oldView = oldDict[@(x + y * INNER_YMULT)];
+			[self makeTileAtX:x andY:y andOldView:oldView];
+		}
 }
 
 -(void)boundCamera
@@ -93,10 +98,11 @@
 	//clear tiles
 	for (UIView *view in self.tileDict.allValues)
 		[view removeFromSuperview];
-	[self.tileDict removeAllObjects];
+	NSDictionary *oldDict = self.tileDict;
+	self.tileDict = [NSMutableDictionary new];
 	
 	//generate new tiles
-	[self generateTilesAroundX:self.x andY:self.y];
+	[self generateTilesAroundX:self.x andY:self.y withOldDict:oldDict];
 }
 
 -(void)setPositionWithX:(float)x andY:(float)y withAnimBlock:(void (^)(void))animBlock andCompleteBlock:(void (^)(void))completeBlock
@@ -104,7 +110,7 @@
 	NSLog(@"Moving map to %f %f", x, y);
 	
 	//add all tiles that are going to be visible after this position change
-	[self generateTilesAroundX:self.x andY:self.y];
+	[self generateTilesAroundX:self.x andY:self.y withOldDict:nil];
 	
 	self.x = x;
 	self.y = y;
