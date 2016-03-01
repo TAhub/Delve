@@ -36,9 +36,6 @@
 		
 		//TODO: these are temporary start items
 		[self addItem:[[Item alloc] initWithName:@"bread" andType:ItemTypeInventory]];
-		[self addItem:[[Item alloc] initWithName:@"iron ingot" andType:ItemTypeInventory]];
-		[self addItem:[[Item alloc] initWithName:@"iron ingot" andType:ItemTypeInventory]];
-		[self addItem:[[Item alloc] initWithName:@"iron ingot" andType:ItemTypeInventory]];
 	}
 	return self;
 }
@@ -760,8 +757,9 @@
 					int y = position.intValue / self.width;
 					Tile *tile = self.tiles[y][x];
 					Creature *enemy = [[Creature alloc] initWithX:x andY:y onMap:self ofEnemyType:type];
-					[self.creatures addObject:enemy];
-					tile.inhabitant = enemy;
+					//TODO: this is temporarily disabled
+//					[self.creatures addObject:enemy];
+//					tile.inhabitant = enemy;
 				}
 			}
 	
@@ -773,6 +771,12 @@
 
 -(void)placeTreasureOn:(Tile *)tile equipmentTreasure:(BOOL)equipment isUnlocked:(BOOL)unlocked
 {
+	//TODO: this should be a map variable rather than something found here
+	int floor = 0;
+	
+	int listNum = 999;
+	NSString *listPrefix;
+	ItemType type;
 	if (equipment)
 	{
 		if (unlocked)
@@ -780,30 +784,101 @@
 		else
 			tile.treasureType = TreasureTypeLocked;
 		
-		//TODO: pick if it's an implement or an armor
-		
-		//TODO: pick from leveled lists as appropriate
-		//IE for a level 1 implement, check the list "implements 1"
-		//implements go from 1 to 3
-		//armors go from 1 to 4
-		tile.treasure = [[Item alloc] initWithName:@"eoling armor" andType:ItemTypeArmor];
+		//pick if it's an implement or an armor
+		if (arc4random_uniform(2) == 0)
+		{
+			type = ItemTypeImplement;
+			listPrefix = @"implements";
+			switch(floor)
+			{
+				case 0:
+				case 1:
+				case 2:
+					listNum = 1; break;
+				case 3:
+				case 4:
+				case 5:
+					listNum = 2; break;
+				case 6:
+				case 7:
+				case 8:
+				case 9:
+					listNum = 4; break;
+			}
+		}
+		else
+		{
+			type = ItemTypeArmor;
+			listPrefix = @"armors";
+			switch(floor)
+			{
+				case 0:
+				case 1:
+				case 2:
+					listNum = 1; break;
+				case 3:
+				case 4:
+				case 5:
+					listNum = 2; break;
+				case 6:
+				case 7:
+				case 8:
+					listNum = 3; break;
+				case 9:
+					listNum = 4; break;
+			}
+		}
 	}
 	else
 	{
-		//TODO: pick from leveled lists as appropriate
-		//inventory items go from "drops 1" to "drops 4"
-		//see above
 		tile.treasureType = TreasureTypeFree;
-		tile.treasure = [[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory];
-		
-		if ([tile.treasure.name isEqualToString:@"crystal"])
+		type = ItemTypeInventory;
+		listPrefix = @"drops";
+		switch(floor)
 		{
-			//TODO: increase the number an amount based on the map
-			//IE maybe on floor 1 you get 3 crystals at a time, on floor 10 you get 5
-			//something like that
+			case 0:
+			case 1:
+				listNum = 1; break;
+			case 2:
+			case 3:
+				listNum = 2; break;
+			case 4:
+			case 5:
+			case 6:
+				listNum = 3; break;
+			case 7:
+			case 8:
+			case 9:
+				listNum = 4; break;
 		}
 	}
 	
+	//if this complains about trying to find a list called "drops 999" or whatever, that's because there must be a gap in the listNum picking
+	NSArray *list = loadArrayEntry(@"Lists", [NSString stringWithFormat:@"%@ %i", listPrefix, listNum]);
+	int pick = arc4random_uniform(list.count);
+	tile.treasure = [[Item alloc] initWithName:list[pick] andType:type];
+	
+	if ([tile.treasure.name isEqualToString:@"crystal"])
+	{
+		//increase the number an amount based on the map
+		switch(floor)
+		{
+			case 0:
+			case 1:
+				tile.treasure.number *= 3; break;
+			case 2:
+			case 3:
+				tile.treasure.number *= 4; break;
+			case 4:
+			case 5:
+				tile.treasure.number *= 5; break;
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+				tile.treasure.number *= 6; break;
+		}
+	}
 }
 
 -(void)shuffleArray:(NSMutableArray *)array

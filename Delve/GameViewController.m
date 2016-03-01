@@ -308,9 +308,8 @@
 				int slot = [self.map.player slotForItem:self.examinationItem];
 				if (slot == -1)
 				{
-					//TOOD: get what the item actually breaks down into
-					NSString *material = @"material";
-					inventoryLabelText = [NSString stringWithFormat:@"Break down %@ into %@?", self.examinationItem, material];
+					NSString *material = loadValueString(self.examinationItem.type == ItemTypeArmor ? @"Armors" : @"Implements", self.examinationItem.name, @"breaks into");
+					inventoryLabelText = [NSString stringWithFormat:@"Break down %@ into %@?", self.examinationItem.name, material];
 					[self.inventoryButtonOne setTitle:@"Break Down" forState:UIControlStateNormal];
 					[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 					[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
@@ -664,6 +663,16 @@
 					
 					tile.treasure = nil;
 					tile.treasureType = TreasureTypeNone;
+					[self reloadPanels];
+					[self updateTiles];
+					
+					//end turn
+					__weak typeof(self) weakSelf = self;
+					[self switchToPanel:self.mainPanelCord withBlock:
+					^()
+					{
+						[weakSelf.map update];
+					}];
 				}
 				else
 				{
@@ -714,6 +723,8 @@
 				
 				
 				tile.treasureType = TreasureTypeNone;
+				[self updateTiles];
+				[self reloadPanels];
 				[self switchToPanel:self.mainPanelCord];
 			}
 			else
@@ -765,7 +776,7 @@
 		Tile *tile = self.map.tiles[self.map.player.y][self.map.player.x];
 		self.examinationItem = tile.treasure;
 		self.examineRecipies = nil;
-		if (self.itemTable == nil)
+		if (self.itemTable != nil)
 		{
 			[self.itemTable removeFromSuperview];
 			self.itemTable = nil;
