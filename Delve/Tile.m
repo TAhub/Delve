@@ -26,6 +26,13 @@
 	return self;
 }
 
+-(NSString *)spriteName
+{
+	if (!loadValueBool(@"Tiles", self.type, @"sprite"))
+		return nil;
+	return loadValueString(@"Tiles", self.type, @"sprite");
+}
+
 -(BOOL) validPlacementSpot
 {
 	return self.inhabitant == nil && !self.solid && self.treasureType == TreasureTypeNone;

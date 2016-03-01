@@ -94,8 +94,8 @@
                                                     <action selector="inventoryOpenButtonPress" destination="BYZ-38-t0r" eventType="touchUpInside" id="NFY-5f-fdf"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOn-Wq-CoZ">
-                                                <rect key="frame" x="139" y="55" width="46" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOn-Wq-CoZ">
+                                                <rect key="frame" x="92" y="92" width="35" height="48"/>
                                                 <state key="normal" title="Craft"/>
                                                 <connections>
                                                     <action selector="craftButtonPress" destination="BYZ-38-t0r" eventType="touchUpInside" id="3WG-xU-fFL"/>

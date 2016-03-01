@@ -55,6 +55,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *inventoryButtonOne;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inventoryPanelCord;
 
+@property (strong, nonatomic) NSMutableDictionary *preloadedTileImages;
 @property (strong, nonatomic) Map* map;
 @property (strong, nonatomic) NSMutableArray *creatureViews;
 @property BOOL animating;
@@ -83,6 +84,7 @@
 	self.uiAnimating = false;
 	
 	self.map = [Map new];
+	[self preloadTileImages];
 	self.map.delegate = self;
 	
 	self.mapView.delegate = self;
@@ -97,6 +99,24 @@
 	[self formatPanel:self.attackConfirmPanel];
 	[self formatPanel:self.attackSelectPanel];
 	[self formatPanel:self.inventoryPanel];
+}
+
+-(void)preloadTileImageFor:(Tile *)tile
+{
+	if (tile.type != nil && tile.spriteName != nil && self.preloadedTileImages[tile.type] == nil)
+	{
+		UIImage *tileSprite = colorImage([UIImage imageNamed:tile.spriteName], tile.color);
+		self.preloadedTileImages[tile.type] = tileSprite;
+	}
+}
+
+-(void)preloadTileImages
+{
+	self.preloadedTileImages = [NSMutableDictionary new];
+	for (NSArray *row in self.map.tiles)
+		for (Tile *tile in row)
+			[self preloadTileImageFor:tile];
+
 }
 
 -(void)formatPanel:(UIView *)panel
@@ -880,12 +900,12 @@
 	{
 		//make the tile view
 		tileView = [UIView new];
-		if (loadValueBool(@"Tiles", tile.type, @"sprite"))
+		if (tile.spriteName != nil)
 		{
-			//TODO: these should be preloaded
-			NSString *tileSpriteName = loadValueString(@"Tiles", tile.type, @"sprite");
-			UIImage *tileSprite = colorImage([UIImage imageNamed:tileSpriteName], tile.color);
-			UIImageView *tileSpriteView = [[UIImageView alloc] initWithImage:tileSprite];
+			[self preloadTileImageFor:tile]; //preload that image if necessary
+			
+			//load a preloaded tile image
+			UIImageView *tileSpriteView = [[UIImageView alloc] initWithImage:self.preloadedTileImages[tile.type]];
 			[tileView addSubview:tileSpriteView];
 		}
 		else
