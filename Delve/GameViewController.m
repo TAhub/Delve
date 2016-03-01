@@ -137,6 +137,9 @@
 	for (UIView *subView in view.subviews)
 		[subView removeFromSuperview];
 	
+	if (cr.dead)
+		return;
+	
 	//get info
 	NSArray *colorations = loadValueArray(@"Races", cr.race, @"colorations");
 	NSDictionary *coloration = colorations[cr.coloration];
@@ -991,7 +994,7 @@
 	}
 }
 
--(void)moveCreature:(Creature *)creature withBlock:(void (^)(void))block
+-(void)moveCreature:(Creature *)creature fromX:(int)x fromY:(int)y withBlock:(void (^)(void))block
 {
 	__weak typeof(self) weakSelf = self;
 	self.animating = true;
@@ -1007,7 +1010,15 @@
 			[weakSelf moveCreatureCompleteWithBlock:block];
 		}];
 	else
-		[UIView animateWithDuration:GAMEPLAY_MOVE_TIME animations:
+	{
+		//invisible moves should be instant
+		Tile *from = self.map.tiles[y][x];
+		Tile *to = self.map.tiles[creature.y][creature.x];
+		float time = GAMEPLAY_MOVE_TIME;
+		if (!from.visible && !to.visible)
+			time = 0.01f;
+		
+		[UIView animateWithDuration:time animations:
 		^()
 		{
 			[weakSelf moveCreatureAnim];
@@ -1016,6 +1027,7 @@
 		{
 			[weakSelf moveCreatureCompleteWithBlock:block];
 		}];
+	}
 }
 
 -(void)attackAnimation:(NSString *)name withElement:(NSString *)element fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void))block
@@ -1049,9 +1061,15 @@
 		else
 			projectileView.backgroundColor = loadColorFromName([NSString stringWithFormat:@"element %@", element]);
 		
-
+		
+		//how long should it last?
+		float time = 0.75f;
+		Tile *to = weakSelf.map.tiles[y][x];
+		Tile *from = weakSelf.map.tiles[creature.y][creature.y];
+		if (!to.visible && !from.visible && !delayed)
+			time = 0.001f; //you can't see what's attacking, or what's being attacked, so it should be invisible; area attacks are exempt
 		weakSelf.animating = true;
-		[UIView animateWithDuration:1.2f animations:
+		[UIView animateWithDuration:time animations:
 		^()
 		{
 			//fling the projectile at the target
@@ -1106,6 +1124,11 @@
 -(void)updateStats
 {
 	[self reloadPanels];
+}
+
+-(void)updateCreature:(Creature *)cr
+{
+	[self regenerateCreatureSprite:cr];
 }
 
 #pragma mark table view delegate and datasource

@@ -508,6 +508,10 @@
 						//you killed someone!
 						weakSelf.blocks = MIN(weakSelf.blocks + 1, weakSelf.maxBlocks);
 						//TODO: any other bennies for getting a kill
+						
+						//remove the dead person from the map
+						tile.inhabitant = nil;
+						[weakSelf.map.delegate updateCreature:hit];
 					}
 				}
 				
@@ -666,7 +670,7 @@
 
 -(BOOL) startTurn
 {
-	NSLog(@"Turn started for %@", self.good ? @"player" : @"enemy");
+//	NSLog(@"Turn started for %@", self.good ? @"player" : @"enemy");
 	
 	//TODO: maybe there can be an "stealth" status that prevents enemies from waking up if you get onscreen?
 	if (!self.awake && !self.good && ((Tile *)self.map.tiles[self.y][self.x]).visible)
@@ -755,6 +759,27 @@
 		//otherwise, you are stuck, use defend
 		[self useAttackWithTreeNumber:0 andName:@"defend" onX:self.x andY:self.y];
 		return YES;
+	}
+	
+	if (self.good)
+	{
+		//check to see if your defenses can passively regenerate
+		__block BOOL enemiesNear = false;
+		[self applyBlock:
+		^(Tile *tile)
+		{
+			if (tile.inhabitant != nil && !tile.inhabitant.good && (tile.inhabitant.awake || tile.visible))
+				enemiesNear = true;
+		} forAttack:@"regen range finder" onX:self.x andY:self.y];
+		if (!enemiesNear)
+		{
+			NSLog(@"Regen dodges!");
+			
+			//regenerate dodges and blocks
+			self.dodges = MIN(self.dodges + 1, self.maxDodges);
+			self.blocks = MIN(self.blocks + 1, self.maxBlocks);
+			[self.map statsChanged];
+		}
 	}
 	
 	return self.good || self.awake;

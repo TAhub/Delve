@@ -28,6 +28,11 @@
 		<key>forcefield</key> <integer>50</integer>
 		<key>teleport</key> <true/>
 	</dict>
+	<key>regen range finder</key>
+	<dict>
+		<key>area</key> <integer>15</integer>
+		<!-- special effects -->
+	</dict>
 	
 	<!-- real attacks -->
 	

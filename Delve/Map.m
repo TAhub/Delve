@@ -155,7 +155,7 @@
 	if ([person moveWithX:x andY:y])
 	{
 		__weak typeof(self) weakSelf = self;
-		[self.delegate moveCreature:person withBlock:
+		[self.delegate moveCreature:person fromX:person.x-x fromY:person.y-y withBlock:
 		^()
 		{
 			[weakSelf recalculateVisibility];
@@ -674,8 +674,6 @@
 	[self shuffleArray:treasureTiles];
 	for (int i = 0; i < equipmentTreasures && i < treasureTiles.count; i++)
 		((GeneratorRoom *)treasureTiles[i]).equipmentTreasure = true;
-
-	//TODO: turn a number of treasures into equipment treasures, equal to equipmentTreasures
 	
 	//the exit always has an encounter
 	((GeneratorRoom *)rooms[columns/2][0]).encounter = true;
@@ -758,8 +756,8 @@
 					Tile *tile = self.tiles[y][x];
 					Creature *enemy = [[Creature alloc] initWithX:x andY:y onMap:self ofEnemyType:type];
 					//TODO: this is temporarily disabled
-//					[self.creatures addObject:enemy];
-//					tile.inhabitant = enemy;
+					[self.creatures addObject:enemy];
+					tile.inhabitant = enemy;
 				}
 			}
 	
@@ -947,10 +945,10 @@
 	{
 		case GeneratorRoomExitPathDoor:
 		case GeneratorRoomExitDoor:
-			((Tile *)self.tiles[y][x]).type = @"door floor red"; //TODO: normal door (actually, floor might be ok for this? I dunno)
+			((Tile *)self.tiles[y][x]).type = @"door floor red";
 			break;
 		case GeneratorRoomExitLockedDoor:
-			((Tile *)self.tiles[y][x]).type = @"locked door red"; //TODO: locked door
+			((Tile *)self.tiles[y][x]).type = @"locked door red";
 			break;
 		default:
 			return;

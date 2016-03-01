@@ -77,6 +77,7 @@
 		<key>health</key> <integer>125</integer>
 		<key>burn resistance</key> <integer>1</integer>
 		<key>dodges</key> <integer>3</integer>
+		<key>hacks</key> <integer>1</integer>
 		<key>metabolism</key> <integer>100</integer>
 		<!-- slots -->
 		<key>skill slot types</key>
@@ -128,7 +129,7 @@
 		<key>health</key> <integer>75</integer>
 		<key>shock resistance</key> <integer>2</integer>
 		<key>dodges</key> <integer>4</integer>
-		<key>hacks</key> <integer>1</integer>
+		<key>hacks</key> <integer>2</integer>
 		<key>metabolism</key> <integer>90</integer>
 		<!-- slots -->
 		<key>skill slot types</key>
@@ -180,6 +181,7 @@
 		<key>health</key> <integer>100</integer>
 		<key>smash resistance</key> <integer>1</integer>
 		<key>dodges</key> <integer>2</integer>
+		<key>hacks</key> <integer>1</integer>
 		<key>metabolism</key> <integer>130</integer>
 		<!-- slots -->
 		<key>skill slot types</key>
@@ -232,6 +234,7 @@
 		<key>cut resistance</key> <integer>1</integer>
 		<key>dodges</key> <integer>2</integer>
 		<key>blocks</key> <integer>1</integer>
+		<key>hacks</key> <integer>1</integer>
 		<key>metabolism</key> <integer>100</integer>
 		<!-- slots -->
 		<key>skill slot types</key>
