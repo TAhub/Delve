@@ -409,11 +409,11 @@
 		<key>result type</key> <string>implement</string>
 		<key>result amount</key> <integer>1</integer>
 	</dict>
-	<key>light hammer</key>
+	<key>sledgehammer</key>
 	<dict>
 		<key>ingredient a</key> <string>iron ingot</string>
 		<key>ingredient a amount</key> <integer>3</integer>
-		<key>result</key> <string>light hammer</string>
+		<key>result</key> <string>sledgehammer</string>
 		<key>result type</key> <string>implement</string>
 		<key>result amount</key> <integer>1</integer>
 	</dict>
@@ -618,13 +618,13 @@
 		<key>result type</key> <string>armor</string>
 		<key>result amount</key> <integer>1</integer>
 	</dict>
-	<key>fine goggles</key>
+	<key>advanced goggles</key>
 	<dict>
 		<key>ingredient a</key> <string>circuit</string>
 		<key>ingredient a amount</key> <integer>2</integer>
 		<key>ingredient b</key> <string>refined ingot</string>
 		<key>ingredient b amount</key> <integer>1</integer>
-		<key>result</key> <string>fine goggles</string>
+		<key>result</key> <string>advanced goggles</string>
 		<key>result type</key> <string>armor</string>
 		<key>result amount</key> <integer>1</integer>
 	</dict>

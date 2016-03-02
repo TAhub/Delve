@@ -10,6 +10,7 @@
 
 #pragma mark creature constants
 #define CREATURE_RESISTANCEFACTOR 35
+#define CREATURE_FORCEFIELDDECAY 3
 
 #pragma mark gameplay constants
 

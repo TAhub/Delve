@@ -12,6 +12,7 @@
 	<key>template</key>
 	<dict>
 		<key>type</key> <string>invalid</string>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 		<key>implement</key> <string>shield</string>
 		<key>skills</key>
 		<array>
@@ -117,7 +118,6 @@
 	<key>dodgy monster skill</key>
 	<dict>
 		<key>type</key> <string>invalid</string>
-		<key>implement</key> <string>shield</string>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -193,6 +193,7 @@
 	<key>shield</key>
 	<dict>
 		<key>type</key> <string>war</string>
+		<key>description</key> <string>A shields!man is an expert in blocking attacks, even ones that normally can't be dodged. !He can also learn to bash with !his shield, or even throw it.</string>
 		<key>implement</key> <string>shield</string>
 		<key>skills</key>
 		<array>
@@ -222,6 +223,7 @@
 	<key>hammer</key>
 	<dict>
 		<key>type</key> <string>war</string>
+		<key>description</key> <string>A hammers!man is not the swiftest of attackers, but !he is an expert in powerful blows and area-of-effect attacks.</string>
 		<key>implement</key> <string>hammer</string>
 		<key>skills</key>
 		<array>
@@ -250,6 +252,7 @@
 	<key>spear</key>
 	<dict>
 		<key>type</key> <string>war</string>
+		<key>description</key> <string>A spearfighter can attack from further away than most, though a spear cannot be used in close-range.</string>
 		<key>implement</key> <string>spear</string>
 		<key>skills</key>
 		<array>
@@ -278,6 +281,7 @@
 	<key>bow</key>
 	<dict>
 		<key>type</key> <string>war</string>
+		<key>description</key> <string>Though it is not as powerful as an Eol weapon, a bow's ammo is very plentiful. A skilled bow!man can put one to great use.</string>
 		<key>implement</key> <string>bow</string>
 		<key>skills</key>
 		<array>
@@ -307,6 +311,7 @@
 	<key>smithing</key>
 	<dict>
 		<key>type</key> <string>war</string>
+		<key>description</key> <string>A smith can make many types of weapons and armor, some of even better quality than can be found.</string>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -332,13 +337,14 @@
 	<!-- body skills -->
 	<!-- body skills usually focus heavily on passives, and are usually pattern C or pattern D -->
 	
-	<!-- dodge (pattern D) -->
+	<!-- reflexes (pattern D) -->
 	<!-- a defensive skill that focuses on passives -->
 	<!-- raises dodges and smash resistance -->
 	<!-- implement: none -->
-	<key>dodge</key>
+	<key>reflexes</key>
 	<dict>
 		<key>type</key> <string>body</string>
+		<key>description</key> <string>A person with sharp reflexes can dodge much more effectively.</string>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -365,6 +371,7 @@
 	<key>conditioning</key>
 	<dict>
 		<key>type</key> <string>body</string>
+		<key>description</key> <string>A person who has undergone conditioning training can take heavier hits, and recover more easily from them.</string>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -394,6 +401,7 @@
 	<key>strength</key>
 	<dict>
 		<key>type</key> <string>body</string>
+		<key>description</key> <string>A person with great strength will hit harder with attacks of any type. !He can also effectively fight unarmed.</string>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -419,6 +427,7 @@
 	<key>charm</key>
 	<dict>
 		<key>type</key> <string>body</string>
+		<key>description</key> <string>A charming person is good at influencing, or at least distracting, foes. !He is also bound to pick up a variety of other skills, as conversation starters.</string>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -450,6 +459,7 @@
 	<key>sacred light</key>
 	<dict>
 		<key>type</key> <string>sacred</string>
+		<key>description</key> <string>Those who follow the path of the sacred light learn to unleash the inner light of a light orb to protect themselves.</string>
 		<key>implement</key> <string>light orb</string>
 		<key>skills</key>
 		<array>
@@ -479,6 +489,7 @@
 	<key>holy soldier</key>
 	<dict>
 		<key>type</key> <string>sacred</string>
+		<key>description</key> <string>Those who follow the path of the holy soldier learn to use holy weapons to smite their foes.</string>
 		<key>implement</key> <string>holy weapon</string>
 		<key>skills</key>
 		<array>
@@ -506,6 +517,7 @@
 	<key>heresy</key>
 	<dict>
 		<key>type</key> <string>sacred</string>
+		<key>description</key> <string>Those who follow the path of heresy are an untrustworthy lot, who excel at unlocking locked doors and chests.</string>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -533,6 +545,7 @@
 	<key>godly form</key>
 	<dict>
 		<key>type</key> <string>sacred</string>
+		<key>description</key> <string>Those who follow the path of the godly form learn to accept godly implants into themselves, and fight with their power.</string>
 		<key>implement</key> <string>godly implant</string>
 		<key>skills</key>
 		<array>
@@ -561,6 +574,7 @@
 	<key>false prophet</key>
 	<dict>
 		<key>type</key> <string>sacred</string>
+		<key>description</key> <string>Those who follow the path of the false prophet can make new relics of Eol without the permission of the clergy. They can create weapon, armor, and support relics alike.</string>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -593,6 +607,7 @@
 	<key>blood</key>
 	<dict>
 		<key>type</key> <string>ritual</string>
+		<key>description</key> <string>The rituals of blood focus on powerful attacks, fueled by self-sacrifice. Those who practice them learn to be tougher, to survive the necessary bloodletting.</string>
 		<key>implement</key> <string>ritual knife</string>
 		<key>skills</key>
 		<array>
@@ -620,6 +635,7 @@
 	<key>wisdom</key>
 	<dict>
 		<key>type</key> <string>ritual</string>
+		<key>description</key> <string>The rituals of wisdom are not the most powerful, but they are useful in a support role. Thoe who practice them learn many small skills, to complement their versatile abilities.</string>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -648,6 +664,7 @@
 	<key>might</key>
 	<dict>
 		<key>type</key> <string>ritual</string>
+		<key>description</key> <string>The rituals of might focus on having a destructive attack for every foe. Those who practice them have little time for self-improvement otherwise.</string>
 		<key>implement</key> <string>tome</string>
 		<key>skills</key>
 		<array>
@@ -677,6 +694,7 @@
 	<key>alchemy</key>
 	<dict>
 		<key>type</key> <string>ritual</string>
+		<key>description</key> <string>The rituals of alchemy have little offensive value, but allow the creation of medicine and special armors and implements.</string>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->

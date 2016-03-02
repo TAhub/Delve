@@ -77,17 +77,29 @@
 	{
 		NSString *tree = self.oldMap.player.skillTrees[on];
 		int oldLevel = ((NSNumber *)self.oldMap.player.skillTreeLevels[on]).intValue;
+		NSDictionary *skillDict = loadValueArray(@"SkillTrees", tree, @"skills")[oldLevel];
 		[self.pickButton setTitleColor:oldLevel == 4 ? loadColorFromName(@"ui text grey") : loadColorFromName(@"ui text") forState:UIControlStateNormal];
 		
+		//TODO: once this is finished it should probably be moved into a creature function
+		//so I can show the level 1 description of skills during character creation
+		
+		NSString *skillDesc = loadValueString(@"SkillTrees", tree, @"description");
+		skillDesc = [skillDesc stringByReplacingOccurrencesOfString:@"!he" withString:self.oldMap.player.gender ? @"she" : @"he"];
+		skillDesc = [skillDesc stringByReplacingOccurrencesOfString:@"!He" withString:self.oldMap.player.gender ? @"She" : @"He"];
+		skillDesc = [skillDesc stringByReplacingOccurrencesOfString:@"!man" withString:self.oldMap.player.gender ? @"woman" : @"man"];
+		skillDesc = [skillDesc stringByReplacingOccurrencesOfString:@"!his" withString:self.oldMap.player.gender ? @"her" : @"his"];
+		
 		NSMutableString *desc = [NSMutableString stringWithFormat:@"%@: %i/4", tree, oldLevel];
-		[desc appendString:@"\nTODO: tree description goes here!"];
+		[desc appendFormat:@"\n%@", skillDesc];
 		if (oldLevel == 4)
 			[desc appendString:@"\nYou are already at the maximum level for this skill!"];
 		else
 		{
 			[desc appendString:@"\nTODO: passive benefits go here!"];
-			[desc appendString:@"\nTODO: attack descriptions go here!"];
-			[desc appendString:@"\nTODO: say here if this unlocks new recipies!"];
+			if (skillDict[@"attack"] != nil)
+				[desc appendFormat:@"\nLearn the attack %@", [self.oldMap.player attackDescription:skillDict[@"attack"]]];
+			if (skillDict[@"recipies"] != nil)
+				[desc appendString:@"\nUnlocks new recipies."];
 		}
 		[self.descriptionText setText:desc];
 	}

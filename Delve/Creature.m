@@ -136,6 +136,15 @@
 
 #pragma mark: item interface functions
 
+-(NSString *)attackDescription:(NSString *)attack
+{
+	NSMutableString *desc = [NSMutableString stringWithString:attack];
+	
+	//TODO: make attack description
+	//remember to call 1x1 aoes "delayed attacks" rather than aoes
+	[desc appendFormat:@"\n%@", loadValueString(@"Attacks", attack, @"description")];
+	return desc;
+}
 -(NSString *)weaponDescription:(NSString *)weapon
 {
 	NSMutableString *desc = [NSMutableString stringWithFormat:@"%@\n+%i%% power", weapon, loadValueNumber(@"Implements", weapon, @"power").intValue];
@@ -185,7 +194,7 @@
 		[properties addObject:[NSString stringWithFormat:@"+%i%% metabolism", loadValueNumber(@"Armors", armor, @"metabolism").intValue]];
 	if (properties.count > 0)
 		[desc appendString:[properties componentsJoinedByString:@", "]];
-	//TODO: armor description
+	[desc appendFormat:@"\n%@", loadValueString(@"Armors", armor, @"description")];
 	return desc;
 }
 
@@ -694,7 +703,10 @@
 	
 	//TODO: awake ais who spend too many rounds offscreen (this should probably be an AI variable) should go asleep again
 	
-	self.forceField = 0;
+	if (self.forceField <= CREATURE_FORCEFIELDDECAY)
+		self.forceField = 0;
+	else
+		self.forceField /= CREATURE_FORCEFIELDDECAY;
 	
 	//reduce all cooldowns
 	for (NSString *attack in self.cooldowns.allKeys)

@@ -75,7 +75,7 @@
 	<array>
 		<!-- common stuff -->
 		<string>buckler</string>
-		<string>light hammer</string>
+		<string>sledgehammer</string>
 		<string>iron spear</string>
 		<string>shortbow</string>
 		<string>glimmering orb</string>
@@ -87,7 +87,7 @@
 		<string>mace</string>
 		<!-- common stuff again -->
 		<string>buckler</string>
-		<string>light hammer</string>
+		<string>sledgehammer</string>
 		<string>iron spear</string>
 		<string>shortbow</string>
 		<string>glimmering orb</string>
@@ -197,7 +197,7 @@
 		<string>soldier hat</string>
 		<string>winged helmet</string>
 		<string>hero armor</string>
-		<string>fine goggles</string>
+		<string>advanced goggles</string>
 		<string>silk headband</string>
 		<string>temple dancer outfit</string>
 		<string>jeweled ring</string>
@@ -234,7 +234,7 @@
 		<string>shortsword</string>
 		<string>mace</string>
 		<string>buckler</string>
-		<string>light hammer</string>
+		<string>sledgehammer</string>
 		<string>iron spear</string>
 		<string>shortbow</string>
 		<string>rusty helmet</string>
@@ -318,7 +318,7 @@
 		<string>radiant orb</string>
 		<string>pearl arsenal</string>
 		<string>conviction</string>
-		<string>fine goggles</string>
+		<string>advanced goggles</string>
 	</array>
 	<key>false prophet 4</key>
 	<array>

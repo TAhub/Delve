@@ -14,6 +14,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
 		<key>breaks into</key> <string>template</string>
+		<key>description</key> <string>TODO: DESCRIPTION</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>0</integer>
 		<key>health</key> <integer>0</integer>
@@ -54,6 +55,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
 		<key>breaks into</key> <string>iron ingot</string>
+		<key>description</key> <string>A simple iron helmet that is in poor condition.</string>
 		<!-- stats -->
 		<key>health</key> <integer>12</integer>
 		<!-- appearance -->
@@ -70,6 +72,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
 		<key>breaks into</key> <string>steel ingot</string>
+		<key>description</key> <string>A simple steel helmet that protects only the top of the head.</string>
 		<!-- stats -->
 		<key>smash resistance</key> <integer>2</integer>
 		<!-- appearance -->
@@ -86,6 +89,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
 		<key>breaks into</key> <string>refined ingot</string>
+		<key>description</key> <string>A fierce helmet often worn by outlaws.</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>10</integer>
 		<key>smash resistance</key> <integer>2</integer>
@@ -104,6 +108,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
 		<key>breaks into</key> <string>quicksilver</string>
+		<key>description</key> <string>A dignified hat designed for human soldiers.</string>
 		<!-- stats -->
 		<key>health</key> <integer>10</integer>
 		<key>smash resistance</key> <integer>2</integer>
@@ -121,6 +126,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
 		<key>breaks into</key> <string>refined ingot</string>
+		<key>description</key> <string>An old-fashioned helmet fit for a true hero.</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>20</integer>
 		<key>smash resistance</key> <integer>2</integer>
@@ -138,6 +144,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
 		<key>breaks into</key> <string>iron ingot</string>
+		<key>description</key> <string>An ugly-looking iron helmet.</string>
 		<!-- stats -->
 		<key>cut resistance</key> <integer>1</integer>
 		<!-- appearance -->
@@ -154,6 +161,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
 		<key>breaks into</key> <string>steel ingot</string>
+		<key>description</key> <string>A steel helmet held together with rivets.</string>
 		<!-- stats -->
 		<key>health</key> <integer>10</integer>
 		<key>cut resistance</key> <integer>1</integer>
@@ -171,6 +179,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
 		<key>breaks into</key> <string>refined ingot</string>
+		<key>description</key> <string>A finely-made helmet with decorative wings.</string>
 		<!-- stats -->
 		<key>cut resistance</key> <integer>3</integer>
 		<!-- appearance -->
@@ -187,6 +196,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
 		<key>breaks into</key> <string>refined ingot</string>
+		<key>description</key> <string>A heavy helmet designed for use by Human knights.</string>
 		<!-- stats -->
 		<key>health</key> <integer>10</integer>
 		<key>cut resistance</key> <integer>3</integer>
@@ -204,8 +214,9 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>helmet</string>
 		<key>breaks into</key> <string>circuit</string>
+		<key>description</key> <string>A strange relic helmet that protects the user with an invisible force.</string>
 		<!-- stats -->
-		<key>dodges</key> <integer>2</integer>
+		<key>blocks</key> <integer>2</integer>
 		<!-- appearance -->
 		<key>sprite</key> <string>mind_shield</string>
 		<key>color</key> <string>relic</string>
@@ -225,6 +236,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>body armor</string>
 		<key>breaks into</key> <string>iron ingot</string>
+		<key>description</key> <string>A simple iron chestplate that is in poor condition.</string>
 		<!-- stats -->
 		<key>cut resistance</key> <integer>2</integer>
 		<!-- appearance -->
@@ -240,6 +252,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>body armor</string>
 		<key>breaks into</key> <string>steel ingot</string>
+		<key>description</key> <string>A basic but effective steel chestplate.</string>
 		<!-- stats -->
 		<key>health</key> <integer>12</integer>
 		<key>cut resistance</key> <integer>2</integer>
@@ -256,6 +269,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>body armor</string>
 		<key>breaks into</key> <string>refined ingot</string>
+		<key>description</key> <string>An old-fashioned armor fit for a true hero.</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>10</integer>
 		<key>cut resistance</key> <integer>3</integer>
@@ -272,6 +286,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>body armor</string>
 		<key>breaks into</key> <string>refined ingot</string>
+		<key>description</key> <string>A heavy suit of armor designed for use by Human knights.</string>
 		<!-- stats -->
 		<key>health</key> <integer>10</integer>
 		<key>cut resistance</key> <integer>4</integer>
@@ -293,6 +308,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>headgear</string>
 		<key>breaks into</key> <string>capacitor</string>
+		<key>description</key> <string>An Eol device that improves the vision of the wearer.</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>10</integer>
 		<!-- appearance -->
@@ -309,6 +325,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>headgear</string>
 		<key>breaks into</key> <string>battery</string>
+		<key>description</key> <string>A simple pair of Eol goggles that improve vision.</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>20</integer>
 		<!-- appearance -->
@@ -320,11 +337,12 @@
 	
 	<!-- fine goggles -->
 	<!-- level 3 goggles -->
-	<key>fine goggles</key>
+	<key>advanced goggles</key>
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>headgear</string>
 		<key>breaks into</key> <string>circuit</string>
+		<key>description</key> <string>A pair of complicated Eol goggles that make your enemies clearer to you.</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>30</integer>
 		<!-- appearance -->
@@ -341,6 +359,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>headgear</string>
 		<key>breaks into</key> <string>circuit</string>
+		<key>description</key> <string>An amazing pair of Eol goggles that let you see with perfect clarity.</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>40</integer>
 		<!-- appearance -->
@@ -357,6 +376,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>headgear</string>
 		<key>breaks into</key> <string>fabric</string>
+		<key>description</key> <string>A humble headband made of rough fabric.</string>
 		<!-- stats -->
 		<key>smash resistance</key> <integer>1</integer>
 		<!-- appearance -->
@@ -373,6 +393,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>headgear</string>
 		<key>breaks into</key> <string>quicksilver</string>
+		<key>description</key> <string>A decorative steel tiara.</string>
 		<!-- stats -->
 		<key>shock resistance</key> <integer>1</integer>
 		<key>burn resistance</key> <integer>1</integer>
@@ -390,6 +411,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>headgear</string>
 		<key>breaks into</key> <string>silk</string>
+		<key>description</key> <string>A comfortable headband made of silk.</string>
 		<!-- stats -->
 		<key>smash resistance</key> <integer>3</integer>
 		<!-- appearance -->
@@ -406,6 +428,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>headgear</string>
 		<key>breaks into</key> <string>diamond dust</string>
+		<key>description</key> <string>A beautiful tiara made of alchemical gold.</string>
 		<!-- stats -->
 		<key>shock resistance</key> <integer>2</integer>
 		<key>burn resistance</key> <integer>2</integer>
@@ -427,6 +450,8 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>small clothes</string>
+		<key>breaks into</key> <string>fabric</string>
+		<key>description</key> <string>Rough rags worn by an Eoling of no status.</string>
 		<!-- stats -->
 		<!-- appearance -->
 		<key>sprite</key> <string>urchin_rags</string>
@@ -441,6 +466,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>small clothes</string>
 		<key>breaks into</key> <string>fabric</string>
+		<key>description</key> <string>A robe commonly worn by Eolings.</string>
 		<!-- stats -->
 		<key>smash resistance</key> <integer>1</integer>
 		<!-- appearance -->
@@ -456,6 +482,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>small clothes</string>
 		<key>breaks into</key> <string>steel ingot</string>
+		<key>description</key> <string>An set of armored clothes worn by Eoling laborers.</string>
 		<!-- stats -->
 		<key>health</key> <integer>10</integer>
 		<key>smash resistance</key> <integer>1</integer>
@@ -472,6 +499,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>small clothes</string>
 		<key>breaks into</key> <string>silk</string>
+		<key>description</key> <string>An exotic outfit worn by low-ranking Eoling clergy.</string>
 		<!-- stats -->
 		<key>health</key> <integer>10</integer>
 		<key>dodges</key> <integer>1</integer>
@@ -488,6 +516,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>small clothes</string>
 		<key>breaks into</key> <string>refined ingot</string>
+		<key>description</key> <string>A small set of armor meant for use by Eolings.</string>
 		<!-- stats -->
 		<key>health</key> <integer>20</integer>
 		<key>smash resistance</key> <integer>1</integer>
@@ -505,6 +534,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>small clothes</string>
 		<key>breaks into</key> <string>battery</string>
+		<key>description</key> <string>A heretical relic that enhances strength. Cannot be worn with armor.</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>25</integer>
 		<!-- appearance -->
@@ -520,6 +550,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>small clothes</string>
 		<key>breaks into</key> <string>circuit</string>
+		<key>description</key> <string>A heretical relic that enhances speed. Cannot be worn with armor.</string>
 		<!-- stats -->
 		<key>dodges</key> <integer>2</integer>
 		<!-- appearance -->
@@ -540,6 +571,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>jewelry</string>
 		<key>breaks into</key> <string>iron ingot</string>
+		<key>description</key> <string>A smooth ring. Makes you feel hungry.</string>
 		<!-- stats -->
 		<key>health</key> <integer>10</integer>
 		<key>metabolism</key> <integer>5</integer>
@@ -553,6 +585,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>jewelry</string>
 		<key>breaks into</key> <string>quicksilver</string>
+		<key>description</key> <string>An alchemical silver necklace that insulates the wearer.</string>
 		<!-- stats -->
 		<key>shock resistance</key> <integer>1</integer>
 		<key>burn resistance</key> <integer>1</integer>
@@ -566,6 +599,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>jewelry</string>
 		<key>breaks into</key> <string>diamond dust</string>
+		<key>description</key> <string>An ornate ring that makes the wearer more agile.</string>
 		<!-- stats -->
 		<key>smash resistance</key> <integer>1</integer>
 		<key>dodges</key> <integer>1</integer>
@@ -579,6 +613,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>jewelry</string>
 		<key>breaks into</key> <string>diamond dust</string>
+		<key>description</key> <string>An alchemical gold necklace that insulates the wearer.</string>
 		<!-- stats -->
 		<key>shock resistance</key> <integer>2</integer>
 		<key>burn resistance</key> <integer>2</integer>
@@ -592,6 +627,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>jewelry</string>
 		<key>breaks into</key> <string>iron ingot</string>
+		<key>description</key> <string>A crude iron ring. Feels heavy on the finger.</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>10</integer>
 		<!-- appearance -->
@@ -604,6 +640,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>jewelry</string>
 		<key>breaks into</key> <string>quicksilver</string>
+		<key>description</key> <string>An alchemical silver wrist bangle. Increases aggression.</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>20</integer>
 		<!-- appearance -->
@@ -616,6 +653,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>jewelry</string>
 		<key>breaks into</key> <string>refined ingot</string>
+		<key>description</key> <string>A macabre ring. Keeps death on ones mind.</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>30</integer>
 		<!-- appearance -->
@@ -628,6 +666,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>jewelry</string>
 		<key>breaks into</key> <string>refined ingot</string>
+		<key>description</key> <string>An alchemical gold wrist bangle. Grants great strength.</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>40</integer>
 		<!-- appearance -->
@@ -645,6 +684,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>tail ornament</string>
 		<key>breaks into</key> <string>iron ingot</string>
+		<key>description</key> <string>A heavy ring worn on ones tail. Originated as a diet craze in modern Eol.</string>
 		<!-- stats -->
 		<key>metabolism</key> <integer>30</integer>
 		<!-- appearance -->
@@ -660,6 +700,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>tail ornament</string>
 		<key>breaks into</key> <string>steel ingot</string>
+		<key>description</key> <string>A fancier, shinier tail ring. More of a status symbol.</string>
 		<!-- stats -->
 		<key>metabolism</key> <integer>45</integer>
 		<!-- appearance -->
@@ -675,6 +716,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>tail ornament</string>
 		<key>breaks into</key> <string>refined ingot</string>
+		<key>description</key> <string>An achemical gold tail ring. Has become popular among clerics.</string>
 		<!-- stats -->
 		<key>health</key> <integer>10</integer>
 		<key>metabolism</key> <integer>45</integer>
@@ -691,6 +733,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>tail ornament</string>
 		<key>breaks into</key> <string>refined ingot</string>
+		<key>description</key> <string>An old Eol ring adapted in modern times to be worn on ones tail.</string>
 		<!-- stats -->
 		<key>health</key> <integer>15</integer>
 		<key>metabolism</key> <integer>50</integer>
@@ -707,6 +750,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>tail ornament</string>
 		<key>breaks into</key> <string>fabric</string>
+		<key>description</key> <string>A fluttering banner worn on ones tail. Distracts enemies.</string>
 		<!-- stats -->
 		<key>dodges</key> <integer>1</integer>
 		<!-- appearance -->
@@ -722,6 +766,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>tail ornament</string>
 		<key>breaks into</key> <string>fabric</string>
+		<key>description</key> <string>A bright red tail banner. Especially good at distracting bulls.</string>
 		<!-- stats -->
 		<key>dodges</key> <integer>1</integer>
 		<key>smash resistance</key> <integer>1</integer>
@@ -738,6 +783,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>tail ornament</string>
 		<key>breaks into</key> <string>silk</string>
+		<key>description</key> <string>A high-quality tail banner, made of real silk.</string>
 		<!-- stats -->
 		<key>dodges</key> <integer>2</integer>
 		<!-- appearance -->
@@ -753,6 +799,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>tail ornament</string>
 		<key>breaks into</key> <string>silk</string>
+		<key>description</key> <string>A tail banner of shining golden silk. Blinds onlookers.</string>
 		<!-- stats -->
 		<key>dodges</key> <integer>2</integer>
 		<key>smash resistance</key> <integer>1</integer>
@@ -774,6 +821,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>shoes</string>
 		<key>breaks into</key> <string>fabric</string>
+		<key>description</key> <string>A pair of low-quality boots.</string>
 		<!-- stats -->
 		<key>burn resistance</key> <integer>1</integer>
 		<!-- appearance -->
@@ -788,6 +836,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>shoes</string>
 		<key>breaks into</key> <string>iron ingot</string>
+		<key>description</key> <string>A pair of boots reinforced with iron plates.</string>
 		<!-- stats -->
 		<key>health</key> <integer>12</integer>
 		<key>burn resistance</key> <integer>1</integer>
@@ -803,6 +852,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>shoes</string>
 		<key>breaks into</key> <string>steel ingot</string>
+		<key>description</key> <string>A pair of high-quality boots with a steel frame.</string>
 		<!-- stats -->
 		<key>health</key> <integer>12</integer>
 		<key>burn resistance</key> <integer>2</integer>
@@ -818,6 +868,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>shoes</string>
 		<key>breaks into</key> <string>refined ingot</string>
+		<key>description</key> <string>A pair of high-quality boots. Typically worn by Human knights.</string>
 		<!-- stats -->
 		<key>health</key> <integer>25</integer>
 		<key>burn resistance</key> <integer>2</integer>
@@ -833,6 +884,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>shoes</string>
 		<key>breaks into</key> <string>fabric</string>
+		<key>description</key> <string>A pair of shoes made of cheap fabric.</string>
 		<!-- stats -->
 		<key>shock resistance</key> <integer>1</integer>
 		<!-- appearance -->
@@ -847,6 +899,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>shoes</string>
 		<key>breaks into</key> <string>fabric</string>
+		<key>description</key> <string>A pair of shoes made of alchemical leather.</string>
 		<!-- stats -->
 		<key>health</key> <integer>12</integer>
 		<key>shock resistance</key> <integer>1</integer>
@@ -862,6 +915,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>shoes</string>
 		<key>breaks into</key> <string>silk</string>
+		<key>description</key> <string>A high-quality pair of shoes.</string>
 		<!-- stats -->
 		<key>health</key> <integer>12</integer>
 		<key>shock resistance</key> <integer>2</integer>
@@ -877,6 +931,7 @@
 		<!-- basic identity -->
 		<key>slot</key> <string>shoes</string>
 		<key>breaks into</key> <string>silk</string>
+		<key>description</key> <string>A pair of fashionable blue shoes.</string>
 		<!-- stats -->
 		<key>health</key> <integer>25</integer>
 		<key>shock resistance</key> <integer>2</integer>

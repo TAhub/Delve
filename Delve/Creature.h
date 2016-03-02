@@ -84,6 +84,7 @@
 #pragma mark: item interface functions
 -(NSString *)weaponDescription:(NSString *)weapon;
 -(NSString *)armorDescription:(NSString *)armor;
+-(NSString *)attackDescription:(NSString *)attack;
 
 #pragma mark: appearance
 @property BOOL gender;

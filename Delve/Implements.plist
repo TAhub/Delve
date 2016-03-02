@@ -141,7 +141,7 @@
 		<key>breaks into</key> <string>circuit</string>
 		<key>power</key> <integer>50</integer>
 		<key>element</key> <string>shock</string>
-		<key>description</key> <string>An ornate axe with a glowing edge.</string>
+		<key>description</key> <string>An ornate Eol axe with a glowing edge.</string>
 	</dict>
 	
 	<!-- shields -->
@@ -149,28 +149,28 @@
 	<dict>
 		<key>type</key> <string>shield</string>
 		<key>power</key> <integer>0</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A crude shield made of wood.</string>
 	</dict>
 	<key>buckler</key>
 	<dict>
 		<key>type</key> <string>shield</string>
 		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>15</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A small shield made of solid iron.</string>
 	</dict>
 	<key>kite shield</key>
 	<dict>
 		<key>type</key> <string>shield</string>
 		<key>breaks into</key> <string>steel ingot</string>
 		<key>power</key> <integer>30</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A large, diamond-shaped shield made of steel.</string>
 	</dict>
 	<key>relic shield</key>
 	<dict>
 		<key>type</key> <string>shield</string>
 		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>45</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A fine shield made with Eol techniques.</string>
 	</dict>
 	
 	<!-- hammers -->
@@ -178,28 +178,28 @@
 	<dict>
 		<key>type</key> <string>hammer</string>
 		<key>power</key> <integer>0</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A large hammer made of wood.</string>
 	</dict>
-	<key>light hammer</key>
+	<key>sledgehammer</key>
 	<dict>
 		<key>type</key> <string>hammer</string>
 		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>15</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>An iron hammer not designed for use in fights.</string>
 	</dict>
 	<key>warhammer</key>
 	<dict>
 		<key>type</key> <string>hammer</string>
 		<key>breaks into</key> <string>steel ingot</string>
 		<key>power</key> <integer>30</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A steel hammer made for fighting.</string>
 	</dict>
 	<key>greathammer</key>
 	<dict>
 		<key>type</key> <string>hammer</string>
 		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>45</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A large hammer with a very heavy head.</string>
 	</dict>
 	
 	<!-- spears -->
@@ -207,28 +207,28 @@
 	<dict>
 		<key>type</key> <string>spear</string>
 		<key>power</key> <integer>0</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A long wooden stick with a sharpened head.</string>
 	</dict>
 	<key>iron spear</key>
 	<dict>
 		<key>type</key> <string>spear</string>
 		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>15</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A simple spear with an iron head.</string>
 	</dict>
 	<key>pike</key>
 	<dict>
 		<key>type</key> <string>spear</string>
 		<key>breaks into</key> <string>steel ingot</string>
 		<key>power</key> <integer>30</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A long spear with a steel head.</string>
 	</dict>
 	<key>partisan</key>
 	<dict>
 		<key>type</key> <string>spear</string>
 		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>45</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A spear with a hooked head.</string>
 	</dict>
 	
 	<!-- bows -->
@@ -236,28 +236,28 @@
 	<dict>
 		<key>type</key> <string>bow</string>
 		<key>power</key> <integer>0</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>An old bow meant for hunting game, not people.</string>
 	</dict>
 	<key>shortbow</key>
 	<dict>
 		<key>type</key> <string>bow</string>
 		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>15</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A small but well-made bow.</string>
 	</dict>
 	<key>longbow</key>
 	<dict>
 		<key>type</key> <string>bow</string>
 		<key>breaks into</key> <string>steel ingot</string>
 		<key>power</key> <integer>30</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A powerful bow. Requires great strength to use.</string>
 	</dict>
 	<key>composite bow</key>
 	<dict>
 		<key>type</key> <string>bow</string>
 		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>45</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>An advanced bow fitted with a mechanism to increase power.</string>
 	</dict>
 	
 	<!-- light orbs -->
@@ -265,28 +265,28 @@
 	<dict>
 		<key>type</key> <string>light orb</string>
 		<key>power</key> <integer>0</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>An old Eol relic that is barely functional anymore.</string>
 	</dict>
 	<key>glimmering orb</key>
 	<dict>
 		<key>type</key> <string>light orb</string>
 		<key>breaks into</key> <string>capacitor</string>
 		<key>power</key> <integer>15</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A spherical relic that shines with a faint light.</string>
 	</dict>
 	<key>glowing orb</key>
 	<dict>
 		<key>type</key> <string>light orb</string>
 		<key>breaks into</key> <string>battery</string>
 		<key>power</key> <integer>30</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A spherical relic that glows brightly.</string>
 	</dict>
 	<key>radiant orb</key>
 	<dict>
 		<key>type</key> <string>light orb</string>
 		<key>breaks into</key> <string>circuit</string>
 		<key>power</key> <integer>45</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A replica Eol relic that is almost too bright to look at.</string>
 	</dict>
 	
 	<!-- holy weapons -->
@@ -294,28 +294,28 @@
 	<dict>
 		<key>type</key> <string>holy weapon</string>
 		<key>power</key> <integer>0</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A simple holy weapon designed mostly for ceremonial use.</string>
 	</dict>
 	<key>holy thunder</key>
 	<dict>
 		<key>type</key> <string>holy weapon</string>
 		<key>breaks into</key> <string>capacitor</string>
 		<key>power</key> <integer>15</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A holy weapon often used by the Eoling military.</string>
 	</dict>
 	<key>white lightning</key>
 	<dict>
 		<key>type</key> <string>holy weapon</string>
 		<key>breaks into</key> <string>battery</string>
 		<key>power</key> <integer>30</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>An holy weapon made based on an ancient Eol design.</string>
 	</dict>
 	<key>pearl arsenal</key>
 	<dict>
 		<key>type</key> <string>holy weapon</string>
 		<key>breaks into</key> <string>circuit</string>
 		<key>power</key> <integer>45</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A powerful holy weapon designed shortly before the fall of Eol.</string>
 	</dict>
 	
 	<!-- godly implants -->
@@ -323,28 +323,28 @@
 	<dict>
 		<key>type</key> <string>godly implant</string>
 		<key>power</key> <integer>0</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A simple implant meant to train a person's body to accept implants.</string>
 	</dict>
 	<key>birthright</key>
 	<dict>
 		<key>type</key> <string>godly implant</string>
 		<key>breaks into</key> <string>capacitor</string>
 		<key>power</key> <integer>15</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A standard implant made in large numbers by the old Eol.</string>
 	</dict>
 	<key>faith</key>
 	<dict>
 		<key>type</key> <string>godly implant</string>
 		<key>breaks into</key> <string>battery</string>
 		<key>power</key> <integer>30</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A military implant that is said to be quite painful to use.</string>
 	</dict>
 	<key>conviction</key>
 	<dict>
 		<key>type</key> <string>godly implant</string>
 		<key>breaks into</key> <string>circuit</string>
 		<key>power</key> <integer>45</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A powerful implant normally given to favored servants of the clergy.</string>
 	</dict>
 	
 	<!-- ritual knives -->
@@ -352,28 +352,28 @@
 	<dict>
 		<key>type</key> <string>ritual knife</string>
 		<key>power</key> <integer>0</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>An ordinary knife meant for chopping up vegetables.</string>
 	</dict>
 	<key>ritual knife</key>
 	<dict>
 		<key>type</key> <string>ritual knife</string>
 		<key>breaks into</key> <string>fang</string>
 		<key>power</key> <integer>15</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A knife designed for drawing blood.</string>
 	</dict>
 	<key>athame</key>
 	<dict>
 		<key>type</key> <string>ritual knife</string>
 		<key>breaks into</key> <string>quicksilver</string>
 		<key>power</key> <integer>30</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A special knife that channels power.</string>
 	</dict>
 	<key>relic knife</key>
 	<dict>
 		<key>type</key> <string>ritual knife</string>
 		<key>breaks into</key> <string>diamond dust</string>
 		<key>power</key> <integer>45</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>An old Eol knife adapted for use in rituals.</string>
 	</dict>
 	
 	<!-- tomes -->
@@ -381,28 +381,28 @@
 	<dict>
 		<key>type</key> <string>tome</string>
 		<key>power</key> <integer>0</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A threadbare old book that teaches basic ritual knowledge.</string>
 	</dict>
 	<key>ritual compendium</key>
 	<dict>
 		<key>type</key> <string>tome</string>
 		<key>breaks into</key> <string>fang</string>
 		<key>power</key> <integer>15</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A heavy book with comprehensive information about rituals.</string>
 	</dict>
 	<key>ether dynamics</key>
 	<dict>
 		<key>type</key> <string>tome</string>
 		<key>breaks into</key> <string>quicksilver</string>
 		<key>power</key> <integer>30</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>An advanced book full of obscure ritual formulas and techniques.</string>
 	</dict>
 	<key>forbidden tome</key>
 	<dict>
 		<key>type</key> <string>tome</string>
 		<key>breaks into</key> <string>diamond dust</string>
 		<key>power</key> <integer>45</integer>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>A sealed tome of the type used to cause the fall of Eol.</string>
 	</dict>
 </dict>
 </plist>
