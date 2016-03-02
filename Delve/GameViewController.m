@@ -159,6 +159,12 @@
 }
 -(void)regenerateCreatureSprite:(Creature *)cr atView:(UIView *)view
 {
+	//TODO: while testing other stuff, I noticed a graphical glitch
+	//part of the boots seemed to miss the player's feet
+	//I was running a human with steel-toed boots
+	//I can't tell if it's a problem with the sprite, or if images are displaying offset
+	
+	
 	for (UIView *subView in view.subviews)
 		[subView removeFromSuperview];
 	
@@ -635,6 +641,7 @@
 						Tile *tile = self.map.tiles[self.map.player.y][self.map.player.x];
 						tile.treasureType = TreasureTypeBag;
 						tile.treasure = it;
+						tile.changed = true;
 						[self updateTiles];
 					}
 					else
@@ -654,7 +661,13 @@
 			Item *item = self.inventoryItemPicked;
 			if (item != nil && item.usable)
 			{
-				//TODO: use the item
+				if (item.healing > 0)
+				{
+					//TODO: show a healing number
+					int healingAmount = (item.healing * self.map.player.metabolism) / 100;
+					self.map.player.health = MIN(self.map.player.health + healingAmount, self.map.player.maxHealth);
+				}
+				//TODO: other effects (buffs, etc)
 				item.number -= 1;
 				
 				//unload crafts
@@ -712,6 +725,7 @@
 					
 					tile.treasure = nil;
 					tile.treasureType = TreasureTypeNone;
+					tile.changed = true;
 					[self reloadPanels];
 					[self updateTiles];
 					
@@ -771,6 +785,7 @@
 				[self.map addItem:self.examinationItem];
 				
 				
+				tile.changed = true;
 				tile.treasureType = TreasureTypeNone;
 				[self updateTiles];
 				[self reloadPanels];
@@ -963,6 +978,16 @@
 		//discovered but invisible tiles should be transparent
 		if (!tile.visible && targetColor == nil)
 			tileView.alpha = 0.5; //TODO: this should be a constant
+	}
+	if (tile.treasureType != TreasureTypeNone)
+	{
+		//TODO: get the real treasure image
+		UIImage *treasureSprite = [UIImage imageNamed:@"ui_warning"];
+		treasureSprite = colorImage(treasureSprite, loadColorFromName(@"gold"));
+		
+		UIImageView *treasureView = [[UIImageView alloc] initWithImage:treasureSprite];
+		treasureView.center = CGPointMake(GAMEPLAY_TILE_SIZE / 2, GAMEPLAY_TILE_SIZE / 2);
+		[tileView addSubview:treasureView];
 	}
 	if (tile.aoeTargeters.count > 0 && self.attackChosen == nil)
 	{

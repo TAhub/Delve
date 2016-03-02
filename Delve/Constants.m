@@ -13,6 +13,8 @@
 
 UIImage *mergeImages(NSArray *images, CGPoint anchorPoint, NSArray *yAdds)
 {
+	assert(images != nil);
+	assert(yAdds != nil);
 	CGRect boundsRect = CGRectMake(0, 0, 0, 0);
 	
 	//add the images, keeping the bounds in track
@@ -20,6 +22,7 @@ UIImage *mergeImages(NSArray *images, CGPoint anchorPoint, NSArray *yAdds)
 	for (int i = 0; i < images.count; i++)
 	{
 		UIImage *image = images[i];
+		assert(image != nil);
 		int yAdd = ((NSNumber *)yAdds[i]).intValue;
 		
 		UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
@@ -50,6 +53,9 @@ UIImage *mergeImages(NSArray *images, CGPoint anchorPoint, NSArray *yAdds)
 
 UIImage *solidColorImage(UIImage *image, UIColor *color)
 {
+	assert(image != nil);
+	assert(color != nil);
+	
 	CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
 	
 	//get the color space and context

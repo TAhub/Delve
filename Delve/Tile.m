@@ -84,11 +84,6 @@
 
 -(UIColor *) color
 {
-	//TODO: temporary treasure color
-	if (self.treasureType != TreasureTypeNone)
-		return [UIColor greenColor];
-	
-	//TODO: if this tile is dicovered but not-visible, its color should be desaturated
 	return loadColorFromName(loadValueString(@"Tiles", self.type, @"color"));
 }
 

@@ -60,12 +60,12 @@
 	if (self = [super init])
 	{
 		//TODO: temporarily set the race and armor list
-//		_race = @"human";
-//		_armors = [NSArray arrayWithObjects:@"chestplate", @"bandit helmet", @"steel-toed boots", nil];
-		_race = @"eoling";
-		_armors = [NSMutableArray arrayWithObjects:@"temple dancer outfit", @"goggles", @"white tail banner", nil];
+		_race = @"human";
+		_armors = [NSMutableArray arrayWithObjects:@"chestplate", @"skullcap", @"steel-toed boots", nil];
+//		_race = @"eoling";
+//		_armors = [NSMutableArray arrayWithObjects:@"temple dancer outfit", @"goggles", @"white tail banner", nil];
 //		_race = @"highborn";
-//		_armors = [NSArray arrayWithObjects:@"chestplate", @"gold tiara", @"", nil];
+//		_armors = [NSMutableArray arrayWithObjects:@"chestplate", @"gold tiara", @"", nil];
 		
 		_skillTrees = [NSArray arrayWithObjects:@"shield", @"wisdom", @"hammer", @"spear", @"smithing", nil];
 		_skillTreeLevels = [NSArray arrayWithObjects:@(4), @(4), @(4), @(4), @(4), nil];

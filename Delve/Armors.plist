@@ -59,7 +59,6 @@
 		<!-- appearance -->
 		<key>sprite</key> <string>old_helmet</string>
 		<key>color</key> <string>rusty</string>
-		<key>sprite back</key> <true/>
 		<key>sprite over hair</key> <true/>
 		<key>female y add</key> <integer>2</integer>
 	</dict>
@@ -76,7 +75,6 @@
 		<!-- appearance -->
 		<key>sprite</key> <string>skullcap</string>
 		<key>color</key> <string>steel</string>
-		<key>sprite back</key> <true/>
 		<key>sprite over hair</key> <true/>
 		<key>female y add</key> <integer>2</integer>
 	</dict>
@@ -112,7 +110,6 @@
 		<!-- appearance -->
 		<key>sprite</key> <string>soldier_hat</string>
 		<key>color</key> <string>blue fabric</string>
-		<key>sprite gender</key> <true/>
 		<key>sprite over hair</key> <true/>
 		<key>female y add</key> <integer>2</integer>
 	</dict>
@@ -130,7 +127,6 @@
 		<!-- appearance -->
 		<key>sprite</key> <string>old_helmet</string>
 		<key>color</key> <string>steel</string>
-		<key>sprite back</key> <true/>
 		<key>sprite over hair</key> <true/>
 		<key>female y add</key> <integer>2</integer>
 	</dict>
@@ -164,7 +160,6 @@
 		<!-- appearance -->
 		<key>sprite</key> <string>riveted_helmet</string>
 		<key>color</key> <string>steel</string>
-		<key>sprite gender</key> <true/>
 		<key>sprite over hair</key> <true/>
 		<key>female y add</key> <integer>2</integer>
 	</dict>
@@ -181,7 +176,6 @@
 		<!-- appearance -->
 		<key>sprite</key> <string>winged_helmet</string>
 		<key>color</key> <string>steel</string>
-		<key>sprite gender</key> <true/>
 		<key>sprite over hair</key> <true/>
 		<key>female y add</key> <integer>2</integer>
 	</dict>
