@@ -54,6 +54,9 @@
 
 -(void)addItem:(Item *)item
 {
+	//unload crafts
+	self.preloadedCrafts = nil;
+	
 	BOOL stacked = false;
 	for (Item *eItem in self.inventory)
 		if ([item.name isEqualToString:eItem.name] && item.type == eItem.type)
@@ -82,8 +85,11 @@
 	if (tile.treasureType != TreasureTypeNone)
 		return false;
 	
+	if (self.preloadedCrafts == nil)
+		self.preloadedCrafts = self.player.recipies;
+	
 	//does the player have any crafting recipies they can pay for AND use the item of?
-	return self.player.recipies.count > 0;
+	return self.preloadedCrafts.count > 0;
 }
 
 -(BOOL)canPayForRecipie:(NSString *)recipie
@@ -750,8 +756,8 @@
 					Tile *tile = self.tiles[y][x];
 					Creature *enemy = [[Creature alloc] initWithX:x andY:y onMap:self ofEnemyType:type];
 					//TODO: this is temporarily disabled
-//					[self.creatures addObject:enemy];
-//					tile.inhabitant = enemy;
+					[self.creatures addObject:enemy];
+					tile.inhabitant = enemy;
 				}
 			}
 	

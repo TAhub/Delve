@@ -8,6 +8,14 @@
 
 #import "Tile.h"
 
+@interface Tile()
+
+@property BOOL solidInner;
+@property (strong, nonatomic) NSString *spriteNameInner;
+@property BOOL valuesComputed;
+
+@end
+
 @implementation Tile
 
 -(id)initWithType:(NSString *)type
@@ -22,15 +30,35 @@
 		_targetLevel = TargetLevelOutOfRange;
 		_treasureType = TreasureTypeNone;
 		_treasure = nil;
+		_valuesComputed = false;
 	}
 	return self;
 }
 
--(NSString *)spriteName
+#pragma mark: preload values
+
+-(void)setType:(NSString *)type
+{
+	_type = type;
+	self.valuesComputed = false;
+}
+
+-(void)computeValues
 {
 	if (!loadValueBool(@"Tiles", self.type, @"sprite"))
-		return nil;
-	return loadValueString(@"Tiles", self.type, @"sprite");
+		self.spriteNameInner = nil;
+	else
+		self.spriteNameInner = loadValueString(@"Tiles", self.type, @"sprite");
+	self.solidInner = loadValueBool(@"Tiles", self.type, @"solid");
+	
+	self.valuesComputed = true;
+}
+
+-(NSString *)spriteName
+{
+	if (!self.valuesComputed)
+		[self computeValues];
+	return self.spriteNameInner;
 }
 
 -(BOOL) validPlacementSpot
@@ -40,7 +68,9 @@
 
 -(BOOL)solid
 {
-	return loadValueBool(@"Tiles", self.type, @"solid");
+	if (!self.valuesComputed)
+		[self computeValues];
+	return self.solidInner;
 }
 
 -(BOOL) canUnlock

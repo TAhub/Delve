@@ -526,6 +526,7 @@
 				tile.targetLevel = TargetLevelOutOfRange;
 			else
 				tile.targetLevel = [self.map.player targetLevelAtX:x andY:y withAttack:self.attackChosen];
+			tile.changed = true;
 		}
 	[self updateTiles];
 }
@@ -595,7 +596,7 @@
 	{
 		//open crafting menu
 		self.examinationItem = nil;
-		self.examineRecipies = self.map.player.recipies;
+		self.examineRecipies = self.map.preloadedCrafts;
 		[self reloadPanels];
 		[self switchToPanel:self.inventoryPanelCord];
 	}
@@ -655,6 +656,9 @@
 			{
 				//TODO: use the item
 				item.number -= 1;
+				
+				//unload crafts
+				self.map.preloadedCrafts = nil;
 				
 				//remove the item if it's at 0
 				if (item.number == 0)
@@ -1115,7 +1119,7 @@
 		//how long should it last?
 		float time = 0.75f;
 		Tile *to = weakSelf.map.tiles[y][x];
-		Tile *from = weakSelf.map.tiles[creature.y][creature.y];
+		Tile *from = weakSelf.map.tiles[creature.y][creature.x];
 		if (!to.visible && !from.visible && !delayed)
 			time = 0.001f; //you can't see what's attacking, or what's being attacked, so it should be invisible; area attacks are exempt
 		weakSelf.animating = true;

@@ -43,6 +43,7 @@
 -(BOOL)movePerson:(Creature *)person withX:(int)x andY:(int)y;
 -(BOOL)canPickUp;
 -(BOOL)canCraft;
+@property (strong, nonatomic) NSArray *preloadedCrafts;
 -(BOOL)canPayForRecipie:(NSString *)recipie;
 -(void)payForRecipie:(NSString *)recipie;
 -(Item *)makeItemFromRecipie:(NSString *)recipie;

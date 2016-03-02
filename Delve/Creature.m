@@ -446,6 +446,9 @@
 		{
 			if ([item.name isEqualToString:ammoType])
 			{
+				//unload crafts
+				self.map.preloadedCrafts = nil;
+				
 				item.number -= 1;
 				if (item.number == 0)
 					[self.map.inventory removeObject:item];
