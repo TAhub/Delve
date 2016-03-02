@@ -230,7 +230,7 @@
 	<dict>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>115</integer>
-		<key>health</key> <integer>115</integer>
+		<key>health</key> <integer>140</integer>
 		<key>cut resistance</key> <integer>1</integer>
 		<key>dodges</key> <integer>2</integer>
 		<key>blocks</key> <integer>1</integer>
@@ -249,7 +249,6 @@
 		<array>
 			<string>helmet</string>
 			<string>tail ornament</string>
-			<string>shoes</string>
 		</array>
 		<key>race start weapon</key> <string>rusty blade</string>
 		<!-- appearance -->
@@ -265,7 +264,6 @@
 		<key>armor slot y offsets</key>
 		<array>
 			<integer>-2</integer>
-			<integer>0</integer>
 			<integer>0</integer>
 		</array>
 		<key>has gender</key> <true/>

@@ -1,8 +1,8 @@
 //
-//  GameViewController.h
+//  ChangeMapViewController.h
 //  Delve
 //
-//  Created by Theodore Abshire on 2/22/16.
+//  Created by Theodore Abshire on 3/2/16.
 //  Copyright © 2016 Theodore Abshire. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 @class Map;
 
-@interface GameViewController : FormattingViewController
+@interface ChangeMapViewController : FormattingViewController
 
 -(void)loadMap:(Map *)map;
 

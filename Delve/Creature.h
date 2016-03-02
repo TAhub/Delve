@@ -23,7 +23,7 @@
 #pragma mark: basic mechanical identity
 @property (strong, nonatomic) NSString *race;
 @property (strong, nonatomic) NSArray *skillTrees; //an array of NSStrings
-@property (strong, nonatomic) NSArray *skillTreeLevels; //an array of integers
+@property (strong, nonatomic) NSMutableArray *skillTreeLevels; //an array of integers
 @property BOOL good;
 
 //TODO: when making the final skill trees, keep in mind any design notes in these comments
@@ -79,6 +79,7 @@
 -(int) slotForItem:(Item *)item;
 -(void) equipArmor:(Item *)item;
 -(NSArray *) recipies;
+-(void) recharge;
 
 #pragma mark: item interface functions
 -(NSString *)weaponDescription:(NSString *)weapon;

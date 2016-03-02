@@ -14,6 +14,7 @@
 #import "Constants.h"
 #import "Item.h"
 #import "ItemTableViewCell.h"
+#import "ChangeMapViewController.h"
 
 @interface GameViewController () <MapViewDelegate, MapDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -83,13 +84,6 @@
 	self.animating = false;
 	self.uiAnimating = false;
 	
-	self.map = [Map new];
-	[self preloadTileImages];
-	self.map.delegate = self;
-	
-	self.mapView.delegate = self;
-	[self.mapView initializeMapAtX:self.map.player.x - GAMEPLAY_SCREEN_WIDTH * 0.5f + 0.5f andY:self.map.player.y - GAMEPLAY_SCREEN_HEIGHT * 0.5f + 0.5f];
-	
 	UITapGestureRecognizer *tappy = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
 	[self.creatureView addGestureRecognizer:tappy];
 	
@@ -118,6 +112,13 @@
 	[self formatButton:self.inventoryButtonTwo];
 }
 
+-(void)loadMap:(Map *)map
+{
+	self.map = map;
+	[self preloadTileImages];
+	self.map.delegate = self;
+}
+
 -(void)preloadTileImageFor:(Tile *)tile
 {
 	if (tile.type != nil && tile.spriteName != nil && self.preloadedTileImages[tile.type] == nil)
@@ -136,21 +137,6 @@
 
 }
 
--(void)formatButton:(UIButton *)button
-{
-	button.layer.backgroundColor = loadColorFromName(@"ui text button").CGColor;
-	button.layer.borderColor = button.layer.backgroundColor;
-	button.layer.cornerRadius = 5.0;
-	[button setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
-}
-
--(void)formatPanel:(UIView *)panel
-{
-//	panel.layer.borderWidth = .0;
-//	panel.layer.borderColor = panel.backgroundColor.CGColor;
-	panel.layer.cornerRadius = 5.0;
-}
-
 -(void)regenerateCreatureSprite:(Creature *)cr
 {
 	int number = (int)[self.map.creatures indexOfObject:cr];
@@ -159,11 +145,9 @@
 }
 -(void)regenerateCreatureSprite:(Creature *)cr atView:(UIView *)view
 {
-	//TODO: while testing other stuff, I noticed a graphical glitch
-	//part of the boots seemed to miss the player's feet
-	//I was running a human with steel-toed boots
-	//I can't tell if it's a problem with the sprite, or if images are displaying offset
-	
+	//TODO: all boots are (so far) modeled after raider feet
+	//but raider feet seem to be spaced 1 px further apart than human feet
+	//which is, uh, a problem
 	
 	for (UIView *subView in view.subviews)
 		[subView removeFromSuperview];
@@ -253,7 +237,11 @@
 {
 	[super viewWillAppear:animated];
 	
+	if (self.map == nil)
+		[self loadMap:[[Map alloc] initWithMap:nil]];
 	[self.map update];
+	self.mapView.delegate = self;
+	[self.mapView initializeMapAtX:self.map.player.x - GAMEPLAY_SCREEN_WIDTH * 0.5f + 0.5f andY:self.map.player.y - GAMEPLAY_SCREEN_HEIGHT * 0.5f + 0.5f];
 	
 	//make the creature views
 	self.creatureViews = [NSMutableArray new];
@@ -804,7 +792,7 @@
 {
 	if (self.itemTable == nil || self.itemTable.indexPathForSelectedRow == nil)
 		return nil;
-	int row = self.itemTable.indexPathForSelectedRow.row;
+	int row = (int)self.itemTable.indexPathForSelectedRow.row;
 	return self.examineRecipies[row];
 }
 
@@ -812,7 +800,7 @@
 {
 	if (self.itemTable == nil || self.itemTable.indexPathForSelectedRow == nil)
 		return nil;
-	int row = self.itemTable.indexPathForSelectedRow.row;
+	int row = (int)self.itemTable.indexPathForSelectedRow.row;
 	return self.map.inventory[row];
 }
 
@@ -1210,18 +1198,33 @@
 	[self regenerateCreatureSprite:cr];
 }
 
+-(void)goToNextMap
+{
+	NSLog(@"GO TO NEXT MAP");
+	[self performSegueWithIdentifier:@"changeMap" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	//make everything invisible
+	self.view.hidden = true;
+	
+	ChangeMapViewController *change = segue.destinationViewController;
+	[change loadMap:self.map];
+}
+
 #pragma mark table view delegate and datasource
 
--(int)numberOfSectionsInTableView:(UITableView *)tableView
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 	return 1;
 }
 
--(int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	if (self.examineRecipies != nil)
-		return self.examineRecipies.count;
-	return self.map.inventory.count;
+		return (int)self.examineRecipies.count;
+	return (int)self.map.inventory.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

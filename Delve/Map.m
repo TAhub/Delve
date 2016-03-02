@@ -21,13 +21,13 @@
 
 @implementation Map
 
--(id)init
+-(id)initWithMap:(Map *)map
 {
 	if (self = [super init])
 	{
 		_creatures = [NSMutableArray new];
 		_inventory = [NSMutableArray new];
-		[self mapGenerate];
+		[self mapGenerateWithMap:map];
 		
 		//start right before the player's turn
 		_personOn = (int)self.creatures.count - 1;
@@ -155,7 +155,13 @@
 		[self.delegate moveCreature:person fromX:person.x-x fromY:person.y-y withBlock:
 		^()
 		{
-			[weakSelf update];
+			if (person.good && true) //TODO: if you walked onto a stair tile
+			{
+				weakSelf.personOn = weakSelf.creatures.count + 5; //to make sure it's not the player's turn
+				[weakSelf.delegate goToNextMap];
+			}
+			else
+				[weakSelf update];
 		}];
 		return YES;
 	}
@@ -233,22 +239,31 @@
 
 #pragma mark: map generation
 
--(void)mapGenerate
+-(void)mapGenerateWithMap:(Map *)map
 {
 	for (int try = 1;; try++)
 	{
-		if ([self mapGenerateInner])
+		if ([self mapGenerateInnerWithMap:(Map *)map])
 		{
-			NSLog(@"Map generation finished on try #%i, with %i enemies", try, self.creatures.count - 1);
+			NSLog(@"Map generation finished on try #%i, with %u enemies", try, self.creatures.count - 1);
 			return;
 		}
 	}
 }
 
--(BOOL)mapGenerateInner
+-(BOOL)mapGenerateInnerWithMap:(Map *)map
 {
+	//TODO: get map generator stuff
+	//from the previous map
+	//IE make sure this is one floor further
+	//and make sure it follows the progression
+	//etc
+	
+	
+	
+	
 	//first, get map generator variables
-	//TODO: get these from data
+	//TODO: get these from data, based on the floor number
 	
 	//how big a room is
 	int roomSize = 5;
@@ -544,7 +559,13 @@
 	//place the player in the center of the start room
 	int pX = (roomSize+1)*(columns / 2) + (roomSize / 2) + 1;
 	int pY = (roomSize+1)*(rows - 1) + (roomSize / 2) + 1;
-	Creature *player = [[Creature alloc] initWithX:pX andY:pY onMap:self];
+	Creature *player;
+	if (map == nil) //TODO: there should ALWAYS be a premade player, from the character screen, but for now make one here
+		player = [[Creature alloc] initWithX:pX andY:pY onMap:self];
+	else
+		player = map.player;
+	player.x = pX;
+	player.y = pY;
 	self.player = player;
 	((Tile *)self.tiles[pY][pX]).inhabitant = player;
 	[self.creatures addObject:player];
@@ -746,7 +767,7 @@
 					}
 				[self shuffleArray:openSpaces];
 				
-				NSLog(@"--Placing in those %i spaces", openSpaces.count);
+				NSLog(@"--Placing in those %lu spaces", (unsigned long)openSpaces.count);
 				for (int i = 0; i < openSpaces.count && i < encounter.count; i++)
 				{
 					NSString *type = encounter[i];
@@ -853,7 +874,7 @@
 	
 	//if this complains about trying to find a list called "drops 999" or whatever, that's because there must be a gap in the listNum picking
 	NSArray *list = loadArrayEntry(@"Lists", [NSString stringWithFormat:@"%@ %i", listPrefix, listNum]);
-	int pick = arc4random_uniform(list.count);
+	int pick = arc4random_uniform((u_int32_t)list.count);
 	tile.treasure = [[Item alloc] initWithName:list[pick] andType:type];
 	
 	if ([tile.treasure.name isEqualToString:@"crystal"])
@@ -883,7 +904,7 @@
 {
 	for (int i = 0; i < array.count; i++)
 	{
-		int rand = arc4random_uniform(array.count);
+		int rand = arc4random_uniform((u_int32_t)array.count);
 		[array exchangeObjectAtIndex:rand withObjectAtIndex:0];
 	}
 }
@@ -907,7 +928,7 @@
 	
 	//for each room, if you haven't visited it, branch down that path
 	//but access them in a random order
-	int orderAdd = arc4random_uniform(surroundingRooms.count);
+	int orderAdd = arc4random_uniform((u_int32_t)surroundingRooms.count);
 	for (int i = 0; i < surroundingRooms.count; i++)
 	{
 		GeneratorRoom *nextRoom = surroundingRooms[(i + orderAdd) % surroundingRooms.count];

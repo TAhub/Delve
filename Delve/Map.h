@@ -20,12 +20,13 @@
 -(void)updateTiles;
 -(void)updateStats;
 -(void)updateCreature:(Creature *)cr;
+-(void)goToNextMap;
 
 @end
 
 @interface Map : NSObject
 
--(id)init;
+-(id)initWithMap:(Map *)map;
 
 @property (strong, nonatomic) NSMutableArray *tiles; //an array of arrays of tiles
 @property (strong, nonatomic) NSMutableArray *creatures; //an array of creatures, for turn order

@@ -26,7 +26,7 @@
 	{
 		_race = loadValueString(@"EnemyTypes", type, @"race");
 		_skillTrees = loadValueArray(@"EnemyTypes", type, @"skills");
-		_skillTreeLevels = [NSArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
+		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
 		if (loadValueBool(@"EnemyTypes", type, @"implements"))
 		{
 			_implements = [NSMutableArray arrayWithArray:loadValueArray(@"EnemyTypes", type, @"implements")];
@@ -60,15 +60,17 @@
 	if (self = [super init])
 	{
 		//TODO: temporarily set the race and armor list
-		_race = @"human";
-		_armors = [NSMutableArray arrayWithObjects:@"chestplate", @"skullcap", @"steel-toed boots", nil];
+//		_race = @"human";
+//		_armors = [NSMutableArray arrayWithObjects:@"chestplate", @"skullcap", @"steel-toed boots", nil];
 //		_race = @"eoling";
 //		_armors = [NSMutableArray arrayWithObjects:@"temple dancer outfit", @"goggles", @"white tail banner", nil];
 //		_race = @"highborn";
 //		_armors = [NSMutableArray arrayWithObjects:@"chestplate", @"gold tiara", @"", nil];
+		_race = @"raider";
+		_armors = [NSMutableArray arrayWithObjects:@"skullcap", @"blue tail banner", nil];
 		
-		_skillTrees = [NSArray arrayWithObjects:@"shield", @"wisdom", @"hammer", @"spear", @"smithing", nil];
-		_skillTreeLevels = [NSArray arrayWithObjects:@(4), @(4), @(4), @(4), @(4), nil];
+		_skillTrees = [NSArray arrayWithObjects:@"shield", @"wisdom", @"might", @"spear", @"smithing", nil];
+		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
 		_implements = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
 		_weapon = loadValueString(@"Races", _race, @"race start weapon");
 		
@@ -108,8 +110,16 @@
 	self.gender = loadValueBool(@"Races", self.race, @"has gender") ? arc4random_uniform(2) == 0 : 0;
 	if (loadValueBool(@"Races", self.race, @"hair styles"))
 		self.hairStyle = arc4random_uniform(loadValueNumber(@"Races", self.race, @"hair styles").intValue);
-	self.coloration = arc4random_uniform(loadValueArray(@"Races", self.race, @"colorations").count);
+	self.coloration = arc4random_uniform((u_int32_t)loadValueArray(@"Races", self.race, @"colorations").count);
 	
+	[self recharge];
+	
+	//organizational flags
+	self.storedAttack = nil;
+}
+
+-(void) recharge
+{
 	//base variables
 	self.health = self.maxHealth;
 	self.dodges = self.maxDodges;
@@ -122,9 +132,6 @@
 	//status effect flags
 	self.forceField = 0;
 	self.stunned = 0;
-	
-	//organizational flags
-	self.storedAttack = nil;
 }
 
 #pragma mark: item interface functions

@@ -33,6 +33,9 @@
 		E46238211C83F525009C9FC4 /* ItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E46238201C83F525009C9FC4 /* ItemTableViewCell.m */; };
 		E46238231C83F8A1009C9FC4 /* InventoryItems.plist in Resources */ = {isa = PBXBuildFile; fileRef = E46238221C83F8A1009C9FC4 /* InventoryItems.plist */; };
 		E46238251C84B746009C9FC4 /* Recipies.plist in Resources */ = {isa = PBXBuildFile; fileRef = E46238241C84B746009C9FC4 /* Recipies.plist */; };
+		E46238281C875F28009C9FC4 /* FormattingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E46238271C875F28009C9FC4 /* FormattingViewController.m */; };
+		E462382B1C87657D009C9FC4 /* ChangeMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E462382A1C87657D009C9FC4 /* ChangeMapViewController.m */; };
+		E462382E1C8766BA009C9FC4 /* ReplaceSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E462382D1C8766BA009C9FC4 /* ReplaceSegue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +77,12 @@
 		E46238201C83F525009C9FC4 /* ItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemTableViewCell.m; sourceTree = "<group>"; };
 		E46238221C83F8A1009C9FC4 /* InventoryItems.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InventoryItems.plist; sourceTree = "<group>"; };
 		E46238241C84B746009C9FC4 /* Recipies.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Recipies.plist; sourceTree = "<group>"; };
+		E46238261C875F28009C9FC4 /* FormattingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormattingViewController.h; sourceTree = "<group>"; };
+		E46238271C875F28009C9FC4 /* FormattingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormattingViewController.m; sourceTree = "<group>"; };
+		E46238291C87657D009C9FC4 /* ChangeMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeMapViewController.h; sourceTree = "<group>"; };
+		E462382A1C87657D009C9FC4 /* ChangeMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeMapViewController.m; sourceTree = "<group>"; };
+		E462382C1C8766BA009C9FC4 /* ReplaceSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceSegue.h; sourceTree = "<group>"; };
+		E462382D1C8766BA009C9FC4 /* ReplaceSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplaceSegue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +150,8 @@
 		E459C69D1C7AB31100422B0A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E462382C1C8766BA009C9FC4 /* ReplaceSegue.h */,
+				E462382D1C8766BA009C9FC4 /* ReplaceSegue.m */,
 				E462381D1C83F50D009C9FC4 /* ItemCell.xib */,
 				E462381F1C83F525009C9FC4 /* ItemTableViewCell.h */,
 				E46238201C83F525009C9FC4 /* ItemTableViewCell.m */,
@@ -173,8 +184,12 @@
 		E459C69F1C7AB31B00422B0A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E46238261C875F28009C9FC4 /* FormattingViewController.h */,
+				E46238271C875F28009C9FC4 /* FormattingViewController.m */,
 				E459C6B81C7BD25F00422B0A /* GameViewController.h */,
 				E459C6B91C7BD25F00422B0A /* GameViewController.m */,
+				E46238291C87657D009C9FC4 /* ChangeMapViewController.h */,
+				E462382A1C87657D009C9FC4 /* ChangeMapViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -265,10 +280,13 @@
 				E459C6BA1C7BD25F00422B0A /* GameViewController.m in Sources */,
 				E459C68B1C7AB2E800422B0A /* AppDelegate.m in Sources */,
 				E459C6B21C7BB4BD00422B0A /* Tile.m in Sources */,
+				E462382B1C87657D009C9FC4 /* ChangeMapViewController.m in Sources */,
 				E459C6AE1C7BB36C00422B0A /* Map.m in Sources */,
 				E46238211C83F525009C9FC4 /* ItemTableViewCell.m in Sources */,
 				E459C6881C7AB2E800422B0A /* main.m in Sources */,
+				E46238281C875F28009C9FC4 /* FormattingViewController.m in Sources */,
 				E459C6B71C7BC57E00422B0A /* MapView.m in Sources */,
+				E462382E1C8766BA009C9FC4 /* ReplaceSegue.m in Sources */,
 				E459C6C01C7CCDB800422B0A /* GeneratorRoom.m in Sources */,
 				E459C6A11C7AB34300422B0A /* Creature.m in Sources */,
 				E459C6A91C7B602100422B0A /* Constants.m in Sources */,
