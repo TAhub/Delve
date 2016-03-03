@@ -155,7 +155,7 @@
 		[self.delegate moveCreature:person fromX:person.x-x fromY:person.y-y withBlock:
 		^()
 		{
-			if (person.good && true) //TODO: if you walked onto a stair tile
+			if (person.good && false) //TODO: if you walked onto a stair tile
 			{
 				weakSelf.personOn = weakSelf.creatures.count + 5; //to make sure it's not the player's turn
 				[weakSelf.delegate goToNextMap];
@@ -784,6 +784,8 @@
 	
 	//TODO: if I do any recutting, it should be here
 	//I probably shouldn't though
+	
+	//TODO: place exit door tile
 	
 	return true;
 }

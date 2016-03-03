@@ -48,5 +48,6 @@
 	<key>element burn</key> <string>FF0000</string>
 	<key>element no element</key> <string>333333</string>
 	<key>element no damage</key> <string>FFFFFF</string>
+	<key>element heal</key> <string>77FF77</string>
 </dict>
 </plist>

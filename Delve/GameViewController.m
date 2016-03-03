@@ -649,11 +649,13 @@
 			Item *item = self.inventoryItemPicked;
 			if (item != nil && item.usable)
 			{
+				NSString *floatText = @"";
 				if (item.healing > 0)
 				{
 					//TODO: show a healing number
 					int healingAmount = (item.healing * self.map.player.metabolism) / 100;
 					self.map.player.health = MIN(self.map.player.health + healingAmount, self.map.player.maxHealth);
+					floatText = [NSString stringWithFormat:@"%i", healingAmount];
 				}
 				//TODO: other effects (buffs, etc)
 				item.number -= 1;
@@ -673,7 +675,11 @@
 				[self switchToPanel:self.mainPanelCord withBlock:
 				^()
 				{
-					[weakSelf.map update];
+					[weakSelf floatLabelsOn:[NSArray arrayWithObject:weakSelf.map.player] withString:[NSArray arrayWithObject:floatText] andColor:loadColorFromName(@"element heal") withBlock:
+					^()
+					{
+						[weakSelf.map update];
+					}];
 				}];
 			}
 		}
@@ -1097,7 +1103,7 @@
 	}
 }
 
--(void)attackAnimation:(NSString *)name withElement:(NSString *)element fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void))block
+-(void)attackAnimation:(NSString *)name withElement:(NSString *)element fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void (^)(void)))block
 {
 	//attack variables to relay to
 	BOOL delayed = loadValueBool(@"Attacks", name, @"area");
@@ -1155,30 +1161,30 @@
 			weakSelf.animating = false;
 			
 			//run the effect block
-			block();
-			
-			[weakSelf switchToPanel:weakSelf.mainPanelCord withBlock:
-			^()
-			{
-				if (teleport)
+			block(^(){
+				[weakSelf switchToPanel:weakSelf.mainPanelCord withBlock:
+				^()
 				{
-					//move everyone
-					[weakSelf.mapView setPositionWithX:weakSelf.map.player.x - GAMEPLAY_SCREEN_WIDTH * 0.5f + 0.5f andY:weakSelf.map.player.y - GAMEPLAY_SCREEN_HEIGHT * 0.5f + 0.5f withAnimBlock:
-					^()
+					if (teleport)
 					{
-						[weakSelf moveCreatureAnim];
-					} andCompleteBlock:
-					^()
-					{
-						[weakSelf.map recalculateVisibility];
-						[weakSelf.mapView remake];
-						if (!delayed)
-							[weakSelf.map update];
-					}];
-				}
-				else if (!delayed) //and now it's the next turn!
-					[weakSelf.map update];
-			}];
+						//move everyone
+						[weakSelf.mapView setPositionWithX:weakSelf.map.player.x - GAMEPLAY_SCREEN_WIDTH * 0.5f + 0.5f andY:weakSelf.map.player.y - GAMEPLAY_SCREEN_HEIGHT * 0.5f + 0.5f withAnimBlock:
+						^()
+						{
+							[weakSelf moveCreatureAnim];
+						} andCompleteBlock:
+						^()
+						{
+							[weakSelf.map recalculateVisibility];
+							[weakSelf.mapView remake];
+							if (!delayed)
+								[weakSelf.map update];
+						}];
+					}
+					else if (!delayed) //and now it's the next turn!
+						[weakSelf.map update];
+				}];
+			});
 		}];
 	}];
 }
@@ -1200,8 +1206,50 @@
 
 -(void)goToNextMap
 {
-	NSLog(@"GO TO NEXT MAP");
 	[self performSegueWithIdentifier:@"changeMap" sender:self];
+}
+
+-(void)floatLabelsOn:(NSArray *)creatures withString:(NSArray *)strings andColor:(UIColor *)color withBlock:(void (^)(void))block
+{
+	NSMutableArray *labels = [NSMutableArray new];
+	for (int i = 0; i < creatures.count; i++)
+	{
+		Creature *cr = creatures[i];
+		NSString *string = strings[i];
+		if ([self.mapView isPointOnscreenWithX:cr.x andY:cr.y] && string.length > 0)
+		{
+			UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+			label.text = string;
+			label.textColor = color;
+			[label sizeToFit];
+			label.center = CGPointMake((cr.x + 0.5f) * GAMEPLAY_TILE_SIZE + self.mapView.xOffset, (cr.y + 0.5f) * GAMEPLAY_TILE_SIZE + self.mapView.yOffset);
+			[self.creatureView addSubview:label];
+			[labels addObject:label];
+		}
+	}
+	
+	if (labels.count == 0)
+	{
+		block();
+		return;
+	}
+	
+	self.uiAnimating = true;
+	
+	__weak typeof(self) weakSelf = self;
+	[UIView animateWithDuration:GAMEPLAY_LABEL_TIME animations:
+	^()
+	{
+		for (UIView *label in labels)
+			label.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y - GAMEPLAY_LABEL_DISTANCE, label.frame.size.width, label.frame.size.height);
+	} completion:
+	^(BOOL complete)
+	{
+		weakSelf.uiAnimating = false;
+		for (UIView *label in labels)
+			[label removeFromSuperview];
+		block();
+	}];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

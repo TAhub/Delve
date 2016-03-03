@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class UIColor;
 @class Creature;
 @class Item;
 
@@ -16,11 +17,12 @@
 @protocol MapDelegate
 
 -(void)moveCreature:(Creature *)creature fromX:(int)x fromY:(int)y withBlock:(void (^)(void))block;
--(void)attackAnimation:(NSString *)name withElement:(NSString *)element fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void))block;
+-(void)attackAnimation:(NSString *)name withElement:(NSString *)element fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void (^)(void)))block;
 -(void)updateTiles;
 -(void)updateStats;
 -(void)updateCreature:(Creature *)cr;
 -(void)goToNextMap;
+-(void)floatLabelsOn:(NSArray *)creatures withString:(NSArray *)strings andColor:(UIColor *)color withBlock:(void (^)(void))block;
 
 @end
 

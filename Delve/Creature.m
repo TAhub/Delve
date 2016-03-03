@@ -499,10 +499,13 @@
 	if (implement.length > 0 && loadValueBool(@"Implements", implement, @"element"))
 		element = loadValueString(@"Implements", implement, @"element");
 	
+	NSMutableArray *labels = [NSMutableArray new];
+	NSMutableArray *creatures = [NSMutableArray new];
+	
 	//use the map's delegate stuff to do an attack anim
 	__weak typeof(self) weakSelf = self;
 	[self.map.delegate attackAnimation:self.storedAttack withElement:element fromPerson:self targetX:self.storedAttackX andY:self.storedAttackY withEffectBlock:
-	^()
+	^(void (^finalBlock)(void))
 	{
 		__block BOOL tilesChanged = false;
 		[weakSelf applyBlock:
@@ -523,7 +526,9 @@
 					 (hit.good != weakSelf.good)) && //or if it's targeting an enemy
 					!hit.dead) //don't hit dead people
 				{
-					[hit takeAttack:weakSelf.storedAttack withPower:power andElement:element];
+					NSString *hitResult = [hit takeAttack:weakSelf.storedAttack withPower:power andElement:element];
+					[labels addObject:hitResult];
+					[creatures addObject:hit];
 					if (hit.dead)
 					{
 						//you killed someone!
@@ -562,6 +567,13 @@
 			[weakSelf.map.delegate updateTiles];
 		
 		weakSelf.storedAttack = nil;
+		
+		UIColor *color = loadColorFromName([NSString stringWithFormat:@"element %@", element]);
+		[self.map.delegate floatLabelsOn:creatures withString:labels andColor:color withBlock:finalBlock];
+//		^()
+//		{
+//			finalBlock();
+//		}];
 	}];
 }
 
@@ -591,7 +603,7 @@
 	return false;
 }
 
--(void) takeAttack:(NSString *)attackType withPower:(int)power andElement:(NSString *)element
+-(NSString *) takeAttack:(NSString *)attackType withPower:(int)power andElement:(NSString *)element
 {
 	if (!self.good && !self.awake)
 	{
@@ -600,6 +612,8 @@
 		[self wakeUpNearby];
 	}
 	
+	NSString *label = @"";
+	
 	if (!loadValueBool(@"Attacks", attackType, @"friendly"))
 	{
 		//don't apply damage, dodge, block, etc on friendly attacks
@@ -607,15 +621,15 @@
 		if (loadValueBool(@"Attacks", attackType, @"dodgeable") && self.dodges > 0)
 		{
 			self.dodges -= 1;
-			NSLog(@"ATTACK RESULT: Dodged!");
-			return;
+			//TODO: dodge sound effect
+			return @"DODGE";
 		}
 		
 		if (self.blocks > 0)
 		{
 			self.blocks -= 1;
-			NSLog(@"ATTACK RESULT: Blocked!");
-			return;
+			//TODO: block sound effect
+			return @"BLOCK";
 		}
 		
 		if (loadValueBool(@"Attacks", attackType, @"power"))
@@ -638,18 +652,18 @@
 			if (self.forceField >= finalPower)
 			{
 				self.forceField -= finalPower;
-				NSLog(@"ATTACK RESULT: Totally blocked by force field!");
+				//TODO: block sound effect
+				label = @"BLOCK";
 			}
 			else
 			{
 				if (self.forceField > 0)
 				{
-					NSLog(@"ATTACK RESULT: Partially blocked by force field!");
 					finalPower -= self.forceField;
 					self.forceField = 0;
 				}
 				
-				NSLog(@"ATTACK RESULT: Took %i damage!", finalPower);
+				label = [NSString stringWithFormat:@"%i", finalPower];
 				self.health = MAX(self.health - finalPower, 0);
 			}
 		}
@@ -671,6 +685,8 @@
 		forceFieldPower = (forceFieldPower * power) / 100;
 		self.forceField += forceFieldPower;
 	}
+	
+	return label;
 }
 
 -(void) wakeUpNearby
