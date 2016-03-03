@@ -13,8 +13,6 @@
 
 @interface Creature()
 
-@property (weak, nonatomic) Map *map;
-
 @end
 
 
@@ -143,6 +141,39 @@
 	//TODO: make attack description
 	//remember to call 1x1 aoes "delayed attacks" rather than aoes
 	[desc appendFormat:@"\n%@", loadValueString(@"Attacks", attack, @"description")];
+	[desc appendString:@"\n"];
+	
+	NSMutableArray *properties = [NSMutableArray new];
+	if (loadValueBool(@"Attacks", attack, @"power"))
+		[properties addObject:[NSString stringWithFormat:@"%i %@ damage", loadValueNumber(@"Attacks", attack, @"power").intValue, loadValueString(@"Attacks", attack, @"element")]];
+	if (loadValueBool(@"Attacks", attack, @"min range"))
+		[properties addObject:[NSString stringWithFormat:@"%i-%i range", loadValueNumber(@"Attacks", attack, @"min range").intValue, loadValueNumber(@"Attacks", attack, @"range").intValue]];
+	else
+		[properties addObject:[NSString stringWithFormat:@"%i range", loadValueNumber(@"Attacks", attack, @"range").intValue]];
+	if (loadValueBool(@"Attacks", attack, @"area"))
+	{
+		int area = loadValueNumber(@"Attacks", attack, @"area").intValue;
+		if (area == 1)
+			[properties addObject:@"delayed"];
+		else
+			[properties addObject:[NSString stringWithFormat:@"%ix%i area", area, area]];
+	}
+	if (loadValueBool(@"Attacks", attack, @"power") && loadValueBool(@"Attacks", attack, @"friendly"))
+		[properties addObject:@"unavoidable"];
+	else if (!loadValueBool(@"Attacks", attack, @"dodgeable"))
+		[properties addObject:@"undodgeable"];
+	if (loadValueBool(@"Attacks", attack, @"stun"))
+		[properties addObject:@"stuns"];
+	if (loadValueBool(@"Attacks", attack, @"interrupt aoe"))
+		[properties addObject:@"interrupts aoes"];
+	if (loadValueBool(@"Attacks", attack, @"hurt user"))
+		[properties addObject:[NSString stringWithFormat:@"costs %i health", loadValueNumber(@"Attacks", attack, @"hurt user").intValue]];
+	if (loadValueBool(@"Attacks", attack, @"ammo"))
+		[properties addObject:[NSString stringWithFormat:@"uses a %@", loadValueString(@"Attacks", attack, @"ammo")]];
+	if (loadValueNumber(@"Attacks", attack, @"cooldown").intValue > 1)
+		[properties addObject:[NSString stringWithFormat:@"%i cooldown", loadValueNumber(@"Attacks", attack, @"cooldown").intValue]];
+	
+	[desc appendString:[properties componentsJoinedByString:@", "]];
 	return desc;
 }
 -(NSString *)weaponDescription:(NSString *)weapon
@@ -166,7 +197,6 @@
 		[desc appendFormat:@", %@ element", loadValueString(@"Implements", weapon, @"element")];
 	[desc appendFormat:@"\n%@", loadValueString(@"Implements", weapon, @"description")];
 	return desc;
-	
 }
 -(NSString *)armorDescription:(NSString *)armor
 {
@@ -195,6 +225,52 @@
 	if (properties.count > 0)
 		[desc appendString:[properties componentsJoinedByString:@", "]];
 	[desc appendFormat:@"\n%@", loadValueString(@"Armors", armor, @"description")];
+	return desc;
+}
+-(NSString *)treeDescription:(NSString *)tree atLevel:(int)level
+{
+	NSString *skillDesc = loadValueString(@"SkillTrees", tree, @"description");
+	skillDesc = [skillDesc stringByReplacingOccurrencesOfString:@"!he" withString:self.gender ? @"she" : @"he"];
+	skillDesc = [skillDesc stringByReplacingOccurrencesOfString:@"!He" withString:self.gender ? @"She" : @"He"];
+	skillDesc = [skillDesc stringByReplacingOccurrencesOfString:@"!man" withString:self.gender ? @"woman" : @"man"];
+	skillDesc = [skillDesc stringByReplacingOccurrencesOfString:@"!his" withString:self.gender ? @"her" : @"his"];
+	
+	NSMutableString *desc = [NSMutableString stringWithFormat:@"%@: %i/4", tree, level];
+	[desc appendFormat:@"\n%@", skillDesc];
+	if (level == 4)
+		[desc appendString:@"\nYou are already at the maximum level for this skill!"];
+	else
+	{
+		NSDictionary *skillDict = loadValueArray(@"SkillTrees", tree, @"skills")[level];
+		NSMutableArray *passives = [NSMutableArray new];
+		if (skillDict[@"damage bonus"] != nil)
+			[passives addObject:[NSString stringWithFormat:@"+%i%% damage", ((NSNumber *)skillDict[@"damage bonus"]).intValue]];
+		if (skillDict[@"health"] != nil)
+			[passives addObject:[NSString stringWithFormat:@"+%i health", ((NSNumber *)skillDict[@"health"]).intValue]];
+		if (skillDict[@"smash resistance"] != nil)
+			[passives addObject:[NSString stringWithFormat:@"+%i smash resistance", ((NSNumber *)skillDict[@"smash resistance"]).intValue]];
+		if (skillDict[@"cut resistance"] != nil)
+			[passives addObject:[NSString stringWithFormat:@"+%i cut resistance", ((NSNumber *)skillDict[@"cut resistance"]).intValue]];
+		if (skillDict[@"burn resistance"] != nil)
+			[passives addObject:[NSString stringWithFormat:@"+%i burn resistance", ((NSNumber *)skillDict[@"burn resistance"]).intValue]];
+		if (skillDict[@"shock resistance"] != nil)
+			[passives addObject:[NSString stringWithFormat:@"+%i shock resistance", ((NSNumber *)skillDict[@"shock resistance"]).intValue]];
+		if (skillDict[@"dodges"] != nil)
+			[passives addObject:[NSString stringWithFormat:@"+%i dodge", ((NSNumber *)skillDict[@"dodges"]).intValue]];
+		if (skillDict[@"blocks"] != nil)
+			[passives addObject:[NSString stringWithFormat:@"+%i block", ((NSNumber *)skillDict[@"blocks"]).intValue]];
+		if (skillDict[@"hacks"] != nil)
+			[passives addObject:[NSString stringWithFormat:@"+%i hack", ((NSNumber *)skillDict[@"hacks"]).intValue]];
+		if (skillDict[@"metabolism"] != nil)
+			[passives addObject:[NSString stringWithFormat:@"+%i%% metabolism", ((NSNumber *)skillDict[@"metabolism"]).intValue]];
+		[desc appendString:@"\nNext level will grant you:\n"];
+		[desc appendString:[passives componentsJoinedByString:@", "]];
+		
+		if (skillDict[@"attack"] != nil)
+			[desc appendFormat:@"\n\nLearn the attack %@", [self attackDescription:skillDict[@"attack"]]];
+		if (skillDict[@"recipies"] != nil)
+			[desc appendString:@"\n\nUnlocks new recipies."];
+	}
 	return desc;
 }
 
@@ -570,10 +646,6 @@
 		
 		UIColor *color = loadColorFromName([NSString stringWithFormat:@"element %@", element]);
 		[self.map.delegate floatLabelsOn:creatures withString:labels andColor:color withBlock:finalBlock];
-//		^()
-//		{
-//			finalBlock();
-//		}];
 	}];
 }
 
@@ -909,7 +981,7 @@
 		if (skill[name] != nil)
 			bonus += ((NSNumber *)skill[name]).intValue;
 	}
-	return 0;
+	return bonus;
 }
 
 -(int)totalBonus:(NSString *)name

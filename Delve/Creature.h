@@ -58,6 +58,7 @@
 @property int hacks;
 @property int x;
 @property int y;
+@property (weak, nonatomic) Map *map;
 @property (strong, nonatomic) NSMutableDictionary *cooldowns;
 
 #pragma mark: organizational flags
@@ -85,6 +86,7 @@
 -(NSString *)weaponDescription:(NSString *)weapon;
 -(NSString *)armorDescription:(NSString *)armor;
 -(NSString *)attackDescription:(NSString *)attack;
+-(NSString *)treeDescription:(NSString *)tree atLevel:(int)level;
 
 #pragma mark: appearance
 @property BOOL gender;

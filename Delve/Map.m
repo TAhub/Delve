@@ -155,7 +155,7 @@
 		[self.delegate moveCreature:person fromX:person.x-x fromY:person.y-y withBlock:
 		^()
 		{
-			if (person.good && false) //TODO: if you walked onto a stair tile
+			if (person.good && true) //TODO: if you walked onto a stair tile
 			{
 				weakSelf.personOn = weakSelf.creatures.count + 5; //to make sure it's not the player's turn
 				[weakSelf.delegate goToNextMap];
@@ -566,6 +566,7 @@
 		player = map.player;
 	player.x = pX;
 	player.y = pY;
+	player.map = self;
 	self.player = player;
 	((Tile *)self.tiles[pY][pX]).inhabitant = player;
 	[self.creatures addObject:player];
