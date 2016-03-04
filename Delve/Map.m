@@ -550,8 +550,9 @@
 	}
 	
 	//place the player in the center of the start room
-	int pX = (roomSize+1)*(columns / 2) + (roomSize / 2) + 1;
-	int pY = (roomSize+1)*(rows - 1) + (roomSize / 2) + 1;
+	GeneratorRoom *startRoom = rooms[rows-1][columns / 2];
+	int pX = startRoom.xCorner + (roomSize / 2) + 1;
+	int pY = startRoom.yCorner + (roomSize / 2) + 1;
 	Creature *player;
 	if (map == nil) //TODO: there should ALWAYS be a premade player, from the character screen, but for now make one here
 		player = [[Creature alloc] initWithX:pX andY:pY onMap:self];
@@ -611,6 +612,7 @@
 	//cave walls overwrite room walls too
 	//there should be a "masking" layer to determine where overwriting happens
 	//this should probably have some kinds of map generator variables too
+	[self mapGeneratorCaveWithFloorChance:50 andSmooths:2];
 	
 	//TODO: locked-only rooms should never be breached by caves, paint those rooms (and their walls!) out of the cellular mask
 	
@@ -624,42 +626,43 @@
 	int numTreasures = 0;
 	for (NSArray *row in rooms)
 		for (GeneratorRoom *room in row)
-		{
-			BOOL placeTreasure = false;
-			BOOL placeEncounter = false;
-			if ((room.x != columns / 2 || (room.y != rows - 1 && room.y != 0)) && room.accessable) //never place anything in the start room, the exit, or a wall
+			if (room.accessable)
 			{
-				if (room.layer == -1)
+				BOOL placeTreasure = false;
+				BOOL placeEncounter = false;
+				if ((room.x != columns / 2 || (room.y != rows - 1 && room.y != 0)) && room.accessable) //never place anything in the start room, the exit, or a wall
 				{
-					//it's a cave-only room!
-					if (arc4random_uniform(2) == 0)
-						placeTreasure = YES;
-					else
+					if (room.layer == -1)
+					{
+						//it's a cave-only room!
+						if (arc4random_uniform(2) == 0)
+							placeTreasure = YES;
+						else
+							placeEncounter = YES;
+						
+					}
+					else if (room.layer % deadRoomFrequency == 0)
+					{
+						//nothing goes here
+						//this is because I want some dead rooms
+					}
+					else if (room.layer % 2 == 0)
 						placeEncounter = YES;
-					
+					else
+						placeTreasure = YES;
 				}
-				else if (room.layer % deadRoomFrequency == 0)
+				
+				if (placeEncounter)
 				{
-					//nothing goes here
-					//this is because I want some dead rooms
+					room.encounter = YES;
+					numEncounters += 1;
 				}
-				else if (room.layer % 2 == 0)
-					placeEncounter = YES;
-				else
-					placeTreasure = YES;
+				if (placeTreasure)
+				{
+					room.treasure = YES;
+					numTreasures += 1;
+				}
 			}
-			
-			if (placeEncounter)
-			{
-				room.encounter = YES;
-				numEncounters += 1;
-			}
-			if (placeTreasure)
-			{
-				room.treasure = YES;
-				numTreasures += 1;
-			}
-		}
 	
 	NSLog(@"Balancing treasure / encounter ratio");
 	
@@ -803,51 +806,65 @@
 		NSMutableArray *row = [NSMutableArray new];
 		for (int x = 0; x < self.width; x++)
 		{
-			BOOL wall = arc4random_uniform(wallChance) <= wallChance;
+			int wall = arc4random_uniform(100) <= wallChance ? 1 : 0;
 			[row addObject:@(wall)];
 		}
 		[caveTiles addObject:row];
 	}
 	
 	for (int i = 0; i < smooths; i++)
-		[self cellularSmooth:caveTiles];
+		caveTiles = [self cellularSmooth:caveTiles];
 	
 	//use the cave tiles to change the tiles
 	for (int y = 0; y < self.height; y++)
 		for (int x = 0; x < self.width; x++)
 		{
 			Tile *tile = self.tiles[y][x];
-			BOOL wall = ((NSNumber *)caveTiles[y][x]).intValue > 0;
+			BOOL wall = x == 0 || y == 0 || x == self.width - 1 || y == self.height - 1 || ((NSNumber *)caveTiles[y][x]).intValue > 0;
 			
 			//replacement rules
 			
 			if (!tile.solid)
 			{
-				//you don't replace floor tiles with walls
-				//TODO: if it's not an important tile (staircase, etc), turn it into cave floor
-				tile.type = @"natural floor red";
+				//if it's a natural wall, turn it into a natural floor
+				if ([tile.type isEqualToString:@"natural wall red"])
+					tile.type = @"natural floor red";
 			}
-			else
+			else if (!wall)
 			{
-				if (wall)
-				{
-					//replace the tile with cave wall
-					tile.type = @"natural wall red";
-				}
-				else
-				{
-					//replace the tile with rubble floor
-					tile.type = @"rubble red";
-				}
+				//replace the tile with rubble floor
+				tile.type = @"rubble red";
 			}
 		}
 	
 	//TODO: seal off inaccessable tiles
 }
 
--(void)cellularSmooth:(NSMutableArray *)toSmooth
+-(NSMutableArray *)cellularSmooth:(NSMutableArray *)toSmooth
 {
+	//make an empty array
+	NSMutableArray *smoothed = [NSMutableArray new];
+	for (int y = 0; y < self.height; y++)
+	{
+		NSMutableArray *smoothRow = [NSMutableArray new];
+		for (int x = 0; x < self.width; x++)
+			[smoothRow addObject:@(FALSE)];
+		[smoothed addObject:smoothRow];
+	}
 	
+	//apply the smoothing rules
+	for (int y = 0; y < self.height; y++)
+		for (int x = 0; x < self.width; x++)
+		{
+			int wallNeighbors = 0;
+			for (int y2 = y - 1; y2 <= y + 1; y2++)
+				for (int x2 = x - 1; x2 <= x + 1; x2++)
+					if (x2 < 0 || y2 < 0 || x2 >= self.width || y2 >= self.height || ((NSNumber *)toSmooth[y2][x2]).intValue > 0)
+						wallNeighbors += 1;
+			BOOL wall = ((NSNumber *)toSmooth[y][x]).intValue > 0;
+			smoothed[y][x] = @((wall && wallNeighbors >= 4) || (!wall && wallNeighbors >= 5) ? 1 : 0);
+		}
+	return smoothed;
 }
 
 -(void)placeTreasureOn:(Tile *)tile equipmentTreasure:(BOOL)equipment isUnlocked:(BOOL)unlocked
