@@ -23,6 +23,8 @@
 -(BOOL) solid;
 -(BOOL) canUnlock;
 -(void) unlock;
+-(BOOL) canRubble;
+-(void) rubble;
 -(NSString *) spriteName;
 -(UIColor *) color;
 @property (weak, nonatomic) Creature *inhabitant;

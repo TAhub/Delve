@@ -82,6 +82,15 @@
 	self.type = loadValueString(@"Tiles", self.type, @"unlocks into");
 }
 
+-(BOOL) canRubble
+{
+	return loadValueBool(@"Tiles", self.type, @"rubbles into");
+}
+-(void) rubble
+{
+	self.type = loadValueString(@"Tiles", self.type, @"rubbles into");
+}
+
 -(UIColor *) color
 {
 	return loadColorFromName(loadValueString(@"Tiles", self.type, @"color"));

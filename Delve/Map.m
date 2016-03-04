@@ -551,8 +551,8 @@
 	
 	//place the player in the center of the start room
 	GeneratorRoom *startRoom = rooms[rows-1][columns / 2];
-	int pX = startRoom.xCorner + (roomSize / 2) + 1;
-	int pY = startRoom.yCorner + (roomSize / 2) + 1;
+	int pX = startRoom.xCorner + (roomSize / 2);
+	int pY = startRoom.yCorner + (roomSize / 2);
 	Creature *player;
 	if (map == nil) //TODO: there should ALWAYS be a premade player, from the character screen, but for now make one here
 		player = [[Creature alloc] initWithX:pX andY:pY onMap:self];
@@ -613,6 +613,7 @@
 	//there should be a "masking" layer to determine where overwriting happens
 	//this should probably have some kinds of map generator variables too
 	[self mapGeneratorCaveWithFloorChance:50 andSmooths:2];
+	[self mapGeneratorSealInaccessableWithStartX:startRoom.xCorner + (roomSize / 2) andY:startRoom.yCorner + (roomSize / 2)];
 	
 	//TODO: locked-only rooms should never be breached by caves, paint those rooms (and their walls!) out of the cellular mask
 	
@@ -711,29 +712,30 @@
 	//these try to go in the center of their respecive rooms
 	for (NSArray *row in rooms)
 		for (GeneratorRoom *room in row)
-		{
-			//if at all possible, go to the center of the room
-			int xC = room.xCorner + (roomSize / 2);
-			int yC = room.yCorner + (roomSize / 2);
-			Tile *centerTile = self.tiles[yC][xC];
-			if (centerTile.validPlacementSpot)
-				[self placeTreasureOn:centerTile equipmentTreasure:room.equipmentTreasure isUnlocked:NO];
-			else
+			if (room.treasure)
 			{
-				//find a random spot in the tile to place a treasure
-				for (int i = 0; i < GENERATOR_MAX_RANDOM_TREASURE_TRIES; i++)
+				//if at all possible, go to the center of the room
+				int xC = room.xCorner + (roomSize / 2);
+				int yC = room.yCorner + (roomSize / 2);
+				Tile *centerTile = self.tiles[yC][xC];
+				if (centerTile.validPlacementSpot)
+					[self placeTreasureOn:centerTile equipmentTreasure:room.equipmentTreasure isUnlocked:NO];
+				else
 				{
-					int xR = room.xCorner + arc4random_uniform(roomSize);
-					int yR = room.yCorner + arc4random_uniform(roomSize);
-					Tile *randomTile = self.tiles[yR][xR];
-					if (randomTile.validPlacementSpot)
+					//find a random spot in the tile to place a treasure
+					for (int i = 0; i < GENERATOR_MAX_RANDOM_TREASURE_TRIES; i++)
 					{
-						[self placeTreasureOn:randomTile equipmentTreasure:room.equipmentTreasure isUnlocked:NO];
-						break;
+						int xR = room.xCorner + arc4random_uniform(roomSize);
+						int yR = room.yCorner + arc4random_uniform(roomSize);
+						Tile *randomTile = self.tiles[yR][xR];
+						if (randomTile.validPlacementSpot)
+						{
+							[self placeTreasureOn:randomTile equipmentTreasure:room.equipmentTreasure isUnlocked:NO];
+							break;
+						}
 					}
 				}
 			}
-		}
 	
 	//place unlocked equipment treasures in the start
 	for (int i = 0; i < startEquipmentTreasures;)
@@ -823,21 +825,64 @@
 			BOOL wall = x == 0 || y == 0 || x == self.width - 1 || y == self.height - 1 || ((NSNumber *)caveTiles[y][x]).intValue > 0;
 			
 			//replacement rules
-			
-			if (!tile.solid)
+			if (!wall && tile.canRubble)
+				[tile rubble];
+		}
+}
+
+-(void)mapGeneratorSealInaccessableWithStartX:(int)x andY:(int)y
+{
+	NSMutableArray *explored = [NSMutableArray new];
+	for (int y = 0; y < self.height; y++)
+	{
+		NSMutableArray *row = [NSMutableArray new];
+		for (int x = 0; x < self.width; x++)
+			[row addObject:@(0)];
+		[explored addObject:row];
+	}
+	NSMutableArray *toExplore = [NSMutableArray new];
+	explored[y][x] = @(1);
+	[toExplore addObject:@(x+y*self.width)];
+	
+	for (int i = 0; i < toExplore.count; i++)
+	{
+		int j = ((NSNumber *)toExplore[i]).intValue;
+		int x = j % self.width;
+		int y = j / self.width;
+		for (int k = 0; k < 4; k++)
+		{
+			int x2 = x;
+			int y2 = y;
+			switch(k)
 			{
-				//if it's a natural wall, turn it into a natural floor
-				if ([tile.type isEqualToString:@"natural wall red"])
-					tile.type = @"natural floor red";
+				case 0: x2 -= 1; break;
+				case 1: x2 += 1; break;
+				case 2: y2 -= 1; break;
+				case 3: y2 += 1; break;
 			}
-			else if (!wall)
+			if (x2 >= 0 && y2 >= 0 && x2 < self.width && y2 < self.height)
 			{
-				//replace the tile with rubble floor
-				tile.type = @"rubble red";
+				//can you pass through the tile?
+				Tile *tile = self.tiles[y2][x2];
+				NSNumber *alreadyExplored = explored[y2][x2];
+				if (alreadyExplored.intValue == 0 && (!tile.solid || tile.canUnlock))
+				{
+					explored[y2][x2] = @(1);
+					[toExplore addObject:@(x2+y2*self.width)];
+				}
 			}
 		}
+	}
 	
-	//TODO: seal off inaccessable tiles
+	//turn all unexplored non-solid tiles into natural wall
+	for (int y = 0; y < self.height; y++)
+		for (int x = 0; x < self.width; x++)
+		{
+			Tile *tile = self.tiles[y][x];
+			NSNumber *alreadyExplored = explored[y][x];
+			if (!tile.solid && alreadyExplored.intValue == 0)
+				tile.type = @"natural wall red";
+		}
 }
 
 -(NSMutableArray *)cellularSmooth:(NSMutableArray *)toSmooth

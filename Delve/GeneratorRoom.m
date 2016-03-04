@@ -39,6 +39,8 @@
 		_downDoorInner = GeneratorRoomExitWall;
 		_rightDoorInner = GeneratorRoomExitWall;
 		_accessable = false;
+		_treasure = false;
+		_encounter = false;
 	}
 	return self;
 }
