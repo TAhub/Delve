@@ -39,33 +39,78 @@
 		</array>
 	</dict>
 	
-	<!-- floor 0 -->
 	
+	<!-- floor 0 -->
+	<!-- theme: cave and habitats -->
+	<!-- enemy types: bandits -->
+	<!-- color: blue -->
+	<key>floor 0</key>
+	<dict>
+		<!-- map generation data -->
+		<key>tileset</key> <string>template</string>
+		<key>room size</key> <integer>5</integer>
+		<key>rows</key> <integer>10</integer>
+		<key>columns</key> <integer>6</integer>
+		<key>reject undiscovered doors chance</key> <integer>60</integer>
+		<key>max door offset</key> <integer>1</integer>
+		<key>doors at a time</key> <integer>5</integer>
+		<key>min non orphans</key> <integer>20</integer>
+		<key>max non orphans</key> <integer>35</integer>
+		<key>locked door chance</key> <integer>50</integer>
+		<key>no door chance</key> <integer>25</integer>
+		<key>desired path length</key> <integer>7</integer>
+		<!-- map balance data -->
+		<key>equipment treasures</key> <integer>5</integer>
+		<key>dead room frequency</key> <integer>5</integer>
+		<key>start equipment treasures</key> <integer>4</integer>
+		<key>treasures per encounter</key> <real>0.95</real>
+		<key>encounters</key>
+		<array>
+			<array>
+				<string>ruin feeder runt</string>
+				<string>ruin feeder runt</string>
+				<string>ruin feeder runt</string>
+			</array>
+		</array>
+	</dict>
 	
 	<!-- floor 1 -->
+	<!-- theme: cave with a little bit of habitat -->
+	<!-- enemy types: bandits and ruin feeders -->
+	<!-- color: blue -->
 	
 	
 	<!-- floor 2 -->
+	<!-- color: blue-grey -->
 	
 	
 	<!-- floor 3 -->
+	<!-- color: blue-grey -->
 	
 	
 	<!-- floor 4 -->
+	<!-- color: grey -->
 	
 	
 	<!-- floor 5 -->
+	<!-- color: grey -->
 	
 	
 	<!-- floor 6 -->
+	<!-- color: red-grey -->
 	
 	
 	<!-- floor 7 -->
+	<!-- color: red-grey -->
 	
 	
 	<!-- floor 8 -->
+	<!-- color: red -->
 	
 	
 	<!-- floor 9 -->
+	<!-- color: red -->
+	
+	
 </dict>
 </plist>

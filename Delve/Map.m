@@ -156,7 +156,7 @@
 		[self.delegate moveCreature:person fromX:person.x-x fromY:person.y-y withBlock:
 		^()
 		{
-			if (person.good && true) //TODO: if you walked onto a stair tile
+			if (person.good && false) //TODO: if you walked onto a stair tile
 			{
 				weakSelf.personOn = weakSelf.creatures.count + 5; //to make sure it's not the player's turn
 				[weakSelf.delegate goToNextMap];
@@ -259,51 +259,51 @@
 	NSString *floorName = [NSString stringWithFormat:@"floor %i", self.floorNum];
 	
 	//how big a room is
-	int roomSize = loadValueString(@"Floors", floorName, @"room size").intValue;
+	int roomSize = loadValueNumber(@"Floors", floorName, @"room size").intValue;
 	
 	//the height of the map; most maps should be taller than they are wide, since the game is meant to run in profile
-	int rows = loadValueString(@"Floors", floorName, @"rows").intValue;
+	int rows = loadValueNumber(@"Floors", floorName, @"rows").intValue;
 	
 	//the width of the map
-	int columns = loadValueString(@"Floors", floorName, @"columns").intValue;
+	int columns = loadValueNumber(@"Floors", floorName, @"columns").intValue;
 	
 	//the chance to reject doors added to undiscovered rooms
 	//100 would mean it refuses to add doors to rooms that aren't discovered
-	int rejectUndiscoveredDoorsChance = loadValueString(@"Floors", floorName, @"reject undiscovered doors chance").intValue;
+	int rejectUndiscoveredDoorsChance = loadValueNumber(@"Floors", floorName, @"reject undiscovered doors chance").intValue;
 	
 	//this is how much a door's position can vary; set to 0 for evenly-placed doors, don't set over (roomSize / 2) or else Bad Things will happen
-	int maxDoorOffset = loadValueString(@"Floors", floorName, @"max door offset").intValue;
+	int maxDoorOffset = loadValueNumber(@"Floors", floorName, @"max door offset").intValue;
 	
 	//how many rooms should be added per layer; low values might result in hitting the layer limit
-	int doorsAtATime = loadValueString(@"Floors", floorName, @"doors at a time").intValue;
+	int doorsAtATime = loadValueNumber(@"Floors", floorName, @"doors at a time").intValue;
 	
 	//the minimum number of rooms there should be
-	int minNonOrphans = loadValueString(@"Floors", floorName, @"min non orphans").intValue;
+	int minNonOrphans = loadValueNumber(@"Floors", floorName, @"min non orphans").intValue;
 	
 	//the maximum number of rooms there should be
-	int maxNonOrphans = loadValueString(@"Floors", floorName, @"max non orphans").intValue;
+	int maxNonOrphans = loadValueNumber(@"Floors", floorName, @"max non orphans").intValue;
 	
 	//what percent chance there should be for rooms to have locked doors
-	int lockedDoorChance = loadValueString(@"Floors", floorName, @"locked door chance").intValue;
+	int lockedDoorChance = loadValueNumber(@"Floors", floorName, @"locked door chance").intValue;
 	
 	//what percent chance there should be for rooms to combine into long rooms
-	int noDoorChance = loadValueString(@"Floors", floorName, @"no door chance").intValue;
+	int noDoorChance = loadValueNumber(@"Floors", floorName, @"no door chance").intValue;
 	
 	//how long the "real" path to the end should be
-	int desiredPathLength = loadValueString(@"Floors", floorName, @"desired path length").intValue;
+	int desiredPathLength = loadValueNumber(@"Floors", floorName, @"desired path length").intValue;
 	
 	//how many treasures should be equipment
-	int equipmentTreasures = loadValueString(@"Floors", floorName, @"equipment treasures").intValue;
+	int equipmentTreasures = loadValueNumber(@"Floors", floorName, @"equipment treasures").intValue;
 	
 	//how often there are "dead" rooms (no treaure, no encounter); should probably be an odd number
-	int deadRoomFrequency = loadValueString(@"Floors", floorName, @"dead room frequency").intValue;
+	int deadRoomFrequency = loadValueNumber(@"Floors", floorName, @"dead room frequency").intValue;
 	
 	//how many equipment items you are guaranteed to get in the starting room
-	int startEquipmentTreasures = loadValueString(@"Floors", floorName, @"start equipment treasures").intValue;
+	int startEquipmentTreasures = loadValueNumber(@"Floors", floorName, @"start equipment treasures").intValue;
 	
 	//the ratio of treasures to encounters; set high for lots of treasure, low for lots of encounters
 	//keep it within 0.85-1.15 or so for balance and performance reasons
-	float treasuresPerEncounter = loadValueString(@"Floors", floorName, @"treasures per encounter").floatValue;
+	float treasuresPerEncounter = loadValueNumber(@"Floors", floorName, @"treasures per encounter").floatValue;
 	
 	NSLog(@"Generating room array");
 	
@@ -513,10 +513,10 @@
 					GeneratorRoom *oRoom;
 					switch(d)
 					{
-						case 0: oRoom = room.y <= 0 ? nil : rooms[room.y-1][room.x]; break;
-						case 1: oRoom = room.y >= rows - 1 ? nil : rooms[room.y+1][room.x]; break;
-						case 2: oRoom = room.x <= 0 ? nil : rooms[room.y][room.x-1]; break;
-						case 3: oRoom = room.x >= columns - 1 ? nil : rooms[room.y][room.x+1]; break;
+						case 0: oRoom = room.upDoor != GeneratorRoomExitDoor ? nil : rooms[room.y-1][room.x]; break;
+						case 1: oRoom = room.downDoor != GeneratorRoomExitDoor ? nil : rooms[room.y+1][room.x]; break;
+						case 2: oRoom = room.leftDoor != GeneratorRoomExitDoor ? nil : rooms[room.y][room.x-1]; break;
+						case 3: oRoom = room.rightDoor != GeneratorRoomExitDoor ? nil : rooms[room.y][room.x+1]; break;
 					}
 					if (oRoom != nil && oRoom.canAddNoDoor)
 					{
@@ -545,7 +545,7 @@
 	{
 		NSMutableArray *row = [NSMutableArray new];
 		for (int x = 0; x < width; x++)
-			[row addObject:[[Tile alloc] initWithType:@"wall red"]];
+			[row addObject:[[Tile alloc] initWithType:@"natural wall red"]];
 		[self.tiles addObject:row];
 	}
 	
@@ -564,16 +564,28 @@
 	((Tile *)self.tiles[pY][pX]).inhabitant = player;
 	[self.creatures addObject:player];
 	
+	//place backing walls (replacing cave walls)
+	for (NSArray *row in rooms)
+		for (GeneratorRoom *room in row)
+			if (room.accessable)
+				for (int y2 = -1; y2 < roomSize + 1; y2++)
+					for (int x2 = -1; x2 < roomSize + 1; x2++)
+					{
+						int y3 = y2 + room.yCorner;
+						int x3 = x2 + room.xCorner;
+						Tile *tile = self.tiles[y3][x3];
+						tile.type = @"wall red";
+					}
+	
 	//translate rooms into tiles
-	for (int y = 0; y < rows; y++)
-		for (int x = 0; x < columns; x++)
-		{
-			GeneratorRoom *room = rooms[y][x];
+	for (NSArray *row in rooms)
+		for (GeneratorRoom *room in row)
 			if (room.accessable) //don't draw inaccessable rooms
 			{
 				//draw the room
 				int xS = 0;
 				int yS = 0;
+				
 				if (room.upDoor == GeneratorRoomExitNoDoor)
 					yS -= 1;
 				if (room.leftDoor == GeneratorRoomExitNoDoor)
@@ -581,18 +593,17 @@
 				for (int y2 = yS; y2 < roomSize; y2++)
 					for (int x2 = xS; x2 < roomSize; x2++)
 					{
-						int y3 = y2 + y * (roomSize + 1) + 1;
-						int x3 = x2 + x * (roomSize + 1) + 1;
+						int y3 = y2 + room.yCorner;
+						int x3 = x2 + room.xCorner;
 						((Tile *)self.tiles[y3][x3]).type = @"floor red";
 					}
 				
 				//place doors
-				[self placeDoorOfType:room.upDoor atX:x*(roomSize+1)+1+(roomSize/2) + (maxDoorOffset == 0 ? 0 : (arc4random_uniform(maxDoorOffset * 2 + 1) - maxDoorOffset)) andY:y*(roomSize+1)];
-				[self placeDoorOfType:room.leftDoor atX:x*(roomSize+1) andY:y*(roomSize+1)+1+(roomSize/2) + (maxDoorOffset == 0 ? 0 : (arc4random_uniform(maxDoorOffset * 2 + 1) - maxDoorOffset))];
+				[self placeDoorOfType:room.upDoor atX:room.xCorner+(roomSize/2) + (maxDoorOffset == 0 ? 0 : (arc4random_uniform(maxDoorOffset * 2 + 1) - maxDoorOffset)) andY:room.yCorner - 1];
+				[self placeDoorOfType:room.leftDoor atX:room.xCorner - 1 andY:room.yCorner+(roomSize/2) + (maxDoorOffset == 0 ? 0 : (arc4random_uniform(maxDoorOffset * 2 + 1) - maxDoorOffset))];
 				
 				//TODO: place enemies, treasure, etc
 			}
-		}
 	
 	//TODO: replace big parts of the map with cellular caves
 	//where cellular cave floor is placed, it overwrites doors and walls
@@ -699,8 +710,8 @@
 		for (GeneratorRoom *room in row)
 		{
 			//if at all possible, go to the center of the room
-			int xC = room.x * (roomSize + 1) + 1 + (roomSize / 2);
-			int yC = room.y * (roomSize + 1) + 1 + (roomSize / 2);
+			int xC = room.xCorner + (roomSize / 2);
+			int yC = room.yCorner + (roomSize / 2);
 			Tile *centerTile = self.tiles[yC][xC];
 			if (centerTile.validPlacementSpot)
 				[self placeTreasureOn:centerTile equipmentTreasure:room.equipmentTreasure isUnlocked:NO];
@@ -709,8 +720,8 @@
 				//find a random spot in the tile to place a treasure
 				for (int i = 0; i < GENERATOR_MAX_RANDOM_TREASURE_TRIES; i++)
 				{
-					int xR = room.x * (roomSize + 1) + 1 + arc4random_uniform(roomSize);
-					int yR = room.y * (roomSize + 1) + 1 + arc4random_uniform(roomSize);
+					int xR = room.xCorner + arc4random_uniform(roomSize);
+					int yR = room.yCorner + arc4random_uniform(roomSize);
 					Tile *randomTile = self.tiles[yR][xR];
 					if (randomTile.validPlacementSpot)
 					{
@@ -725,8 +736,8 @@
 	for (int i = 0; i < startEquipmentTreasures;)
 	{
 		GeneratorRoom *startRoom = rooms[rows-1][columns/2];
-		int xR = startRoom.x * (roomSize + 1) + 1 + arc4random_uniform(roomSize);
-		int yR = startRoom.y * (roomSize + 1) + 1 + arc4random_uniform(roomSize);
+		int xR = startRoom.xCorner + arc4random_uniform(roomSize);
+		int yR = startRoom.yCorner + arc4random_uniform(roomSize);
 		Tile *randomTile = self.tiles[yR][xR];
 		if (randomTile.validPlacementSpot)
 		{
@@ -753,8 +764,8 @@
 				for (int y = 0; y < roomSize; y++)
 					for (int x = 0; x < roomSize; x++)
 					{
-						int xA = room.x * (roomSize + 1) + 1 + x;
-						int yA = room.y * (roomSize + 1) + 1 + y;
+						int xA = room.xCorner + x;
+						int yA = room.yCorner + y;
 						Tile *tile = self.tiles[yA][xA];
 						if (tile.validPlacementSpot)
 							[openSpaces addObject:@(xA+yA*self.width)];
@@ -771,8 +782,8 @@
 					Tile *tile = self.tiles[y][x];
 					Creature *enemy = [[Creature alloc] initWithX:x andY:y onMap:self ofEnemyType:type];
 					//TODO: this is temporarily disabled
-					[self.creatures addObject:enemy];
-					tile.inhabitant = enemy;
+//					[self.creatures addObject:enemy];
+//					tile.inhabitant = enemy;
 				}
 			}
 	
@@ -782,6 +793,61 @@
 	//TODO: place exit door tile
 	
 	return true;
+}
+
+-(void)mapGeneratorCaveWithFloorChance:(int)wallChance andSmooths:(int)smooths
+{
+	NSMutableArray *caveTiles = [NSMutableArray new];
+	for (int y = 0; y < self.height; y++)
+	{
+		NSMutableArray *row = [NSMutableArray new];
+		for (int x = 0; x < self.width; x++)
+		{
+			BOOL wall = arc4random_uniform(wallChance) <= wallChance;
+			[row addObject:@(wall)];
+		}
+		[caveTiles addObject:row];
+	}
+	
+	for (int i = 0; i < smooths; i++)
+		[self cellularSmooth:caveTiles];
+	
+	//use the cave tiles to change the tiles
+	for (int y = 0; y < self.height; y++)
+		for (int x = 0; x < self.width; x++)
+		{
+			Tile *tile = self.tiles[y][x];
+			BOOL wall = ((NSNumber *)caveTiles[y][x]).intValue > 0;
+			
+			//replacement rules
+			
+			if (!tile.solid)
+			{
+				//you don't replace floor tiles with walls
+				//TODO: if it's not an important tile (staircase, etc), turn it into cave floor
+				tile.type = @"natural floor red";
+			}
+			else
+			{
+				if (wall)
+				{
+					//replace the tile with cave wall
+					tile.type = @"natural wall red";
+				}
+				else
+				{
+					//replace the tile with rubble floor
+					tile.type = @"rubble red";
+				}
+			}
+		}
+	
+	//TODO: seal off inaccessable tiles
+}
+
+-(void)cellularSmooth:(NSMutableArray *)toSmooth
+{
+	
 }
 
 -(void)placeTreasureOn:(Tile *)tile equipmentTreasure:(BOOL)equipment isUnlocked:(BOOL)unlocked

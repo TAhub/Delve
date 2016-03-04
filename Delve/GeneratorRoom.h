@@ -18,6 +18,9 @@
 @property int size;
 @property int layer;
 
+-(int)xCorner;
+-(int)yCorner;
+
 @property (weak, nonatomic) GeneratorRoom *leftRoom;
 @property (weak, nonatomic) GeneratorRoom *upRoom;
 

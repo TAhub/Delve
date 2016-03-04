@@ -17,6 +17,15 @@
 
 @implementation GeneratorRoom
 
+-(int)xCorner
+{
+	return self.x * (self.size + 1) + 1;
+}
+-(int)yCorner
+{
+	return self.y * (self.size + 1) + 1;
+}
+
 -(id)initWithSize:(int)size atX:(int)x andY:(int)y;
 {
 	if (self = [super init])
