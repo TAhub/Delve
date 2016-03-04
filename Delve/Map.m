@@ -16,6 +16,7 @@
 @interface Map()
 
 @property int personOn;
+@property int floorNum;
 
 @end
 
@@ -253,64 +254,56 @@
 
 -(BOOL)mapGenerateInnerWithMap:(Map *)map
 {
-	//TODO: get map generator stuff
-	//from the previous map
-	//IE make sure this is one floor further
-	//and make sure it follows the progression
-	//etc
-	
-	
-	
-	
 	//first, get map generator variables
-	//TODO: get these from data, based on the floor number
+	self.floorNum = map == nil ? 0 : map.floorNum + 1;
+	NSString *floorName = [NSString stringWithFormat:@"floor %i", self.floorNum];
 	
 	//how big a room is
-	int roomSize = 5;
+	int roomSize = loadValueString(@"Floors", floorName, @"room size").intValue;
 	
 	//the height of the map; most maps should be taller than they are wide, since the game is meant to run in profile
-	int rows = 10;
+	int rows = loadValueString(@"Floors", floorName, @"rows").intValue;
 	
 	//the width of the map
-	int columns = 6;
+	int columns = loadValueString(@"Floors", floorName, @"columns").intValue;
 	
 	//the chance to reject doors added to undiscovered rooms
 	//100 would mean it refuses to add doors to rooms that aren't discovered
-	int rejectUndiscoveredDoorsChance = 80;
+	int rejectUndiscoveredDoorsChance = loadValueString(@"Floors", floorName, @"reject undiscovered doors chance").intValue;
 	
 	//this is how much a door's position can vary; set to 0 for evenly-placed doors, don't set over (roomSize / 2) or else Bad Things will happen
-	int maxDoorOffset = 1;
+	int maxDoorOffset = loadValueString(@"Floors", floorName, @"max door offset").intValue;
 	
 	//how many rooms should be added per layer; low values might result in hitting the layer limit
-	int doorsAtATime = 5;
+	int doorsAtATime = loadValueString(@"Floors", floorName, @"doors at a time").intValue;
 	
 	//the minimum number of rooms there should be
-	int minNonOrphans = 20;
+	int minNonOrphans = loadValueString(@"Floors", floorName, @"min non orphans").intValue;
 	
 	//the maximum number of rooms there should be
-	int maxNonOrphans = 35;
+	int maxNonOrphans = loadValueString(@"Floors", floorName, @"max non orphans").intValue;
 	
 	//what percent chance there should be for rooms to have locked doors
-	int lockedDoorChance = 50;
+	int lockedDoorChance = loadValueString(@"Floors", floorName, @"locked door chance").intValue;
 	
 	//what percent chance there should be for rooms to combine into long rooms
-	int noDoorChance = 25;
+	int noDoorChance = loadValueString(@"Floors", floorName, @"no door chance").intValue;
 	
 	//how long the "real" path to the end should be
-	int desiredPathLength = 7;
+	int desiredPathLength = loadValueString(@"Floors", floorName, @"desired path length").intValue;
 	
 	//how many treasures should be equipment
-	int equipmentTreasures = 5;
+	int equipmentTreasures = loadValueString(@"Floors", floorName, @"equipment treasures").intValue;
 	
 	//how often there are "dead" rooms (no treaure, no encounter); should probably be an odd number
-	int deadRoomFrequency = 5;
+	int deadRoomFrequency = loadValueString(@"Floors", floorName, @"dead room frequency").intValue;
 	
 	//how many equipment items you are guaranteed to get in the starting room
-	int startEquipmentTreasures = 4;
+	int startEquipmentTreasures = loadValueString(@"Floors", floorName, @"start equipment treasures").intValue;
 	
 	//the ratio of treasures to encounters; set high for lots of treasure, low for lots of encounters
 	//keep it within 0.85-1.15 or so for balance and performance reasons
-	float treasuresPerEncounter = 0.95;
+	float treasuresPerEncounter = loadValueString(@"Floors", floorName, @"treasures per encounter").floatValue;
 	
 	NSLog(@"Generating room array");
 	

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Floors.plist
+   Delve
+
+   Created by Theodore Abshire on 3/4/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+	<key>template</key>
+	<dict>
+		<!-- map generation data -->
+		<key>tileset</key> <string>template</string>
+		<key>room size</key> <integer>5</integer>
+		<key>rows</key> <integer>10</integer>
+		<key>columns</key> <integer>6</integer>
+		<key>reject undiscovered doors chance</key> <integer>60</integer>
+		<key>max door offset</key> <integer>1</integer>
+		<key>doors at a time</key> <integer>5</integer>
+		<key>min non orphans</key> <integer>20</integer>
+		<key>max non orphans</key> <integer>35</integer>
+		<key>locked door chance</key> <integer>50</integer>
+		<key>no door chance</key> <integer>25</integer>
+		<key>desired path length</key> <integer>7</integer>
+		<!-- map balance data -->
+		<key>equipment treasures</key> <integer>5</integer>
+		<key>dead room frequency</key> <integer>5</integer>
+		<key>start equipment treasures</key> <integer>4</integer>
+		<key>treasures per encounter</key> <real>0.95</real>
+		<key>encounters</key>
+		<array>
+			<array>
+				<string>ruin feeder runt</string>
+				<string>ruin feeder runt</string>
+				<string>ruin feeder runt</string>
+			</array>
+		</array>
+	</dict>
+	
+	<!-- floor 0 -->
+	
+	
+	<!-- floor 1 -->
+	
+	
+	<!-- floor 2 -->
+	
+	
+	<!-- floor 3 -->
+	
+	
+	<!-- floor 4 -->
+	
+	
+	<!-- floor 5 -->
+	
+	
+	<!-- floor 6 -->
+	
+	
+	<!-- floor 7 -->
+	
+	
+	<!-- floor 8 -->
+	
+	
+	<!-- floor 9 -->
+</dict>
+</plist>

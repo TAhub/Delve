@@ -36,6 +36,7 @@
 		E46238281C875F28009C9FC4 /* FormattingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E46238271C875F28009C9FC4 /* FormattingViewController.m */; };
 		E462382B1C87657D009C9FC4 /* ChangeMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E462382A1C87657D009C9FC4 /* ChangeMapViewController.m */; };
 		E462382E1C8766BA009C9FC4 /* ReplaceSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E462382D1C8766BA009C9FC4 /* ReplaceSegue.m */; };
+		E46238301C8A1177009C9FC4 /* Floors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E462382F1C8A1177009C9FC4 /* Floors.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		E462382A1C87657D009C9FC4 /* ChangeMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeMapViewController.m; sourceTree = "<group>"; };
 		E462382C1C8766BA009C9FC4 /* ReplaceSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceSegue.h; sourceTree = "<group>"; };
 		E462382D1C8766BA009C9FC4 /* ReplaceSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplaceSegue.m; sourceTree = "<group>"; };
+		E462382F1C8A1177009C9FC4 /* Floors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Floors.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 		E459C6861C7AB2E800422B0A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E462382F1C8A1177009C9FC4 /* Floors.plist */,
 				E46238241C84B746009C9FC4 /* Recipies.plist */,
 				E46238221C83F8A1009C9FC4 /* InventoryItems.plist */,
 				E43674AD1C80FFBA00B59105 /* Lists.plist */,
@@ -262,6 +265,7 @@
 				E43674AA1C7FACF900B59105 /* Tiles.plist in Resources */,
 				E43674AC1C80FCAB00B59105 /* Implements.plist in Resources */,
 				E43674AE1C80FFBA00B59105 /* Lists.plist in Resources */,
+				E46238301C8A1177009C9FC4 /* Floors.plist in Resources */,
 				E459C6AC1C7B7FC300422B0A /* Attacks.plist in Resources */,
 				E459C6A51C7ABB5200422B0A /* Races.plist in Resources */,
 				E46238231C83F8A1009C9FC4 /* InventoryItems.plist in Resources */,

@@ -117,7 +117,7 @@
 		<key>breaks into</key> <string>herb</string>
 		<key>power</key> <integer>15</integer>
 		<key>element</key> <string>burn</string>
-		<key>description</key> <string>A hefty branch burning with eternal fire.</string>
+		<key>description</key> <string>A hefty branch burning with eternal fire. A classic weapon.</string>
 	</dict>
 	<key>holy baton</key>
 	<dict>
