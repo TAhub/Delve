@@ -23,6 +23,8 @@
 		<key>ammo</key> <string>crystal</string>
 		<!-- special effects -->
 		<key>stun</key> <true/>
+		<key>sleep</key> <true/>
+		<key>poison</key> <integer>4</integer>
 		<key>dodge restore</key> <integer>1</integer>
 		<key>interrupt aoe</key> <true/>
 		<key>hurt user</key> <integer>10</integer>
@@ -275,7 +277,7 @@
 		<key>cooldown</key> <integer>11</integer>
 		<key>friendly</key> <true/>
 		<!-- special effects -->
-		<!-- TODO: inflict target with poison -->
+		<key>poison</key> <integer>4</integer>
 	</dict>
 	<key>flame bolt</key>
 	<dict>
@@ -395,7 +397,7 @@
 		<key>cooldown</key> <integer>11</integer>
 		<key>friendly</key> <true/>
 		<!-- special effects -->
-		<key>hurt user</key> <integer>60</integer>
+		<key>hurt user</key> <integer>70</integer>
 		<key>extra actions</key> <integer>4</integer>
 	</dict>
 	
@@ -411,13 +413,13 @@
 	</dict>
 	<key>flirt</key>
 	<dict>
-		<key>description</key> <string>TODO: DESCRIPTION</string>
+		<key>description</key> <string>Use your personal appeal to tire an enemy out.</string>
 		<key>range</key> <integer>1</integer>
 		<key>area</key> <integer>1</integer>
 		<key>cooldown</key> <integer>15</integer>
 		<key>friendly</key> <true/>
 		<!-- special effects -->
-		<!-- TODO: this should have some powerful special effect, besides stun -->
+		<key>sleep</key> <true/>
 	</dict>
 	<key>dazzle</key>
 	<dict>

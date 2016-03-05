@@ -46,7 +46,7 @@
 	<key>element smash</key> <string>BBBBBB</string>
 	<key>element shock</key> <string>FFFF00</string>
 	<key>element burn</key> <string>FF0000</string>
-	<key>element no element</key> <string>333333</string>
+	<key>element no element</key> <string>5555BB</string>
 	<key>element no damage</key> <string>FFFFFF</string>
 	<key>element heal</key> <string>77FF77</string>
 </dict>

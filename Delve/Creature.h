@@ -52,6 +52,8 @@
 @property int forceField;
 @property int stunned;
 @property int extraAction;
+@property int sleeping;
+@property int poisoned;
 
 #pragma mark: base variables
 @property int health;

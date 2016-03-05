@@ -67,7 +67,7 @@
 		_race = @"raider";
 		_armors = [NSMutableArray arrayWithObjects:@"skullcap", @"blue tail banner", nil];
 		
-		_skillTrees = [NSArray arrayWithObjects:@"shield", @"wisdom", @"might", @"spear", @"smithing", nil];
+		_skillTrees = [NSArray arrayWithObjects:@"shield", @"time", @"might", @"spear", @"smithing", nil];
 		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
 		_implements = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
 		_weapon = loadValueString(@"Races", _race, @"race start weapon");
@@ -131,6 +131,8 @@
 	self.forceField = 0;
 	self.stunned = 0;
 	self.extraAction = 0;
+	self.poisoned = 0;
+	self.sleeping = 0;
 }
 
 #pragma mark: item interface functions
@@ -753,7 +755,17 @@
 	//apply special effects
 	if (loadValueBool(@"Attacks", attackType, @"stun"))
 	{
-		self.stunned = 2;
+		self.stunned = CREATURE_STUNLENGTH;
+		self.storedAttack = nil;
+	}
+	if (loadValueBool(@"Attacks", attackType, @"sleep"))
+	{
+		self.sleeping = CREATURE_SLEEPLENGTH;
+		self.storedAttack = nil;
+	}
+	if (loadValueBool(@"Attacks", attackType, @"poison"))
+	{
+		self.poisoned = loadValueNumber(@"Attacks", attackType, @"poison").intValue;
 		self.storedAttack = nil;
 	}
 	if (loadValueBool(@"Attacks", attackType, @"interrupt aoe"))
@@ -791,6 +803,48 @@
 
 -(BOOL) startTurn
 {
+	//fly starting labels
+	__weak typeof(self) weakSelf = self;
+	if (self.poisoned > 0)
+	{
+		self.sleeping = 0;
+		self.poisoned -= 1;
+		
+		int pDamage = MIN(MAX(self.maxHealth * CREATURE_POISONPERCENT / 100, 1), self.health - 1);
+		if (pDamage > 0)
+		{
+			//show the damage number
+			self.health -= pDamage;
+			[self.map.delegate floatLabelsOn:[NSArray arrayWithObject:self] withString:[NSArray arrayWithObject:[NSString stringWithFormat:@"%i", pDamage]] andColor:loadColorFromName(@"element no element") withBlock:
+			^()
+			{
+				if (![weakSelf startTurnInner])
+					[weakSelf.map update];
+			}];
+			return true;
+		}
+		else //the poison runs its course instantly
+			self.poisoned = 0;
+	}
+	
+	if (self.sleeping > 0)
+	{
+		[self.map.delegate floatLabelsOn:[NSArray arrayWithObject:self] withString:[NSArray arrayWithObject:@"Z"] andColor:loadColorFromName(@"element no damage") withBlock:
+		^()
+		{
+			if (![weakSelf startTurnInner])
+				[weakSelf.map update];
+		}];
+		return true;
+	}
+	
+	
+	
+	return [self startTurnInner];
+}
+
+-(BOOL) startTurnInner
+{
 //	NSLog(@"Turn started for %@", self.good ? @"player" : @"enemy");
 	
 	//TODO: maybe there can be an "stealth" status that prevents enemies from waking up if you get onscreen?
@@ -820,6 +874,12 @@
 	if (self.stunned > 0)
 	{
 		self.stunned -= 1;
+		return false;
+	}
+	
+	if (self.sleeping > 0)
+	{
+		self.sleeping -= 1;
 		return false;
 	}
 	
