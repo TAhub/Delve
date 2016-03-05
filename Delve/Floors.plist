@@ -75,9 +75,7 @@
 		<key>encounters</key>
 		<array>
 			<array>
-				<string>ruin feeder runt</string>
-				<string>ruin feeder runt</string>
-				<string>ruin feeder runt</string>
+				<string>bandit</string>
 			</array>
 		</array>
 	</dict>

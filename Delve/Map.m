@@ -317,6 +317,9 @@
 	//keep it within 0.85-1.15 or so for balance and performance reasons
 	float treasuresPerEncounter = loadValueNumber(@"Floors", floorName, @"treasures per encounter").floatValue;
 	
+	//the list of encounter arrays
+	NSArray *encounters = loadValueArray(@"Floors", floorName, @"encounters");
+	
 
 	//load tileset info
 	NSString *tileset = loadValueString(@"Floors", floorName, @"tileset");
@@ -624,8 +627,6 @@
 				//place doors
 				[self placeDoorOfType:room.upDoor atX:room.xCorner+(roomSize/2) + (maxDoorOffset == 0 ? 0 : (arc4random_uniform(maxDoorOffset * 2 + 1) - maxDoorOffset)) andY:room.yCorner - 1 withDoorFloor:doorFloorTile andLockedDoor:lockedDoorTile];
 				[self placeDoorOfType:room.leftDoor atX:room.xCorner - 1 andY:room.yCorner+(roomSize/2) + (maxDoorOffset == 0 ? 0 : (arc4random_uniform(maxDoorOffset * 2 + 1) - maxDoorOffset)) withDoorFloor:doorFloorTile andLockedDoor:lockedDoorTile];
-				
-				//TODO: place enemies, treasure, etc
 			}
 	
 	
@@ -657,6 +658,7 @@
 	{
 		NSLog(@"--ERROR: invalid number of floor tiles %i! Restarting!", floorTiles);
 		self.tiles = nil;
+		[self.creatures removeAllObjects];
 		return false;
 	}
 	
@@ -824,8 +826,8 @@
 			if (room.encounter)
 			{
 				NSLog(@"--Choosing encounter");
-				//TODO: pick a real encounter from a list
-				NSArray *encounter = [NSArray arrayWithObjects:@"ruin feeder runt", @"ruin feeder runt", nil];
+				int pick = (int)arc4random_uniform((u_int32_t)encounters.count);
+				NSArray *encounter = encounters[pick];
 				
 				NSLog(@"--Finding open spaces");
 				//find every open space for a person in the area
@@ -850,9 +852,8 @@
 					int y = position.intValue / self.width;
 					Tile *tile = self.tiles[y][x];
 					Creature *enemy = [[Creature alloc] initWithX:x andY:y onMap:self ofEnemyType:type];
-					//TODO: this is temporarily disabled
-//					[self.creatures addObject:enemy];
-//					tile.inhabitant = enemy;
+					[self.creatures addObject:enemy];
+					tile.inhabitant = enemy;
 				}
 			}
 	

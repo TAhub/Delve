@@ -481,15 +481,13 @@
 	if (/*self.uiAnimating || */self.activePanelCord == panelCord)
 		return;
 	
-	//TODO: there should be a duration constant
-	
 	panelCord.constant = -self.view.frame.size.width;
 //	[self.uiView layoutIfNeeded];
 	[self.view layoutIfNeeded];
 	
 	__weak typeof(self) weakSelf = self;
 	self.uiAnimating = true;
-	[UIView animateWithDuration:0.2f animations:
+	[UIView animateWithDuration:GAMEPLAY_PANEL_TIME animations:
 	^()
 	{
 		if (weakSelf.activePanelCord != nil)
