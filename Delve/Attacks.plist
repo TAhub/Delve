@@ -11,6 +11,7 @@
 <dict>
 	<key>template</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>TODO: DESCRIPTION</string>
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>cut</string>
@@ -45,6 +46,7 @@
 	<!-- monster-only attacks -->
 	<key>slalom</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>power</key> <integer>20</integer>
 		<key>element</key> <string>cut</string>
 		<key>range</key> <integer>1</integer>
@@ -55,6 +57,7 @@
 	</dict>
 	<key>erratic holy shot</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>power</key> <integer>20</integer>
 		<key>element</key> <string>shock</string>
 		<key>range</key> <integer>4</integer>
@@ -67,6 +70,7 @@
 	<!-- melee damaging attacks -->
 	<key>attack</key>
 	<dict>
+		<key>attack effect</key> <string>slam</string>
 		<key>description</key> <string>Swing your weapon at a foe.</string>
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>smash</string>
@@ -77,6 +81,7 @@
 	</dict>
 	<key>forge iron</key>
 	<dict>
+		<key>attack effect</key> <string>slam</string>
 		<key>description</key> <string>Strike a foe with a red-hot bar of iron from the forge.</string>
 		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>burn</string>
@@ -87,6 +92,7 @@
 	</dict>
 	<key>idolatrous spark</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>Release a little stolen holy energy from your tools, shocking a foe.</string>
 		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>shock</string>
@@ -96,6 +102,7 @@
 	</dict>
 	<key>shield bash</key>
 	<dict>
+		<key>attack effect</key> <string>slam</string>
 		<key>description</key> <string>Use your shield as a bludgeon to interrupt a foe.</string>
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>smash</string>
@@ -107,15 +114,18 @@
 	</dict>
 	<key>tackle</key>
 	<dict>
+		<key>attack effect</key> <string>teleport</string>
 		<key>description</key> <string>Throw yourself bodily at a foe, too suddenly to dodge.</string>
 		<key>power</key> <integer>35</integer>
 		<key>element</key> <string>smash</string>
 		<key>range</key> <integer>1</integer>
 		<key>cooldown</key> <integer>15</integer>
 		<!-- special effects -->
+		<key>teleport</key> <true/>
 	</dict>
 	<key>kick</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>Kick a foe to interrupt them.</string>
 		<key>power</key> <integer>10</integer>
 		<key>element</key> <string>smash</string>
@@ -127,6 +137,7 @@
 	</dict>
 	<key>haymaker</key>
 	<dict>
+		<key>attack effect</key> <string>punch</string>
 		<key>description</key> <string>Wind up for a slow but powerful punch.</string>
 		<key>power</key> <integer>40</integer>
 		<key>element</key> <string>smash</string>
@@ -138,6 +149,7 @@
 	</dict>
 	<key>thrust</key>
 	<dict>
+		<key>attack effect</key> <string>dart</string>
 		<key>description</key> <string>Thrust powerfully with your spear, hitting at a short range.</string>
 		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>cut</string>
@@ -149,6 +161,7 @@
 	</dict>
 	<key>jab</key>
 	<dict>
+		<key>attack effect</key> <string>dart</string>
 		<key>description</key> <string>Quickly jab with your spear, hitting without giving the foe a chance to dodge.</string>
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>cut</string>
@@ -159,6 +172,7 @@
 	</dict>
 	<key>power swing</key>
 	<dict>
+		<key>attack effect</key> <string>slam</string>
 		<key>description</key> <string>Wind up for a slow but powerful hammer swing.</string>
 		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>smash</string>
@@ -170,6 +184,7 @@
 	</dict>
 	<key>flame punch</key>
 	<dict>
+		<key>attack effect</key> <string>punch</string>
 		<key>description</key> <string>Ignite your implant and throw a flaming punch.</string>
 		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>burn</string>
@@ -181,6 +196,7 @@
 	</dict>
 	<key>holy chop</key>
 	<dict>
+		<key>attack effect</key> <string>punch</string>
 		<key>description</key> <string>Light your implant with holy power and chop at your foe.</string>
 		<key>power</key> <integer>35</integer>
 		<key>element</key> <string>shock</string>
@@ -192,6 +208,7 @@
 	</dict>
 	<key>wrack</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>Slightly unfix your foe in time, to painful results.</string>
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>no element</string>
@@ -202,6 +219,7 @@
 	</dict>
 	<key>poison needle</key>
 	<dict>
+		<key>attack effect</key> <string>dart</string>
 		<key>description</key> <string>Jab your opponent with a poisoned needle.</string>
 		<key>power</key> <integer>5</integer>
 		<key>element</key> <string>cut</string>
@@ -218,6 +236,7 @@
 	<!-- otherwise, most ranged attack stronger than bow shot will be useless, because the enemy will dodge it anyway -->
 	<key>shield toss</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>Throw your shield at a distance, and catch it on the rebound.</string>
 		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>smash</string>
@@ -228,6 +247,7 @@
 	</dict>
 	<key>bow shot</key>
 	<dict>
+		<key>attack effect</key> <string>arrow</string>
 		<key>description</key> <string>Shoot your bow at a foe.</string>
 		<key>power</key> <integer>15</integer>
 		<key>element</key> <string>cut</string>
@@ -239,6 +259,7 @@
 	</dict>
 	<key>holy shot</key>
 	<dict>
+		<key>attack effect</key> <string>bolt</string>
 		<key>description</key> <string>Use your holy weapon to strike an enemy with holy light.</string>
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>shock</string>
@@ -250,6 +271,7 @@
 	</dict>
 	<key>patience shot</key>
 	<dict>
+		<key>attack effect</key> <string>bolt</string>
 		<key>description</key> <string>Carefully line up a shot at a foe's weak spots with your holy weapon.</string>
 		<key>power</key> <integer>35</integer>
 		<key>element</key> <string>shock</string>
@@ -262,6 +284,7 @@
 	</dict>
 	<key>dart of spite</key>
 	<dict>
+		<key>attack effect</key> <string>dart</string>
 		<key>description</key> <string>Sacrifice a little of your own blood to fire a dangerous dart attack.</string>
 		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>cut</string>
@@ -272,6 +295,7 @@
 	</dict>
 	<key>twin sacrifice</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>Sacrifice a lot of your own blood to heavily injure an enemy.</string>
 		<key>power</key> <integer>50</integer>
 		<key>element</key> <string>no element</string>
@@ -282,6 +306,7 @@
 	</dict>
 	<key>poison</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>Use a secret ritual to poison a foe's blood directly.</string>
 		<key>power</key> <integer>20</integer>
 		<key>element</key> <string>no element</string>
@@ -294,6 +319,7 @@
 	</dict>
 	<key>flame bolt</key>
 	<dict>
+		<key>attack effect</key> <string>bolt</string>
 		<key>description</key> <string>Use a ritual to fire a bolt of fire at a foe.</string>
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>burn</string>
@@ -303,6 +329,7 @@
 	</dict>
 	<key>holy flash</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>Use a ritual to shock a foe with holy light</string>
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>shock</string>
@@ -311,6 +338,7 @@
 	</dict>
 	<key>stone pillar</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>Use a ritual to pull a stone pillar from the ground.</string>
 		<key>power</key> <integer>45</integer>
 		<key>element</key> <string>smash</string>
@@ -324,6 +352,7 @@
 	<!-- (REAL) area of effect damaging attacks -->
 	<key>light orb eruption</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>Fully release the power of your light orb, shock all foes around you.</string>
 		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>shock</string>
@@ -334,6 +363,7 @@
 	</dict>
 	<key>arrow storm</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>Fire many arrows at once from your bow, hitting everyone in an area.</string>
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>cut</string>
@@ -345,6 +375,7 @@
 	</dict>
 	<key>shatter</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>Use a ritual to cause a small explosion that kicks up many sharp metal fragments.</string>
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>cut</string>
@@ -356,6 +387,7 @@
 	</dict>
 	<key>earthquake slam</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>Wind up for an incredibly powerful hammer swing that shakes the very earth.</string>
 		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>smash</string>
@@ -366,6 +398,7 @@
 	</dict>
 	<key>crytal grenade</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>Directly detonate a holy crystal in order to cause a fiery explosion.</string>
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>burn</string>
@@ -380,6 +413,7 @@
 	<!-- self-targeting utility/defensive attacks -->
 	<key>defend</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>Center yourself in order to aid in your dodging.</string>
 		<key>friendly</key> <true/>
 		<key>cooldown</key> <integer>1</integer>
@@ -388,6 +422,7 @@
 	</dict>
 	<key>activate light orb</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>Release the power of your light orb to create a holy shield around yourself that rapidly decays on its own if not struck.</string>
 		<key>cooldown</key> <integer>1</integer>
 		<key>friendly</key> <true/>
@@ -397,6 +432,7 @@
 	</dict>
 	<key>blur move</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>Move very quickly for a brief moment.</string>
 		<key>cooldown</key> <integer>15</integer>
 		<key>friendly</key> <true/>
@@ -406,6 +442,7 @@
 	</dict>
 	<key>time slip</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>Freeze time, at a terrible cost to your own body.</string>
 		<key>cooldown</key> <integer>11</integer>
 		<key>friendly</key> <true/>
@@ -415,6 +452,7 @@
 	</dict>
 	<key>hide</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>Enter a state of stealth. Best used when not in combat.</string>
 		<key>cooldown</key> <integer>15</integer>
 		<key>friendly</key> <true/>
@@ -425,6 +463,7 @@
 	<!-- other-targeting utility/defensive attacks -->
 	<key>bamboozle</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>Use convincing arguments to make a foe briefly stop fighting.</string>
 		<key>range</key> <integer>3</integer>
 		<key>cooldown</key> <integer>15</integer>
@@ -434,6 +473,7 @@
 	</dict>
 	<key>flirt</key>
 	<dict>
+		<key>attack effect</key> <string>heart</string>
 		<key>description</key> <string>Use your personal appeal to tire an enemy out.</string>
 		<key>range</key> <integer>1</integer>
 		<key>area</key> <integer>1</integer>
@@ -444,6 +484,7 @@
 	</dict>
 	<key>dazzle</key>
 	<dict>
+		<key>attack effect</key> <string>template</string>
 		<key>description</key> <string>Use a ritual to surround a foe in bright flames.</string>
 		<key>power</key> <integer>10</integer>
 		<key>element</key> <string>burn</string>
@@ -454,6 +495,7 @@
 	</dict>
 	<key>blink</key>
 	<dict>
+		<key>attack effect</key> <string>teleport</string>
 		<key>description</key> <string>Use a ritual to bend space itself, and quickly zoom to a nearby location.</string>
 		<key>range</key> <integer>4</integer>
 		<key>cooldown</key> <integer>11</integer>
@@ -461,6 +503,5 @@
 		<!-- special effects -->
 		<key>teleport</key> <true/>
 	</dict>
-	
 </dict>
 </plist>

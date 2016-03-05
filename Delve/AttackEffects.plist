@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   AttackEffects.plist
+   Delve
+
+   Created by Theodore Abshire on 3/5/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+	<key>template</key>
+	<dict>
+		<key>sprite</key> <string>projectile_bolt</string>
+		<key>time</key> <real>0.5</real>
+		<key>time per distance</key> <real>0.1</real>
+		<key>type</key> <string>projectile</string>
+		<key>rotate</key> <true/>
+	</dict>
+	
+	<key>teleport</key>
+	<dict>
+		<key>sprite</key> <string>projectile_bolt</string>
+		<key>time</key> <real>0.1</real>
+		<key>type</key> <string>projectile</string>
+		<key>rotate</key> <true/>
+	</dict>
+	
+	<key>slash</key>
+	<dict>
+		<key>sprite</key> <string>projectile_slash</string>
+		<key>time</key> <real>0.3</real>
+		<key>type</key> <string>down melee</string>
+		<key>rotate</key> <true/>
+	</dict>
+	
+	<key>punch</key>
+	<dict>
+		<key>sprite</key> <string>projectile_bolt</string>
+		<key>time</key> <real>0.4</real>
+		<key>type</key> <string>up melee</string>
+		<key>rotate</key> <true/>
+	</dict>
+	
+	<key>slam</key>
+	<dict>
+		<key>sprite</key> <string>projectile_bolt</string>
+		<key>time</key> <real>0.5</real>
+		<key>type</key> <string>down melee</string>
+		<key>rotate</key> <true/>
+	</dict>
+	
+	<key>dart</key>
+	<dict>
+		<key>sprite</key> <string>projectile_dart</string>
+		<key>time per distance</key> <real>0.12</real>
+		<key>type</key> <string>projectile</string>
+		<key>rotate</key> <true/>
+	</dict>
+	
+	<key>bolt</key>
+	<dict>
+		<key>sprite</key> <string>projectile_bolt</string>
+		<key>time per distance</key> <real>0.15</real>
+		<key>type</key> <string>projectile</string>
+		<key>rotate</key> <true/>
+	</dict>
+	
+	<key>arrow</key>
+	<dict>
+		<key>sprite</key> <string>projectile_arrow</string>
+		<key>time per distance</key> <real>0.1</real>
+		<key>type</key> <string>projectile</string>
+		<key>rotate</key> <true/>
+	</dict>
+	
+	<key>heart</key>
+	<dict>
+		<key>sprite</key> <string>projectile_heart</string>
+		<key>time</key> <real>0.5</real>
+		<key>type</key> <string>projectile</string>
+	</dict>
+</dict>
+</plist>

@@ -11,6 +11,7 @@
 		E43674AC1C80FCAB00B59105 /* Implements.plist in Resources */ = {isa = PBXBuildFile; fileRef = E43674AB1C80FCAB00B59105 /* Implements.plist */; };
 		E43674AE1C80FFBA00B59105 /* Lists.plist in Resources */ = {isa = PBXBuildFile; fileRef = E43674AD1C80FFBA00B59105 /* Lists.plist */; };
 		E43674B01C813CC900B59105 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E43674AF1C813CC900B59105 /* Assets.xcassets */; };
+		E442C81C1C8B65950048DD95 /* AttackEffects.plist in Resources */ = {isa = PBXBuildFile; fileRef = E442C81B1C8B65950048DD95 /* AttackEffects.plist */; };
 		E459C6881C7AB2E800422B0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C6871C7AB2E800422B0A /* main.m */; };
 		E459C68B1C7AB2E800422B0A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C68A1C7AB2E800422B0A /* AppDelegate.m */; };
 		E459C6911C7AB2E800422B0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E459C68F1C7AB2E800422B0A /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 		E43674AB1C80FCAB00B59105 /* Implements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Implements.plist; sourceTree = "<group>"; };
 		E43674AD1C80FFBA00B59105 /* Lists.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Lists.plist; sourceTree = "<group>"; };
 		E43674AF1C813CC900B59105 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E442C81B1C8B65950048DD95 /* AttackEffects.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AttackEffects.plist; sourceTree = "<group>"; };
 		E459C6831C7AB2E800422B0A /* Delve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Delve.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E459C6871C7AB2E800422B0A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E459C6891C7AB2E800422B0A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 		E459C6861C7AB2E800422B0A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E442C81B1C8B65950048DD95 /* AttackEffects.plist */,
 				E46238311C8A6901009C9FC4 /* Tilesets.plist */,
 				E462382F1C8A1177009C9FC4 /* Floors.plist */,
 				E46238241C84B746009C9FC4 /* Recipies.plist */,
@@ -264,6 +267,7 @@
 				E462381E1C83F50D009C9FC4 /* ItemCell.xib in Resources */,
 				E459C6911C7AB2E800422B0A /* Main.storyboard in Resources */,
 				E46238321C8A6901009C9FC4 /* Tilesets.plist in Resources */,
+				E442C81C1C8B65950048DD95 /* AttackEffects.plist in Resources */,
 				E46238251C84B746009C9FC4 /* Recipies.plist in Resources */,
 				E459C6A71C7ABB6400422B0A /* SkillTrees.plist in Resources */,
 				E43674AA1C7FACF900B59105 /* Tiles.plist in Resources */,

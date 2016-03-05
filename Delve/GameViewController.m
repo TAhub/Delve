@@ -1119,6 +1119,52 @@
 	//so, ie, the background turns red when someone uses a burn attack
 	
 	
+	//load attack effect variables
+	NSString *attackEffect = loadValueString(@"Attacks", name, @"attack effect");
+	NSString *attackSpriteName = loadValueString(@"AttackEffects", attackEffect, @"sprite");
+	UIImage *attackSprite = [UIImage imageNamed:attackSpriteName];
+	
+	//set attack color by element
+	if (!loadValueBool(@"Attacks", name, @"power"))
+		attackSprite = colorImage(attackSprite, loadColorFromName(@"element no damage"));
+	else
+		attackSprite = colorImage(attackSprite, loadColorFromName([NSString stringWithFormat:@"element %@", element]));
+	
+	float time;
+	if (loadValueBool(@"AttackEffects", attackEffect, @"time per distance"))
+		time = loadValueNumber(@"AttackEffects", attackEffect, @"time per distance").floatValue * (ABS(creature.x - x) + ABS(creature.y - y));
+	else
+		time = loadValueNumber(@"AttackEffects", attackEffect, @"time").floatValue;
+	
+	int attackXFrom, attackYFrom, attackXTo, attackYTo;
+	BOOL rotate = loadValueBool(@"AttackEffects", attackEffect, @"rotate");
+	float angle = 0;
+	
+	//TODO: pick relative positions based on anim type
+	NSString *animType = loadValueString(@"AttackEffects", attackEffect, @"type");
+	attackXTo = x * GAMEPLAY_TILE_SIZE + GAMEPLAY_TILE_SIZE / 2 + self.mapView.xOffset;
+	attackYTo = y * GAMEPLAY_TILE_SIZE + GAMEPLAY_TILE_SIZE / 2 + self.mapView.yOffset;
+	if ([animType isEqualToString:@"projectile"])
+	{
+		attackXFrom = creature.x * GAMEPLAY_TILE_SIZE + GAMEPLAY_TILE_SIZE / 2 + self.mapView.xOffset;
+		attackYFrom = creature.y * GAMEPLAY_TILE_SIZE + GAMEPLAY_TILE_SIZE / 2 + self.mapView.yOffset;
+	}
+	else if ([animType isEqualToString:@"down melee"])
+	{
+		attackXFrom = attackXTo;
+		attackYFrom = attackYTo - GAMEPLAY_TILE_SIZE;
+		attackYTo += GAMEPLAY_TILE_SIZE / 2;
+	}
+	else if ([animType isEqualToString:@"up melee"])
+	{
+		attackXFrom = attackXTo;
+		attackYFrom = attackYTo + GAMEPLAY_TILE_SIZE;
+		attackYTo -= GAMEPLAY_TILE_SIZE / 2;
+	}
+	if (rotate)
+		angle = atan2f(attackYTo - attackYFrom, attackXTo - attackXFrom);
+	
+	
 	//announce the attack
 	__weak typeof(self) weakSelf = self;
 	self.attackNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@!", creature.good ? @"Player" : @"Enemy", delayed ? @"unleashed" : @"used", name];
@@ -1126,34 +1172,36 @@
 	[self switchToPanel:self.attackNamePanelCord withBlock:
 	^()
 	{
-	
 		//TODO: for now, everything has a "projectile" animation
-		UIView *projectileView;
-		projectileView = [[UIView alloc] initWithFrame:CGRectMake((creature.x + 0.25) * GAMEPLAY_TILE_SIZE + weakSelf.mapView.xOffset, (creature.y + 0.25) * GAMEPLAY_TILE_SIZE + weakSelf.mapView.yOffset, GAMEPLAY_TILE_SIZE / 2, GAMEPLAY_TILE_SIZE / 2)];
+		UIView *projectileView = [UIView new];
+		UIImageView *image = [[UIImageView alloc] initWithImage:attackSprite];
+		image.center = CGPointZero;
+		projectileView.center = CGPointMake(attackXFrom, attackYFrom);
 		[weakSelf.creatureView addSubview:projectileView];
-		
-		//set attack color by element
-		if (!loadValueBool(@"Attacks", name, @"power"))
-			projectileView.backgroundColor = loadColorFromName(@"element no damage");
-		else
-			projectileView.backgroundColor = loadColorFromName([NSString stringWithFormat:@"element %@", element]);
+		[projectileView addSubview:image];
+		if (rotate)
+			image.transform = CGAffineTransformMakeRotation(angle);
 		
 		
 		//how long should it last?
-		float time = 0.75f;
+		float finalTime = time;
 		Tile *to = weakSelf.map.tiles[y][x];
 		Tile *from = weakSelf.map.tiles[creature.y][creature.x];
 		if (!to.visible && !from.visible && !delayed)
-			time = 0.001f; //you can't see what's attacking, or what's being attacked, so it should be invisible; area attacks are exempt
+			finalTime = 0.001f; //you can't see what's attacking, or what's being attacked, so it should be invisible; area attacks are exempt
 		weakSelf.animating = true;
-		[UIView animateWithDuration:time animations:
+		[UIView animateWithDuration:finalTime animations:
 		^()
 		{
 			//fling the projectile at the target
-			int projectileExtraSize = 0;
 			if (delayed)
-				projectileExtraSize = (loadValueNumber(@"Attacks", name, @"area").intValue / 2) * GAMEPLAY_TILE_SIZE;
-			projectileView.frame = CGRectMake(x * GAMEPLAY_TILE_SIZE + weakSelf.mapView.xOffset - projectileExtraSize, y * GAMEPLAY_TILE_SIZE + weakSelf.mapView.yOffset - projectileExtraSize, GAMEPLAY_TILE_SIZE + projectileExtraSize * 2, GAMEPLAY_TILE_SIZE + projectileExtraSize * 2);
+			{
+				int projectileExtraSize = loadValueNumber(@"Attacks", name, @"area").intValue;
+				int width = image.bounds.size.width * projectileExtraSize;
+				int height = image.bounds.size.height * projectileExtraSize;
+				image.bounds = CGRectMake(-width, -height, width, height);
+			}
+			projectileView.frame = CGRectMake(attackXTo, attackYTo, 0, 0);
 			
 		} completion:
 		^(BOOL finished)

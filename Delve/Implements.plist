@@ -15,6 +15,7 @@
 		<key>breaks into</key> <string>template</string>
 		<key>power</key> <integer>0</integer>
 		<key>element</key> <string>cut</string>
+		<key>attack effect</key> <string>slash</string>
 		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	
@@ -29,6 +30,7 @@
 		<key>type</key> <string>weapon</string>
 		<key>power</key> <integer>10</integer>
 		<key>element</key> <string>cut</string>
+		<key>attack effect</key> <string>slash</string>
 	</dict>
 	<key>basic relic</key>
 	<dict>
@@ -43,6 +45,7 @@
 		<key>type</key> <string>weapon</string>
 		<key>power</key> <integer>0</integer>
 		<key>element</key> <string>cut</string>
+		<key>attack effect</key> <string>slash</string>
 		<key>description</key> <string>A rusty old sword.</string>
 	</dict>
 	<key>shortsword</key>
@@ -51,6 +54,7 @@
 		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>15</integer>
 		<key>element</key> <string>cut</string>
+		<key>attack effect</key> <string>slash</string>
 		<key>description</key> <string>A simple iron sword.</string>
 	</dict>
 	<key>longsword</key>
@@ -59,6 +63,7 @@
 		<key>breaks into</key> <string>steel ingot</string>
 		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>cut</string>
+		<key>attack effect</key> <string>slash</string>
 		<key>description</key> <string>A well-made steel sword.</string>
 	</dict>
 	<key>bastard sword</key>
@@ -67,6 +72,7 @@
 		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>45</integer>
 		<key>element</key> <string>cut</string>
+		<key>attack effect</key> <string>slash</string>
 		<key>description</key> <string>A large, deadly sword.</string>
 	</dict>
 	<key>masterwork sword</key>
@@ -75,6 +81,7 @@
 		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>50</integer>
 		<key>element</key> <string>cut</string>
+		<key>attack effect</key> <string>slash</string>
 		<key>description</key> <string>A sword made by a master smith.</string>
 	</dict>
 	<key>wooden club</key>
@@ -133,6 +140,7 @@
 		<key>breaks into</key> <string>diamond dust</string>
 		<key>power</key> <integer>50</integer>
 		<key>element</key> <string>burn</string>
+		<key>attack effect</key> <string>slash</string>
 		<key>description</key> <string>An eldritch sword that catches flame on command.</string>
 	</dict>
 	<key>relic edge</key> <!-- level 4 -->

@@ -164,7 +164,7 @@
 		[self.delegate moveCreature:person fromX:person.x-x fromY:person.y-y withBlock:
 		^()
 		{
-			if (person.good && ((Tile *)self.tiles[y][x]).stairs) //if you walked onto a stair tile
+			if (person.good && ((Tile *)self.tiles[person.y][person.x]).stairs) //if you walked onto a stair tile
 			{
 				weakSelf.personOn = weakSelf.creatures.count + 5; //to make sure it's not the player's turn
 				[weakSelf.delegate goToNextMap];

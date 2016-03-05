@@ -594,6 +594,11 @@
 	if (implement.length > 0 && loadValueBool(@"Implements", implement, @"element"))
 		element = loadValueString(@"Implements", implement, @"element");
 	
+	
+	//TODO: get implement attack effect overwrite
+	//<key>attack effect</key>
+	
+	
 	NSMutableArray *labels = [NSMutableArray new];
 	NSMutableArray *creatures = [NSMutableArray new];
 	
