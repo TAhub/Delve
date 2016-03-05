@@ -50,6 +50,7 @@
 		if (cr.extraAction > 0)
 		{
 			cr.extraAction -= 1;
+			[cr startTurn];
 			break;
 		}
 		
