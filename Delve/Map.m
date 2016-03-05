@@ -317,6 +317,15 @@
 	//keep it within 0.85-1.15 or so for balance and performance reasons
 	float treasuresPerEncounter = loadValueNumber(@"Floors", floorName, @"treasures per encounter").floatValue;
 	
+
+	//load tileset info
+	NSString *tileset = loadValueString(@"Floors", floorName, @"tileset");
+	NSString *wallTile = loadValueString(@"Tilesets", tileset, @"wall");
+	NSString *floorTile = loadValueString(@"Tilesets", tileset, @"floor");
+	NSString *lockedDoorTile = loadValueString(@"Tilesets", tileset, @"locked door");
+	NSString *doorFloorTile = loadValueString(@"Tilesets", tileset, @"door floor");
+	NSString *naturalWallTile = loadValueString(@"Tilesets", tileset, @"natural wall");
+	
 	NSLog(@"Generating room array");
 	
 	//keep in mind that for the purposes of this
@@ -559,7 +568,7 @@
 	{
 		NSMutableArray *row = [NSMutableArray new];
 		for (int x = 0; x < width; x++)
-			[row addObject:[[Tile alloc] initWithType:@"natural wall red"]];
+			[row addObject:[[Tile alloc] initWithType:naturalWallTile]];
 		[self.tiles addObject:row];
 	}
 	
@@ -588,7 +597,7 @@
 						int y3 = y2 + room.yCorner;
 						int x3 = x2 + room.xCorner;
 						Tile *tile = self.tiles[y3][x3];
-						tile.type = @"wall red";
+						tile.type = wallTile;
 					}
 	
 	//translate rooms into tiles
@@ -609,12 +618,12 @@
 					{
 						int y3 = y2 + room.yCorner;
 						int x3 = x2 + room.xCorner;
-						((Tile *)self.tiles[y3][x3]).type = @"floor red";
+						((Tile *)self.tiles[y3][x3]).type = floorTile;
 					}
 				
 				//place doors
-				[self placeDoorOfType:room.upDoor atX:room.xCorner+(roomSize/2) + (maxDoorOffset == 0 ? 0 : (arc4random_uniform(maxDoorOffset * 2 + 1) - maxDoorOffset)) andY:room.yCorner - 1];
-				[self placeDoorOfType:room.leftDoor atX:room.xCorner - 1 andY:room.yCorner+(roomSize/2) + (maxDoorOffset == 0 ? 0 : (arc4random_uniform(maxDoorOffset * 2 + 1) - maxDoorOffset))];
+				[self placeDoorOfType:room.upDoor atX:room.xCorner+(roomSize/2) + (maxDoorOffset == 0 ? 0 : (arc4random_uniform(maxDoorOffset * 2 + 1) - maxDoorOffset)) andY:room.yCorner - 1 withDoorFloor:doorFloorTile andLockedDoor:lockedDoorTile];
+				[self placeDoorOfType:room.leftDoor atX:room.xCorner - 1 andY:room.yCorner+(roomSize/2) + (maxDoorOffset == 0 ? 0 : (arc4random_uniform(maxDoorOffset * 2 + 1) - maxDoorOffset)) withDoorFloor:doorFloorTile andLockedDoor:lockedDoorTile];
 				
 				//TODO: place enemies, treasure, etc
 			}
@@ -643,7 +652,7 @@
 	[self mapGeneratorCaveWithFloorChance:caveWallChance andSmooths:caveSmooths andCaveMask:caveMask];
 	
 	NSLog(@"--Finding invalid floor tiles");
-	int floorTiles = [self mapGeneratorSealInaccessableWithStartX:startRoom.xCorner + (roomSize / 2) andY:startRoom.yCorner + (roomSize / 2)];
+	int floorTiles = [self mapGeneratorSealInaccessableWithStartX:startRoom.xCorner + (roomSize / 2) andY:startRoom.yCorner + (roomSize / 2) withWallTile:wallTile];
 	if ((floorTiles * 100 < self.width * self.height * minFloorTilePercent) || (floorTiles * 100 > self.width * self.height * maxFloorTilePercent))
 	{
 		NSLog(@"--ERROR: invalid number of floor tiles %i! Restarting!", floorTiles);
@@ -918,7 +927,7 @@
 	
 }
 
--(int)mapGeneratorSealInaccessableWithStartX:(int)x andY:(int)y
+-(int)mapGeneratorSealInaccessableWithStartX:(int)x andY:(int)y withWallTile:(NSString *)naturalWallTile
 {
 	NSMutableArray *explored = [NSMutableArray new];
 	for (int y = 0; y < self.height; y++)
@@ -970,7 +979,7 @@
 			Tile *tile = self.tiles[y][x];
 			NSNumber *alreadyExplored = explored[y][x];
 			if (!tile.solid && alreadyExplored.intValue == 0)
-				tile.type = @"natural wall red";
+				tile.type = naturalWallTile;
 			if (!tile.solid)
 				floorTiles += 1;
 		}
@@ -1006,9 +1015,6 @@
 
 -(void)placeTreasureOn:(Tile *)tile equipmentTreasure:(BOOL)equipment isUnlocked:(BOOL)unlocked
 {
-	//TODO: this should be a map variable rather than something found here
-	int floor = 0;
-	
 	int listNum = 999;
 	NSString *listPrefix;
 	ItemType type;
@@ -1024,7 +1030,7 @@
 		{
 			type = ItemTypeImplement;
 			listPrefix = @"implements";
-			switch(floor)
+			switch(self.floorNum)
 			{
 				case 0:
 				case 1:
@@ -1045,7 +1051,7 @@
 		{
 			type = ItemTypeArmor;
 			listPrefix = @"armors";
-			switch(floor)
+			switch(self.floorNum)
 			{
 				case 0:
 				case 1:
@@ -1069,7 +1075,7 @@
 		tile.treasureType = TreasureTypeFree;
 		type = ItemTypeInventory;
 		listPrefix = @"drops";
-		switch(floor)
+		switch(self.floorNum)
 		{
 			case 0:
 			case 1:
@@ -1096,7 +1102,7 @@
 	if ([tile.treasure.name isEqualToString:@"crystal"])
 	{
 		//increase the number an amount based on the map
-		switch(floor)
+		switch(self.floorNum)
 		{
 			case 0:
 			case 1:
@@ -1176,16 +1182,16 @@
 	return nil;
 }
 
--(void)placeDoorOfType:(GeneratorRoomExit)type atX:(int)x andY:(int)y
+-(void)placeDoorOfType:(GeneratorRoomExit)type atX:(int)x andY:(int)y withDoorFloor:(NSString *)doorFloorTile andLockedDoor:(NSString *)lockedDoorTile
 {
 	switch(type)
 	{
 		case GeneratorRoomExitPathDoor:
 		case GeneratorRoomExitDoor:
-			((Tile *)self.tiles[y][x]).type = @"door floor red";
+			((Tile *)self.tiles[y][x]).type = doorFloorTile;
 			break;
 		case GeneratorRoomExitLockedDoor:
-			((Tile *)self.tiles[y][x]).type = @"locked door red";
+			((Tile *)self.tiles[y][x]).type = lockedDoorTile;
 			break;
 		default:
 			return;

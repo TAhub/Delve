@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Tilesets.plist
+   Delve
+
+   Created by Theodore Abshire on 3/4/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+    <key>template</key>
+	<dict>
+		<key>wall</key> <string>template</string>
+		<key>floor</key> <string>template</string>
+		<key>locked door</key> <string>template</string>
+		<key>door floor</key> <string>template</string>
+		<key>natural wall</key> <string>template</string>
+	</dict>
+	
+    <key>red</key>
+	<dict>
+		<key>wall</key> <string>wall red</string>
+		<key>floor</key> <string>floor red</string>
+		<key>locked door</key> <string>locked door red</string>
+		<key>door floor</key> <string>door floor red</string>
+		<key>natural wall</key> <string>natural wall red</string>
+	</dict>
+</dict>
+</plist>

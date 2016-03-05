@@ -51,7 +51,7 @@
 	<key>floor 0</key>
 	<dict>
 		<!-- map generation data -->
-		<key>tileset</key> <string>template</string>
+		<key>tileset</key> <string>red</string>
 		<key>room size</key> <integer>5</integer>
 		<key>rows</key> <integer>10</integer>
 		<key>columns</key> <integer>6</integer>
