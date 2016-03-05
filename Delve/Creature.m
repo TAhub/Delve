@@ -130,6 +130,7 @@
 	//status effect flags
 	self.forceField = 0;
 	self.stunned = 0;
+	self.extraAction = 0;
 }
 
 #pragma mark: item interface functions
@@ -172,6 +173,8 @@
 		[properties addObject:[NSString stringWithFormat:@"uses a %@", loadValueString(@"Attacks", attack, @"ammo")]];
 	if (loadValueNumber(@"Attacks", attack, @"cooldown").intValue > 1)
 		[properties addObject:[NSString stringWithFormat:@"%i cooldown", loadValueNumber(@"Attacks", attack, @"cooldown").intValue]];
+	if (loadValueBool(@"Attacks", attack, @"extra actions"))
+		[properties addObject:[NSString stringWithFormat:@"%i extra actions", loadValueNumber(@"Attacks", attack, @"extra actions").intValue]];
 	
 	[desc appendString:[properties componentsJoinedByString:@", "]];
 	return desc;
@@ -222,6 +225,8 @@
 		[properties addObject:[NSString stringWithFormat:@"+%i hack", loadValueNumber(@"Armors", armor, @"hacks").intValue]];
 	if (loadValueBool(@"Armors", armor, @"metabolism"))
 		[properties addObject:[NSString stringWithFormat:@"+%i%% metabolism", loadValueNumber(@"Armors", armor, @"metabolism").intValue]];
+	if (loadValueBool(@"Armors", armor, @"delay reduction"))
+		[properties addObject:[NSString stringWithFormat:@"-%i all cooldowns", loadValueNumber(@"Armors", armor, @"delay reduction").intValue]];
 	if (properties.count > 0)
 		[desc appendString:[properties componentsJoinedByString:@", "]];
 	[desc appendFormat:@"\n%@", loadValueString(@"Armors", armor, @"description")];
@@ -263,6 +268,8 @@
 			[passives addObject:[NSString stringWithFormat:@"+%i hack", ((NSNumber *)skillDict[@"hacks"]).intValue]];
 		if (skillDict[@"metabolism"] != nil)
 			[passives addObject:[NSString stringWithFormat:@"+%i%% metabolism", ((NSNumber *)skillDict[@"metabolism"]).intValue]];
+		if (skillDict[@"delay reduction"] != nil)
+			[passives addObject:[NSString stringWithFormat:@"-%i all cooldowns", ((NSNumber *)skillDict[@"delay reduction"]).intValue]];
 		[desc appendString:@"\nNext level will grant you:\n"];
 		[desc appendString:[passives componentsJoinedByString:@", "]];
 		
@@ -549,7 +556,9 @@
 		}
 	}
 	
-	self.cooldowns[name] = loadValueNumber(@"Attacks", name, @"cooldown");
+	int cooldown = loadValueNumber(@"Attacks", name, @"cooldown").intValue;
+	cooldown = MAX(1, cooldown - self.delayReduction);
+	self.cooldowns[name] = @(cooldown);
 	
 	if (self.good)
 		[self.map.delegate updateStats];
@@ -757,6 +766,8 @@
 		forceFieldPower = (forceFieldPower * power) / 100;
 		self.forceField += forceFieldPower;
 	}
+	if (loadValueBool(@"Attacks", attackType, @"extra actions"))
+		self.extraAction += loadValueNumber(@"Attacks", attackType, @"extra actions").intValue;
 	
 	return label;
 }
@@ -944,6 +955,10 @@
 -(int) metabolism
 {
 	return [self totalBonus:@"metabolism"];
+}
+-(int) delayReduction
+{
+	return [self totalBonus:@"delay reduction"];
 }
 
 

@@ -774,6 +774,36 @@
 		<key>result type</key> <string>implement</string>
 		<key>result amount</key> <integer>1</integer>
 	</dict>
+	<key>wristwatch</key>
+	<dict>
+		<key>ingredient a</key> <string>fang</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>iron ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>wristwatch</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>pocket watch</key>
+	<dict>
+		<key>ingredient a</key> <string>quicksilver</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>steel ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>pocket watch</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>stopwatch</key>
+	<dict>
+		<key>ingredient a</key> <string>diamond dust</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>refined ingot</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>stopwatch</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
 	
 	<!-- alchemy consumables -->
 	<key>herbal draught</key>

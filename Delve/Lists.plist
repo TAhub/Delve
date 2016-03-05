@@ -21,6 +21,7 @@
 		<string>innocence</string>
 		<string>kitchen knife</string>
 		<string>fundamentals</string>
+		<string>stopped clock</string>
 	</array>
 	
 	<!-- inventory item drop leveled lists -->
@@ -85,6 +86,7 @@
 		<string>ritual compendium</string>
 		<string>shortsword</string>
 		<string>mace</string>
+		<string>wristwatch</string>
 		<!-- common stuff again -->
 		<string>buckler</string>
 		<string>sledgehammer</string>
@@ -97,6 +99,7 @@
 		<string>ritual compendium</string>
 		<string>shortsword</string>
 		<string>mace</string>
+		<string>wristwatch</string>
 		<!-- rare stuff -->
 		<string>torch</string>
 	</array>
@@ -114,6 +117,7 @@
 		<string>ether dynamics</string>
 		<string>longsword</string>
 		<string>flail</string>
+		<string>pocket watch</string>
 		<!-- common stuff again -->
 		<string>kite shield</string>
 		<string>warhammer</string>
@@ -126,6 +130,7 @@
 		<string>ether dynamics</string>
 		<string>longsword</string>
 		<string>flail</string>
+		<string>pocket watch</string>
 		<!-- rare stuff -->
 		<string>holy baton</string>
 	</array>
@@ -143,6 +148,7 @@
 		<string>forbidden tome</string>
 		<string>bastard sword</string>
 		<string>flanged mace</string>
+		<string>stopwatch</string>
 		<!-- common stuff again -->
 		<string>relic shield</string>
 		<string>greathammer</string>
@@ -155,6 +161,7 @@
 		<string>forbidden tome</string>
 		<string>bastard sword</string>
 		<string>flanged mace</string>
+		<string>stopwatch</string>
 		<!-- rare stuff -->
 	</array>
 	<key>armors 1</key>
@@ -333,6 +340,7 @@
 		<string>torch</string>
 		<string>ritual knife</string>
 		<string>ritual compendium</string>
+		<string>wristwatch</string>
 		<string>headband</string>
 		<string>burnished ring</string>
 		<string>rough ring</string>
@@ -342,6 +350,7 @@
 		<string>blood pack</string>
 		<string>athame</string>
 		<string>ether dynamics</string>
+		<string>pocket watch</string>
 		<string>tiara</string>
 		<string>plain necklace</string>
 		<string>silver bangle</string>
@@ -351,6 +360,7 @@
 		<string>silvery salve</string>
 		<string>relic knife</string>
 		<string>forbidden tome</string>
+		<string>stopwatch</string>
 		<string>silk headband</string>
 		<string>jeweled ring</string>
 		<string>skull ring</string>

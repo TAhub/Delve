@@ -22,6 +22,7 @@
 		<key>blocks</key> <integer>0</integer>
 		<key>hacks</key> <integer>0</integer>
 		<key>metabolism</key> <integer>100</integer>
+		<key>delay reduction</key> <integer>0</integer>
 		<!-- slots -->
 		<key>skill slot types</key>
 		<array>

@@ -404,5 +404,34 @@
 		<key>power</key> <integer>45</integer>
 		<key>description</key> <string>A sealed tome of the type used to cause the fall of Eol.</string>
 	</dict>
+	
+	<!-- timepieces -->
+	<key>stopped clock</key>
+	<dict>
+		<key>type</key> <string>timepiece</string>
+		<key>power</key> <integer>0</integer>
+		<key>description</key> <string>A broken old clock that is right only twice a day.</string>
+	</dict>
+	<key>wristwatch</key>
+	<dict>
+		<key>type</key> <string>timepiece</string>
+		<key>breaks into</key> <string>fang</string>
+		<key>power</key> <integer>15</integer>
+		<key>description</key> <string>A cheap, mass-produced timepiece worn on the wrist.</string>
+	</dict>
+	<key>pocket watch</key>
+	<dict>
+		<key>type</key> <string>timepiece</string>
+		<key>breaks into</key> <string>quicksilver</string>
+		<key>power</key> <integer>30</integer>
+		<key>description</key> <string>A sophisticated timepiece made of alchemical silver.</string>
+	</dict>
+	<key>stopwatch</key>
+	<dict>
+		<key>type</key> <string>timepiece</string>
+		<key>breaks into</key> <string>diamond dust</string>
+		<key>power</key> <integer>45</integer>
+		<key>description</key> <string>A timepiece used to start and stop.</string>
+	</dict>
 </dict>
 </plist>

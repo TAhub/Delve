@@ -39,6 +39,7 @@
 -(int) maxBlocks; //blocks are a war-skill-only "super" defense type, and recharge only on their own when you get kills (to reward offense)
 -(int) maxHacks; //hacks are used to unlock doors, chests, and to turn off traps if you step in them; it's refilled on map transition
 -(int) metabolism; //metabolism is a percentage bonus to how much healing items heal you
+-(int) delayReduction; //delay reduction reduces cooldowns of attacks, to a minimum of 1
 
 -(BOOL) dead;
 
@@ -50,6 +51,7 @@
 #pragma mark: status effect flags
 @property int forceField;
 @property int stunned;
+@property int extraAction;
 
 #pragma mark: base variables
 @property int health;

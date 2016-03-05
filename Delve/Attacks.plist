@@ -27,6 +27,7 @@
 		<key>interrupt aoe</key> <true/>
 		<key>hurt user</key> <integer>10</integer>
 		<key>forcefield</key> <integer>50</integer>
+		<key>extra actions</key> <integer>3</integer>
 		<key>teleport</key> <true/>
 	</dict>
 	<key>regen range finder</key>
@@ -111,7 +112,7 @@
 	</dict>
 	<key>kick</key>
 	<dict>
-		<key>description</key> <string>Kick an opponent to interrupt them.</string>
+		<key>description</key> <string>Kick a foe to interrupt them.</string>
 		<key>power</key> <integer>10</integer>
 		<key>element</key> <string>smash</string>
 		<key>range</key> <integer>1</integer>
@@ -144,7 +145,7 @@
 	</dict>
 	<key>jab</key>
 	<dict>
-		<key>description</key> <string>Quickly jab with your spear, hitting without giving the opponent a chance to dodge.</string>
+		<key>description</key> <string>Quickly jab with your spear, hitting without giving the foe a chance to dodge.</string>
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>cut</string>
 		<key>range</key> <integer>2</integer>
@@ -185,6 +186,16 @@
 		<key>ammo</key> <string>crystal</string>
 		<!-- special effects -->
 	</dict>
+	<key>wrack</key>
+	<dict>
+		<key>description</key> <string>Slightly unfix your foe in time, to painful results.</string>
+		<key>power</key> <integer>25</integer>
+		<key>element</key> <string>no element</string>
+		<key>range</key> <integer>1</integer>
+		<key>cooldown</key> <integer>11</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+	</dict>
 	
 	<!-- ranged damaging attacks -->
 	<!-- design note: now, due to screen sizes, the max range should be 4 -->
@@ -202,7 +213,7 @@
 	</dict>
 	<key>bow shot</key>
 	<dict>
-		<key>description</key> <string>Shoot your bow at an opponent.</string>
+		<key>description</key> <string>Shoot your bow at a foe.</string>
 		<key>power</key> <integer>15</integer>
 		<key>element</key> <string>cut</string>
 		<key>range</key> <integer>4</integer>
@@ -224,7 +235,7 @@
 	</dict>
 	<key>patience shot</key>
 	<dict>
-		<key>description</key> <string>Carefully line up a shot at an opponent's weak spots with your holy weapon.</string>
+		<key>description</key> <string>Carefully line up a shot at a foe's weak spots with your holy weapon.</string>
 		<key>power</key> <integer>35</integer>
 		<key>element</key> <string>shock</string>
 		<key>range</key> <integer>4</integer>
@@ -371,18 +382,27 @@
 	</dict>
 	<key>blur move</key>
 	<dict>
-		<key>description</key> <string>Begin moving very quickly, to renew your ability to dodge.</string>
-		<key>element</key> <string>cut</string>
+		<key>description</key> <string>Move very quickly for a brief moment.</string>
 		<key>cooldown</key> <integer>15</integer>
 		<key>friendly</key> <true/>
 		<!-- special effects -->
-		<key>dodge restore</key> <integer>3</integer>
+		<key>dodge restore</key> <integer>1</integer>
+		<key>extra actions</key> <integer>2</integer>
+	</dict>
+	<key>time slip</key>
+	<dict>
+		<key>description</key> <string>Freeze time, at a terrible cost to your own body.</string>
+		<key>cooldown</key> <integer>11</integer>
+		<key>friendly</key> <true/>
+		<!-- special effects -->
+		<key>hurt user</key> <integer>60</integer>
+		<key>extra actions</key> <integer>4</integer>
 	</dict>
 	
 	<!-- other-targeting utility/defensive attacks -->
 	<key>bamboozle</key>
 	<dict>
-		<key>description</key> <string>Use convincing arguments to make an opponent briefly stop fighting.</string>
+		<key>description</key> <string>Use convincing arguments to make a foe briefly stop fighting.</string>
 		<key>range</key> <integer>3</integer>
 		<key>cooldown</key> <integer>15</integer>
 		<key>friendly</key> <true/>

@@ -27,6 +27,7 @@
 				<key>blocks</key> <integer>0</integer>
 				<key>hacks</key> <integer>0</integer>
 				<key>metabolism</key> <integer>0</integer>
+				<key>delay reduction</key> <integer>0</integer>
 				<key>attack</key> <string>template</string>
 				<key>recipies</key> <string>template</string>
 			</dict>
@@ -41,6 +42,7 @@
 				<key>blocks</key> <integer>0</integer>
 				<key>hacks</key> <integer>0</integer>
 				<key>metabolism</key> <integer>0</integer>
+				<key>delay reduction</key> <integer>0</integer>
 				<key>attack</key> <string>template</string>
 				<key>recipies</key> <string>template</string>
 			</dict>
@@ -55,6 +57,7 @@
 				<key>blocks</key> <integer>0</integer>
 				<key>hacks</key> <integer>0</integer>
 				<key>metabolism</key> <integer>0</integer>
+				<key>delay reduction</key> <integer>0</integer>
 				<key>attack</key> <string>template</string>
 				<key>recipies</key> <string>template</string>
 			</dict>
@@ -69,6 +72,7 @@
 				<key>blocks</key> <integer>0</integer>
 				<key>hacks</key> <integer>0</integer>
 				<key>metabolism</key> <integer>0</integer>
+				<key>delay reduction</key> <integer>0</integer>
 				<key>attack</key> <string>template</string>
 				<key>recipies</key> <string>template</string>
 			</dict>
@@ -77,7 +81,7 @@
 	
 	<!-- design guidelines -->
 	<!-- passive-only skill ranks give about 1 of the following (feel free to split the difference) -->
-	<!-- 25 health, 25 damage bonus, 2 resistance, 1 dodge, 1 block, 30 metabolism, 2 hacks -->
+	<!-- 25 health, 25 damage bonus, 2 resistance, 1 dodge, 1 block, 30 metabolism, 2 hacks, 1 delay reduction -->
 	<!-- active skills give the active skill plus about half of a passive, less for a powerful active skill -->
 	<!-- everything should have at least a little bit of health or whatever -->
 	
@@ -91,6 +95,10 @@
 	<!-- it's totally ok to change one or two of the damage bonuses into something else -->
 	
 	
+	<!-- design note: -->
+	<!-- monster passives should give no passives at rank 1 -->
+	<!-- they are only meant for advancement, not for base stats -->
+	
 	<!-- enemy-only skills -->
 	<key>filler monster skill</key>
 	<dict>
@@ -98,8 +106,6 @@
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
-				<key>damage bonus</key> <integer>8</integer>
-				<key>health</key> <integer>8</integer>
 			</dict>
 			<dict> <!-- rank 2 -->
 				<key>damage bonus</key> <integer>8</integer>
@@ -121,16 +127,15 @@
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
-				<key>dodges</key> <integer>1</integer>
 			</dict>
 			<dict> <!-- rank 2 -->
-				<key>health</key> <integer>20</integer>
-			</dict>
-			<dict> <!-- rank 3 -->
 				<key>dodges</key> <integer>1</integer>
 			</dict>
-			<dict> <!-- rank 4 -->
+			<dict> <!-- rank 3 -->
 				<key>health</key> <integer>20</integer>
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>dodges</key> <integer>1</integer>
 			</dict>
 		</array>
 	</dict>
@@ -140,8 +145,6 @@
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
-				<key>damage bonus</key> <integer>10</integer>
-				<key>health</key> <integer>15</integer>
 			</dict>
 			<dict> <!-- rank 2 -->
 				<key>damage bonus</key> <integer>10</integer>
@@ -165,7 +168,6 @@
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
-				<key>damage bonus</key> <integer>10</integer>
 				<key>attack</key> <string>erratic holy shot</string>
 			</dict>
 			<dict> <!-- rank 2 -->
@@ -449,6 +451,9 @@
 		</array>
 	</dict>
 	
+	<!-- TODO: fifth body skill -->
+	<!-- stealth, maybe? -->
+	
 	<!-- sacred skills -->
 	<!-- sacred skills focus on active skills that cost ammo, and are usually pattern A -->
 
@@ -683,6 +688,34 @@
 			<dict> <!-- rank 4 -->
 				<key>damage bonus</key> <integer>10</integer>
 				<key>attack</key> <string>stone pillar</string>
+			</dict>
+		</array>
+	</dict>
+	
+	<!-- time (pattern A) -->
+	<!-- another ritual utility tree, this one focusing on supporting other magic -->
+	<!-- raises delay reduction -->
+	<!-- implement: timepiece -->
+	<key>time</key>
+	<dict>
+		<key>type</key> <string>ritual</string>
+		<key>description</key> <string>The rituals of time focus on getting to act faster, to overwhelm a foe. Those who practice them learn to use their abilities more often.</string>
+		<key>implement</key> <string>timepiece</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>smash resistance</key> <integer>1</integer>
+				<key>attack</key> <string>wrack</string>
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>delay reduction</key> <integer>1</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>metabolism</key> <integer>10</integer>
+				<key>attack</key> <string>time slip</string>
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>delay reduction</key> <integer>1</integer>
 			</dict>
 		</array>
 	</dict>

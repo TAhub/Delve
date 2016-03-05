@@ -46,8 +46,15 @@
 	//keep going for next
 	while (true)
 	{
-		self.personOn = (self.personOn + 1) % self.creatures.count;
 		Creature *cr = self.creatures[self.personOn];
+		if (cr.extraAction > 0)
+		{
+			cr.extraAction -= 1;
+			break;
+		}
+		
+		self.personOn = (self.personOn + 1) % self.creatures.count;
+		cr = self.creatures[self.personOn];
 		if (!cr.dead && [cr startTurn])
 			break;
 	}

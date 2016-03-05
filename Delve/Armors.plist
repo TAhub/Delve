@@ -26,6 +26,7 @@
 		<key>blocks</key> <integer>0</integer>
 		<key>hacks</key> <integer>0</integer>
 		<key>metabolism</key> <integer>0</integer>
+		<key>delay reduction</key> <integer>0</integer>
 		<!-- appearance -->
 		<key>sprite</key> <string>helmet</string>
 		<key>color</key> <string>iron</string>
