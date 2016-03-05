@@ -58,14 +58,14 @@
 	if (self = [super init])
 	{
 		//TODO: temporarily set the race and armor list
-//		_race = @"human";
-//		_armors = [NSMutableArray arrayWithObjects:@"chestplate", @"skullcap", @"steel-toed boots", nil];
+		_race = @"human";
+		_armors = [NSMutableArray arrayWithObjects:@"peasant clothes", @"skullcap", @"steel-toed boots", nil];
 //		_race = @"eoling";
 //		_armors = [NSMutableArray arrayWithObjects:@"temple dancer outfit", @"goggles", @"white tail banner", nil];
 //		_race = @"highborn";
 //		_armors = [NSMutableArray arrayWithObjects:@"chestplate", @"gold tiara", @"", nil];
-		_race = @"raider";
-		_armors = [NSMutableArray arrayWithObjects:@"skullcap", @"blue tail banner", nil];
+//		_race = @"raider";
+//		_armors = [NSMutableArray arrayWithObjects:@"skullcap", @"blue tail banner", nil];
 		
 		_skillTrees = [NSArray arrayWithObjects:@"bow", @"charm", @"sacred light", @"heresy", @"godly form", nil];
 		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
@@ -142,8 +142,6 @@
 {
 	NSMutableString *desc = [NSMutableString stringWithString:attack];
 	
-	//TODO: make attack description
-	//remember to call 1x1 aoes "delayed attacks" rather than aoes
 	[desc appendFormat:@"\n%@", loadValueString(@"Attacks", attack, @"description")];
 	[desc appendString:@"\n"];
 	
@@ -504,8 +502,6 @@
 -(void) useAttackWithTreeNumber:(int)treeNumber andName:(NSString *)name onX:(int)x andY:(int)y
 {
 	NSLog(@"Using attack %@ from tree %i", name, treeNumber);
-	
-	//TODO: you shouldn't be able to use hurt-self attacks if you are under half the health cost
 	
 	//check to see if you can target that spot
 	if (![self validTargetSpotFor:name atX:x andY:y openSpotsAreFine:NO])

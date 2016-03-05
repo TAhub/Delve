@@ -9,8 +9,9 @@
 -->
 <plist version="1.0">
 <dict>
-	<!-- current effect bugs -->
+	<!-- TODO: current effect problems -->
 	<!-- the arrow storm projectile is 3x the desired size, oops -->
+	<!-- the slash projectile should probably be a bit longer and straighter -->
 	
 	
 	<key>template</key>

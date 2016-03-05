@@ -43,6 +43,9 @@
 		</array>
 	</dict>
 	
+	<!-- TODO: maybe change how enemy generation works -->
+	<!-- so there's a fixed amount of treasures and encounters, not counting locked things -->
+	
 	
 	<!-- floor 0 -->
 	<!-- theme: cave and habitats -->
@@ -76,6 +79,9 @@
 		<array>
 			<array>
 				<string>bandit</string>
+			</array>
+			<array>
+				<string>torch bandit</string>
 			</array>
 		</array>
 	</dict>

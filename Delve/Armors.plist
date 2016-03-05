@@ -230,6 +230,21 @@
 	<!-- all body armor gets a 0.5 advantage -->
 	<!-- they give resistances -->
 	
+	<!-- peasant clothes -->
+	<!-- level 0 "armor" -->
+	<key>peasant clothes</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>body armor</string>
+		<key>description</key> <string>A pair of cheap cloth clothing, typically worn by starving human peasants.</string>
+		<!-- stats -->
+		<key>metabolism</key> <integer>15</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>clothes</string>
+		<key>color</key> <string>grey fabric</string>
+		<key>sprite gender</key> <true/>
+	</dict>
+	
 	<!-- rusty armor -->
 	<!-- level 1 heavy armor body armor -->
 	<key>rusty armor</key>

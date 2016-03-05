@@ -64,6 +64,29 @@
 		<key>weapon</key> <string>shortsword</string>
 	</dict>
 	
+	<!-- torch bandit -->
+	<!-- alternate bandit type enemy -->
+	<key>torch bandit</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>human</string>
+		<!-- TODO: AI -->
+		<key>skills</key>
+		<array>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>armors</key>
+		<array>
+			<string>peasant clothes</string>
+		</array>
+		<key>weapon</key> <string>torch</string>
+	</dict>
+	
 	<!-- ruin feeder runt -->
 	<!-- basic weak rat-ish enemy -->
 	<key>ruin feeder runt</key>
