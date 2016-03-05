@@ -26,9 +26,11 @@
 		<key>sleep</key> <true/>
 		<key>poison</key> <integer>4</integer>
 		<key>dodge restore</key> <integer>1</integer>
+		<key>stealth</key> <integer>3</integer>
 		<key>interrupt aoe</key> <true/>
 		<key>hurt user</key> <integer>10</integer>
 		<key>forcefield</key> <integer>50</integer>
+		<key>stealth</key> <integer>10</integer>
 		<key>extra actions</key> <integer>3</integer>
 		<key>teleport</key> <true/>
 	</dict>
@@ -197,6 +199,17 @@
 		<key>cooldown</key> <integer>11</integer>
 		<key>dodgeable</key> <true/>
 		<!-- special effects -->
+	</dict>
+	<key>poison needle</key>
+	<dict>
+		<key>description</key> <string>Jab your opponent with a poisoned needle.</string>
+		<key>power</key> <integer>5</integer>
+		<key>element</key> <string>cut</string>
+		<key>range</key> <integer>1</integer>
+		<key>cooldown</key> <integer>15</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+		<key>poison</key> <integer>5</integer>
 	</dict>
 	
 	<!-- ranged damaging attacks -->
@@ -399,6 +412,14 @@
 		<!-- special effects -->
 		<key>hurt user</key> <integer>70</integer>
 		<key>extra actions</key> <integer>4</integer>
+	</dict>
+	<key>hide</key>
+	<dict>
+		<key>description</key> <string>Enter a state of stealth. Best used when not in combat.</string>
+		<key>cooldown</key> <integer>15</integer>
+		<key>friendly</key> <true/>
+		<!-- special effects -->
+		<key>stealth</key> <integer>10</integer>
 	</dict>
 	
 	<!-- other-targeting utility/defensive attacks -->

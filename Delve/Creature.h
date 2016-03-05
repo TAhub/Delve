@@ -54,6 +54,7 @@
 @property int extraAction;
 @property int sleeping;
 @property int poisoned;
+@property int stealthed;
 
 #pragma mark: base variables
 @property int health;

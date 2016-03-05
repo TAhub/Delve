@@ -67,7 +67,7 @@
 		_race = @"raider";
 		_armors = [NSMutableArray arrayWithObjects:@"skullcap", @"blue tail banner", nil];
 		
-		_skillTrees = [NSArray arrayWithObjects:@"shield", @"time", @"might", @"spear", @"smithing", nil];
+		_skillTrees = [NSArray arrayWithObjects:@"stealth", @"time", @"might", @"spear", @"smithing", nil];
 		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
 		_implements = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
 		_weapon = loadValueString(@"Races", _race, @"race start weapon");
@@ -133,6 +133,7 @@
 	self.extraAction = 0;
 	self.poisoned = 0;
 	self.sleeping = 0;
+	self.stealthed = 0;
 }
 
 #pragma mark: item interface functions
@@ -533,6 +534,13 @@
 		
 		[self.map update];
 	}
+	
+	//cancel stealth
+	if (self.stealthed > 0)
+	{
+		//TODO: cancel stealth effect
+		self.stealthed = 0;
+	}
 
 	
 	//pay costs
@@ -695,6 +703,9 @@
 		[self wakeUpNearby];
 	}
 	
+	if (self.sleeping > 0)
+		self.sleeping = 0;
+	
 	NSString *label = @"";
 	
 	if (!loadValueBool(@"Attacks", attackType, @"friendly"))
@@ -780,6 +791,11 @@
 	}
 	if (loadValueBool(@"Attacks", attackType, @"extra actions"))
 		self.extraAction += loadValueNumber(@"Attacks", attackType, @"extra actions").intValue;
+	if (loadValueBool(@"Attacks", attackType, @"stealth"))
+	{
+		//TODO: apply some kind of stealth visual effect
+		self.stealthed += loadValueNumber(@"Attacks", attackType, @"stealth").intValue;
+	}
 	
 	return label;
 }
@@ -846,9 +862,11 @@
 -(BOOL) startTurnInner
 {
 //	NSLog(@"Turn started for %@", self.good ? @"player" : @"enemy");
+	Tile *tile = self.map.tiles[self.y][self.x];
 	
-	//TODO: maybe there can be an "stealth" status that prevents enemies from waking up if you get onscreen?
-	if (!self.awake && !self.good && ((Tile *)self.map.tiles[self.y][self.x]).visible)
+	//wake up when the player gets onscreen, unless they are stealthed
+	if (!self.awake && !self.good && tile.visible &&
+		(self.map.player.stealthed == 0 || ABS(self.x - self.map.player.x) + ABS(self.y - self.map.player.y) == 1)) //you can detect stealth at range 1
 	{
 		self.awake = true;
 		[self wakeUpNearby];
@@ -870,6 +888,15 @@
 	
 	if (self.storedAttack != nil)
 		[self unleashAttack];
+	
+	if (self.stealthed > 0)
+	{
+		self.stealthed -= 1;
+		if (self.stealthed == 0)
+		{
+			//TODO: cancel stealth effect
+		}
+	}
 	
 	if (self.stunned > 0)
 	{
@@ -926,14 +953,17 @@
 		}
 		
 		//otherwise, try to walk towards the player
-		//TODO: AIs shouldnt pursue the player if the AI isn't visible (IE it's far away or in a non-visible tile) AND the player is stealthed
-		int xDif = self.map.player.x - self.x;
-		int yDif = self.map.player.y - self.y;
-		BOOL xFirst = ABS(xDif) > ABS(yDif);
-		if ([self.map movePerson:self withX:(xFirst ? copysign(1, xDif) : 0) andY:(!xFirst ? copysign(1, yDif) : 0)])
-			return YES;
-		if (xDif != 0 && yDif != 0 && [self.map movePerson:self withX:(!xFirst ? copysign(1, xDif) : 0) andY:(xFirst ? copysign(1, yDif) : 0)])
-			return YES;
+		//AIs shouldnt pursue the player if the AI isn't visible (IE it's far away or in a non-visible tile) AND the player is stealthed
+		if (tile.visible || self.map.player.stealthed == 0)
+		{
+			int xDif = self.map.player.x - self.x;
+			int yDif = self.map.player.y - self.y;
+			BOOL xFirst = ABS(xDif) > ABS(yDif);
+			if ([self.map movePerson:self withX:(xFirst ? copysign(1, xDif) : 0) andY:(!xFirst ? copysign(1, yDif) : 0)])
+				return YES;
+			if (xDif != 0 && yDif != 0 && [self.map movePerson:self withX:(!xFirst ? copysign(1, xDif) : 0) andY:(xFirst ? copysign(1, yDif) : 0)])
+				return YES;
+		}
 		
 		
 		//TODO: maybe smarter AIs can do some actual pathfinding, within a certain radius?

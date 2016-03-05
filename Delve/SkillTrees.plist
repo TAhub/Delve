@@ -451,8 +451,32 @@
 		</array>
 	</dict>
 	
-	<!-- TODO: fifth body skill -->
-	<!-- stealth, maybe? -->
+	<!-- stealth (pattern A) -->
+	<!-- an offensive skill that focuses on stealth and poison -->
+	<!-- raises ??? -->
+	<!-- implement: none -->
+	<key>stealth</key>
+	<dict>
+		<key>type</key> <string>body</string>
+		<key>description</key> <string>A stealthy person can creep up on others undetected, and then do all sorts of nasty things.</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>damage bonus</key> <integer>10</integer>
+				<key>attack</key> <string>hide</string>
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>hacks</key> <integer>2</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>damage bonus</key> <integer>10</integer>
+				<key>attack</key> <string>poison needle</string>
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>dodges</key> <integer>1</integer>
+			</dict>
+		</array>
+	</dict>
 	
 	<!-- sacred skills -->
 	<!-- sacred skills focus on active skills that cost ammo, and are usually pattern A -->
