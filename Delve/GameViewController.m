@@ -1107,40 +1107,63 @@
 	}
 }
 
--(void)attackAnimation:(NSString *)name withElement:(NSString *)element fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void (^)(void)))block
+-(void)attackAnimation:(NSString *)name withElement:(NSString *)element andAttackEffect:(NSString *)attackEffect fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void (^)(void)))block
 {
 	//attack variables to relay to
 	BOOL delayed = loadValueBool(@"Attacks", name, @"area");
 	BOOL teleport = loadValueBool(@"Attacks", name, @"teleport");
 	
-	
+	//this function has all the gameplay code for the animation
+	__weak typeof(self) weakSelf = self;
+	[self attackAnimationInner:name withElement:element andAttackEffect:attackEffect fromPerson:creature targetX:x andY:y delayed:delayed withEffectBlock:
+	^()
+	{
+		block(^(){
+			[weakSelf switchToPanel:weakSelf.mainPanelCord withBlock:
+			 ^()
+			 {
+				 if (teleport)
+				 {
+					 //move everyone
+					 [weakSelf.mapView setPositionWithX:weakSelf.map.player.x - GAMEPLAY_SCREEN_WIDTH * 0.5f + 0.5f andY:weakSelf.map.player.y - GAMEPLAY_SCREEN_HEIGHT * 0.5f + 0.5f withAnimBlock:
+							^()
+							{
+								[weakSelf moveCreatureAnim];
+							} andCompleteBlock:
+							^()
+							{
+								[weakSelf.map recalculateVisibility];
+								[weakSelf.mapView remake];
+								if (!delayed)
+									[weakSelf.map update];
+							}];
+				 }
+				 else if (!delayed) //and now it's the next turn!
+					 [weakSelf.map update];
+			 }];
+		});
+	}];
+}
+
+-(void)attackAnimationInner:(NSString *)name withElement:(NSString *)element andAttackEffect:(NSString *)attackEffect fromPerson:(Creature *)creature targetX:(int)x andY:(int)y delayed:(BOOL)delayed withEffectBlock:(void (^)(void))block
+{
 	//TODO: I actually kinda liked the effect the background color changing thing had
 	//maybe it can be added back, as a rider to the panel switch?
 	//so, ie, the background turns red when someone uses a burn attack
 	
-	
-	//load attack effect variables
-	NSString *attackEffect = loadValueString(@"Attacks", name, @"attack effect");
-	NSString *attackSpriteName = loadValueString(@"AttackEffects", attackEffect, @"sprite");
-	UIImage *attackSprite = [UIImage imageNamed:attackSpriteName];
-	
 	//set attack color by element
+	UIColor *color;
 	if (!loadValueBool(@"Attacks", name, @"power"))
-		attackSprite = colorImage(attackSprite, loadColorFromName(@"element no damage"));
+		color = loadColorFromName(@"element no damage");
 	else
-		attackSprite = colorImage(attackSprite, loadColorFromName([NSString stringWithFormat:@"element %@", element]));
+		color = loadColorFromName([NSString stringWithFormat:@"element %@", element]);
 	
-	float time;
-	if (loadValueBool(@"AttackEffects", attackEffect, @"time per distance"))
-		time = loadValueNumber(@"AttackEffects", attackEffect, @"time per distance").floatValue * (ABS(creature.x - x) + ABS(creature.y - y));
-	else
-		time = loadValueNumber(@"AttackEffects", attackEffect, @"time").floatValue;
 	
+	//pick relative positions based on anim type
 	int attackXFrom, attackYFrom, attackXTo, attackYTo;
 	BOOL rotate = loadValueBool(@"AttackEffects", attackEffect, @"rotate");
+	BOOL projectile = true;
 	float angle = 0;
-	
-	//TODO: pick relative positions based on anim type
 	NSString *animType = loadValueString(@"AttackEffects", attackEffect, @"type");
 	attackXTo = x * GAMEPLAY_TILE_SIZE + GAMEPLAY_TILE_SIZE / 2 + self.mapView.xOffset;
 	attackYTo = y * GAMEPLAY_TILE_SIZE + GAMEPLAY_TILE_SIZE / 2 + self.mapView.yOffset;
@@ -1149,21 +1172,53 @@
 		attackXFrom = creature.x * GAMEPLAY_TILE_SIZE + GAMEPLAY_TILE_SIZE / 2 + self.mapView.xOffset;
 		attackYFrom = creature.y * GAMEPLAY_TILE_SIZE + GAMEPLAY_TILE_SIZE / 2 + self.mapView.yOffset;
 	}
-	else if ([animType isEqualToString:@"down melee"])
+	else if ([animType isEqualToString:@"melee"])
 	{
 		attackXFrom = attackXTo;
-		attackYFrom = attackYTo - GAMEPLAY_TILE_SIZE;
-		attackYTo += GAMEPLAY_TILE_SIZE / 2;
+		attackYFrom = attackYTo + loadValueNumber(@"AttackEffects", attackEffect, @"start off").intValue;
+		attackYTo += loadValueNumber(@"AttackEffects", attackEffect, @"end off").intValue;
 	}
-	else if ([animType isEqualToString:@"up melee"])
-	{
-		attackXFrom = attackXTo;
-		attackYFrom = attackYTo + GAMEPLAY_TILE_SIZE;
-		attackYTo -= GAMEPLAY_TILE_SIZE / 2;
-	}
+	else
+		projectile = false;
 	if (rotate)
 		angle = atan2f(attackYTo - attackYFrom, attackXTo - attackXFrom);
 	
+	
+	//load attack effect variables
+	UIImage *attackSprite = nil;
+	if (projectile)
+	{
+		NSString *attackSpriteName = loadValueString(@"AttackEffects", attackEffect, @"sprite");
+		attackSprite = colorImage([UIImage imageNamed:attackSpriteName], color);
+	}
+	
+	//load explosion effect variables
+	UIImage *explosionSprite = nil;
+	if (loadValueBool(@"AttackEffects", attackEffect, @"explosion sprite"))
+	{
+		NSString *explosionSpriteName = loadValueString(@"AttackEffects", attackEffect, @"explosion sprite");
+		explosionSprite = colorImage([UIImage imageNamed:explosionSpriteName], color);
+	}
+	
+	
+	//how long should it last?
+	Tile *to = self.map.tiles[y][x];
+	Tile *from = self.map.tiles[creature.y][creature.x];
+	float time, explosionTime = 0;
+	if (loadValueBool(@"AttackEffects", attackEffect, @"time per distance"))
+		time = loadValueNumber(@"AttackEffects", attackEffect, @"time per distance").floatValue * (ABS(creature.x - x) + ABS(creature.y - y));
+	else if (loadValueBool(@"AttackEffects", attackEffect, @"time"))
+		time = loadValueNumber(@"AttackEffects", attackEffect, @"time").floatValue;
+	else
+		time = 0.001f;
+	if (loadValueBool(@"AttackEffects", attackEffect, @"explosion time"))
+		explosionTime = loadValueNumber(@"AttackEffects", attackEffect, @"explosion time").floatValue;
+	if (!to.visible && !from.visible && !delayed)
+	{
+		//you can't see what's attacking, or what's being attacked, so it should be invisible; area attacks are exempt
+		time = 0.001f;
+		explosionTime = time;
+	}
 	
 	//announce the attack
 	__weak typeof(self) weakSelf = self;
@@ -1172,71 +1227,71 @@
 	[self switchToPanel:self.attackNamePanelCord withBlock:
 	^()
 	{
-		//TODO: for now, everything has a "projectile" animation
-		UIView *projectileView = [UIView new];
-		UIImageView *image = [[UIImageView alloc] initWithImage:attackSprite];
-		image.center = CGPointZero;
-		projectileView.center = CGPointMake(attackXFrom, attackYFrom);
-		[weakSelf.creatureView addSubview:projectileView];
-		[projectileView addSubview:image];
-		if (rotate)
-			image.transform = CGAffineTransformMakeRotation(angle);
+		UIView *projectileView = nil;
+		UIImageView *image = nil;
+		if (projectile)
+		{
+			projectileView = [UIView new];
+			image = [[UIImageView alloc] initWithImage:attackSprite];
+			image.center = CGPointZero;
+			projectileView.center = CGPointMake(attackXFrom, attackYFrom);
+			[weakSelf.creatureView addSubview:projectileView];
+			[projectileView addSubview:image];
+			if (rotate)
+				image.transform = CGAffineTransformMakeRotation(angle);
+		}
 		
 		
-		//how long should it last?
-		float finalTime = time;
-		Tile *to = weakSelf.map.tiles[y][x];
-		Tile *from = weakSelf.map.tiles[creature.y][creature.x];
-		if (!to.visible && !from.visible && !delayed)
-			finalTime = 0.001f; //you can't see what's attacking, or what's being attacked, so it should be invisible; area attacks are exempt
 		weakSelf.animating = true;
-		[UIView animateWithDuration:finalTime animations:
+		[UIView animateWithDuration:time animations:
 		^()
 		{
 			//fling the projectile at the target
-			if (delayed)
+			if (projectile)
 			{
-				int projectileExtraSize = loadValueNumber(@"Attacks", name, @"area").intValue;
-				int width = image.bounds.size.width * projectileExtraSize;
-				int height = image.bounds.size.height * projectileExtraSize;
-				image.bounds = CGRectMake(-width, -height, width, height);
+				if (delayed && explosionSprite == nil) //only expand when there's no explosion
+				{
+					int projectileExtraSize = loadValueNumber(@"Attacks", name, @"area").intValue;
+					int width = image.bounds.size.width * projectileExtraSize;
+					int height = image.bounds.size.height * projectileExtraSize;
+					image.bounds = CGRectMake(-width, -height, width, height);
+				}
+				projectileView.frame = CGRectMake(attackXTo, attackYTo, 0, 0);
 			}
-			projectileView.frame = CGRectMake(attackXTo, attackYTo, 0, 0);
 			
 		} completion:
 		^(BOOL finished)
 		{
 			//get rid of the projectile
-			[projectileView removeFromSuperview];
+			if (projectile)
+				[projectileView removeFromSuperview];
 			
-			
-			weakSelf.animating = false;
-			
-			//run the effect block
-			block(^(){
-				[weakSelf switchToPanel:weakSelf.mainPanelCord withBlock:
+			if (explosionSprite == nil)
+			{
+				weakSelf.animating = false;
+				block();
+			}
+			else
+			{
+				UIImageView *boom = [[UIImageView alloc] initWithImage:explosionSprite];
+				boom.frame = CGRectMake(attackXTo - GAMEPLAY_TILE_SIZE / 4, attackYTo - GAMEPLAY_TILE_SIZE / 4, GAMEPLAY_TILE_SIZE / 2, GAMEPLAY_TILE_SIZE / 2);
+				[weakSelf.creatureView addSubview:boom];
+				[UIView animateWithDuration:explosionTime animations:
 				^()
 				{
-					if (teleport)
-					{
-						//move everyone
-						[weakSelf.mapView setPositionWithX:weakSelf.map.player.x - GAMEPLAY_SCREEN_WIDTH * 0.5f + 0.5f andY:weakSelf.map.player.y - GAMEPLAY_SCREEN_HEIGHT * 0.5f + 0.5f withAnimBlock:
-						^()
-						{
-							[weakSelf moveCreatureAnim];
-						} andCompleteBlock:
-						^()
-						{
-							[weakSelf.map recalculateVisibility];
-							[weakSelf.mapView remake];
-							if (!delayed)
-								[weakSelf.map update];
-						}];
-					}
-					else if (!delayed) //and now it's the next turn!
-						[weakSelf.map update];
+					int boomSize = 1;
+					if (delayed)
+						boomSize = loadValueNumber(@"Attacks", name, @"area").intValue;
+					boom.frame = CGRectMake(attackXTo - GAMEPLAY_TILE_SIZE * boomSize / 2, attackYTo - GAMEPLAY_TILE_SIZE * boomSize / 2, GAMEPLAY_TILE_SIZE * boomSize, GAMEPLAY_TILE_SIZE * boomSize);
+				} completion:
+				^(BOOL finished)
+				{
+					[boom removeFromSuperview];
+					
+					weakSelf.animating = false;
+					block();
 				}];
-			});
+			}
 		}];
 	}];
 }

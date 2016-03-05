@@ -67,7 +67,7 @@
 		_race = @"raider";
 		_armors = [NSMutableArray arrayWithObjects:@"skullcap", @"blue tail banner", nil];
 		
-		_skillTrees = [NSArray arrayWithObjects:@"stealth", @"time", @"might", @"spear", @"smithing", nil];
+		_skillTrees = [NSArray arrayWithObjects:@"bow", @"charm", @"sacred light", @"heresy", @"godly form", nil];
 		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
 		_implements = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
 		_weapon = loadValueString(@"Races", _race, @"race start weapon");
@@ -595,8 +595,10 @@
 		element = loadValueString(@"Implements", implement, @"element");
 	
 	
-	//TODO: get implement attack effect overwrite
-	//<key>attack effect</key>
+	//get the attack effect
+	NSString *attackEffect = loadValueString(@"Attacks", self.storedAttack, @"attack effect");
+	if (implement.length > 0 && loadValueBool(@"Implements", implement, @"attack effect"))
+		attackEffect = loadValueString(@"Implements", implement, @"attack effect");
 	
 	
 	NSMutableArray *labels = [NSMutableArray new];
@@ -604,7 +606,7 @@
 	
 	//use the map's delegate stuff to do an attack anim
 	__weak typeof(self) weakSelf = self;
-	[self.map.delegate attackAnimation:self.storedAttack withElement:element fromPerson:self targetX:self.storedAttackX andY:self.storedAttackY withEffectBlock:
+	[self.map.delegate attackAnimation:self.storedAttack withElement:element andAttackEffect:attackEffect fromPerson:self targetX:self.storedAttackX andY:self.storedAttackY withEffectBlock:
 	^(void (^finalBlock)(void))
 	{
 		__block BOOL tilesChanged = false;

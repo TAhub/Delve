@@ -9,28 +9,84 @@
 -->
 <plist version="1.0">
 <dict>
+	<!-- current effect bugs -->
+	<!-- the arrow storm projectile is 3x the desired size, oops -->
+	
+	
 	<key>template</key>
 	<dict>
 		<key>sprite</key> <string>projectile_bolt</string>
+		<key>explosion sprite</key> <string>explosion_explosion</string>
 		<key>time</key> <real>0.5</real>
 		<key>time per distance</key> <real>0.1</real>
+		<key>explosion time</key> <real>0.5</real>
+		<key>start off</key> <integer>-50</integer>
+		<key>end off</key> <integer>20</integer>
 		<key>type</key> <string>projectile</string>
 		<key>rotate</key> <true/>
 	</dict>
 	
-	<key>teleport</key>
+	<key>pillar</key>
 	<dict>
-		<key>sprite</key> <string>projectile_bolt</string>
-		<key>time</key> <real>0.1</real>
+		<key>explosion sprite</key> <string>explosion_pillar</string>
+		<key>explosion time</key> <real>0.3</real>
+		<key>type</key> <string>instant</string>
+	</dict>
+	
+	<key>shield toss</key>
+	<dict>
+		<key>sprite</key> <string>projectile_disc</string>
+		<key>time per distance</key> <real>0.25</real>
 		<key>type</key> <string>projectile</string>
-		<key>rotate</key> <true/>
+	</dict>
+	
+	<key>explosion</key>
+	<dict>
+		<key>explosion sprite</key> <string>explosion_explosion</string>
+		<key>explosion time</key> <real>0.3</real>
+		<key>type</key> <string>instant</string>
+	</dict>
+	
+	<key>arrow storm</key>
+	<dict>
+		<key>sprite</key> <string>projectile_arrowstorm</string>
+		<key>time</key> <real>0.5</real>
+		<key>start off</key> <integer>-120</integer>
+		<key>end off</key> <integer>0</integer>
+		<key>type</key> <string>melee</string>
+	</dict>
+	
+	<key>shatter</key>
+	<dict>
+		<key>explosion sprite</key> <string>explosion_shatter</string>
+		<key>explosion time</key> <real>0.15</real>
+		<key>type</key> <string>instant</string>
+	</dict>
+	
+	<key>crystal grenade</key>
+	<dict>
+		<key>sprite</key> <string>projectile_crystal</string>
+		<key>explosion sprite</key> <string>explosion_explosion</string>
+		<key>time per distance</key> <real>0.3</real>
+		<key>explosion time</key> <real>0.4</real>
+		<key>type</key> <string>projectile</string>
 	</dict>
 	
 	<key>slash</key>
 	<dict>
 		<key>sprite</key> <string>projectile_slash</string>
 		<key>time</key> <real>0.3</real>
-		<key>type</key> <string>down melee</string>
+		<key>start off</key> <integer>-50</integer>
+		<key>end off</key> <integer>30</integer>
+		<key>type</key> <string>melee</string>
+		<key>rotate</key> <true/>
+	</dict>
+	
+	<key>direction slash</key>
+	<dict>
+		<key>sprite</key> <string>projectile_slash</string>
+		<key>time</key> <real>0.3</real>
+		<key>type</key> <string>projectile</string>
 		<key>rotate</key> <true/>
 	</dict>
 	
@@ -38,15 +94,63 @@
 	<dict>
 		<key>sprite</key> <string>projectile_bolt</string>
 		<key>time</key> <real>0.4</real>
-		<key>type</key> <string>up melee</string>
+		<key>start off</key> <integer>40</integer>
+		<key>end off</key> <integer>-10</integer>
+		<key>type</key> <string>melee</string>
 		<key>rotate</key> <true/>
+	</dict>
+	
+	<key>direction slam</key>
+	<dict>
+		<key>sprite</key> <string>projectile_bolt</string>
+		<key>explosion sprite</key> <string>explosion_explosion</string>
+		<key>time</key> <real>0.5</real>
+		<key>explosion time</key> <real>0.15</real>
+		<key>type</key> <string>projectile</string>
+		<key>rotate</key> <true/>
+	</dict>
+	
+	<key>shield</key>
+	<dict>
+		<key>explosion sprite</key> <string>explosion_shield</string>
+		<key>explosion time</key> <real>0.6</real>
+		<key>type</key> <string>instant</string>
+	</dict>
+	
+	<key>confuse</key>
+	<dict>
+		<key>explosion sprite</key> <string>explosion_confuse</string>
+		<key>explosion time</key> <real>0.5</real>
+		<key>type</key> <string>instant</string>
+	</dict>
+	
+	<key>poof</key>
+	<dict>
+		<key>explosion sprite</key> <string>explosion_poof</string>
+		<key>explosion time</key> <real>0.25</real>
+		<key>type</key> <string>instant</string>
+	</dict>
+	
+	<key>shield slam</key>
+	<dict>
+		<key>sprite</key> <string>projectile_disc</string>
+		<key>explosion sprite</key> <string>explosion_explosion</string>
+		<key>time</key> <real>0.5</real>
+		<key>explosion time</key> <real>0.1</real>
+		<key>start off</key> <integer>-40</integer>
+		<key>end off</key> <integer>0</integer>
+		<key>type</key> <string>melee</string>
 	</dict>
 	
 	<key>slam</key>
 	<dict>
 		<key>sprite</key> <string>projectile_bolt</string>
+		<key>explosion sprite</key> <string>explosion_poof</string>
 		<key>time</key> <real>0.5</real>
-		<key>type</key> <string>down melee</string>
+		<key>explosion time</key> <real>0.15</real>
+		<key>start off</key> <integer>-50</integer>
+		<key>end off</key> <integer>0</integer>
+		<key>type</key> <string>melee</string>
 		<key>rotate</key> <true/>
 	</dict>
 	
@@ -66,6 +170,16 @@
 		<key>rotate</key> <true/>
 	</dict>
 	
+	<key>exploding bolt</key>
+	<dict>
+		<key>sprite</key> <string>projectile_bolt</string>
+		<key>explosion sprite</key> <string>explosion_explosion</string>
+		<key>time per distance</key> <real>0.15</real>
+		<key>explosion time</key> <real>0.3</real>
+		<key>type</key> <string>projectile</string>
+		<key>rotate</key> <true/>
+	</dict>
+	
 	<key>arrow</key>
 	<dict>
 		<key>sprite</key> <string>projectile_arrow</string>
@@ -77,7 +191,9 @@
 	<key>heart</key>
 	<dict>
 		<key>sprite</key> <string>projectile_heart</string>
+		<key>explosion sprite</key> <string>projectile_heart</string>
 		<key>time</key> <real>0.5</real>
+		<key>explosion time</key> <real>0.5</real>
 		<key>type</key> <string>projectile</string>
 	</dict>
 </dict>

@@ -37,6 +37,9 @@
 		
 		//TODO: these are temporary start items
 		[self addItem:[[Item alloc] initWithName:@"bread" andType:ItemTypeInventory]];
+		[self addItem:[[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory]];
+		[self addItem:[[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory]];
+		[self addItem:[[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory]];
 	}
 	return self;
 }
