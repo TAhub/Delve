@@ -292,6 +292,18 @@
 	//how long the "real" path to the end should be
 	int desiredPathLength = loadValueNumber(@"Floors", floorName, @"desired path length").intValue;
 	
+	//what is the base chance of a cave wall
+	int caveWallChance = loadValueNumber(@"Floors", floorName, @"cave wall chance").intValue;
+	
+	//what is the number of cave smooths
+	int caveSmooths = loadValueNumber(@"Floors", floorName, @"cave smooths").intValue;
+	
+	//what is the minimum percentage of floor tiles
+	int minFloorTilePercent = loadValueNumber(@"Floors", floorName, @"min floor tile percent").intValue;
+	
+	//what is the maximum percentage of floor tiles
+	int maxFloorTilePercent = loadValueNumber(@"Floors", floorName, @"max floor tile percent").intValue;
+	
 	//how many treasures should be equipment
 	int equipmentTreasures = loadValueNumber(@"Floors", floorName, @"equipment treasures").intValue;
 	
@@ -606,19 +618,36 @@
 				//TODO: place enemies, treasure, etc
 			}
 	
-	//TODO: replace big parts of the map with cellular caves
-	//where cellular cave floor is placed, it overwrites doors and walls
-	//it overwrites room floor with a (VARIABLE)% chance, otherwise it turns room floor into room floor rubble
-	//cave walls overwrite room walls too
-	//there should be a "masking" layer to determine where overwriting happens
-	//this should probably have some kinds of map generator variables too
-	[self mapGeneratorCaveWithFloorChance:50 andSmooths:2];
-	[self mapGeneratorSealInaccessableWithStartX:startRoom.xCorner + (roomSize / 2) andY:startRoom.yCorner + (roomSize / 2)];
+	//replace big parts of the map with cellular caves
+	NSLog(@"Generating cave tiles");
+	[self mapGeneratorCaveWithFloorChance:caveWallChance andSmooths:caveSmooths];
+	int floorTiles = [self mapGeneratorSealInaccessableWithStartX:startRoom.xCorner + (roomSize / 2) andY:startRoom.yCorner + (roomSize / 2)];
+	if ((floorTiles * 100 < self.width * self.height * minFloorTilePercent) || (floorTiles * 100 > self.width * self.height * maxFloorTilePercent))
+	{
+		NSLog(@"--ERROR: invalid number of floor tiles %i! Restarting!", floorTiles);
+		self.tiles = nil;
+		return false;
+	}
 	
 	//TODO: locked-only rooms should never be breached by caves, paint those rooms (and their walls!) out of the cellular mask
 	
-	//TODO: identify rooms that were at least 50% uncovered by the cellular cave generation and mixing
+	//identify rooms that were partially uncovered by the cellular cave generation and mixing
 	//those rooms should be marked as accessable but keep the -1 layer, so they can have stuff placed in them
+	for (NSArray *row in rooms)
+		for (GeneratorRoom *room in row)
+			if (!room.accessable)
+			{
+				int uncoveredTiles = 0;
+				for (int y = 0; y < roomSize; y++)
+					for (int x = 0; x < roomSize; x++)
+					{
+						Tile *tile = self.tiles[y + room.yCorner][x + room.xCorner];
+						if (!tile.solid)
+							uncoveredTiles += 1;
+					}
+				if (uncoveredTiles * 100 >= roomSize * roomSize * GENERATOR_CAVE_ROOM_PERCENT)
+					room.accessable = true;
+			}
  
 	NSLog(@"Finding treasure and encounter locations");
 	
@@ -830,7 +859,7 @@
 		}
 }
 
--(void)mapGeneratorSealInaccessableWithStartX:(int)x andY:(int)y
+-(int)mapGeneratorSealInaccessableWithStartX:(int)x andY:(int)y
 {
 	NSMutableArray *explored = [NSMutableArray new];
 	for (int y = 0; y < self.height; y++)
@@ -875,6 +904,7 @@
 	}
 	
 	//turn all unexplored non-solid tiles into natural wall
+	int floorTiles = 0;
 	for (int y = 0; y < self.height; y++)
 		for (int x = 0; x < self.width; x++)
 		{
@@ -882,7 +912,10 @@
 			NSNumber *alreadyExplored = explored[y][x];
 			if (!tile.solid && alreadyExplored.intValue == 0)
 				tile.type = @"natural wall red";
+			if (!tile.solid)
+				floorTiles += 1;
 		}
+	return floorTiles;
 }
 
 -(NSMutableArray *)cellularSmooth:(NSMutableArray *)toSmooth
