@@ -538,8 +538,8 @@
 	//cancel stealth
 	if (self.stealthed > 0)
 	{
-		//TODO: cancel stealth effect
 		self.stealthed = 0;
+		[self.map.delegate updateCreature:self];
 	}
 
 	
@@ -793,8 +793,8 @@
 		self.extraAction += loadValueNumber(@"Attacks", attackType, @"extra actions").intValue;
 	if (loadValueBool(@"Attacks", attackType, @"stealth"))
 	{
-		//TODO: apply some kind of stealth visual effect
 		self.stealthed += loadValueNumber(@"Attacks", attackType, @"stealth").intValue;
+		[self.map.delegate updateCreature:self];
 	}
 	
 	return label;
@@ -893,9 +893,7 @@
 	{
 		self.stealthed -= 1;
 		if (self.stealthed == 0)
-		{
-			//TODO: cancel stealth effect
-		}
+			[self.map.delegate updateCreature:self];
 	}
 	
 	if (self.stunned > 0)
