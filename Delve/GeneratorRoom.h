@@ -23,11 +23,14 @@
 
 @property (weak, nonatomic) GeneratorRoom *leftRoom;
 @property (weak, nonatomic) GeneratorRoom *upRoom;
+@property (weak, nonatomic) GeneratorRoom *rightRoom;
+@property (weak, nonatomic) GeneratorRoom *downRoom;
 
 @property BOOL accessable;
 @property BOOL encounter;
 @property BOOL treasure;
 @property BOOL equipmentTreasure;
+@property BOOL lockedOnly;
 
 @property (nonatomic) GeneratorRoomExit leftDoor;
 @property (nonatomic) GeneratorRoomExit upDoor;

@@ -41,8 +41,21 @@
 		_accessable = false;
 		_treasure = false;
 		_encounter = false;
+		_lockedOnly = true;
 	}
 	return self;
+}
+
+-(void)setUpRoom:(GeneratorRoom *)upRoom
+{
+	_upRoom = upRoom;
+	upRoom.downRoom = self;
+}
+
+-(void)setLeftRoom:(GeneratorRoom *)leftRoom
+{
+	_leftRoom = leftRoom;
+	leftRoom.rightRoom = self;
 }
 
 -(GeneratorRoomExit)upDoor

@@ -544,8 +544,10 @@
 				}
 			}
 	
-	//TODO: go through the rooms and identify which ones you NEED to unlock a door to get to
+	//go through the rooms and identify which ones you NEED to unlock a door to get to
 	//each room like that should have at least SOMETHING in it
+	GeneratorRoom *startRoom = rooms[rows-1][columns / 2];
+	[self mapGeneratorFindLockedOnlyRooms:rooms withStartRoom:startRoom];
 	
 	NSLog(@"Making tiles");
 	
@@ -562,7 +564,6 @@
 	}
 	
 	//place the player in the center of the start room
-	GeneratorRoom *startRoom = rooms[rows-1][columns / 2];
 	int pX = startRoom.xCorner + (roomSize / 2);
 	int pY = startRoom.yCorner + (roomSize / 2);
 	Creature *player;
@@ -618,9 +619,30 @@
 				//TODO: place enemies, treasure, etc
 			}
 	
+	
 	//replace big parts of the map with cellular caves
 	NSLog(@"Generating cave tiles");
-	[self mapGeneratorCaveWithFloorChance:caveWallChance andSmooths:caveSmooths];
+	NSMutableArray *caveMask = [NSMutableArray new];
+	for (int y = 0; y < self.height; y++)
+	{
+		NSMutableArray *row = [NSMutableArray new];
+		for (int x = 0; x < self.width; x++)
+			[row addObject:@(1)];
+		[caveMask addObject:row];
+	}
+	
+	NSLog(@"--Marking locked-only rooms to not be overwritten");
+	for (NSArray *row in rooms)
+		for (GeneratorRoom *room in row)
+			if (room.lockedOnly && room.accessable)
+				for (int y = -1; y < roomSize + 1; y++)
+					for (int x = -1; x < roomSize + 1; x++)
+						caveMask[y + room.yCorner][x + room.xCorner] = @(0);
+	
+	NSLog(@"--Generating cave tiles");
+	[self mapGeneratorCaveWithFloorChance:caveWallChance andSmooths:caveSmooths andCaveMask:caveMask];
+	
+	NSLog(@"--Finding invalid floor tiles");
 	int floorTiles = [self mapGeneratorSealInaccessableWithStartX:startRoom.xCorner + (roomSize / 2) andY:startRoom.yCorner + (roomSize / 2)];
 	if ((floorTiles * 100 < self.width * self.height * minFloorTilePercent) || (floorTiles * 100 > self.width * self.height * maxFloorTilePercent))
 	{
@@ -628,8 +650,6 @@
 		self.tiles = nil;
 		return false;
 	}
-	
-	//TODO: locked-only rooms should never be breached by caves, paint those rooms (and their walls!) out of the cellular mask
 	
 	//identify rooms that were partially uncovered by the cellular cave generation and mixing
 	//those rooms should be marked as accessable but keep the -1 layer, so they can have stuff placed in them
@@ -646,7 +666,10 @@
 							uncoveredTiles += 1;
 					}
 				if (uncoveredTiles * 100 >= roomSize * roomSize * GENERATOR_CAVE_ROOM_PERCENT)
+				{
 					room.accessable = true;
+					room.lockedOnly = false;
+				}
 			}
  
 	NSLog(@"Finding treasure and encounter locations");
@@ -741,14 +764,17 @@
 	//these try to go in the center of their respecive rooms
 	for (NSArray *row in rooms)
 		for (GeneratorRoom *room in row)
-			if (room.treasure)
+			if (room.accessable && (room.treasure || room.lockedOnly))
 			{
+				if (room.lockedOnly)
+					NSLog(@"Locked only loot! Woo!");
+				
 				//if at all possible, go to the center of the room
 				int xC = room.xCorner + (roomSize / 2);
 				int yC = room.yCorner + (roomSize / 2);
 				Tile *centerTile = self.tiles[yC][xC];
 				if (centerTile.validPlacementSpot)
-					[self placeTreasureOn:centerTile equipmentTreasure:room.equipmentTreasure isUnlocked:NO];
+					[self placeTreasureOn:centerTile equipmentTreasure:room.equipmentTreasure || room.lockedOnly isUnlocked:!room.lockedOnly];
 				else
 				{
 					//find a random spot in the tile to place a treasure
@@ -759,7 +785,7 @@
 						Tile *randomTile = self.tiles[yR][xR];
 						if (randomTile.validPlacementSpot)
 						{
-							[self placeTreasureOn:randomTile equipmentTreasure:room.equipmentTreasure isUnlocked:NO];
+							[self placeTreasureOn:randomTile equipmentTreasure:room.equipmentTreasure || room.lockedOnly isUnlocked:!room.lockedOnly];
 							break;
 						}
 					}
@@ -829,7 +855,7 @@
 	return true;
 }
 
--(void)mapGeneratorCaveWithFloorChance:(int)wallChance andSmooths:(int)smooths
+-(void)mapGeneratorCaveWithFloorChance:(int)wallChance andSmooths:(int)smooths andCaveMask:(NSArray *)mask
 {
 	NSMutableArray *caveTiles = [NSMutableArray new];
 	for (int y = 0; y < self.height; y++)
@@ -849,14 +875,47 @@
 	//use the cave tiles to change the tiles
 	for (int y = 0; y < self.height; y++)
 		for (int x = 0; x < self.width; x++)
+			if (((NSNumber *)mask[y][x]).intValue == 1)
+			{
+				Tile *tile = self.tiles[y][x];
+				BOOL wall = x == 0 || y == 0 || x == self.width - 1 || y == self.height - 1 || ((NSNumber *)caveTiles[y][x]).intValue > 0;
+				
+				//replacement rules
+				if (!wall && tile.canRubble)
+					[tile rubble];
+			}
+}
+
+-(void)mapGeneratorFindLockedOnlyRooms:(NSArray *)rooms withStartRoom:(GeneratorRoom *)startRoom
+{
+	NSMutableArray *toExplore = [NSMutableArray new];
+	[toExplore addObject:startRoom];
+	startRoom.lockedOnly = false;
+	
+	//locked only starts out as true
+	//so no need to mark things
+	for (int i = 0; i < toExplore.count; i++)
+	{
+		GeneratorRoom *room = toExplore[i];
+		for (int j = 0; j < 4; j++)
 		{
-			Tile *tile = self.tiles[y][x];
-			BOOL wall = x == 0 || y == 0 || x == self.width - 1 || y == self.height - 1 || ((NSNumber *)caveTiles[y][x]).intValue > 0;
-			
-			//replacement rules
-			if (!wall && tile.canRubble)
-				[tile rubble];
+			GeneratorRoom *toRoom;
+			switch (j)
+			{
+				case 0: toRoom = room.upDoor != GeneratorRoomExitLockedDoor && room.upDoor != GeneratorRoomExitWall ? room.upRoom : nil; break;
+				case 1: toRoom = room.downDoor != GeneratorRoomExitLockedDoor && room.downDoor != GeneratorRoomExitWall ? room.downRoom : nil; break;
+				case 2: toRoom = room.leftDoor != GeneratorRoomExitLockedDoor && room.leftDoor != GeneratorRoomExitWall ? room.leftRoom : nil; break;
+				case 3: toRoom = room.rightDoor != GeneratorRoomExitLockedDoor && room.rightDoor != GeneratorRoomExitWall ? room.rightRoom: nil; break;
+			}
+			if (toRoom != nil && toRoom.lockedOnly)
+			{
+				toRoom.lockedOnly = false;
+				[toExplore addObject:toRoom];
+			}
 		}
+	}
+	
+	
 }
 
 -(int)mapGeneratorSealInaccessableWithStartX:(int)x andY:(int)y

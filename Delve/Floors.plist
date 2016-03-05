@@ -21,7 +21,7 @@
 		<key>doors at a time</key> <integer>5</integer>
 		<key>min non orphans</key> <integer>20</integer>
 		<key>max non orphans</key> <integer>35</integer>
-		<key>locked door chance</key> <integer>50</integer>
+		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>7</integer>
 		<key>cave wall chance</key> <integer>50</integer>
@@ -60,7 +60,7 @@
 		<key>doors at a time</key> <integer>5</integer>
 		<key>min non orphans</key> <integer>20</integer>
 		<key>max non orphans</key> <integer>35</integer>
-		<key>locked door chance</key> <integer>50</integer>
+		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>7</integer>
 		<key>cave wall chance</key> <integer>50</integer>
