@@ -164,7 +164,7 @@
 		[self.delegate moveCreature:person fromX:person.x-x fromY:person.y-y withBlock:
 		^()
 		{
-			if (person.good && false) //TODO: if you walked onto a stair tile
+			if (person.good && ((Tile *)self.tiles[y][x]).stairs) //if you walked onto a stair tile
 			{
 				weakSelf.personOn = weakSelf.creatures.count + 5; //to make sure it's not the player's turn
 				[weakSelf.delegate goToNextMap];
@@ -336,6 +336,7 @@
 	NSString *lockedDoorTile = loadValueString(@"Tilesets", tileset, @"locked door");
 	NSString *doorFloorTile = loadValueString(@"Tilesets", tileset, @"door floor");
 	NSString *naturalWallTile = loadValueString(@"Tilesets", tileset, @"natural wall");
+	NSString *stairsTile = loadValueString(@"Tilesets", tileset, @"stairs");
 	
 	NSLog(@"Generating room array");
 	
@@ -360,6 +361,9 @@
 		
 		[rooms addObject:row];
 	}
+	
+	GeneratorRoom *startRoom = rooms[rows-1][columns / 2];
+	GeneratorRoom *exitRoom = rooms[0][columns / 2];
 	
 	NSLog(@"Placing room exits");
 	
@@ -466,7 +470,7 @@
 		
 		NSLog(@"----Accessable rooms: %i", accessableRooms);
 		
-		if (accessableRooms >= minNonOrphans && ((GeneratorRoom *)rooms[0][columns/2]).accessable)
+		if (accessableRooms >= minNonOrphans && exitRoom.accessable)
 		{
 			if (accessableRooms > maxNonOrphans)
 			{
@@ -486,8 +490,8 @@
 	
 	//find paths from the start to the end
 	NSMutableArray *paths = [NSMutableArray new];
-	NSMutableArray *pathStart = [NSMutableArray arrayWithObject:rooms[rows-1][columns/2]];
-	NSArray *intendedPath = [self pathExplore:pathStart aroundRooms:rooms toExit:rooms[0][columns/2] intoPaths:paths withDesiredLength:desiredPathLength];
+	NSMutableArray *pathStart = [NSMutableArray arrayWithObject:startRoom];
+	NSArray *intendedPath = [self pathExplore:pathStart aroundRooms:rooms toExit:exitRoom intoPaths:paths withDesiredLength:desiredPathLength];
 	if (intendedPath == nil)
 	{
 		NSLog(@"--No correct path found, looking for best path");
@@ -566,7 +570,6 @@
 	
 	//go through the rooms and identify which ones you NEED to unlock a door to get to
 	//each room like that should have at least SOMETHING in it
-	GeneratorRoom *startRoom = rooms[rows-1][columns / 2];
 	[self mapGeneratorFindLockedOnlyRooms:rooms withStartRoom:startRoom];
 	
 	NSLog(@"Making tiles");
@@ -777,7 +780,7 @@
 		((GeneratorRoom *)treasureTiles[i]).equipmentTreasure = true;
 	
 	//the exit always has an encounter
-	((GeneratorRoom *)rooms[columns/2][0]).encounter = true;
+	exitRoom.encounter = true;
 	
 	//place treasures
 	//these try to go in the center of their respecive rooms
@@ -814,7 +817,6 @@
 	//place unlocked equipment treasures in the start
 	for (int i = 0; i < startEquipmentTreasures;)
 	{
-		GeneratorRoom *startRoom = rooms[rows-1][columns/2];
 		int xR = startRoom.xCorner + arc4random_uniform(roomSize);
 		int yR = startRoom.yCorner + arc4random_uniform(roomSize);
 		Tile *randomTile = self.tiles[yR][xR];
@@ -868,7 +870,12 @@
 	//TODO: if I do any recutting, it should be here
 	//I probably shouldn't though
 	
-	//TODO: place exit door tile
+	//place exit door tile
+	int doorX = exitRoom.xCorner + roomSize / 2;
+	int doorY = exitRoom.yCorner + roomSize / 2;
+	((Tile *)self.tiles[doorY][doorX]).type = stairsTile;
+	
+	//TODO: place columns in rooms, in spots that aren't stairs, have no enemies or treasures, and are surrounded by non-walls
 	
 	return true;
 }

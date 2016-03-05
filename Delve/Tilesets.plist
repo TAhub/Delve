@@ -16,6 +16,7 @@
 		<key>locked door</key> <string>template</string>
 		<key>door floor</key> <string>template</string>
 		<key>natural wall</key> <string>template</string>
+		<key>stairs</key> <string>template</string>
 	</dict>
 	
     <key>red</key>
@@ -25,6 +26,7 @@
 		<key>locked door</key> <string>locked door red</string>
 		<key>door floor</key> <string>door floor red</string>
 		<key>natural wall</key> <string>natural wall red</string>
+		<key>stairs</key> <string>stairs red</string>
 	</dict>
 </dict>
 </plist>

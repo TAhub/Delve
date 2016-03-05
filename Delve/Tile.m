@@ -11,6 +11,7 @@
 @interface Tile()
 
 @property BOOL solidInner;
+@property BOOL stairsInner;
 @property (strong, nonatomic) NSString *spriteNameInner;
 @property BOOL valuesComputed;
 
@@ -50,6 +51,7 @@
 	else
 		self.spriteNameInner = loadValueString(@"Tiles", self.type, @"sprite");
 	self.solidInner = loadValueBool(@"Tiles", self.type, @"solid");
+	self.stairsInner = loadValueBool(@"Tiles", self.type, @"stairs");
 	
 	self.valuesComputed = true;
 }
@@ -71,6 +73,13 @@
 	if (!self.valuesComputed)
 		[self computeValues];
 	return self.solidInner;
+}
+
+-(BOOL)stairs
+{
+	if (!self.valuesComputed)
+		[self computeValues];
+	return self.stairsInner;
 }
 
 -(BOOL) canUnlock
