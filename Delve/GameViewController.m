@@ -1186,10 +1186,13 @@
 	
 	//load attack effect variables
 	UIImage *attackSprite = nil;
+	float projectileScale = 1;
 	if (projectile)
 	{
 		NSString *attackSpriteName = loadValueString(@"AttackEffects", attackEffect, @"sprite");
 		attackSprite = colorImage([UIImage imageNamed:attackSpriteName], color);
+		if (loadValueBool(@"AttackEffects", attackEffect, @"projectile scale"))
+			projectileScale = loadValueNumber(@"AttackEffects", attackEffect, @"projectile scale").floatValue;
 	}
 	
 	//load explosion effect variables
@@ -1233,7 +1236,9 @@
 		{
 			projectileView = [UIView new];
 			image = [[UIImageView alloc] initWithImage:attackSprite];
-			image.center = CGPointZero;
+			int width = attackSprite.size.width * projectileScale;
+			int height = attackSprite.size.height * projectileScale;
+			image.frame = CGRectMake(-width/2, -height/2, width, height);
 			projectileView.center = CGPointMake(attackXFrom, attackYFrom);
 			[weakSelf.creatureView addSubview:projectileView];
 			[projectileView addSubview:image];

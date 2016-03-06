@@ -67,7 +67,7 @@
 //		_race = @"raider";
 //		_armors = [NSMutableArray arrayWithObjects:@"skullcap", @"blue tail banner", nil];
 		
-		_skillTrees = [NSArray arrayWithObjects:@"bow", @"charm", @"sacred light", @"heresy", @"godly form", nil];
+		_skillTrees = [NSArray arrayWithObjects:@"bow", @"spear", @"sacred light", @"heresy", @"godly form", nil];
 		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
 		_implements = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
 		_weapon = loadValueString(@"Races", _race, @"race start weapon");
