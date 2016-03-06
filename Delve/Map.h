@@ -23,6 +23,7 @@
 -(void)updateCreature:(Creature *)cr;
 -(void)goToNextMap;
 -(void)floatLabelsOn:(NSArray *)creatures withString:(NSArray *)strings andColor:(UIColor *)color withBlock:(void (^)(void))block;
+-(void)countdownWarningWithBlock:(void (^)(void))block;
 
 @end
 
@@ -38,6 +39,10 @@
 -(int)width;
 -(int)height;
 -(BOOL)yourTurn;
+-(BOOL)overtime;
+
+@property int countdown;
+@property int overtimeCount;
 
 -(void)update;
 -(void)recalculateVisibility;

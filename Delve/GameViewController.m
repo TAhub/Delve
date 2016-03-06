@@ -1321,6 +1321,47 @@
 	[self performSegueWithIdentifier:@"changeMap" sender:self];
 }
 
+-(void)countdownWarningWithBlock:(void (^)(void))block
+{
+	int countdown = self.map.countdown;
+	
+	NSLog(@"COUNTDOWN: %i", countdown);
+	
+	if (countdown % GAMEPLAY_COUNTDOWN_WARNING_INTERVAL != 0)
+	{
+		//don't warn about the countdown
+		block();
+		return;
+	}
+	
+	//TODO: make the warning label bigger
+	UILabel *warning = [[UILabel alloc] initWithFrame:CGRectZero];
+	warning.text = [NSString stringWithFormat:@"%i", countdown];
+	warning.textColor = loadColorFromName(@"ui warning");
+	[warning sizeToFit];
+	warning.center = self.creatureView.center;
+	[self.view addSubview:warning];
+	
+	//TODO: warning siren sound
+	
+	self.animating = true;
+	__weak typeof(self) weakSelf = self;
+	[UIView animateWithDuration:0.5f animations:
+	^()
+	{
+		//TODO: shake the screen a bit
+		
+		//TODO: this is a temporary animation (though I do like how dramatic the effect is!)
+		weakSelf.view.backgroundColor = loadColorFromName(@"ui warning");
+	} completion:
+	^(BOOL finished)
+	{
+		[warning removeFromSuperview];
+		weakSelf.animating = false;
+		block();
+	}];
+}
+
 -(void)floatLabelsOn:(NSArray *)creatures withString:(NSArray *)strings andColor:(UIColor *)color withBlock:(void (^)(void))block
 {
 	NSMutableArray *labels = [NSMutableArray new];

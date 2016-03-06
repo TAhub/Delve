@@ -29,6 +29,8 @@
 		<key>min floor tile percent</key> <integer>40</integer>
 		<key>max floor tile percent</key> <integer>60</integer>
 		<!-- map balance data -->
+		<key>countdown</key> <integer>140</integer>
+		<key>overtime countdown</key> <integer>35</integer>
 		<key>equipment treasures</key> <integer>5</integer>
 		<key>dead room frequency</key> <integer>5</integer>
 		<key>start equipment treasures</key> <integer>4</integer>
@@ -43,8 +45,13 @@
 		</array>
 	</dict>
 	
-	<!-- TODO: maybe change how enemy generation works -->
-	<!-- so there's a fixed amount of treasures and encounters, not counting locked things -->
+	<!-- design guideline -->
+	<!-- the values I start with for countdown should be around 2 * (room size) * (desired path length) + 10 * (number encounters) -->
+	<!-- with some extra padding and such, obviously -->
+	<!-- overtime countdown should be shorter, obviously, maybe (room size) * (desired path length) -->
+	
+	<!-- TODO: important design note: -->
+	<!-- overtime countdown should always be a multiple of 5 -->
 	
 	
 	<!-- floor 0 -->
@@ -71,6 +78,8 @@
 		<key>min floor tile percent</key> <integer>40</integer>
 		<key>max floor tile percent</key> <integer>60</integer>
 		<!-- map balance data -->
+		<key>countdown</key> <integer>140</integer>
+		<key>overtime countdown</key> <integer>35</integer>
 		<key>equipment treasures</key> <integer>5</integer>
 		<key>dead room frequency</key> <integer>5</integer>
 		<key>start equipment treasures</key> <integer>4</integer>

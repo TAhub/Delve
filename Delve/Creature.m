@@ -867,6 +867,9 @@
 //	NSLog(@"Turn started for %@", self.good ? @"player" : @"enemy");
 	Tile *tile = self.map.tiles[self.y][self.x];
 	
+	if (self.map.overtime && !self.good)
+		self.awake = true; //automatically wake up in overtime
+	
 	//wake up when the player gets onscreen, unless they are stealthed
 	if (!self.awake && !self.good && tile.visible &&
 		(self.map.player.stealthed == 0 || ABS(self.x - self.map.player.x) + ABS(self.y - self.map.player.y) == 1)) //you can detect stealth at range 1
@@ -875,7 +878,11 @@
 		[self wakeUpNearby];
 	}
 	
-	//TODO: awake ais who spend too many rounds offscreen (this should probably be an AI variable) should go asleep again
+	if (!self.map.overtime)
+	{
+		//TODO: awake ais who spend too many rounds offscreen (this should probably be an AI variable) should go asleep again
+	}
+	
 	
 	if (self.forceField <= CREATURE_FORCEFIELDDECAY)
 		self.forceField = 0;
@@ -913,7 +920,33 @@
 	
 	if (self.awake)
 	{
-		//TODO: AI action
+		//AI action
+		
+		if (self.map.overtime)
+		{
+			//during overtime, all AIs panic and flee
+			//TOOD: maybe this behavior should be an ai variable (so robots don't give a damn about overtime)
+			
+			if (!tile.visible)
+			{
+				//just vanish, you're fleeing
+				//TODO: if I add anything that benefits from deaths that aren't caused directly by the player
+				//IE loot drops or whatnot
+				//I should come up with a mechanic to make an enemy vanish without killing it
+				self.health = 0;
+				[self.map.delegate updateCreature:self];
+				return NO;
+			}
+			
+			//try to flee
+			if ([self aiWalk:-1])
+				return YES;
+			
+			//otherwise, skip your turn
+			//don't bother defending or anything, it's just a waste
+			return NO;
+		}
+		
 		
 		//for now, the AI just moves towards the player and attacks when possible
 		
@@ -956,15 +989,8 @@
 		//otherwise, try to walk towards the player
 		//AIs shouldnt pursue the player if the AI isn't visible (IE it's far away or in a non-visible tile) AND the player is stealthed
 		if (tile.visible || self.map.player.stealthed == 0)
-		{
-			int xDif = self.map.player.x - self.x;
-			int yDif = self.map.player.y - self.y;
-			BOOL xFirst = ABS(xDif) > ABS(yDif);
-			if ([self.map movePerson:self withX:(xFirst ? copysign(1, xDif) : 0) andY:(!xFirst ? copysign(1, yDif) : 0)])
+			if ([self aiWalk:1])
 				return YES;
-			if (xDif != 0 && yDif != 0 && [self.map movePerson:self withX:(!xFirst ? copysign(1, xDif) : 0) andY:(xFirst ? copysign(1, yDif) : 0)])
-				return YES;
-		}
 		
 		
 		//TODO: maybe smarter AIs can do some actual pathfinding, within a certain radius?
@@ -998,6 +1024,18 @@
 	}
 	
 	return self.good || self.awake;
+}
+
+-(BOOL)aiWalk:(int)mult
+{
+	int xDif = (self.map.player.x - self.x) * mult;
+	int yDif = (self.map.player.y - self.y) * mult;
+	BOOL xFirst = ABS(xDif) > ABS(yDif);
+	if ([self.map movePerson:self withX:(xFirst ? copysign(1, xDif) : 0) andY:(!xFirst ? copysign(1, yDif) : 0)])
+		return YES;
+	if (xDif != 0 && yDif != 0 && [self.map movePerson:self withX:(!xFirst ? copysign(1, xDif) : 0) andY:(xFirst ? copysign(1, yDif) : 0)])
+		return YES;
+	return NO;
 }
 
 

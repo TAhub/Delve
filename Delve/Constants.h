@@ -26,6 +26,7 @@
 #define GAMEPLAY_LABEL_DISTANCE 50
 #define GAMEPLAY_TARGET_RANGE 5
 #define GAMEPLAY_SIGHT_LINE_DENSITY 80
+#define GAMEPLAY_COUNTDOWN_WARNING_INTERVAL 5
 
 #pragma mark map generator constants
 

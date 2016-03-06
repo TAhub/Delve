@@ -44,8 +44,20 @@
 	return self;
 }
 
+-(BOOL)overtime
+{
+	return self.countdown <= self.overtimeCount;
+}
+
 -(void)update
 {
+	if (self.player.dead)
+	{
+		//TODO: you died! you lose
+		NSLog(@"DEFEAT!");
+		return;
+	}
+	
 	//keep going for next
 	while (true)
 	{
@@ -54,13 +66,37 @@
 		{
 			cr.extraAction -= 1;
 			[cr startTurn];
-			break;
+			return;
 		}
 		
 		self.personOn = (self.personOn + 1) % self.creatures.count;
 		cr = self.creatures[self.personOn];
-		if (!cr.dead && [cr startTurn])
-			break;
+		if (cr.good)
+		{
+			//tick down the countdown
+			self.countdown -= 1;
+			if (self.countdown == 0)
+			{
+				//TODO: everything explodes! you lose
+				NSLog(@"BOOM!");
+				return;
+			}
+			if (self.overtime)
+			{
+				[self.delegate countdownWarningWithBlock:
+				^()
+				{
+					if (![cr startTurn])
+						[cr.map update];
+				}];
+				return;
+			}
+			else if ([cr startTurn])
+				return;
+		}
+		else
+			if (!cr.dead && [cr startTurn])
+				return;
 	}
 }
 
@@ -268,6 +304,15 @@
 	//first, get map generator variables
 	self.floorNum = map == nil ? 0 : map.floorNum + 1;
 	NSString *floorName = [NSString stringWithFormat:@"floor %i", self.floorNum];
+	
+	
+	//get overtime info
+	//the countdown is how many turns until overtime starts
+	//the overtime count is how many turns overtime lasts, before you die
+	//a high overtime count means you have a lot of time to seek the exit
+	self.overtimeCount = loadValueNumber(@"Floors", floorName, @"overtime countdown").intValue;
+	self.countdown = loadValueNumber(@"Floors", floorName, @"countdown").intValue + self.overtimeCount;
+	
 	
 	//how big a room is
 	int roomSize = loadValueNumber(@"Floors", floorName, @"room size").intValue;
