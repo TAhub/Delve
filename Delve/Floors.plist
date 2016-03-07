@@ -29,7 +29,7 @@
 		<key>min floor tile percent</key> <integer>40</integer>
 		<key>max floor tile percent</key> <integer>60</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>140</integer>
+		<key>countdown</key> <integer>160</integer>
 		<key>overtime countdown</key> <integer>35</integer>
 		<key>equipment treasures</key> <integer>4</integer>
 		<key>normal treasures</key> <integer>6</integer>
@@ -78,7 +78,7 @@
 		<key>min floor tile percent</key> <integer>40</integer>
 		<key>max floor tile percent</key> <integer>60</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>140</integer>
+		<key>countdown</key> <integer>160</integer>
 		<key>overtime countdown</key> <integer>35</integer>
 		<key>equipment treasures</key> <integer>4</integer>
 		<key>normal treasures</key> <integer>6</integer>

@@ -249,7 +249,7 @@
 	<dict>
 		<key>attack effect</key> <string>arrow</string>
 		<key>description</key> <string>Shoot your bow at a foe.</string>
-		<key>power</key> <integer>15</integer>
+		<key>power</key> <integer>17</integer>
 		<key>element</key> <string>cut</string>
 		<key>range</key> <integer>4</integer>
 		<key>min range</key> <integer>3</integer>

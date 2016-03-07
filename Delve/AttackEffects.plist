@@ -51,7 +51,7 @@
 		<key>start off</key> <integer>-120</integer>
 		<key>end off</key> <integer>0</integer>
 		<key>type</key> <string>melee</string>
-		<key>projectile scale</key> <real>0.3333</real>
+		<key>projectile scale</key> <real>0.315</real>
 	</dict>
 	
 	<key>shatter</key>
@@ -96,6 +96,7 @@
 		<key>end off</key> <integer>-10</integer>
 		<key>type</key> <string>melee</string>
 		<key>rotate</key> <true/>
+		<key>projectile scale</key> <real>1.15</real>
 	</dict>
 	
 	<key>direction slam</key>
@@ -106,6 +107,7 @@
 		<key>explosion time</key> <real>0.15</real>
 		<key>type</key> <string>projectile</string>
 		<key>rotate</key> <true/>
+		<key>projectile scale</key> <real>1.2</real>
 	</dict>
 	
 	<key>shield</key>
@@ -150,6 +152,7 @@
 		<key>end off</key> <integer>0</integer>
 		<key>type</key> <string>melee</string>
 		<key>rotate</key> <true/>
+		<key>projectile scale</key> <real>1.2</real>
 	</dict>
 	
 	<key>dart</key>

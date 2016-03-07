@@ -288,11 +288,11 @@
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
-				<key>damage bonus</key> <integer>10</integer>
+				<key>damage bonus</key> <integer>15</integer>
 				<key>attack</key> <string>bow shot</string>
 			</dict>
 			<dict> <!-- rank 2 -->
-				<key>damage bonus</key> <integer>10</integer>
+				<key>damage bonus</key> <integer>15</integer>
 				<key>shock resistance</key> <integer>1</integer>
 			</dict>
 			<dict> <!-- rank 3 -->

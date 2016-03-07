@@ -267,6 +267,9 @@
 		<key>power</key> <integer>45</integer>
 		<key>description</key> <string>An advanced bow fitted with a mechanism to increase power.</string>
 	</dict>
+	<!-- TODO: bodkin bow (level 1 smithing-only smash damage bow) -->
+	<!-- TODO: pitch bow (level 2 smithing-only burn damage bow) -->
+	<!-- TODO: relic bow (level 3 smithing-only shock damage bow) -->
 	
 	<!-- light orbs -->
 	<key>depleted orb</key>
