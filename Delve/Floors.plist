@@ -31,10 +31,10 @@
 		<!-- map balance data -->
 		<key>countdown</key> <integer>140</integer>
 		<key>overtime countdown</key> <integer>35</integer>
-		<key>equipment treasures</key> <integer>5</integer>
-		<key>dead room frequency</key> <integer>5</integer>
+		<key>equipment treasures</key> <integer>4</integer>
+		<key>normal treasures</key> <integer>6</integer>
+		<key>number of encounters</key> <integer>8</integer>
 		<key>start equipment treasures</key> <integer>4</integer>
-		<key>treasures per encounter</key> <real>0.95</real>
 		<key>encounters</key>
 		<array>
 			<array>
@@ -80,10 +80,10 @@
 		<!-- map balance data -->
 		<key>countdown</key> <integer>140</integer>
 		<key>overtime countdown</key> <integer>35</integer>
-		<key>equipment treasures</key> <integer>5</integer>
-		<key>dead room frequency</key> <integer>5</integer>
+		<key>equipment treasures</key> <integer>4</integer>
+		<key>normal treasures</key> <integer>6</integer>
+		<key>number of encounters</key> <integer>8</integer>
 		<key>start equipment treasures</key> <integer>4</integer>
-		<key>treasures per encounter</key> <real>0.95</real>
 		<key>encounters</key>
 		<array>
 			<array>

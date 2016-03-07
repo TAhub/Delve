@@ -106,6 +106,49 @@
 	return self.leftDoor != GeneratorRoomExitNoDoor && self.rightDoor != GeneratorRoomExitNoDoor &&
 			self.upDoor != GeneratorRoomExitNoDoor && self.downDoor != GeneratorRoomExitNoDoor;
 }
+-(BOOL)isPathRoom
+{
+	return self.leftDoor == GeneratorRoomExitPathDoor || self.rightDoor == GeneratorRoomExitPathDoor ||
+			self.upDoor == GeneratorRoomExitPathDoor || self.downDoor == GeneratorRoomExitPathDoor;
+}
+-(BOOL)validEncounterRoom
+{
+	if (self.encounter)
+		return false;
+	for (int i = 0; i < 4; i++)
+	{
+		GeneratorRoomExit type = GeneratorRoomExitDoor;
+		GeneratorRoom *room;
+		switch(i)
+		{
+			case 0:
+				type = self.upDoor;
+				room = self.upRoom;
+				break;
+			case 1:
+				type = self.downDoor;
+				room = self.downRoom;
+				break;
+			case 2:
+				type = self.leftDoor;
+				room = self.leftRoom;
+				break;
+			case 3:
+				type = self.rightDoor;
+				room = self.rightRoom;
+				break;
+		}
+		if (room != nil && room.encounter)
+		{
+			//if the adjacent room is a cave room or you have a direct path to it, it's not a valid room
+			if (type != GeneratorRoomExitLockedDoor && type != GeneratorRoomExitWall)
+				return false;
+			if (room.layer == -1)
+				return false;
+		}
+	}
+	return true;
+}
 
 
 @end

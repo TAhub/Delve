@@ -361,17 +361,16 @@
 	int maxFloorTilePercent = loadValueNumber(@"Floors", floorName, @"max floor tile percent").intValue;
 	
 	//how many treasures should be equipment
-	int equipmentTreasures = loadValueNumber(@"Floors", floorName, @"equipment treasures").intValue;
+	int numEquipmentTreasures = loadValueNumber(@"Floors", floorName, @"equipment treasures").intValue;
 	
-	//how often there are "dead" rooms (no treaure, no encounter); should probably be an odd number
-	int deadRoomFrequency = loadValueNumber(@"Floors", floorName, @"dead room frequency").intValue;
+	//how many non-equipment treasures you want
+	int numTreasures = loadValueNumber(@"Floors", floorName, @"normal treasures").intValue + numEquipmentTreasures;
+	
+	//how many enemy encounters you want
+	int numEncounters = loadValueNumber(@"Floors", floorName, @"number of encounters").intValue;
 	
 	//how many equipment items you are guaranteed to get in the starting room
 	int startEquipmentTreasures = loadValueNumber(@"Floors", floorName, @"start equipment treasures").intValue;
-	
-	//the ratio of treasures to encounters; set high for lots of treasure, low for lots of encounters
-	//keep it within 0.85-1.15 or so for balance and performance reasons
-	float treasuresPerEncounter = loadValueNumber(@"Floors", floorName, @"treasures per encounter").floatValue;
 	
 	//the list of encounter arrays
 	NSArray *encounters = loadValueArray(@"Floors", floorName, @"encounters");
@@ -742,93 +741,69 @@
 				}
 			}
  
-	NSLog(@"Finding treasure and encounter locations");
+	NSLog(@"Finding encounter locations");
 	
-	//add encounters and treasures to rooms
-	int numEncounters = 0;
-	int numTreasures = 0;
+	//place encounter spots based on rules, to prevent encounters from spawning next to each other
+	NSMutableArray *encounterRooms = [NSMutableArray new];
+	NSMutableArray *encounterRoomsNoPath = [NSMutableArray new];
 	for (NSArray *row in rooms)
 		for (GeneratorRoom *room in row)
-			if (room.accessable)
+			if (!room.lockedOnly && room.accessable && room != startRoom)
 			{
-				BOOL placeTreasure = false;
-				BOOL placeEncounter = false;
-				if ((room.x != columns / 2 || (room.y != rows - 1 && room.y != 0)) && room.accessable) //never place anything in the start room, the exit, or a wall
-				{
-					if (room.layer == -1)
-					{
-						//it's a cave-only room!
-						if (arc4random_uniform(2) == 0)
-							placeTreasure = YES;
-						else
-							placeEncounter = YES;
-						
-					}
-					else if (room.layer % deadRoomFrequency == 0)
-					{
-						//nothing goes here
-						//this is because I want some dead rooms
-					}
-					else if (room.layer % 2 == 0)
-						placeEncounter = YES;
-					else
-						placeTreasure = YES;
-				}
-				
-				if (placeEncounter)
-				{
-					room.encounter = YES;
-					numEncounters += 1;
-				}
-				if (placeTreasure)
-				{
-					room.treasure = YES;
-					numTreasures += 1;
-				}
+				if (room.isPathRoom)
+					[encounterRooms addObject:room];
+				else
+					[encounterRoomsNoPath addObject:room];
 			}
-	
-	NSLog(@"Balancing treasure / encounter ratio");
-	
-	//balance up the treasure/encounter ratio by adding one to rooms containing the other
-	int desiredTreasures = floorf(numEncounters * treasuresPerEncounter);
-	NSLog(@"--Need %i more treasures", MAX(desiredTreasures - numTreasures, 0));
-	for (int i = 0; i < GENERATOR_MAX_BALANCE_TRIES && numTreasures < desiredTreasures; i++)
-	{
-		int randomX = (int)arc4random_uniform((u_int32_t)columns);
-		int randomY = (int)arc4random_uniform((u_int32_t)rows);
-		GeneratorRoom *randomRoom = rooms[randomY][randomX];
-		if (randomRoom.encounter && !randomRoom.treasure)
+	[self shuffleArray:encounterRooms];
+	[self shuffleArray:encounterRoomsNoPath];
+	[encounterRooms addObjectsFromArray:encounterRoomsNoPath];
+	for (GeneratorRoom *room in encounterRooms)
+		if (room.validEncounterRoom)
 		{
-			randomRoom.treasure = true;
-			numTreasures += 1;
+			room.encounter = true;
+			numEncounters -= 1;
+			if (numEncounters <= 0)
+				break;
 		}
-	}
-	int desiredEncounters = floorf(numTreasures / treasuresPerEncounter);
-	NSLog(@"--Need %i more encounters", MAX(desiredEncounters - numEncounters, 0));
-	for (int i = 0; i < GENERATOR_MAX_BALANCE_TRIES && numEncounters < desiredEncounters; i++)
+	
+	
+	NSLog(@"Finding treasure locations");
+	
+	//place treasures based on rules also I guess
+	NSMutableArray *noEncounterTreasureRooms = [NSMutableArray new];
+	NSMutableArray *encounterTreasureRooms = [NSMutableArray new];
+	NSMutableArray *finalTreasureRooms = [NSMutableArray new];
+	for (NSArray *row in rooms)
+		for (GeneratorRoom *room in row)
+			if (room != startRoom && room != exitRoom && !room.treasure && room.accessable && !room.lockedOnly)
+			{
+				if (room.encounter)
+					[encounterTreasureRooms addObject:room];
+				else
+					[noEncounterTreasureRooms addObject:room];
+			}
+	[self shuffleArray:encounterTreasureRooms];
+	[self shuffleArray:noEncounterTreasureRooms];
+	[noEncounterTreasureRooms addObject:encounterTreasureRooms];
+	for (GeneratorRoom *room in noEncounterTreasureRooms)
 	{
-		int randomX = (int)arc4random_uniform((u_int32_t)columns);
-		int randomY = (int)arc4random_uniform((u_int32_t)rows);
-		GeneratorRoom *randomRoom = rooms[randomY][randomX];
-		if (randomRoom.treasure && !randomRoom.encounter)
-		{
-			randomRoom.encounter = true;
-			numEncounters += 1;
-		}
+		room.treasure = true;
+		numTreasures -= 1;
+		[finalTreasureRooms addObject:room];
+		if (numTreasures <= 0)
+			break;
 	}
+	
 	
 	//turn some treasures into equipment treasures
-	NSMutableArray *treasureTiles = [NSMutableArray new];
-	for (NSArray *row in rooms)
-		for (GeneratorRoom *room in row)
-			if (room.treasure && !room.equipmentTreasure)
-				[treasureTiles addObject:room];
-	[self shuffleArray:treasureTiles];
-	for (int i = 0; i < equipmentTreasures && i < treasureTiles.count; i++)
-		((GeneratorRoom *)treasureTiles[i]).equipmentTreasure = true;
+	[self shuffleArray:finalTreasureRooms];
+	for (int i = 0; i < numEquipmentTreasures && i < finalTreasureRooms.count; i++)
+		((GeneratorRoom *)finalTreasureRooms[i]).equipmentTreasure = true;
 	
 	//the exit always has an encounter
 	exitRoom.encounter = true;
+	numEncounters -= 1;
 	
 	//place treasures
 	//these try to go in the center of their respecive rooms

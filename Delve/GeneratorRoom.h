@@ -38,5 +38,7 @@
 @property (nonatomic) GeneratorRoomExit downDoor;
 
 -(BOOL)canAddNoDoor;
+-(BOOL)isPathRoom;
+-(BOOL)validEncounterRoom;
 
 @end
