@@ -383,8 +383,6 @@
 		<key>damage bonus</key> <integer>88</integer>
 		<key>health</key> <integer>76</integer>
 		<key>smash resistance</key> <integer>1</integer>
-		<key>blocks</key> <integer>0</integer>
-		<key>hacks</key> <integer>0</integer>
 		<key>metabolism</key> <integer>100</integer>
 		<!-- slots -->
 		<!-- appearance -->
@@ -408,7 +406,7 @@
 		<key>metabolism</key> <integer>100</integer>
 		<!-- slots -->
 		<!-- appearance -->
-		<!-- TODO: appearance data -->
+		<!-- TODO: appearance data; should look like a robo-Eol (so tall, with robot tail) -->
 	</dict>
 	
 	<!-- war bot (strong) -->
@@ -423,7 +421,7 @@
 		<key>metabolism</key> <integer>100</integer>
 		<!-- slots -->
 		<!-- appearance -->
-		<!-- TODO: appearance data -->
+		<!-- TODO: appearance data; think "fallout sentry robot" -->
 	</dict>
 </dict>
 </plist>

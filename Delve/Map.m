@@ -16,7 +16,6 @@
 @interface Map()
 
 @property int personOn;
-@property int floorNum;
 
 @end
 

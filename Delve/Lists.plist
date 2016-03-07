@@ -244,6 +244,7 @@
 		<string>sledgehammer</string>
 		<string>iron spear</string>
 		<string>shortbow</string>
+		<string>bodkin bow</string>
 		<string>rusty helmet</string>
 		<string>pot helmet</string>
 		<string>rusty armor</string>
@@ -261,6 +262,7 @@
 		<string>warhammer</string>
 		<string>pike</string>
 		<string>longbow</string>
+		<string>pitch bow</string>
 		<string>skullcap</string>
 		<string>riveted helmet</string>
 		<string>chestplate</string>
@@ -278,6 +280,7 @@
 		<string>greathammer</string>
 		<string>partisan</string>
 		<string>composite bow</string>
+		<string>relic bow</string>
 		<string>bandit helmet</string>
 		<string>soldier hat</string>
 		<string>winged helmet</string>

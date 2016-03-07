@@ -183,6 +183,26 @@
 			</dict>
 		</array>
 	</dict>
+	<key>rabid ruin feeder skill</key>
+	<dict>
+		<key>type</key> <string>invalid</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>attack</key> <string>rabid bite</string>
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>damage bonus</key> <integer>25</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>burn resistance</key> <integer>2</integer>
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>damage bonus</key> <integer>15</integer>
+				<key>smash resistance</key> <integer>1</integer>
+			</dict>
+		</array>
+	</dict>
 	
 	
 	<!-- war skills -->

@@ -66,6 +66,17 @@
 		<key>dodgeable</key> <true/>
 		<!-- special effects -->
 	</dict>
+	<key>rabid bite</key>
+	<dict>
+		<key>attack effect</key> <string>slash</string>
+		<key>power</key> <integer>25</integer>
+		<key>element</key> <string>cut</string>
+		<key>range</key> <integer>1</integer>
+		<key>cooldown</key> <integer>4</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+		<key>poison</key> <integer>3</integer>
+	</dict>
 	
 	<!-- melee damaging attacks -->
 	<key>attack</key>

@@ -487,6 +487,34 @@
 		<key>result type</key> <string>implement</string>
 		<key>result amount</key> <integer>1</integer>
 	</dict>
+	<key>bodkin bow</key>
+	<dict>
+		<key>ingredient a</key> <string>iron ingot</string>
+		<key>ingredient a amount</key> <integer>4</integer>
+		<key>result</key> <string>bodkin bow</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>pitch bow</key>
+	<dict>
+		<key>ingredient a</key> <string>steel ingot</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>herb</string>
+		<key>ingredient b amount</key> <integer>2</integer>
+		<key>result</key> <string>pitch bow</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>relic bow</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>battery</string>
+		<key>ingredient b amount</key> <integer>2</integer>
+		<key>result</key> <string>relic bow</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
 	
 	
 	<!-- false prophet recipies -->

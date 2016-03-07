@@ -38,6 +38,7 @@
 
 -(int)width;
 -(int)height;
+@property int floorNum;
 -(BOOL)yourTurn;
 -(BOOL)overtime;
 

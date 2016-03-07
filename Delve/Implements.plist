@@ -32,11 +32,28 @@
 		<key>element</key> <string>cut</string>
 		<key>attack effect</key> <string>slash</string>
 	</dict>
-	<key>basic relic</key>
+	<key>strong teeth</key>
+	<dict>
+		<key>type</key> <string>weapon</string>
+		<key>power</key> <integer>20</integer>
+		<key>element</key> <string>cut</string>
+		<key>attack effect</key> <string>slash</string>
+	</dict>
+	<key>claw relic</key>
 	<dict>
 		<key>type</key> <string>weapon</string>
 		<key>power</key> <integer>15</integer>
 		<key>element</key> <string>cut</string>
+	</dict>
+	<key>basic relic</key>
+	<dict>
+		<key>type</key> <string>weapon</string>
+		<key>power</key> <integer>15</integer>
+	</dict>
+	<key>advanced relic</key>
+	<dict>
+		<key>type</key> <string>weapon</string>
+		<key>power</key> <integer>45</integer>
 	</dict>
 	
 	<!-- weapons -->
@@ -267,9 +284,30 @@
 		<key>power</key> <integer>45</integer>
 		<key>description</key> <string>An advanced bow fitted with a mechanism to increase power.</string>
 	</dict>
-	<!-- TODO: bodkin bow (level 1 smithing-only smash damage bow) -->
-	<!-- TODO: pitch bow (level 2 smithing-only burn damage bow) -->
-	<!-- TODO: relic bow (level 3 smithing-only shock damage bow) -->
+	<key>bodkin bow</key>
+	<dict>
+		<key>type</key> <string>bow</string>
+		<key>breaks into</key> <string>iron ingot</string>
+		<key>power</key> <integer>15</integer>
+		<key>element</key> <string>smash</string>
+		<key>description</key> <string>A small bow that fires heavy bodkin arrows.</string>
+	</dict>
+	<key>pitch bow</key>
+	<dict>
+		<key>type</key> <string>bow</string>
+		<key>breaks into</key> <string>steel ingot</string>
+		<key>power</key> <integer>30</integer>
+		<key>element</key> <string>burn</string>
+		<key>description</key> <string>A large bow that shoots flaming arrows.</string>
+	</dict>
+	<key>relic bow</key>
+	<dict>
+		<key>type</key> <string>bow</string>
+		<key>breaks into</key> <string>refined ingot</string>
+		<key>power</key> <integer>45</integer>
+		<key>element</key> <string>shock</string>
+		<key>description</key> <string>An amazing bow that launches holy arrows.</string>
+	</dict>
 	
 	<!-- light orbs -->
 	<key>depleted orb</key>

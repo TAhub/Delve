@@ -41,6 +41,10 @@
 	
 	<!-- real enemy types -->
 	
+	
+	<!-- human bandits -->
+	<!-- human bandits have a player race, but are an early enemy type so they get shitty filler skills -->
+	
 	<!-- bandit -->
 	<!-- basic bandit type enemy -->
 	<key>bandit</key>
@@ -57,6 +61,34 @@
 			<string>filler monster skill</string>
 		</array>
 		<!-- equipment -->
+		<key>armors</key>
+		<array>
+			<string>rusty armor</string>
+			<string>rusty helmet</string>
+		</array>
+		<key>weapon</key> <string>shortsword</string>
+	</dict>
+	
+	<!-- archer bandit -->
+	<!-- more powerful, advanced bandit type enemy -->
+	<key>archer bandit</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>human</string>
+		<!-- TODO: AI -->
+		<key>skills</key>
+		<array>
+			<string>bow</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>shortbow</string>
+		</array>
 		<key>armors</key>
 		<array>
 			<string>rusty armor</string>
@@ -83,9 +115,15 @@
 		<key>armors</key>
 		<array>
 			<string>peasant clothes</string>
+			<string>pot helmet</string>
 		</array>
 		<key>weapon</key> <string>torch</string>
 	</dict>
+	
+	
+	<!-- ruin feeders -->
+	<!-- ruin feeders are the weakest, earliest enemy type -->
+	<!-- they are a little dodgy, and are solely melee -->
 	
 	<!-- ruin feeder runt -->
 	<!-- basic weak rat-ish enemy -->
@@ -103,8 +141,71 @@
 			<string>filler monster skill</string>
 		</array>
 		<!-- equipment -->
-		<key>weapon</key> <string>teeth</string>
+		<key>weapon</key> <string>strong teeth</string>
 	</dict>
+	
+	<!-- ruin feeder -->
+	<!-- a stronger version of the ruin feeder runt, meant to be less dodgy but tougher -->
+	<key>ruin feeder</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>ruin feeder</string>
+		<!-- TODO: AI -->
+		<key>skills</key>
+		<array>
+			<string>tough monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>weapon</key> <string>strong teeth</string>
+	</dict>
+	
+	<!-- fierce ruin feeder -->
+	<!-- an advanced ruin feeder which has the good qualities of the runt and the normal types -->
+	<key>fierce ruin feeder</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>fierce ruin feeder</string>
+		<!-- TODO: AI -->
+		<key>skills</key>
+		<array>
+			<string>tough monster skill</string>
+			<string>dodgy monster skill</string>
+			<string>tough monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>weapon</key> <string>strong teeth</string>
+	</dict>
+	
+	<!-- rabid ruin feeder -->
+	<!-- an advanced ruin feeder with a dangerous poison normal attack -->
+	<key>rabid ruin feeder</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>fierce ruin feeder</string>
+		<!-- TODO: AI -->
+		<key>skills</key>
+		<array>
+			<string>rabid ruin feeder skill</string>
+			<string>tough monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>weapon</key> <string>strong teeth</string>
+		<!-- TODO: green ruin feeder mouth froth "armor" -->
+	</dict>
+	
+	
+	<!-- robots -->
+	<!-- robots are a later-game enemy type, with a lot of variety -->
+	<!-- even in areas that aren't supposed to be robot-based, there should occasionally be a few basic robots like sentries and scuttlers -->
 	
 	<!-- sentry -->
 	<!-- basic melee robot -->
@@ -122,7 +223,7 @@
 			<string>filler monster skill</string>
 		</array>
 		<!-- equipment -->
-		<key>weapon</key> <string>basic relic</string> <!-- graspy robot hands -->
+		<key>weapon</key> <string>claw relic</string> <!-- graspy robot hands -->
 	</dict>
 	
 	<!-- scuttler -->
@@ -144,8 +245,71 @@
 		<!-- equipment -->
 		<key>implements</key>
 		<array>
-			<string>basic relic</string> <!-- pulse rifle turret at point blank -->
+			<string>basic relic</string> <!-- pulse rifle turret -->
 		</array>
+	</dict>
+	
+	<!-- security android -->
+	<!-- a melee android-type robot which fights with a stun baton and robot martial arts -->
+	<key>security android</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>android</string>
+		<!-- TODO: AI -->
+		<key>skills</key>
+		<array>
+			<string>strength</string>
+			<string>tough monster skill</string>
+			<string>tough monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>weapon</key> <string>holy baton</string>
+		<!-- TODO: should probably have a single piece of armor to tell apart from other androids -->
+	</dict>
+	
+	<!-- scout android -->
+	<!-- a ranged android-type robot that is quite dodgy; because it has no implements, its attacks should be relatively weak -->
+	<key>scout android</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>android</string>
+		<!-- TODO: AI -->
+		<key>skills</key>
+		<array>
+			<string>holy soldier</string>
+			<string>reflexes</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<!-- TODO: should probably have a single piece of armor to tell apart from other androids -->
+	</dict>
+	
+	<!-- war bot -->
+	<!-- a very tanky super robot -->
+	<key>war bot</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>war bot</string>
+		<!-- TODO: AI -->
+		<key>skills</key>
+		<array>
+			<string>holy soldier</string>
+			<string>sacred light</string>
+			<string>tough monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>white lightning</string>
+			<string>radiant orb</string>
+		</array>
+		<key>weapon</key> <string>advanced relic</string> <!-- some kind of slam attack -->
 	</dict>
 </dict>
 </plist>

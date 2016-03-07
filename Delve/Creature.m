@@ -40,8 +40,16 @@
 		_weapon = loadValueString(@"EnemyTypes", type, @"weapon");
 		_good = NO;
 		
-		//TODO: raise skill levels appropriately for your level
-		//IE a level 3 enemy should raise 2 of its skills
+		
+		//level up skills uniformly based on the floor number
+		//the first skill is leveled up first, then the second, etc
+		//since the first skill is probably the one with any special abilities in it, and whatnot
+		for (int i = 0; i < map.floorNum; i++)
+		{
+			int skillNum = i / 3;
+			_skillTreeLevels[skillNum] = @(((NSNumber *)_skillTreeLevels[skillNum]).intValue + 1);
+		}
+		
 		
 		_x = x;
 		_y = y;
