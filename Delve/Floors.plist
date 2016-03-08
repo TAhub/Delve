@@ -53,15 +53,6 @@
 	<!-- TODO: important design note: -->
 	<!-- overtime countdown should always be a multiple of 5 -->
 	
-	<!-- map type ideas (plus enemy type) -->
-	<!-- habitat maze (?) -->
-	<!-- eol habitat (?) -->
-	<!-- broken eol ship (robots) -->
-	<!-- full cave: do room generation with natural walls too (?) -->
-	<!-- eol research lab (genetic abominations and maybe a few robots) -->
-	<!-- underground forest (ruin feeders and some abominations) -->
-	<!-- ? (?) -->
-	
 	
 	<!-- floor 0 -->
 	<!-- theme: cave and ruins -->
@@ -71,35 +62,49 @@
 	
 	<!-- floor 1 -->
 	<!-- theme: cave with a little bit of ruins -->
-	<!-- enemy types: human bandits and ruin feeders -->
+	<!-- enemy types: human bandits and a few ruin feeders -->
 	<!-- color: blue -->
 	
 	
 	<!-- floor 2 -->
+	<!-- theme: eol habitat -->
+	<!-- enemy types: robots -->
 	<!-- color: blue-grey -->
 	
 	
 	<!-- floor 3 -->
+	<!-- theme: habitat maze -->
+	<!-- enemy types: eoling zealots -->
 	<!-- color: blue-grey -->
 	
 	
 	<!-- floor 4 -->
+	<!-- theme: underground forest -->
+	<!-- enemy types: higher-level ruin feeders -->
 	<!-- color: grey -->
 	
 	
 	<!-- floor 5 -->
+	<!-- theme: eol research lab -->
+	<!-- enemy types: abominations, a few robots -->
 	<!-- color: grey -->
 	
 	
 	<!-- floor 6 -->
+	<!-- theme: broken eol ship -->
+	<!-- enemy types: robots -->
 	<!-- color: red-grey -->
 	
 	
 	<!-- floor 7 -->
+	<!-- theme: full cave (do room generation with natural walls too) -->
+	<!-- enemy types: raider expedition force (remember to give them raider body armor!) -->
 	<!-- color: red-grey -->
 	
 	
 	<!-- floor 8 -->
+	<!-- theme: rogue highborn expedition fortress -->
+	<!-- enemy types: some highborn with rituals, also lots of human warrior-slaves -->
 	<!-- color: red -->
 	
 	
