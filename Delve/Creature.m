@@ -61,13 +61,19 @@
 	return self;
 }
 
--(id)initWithX:(int)x andY:(int)y onMap:(Map *)map
+-(id)initWithRace:(NSString *)race skillTrees:(NSArray *)skillTrees andAppearanceNumber:(int)appearanceNumber
 {
 	if (self = [super init])
 	{
+		_race = race;
+		
+		//TODO: get appropriate racial armor
+		_armors = [NSMutableArray arrayWithObjects:@"", @"", @"", nil];
+		
+		
 		//TODO: temporarily set the race and armor list
-		_race = @"human";
-		_armors = [NSMutableArray arrayWithObjects:@"peasant clothes", @"skullcap", @"steel-toed boots", nil];
+//		_race = @"human";
+//		_armors = [NSMutableArray arrayWithObjects:@"peasant clothes", @"skullcap", @"steel-toed boots", nil];
 //		_race = @"eoling";
 //		_armors = [NSMutableArray arrayWithObjects:@"temple dancer outfit", @"goggles", @"white tail banner", nil];
 //		_race = @"highborn";
@@ -75,7 +81,7 @@
 //		_race = @"raider";
 //		_armors = [NSMutableArray arrayWithObjects:@"skullcap", @"blue tail banner", nil];
 		
-		_skillTrees = [NSArray arrayWithObjects:@"bow", @"spear", @"sacred light", @"heresy", @"godly form", nil];
+		_skillTrees = skillTrees;
 		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
 		_implements = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
 		_weapon = loadValueString(@"Races", _race, @"race start weapon");
@@ -99,9 +105,9 @@
 		
 		_good = YES;
 		
-		_x = x;
-		_y = y;
-		_map = map;
+		_x = 0;
+		_y = 0;
+		_map = nil;
 		_awake = false;
 		
 		[self initializeMisc];

@@ -17,7 +17,7 @@
 
 @interface Creature : NSObject
 
--(id)initWithX:(int)x andY:(int)y onMap:(Map *)map;
+-(id)initWithRace:(NSString *)race skillTrees:(NSArray *)skillTrees andAppearanceNumber:(int)appearanceNumber;
 -(id)initWithX:(int)x andY:(int)y onMap:(Map *)map ofEnemyType:(NSString *)type;
 
 #pragma mark: basic mechanical identity
@@ -25,8 +25,6 @@
 @property (strong, nonatomic) NSArray *skillTrees; //an array of NSStrings
 @property (strong, nonatomic) NSMutableArray *skillTreeLevels; //an array of integers
 @property BOOL good;
-
-//TODO: when making the final skill trees, keep in mind any design notes in these comments
 
 #pragma mark: derived statistics (from race, skill ranks, and equipment)
 -(int) damageBonus;
