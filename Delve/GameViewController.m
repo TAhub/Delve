@@ -120,6 +120,13 @@
 	self.map.delegate = self;
 }
 
+-(void)loadGen:(Creature *)genPlayer
+{
+	self.map = [[Map alloc] initWithGen:genPlayer];
+	[self preloadTileImages];
+	self.map.delegate = self;
+}
+
 -(void)preloadTileImageFor:(Tile *)tile
 {
 	if (tile.type != nil && tile.spriteName != nil && self.preloadedTileImages[tile.type] == nil)
@@ -151,8 +158,6 @@
 {
 	[super viewWillAppear:animated];
 	
-	if (self.map == nil)
-		[self loadMap:[[Map alloc] initWithMap:nil]];
 	[self.map update];
 	self.mapView.delegate = self;
 	[self.mapView initializeMapAtX:self.map.player.x - GAMEPLAY_SCREEN_WIDTH * 0.5f + 0.5f andY:self.map.player.y - GAMEPLAY_SCREEN_HEIGHT * 0.5f + 0.5f];

@@ -43,6 +43,7 @@
 			<string>shoes</string>
 		</array>
 		<key>race start weapon</key> <string>wooden club</string>
+		<key>race start armor</key> <string>peasant clothes</string>
 		<!-- appearance -->
 		<key>sprite</key> <string>template</string>
 		<key>colorations</key>
@@ -96,6 +97,7 @@
 			<string>shoes</string>
 		</array>
 		<key>race start weapon</key> <string>rusty blade</string>
+		<key>race start armor</key> <string>peasant clothes</string>
 		<!-- appearance -->
 		<key>sprite</key> <string>human</string>
 		<key>colorations</key> <!-- coloration: tan skin, brown or dirty blonde hair -->
@@ -148,6 +150,7 @@
 			<string>tail ornament</string>
 		</array>
 		<key>race start weapon</key> <string>wooden club</string>
+		<key>race start armor</key> <string>urchin rags</string>
 		<!-- appearance -->
 		<key>sprite</key> <string>eoling</string>
 		<key>colorations</key> <!-- coloration deep pale brown skin and white hair, or pale white skin and near-jet-black hair -->
@@ -199,6 +202,7 @@
 			<string>jewelry</string>
 		</array>
 		<key>race start weapon</key> <string>wooden club</string>
+		<key>race start armor</key> <string>peasant clothes</string>
 		<!-- appearance -->
 		<key>sprite</key> <string>highborn</string>
 		<key>colorations</key> <!-- coloration: brown skin and green hair, or olive skin and purplish hair -->
@@ -250,6 +254,8 @@
 			<string>tail ornament</string>
 		</array>
 		<key>race start weapon</key> <string>rusty blade</string>
+		<key>race start armor</key> <string></string>
+		<!-- TODO: give raiders a special "raider armor" slot at slot 0, which has a raider loincloth; this is where NPC raiders will have real armor -->
 		<!-- appearance -->
 		<key>sprite</key> <string>raider</string>
 		<key>colorations</key> <!-- coloration: grey skin, orange hair, no exceptions -->

@@ -9,9 +9,11 @@
 #import "FormattingViewController.h"
 
 @class Map;
+@class Creature;
 
 @interface GameViewController : FormattingViewController
 
 -(void)loadMap:(Map *)map;
+-(void)loadGen:(Creature *)genPlayer;
 
 @end

@@ -61,14 +61,21 @@
 	return self;
 }
 
+-(int)maxAppearanceNumber
+{
+	return loadValueArray(@"Races", self.race, @"colorations").count * loadValueNumber(@"Races", self.race, @"hair styles").intValue * 2;
+}
+
 -(id)initWithRace:(NSString *)race skillTrees:(NSArray *)skillTrees andAppearanceNumber:(int)appearanceNumber
 {
 	if (self = [super init])
 	{
 		_race = race;
 		
-		//TODO: get appropriate racial armor
 		_armors = [NSMutableArray arrayWithObjects:@"", @"", @"", nil];
+		
+		//get racial armor
+		_armors[0] = loadValueString(@"Races", race, @"race start armor");
 		
 		
 		//TODO: temporarily set the race and armor list
@@ -111,6 +118,15 @@
 		_awake = false;
 		
 		[self initializeMisc];
+		
+		//get appearance from appearance number
+		int numHairstyles = loadValueNumber(@"Races", self.race, @"hair styles").intValue;
+		int numColorations = loadValueArray(@"Races", self.race, @"colorations").count;
+		self.gender = appearanceNumber >= numHairstyles * numColorations;
+		appearanceNumber = appearanceNumber % (numHairstyles * numColorations);
+		self.coloration = appearanceNumber / numHairstyles;
+		appearanceNumber = appearanceNumber % numHairstyles;
+		self.hairStyle = appearanceNumber;
 		
 	}
 	return self;

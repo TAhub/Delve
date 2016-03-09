@@ -619,24 +619,36 @@
                                             <action selector="pressButton:" destination="m8D-VV-cYc" eventType="touchUpInside" id="6Q6-Cv-FyY"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BL2-u8-Z9q">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDc-av-FP9">
+                                        <rect key="frame" x="143" y="389" width="34" height="30"/>
+                                        <state key="normal" title="Start"/>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="custom" identifier="startGame" customClass="ReplaceSegue" id="bRn-3v-Bao"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="46Y-2a-eDr">
                                         <rect key="frame" x="137" y="58" width="46" height="30"/>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="pressButton:" destination="m8D-VV-cYc" eventType="touchUpInside" id="Vd5-Mc-CtB"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="BL2-u8-Z9q" firstAttribute="top" secondItem="hsv-Tf-UdW" secondAttribute="bottom" constant="8" symbolic="YES" id="6Pj-lg-hxL"/>
+                                    <constraint firstItem="46Y-2a-eDr" firstAttribute="top" secondItem="hsv-Tf-UdW" secondAttribute="bottom" constant="8" symbolic="YES" id="Cmx-Rz-aaN"/>
+                                    <constraint firstItem="zDc-av-FP9" firstAttribute="centerX" secondItem="hiM-md-erP" secondAttribute="centerX" id="HTb-UV-ZNl"/>
+                                    <constraint firstAttribute="bottom" secondItem="zDc-av-FP9" secondAttribute="bottom" constant="20" symbolic="YES" id="Kee-2i-srV"/>
                                     <constraint firstItem="hsv-Tf-UdW" firstAttribute="centerX" secondItem="hiM-md-erP" secondAttribute="centerX" id="PUr-E5-P6H"/>
                                     <constraint firstItem="hsv-Tf-UdW" firstAttribute="top" secondItem="hiM-md-erP" secondAttribute="top" constant="20" symbolic="YES" id="VsO-v1-PBV"/>
-                                    <constraint firstItem="BL2-u8-Z9q" firstAttribute="top" secondItem="hsv-Tf-UdW" secondAttribute="top" id="coQ-Cf-VMv"/>
+                                    <constraint firstItem="46Y-2a-eDr" firstAttribute="centerX" secondItem="hiM-md-erP" secondAttribute="centerX" id="d4k-aw-gUO"/>
                                     <constraint firstItem="hsv-Tf-UdW" firstAttribute="leading" secondItem="hiM-md-erP" secondAttribute="leading" constant="97" id="lho-Yr-PSx"/>
-                                    <constraint firstItem="BL2-u8-Z9q" firstAttribute="centerX" secondItem="hiM-md-erP" secondAttribute="centerX" id="sgP-uN-guk"/>
+                                    <constraint firstAttribute="trailing" secondItem="zDc-av-FP9" secondAttribute="trailing" constant="20" symbolic="YES" id="unA-Rr-6Xk"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="coQ-Cf-VMv"/>
                                         <exclude reference="lho-Yr-PSx"/>
+                                        <exclude reference="unA-Rr-6Xk"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -660,10 +672,11 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="appearanceButton" destination="BL2-u8-Z9q" id="hwC-l3-TMg"/>
+                        <outlet property="appearanceButton" destination="46Y-2a-eDr" id="yiH-Hd-5C2"/>
                         <outlet property="characterView" destination="GxY-wd-awe" id="UVC-EX-tif"/>
                         <outlet property="interfaceContainer" destination="hiM-md-erP" id="ne6-Bc-Osy"/>
                         <outlet property="raceButton" destination="hsv-Tf-UdW" id="IM7-mM-Xp7"/>
+                        <outlet property="startButton" destination="zDc-av-FP9" id="OQK-OU-deh"/>
                         <outlet property="statsView" destination="NeS-0B-w2h" id="Rqx-Yz-mEz"/>
                     </connections>
                 </viewController>
@@ -690,4 +703,7 @@
             <point key="canvasLocation" x="137" y="271"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="bRn-3v-Bao"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -17,6 +17,7 @@
 
 @interface Creature : NSObject
 
+-(int)maxAppearanceNumber;
 -(id)initWithRace:(NSString *)race skillTrees:(NSArray *)skillTrees andAppearanceNumber:(int)appearanceNumber;
 -(id)initWithX:(int)x andY:(int)y onMap:(Map *)map ofEnemyType:(NSString *)type;
 

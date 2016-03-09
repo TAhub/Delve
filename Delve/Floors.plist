@@ -58,12 +58,80 @@
 	<!-- theme: cave and ruins -->
 	<!-- enemy types: ruin feeders -->
 	<!-- color: blue -->
+	<!-- TODO: real data -->
+	<key>floor 0</key>
+	<dict>
+		<!-- map generation data -->
+		<key>tileset</key> <string>red</string>
+		<key>room size</key> <integer>5</integer>
+		<key>rows</key> <integer>10</integer>
+		<key>columns</key> <integer>6</integer>
+		<key>reject undiscovered doors chance</key> <integer>60</integer>
+		<key>max door offset</key> <integer>1</integer>
+		<key>doors at a time</key> <integer>5</integer>
+		<key>min non orphans</key> <integer>20</integer>
+		<key>max non orphans</key> <integer>35</integer>
+		<key>locked door chance</key> <integer>35</integer>
+		<key>no door chance</key> <integer>25</integer>
+		<key>desired path length</key> <integer>7</integer>
+		<key>cave wall chance</key> <integer>50</integer>
+		<key>cave smooths</key> <integer>2</integer>
+		<key>min floor tile percent</key> <integer>40</integer>
+		<key>max floor tile percent</key> <integer>60</integer>
+		<!-- map balance data -->
+		<key>countdown</key> <integer>160</integer>
+		<key>overtime countdown</key> <integer>35</integer>
+		<key>equipment treasures</key> <integer>4</integer>
+		<key>normal treasures</key> <integer>6</integer>
+		<key>number of encounters</key> <integer>8</integer>
+		<key>start equipment treasures</key> <integer>4</integer>
+		<key>encounters</key>
+		<array>
+			<array>
+				<string>ruin feeder runt</string>
+			</array>
+		</array>
+	</dict>
 	
 	
 	<!-- floor 1 -->
 	<!-- theme: cave with a little bit of ruins -->
 	<!-- enemy types: human bandits and a few ruin feeders -->
 	<!-- color: blue -->
+	<!-- TODO: real data -->
+	<key>floor 1</key>
+	<dict>
+		<!-- map generation data -->
+		<key>tileset</key> <string>red</string>
+		<key>room size</key> <integer>5</integer>
+		<key>rows</key> <integer>10</integer>
+		<key>columns</key> <integer>6</integer>
+		<key>reject undiscovered doors chance</key> <integer>60</integer>
+		<key>max door offset</key> <integer>1</integer>
+		<key>doors at a time</key> <integer>5</integer>
+		<key>min non orphans</key> <integer>20</integer>
+		<key>max non orphans</key> <integer>35</integer>
+		<key>locked door chance</key> <integer>35</integer>
+		<key>no door chance</key> <integer>25</integer>
+		<key>desired path length</key> <integer>7</integer>
+		<key>cave wall chance</key> <integer>50</integer>
+		<key>cave smooths</key> <integer>2</integer>
+		<key>min floor tile percent</key> <integer>40</integer>
+		<key>max floor tile percent</key> <integer>60</integer>
+		<!-- map balance data -->
+		<key>countdown</key> <integer>160</integer>
+		<key>overtime countdown</key> <integer>35</integer>
+		<key>equipment treasures</key> <integer>4</integer>
+		<key>normal treasures</key> <integer>6</integer>
+		<key>number of encounters</key> <integer>8</integer>
+		<key>start equipment treasures</key> <integer>4</integer>
+		<key>encounters</key>
+		<array>
+			<array>
+				<string>ruin feeder runt</string>
+			</array>
+		</array>
+	</dict>
 	
 	
 	<!-- floor 2 -->

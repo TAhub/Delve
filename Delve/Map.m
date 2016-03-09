@@ -21,13 +21,11 @@
 
 @implementation Map
 
--(id)initWithMap:(Map *)map
+-(id)initWithGen:(Creature *)genPlayer
 {
 	if (self = [super init])
 	{
-		_creatures = [NSMutableArray new];
-		_inventory = [NSMutableArray new];
-		[self mapGenerateWithMap:map];
+		[self mapGenerateWithMap:nil andGen:genPlayer];
 		
 		//start right before the player's turn
 		_personOn = (int)self.creatures.count - 1;
@@ -39,6 +37,24 @@
 		[self addItem:[[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory]];
 		[self addItem:[[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory]];
 		[self addItem:[[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory]];
+	}
+	return self;
+}
+
+-(id)initWithMap:(Map *)map
+{
+	if (self = [super init])
+	{
+		[self mapGenerateWithMap:map andGen:nil];
+		
+		//start right before the player's turn
+		_personOn = (int)self.creatures.count - 1;
+		
+		[self recalculateVisibility];
+		
+		//get the previous map's items
+		_inventory = map.inventory;
+		
 	}
 	return self;
 }
@@ -286,11 +302,13 @@
 
 #pragma mark: map generation
 
--(void)mapGenerateWithMap:(Map *)map
+-(void)mapGenerateWithMap:(Map *)map andGen:(Creature *)genPlayer
 {
+	self.creatures = [NSMutableArray new];
+	self.inventory = [NSMutableArray new];
 	for (int try = 1;; try++)
 	{
-		if ([self mapGenerateInnerWithMap:(Map *)map])
+		if ([self mapGenerateInnerWithMap:map andGen:genPlayer])
 		{
 			NSLog(@"Map generation finished on try #%i, with %u enemies", try, self.creatures.count - 1);
 			return;
@@ -298,7 +316,7 @@
 	}
 }
 
--(BOOL)mapGenerateInnerWithMap:(Map *)map
+-(BOOL)mapGenerateInnerWithMap:(Map *)map andGen:(Creature *)genPlayer
 {
 	//first, get map generator variables
 	self.floorNum = map == nil ? 0 : map.floorNum + 1;
@@ -637,7 +655,7 @@
 	int pY = startRoom.yCorner + (roomSize / 2);
 	Creature *player;
 	if (map == nil) //TODO: there should ALWAYS be a premade player, from the character screen, but for now make one here
-		player = [[Creature alloc] initWithX:pX andY:pY onMap:self];
+		player = genPlayer;
 	else
 		player = map.player;
 	player.x = pX;

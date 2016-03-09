@@ -30,6 +30,7 @@
 @interface Map : NSObject
 
 -(id)initWithMap:(Map *)map;
+-(id)initWithGen:(Creature *)genPlayer;
 
 @property (strong, nonatomic) NSMutableArray *tiles; //an array of arrays of tiles
 @property (strong, nonatomic) NSMutableArray *creatures; //an array of creatures, for turn order

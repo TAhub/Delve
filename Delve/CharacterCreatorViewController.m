@@ -10,6 +10,7 @@
 #import "CharacterServices.h"
 #import "Creature.h"
 #import "Constants.h"
+#import "GameViewController.h"
 
 @interface CharacterCreatorViewController ()
 
@@ -19,9 +20,14 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *raceButton;
 @property (weak, nonatomic) IBOutlet UIButton *appearanceButton;
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
 
 @property (strong, nonatomic) Creature *creature;
 @property (strong, nonatomic) UIView *innerCreatureView;
+@property int appearanceNumber;
+@property int raceNumber;
+
+-(NSString *)raceName;
 
 @end
 
@@ -36,6 +42,7 @@
 	
 	[self formatButton:self.raceButton];
 	[self formatButton:self.appearanceButton];
+	[self formatButton:self.startButton];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -47,6 +54,8 @@
 	[self.characterView addSubview:self.innerCreatureView];
 	
 	//TODO: save the last-generated character in a special user default, so you can try them again
+	self.appearanceNumber = 0;
+	self.raceNumber = 0;
 	
 	[self reloadCreature];
 	[self reloadSprite];
@@ -55,21 +64,31 @@
 
 -(void)reloadCreature
 {
-	//TODO: set the creature's appearance and skill trees to the ones chosen by the user
-	//this should probably be a custom initializer
-	//maybe the initializer can even decode appearance numbers and detect the total number? I dunno
-	self.creature = [[Creature alloc] initWithRace:@"human" skillTrees:[NSArray arrayWithObjects:@"bow", @"conditioning", @"smithing", @"sacred light", @"wisdom", nil] andAppearanceNumber:1];
+	//TODO: set the skill trees with things the player picks
+	self.creature = [[Creature alloc] initWithRace:self.raceName skillTrees:[NSArray arrayWithObjects:@"bow", @"conditioning", @"smithing", @"sacred light", @"wisdom", nil] andAppearanceNumber:self.appearanceNumber];
 }
+
+
 
 -(void)reloadLabels
 {
 	makeInfoLabelInView(self.creature, self.statsView);
 	
-	//TODO: set button labels
-	//the race button should have the current race
-	//
-	//the appearance button should have the current appearance number
-	//which goes in an order like (hair 1, coloration 1, male), (hair 2, coloration 1, male), etc
+	//set button labels
+	[self.raceButton setTitle:self.raceName forState:UIControlStateNormal];
+	[self.appearanceButton setTitle:[NSString stringWithFormat:@"Appearance #%i", self.appearanceNumber + 1] forState:UIControlStateNormal];
+}
+
+-(NSString *)raceName
+{
+	switch (self.raceNumber)
+	{
+		case 0: return @"human";
+		case 1: return @"eoling";
+		case 2: return @"highborn";
+		case 3: return @"raider";
+		default: return @"human";
+	}
 }
 
 -(void)reloadSprite
@@ -81,14 +100,25 @@
 {
 	switch(sender.tag)
 	{
-		case 0: //race
-			//TODO: cycle between player races
+		case 0:
+			//cycle between player races
+			self.raceNumber = (self.raceNumber + 1) % 4;
+			self.appearanceNumber = 0;
 			break;
-		case 1: //appearance
-			//TODO: cycle between possible appearances
+		case 1:
+			//cycle between possible appearances
+			self.appearanceNumber = (self.appearanceNumber + 1) % self.creature.maxAppearanceNumber;
 			break;
 	}
+	[self reloadCreature];
+	[self reloadLabels];
+	[self reloadSprite];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	GameViewController *gvc = segue.destinationViewController;
+	[gvc loadGen:self.creature];
+}
 
 @end
