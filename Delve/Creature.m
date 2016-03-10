@@ -98,7 +98,7 @@
 		for (int i = 0; i < _implements.count; i++)
 		{
 			NSString *skillTree = _skillTrees[i];
-			if (loadValueBool(@"SkillTrees", skillTree, @"implement"))
+			if (skillTree.length > 0 && loadValueBool(@"SkillTrees", skillTree, @"implement"))
 			{
 				NSString *implementType = loadValueString(@"SkillTrees", skillTree, @"implement");
 				for (NSString *implement in implements)
@@ -1145,6 +1145,9 @@
 
 -(int)bonusFromSkillTree:(NSString *)tree ofRank:(int)rank withName:(NSString *)name
 {
+	if (tree.length == 0)
+		return 0;
+	
 	//find the skill pasive bonus with name "name" from the skill number "rank" from the tree "tree"
 	
 	NSArray *skillInfoArray = loadValueArray(@"SkillTrees", tree, @"skills");
