@@ -11,6 +11,7 @@
 <dict>
 	<key>template</key>
 	<dict>
+		<key>description</key> <string>TODO: DESCRIPTION</string> 
 		<key>healing</key> <integer>100</integer>
 		<!-- TODO: status effect data -->
 		<!-- TODO: appearance data -->
@@ -19,6 +20,7 @@
 	<!-- ammo items -->
 	<key>crystal</key>
 	<dict>
+		<key>description</key> <string>This small crystal shines with an inner light.</string>
 		<!-- TODO: status effect data -->
 		<!-- TODO: appearance data -->
 	</dict>
@@ -26,48 +28,56 @@
 	<!-- healing items -->
 	<key>bread</key>
 	<dict>
+		<key>description</key> <string>This loaf of bread is a little stale, but still edible.</string>
 		<key>healing</key> <integer>35</integer>
 		<!-- TODO: status effect data -->
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>herbal draught</key>
 	<dict>
+		<key>description</key> <string>This draught has an unpleasant herbal odor.</string>
 		<key>healing</key> <integer>40</integer>
 		<!-- TODO: status effect data -->
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>cheese</key>
 	<dict>
+		<key>description</key> <string>This small block of cheese smells delicious.</string>
 		<key>healing</key> <integer>55</integer>
 		<!-- TODO: status effect data -->
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>blood pack</key>
 	<dict>
+		<key>description</key> <string>This wineskin is full of blood, to replace any blood you lose.</string>
 		<key>healing</key> <integer>60</integer>
 		<!-- TODO: status effect data -->
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>ration</key>
 	<dict>
+		<key>description</key> <string>This tin is full of well-preserved food.</string>
 		<key>healing</key> <integer>70</integer>
 		<!-- TODO: status effect data -->
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>silvery salve</key>
 	<dict>
+		<key>description</key> <string>This ointment is cool to the touch.</string>
 		<key>healing</key> <integer>80</integer>
 		<!-- TODO: status effect data -->
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>steak</key>
 	<dict>
+		<key>description</key> <string>This steak is strangely fresh-looking for something you found in an ancient ruin.</string>
 		<key>healing</key> <integer>90</integer>
 		<!-- TODO: status effect data -->
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>fizzling drink</key>
 	<dict>
+		<key>description</key> <string>This medicinal drink fizzles in an unsettling manner.</string>
 		<key>healing</key> <integer>100</integer>
 		<!-- TODO: status effect data -->
 		<!-- TODO: appearance data -->
@@ -79,50 +89,63 @@
 	<!-- crafting material items -->
 	<key>iron ingot</key> <!-- level 1 material -->
 	<dict>
+		<key>description</key> <string>This is an ingot of solid iron.</string>
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>steel ingot</key> <!-- level 2 material -->
 	<dict>
+		<key>description</key> <string>This is an ingot of fine steel.</string>
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>refined ingot</key> <!-- level 3 material -->
 	<dict>
+		<key>description</key> <string>This is an ingot of an old Eol metal.</string>
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>capacitor</key> <!-- level 1 material -->
 	<dict>
+		<key>description</key> <string>This small metal object was a part of an Eol relic.</string>
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>battery</key> <!-- level 2 material -->
 	<dict>
+		<key>description</key> <string>This small metal cylinder is strangely heavy.</string>
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>circuit</key> <!-- level 3 material -->
 	<dict>
+		<key>description</key> <string>This is a flat wafer of some strange material, encrusted with metal filigree.</string>
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>herb</key> <!-- level 1.5 material -->
 	<dict>
+		<key>description</key> <string>This is a bundle of medicinal herbs. You could eat them, but they're much more effective as an ingredient.</string>
+		<key>healing</key> <integer>25</integer>
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>fang</key>
 	<dict>
+		<key>description</key> <string>This is a sharp fang, taken from some beast and carefully preserved.</string>
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>quicksilver</key> <!-- level 2 material -->
 	<dict>
+		<key>description</key> <string>This is a small vial of quicksilver, a liquid metal with many unusual properties.</string>
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>diamond dust</key> <!-- level 3 material -->
 	<dict>
+		<key>description</key> <string>This is a pinch of valuable powdered diamond.</string>
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>fabric</key> <!-- level 1.5 material -->
 	<dict>
+		<key>description</key> <string>This is a bolt of rough fabric.</string>
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>silk</key> <!-- level 2.5 material -->
 	<dict>
+		<key>description</key> <string>This is a bolt of fine silk.</string>
 		<!-- TODO: appearance data -->
 	</dict>
 </dict>

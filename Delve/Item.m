@@ -7,6 +7,7 @@
 //
 
 #import "Item.h"
+#import "Creature.h"
 
 @implementation Item
 
@@ -30,6 +31,29 @@
 -(BOOL)usable
 {
 	return (self.healing > 0);
+}
+
+-(NSString *)itemDescriptionWithCreature:(Creature *)creature
+{
+	switch(self.type)
+	{
+		case ItemTypeInventory:
+			{
+				NSMutableString *desc = [NSMutableString stringWithString:loadValueString(@"InventoryItems", self.name, @"description")];
+				if (!self.usable)
+					[desc appendFormat:@" Not usable."];
+				else
+				{
+					if (self.healing > 0)
+						[desc appendFormat:@" Heals %i health.", self.healing * creature.metabolism / 100];
+				}
+				return desc;
+			}
+		case ItemTypeArmor:
+			return [creature armorDescription:self.name];
+		case ItemTypeImplement:
+			return [creature weaponDescription:self.name];
+	}
 }
 
 @end

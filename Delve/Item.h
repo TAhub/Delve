@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "Constants.h"
 
+@class Creature;
+
 @interface Item : NSObject
 
 -(id)initWithName:(NSString *)name andType:(ItemType)type;
@@ -19,5 +21,6 @@
 
 -(int)healing;
 -(BOOL)usable;
+-(NSString *)itemDescriptionWithCreature:(Creature *)creature;
 
 @end

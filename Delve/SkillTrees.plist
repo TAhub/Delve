@@ -14,6 +14,8 @@
 		<key>type</key> <string>invalid</string>
 		<key>description</key> <string>TODO: DESCRIPTION</string>
 		<key>implement</key> <string>shield</string>
+		<key>start item</key> <string>bread</string>
+		<key>start item number</key> <integer>1</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -98,10 +100,15 @@
 	<!-- note that the "raises X" things are just a guideline, if I check the diagnostics and they say there are too many damage bonuses or w/e -->
 	<!-- it's totally ok to change one or two of the damage bonuses into something else -->
 	
+	<!-- design note: -->
+	<!-- for start items, you get 2 potions/buff items, 3 basic healing items (ie bread), 3 crafting ingredients, or 4 crystals -->
+	<!-- obviously trees which have ammo-using attacks should make you start with some of that item! -->
+	
 	
 	<!-- design note: -->
 	<!-- monster passives should give no passives at rank 1 -->
 	<!-- they are only meant for advancement, not for base stats -->
+	
 	
 	<!-- enemy-only skills -->
 	<key>filler monster skill</key>
@@ -221,6 +228,8 @@
 		<key>type</key> <string>war</string>
 		<key>description</key> <string>A shields!man is an expert in blocking attacks, even ones that normally can't be dodged. !He can also learn to bash with !his shield, or even throw it.</string>
 		<key>implement</key> <string>shield</string>
+		<key>start item</key> <string>herbal draught</string>
+		<key>start item number</key> <integer>2</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -251,6 +260,8 @@
 		<key>type</key> <string>war</string>
 		<key>description</key> <string>A hammers!man is not the swiftest of attackers, but !he is an expert in powerful blows and area-of-effect attacks.</string>
 		<key>implement</key> <string>hammer</string>
+		<key>start item</key> <string>bread</string> <!-- TODO: a damage-boosting self-buff item, maybe? -->
+		<key>start item number</key> <integer>2</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -280,6 +291,8 @@
 		<key>type</key> <string>war</string>
 		<key>description</key> <string>A spearfighter can attack from further away than most, though a spear cannot be used in close-range.</string>
 		<key>implement</key> <string>spear</string>
+		<key>start item</key> <string>bread</string>
+		<key>start item number</key> <integer>3</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -309,6 +322,8 @@
 		<key>type</key> <string>war</string>
 		<key>description</key> <string>Though it is not as powerful as an Eol weapon, a bow's ammo is very plentiful. A skilled bow!man can put one to great use.</string>
 		<key>implement</key> <string>bow</string>
+		<key>start item</key> <string>bread</string> <!-- TODO: a defensive self-buff item maybe? -->
+		<key>start item number</key> <integer>2</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -339,6 +354,8 @@
 		<key>type</key> <string>war</string>
 		<key>description</key> <string>A knifefighter may not pulverize foes in a single blow, but !he is hard to dodge and fast enough to effectively counter-attack.</string>
 		<key>implement</key> <string>dagger</string>
+		<key>start item</key> <string>bread</string>
+		<key>start item number</key> <integer>3</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -366,6 +383,8 @@
 	<dict>
 		<key>type</key> <string>war</string>
 		<key>description</key> <string>A smith can make many types of weapons and armor, some of even better quality than can be found.</string>
+		<key>start item</key> <string>iron ingot</string>
+		<key>start item number</key> <integer>3</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -399,6 +418,8 @@
 	<dict>
 		<key>type</key> <string>body</string>
 		<key>description</key> <string>A person with sharp reflexes can dodge much more effectively.</string>
+		<key>start item</key> <string>bread</string> <!-- TODO: a defensive self-buff item -->
+		<key>start item number</key> <integer>2</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -426,6 +447,8 @@
 	<dict>
 		<key>type</key> <string>body</string>
 		<key>description</key> <string>A person who has undergone conditioning training can take heavier hits, and recover more easily from them.</string>
+		<key>start item</key> <string>bread</string>
+		<key>start item number</key> <integer>3</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -456,6 +479,8 @@
 	<dict>
 		<key>type</key> <string>body</string>
 		<key>description</key> <string>A person with great strength will hit harder with attacks of any type. !He can also effectively fight unarmed.</string>
+		<key>start item</key> <string>bread</string> <!-- TODO: a damage-boosting self-buff item -->
+		<key>start item number</key> <integer>2</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -482,6 +507,8 @@
 	<dict>
 		<key>type</key> <string>body</string>
 		<key>description</key> <string>A charming person is good at influencing, or at least distracting, foes. !He is also bound to pick up a variety of other skills, as conversation starters.</string>
+		<key>start item</key> <string>bread</string> <!-- TODO: a utility self-buff item -->
+		<key>start item number</key> <integer>2</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -503,6 +530,11 @@
 		</array>
 	</dict>
 	
+	<!-- TODO: sixth body skill -->
+	<!-- I have no idea for this one -->
+	<!-- it has to be something passive-focused -->
+	<!-- so maybe a new passive type? -->
+	
 	<!-- stealth (pattern A) -->
 	<!-- an offensive skill that focuses on stealth and poison -->
 	<!-- raises ??? -->
@@ -511,6 +543,8 @@
 	<dict>
 		<key>type</key> <string>body</string>
 		<key>description</key> <string>A stealthy person can creep up on others undetected, and then do all sorts of nasty things.</string>
+		<key>start item</key> <string>bread</string> <!-- TODO: an invisibility buff item -->
+		<key>start item number</key> <integer>2</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -542,6 +576,8 @@
 		<key>type</key> <string>sacred</string>
 		<key>description</key> <string>Those who follow the path of the sacred light learn to unleash the inner light of a light orb to protect themselves.</string>
 		<key>implement</key> <string>light orb</string>
+		<key>start item</key> <string>crystal</string>
+		<key>start item number</key> <integer>4</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -572,6 +608,8 @@
 		<key>type</key> <string>sacred</string>
 		<key>description</key> <string>Those who follow the path of the holy soldier learn to use holy weapons to smite their foes.</string>
 		<key>implement</key> <string>holy weapon</string>
+		<key>start item</key> <string>crystal</string>
+		<key>start item number</key> <integer>4</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -599,6 +637,8 @@
 	<dict>
 		<key>type</key> <string>sacred</string>
 		<key>description</key> <string>Those who follow the path of heresy are an untrustworthy lot, who excel at unlocking locked doors and chests.</string>
+		<key>start item</key> <string>crystal</string>
+		<key>start item number</key> <integer>4</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -628,6 +668,8 @@
 		<key>type</key> <string>sacred</string>
 		<key>description</key> <string>Those who follow the path of the godly form learn to accept godly implants into themselves, and fight with their power.</string>
 		<key>implement</key> <string>godly implant</string>
+		<key>start item</key> <string>crystal</string>
+		<key>start item number</key> <integer>4</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -648,6 +690,9 @@
 		</array>
 	</dict>
 	
+	<!-- TODO: sixth sacred skill -->
+	<!-- maybe something status effect-focused, or counter-focused? I dunno -->
+	
 	<!-- false prophet (pattern D) -->
 	<!-- the sacred crafting skill, which gives a shock attack -->
 	<!-- raises damage -->
@@ -656,6 +701,8 @@
 	<dict>
 		<key>type</key> <string>sacred</string>
 		<key>description</key> <string>Those who follow the path of the false prophet can make new relics of Eol without the permission of the clergy. They can create weapon, armor, and support relics alike.</string>
+		<key>start item</key> <string>capacitor</string>
+		<key>start item number</key> <integer>3</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -690,6 +737,8 @@
 		<key>type</key> <string>ritual</string>
 		<key>description</key> <string>The rituals of blood focus on powerful attacks, fueled by self-sacrifice. Those who practice them learn to be tougher, to survive the necessary bloodletting.</string>
 		<key>implement</key> <string>ritual knife</string>
+		<key>start item</key> <string>herbal draught</string>
+		<key>start item number</key> <integer>2</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -717,6 +766,8 @@
 	<dict>
 		<key>type</key> <string>ritual</string>
 		<key>description</key> <string>The rituals of wisdom are not the most powerful, but they are useful in a support role. Thoe who practice them learn many small skills, to complement their versatile abilities.</string>
+		<key>start item</key> <string>bread</string>
+		<key>start item number</key> <integer>3</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -747,6 +798,8 @@
 		<key>type</key> <string>ritual</string>
 		<key>description</key> <string>The rituals of energy focus on pure destruction. Those who practice them become more energetic themselves.</string>
 		<key>implement</key> <string>tome</string>
+		<key>start item</key> <string>bread</string> <!-- TODO: damage-boosting buff item -->
+		<key>start item number</key> <integer>2</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -776,6 +829,8 @@
 		<key>type</key> <string>ritual</string>
 		<key>description</key> <string>The rituals of mass focus on manipulating stone and metal. Those who practice them become more solid themselves.</string>
 		<key>implement</key> <string>rod</string>
+		<key>start item</key> <string>iron ingot</string>
+		<key>start item number</key> <integer>3</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -805,6 +860,8 @@
 		<key>type</key> <string>ritual</string>
 		<key>description</key> <string>The rituals of time focus on getting to act faster, to overwhelm a foe. Those who practice them learn to use their abilities more often.</string>
 		<key>implement</key> <string>timepiece</string>
+		<key>start item</key> <string>bread</string> <!-- TODO: a utility self-buff item -->
+		<key>start item number</key> <integer>2</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -832,6 +889,8 @@
 	<dict>
 		<key>type</key> <string>ritual</string>
 		<key>description</key> <string>The rituals of alchemy have little offensive value, but allow the creation of medicine and special armors and implements.</string>
+		<key>start item</key> <string>herb</string>
+		<key>start item number</key> <integer>3</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->

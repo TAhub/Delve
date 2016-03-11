@@ -240,6 +240,15 @@
 	if (self.examinationItem == nil)
 	{
 		inventoryLabelText = self.examineRecipies != nil ? @"Pick a recipie to craft" : @"Pick an item to use";
+		if ([self inventoryItemPicked] != nil)
+		{
+			Item *picked = [self inventoryItemPicked];
+			inventoryLabelText = [picked itemDescriptionWithCreature:self.map.player];
+		}
+		else if ([self recipiePicked] != nil)
+		{
+			//TODO: change the label text to a description of the item the recipie makes
+		}
 	}
 	else
 	{
@@ -315,14 +324,16 @@
 	}
 	UILabel *inventoryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.inventoryContent.frame.size.width, self.inventoryContent.frame.size.height)];
 	inventoryLabel.text = inventoryLabelText;
+	inventoryLabel.numberOfLines = 0;
 	inventoryLabel.textColor = loadColorFromName(@"ui text");
 	if (self.examinationItem == nil)
 	{
 		[inventoryLabel sizeToFit];
+		CGRect tableFrame = CGRectMake(0, inventoryLabel.frame.size.height, self.inventoryContent.frame.size.width, self.inventoryContent.frame.size.height - inventoryLabel.frame.size.height);
 		
 		if (self.itemTable == nil)
 		{
-			self.itemTable = [[UITableView alloc] initWithFrame:CGRectMake(0, inventoryLabel.frame.size.height, self.inventoryContent.frame.size.width, self.inventoryContent.frame.size.height - inventoryLabel.frame.size.height)];
+			self.itemTable = [[UITableView alloc] initWithFrame:tableFrame];
 			[self.inventoryContent addSubview:self.itemTable];
 			self.itemTable.delegate = self;
 			self.itemTable.dataSource = self;
@@ -332,6 +343,7 @@
 		else
 		{
 			NSIndexPath *oldPath = self.itemTable.indexPathForSelectedRow;
+			self.itemTable.frame = tableFrame;
 			[self.itemTable reloadData];
 			[self.itemTable selectRowAtIndexPath:oldPath animated:NO scrollPosition:UITableViewScrollPositionTop];
 		}
@@ -1339,7 +1351,7 @@
 	if (self.examineRecipies == nil)
 	{
 		Item *item = self.map.inventory[indexPath.row];
-		itemCell.nameLabel.text = item.name;
+		itemCell.nameLabel.text = [NSString stringWithFormat:@"%@%@", item.name, item.number > 1 ? [NSString stringWithFormat:@" x%i", item.number] : @""];
 	}
 	else
 	{

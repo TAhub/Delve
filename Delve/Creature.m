@@ -660,7 +660,7 @@
 						tile.inhabitant = nil;
 						[weakSelf.map.delegate updateCreature:hit];
 					}
-					else if (!wasAsleep && hit.sleeping == 0 && hit.stunned == 0 && //sleeping or stunned people can't counter
+					else if (!wasAsleep && hit.sleeping == 0 && hit.stunned == 0 && !hit.dead && //inactive people can't counter
 							 ABS(weakSelf.x - hit.x) + ABS(weakSelf.y - hit.y) == 1 && //can only counter in melee
 							 hit.good != weakSelf.good && //don't counter allies
 							 hit.counter > 0) //you need a counter-attack to counter obviously

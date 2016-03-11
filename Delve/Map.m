@@ -32,11 +32,13 @@
 		
 		[self recalculateVisibility];
 		
-		//TODO: these are temporary start items
-		[self addItem:[[Item alloc] initWithName:@"bread" andType:ItemTypeInventory]];
-		[self addItem:[[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory]];
-		[self addItem:[[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory]];
-		[self addItem:[[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory]];
+		//get start items based on the player's skills
+		for (NSString *tree in genPlayer.skillTrees)
+		{
+			Item *item = [[Item alloc] initWithName:loadValueString(@"SkillTrees", tree, @"start item") andType:ItemTypeInventory];
+			item.number = loadValueNumber(@"SkillTrees", tree, @"start item number").intValue;
+			[self addItem:item];
+		}
 	}
 	return self;
 }

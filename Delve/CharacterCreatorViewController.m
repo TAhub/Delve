@@ -88,7 +88,7 @@
 	
 	//TODO: save the last-generated character in a special user default, so you can try them again
 	
-	self.skills = [NSMutableArray arrayWithObjects:@"dagger", @"reflexes", @"shield", @"strength", @"conditioning", nil];
+	self.skills = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
 	self.appearanceNumber = 0;
 	self.raceNumber = 0;
 	
