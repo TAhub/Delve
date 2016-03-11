@@ -30,14 +30,14 @@
 		<key>type</key> <string>weapon</string>
 		<key>power</key> <integer>10</integer>
 		<key>element</key> <string>cut</string>
-		<key>attack effect</key> <string>slash</string>
+		<key>attack effect</key> <string>slash</string> <!-- TODO: special "bite" down melee with a row of teeth projectile -->
 	</dict>
 	<key>strong teeth</key>
 	<dict>
 		<key>type</key> <string>weapon</string>
 		<key>power</key> <integer>20</integer>
 		<key>element</key> <string>cut</string>
-		<key>attack effect</key> <string>slash</string>
+		<key>attack effect</key> <string>slash</string> <!-- TODO: the same effect as teeth -->
 	</dict>
 	<key>claw relic</key>
 	<dict>
@@ -254,6 +254,35 @@
 		<key>breaks into</key> <string>refined ingot</string>
 		<key>power</key> <integer>45</integer>
 		<key>description</key> <string>A spear with a hooked head.</string>
+	</dict>
+	
+	<!-- daggers -->
+	<key>shiv</key>
+	<dict>
+		<key>type</key> <string>dagger</string>
+		<key>power</key> <integer>0</integer>
+		<key>description</key> <string>A crude makeshift dagger, used by those with no real weapons.</string>
+	</dict>
+	<key>dagger</key>
+	<dict>
+		<key>type</key> <string>dagger</string>
+		<key>breaks into</key> <string>iron ingot</string>
+		<key>power</key> <integer>15</integer>
+		<key>description</key> <string>A simple but effective dagger made of iron.</string>
+	</dict>
+	<key>stiletto</key>
+	<dict>
+		<key>type</key> <string>dagger</string>
+		<key>breaks into</key> <string>steel ingot</string>
+		<key>power</key> <integer>30</integer>
+		<key>description</key> <string>A long, thin steel dagger designed to penetrate deeply.</string>
+	</dict>
+	<key>combat knife</key>
+	<dict>
+		<key>type</key> <string>dagger</string>
+		<key>breaks into</key> <string>refined ingot</string>
+		<key>power</key> <integer>45</integer>
+		<key>description</key> <string>An advanced dagger often used as a secondary weapon by the Eol military.</string>
 	</dict>
 	
 	<!-- bows -->

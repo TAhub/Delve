@@ -41,6 +41,20 @@
 		<!-- special effects -->
 	</dict>
 	
+	<!-- counter-attacks -->
+	<key>counter</key>
+	<dict>
+		<key>attack effect</key> <string>direction slash</string>
+		<key>element</key> <string>cut</string>
+		<!-- special effects -->
+	</dict>
+	<key>slime counter</key>
+	<dict>
+		<key>attack effect</key> <string>explosion</string>
+		<key>element</key> <string>no element</string>
+		<!-- special effects -->
+	</dict>
+	
 	<!-- real attacks -->
 	
 	<!-- monster-only attacks -->
@@ -68,7 +82,7 @@
 	</dict>
 	<key>rabid bite</key>
 	<dict>
-		<key>attack effect</key> <string>slash</string>
+		<key>attack effect</key> <string>slash</string> <!-- TODO: the same effect as the teeth implement -->
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>cut</string>
 		<key>range</key> <integer>1</integer>
@@ -158,6 +172,16 @@
 		<key>dodgeable</key> <true/>
 		<!-- special effects -->
 	</dict>
+	<key>stab</key>
+	<dict>
+		<key>attack effect</key> <string>dart</string>
+		<key>description</key> <string>Quickly stab the foe with your dagger.</string>
+		<key>power</key> <integer>18</integer>
+		<key>element</key> <string>cut</string>
+		<key>range</key> <integer>1</integer>
+		<key>cooldown</key> <integer>1</integer>
+		<!-- special effects -->
+	</dict>
 	<key>thrust</key>
 	<dict>
 		<key>attack effect</key> <string>dart</string>
@@ -244,7 +268,7 @@
 	<!-- ranged damaging attacks -->
 	<!-- design note: now, due to screen sizes, the max range should be 4 -->
 	<!-- because of that, most ranged attacks should be given no-dodge -->
-	<!-- otherwise, most ranged attack stronger than bow shot will be useless, because the enemy will dodge it anyway -->
+	<!-- otherwise, most ranged attack stronger than bow shot will be useless, because the foe will dodge it anyway -->
 	<key>shield toss</key>
 	<dict>
 		<key>attack effect</key> <string>shield toss</string>
@@ -268,10 +292,21 @@
 		<key>dodgeable</key> <true/>
 		<!-- special effects -->
 	</dict>
+	<key>throwing knife</key>
+	<dict>
+		<key>attack effect</key> <string>dart</string>
+		<key>description</key> <string>Quickly throw a knife at a foe, interrupting them.</string>
+		<key>power</key> <integer>25</integer>
+		<key>element</key> <string>cut</string>
+		<key>range</key> <integer>3</integer>
+		<key>cooldown</key> <integer>15</integer>
+		<!-- special effects -->
+		<key>interrupt aoe</key> <true/>
+	</dict>
 	<key>holy shot</key>
 	<dict>
 		<key>attack effect</key> <string>bolt</string>
-		<key>description</key> <string>Use your holy weapon to strike an enemy with holy light.</string>
+		<key>description</key> <string>Use your holy weapon to strike a foe with holy light.</string>
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>shock</string>
 		<key>range</key> <integer>4</integer>
@@ -307,7 +342,7 @@
 	<key>twin sacrifice</key>
 	<dict>
 		<key>attack effect</key> <string>explosion</string>
-		<key>description</key> <string>Sacrifice a lot of your own blood to heavily injure an enemy.</string>
+		<key>description</key> <string>Sacrifice a lot of your own blood to heavily injure a foe.</string>
 		<key>power</key> <integer>50</integer>
 		<key>element</key> <string>no element</string>
 		<key>range</key> <integer>3</integer>
@@ -489,7 +524,7 @@
 	<key>flirt</key>
 	<dict>
 		<key>attack effect</key> <string>heart</string>
-		<key>description</key> <string>Use your personal appeal to hypnotize an enemy.</string>
+		<key>description</key> <string>Use your personal appeal to hypnotize a foe.</string>
 		<key>range</key> <integer>1</integer>
 		<key>area</key> <integer>1</integer>
 		<key>cooldown</key> <integer>15</integer>

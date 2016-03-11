@@ -23,6 +23,7 @@
 		<string>fundamentals</string>
 		<string>stopped clock</string>
 		<string>crumbling rod</string>
+		<string>shiv</string>
 	</array>
 	
 	<!-- inventory item drop leveled lists -->
@@ -89,6 +90,7 @@
 		<string>mace</string>
 		<string>wristwatch</string>
 		<string>iron rod</string>
+		<string>dagger</string>
 		<!-- common stuff again -->
 		<string>buckler</string>
 		<string>sledgehammer</string>
@@ -103,6 +105,7 @@
 		<string>mace</string>
 		<string>wristwatch</string>
 		<string>iron rod</string>
+		<string>dagger</string>
 		<!-- rare stuff -->
 		<string>torch</string>
 	</array>
@@ -122,6 +125,7 @@
 		<string>flail</string>
 		<string>pocket watch</string>
 		<string>silver rod</string>
+		<string>stiletto</string>
 		<!-- common stuff again -->
 		<string>kite shield</string>
 		<string>warhammer</string>
@@ -136,6 +140,7 @@
 		<string>flail</string>
 		<string>pocket watch</string>
 		<string>silver rod</string>
+		<string>stiletto</string>
 		<!-- rare stuff -->
 		<string>holy baton</string>
 	</array>
@@ -155,6 +160,7 @@
 		<string>flanged mace</string>
 		<string>stopwatch</string>
 		<string>gold rod</string>
+		<string>combat knife</string>
 		<!-- common stuff again -->
 		<string>relic shield</string>
 		<string>greathammer</string>
@@ -169,6 +175,7 @@
 		<string>flanged mace</string>
 		<string>stopwatch</string>
 		<string>gold rod</string>
+		<string>combat knife</string>
 		<!-- rare stuff -->
 	</array>
 	<key>armors 1</key>
@@ -250,6 +257,7 @@
 		<string>buckler</string>
 		<string>sledgehammer</string>
 		<string>iron spear</string>
+		<string>dagger</string>
 		<string>shortbow</string>
 		<string>bodkin bow</string>
 		<string>rusty helmet</string>
@@ -268,6 +276,7 @@
 		<string>kite shield</string>
 		<string>warhammer</string>
 		<string>pike</string>
+		<string>stiletto</string>
 		<string>longbow</string>
 		<string>pitch bow</string>
 		<string>skullcap</string>
@@ -286,6 +295,7 @@
 		<string>relic shield</string>
 		<string>greathammer</string>
 		<string>partisan</string>
+		<string>combat knife</string>
 		<string>composite bow</string>
 		<string>relic bow</string>
 		<string>bandit helmet</string>

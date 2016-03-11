@@ -78,7 +78,7 @@
 		_armors[0] = loadValueString(@"Races", race, @"race start armor");
 		
 		_skillTrees = skillTrees;
-		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
+		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(4), @(4), @(4), @(4), @(4), nil];
 		_implements = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
 		_weapon = loadValueString(@"Races", _race, @"race start weapon");
 		
@@ -626,7 +626,9 @@
 	[self.map.delegate attackAnimation:self.storedAttack withElement:element andAttackEffect:attackEffect fromPerson:self targetX:self.storedAttackX andY:self.storedAttackY withEffectBlock:
 	^(void (^finalBlock)(void))
 	{
+		__block Creature *counterAttacker = nil;
 		__block BOOL tilesChanged = false;
+		
 		[weakSelf applyBlock:
 		^void (Tile *tile)
 		{
@@ -645,18 +647,27 @@
 					 (hit.good != weakSelf.good)) && //or if it's targeting an enemy
 					!hit.dead) //don't hit dead people
 				{
+					BOOL wasAsleep = hit.sleeping > 0;
 					NSString *hitResult = [hit takeAttack:weakSelf.storedAttack withPower:power andElement:element];
 					[labels addObject:hitResult];
 					[creatures addObject:hit];
 					if (hit.dead)
 					{
 						//you killed someone!
-						weakSelf.blocks = MIN(weakSelf.blocks + 1, weakSelf.maxBlocks);
-						//TODO: any other bennies for getting a kill
+						[weakSelf killBoosts];
 						
 						//remove the dead person from the map
 						tile.inhabitant = nil;
 						[weakSelf.map.delegate updateCreature:hit];
+					}
+					else if (!wasAsleep && hit.sleeping == 0 && hit.stunned == 0 && //sleeping or stunned people can't counter
+							 ABS(weakSelf.x - hit.x) + ABS(weakSelf.y - hit.y) == 1 && //can only counter in melee
+							 hit.good != weakSelf.good && //don't counter allies
+							 hit.counter > 0) //you need a counter-attack to counter obviously
+					{
+						//they might get a counter-attack in!
+						if (counterAttacker == nil || counterAttacker.counter < hit.counter)
+							counterAttacker = hit;
 					}
 				}
 				
@@ -678,6 +689,9 @@
 				((Tile *)weakSelf.map.tiles[weakSelf.storedAttackY][weakSelf.storedAttackX]).inhabitant = weakSelf;
 				weakSelf.x = weakSelf.storedAttackX;
 				weakSelf.y = weakSelf.storedAttackY;
+				
+				//for simplicity's sake, teleport attacks cannot trigger counters
+				counterAttacker = nil;
 			}
 			
 		} forAttack:weakSelf.storedAttack onX:weakSelf.storedAttackX andY:weakSelf.storedAttackY];
@@ -688,8 +702,46 @@
 		weakSelf.storedAttack = nil;
 		
 		UIColor *color = loadColorFromName([NSString stringWithFormat:@"element %@", element]);
-		[self.map.delegate floatLabelsOn:creatures withString:labels andColor:color withBlock:finalBlock];
+		
+		
+		[weakSelf.map.delegate floatLabelsOn:creatures withString:labels andColor:color withBlock:
+		^()
+		{
+			if (counterAttacker == nil)
+				finalBlock();
+			else
+			{
+				//TODO: get real counter-attack virtual attack; probably put it in race (so slimes can have a unique counter anim)
+				NSString *virtualCounter = @"counter";
+				NSString *element = loadValueString(@"Attacks", virtualCounter, @"element");
+				NSString *attackEffect = loadValueString(@"Attacks", virtualCounter, @"attack effect");
+				
+				[weakSelf.map.delegate attackAnimation:virtualCounter withElement:element andAttackEffect:attackEffect fromPerson:counterAttacker targetX:weakSelf.x andY:weakSelf.y withEffectBlock:
+				^(void (^nevermind)(void))
+				{
+					weakSelf.health = MAX(0, weakSelf.health - counterAttacker.counter);
+					if (weakSelf.health == 0)
+					{
+						//yes, counter-attacks can kill you
+						[counterAttacker killBoosts];
+						((Tile *)weakSelf.map.tiles[weakSelf.y][weakSelf.x]).inhabitant = nil;
+						[weakSelf.map.delegate updateCreature:weakSelf];
+					}
+					
+					UIColor *color = loadColorFromName([NSString stringWithFormat:@"element %@", element]);
+					[weakSelf.map.delegate floatLabelsOn:[NSArray arrayWithObject:weakSelf] withString:[NSArray arrayWithObject:[NSString stringWithFormat:@"%i", counterAttacker.counter]] andColor:color withBlock:finalBlock];
+				}];
+				
+				//note that this is DISCARDING the new final block, because I don't want to double-skip turns
+			}
+		}];
 	}];
+}
+
+-(void)killBoosts
+{
+	self.blocks = MIN(self.blocks + 1, self.maxBlocks);
+	//TODO: any other bennies for getting a kill
 }
 
 -(BOOL) moveWithX:(int)x andY:(int)y
@@ -1116,6 +1168,10 @@
 -(int) delayReduction
 {
 	return [self totalBonus:@"delay reduction"];
+}
+-(int) counter
+{
+	return [self totalBonus:@"counter"];
 }
 
 

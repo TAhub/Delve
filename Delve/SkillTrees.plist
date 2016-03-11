@@ -28,6 +28,7 @@
 				<key>hacks</key> <integer>0</integer>
 				<key>metabolism</key> <integer>0</integer>
 				<key>delay reduction</key> <integer>0</integer>
+				<key>counter</key> <integer>0</integer>
 				<key>attack</key> <string>template</string>
 				<key>recipies</key> <string>template</string>
 			</dict>
@@ -43,6 +44,7 @@
 				<key>hacks</key> <integer>0</integer>
 				<key>metabolism</key> <integer>0</integer>
 				<key>delay reduction</key> <integer>0</integer>
+				<key>counter</key> <integer>0</integer>
 				<key>attack</key> <string>template</string>
 				<key>recipies</key> <string>template</string>
 			</dict>
@@ -58,6 +60,7 @@
 				<key>hacks</key> <integer>0</integer>
 				<key>metabolism</key> <integer>0</integer>
 				<key>delay reduction</key> <integer>0</integer>
+				<key>counter</key> <integer>0</integer>
 				<key>attack</key> <string>template</string>
 				<key>recipies</key> <string>template</string>
 			</dict>
@@ -73,6 +76,7 @@
 				<key>hacks</key> <integer>0</integer>
 				<key>metabolism</key> <integer>0</integer>
 				<key>delay reduction</key> <integer>0</integer>
+				<key>counter</key> <integer>0</integer>
 				<key>attack</key> <string>template</string>
 				<key>recipies</key> <string>template</string>
 			</dict>
@@ -81,7 +85,7 @@
 	
 	<!-- design guidelines -->
 	<!-- passive-only skill ranks give about 1 of the following (feel free to split the difference) -->
-	<!-- 25 health, 25 damage bonus, 2 resistance, 1 dodge, 1 block, 30 metabolism, 2 hacks, 1 delay reduction -->
+	<!-- 25 health, 25 damage bonus, 2 resistance, 1 dodge, 1 block, 30 metabolism, 2 hacks, 1 delay reduction, 4 counter -->
 	<!-- active skills give the active skill plus about half of a passive, less for a powerful active skill -->
 	<!-- everything should have at least a little bit of health or whatever -->
 	
@@ -322,6 +326,34 @@
 			<dict> <!-- rank 4 -->
 				<key>damage bonus</key> <integer>15</integer>
 				<key>dodges</key> <integer>1</integer>
+			</dict>
+		</array>
+	</dict>
+	
+	<!-- dagger (pattern A) -->
+	<!-- a counter-attack-focused skill, with a lot of undodgeable stuff -->
+	<!-- raises counter -->
+	<!-- implement: dagger -->
+	<key>dagger</key>
+	<dict>
+		<key>type</key> <string>war</string>
+		<key>description</key> <string>A knifefighter may not pulverize foes in a single blow, but !he is hard to dodge and fast enough to effectively counter-attack.</string>
+		<key>implement</key> <string>dagger</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>damage bonus</key> <integer>15</integer>
+				<key>attack</key> <string>stab</string>
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>counter</key> <integer>4</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>health</key> <integer>15</integer>
+				<key>attack</key> <string>throwing knife</string>
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>counter</key> <integer>4</integer>
 			</dict>
 		</array>
 	</dict>
@@ -792,7 +824,7 @@
 		</array>
 	</dict>
 	
-	<!-- alchemy (pattern abnormal) -->
+	<!-- alchemy (pattern D) -->
 	<!-- the ritual crafting tree, with a no element attack -->
 	<!-- raises metabolism -->
 	<!-- implement: none -->

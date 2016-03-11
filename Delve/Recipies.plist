@@ -457,6 +457,30 @@
 		<key>result type</key> <string>implement</string>
 		<key>result amount</key> <integer>1</integer>
 	</dict>
+	<key>dagger</key>
+	<dict>
+		<key>ingredient a</key> <string>iron ingot</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>result</key> <string>dagger</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>stiletto</key>
+	<dict>
+		<key>ingredient a</key> <string>steel ingot</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>result</key> <string>stiletto</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>combat knife</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>result</key> <string>combat knife</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
 	<key>shortbow</key>
 	<dict>
 		<key>ingredient a</key> <string>iron ingot</string>

@@ -383,7 +383,11 @@
 {
 	//you can still switch while uiAnimating, so that name labels can appear properly
 	if (/*self.uiAnimating || */self.activePanelCord == panelCord)
+	{
+		if (block != nil)
+			block();
 		return;
+	}
 	
 	panelCord.constant = -self.view.frame.size.width;
 //	[self.uiView layoutIfNeeded];
@@ -1020,6 +1024,9 @@
 			[weakSelf switchToPanel:weakSelf.mainPanelCord withBlock:
 			 ^()
 			 {
+				 //NOTE:
+				 //if this is a counter-attack, this final block won't happen
+				 
 				 if (teleport)
 				 {
 					 //move everyone

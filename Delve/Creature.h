@@ -39,6 +39,7 @@
 -(int) maxHacks; //hacks are used to unlock doors, chests, and to turn off traps if you step in them; it's refilled on map transition
 -(int) metabolism; //metabolism is a percentage bonus to how much healing items heal you
 -(int) delayReduction; //delay reduction reduces cooldowns of attacks, to a minimum of 1
+-(int) counter; //counter-attacks are undodgeable, unblockable, and unreducable
 
 -(BOOL) dead;
 

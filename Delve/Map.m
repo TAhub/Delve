@@ -802,7 +802,7 @@
 			}
 	[self shuffleArray:encounterTreasureRooms];
 	[self shuffleArray:noEncounterTreasureRooms];
-	[noEncounterTreasureRooms addObject:encounterTreasureRooms];
+	[noEncounterTreasureRooms addObjectsFromArray:encounterTreasureRooms];
 	for (GeneratorRoom *room in noEncounterTreasureRooms)
 	{
 		room.treasure = true;
