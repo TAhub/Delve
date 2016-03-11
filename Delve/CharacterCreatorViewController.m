@@ -196,7 +196,7 @@
 
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < CREATURE_NUM_TREES; i++)
 		if (((NSString *)self.skills[i]).length == 0)
 			return false;
 	return true;
@@ -266,7 +266,7 @@
 	NSArray *type = self.preloadedTrees[indexPath.section];
 	NSString *key = type[indexPath.row];
 	
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < CREATURE_NUM_TREES; i++)
 		if ([self.skills[i] isEqualToString:key])
 		{
 			//you have it!
@@ -290,7 +290,7 @@
 	
 	//select that skill
 	BOOL contains = false;
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < CREATURE_NUM_TREES; i++)
 		if ([self.skills[i] isEqualToString:key])
 		{
 			//you had it!
@@ -302,7 +302,7 @@
 			return;
 		}
 	if (!contains)
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < CREATURE_NUM_TREES; i++)
 			if ([self.skills[i] isEqualToString:@""])
 				if ([slots[i] isEqualToString:@"wildcard"] || [slots[i] isEqualToString:loadValueString(@"SkillTrees", key, @"type")])
 				{

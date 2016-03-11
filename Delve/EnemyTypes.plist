@@ -120,6 +120,47 @@
 		<key>weapon</key> <string>torch</string>
 	</dict>
 	
+	<!-- slimes -->
+	<!-- slimes are a specialiest enemy -->
+	<!-- they all all resistant to cut and all have counter-attacks, but bad normal damage -->
+	<!-- so don't charge one with a sword! -->
+	
+	<!-- slime -->
+	<!-- the basic slime enemy, weak and specialized -->
+	<key>slime</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>slime</string>
+		<!-- TODO: AI -->
+		<key>skills</key>
+		<array>
+			<string>tough monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+	</dict>
+	
+	<!-- great slime -->
+	<!-- a big slime, still no special abilities though -->
+	<key>great slime</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>great slime</string>
+		<!-- TODO: AI -->
+		<key>skills</key>
+		<array>
+			<string>tough monster skill</string>
+			<string>tough monster skill</string>
+			<string>tough monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+	</dict>
+	
 	
 	<!-- ruin feeders -->
 	<!-- ruin feeders are the weakest, earliest enemy type -->

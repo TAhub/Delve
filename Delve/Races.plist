@@ -284,6 +284,38 @@
 	
 	<!-- enemy races -->
 	
+	<!-- slime (weak) -->
+	<!-- slimes are a very tanky enemy with a built-in counter-attack, good cut resistance, and a significant burn weakness -->
+	<key>slime</key>
+	<dict>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>75</integer>
+		<key>health</key> <integer>95</integer>
+		<key>cut resistance</key> <integer>2</integer>
+		<key>burn resistance</key> <integer>-4</integer>
+		<key>metabolism</key> <integer>100</integer>
+		<key>counter</key> <integer>5</integer>
+		<!-- slots -->
+		<!-- appearance -->
+		<!-- TODO: appearance data -->
+	</dict>
+	
+	<!-- great slime (strong) -->
+	<!-- great slimes are like slimes but better in every way, basically -->
+	<key>great slime</key>
+	<dict>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>87</integer>
+		<key>health</key> <integer>100</integer>
+		<key>cut resistance</key> <integer>3</integer>
+		<key>burn resistance</key> <integer>-4</integer>
+		<key>metabolism</key> <integer>100</integer>
+		<key>counter</key> <integer>10</integer>
+		<!-- slots -->
+		<!-- appearance -->
+		<!-- TODO: appearance data -->
+	</dict>
+	
 	<!-- ruin feeder runts (weak) -->
 	<!-- ruin feeder runts are a weak, somewhat dodgy enemy -->
 	<key>ruin feeder runt</key>

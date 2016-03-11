@@ -56,7 +56,7 @@
 	
 	<!-- floor 0 -->
 	<!-- theme: cave and ruins -->
-	<!-- enemy types: ruin feeders -->
+	<!-- enemy types: ruin feeders and slimes -->
 	<!-- color: blue -->
 	<!-- TODO: real data -->
 	<key>floor 0</key>
@@ -216,7 +216,7 @@
 	
 	<!-- floor 4 -->
 	<!-- theme: underground forest -->
-	<!-- enemy types: higher-level ruin feeders -->
+	<!-- enemy types: higher-level ruin feeders and slimes -->
 	<!-- color: grey -->
 	<!-- TODO: real data -->
 	<key>floor 4</key>
@@ -256,7 +256,7 @@
 	
 	<!-- floor 5 -->
 	<!-- theme: eol research lab -->
-	<!-- enemy types: abominations, a few robots -->
+	<!-- enemy types: abominations, slimes, and a few robots -->
 	<!-- color: grey -->
 	<!-- TODO: real data -->
 	<key>floor 5</key>
