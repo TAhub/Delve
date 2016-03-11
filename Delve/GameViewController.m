@@ -240,14 +240,16 @@
 	if (self.examinationItem == nil)
 	{
 		inventoryLabelText = self.examineRecipies != nil ? @"Pick a recipie to craft" : @"Pick an item to use";
-		if ([self inventoryItemPicked] != nil)
+		if (self.examineRecipies == nil && self.inventoryItemPicked != nil)
 		{
 			Item *picked = [self inventoryItemPicked];
 			inventoryLabelText = [picked itemDescriptionWithCreature:self.map.player];
 		}
-		else if ([self recipiePicked] != nil)
+		else if (self.examineRecipies != nil && self.recipiePicked != nil)
 		{
-			//TODO: change the label text to a description of the item the recipie makes
+			Item *sample = [self.map makeItemFromRecipie:self.recipiePicked];
+			inventoryLabelText = [sample itemDescriptionWithCreature:self.map.player];
+			
 		}
 	}
 	else
@@ -1355,9 +1357,18 @@
 	}
 	else
 	{
-		//TODO: print recipie details
 		NSString *recipie = self.examineRecipies[indexPath.row];
-		itemCell.nameLabel.text = recipie;
+		NSMutableString *recipieDesc = [NSMutableString new];
+		int aNum = loadValueNumber(@"Recipies", recipie, @"ingredient a amount").intValue;
+		[recipieDesc appendFormat:@"%@%@", loadValueString(@"Recipies", recipie, @"ingredient a"), aNum > 1 ? [NSString stringWithFormat:@" x%i", aNum] : @""];
+		if (loadValueBool(@"Recipies", recipie, @"ingredient b"))
+		{
+			int bNum = loadValueNumber(@"Recipies", recipie, @"ingredient b amount").intValue;
+			[recipieDesc appendFormat:@" + %@%@", loadValueString(@"Recipies", recipie, @"ingredient b"), bNum > 1 ? [NSString stringWithFormat:@" x%i", bNum] : @""];
+		}
+		int rNum = loadValueNumber(@"Recipies", recipie, @"result amount").intValue;
+		[recipieDesc appendFormat:@" -> %@%@", loadValueString(@"Recipies", recipie, @"result"), rNum > 1 ? [NSString stringWithFormat:@" x%i", rNum] : @""];
+		itemCell.nameLabel.text = recipieDesc;
 	}
 	itemCell.nameLabel.textColor = loadColorFromName(@"ui text");
 	return itemCell;

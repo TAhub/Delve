@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *raceButton;
 @property (weak, nonatomic) IBOutlet UIButton *appearanceButton;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
+@property (weak, nonatomic) IBOutlet UIButton *lastButton;
+
 
 
 @property (weak, nonatomic) IBOutlet UILabel *skillLabel;
@@ -66,9 +68,14 @@
 	[self formatButton:self.raceButton];
 	[self formatButton:self.appearanceButton];
 	[self formatButton:self.startButton];
+	[self formatButton:self.lastButton];
 	
 	self.treeTable.delegate = self;
 	self.treeTable.dataSource = self;
+	
+	//grey out the last button if there is no last
+	if ([[NSUserDefaults standardUserDefaults] objectForKey:@"last skills"] == nil)
+		[self.lastButton setTitleColor:loadColorFromName(@"ui text grey") forState:UIControlStateNormal];
 	
 	
 	//TODO: convert the collection view into a table view, with sections
@@ -85,8 +92,6 @@
 	[self.characterView addSubview:self.innerCreatureView];
 	
 	self.skillLabel.text = @"Pick a skill to turn it on or off.";
-	
-	//TODO: save the last-generated character in a special user default, so you can try them again
 	
 	self.skills = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
 	self.appearanceNumber = 0;
@@ -177,6 +182,7 @@
 			self.raceNumber = (self.raceNumber + 1) % 4;
 			self.appearanceNumber = 0;
 			self.skills = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
+			[self.treeTable reloadData];
 			break;
 		case 1:
 			//cycle between possible appearances
@@ -198,8 +204,30 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+	//save the last-generated character in a special user default, so you can try them again
+	NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+	[def setObject:self.skills forKey:@"last skills"];
+	[def setInteger:self.raceNumber forKey:@"last race"];
+	[def setInteger:self.appearanceNumber forKey:@"last appearance"];
+	
+	//prepare the segue
 	GameViewController *gvc = segue.destinationViewController;
 	[gvc loadGen:self.creature];
+}
+
+- (IBAction)pressLastButton
+{
+	NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+	if ([def objectForKey:@"last skills"] != nil)
+	{
+		self.skills = [def objectForKey:@"last skills"];
+		self.raceNumber = [def integerForKey:@"last race"];
+		self.appearanceNumber = [def integerForKey:@"last appearance"];
+		[self.treeTable reloadData];
+		[self reloadCreature];
+		[self reloadLabels];
+		[self reloadSprite];
+	}
 }
 
 #pragma mark collection view

@@ -620,7 +620,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDc-av-FP9">
-                                        <rect key="frame" x="143" y="389" width="34" height="30"/>
+                                        <rect key="frame" x="63" y="389" width="34" height="30"/>
                                         <state key="normal" title="Start"/>
                                         <connections>
                                             <segue destination="BYZ-38-t0r" kind="custom" identifier="startGame" customClass="ReplaceSegue" id="bRn-3v-Bao"/>
@@ -670,20 +670,31 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNH-9I-vkI">
+                                        <rect key="frame" x="225" y="389" width="30" height="30"/>
+                                        <state key="normal" title="Last"/>
+                                        <connections>
+                                            <action selector="pressLastButton" destination="m8D-VV-cYc" eventType="touchUpInside" id="T0b-h3-CZb"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="uNH-9I-vkI" firstAttribute="top" secondItem="7XE-A8-mph" secondAttribute="bottom" constant="8" symbolic="YES" id="2o7-Rf-Xf2"/>
                                     <constraint firstItem="B67-qe-xbb" firstAttribute="width" secondItem="hiM-md-erP" secondAttribute="width" id="3Xm-86-dAW"/>
                                     <constraint firstItem="7XE-A8-mph" firstAttribute="top" secondItem="46Y-2a-eDr" secondAttribute="bottom" constant="8" symbolic="YES" id="6AG-AR-wro"/>
                                     <constraint firstItem="46Y-2a-eDr" firstAttribute="top" secondItem="hsv-Tf-UdW" secondAttribute="bottom" constant="8" symbolic="YES" id="Cmx-Rz-aaN"/>
                                     <constraint firstItem="zDc-av-FP9" firstAttribute="top" secondItem="B67-qe-xbb" secondAttribute="bottom" constant="8" symbolic="YES" id="Dny-vd-NmS"/>
-                                    <constraint firstItem="zDc-av-FP9" firstAttribute="centerX" secondItem="hiM-md-erP" secondAttribute="centerX" id="HTb-UV-ZNl"/>
+                                    <constraint firstItem="zDc-av-FP9" firstAttribute="centerX" secondItem="hiM-md-erP" secondAttribute="centerX" multiplier="0.5" id="HTb-UV-ZNl"/>
                                     <constraint firstItem="B67-qe-xbb" firstAttribute="centerX" secondItem="hiM-md-erP" secondAttribute="centerX" id="IIA-5T-CPi"/>
                                     <constraint firstAttribute="bottom" secondItem="zDc-av-FP9" secondAttribute="bottom" constant="20" symbolic="YES" id="Kee-2i-srV"/>
                                     <constraint firstItem="7XE-A8-mph" firstAttribute="width" secondItem="hiM-md-erP" secondAttribute="width" id="NYD-3L-Cor"/>
                                     <constraint firstItem="hsv-Tf-UdW" firstAttribute="centerX" secondItem="hiM-md-erP" secondAttribute="centerX" id="PUr-E5-P6H"/>
+                                    <constraint firstItem="uNH-9I-vkI" firstAttribute="centerX" secondItem="hiM-md-erP" secondAttribute="centerX" multiplier="1.5" id="Tf4-q5-euL"/>
                                     <constraint firstItem="hsv-Tf-UdW" firstAttribute="top" secondItem="hiM-md-erP" secondAttribute="top" constant="20" symbolic="YES" id="VsO-v1-PBV"/>
+                                    <constraint firstItem="uNH-9I-vkI" firstAttribute="top" secondItem="B67-qe-xbb" secondAttribute="bottom" constant="8" symbolic="YES" id="WxO-sX-DMM"/>
                                     <constraint firstItem="7XE-A8-mph" firstAttribute="centerX" secondItem="hiM-md-erP" secondAttribute="centerX" id="XUh-uN-5BG"/>
+                                    <constraint firstAttribute="bottom" secondItem="uNH-9I-vkI" secondAttribute="bottom" constant="20" symbolic="YES" id="YFU-Ro-o7F"/>
                                     <constraint firstItem="46Y-2a-eDr" firstAttribute="centerX" secondItem="hiM-md-erP" secondAttribute="centerX" id="d4k-aw-gUO"/>
                                     <constraint firstItem="hsv-Tf-UdW" firstAttribute="leading" secondItem="hiM-md-erP" secondAttribute="leading" constant="97" id="lho-Yr-PSx"/>
                                     <constraint firstItem="B67-qe-xbb" firstAttribute="top" secondItem="7XE-A8-mph" secondAttribute="bottom" constant="8" symbolic="YES" id="lmf-sZ-D3K"/>
@@ -693,6 +704,7 @@
                                     <mask key="constraints">
                                         <exclude reference="lho-Yr-PSx"/>
                                         <exclude reference="unA-Rr-6Xk"/>
+                                        <exclude reference="2o7-Rf-Xf2"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -719,6 +731,7 @@
                         <outlet property="appearanceButton" destination="46Y-2a-eDr" id="yiH-Hd-5C2"/>
                         <outlet property="characterView" destination="GxY-wd-awe" id="UVC-EX-tif"/>
                         <outlet property="interfaceContainer" destination="hiM-md-erP" id="ne6-Bc-Osy"/>
+                        <outlet property="lastButton" destination="uNH-9I-vkI" id="Kwm-fG-TyQ"/>
                         <outlet property="raceButton" destination="hsv-Tf-UdW" id="IM7-mM-Xp7"/>
                         <outlet property="skillLabel" destination="B67-qe-xbb" id="K1A-Nr-gzg"/>
                         <outlet property="startButton" destination="zDc-av-FP9" id="OQK-OU-deh"/>
