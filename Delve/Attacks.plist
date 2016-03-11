@@ -338,16 +338,6 @@
 		<key>cooldown</key> <integer>11</integer>
 		<!-- special effects -->
 	</dict>
-	<key>holy flash</key>
-	<dict>
-		<key>attack effect</key> <string>explosion</string>
-		<key>description</key> <string>Use a ritual to shock a foe with holy light</string>
-		<key>power</key> <integer>25</integer>
-		<key>element</key> <string>shock</string>
-		<key>range</key> <integer>4</integer>
-		<key>cooldown</key> <integer>11</integer>
-		<!-- special effects -->
-	</dict>
 	<key>stone pillar</key>
 	<dict>
 		<key>attack effect</key> <string>pillar</string>
@@ -385,16 +375,29 @@
 		<key>dodgeable</key> <true/>
 		<!-- special effects -->
 	</dict>
+	<key>holy flash</key>
+	<dict>
+		<key>attack effect</key> <string>explosion</string>
+		<key>description</key> <string>Use a ritual to create a flash of holy light.</string>
+		<key>power</key> <integer>15</integer>
+		<key>element</key> <string>shock</string>
+		<key>range</key> <integer>3</integer>
+		<key>area</key> <integer>5</integer>
+		<key>cooldown</key> <integer>11</integer>
+		<!-- special effects -->
+	</dict>
 	<key>shatter</key>
 	<dict>
 		<key>attack effect</key> <string>shatter</string>
-		<key>description</key> <string>Use a ritual to cause a small explosion that kicks up many sharp metal fragments.</string>
-		<key>power</key> <integer>25</integer>
+		<key>description</key> <string>Use a ritual to detonate an iron ingot into many sharp fragments.</string>
+		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>cut</string>
-		<key>range</key> <integer>3</integer>
+		<key>range</key> <integer>4</integer>
 		<key>area</key> <integer>3</integer>
 		<key>cooldown</key> <integer>11</integer>
 		<key>dodgeable</key> <true/>
+		<key>ammo</key> <string>iron ingot</string>
+		<!-- TODO: maybe make it so that it works with other ingots too? change desc if I do -->
 		<!-- special effects -->
 	</dict>
 	<key>earthquake slam</key>
@@ -486,7 +489,7 @@
 	<key>flirt</key>
 	<dict>
 		<key>attack effect</key> <string>heart</string>
-		<key>description</key> <string>Use your personal appeal to tire an enemy out.</string>
+		<key>description</key> <string>Use your personal appeal to hypnotize an enemy.</string>
 		<key>range</key> <integer>1</integer>
 		<key>area</key> <integer>1</integer>
 		<key>cooldown</key> <integer>15</integer>

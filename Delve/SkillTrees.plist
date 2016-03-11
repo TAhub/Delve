@@ -706,14 +706,14 @@
 		</array>
 	</dict>
 	
-	<!-- might (pattern B) -->
-	<!-- the dedicated nuker tree, with one spell for each element -->
+	<!-- energy (pattern A) -->
+	<!-- the primary nuker tree -->
 	<!-- raises damage -->
 	<!-- implement: tome -->
-	<key>might</key>
+	<key>energy</key>
 	<dict>
 		<key>type</key> <string>ritual</string>
-		<key>description</key> <string>The rituals of might focus on having a destructive attack for every foe. Those who practice them have little time for self-improvement otherwise.</string>
+		<key>description</key> <string>The rituals of energy focus on pure destruction. Those who practice them become more energetic themselves.</string>
 		<key>implement</key> <string>tome</string>
 		<key>skills</key>
 		<array>
@@ -722,8 +722,7 @@
 				<key>attack</key> <string>flame bolt</string>
 			</dict>
 			<dict> <!-- rank 2 -->
-				<key>damage bonus</key> <integer>10</integer>
-				<key>attack</key> <string>shatter</string>
+				<key>damage bonus</key> <integer>25</integer>
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>damage bonus</key> <integer>10</integer>
@@ -731,7 +730,36 @@
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>damage bonus</key> <integer>10</integer>
+				<key>delay reduction</key> <integer>1</integer>
+			</dict>
+		</array>
+	</dict>
+	
+	<!-- mass (pattern A) -->
+	<!-- the secondary nuker tree -->
+	<!-- raises resistances -->
+	<!-- implement: tome -->
+	<key>mass</key>
+	<dict>
+		<key>type</key> <string>ritual</string>
+		<key>description</key> <string>The rituals of mass focus on manipulating stone and metal. Those who practice them become more solid themselves.</string>
+		<key>implement</key> <string>rod</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>health</key> <integer>10</integer>
+				<key>attack</key> <string>shatter</string>
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>health</key> <integer>25</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>health</key> <integer>10</integer>
 				<key>attack</key> <string>stone pillar</string>
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>health</key> <integer>10</integer>
+				<key>blocks</key> <integer>1</integer>
 			</dict>
 		</array>
 	</dict>

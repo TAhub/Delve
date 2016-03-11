@@ -580,6 +580,8 @@
 	<!-- all jewelry is at par -->
 	<!-- they give misc bonuses -->
 	
+	<!-- TODO: cooldown reduction jewelry (probably tier 4, alchemy creation only) -->
+	
 	<!-- burnished ring -->
 	<!-- level 1 defensive jewelry -->
 	<key>burnished ring</key>

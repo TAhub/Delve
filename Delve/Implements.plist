@@ -454,6 +454,35 @@
 		<key>description</key> <string>A sealed tome of the type used to cause the fall of Eol.</string>
 	</dict>
 	
+	<!-- rods -->
+	<key>crumbling rod</key>
+	<dict>
+		<key>type</key> <string>rod</string>
+		<key>power</key> <integer>0</integer>
+		<key>description</key> <string>A crude stone rod that is beginning to fall apart.</string>
+	</dict>
+	<key>iron rod</key>
+	<dict>
+		<key>type</key> <string>rod</string>
+		<key>breaks into</key> <string>iron ingot</string>
+		<key>power</key> <integer>15</integer>
+		<key>description</key> <string>A solid iron rod. Too short to use as a bludgeon.</string>
+	</dict>
+	<key>silver rod</key>
+	<dict>
+		<key>type</key> <string>rod</string>
+		<key>breaks into</key> <string>steel ingot</string>
+		<key>power</key> <integer>30</integer>
+		<key>description</key> <string>A rod made of alchemical silver, covered in filigree.</string>
+	</dict>
+	<key>gold rod</key>
+	<dict>
+		<key>type</key> <string>rod</string>
+		<key>breaks into</key> <string>refined ingot</string>
+		<key>power</key> <integer>45</integer>
+		<key>description</key> <string>A rod made of alchemical gold, ornately carved with mystic signs.</string>
+	</dict>
+	
 	<!-- timepieces -->
 	<key>stopped clock</key>
 	<dict>
