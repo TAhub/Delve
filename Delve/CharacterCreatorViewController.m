@@ -11,9 +11,9 @@
 #import "Creature.h"
 #import "Constants.h"
 #import "GameViewController.h"
-#import "TreeCollectionViewCell.h"
+#import "ItemTableViewCell.h"
 
-@interface CharacterCreatorViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface CharacterCreatorViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *characterView;
 @property (weak, nonatomic) IBOutlet UIView *statsView;
@@ -23,13 +23,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *appearanceButton;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 
-@property (weak, nonatomic) IBOutlet UICollectionView *treeCollection;
+
 @property (weak, nonatomic) IBOutlet UILabel *skillLabel;
 
 
 @property (strong, nonatomic) NSArray *preloadedTrees;
 
 
+@property (weak, nonatomic) IBOutlet UITableView *treeTable;
 @property (strong, nonatomic) Creature *creature;
 @property (strong, nonatomic) UIView *innerCreatureView;
 @property int appearanceNumber;
@@ -66,8 +67,8 @@
 	[self formatButton:self.appearanceButton];
 	[self formatButton:self.startButton];
 	
-	self.treeCollection.delegate = self;
-	self.treeCollection.dataSource = self;
+	self.treeTable.delegate = self;
+	self.treeTable.dataSource = self;
 	
 	
 	//TODO: convert the collection view into a table view, with sections
@@ -111,6 +112,43 @@
 	//set button labels
 	[self.raceButton setTitle:self.raceName forState:UIControlStateNormal];
 	[self.appearanceButton setTitle:[NSString stringWithFormat:@"Appearance #%i", self.appearanceNumber + 1] forState:UIControlStateNormal];
+	
+	//set the skill label
+	int body = 0;
+	int war = 0;
+	int ritual = 0;
+	int sacred = 0;
+	int wild = 0;
+	NSArray *slots = loadValueArray(@"Races", self.raceName, @"skill slot types");
+	for (int i = 0; i < self.skills.count; i++)
+		if ([self.skills[i] isEqualToString:@""])
+		{
+			if ([slots[i] isEqualToString:@"body"])
+				body += 1;
+			else if ([slots[i] isEqualToString:@"war"])
+				war += 1;
+			else if ([slots[i] isEqualToString:@"ritual"])
+				ritual += 1;
+			else if ([slots[i] isEqualToString:@"sacred"])
+				sacred += 1;
+			else
+				wild += 1;
+		}
+	NSMutableArray *sA = [NSMutableArray new];
+	if (war > 0)
+		[sA addObject:[NSString stringWithFormat:@"%i war", war]];
+	if (sacred > 0)
+		[sA addObject:[NSString stringWithFormat:@"%i sacred", sacred]];
+	if (ritual > 0)
+		[sA addObject:[NSString stringWithFormat:@"%i ritual", ritual]];
+	if (body > 0)
+		[sA addObject:[NSString stringWithFormat:@"%i body", body]];
+	if (wild > 0)
+		[sA addObject:[NSString stringWithFormat:@"%i wildcard", wild]];
+	if (sA.count == 0)
+		[sA addObject:@"None! Good to go!"];
+	self.skillLabel.text = [NSString stringWithFormat:@"Open slots: %@", [sA componentsJoinedByString:@", "]];
+	self.skillLabel.textColor = loadColorFromName(@"ui text");
 }
 
 -(NSString *)raceName
@@ -178,18 +216,23 @@
 	}
 }
 
--(int)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	return [self skillTreeWithNumber:section];
+}
+
+-(int)numberOfSectionsInTableView:(UITableView *)tableView
 {
 	return 4;
 }
--(int)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+-(int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	NSArray *type = self.preloadedTrees[section];
 	return type.count;
 }
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	TreeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"skillCell" forIndexPath:indexPath];
+	ItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"skillCell" forIndexPath:indexPath];
 	
 	BOOL contains = false;
 	NSArray *type = self.preloadedTrees[indexPath.section];
@@ -203,17 +246,19 @@
 			break;
 		}
 	
-	cell.backgroundColor = contains ? [UIColor redColor] : [UIColor blueColor];
-	
-	cell.label.text = key;
+	cell.textLabel.text = key;
+	cell.textLabel.textColor = contains ? loadColorFromName(@"ui text") : loadColorFromName(@"ui text grey");
 	
 	return cell;
 }
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(nonnull NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	NSArray *slots = loadValueArray(@"Races", self.raceName, @"skill slot types");
 	NSArray *type = self.preloadedTrees[indexPath.section];
 	NSString *key = type[indexPath.row];
+	
+	NSString *alertText = @"";
+	void (^alertBlock)(UIAlertAction *action) = nil;
 	
 	//select that skill
 	BOOL contains = false;
@@ -223,21 +268,48 @@
 			//you had it!
 			contains = true;
 			self.skills[i] = @"";
-			break;
+			[tableView reloadData];
+			[self reloadCreature];
+			[self reloadLabels];
+			return;
 		}
 	if (!contains)
 		for (int i = 0; i < 5; i++)
 			if ([self.skills[i] isEqualToString:@""])
 				if ([slots[i] isEqualToString:@"wildcard"] || [slots[i] isEqualToString:loadValueString(@"SkillTrees", key, @"type")])
 				{
-					self.skills[i] = key;
+					//make the alert
+					__weak typeof(self) weakSelf = self;
+					alertText = [self.creature treeDescription:key atLevel:0];
+					alertBlock =
+					^(UIAlertAction *action)
+					{
+						weakSelf.skills[i] = key;
+						[tableView reloadData];
+						[weakSelf reloadCreature];
+						[weakSelf reloadLabels];
+					};
 					break;
 				}
 	
-	[collectionView reloadData];
-	self.skillLabel.text = [self.creature treeDescription:key atLevel:1];
-	[self reloadCreature];
-	[self reloadLabels];
+	if (alertText.length > 0)
+	{
+		UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Pick skill?" message:alertText preferredStyle:UIAlertControllerStyleAlert];
+		
+		UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:alertBlock];
+		[alert addAction:ok];
+		
+		UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:
+		^(UIAlertAction *action)
+		{
+			[tableView reloadData];
+		}];
+		[alert addAction:cancel];
+		
+		[self presentViewController:alert animated:YES completion:nil];
+	}
+	else
+		[tableView reloadData];
 }
 
 @end

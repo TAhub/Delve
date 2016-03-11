@@ -77,17 +77,6 @@
 		//get racial armor
 		_armors[0] = loadValueString(@"Races", race, @"race start armor");
 		
-		
-		//TODO: temporarily set the race and armor list
-//		_race = @"human";
-//		_armors = [NSMutableArray arrayWithObjects:@"peasant clothes", @"skullcap", @"steel-toed boots", nil];
-//		_race = @"eoling";
-//		_armors = [NSMutableArray arrayWithObjects:@"temple dancer outfit", @"goggles", @"white tail banner", nil];
-//		_race = @"highborn";
-//		_armors = [NSMutableArray arrayWithObjects:@"chestplate", @"gold tiara", @"", nil];
-//		_race = @"raider";
-//		_armors = [NSMutableArray arrayWithObjects:@"skullcap", @"blue tail banner", nil];
-		
 		_skillTrees = skillTrees;
 		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
 		_implements = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
@@ -180,8 +169,10 @@
 		[properties addObject:[NSString stringWithFormat:@"%i %@ damage", loadValueNumber(@"Attacks", attack, @"power").intValue, loadValueString(@"Attacks", attack, @"element")]];
 	if (loadValueBool(@"Attacks", attack, @"min range"))
 		[properties addObject:[NSString stringWithFormat:@"%i-%i range", loadValueNumber(@"Attacks", attack, @"min range").intValue, loadValueNumber(@"Attacks", attack, @"range").intValue]];
-	else
+	else if (loadValueBool(@"Attacks", attack, @"range"))
 		[properties addObject:[NSString stringWithFormat:@"%i range", loadValueNumber(@"Attacks", attack, @"range").intValue]];
+	else
+		[properties addObject:@"Self-targeting"];
 	if (loadValueBool(@"Attacks", attack, @"area"))
 	{
 		int area = loadValueNumber(@"Attacks", attack, @"area").intValue;
@@ -301,7 +292,7 @@
 			[passives addObject:[NSString stringWithFormat:@"+%i%% metabolism", ((NSNumber *)skillDict[@"metabolism"]).intValue]];
 		if (skillDict[@"delay reduction"] != nil)
 			[passives addObject:[NSString stringWithFormat:@"-%i all cooldowns", ((NSNumber *)skillDict[@"delay reduction"]).intValue]];
-		[desc appendString:@"\nNext level will grant you:\n"];
+		[desc appendString:[NSString stringWithFormat:@"\n%@ level will grant you:\n", level == 0 ? @"First" : @"Next"]];
 		[desc appendString:[passives componentsJoinedByString:@", "]];
 		
 		if (skillDict[@"attack"] != nil)
@@ -736,27 +727,34 @@
 		[self wakeUpNearby];
 	}
 	
+	BOOL wasAsleep = false;
 	if (self.sleeping > 0)
+	{
+		wasAsleep = true;
 		self.sleeping = 0;
+	}
 	
 	NSString *label = @"";
 	
 	if (!loadValueBool(@"Attacks", attackType, @"friendly"))
 	{
 		//don't apply damage, dodge, block, etc on friendly attacks
-		
-		if (loadValueBool(@"Attacks", attackType, @"dodgeable") && self.dodges > 0)
+		if (!wasAsleep)
 		{
-			self.dodges -= 1;
-			//TODO: dodge sound effect
-			return @"DODGE";
-		}
-		
-		if (self.blocks > 0)
-		{
-			self.blocks -= 1;
-			//TODO: block sound effect
-			return @"BLOCK";
+			//you can't dodge or block attacks while asleep!
+			if (loadValueBool(@"Attacks", attackType, @"dodgeable") && self.dodges > 0)
+			{
+				self.dodges -= 1;
+				//TODO: dodge sound effect
+				return @"DODGE";
+			}
+			
+			if (self.blocks > 0)
+			{
+				self.blocks -= 1;
+				//TODO: block sound effect
+				return @"BLOCK";
+			}
 		}
 		
 		if (loadValueBool(@"Attacks", attackType, @"power"))

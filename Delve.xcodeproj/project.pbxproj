@@ -14,7 +14,6 @@
 		E442C81C1C8B65950048DD95 /* AttackEffects.plist in Resources */ = {isa = PBXBuildFile; fileRef = E442C81B1C8B65950048DD95 /* AttackEffects.plist */; };
 		E442C81F1C8FA3730048DD95 /* CharacterCreatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E442C81E1C8FA3730048DD95 /* CharacterCreatorViewController.m */; };
 		E442C8221C8FA8050048DD95 /* CharacterServices.m in Sources */ = {isa = PBXBuildFile; fileRef = E442C8211C8FA8050048DD95 /* CharacterServices.m */; };
-		E442C8251C91423F0048DD95 /* TreeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E442C8241C91423F0048DD95 /* TreeCollectionViewCell.m */; };
 		E459C6881C7AB2E800422B0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C6871C7AB2E800422B0A /* main.m */; };
 		E459C68B1C7AB2E800422B0A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C68A1C7AB2E800422B0A /* AppDelegate.m */; };
 		E459C6911C7AB2E800422B0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E459C68F1C7AB2E800422B0A /* Main.storyboard */; };
@@ -54,8 +53,6 @@
 		E442C81E1C8FA3730048DD95 /* CharacterCreatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterCreatorViewController.m; sourceTree = "<group>"; };
 		E442C8201C8FA7FA0048DD95 /* CharacterServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharacterServices.h; sourceTree = "<group>"; };
 		E442C8211C8FA8050048DD95 /* CharacterServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterServices.m; sourceTree = "<group>"; };
-		E442C8231C91423F0048DD95 /* TreeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeCollectionViewCell.h; sourceTree = "<group>"; };
-		E442C8241C91423F0048DD95 /* TreeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreeCollectionViewCell.m; sourceTree = "<group>"; };
 		E459C6831C7AB2E800422B0A /* Delve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Delve.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E459C6871C7AB2E800422B0A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E459C6891C7AB2E800422B0A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -168,8 +165,6 @@
 		E459C69D1C7AB31100422B0A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E442C8231C91423F0048DD95 /* TreeCollectionViewCell.h */,
-				E442C8241C91423F0048DD95 /* TreeCollectionViewCell.m */,
 				E462382C1C8766BA009C9FC4 /* ReplaceSegue.h */,
 				E462382D1C8766BA009C9FC4 /* ReplaceSegue.m */,
 				E462381D1C83F50D009C9FC4 /* ItemCell.xib */,
@@ -317,7 +312,6 @@
 				E462382E1C8766BA009C9FC4 /* ReplaceSegue.m in Sources */,
 				E459C6C01C7CCDB800422B0A /* GeneratorRoom.m in Sources */,
 				E459C6A11C7AB34300422B0A /* Creature.m in Sources */,
-				E442C8251C91423F0048DD95 /* TreeCollectionViewCell.m in Sources */,
 				E459C6A91C7B602100422B0A /* Constants.m in Sources */,
 				E442C8221C8FA8050048DD95 /* CharacterServices.m in Sources */,
 			);
