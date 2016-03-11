@@ -396,8 +396,8 @@
 		<key>area</key> <integer>3</integer>
 		<key>cooldown</key> <integer>11</integer>
 		<key>dodgeable</key> <true/>
+		<!-- note that alchemy now has new recipies to turn steel ingo iron, etc, to fuel shatter -->
 		<key>ammo</key> <string>iron ingot</string>
-		<!-- TODO: maybe make it so that it works with other ingots too? change desc if I do -->
 		<!-- special effects -->
 	</dict>
 	<key>earthquake slam</key>

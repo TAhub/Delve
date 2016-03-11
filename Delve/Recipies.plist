@@ -1024,5 +1024,23 @@
 		<key>result type</key> <string>armor</string>
 		<key>result amount</key> <integer>1</integer>
 	</dict>
+	
+	<!-- alchemy misc recipies -->
+	<key>iron A</key>
+	<dict>
+		<key>ingredient a</key> <string>steel ingot</string>
+		<key>ingredient a amount</key> <integer>1</integer>
+		<key>result</key> <string>iron ingot</string>
+		<key>result type</key> <string>inventory</string>
+		<key>result amount</key> <integer>2</integer>
+	</dict>
+	<key>iron B</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>1</integer>
+		<key>result</key> <string>iron ingot</string>
+		<key>result type</key> <string>inventory</string>
+		<key>result amount</key> <integer>3</integer>
+	</dict>
 </dict>
 </plist>

@@ -346,6 +346,7 @@
 	</array>
 	<key>alchemy 1</key>
 	<array>
+		<string>iron A</string>
 		<string>herbal draught</string>
 		<string>torch</string>
 		<string>ritual knife</string>
@@ -358,6 +359,7 @@
 	</array>
 	<key>alchemy 2</key>
 	<array>
+		<string>iron B</string>
 		<string>blood pack</string>
 		<string>athame</string>
 		<string>ether dynamics</string>
