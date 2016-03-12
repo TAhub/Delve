@@ -24,6 +24,7 @@
 		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>7</integer>
+		<!-- cave generation data -->
 		<key>cave wall chance</key> <integer>50</integer>
 		<key>cave smooths</key> <integer>2</integer>
 		<key>min floor tile percent</key> <integer>40</integer>
@@ -46,7 +47,7 @@
 	</dict>
 	
 	<!-- design guideline -->
-	<!-- the values I start with for countdown should be around 2 * (room size) * (desired path length) + 10 * (number encounters) -->
+	<!-- the values I start with for countdown should be around 2.5 * (room size) * (desired path length) + 10 * (number encounters) -->
 	<!-- with some extra padding and such, obviously -->
 	<!-- overtime countdown should be shorter, obviously, maybe (room size) * (desired path length) -->
 	
@@ -58,35 +59,36 @@
 	<!-- theme: cave and ruins -->
 	<!-- enemy types: ruin feeders and slimes -->
 	<!-- color: blue -->
-	<!-- TODO: real data -->
 	<key>floor 0</key>
 	<dict>
 		<!-- map generation data -->
 		<key>tileset</key> <string>red</string>
 		<key>room size</key> <integer>5</integer>
-		<key>rows</key> <integer>10</integer>
-		<key>columns</key> <integer>6</integer>
-		<key>reject undiscovered doors chance</key> <integer>60</integer>
+		<key>rows</key> <integer>8</integer>
+		<key>columns</key> <integer>5</integer>
+		<key>reject undiscovered doors chance</key> <integer>40</integer>
 		<key>max door offset</key> <integer>1</integer>
 		<key>doors at a time</key> <integer>5</integer>
-		<key>min non orphans</key> <integer>20</integer>
-		<key>max non orphans</key> <integer>35</integer>
+		<key>min non orphans</key> <integer>15</integer>
+		<key>max non orphans</key> <integer>30</integer>
 		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>25</integer>
-		<key>desired path length</key> <integer>7</integer>
-		<key>cave wall chance</key> <integer>50</integer>
-		<key>cave smooths</key> <integer>2</integer>
+		<key>desired path length</key> <integer>11</integer>
+		<!-- cave generation data -->
+		<key>cave wall chance</key> <integer>58</integer>
+		<key>cave smooths</key> <integer>1</integer>
 		<key>min floor tile percent</key> <integer>40</integer>
 		<key>max floor tile percent</key> <integer>60</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>160</integer>
-		<key>overtime countdown</key> <integer>35</integer>
+		<key>countdown</key> <integer>200</integer>
+		<key>overtime countdown</key> <integer>60</integer>
 		<key>equipment treasures</key> <integer>4</integer>
 		<key>normal treasures</key> <integer>6</integer>
-		<key>number of encounters</key> <integer>8</integer>
-		<key>start equipment treasures</key> <integer>4</integer>
+		<key>number of encounters</key> <integer>5</integer>
+		<key>start equipment treasures</key> <integer>1</integer>
 		<key>encounters</key>
 		<array>
+			<!-- TODO: real encounters -->
 			<array>
 				<string>ruin feeder runt</string>
 			</array>
@@ -98,7 +100,6 @@
 	<!-- theme: cave with a little bit of ruins -->
 	<!-- enemy types: human bandits and a few ruin feeders -->
 	<!-- color: blue -->
-	<!-- TODO: real data -->
 	<key>floor 1</key>
 	<dict>
 		<!-- map generation data -->
@@ -107,22 +108,23 @@
 		<key>rows</key> <integer>10</integer>
 		<key>columns</key> <integer>6</integer>
 		<key>reject undiscovered doors chance</key> <integer>60</integer>
-		<key>max door offset</key> <integer>1</integer>
-		<key>doors at a time</key> <integer>5</integer>
+		<key>max door offset</key> <integer>2</integer>
+		<key>doors at a time</key> <integer>7</integer>
 		<key>min non orphans</key> <integer>20</integer>
-		<key>max non orphans</key> <integer>35</integer>
-		<key>locked door chance</key> <integer>35</integer>
+		<key>max non orphans</key> <integer>40</integer>
+		<key>locked door chance</key> <integer>15</integer>
 		<key>no door chance</key> <integer>25</integer>
-		<key>desired path length</key> <integer>7</integer>
-		<key>cave wall chance</key> <integer>50</integer>
+		<key>desired path length</key> <integer>13</integer>
+		<!-- cave generation data -->
+		<key>cave wall chance</key> <integer>45</integer>
 		<key>cave smooths</key> <integer>2</integer>
-		<key>min floor tile percent</key> <integer>40</integer>
-		<key>max floor tile percent</key> <integer>60</integer>
+		<key>min floor tile percent</key> <integer>50</integer>
+		<key>max floor tile percent</key> <integer>70</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>160</integer>
-		<key>overtime countdown</key> <integer>35</integer>
+		<key>countdown</key> <integer>220</integer>
+		<key>overtime countdown</key> <integer>75</integer>
 		<key>equipment treasures</key> <integer>4</integer>
-		<key>normal treasures</key> <integer>6</integer>
+		<key>normal treasures</key> <integer>10</integer>
 		<key>number of encounters</key> <integer>8</integer>
 		<key>start equipment treasures</key> <integer>4</integer>
 		<key>encounters</key>
@@ -154,6 +156,7 @@
 		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>7</integer>
+		<!-- cave generation data -->
 		<key>cave wall chance</key> <integer>50</integer>
 		<key>cave smooths</key> <integer>2</integer>
 		<key>min floor tile percent</key> <integer>40</integer>
@@ -177,36 +180,38 @@
 	<!-- floor 3 -->
 	<!-- theme: habitat maze -->
 	<!-- enemy types: eoling zealots -->
+	<!-- it has no drops, because it will end up with a LOT of locked-only areas -->
 	<!-- color: blue-grey -->
-	<!-- TODO: real data -->
 	<key>floor 3</key>
 	<dict>
 		<!-- map generation data -->
 		<key>tileset</key> <string>red</string>
-		<key>room size</key> <integer>5</integer>
-		<key>rows</key> <integer>10</integer>
-		<key>columns</key> <integer>6</integer>
-		<key>reject undiscovered doors chance</key> <integer>60</integer>
+		<key>room size</key> <integer>3</integer>
+		<key>rows</key> <integer>11</integer>
+		<key>columns</key> <integer>10</integer>
+		<key>reject undiscovered doors chance</key> <integer>30</integer>
 		<key>max door offset</key> <integer>1</integer>
-		<key>doors at a time</key> <integer>5</integer>
-		<key>min non orphans</key> <integer>20</integer>
-		<key>max non orphans</key> <integer>35</integer>
-		<key>locked door chance</key> <integer>35</integer>
-		<key>no door chance</key> <integer>25</integer>
-		<key>desired path length</key> <integer>7</integer>
-		<key>cave wall chance</key> <integer>50</integer>
-		<key>cave smooths</key> <integer>2</integer>
-		<key>min floor tile percent</key> <integer>40</integer>
-		<key>max floor tile percent</key> <integer>60</integer>
+		<key>doors at a time</key> <integer>10</integer>
+		<key>min non orphans</key> <integer>40</integer>
+		<key>max non orphans</key> <integer>80</integer>
+		<key>locked door chance</key> <integer>45</integer>
+		<key>no door chance</key> <integer>50</integer>
+		<key>desired path length</key> <integer>30</integer>
+		<!-- cave generation data -->
+		<key>cave wall chance</key> <integer>0</integer>
+		<key>cave smooths</key> <integer>0</integer>
+		<key>min floor tile percent</key> <integer>0</integer>
+		<key>max floor tile percent</key> <integer>0</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>160</integer>
-		<key>overtime countdown</key> <integer>35</integer>
-		<key>equipment treasures</key> <integer>4</integer>
-		<key>normal treasures</key> <integer>6</integer>
-		<key>number of encounters</key> <integer>8</integer>
-		<key>start equipment treasures</key> <integer>4</integer>
+		<key>countdown</key> <integer>240</integer>
+		<key>overtime countdown</key> <integer>100</integer>
+		<key>equipment treasures</key> <integer>0</integer>
+		<key>normal treasures</key> <integer>0</integer>
+		<key>number of encounters</key> <integer>10</integer>
+		<key>start equipment treasures</key> <integer>1</integer>
 		<key>encounters</key>
 		<array>
+			<!-- TODO: real encounters -->
 			<array>
 				<string>ruin feeder runt</string>
 			</array>
@@ -234,6 +239,7 @@
 		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>7</integer>
+		<!-- cave generation data -->
 		<key>cave wall chance</key> <integer>50</integer>
 		<key>cave smooths</key> <integer>2</integer>
 		<key>min floor tile percent</key> <integer>40</integer>
@@ -274,6 +280,7 @@
 		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>7</integer>
+		<!-- cave generation data -->
 		<key>cave wall chance</key> <integer>50</integer>
 		<key>cave smooths</key> <integer>2</integer>
 		<key>min floor tile percent</key> <integer>40</integer>
@@ -297,36 +304,38 @@
 	<!-- floor 6 -->
 	<!-- theme: broken eol ship -->
 	<!-- enemy types: robots -->
+	<!-- very tall and thin; the rooms are small, and the encounters are close together -->
 	<!-- color: red-grey -->
-	<!-- TODO: real data -->
 	<key>floor 6</key>
 	<dict>
 		<!-- map generation data -->
 		<key>tileset</key> <string>red</string>
-		<key>room size</key> <integer>5</integer>
-		<key>rows</key> <integer>10</integer>
-		<key>columns</key> <integer>6</integer>
-		<key>reject undiscovered doors chance</key> <integer>60</integer>
-		<key>max door offset</key> <integer>1</integer>
-		<key>doors at a time</key> <integer>5</integer>
-		<key>min non orphans</key> <integer>20</integer>
-		<key>max non orphans</key> <integer>35</integer>
+		<key>room size</key> <integer>3</integer>
+		<key>rows</key> <integer>11</integer>
+		<key>columns</key> <integer>3</integer>
+		<key>reject undiscovered doors chance</key> <integer>30</integer>
+		<key>max door offset</key> <integer>0</integer>
+		<key>doors at a time</key> <integer>7</integer>
+		<key>min non orphans</key> <integer>18</integer>
+		<key>max non orphans</key> <integer>999</integer>
 		<key>locked door chance</key> <integer>35</integer>
-		<key>no door chance</key> <integer>25</integer>
-		<key>desired path length</key> <integer>7</integer>
-		<key>cave wall chance</key> <integer>50</integer>
-		<key>cave smooths</key> <integer>2</integer>
-		<key>min floor tile percent</key> <integer>40</integer>
-		<key>max floor tile percent</key> <integer>60</integer>
+		<key>no door chance</key> <integer>75</integer>
+		<key>desired path length</key> <integer>12</integer>
+		<!-- cave generation data -->
+		<key>cave wall chance</key> <integer>85</integer>
+		<key>cave smooths</key> <integer>0</integer>
+		<key>min floor tile percent</key> <integer>0</integer>
+		<key>max floor tile percent</key> <integer>999</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>160</integer>
-		<key>overtime countdown</key> <integer>35</integer>
-		<key>equipment treasures</key> <integer>4</integer>
-		<key>normal treasures</key> <integer>6</integer>
-		<key>number of encounters</key> <integer>8</integer>
+		<key>countdown</key> <integer>150</integer>
+		<key>overtime countdown</key> <integer>40</integer>
+		<key>equipment treasures</key> <integer>10</integer>
+		<key>normal treasures</key> <integer>12</integer>
+		<key>number of encounters</key> <integer>11</integer>
 		<key>start equipment treasures</key> <integer>4</integer>
 		<key>encounters</key>
 		<array>
+			<!-- TODO: real encounters -->
 			<array>
 				<string>ruin feeder runt</string>
 			</array>
@@ -354,6 +363,7 @@
 		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>7</integer>
+		<!-- cave generation data -->
 		<key>cave wall chance</key> <integer>50</integer>
 		<key>cave smooths</key> <integer>2</integer>
 		<key>min floor tile percent</key> <integer>40</integer>
@@ -394,6 +404,7 @@
 		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>7</integer>
+		<!-- cave generation data -->
 		<key>cave wall chance</key> <integer>50</integer>
 		<key>cave smooths</key> <integer>2</integer>
 		<key>min floor tile percent</key> <integer>40</integer>
@@ -418,35 +429,36 @@
 	<!-- theme: functional ancient eol ship -->
 	<!-- enemy types: robots -->
 	<!-- color: red -->
-	<!-- TODO: real data -->
 	<key>floor 9</key>
 	<dict>
 		<!-- map generation data -->
 		<key>tileset</key> <string>red</string>
 		<key>room size</key> <integer>5</integer>
-		<key>rows</key> <integer>10</integer>
-		<key>columns</key> <integer>6</integer>
-		<key>reject undiscovered doors chance</key> <integer>60</integer>
+		<key>rows</key> <integer>15</integer>
+		<key>columns</key> <integer>4</integer>
+		<key>reject undiscovered doors chance</key> <integer>20</integer>
 		<key>max door offset</key> <integer>1</integer>
 		<key>doors at a time</key> <integer>5</integer>
-		<key>min non orphans</key> <integer>20</integer>
-		<key>max non orphans</key> <integer>35</integer>
-		<key>locked door chance</key> <integer>35</integer>
-		<key>no door chance</key> <integer>25</integer>
-		<key>desired path length</key> <integer>7</integer>
-		<key>cave wall chance</key> <integer>50</integer>
-		<key>cave smooths</key> <integer>2</integer>
-		<key>min floor tile percent</key> <integer>40</integer>
-		<key>max floor tile percent</key> <integer>60</integer>
+		<key>min non orphans</key> <integer>30</integer>
+		<key>max non orphans</key> <integer>999</integer>
+		<key>locked door chance</key> <integer>15</integer>
+		<key>no door chance</key> <integer>75</integer>
+		<key>desired path length</key> <integer>17</integer>
+		<!-- cave generation data -->
+		<key>cave wall chance</key> <integer>0</integer>
+		<key>cave smooths</key> <integer>0</integer>
+		<key>min floor tile percent</key> <integer>0</integer>
+		<key>max floor tile percent</key> <integer>0</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>160</integer>
-		<key>overtime countdown</key> <integer>35</integer>
-		<key>equipment treasures</key> <integer>4</integer>
-		<key>normal treasures</key> <integer>6</integer>
-		<key>number of encounters</key> <integer>8</integer>
+		<key>countdown</key> <integer>280</integer>
+		<key>overtime countdown</key> <integer>90</integer>
+		<key>equipment treasures</key> <integer>5</integer>
+		<key>normal treasures</key> <integer>10</integer>
+		<key>number of encounters</key> <integer>17</integer>
 		<key>start equipment treasures</key> <integer>4</integer>
 		<key>encounters</key>
 		<array>
+			<!-- TODO: real encounters -->
 			<array>
 				<string>ruin feeder runt</string>
 			</array>

@@ -225,6 +225,9 @@
 }
 -(NSString *)armorDescription:(NSString *)armor
 {
+	if (armor.length == 0)
+		return @"nothing";
+	
 	NSMutableString *desc = [NSMutableString stringWithFormat:@"%@\n", armor];
 	NSMutableArray *properties = [NSMutableArray new];
 	if (loadValueBool(@"Armors", armor, @"damage bonus"))
@@ -1004,8 +1007,14 @@
 		
 		if (self.map.overtime)
 		{
+			//TODO: bosses SHOULDN'T flee, or execute this block at all
+			//AND, if bosses have companion enemies, those shouldn't flee either (maybe just have a no-flee flag?)
+			//otherwise you won't see most of them!
+			
+			
+			
 			//during overtime, all AIs panic and flee
-			//TOOD: maybe this behavior should be an ai variable (so robots don't give a damn about overtime)
+			//TODO: maybe this behavior should be an ai variable (so robots don't give a damn about overtime)
 			
 			if (!tile.visible)
 			{

@@ -656,7 +656,15 @@
 					//equip
 					if (self.examinationItem.type == ItemTypeArmor)
 					{
-						tile.treasure = [[Item alloc] initWithName:self.map.player.armors[slot] andType:ItemTypeArmor];
+						Item *old = [[Item alloc] initWithName:self.map.player.armors[slot] andType:ItemTypeArmor];
+						if (old.name.length > 0)
+							tile.treasure = old;
+						else
+						{
+							tile.treasureType = TreasureTypeNone;
+							tile.changed = true;
+							[self updateTiles];
+						}
 						[self.map.player equipArmor:self.examinationItem];
 						[self regenerateCreatureSprite:self.map.player];
 					}
@@ -1237,6 +1245,7 @@
 
 -(void)goToNextMap
 {
+	NSLog(@"Finished map with %i left on the countdown!", self.map.countdown);
 	[self performSegueWithIdentifier:@"changeMap" sender:self];
 }
 
