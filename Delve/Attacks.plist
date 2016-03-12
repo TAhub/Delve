@@ -510,7 +510,7 @@
 		<key>cooldown</key> <integer>15</integer>
 		<key>friendly</key> <true/>
 		<!-- special effects -->
-		<key>stealth</key> <integer>10</integer>
+		<key>stealth</key> <integer>12</integer>
 	</dict>
 	
 	<!-- other-targeting utility/defensive attacks -->

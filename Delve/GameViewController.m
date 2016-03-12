@@ -80,8 +80,7 @@
 -(NSString *)recipiePicked;
 
 @property (strong, nonatomic) NSString *lastAttack;
-@property int lastX;
-@property int lastY;
+@property (weak, nonatomic) Creature *lastTarget;
 
 @end
 
@@ -538,11 +537,13 @@
 		return;
 	
 	NSString *attack = self.lastAttack;
+	Creature *target = self.lastTarget;
 	[self resetLastAttack];
 	
 	//repeat the last attack
-	[self.map.player useAttackWithName:attack onX:self.lastX andY:self.lastY];
+	[self.map.player useAttackWithName:attack onX:target.x andY:target.y];
 	self.lastAttack = attack;
+	self.lastTarget = target;
 }
 
 
@@ -813,6 +814,7 @@
 -(void)resetLastAttack
 {
 	self.lastAttack = nil;
+	self.lastTarget = nil;
 	
 	[self pullBackPanel];
 }
@@ -861,8 +863,7 @@
 				}
 				
 				self.lastAttack = self.attackChosen;
-				self.lastX = x;
-				self.lastY = y;
+				self.lastTarget = ((Tile *) self.map.tiles[y][x]).inhabitant;
 				
 				//use the attack
 				[self.map.player useAttackWithName:self.attackChosen onX:x andY:y];
@@ -1089,7 +1090,7 @@
 -(void)presentRepeatPrompt
 {
 	//CAN you repeat?)
-	if (self.lastAttack == nil || ![self.map.player canUseAttack:self.lastAttack] || [self.map.player targetLevelAtX:self.lastX andY:self.lastY withAttack:self.lastAttack] != TargetLevelTarget)
+	if (self.lastAttack == nil || self.lastTarget == nil || ![self.map.player canUseAttack:self.lastAttack] || [self.map.player targetLevelAtX:self.lastTarget.x andY:self.lastTarget.y withAttack:self.lastAttack] != TargetLevelTarget)
 		return;
 	
 	//set the repeat prompt's text

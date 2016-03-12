@@ -90,8 +90,14 @@
 		<array>
 			<array>
 				<string>ruin feeder runt</string>
+				<string>ruin feeder runt</string>
 			</array>
 			<array>
+				<string>slime</string>
+				<string>slime</string>
+			</array>
+			<array>
+				<string>ruin feeder runt</string>
 				<string>slime</string>
 			</array>
 		</array>

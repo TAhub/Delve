@@ -555,14 +555,6 @@
 		[self.map update];
 	}
 	
-	//cancel stealth
-	if (self.stealthed > 0)
-	{
-		self.stealthed = 0;
-		[self.map.delegate updateCreature:self];
-	}
-
-	
 	//pay costs
 	if (loadValueBool(@"Attacks", name, @"hurt user"))
 		self.health = MAX(self.health - loadValueNumber(@"Attacks", name, @"hurt user").intValue, 1);
@@ -651,7 +643,7 @@
 					!hit.dead) //don't hit dead people
 				{
 					BOOL wasAsleep = hit.sleeping > 0;
-					NSString *hitResult = [hit takeAttack:weakSelf.storedAttack withPower:power andElement:element];
+					NSString *hitResult = [hit takeAttack:weakSelf.storedAttack withPower:power andElement:element inStealth:weakSelf.stealthed > 0];
 					[labels addObject:hitResult];
 					[creatures addObject:hit];
 					if (hit.dead)
@@ -698,6 +690,14 @@
 			}
 			
 		} forAttack:weakSelf.storedAttack onX:weakSelf.storedAttackX andY:weakSelf.storedAttackY];
+		
+		//cancel stealth
+		if (weakSelf.stealthed > 0 && !loadValueBool(@"Attacks", weakSelf.storedAttack, @"stealth"))
+		{
+			weakSelf.stealthed = 0;
+			[weakSelf.map.delegate updateCreature:weakSelf];
+		}
+		
 		
 		if (tilesChanged)
 			[weakSelf.map.delegate updateTiles];
@@ -780,7 +780,7 @@
 	return false;
 }
 
--(NSString *) takeAttack:(NSString *)attackType withPower:(int)power andElement:(NSString *)element
+-(NSString *) takeAttack:(NSString *)attackType withPower:(int)power andElement:(NSString *)element inStealth:(BOOL)inStealth
 {
 	if (!self.good && !self.awake)
 	{
@@ -801,9 +801,9 @@
 	if (!loadValueBool(@"Attacks", attackType, @"friendly"))
 	{
 		//don't apply damage, dodge, block, etc on friendly attacks
-		if (!wasAsleep)
+		if (!wasAsleep && !inStealth)
 		{
-			//you can't dodge or block attacks while asleep!
+			//you can't dodge or block attacks while asleep, and you can't dodge or block stealthed people
 			if (loadValueBool(@"Attacks", attackType, @"dodgeable") && self.dodges > 0)
 			{
 				self.dodges -= 1;
@@ -833,6 +833,9 @@
 				resistance = self.burnResistance;
 			else if ([element isEqualToString:@"shock"])
 				resistance = self.shockResistance;
+			
+			if (inStealth)
+				finalPower = (finalPower * CREATURE_STEALTH_MULT) / 100;
 			
 			finalPower = (power * finalPower) / (100 + resistance * CREATURE_RESISTANCEFACTOR);
 			

@@ -15,6 +15,7 @@
 #define CREATURE_SLEEPLENGTH 10
 #define CREATURE_POISONPERCENT 5
 #define CREATURE_NUM_TREES 5
+#define CREATURE_STEALTH_MULT 115
 
 #pragma mark gameplay constants
 
