@@ -124,7 +124,7 @@
 	[self formatButton:self.attackConfirmCancel];
 	[self formatButton:self.inventoryButtonOne];
 	[self formatButton:self.inventoryButtonTwo];
-	[self formatPanel:self.repeatButton];
+	[self formatButton:self.repeatButton];
 }
 
 -(void)loadMap:(Map *)map

@@ -375,10 +375,10 @@
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CsU-cX-gnS" userLabel="Last Attack Prompt">
-                                <rect key="frame" x="0.0" y="568" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="568" width="320" height="60"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQe-ur-LwJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQe-ur-LwJ">
+                                        <rect key="frame" x="137" y="15" width="46" height="30"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="repeatButtonPress" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gff-2l-dnH"/>
@@ -388,7 +388,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="CQe-ur-LwJ" firstAttribute="height" secondItem="CsU-cX-gnS" secondAttribute="height" id="3xn-T9-jFZ"/>
-                                    <constraint firstAttribute="height" constant="40" id="Hjr-Qg-eQB"/>
+                                    <constraint firstAttribute="height" constant="60" id="Hjr-Qg-eQB"/>
                                     <constraint firstItem="CQe-ur-LwJ" firstAttribute="width" secondItem="CsU-cX-gnS" secondAttribute="width" id="Hk6-CV-WpP"/>
                                     <constraint firstItem="CQe-ur-LwJ" firstAttribute="centerX" secondItem="CsU-cX-gnS" secondAttribute="centerX" id="Nq3-iG-ZuW"/>
                                     <constraint firstItem="CQe-ur-LwJ" firstAttribute="centerY" secondItem="CsU-cX-gnS" secondAttribute="centerY" id="dwe-he-Qho"/>
@@ -411,7 +411,7 @@
                             <constraint firstItem="khZ-GA-8u0" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="2Vf-xO-4Mh"/>
                             <constraint firstItem="heJ-Kl-FYi" firstAttribute="leading" secondItem="khZ-GA-8u0" secondAttribute="trailing" constant="-320" id="3PG-VB-Cfw"/>
                             <constraint firstItem="heJ-Kl-FYi" firstAttribute="centerX" secondItem="khZ-GA-8u0" secondAttribute="centerX" id="3PP-WO-xPS"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CsU-cX-gnS" secondAttribute="bottom" constant="-40" id="BBc-Qw-roI"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CsU-cX-gnS" secondAttribute="bottom" constant="-60" id="BBc-Qw-roI"/>
                             <constraint firstItem="Qgd-z3-fMK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ERk-ow-NHa"/>
                             <constraint firstItem="heJ-Kl-FYi" firstAttribute="leading" secondItem="khZ-GA-8u0" secondAttribute="leading" constant="-320" id="Eer-D1-ILz"/>
                             <constraint firstItem="feh-tG-XLx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="G9M-pF-kd1"/>

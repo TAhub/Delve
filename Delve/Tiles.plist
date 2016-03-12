@@ -15,6 +15,7 @@
 		<key>stairs</key> <true/>
 		<key>unlocks into</key> <string>template</string>
 		<key>rubbles into</key> <string>template</string>
+		<key>rubble chance</key> <integer>100</integer>
 		<key>color</key> <string>iron</string>
 		<key>sprite</key> <string>tile_big_tile</string>
 	</dict>
@@ -31,6 +32,8 @@
 	<key>floor red</key>
 	<dict>
 		<key>color</key> <string>tile stone red back</string>
+		<key>rubbles into</key> <string>rubble red</string>
+		<key>rubble chance</key> <integer>15</integer>
 		<key>sprite</key> <string>tile_small_tiles</string>
 	</dict>
 	<key>rivet wall red</key>
@@ -43,6 +46,8 @@
 	<key>rivet floor red</key>
 	<dict>
 		<key>color</key> <string>tile stone red back</string>
+		<key>rubbles into</key> <string>rubble red</string>
+		<key>rubble chance</key> <integer>10</integer>
 		<key>sprite</key> <string>tile_small_rivet_tiles</string>
 	</dict>
 	<key>natural wall red</key>

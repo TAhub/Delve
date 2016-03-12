@@ -97,6 +97,10 @@
 }
 -(void) rubble
 {
+	//some things only rubble occasionally
+	if (loadValueBool(@"Tiles", self.type, @"rubble chance") && arc4random_uniform(100) > loadValueNumber(@"Tiles", self.type, @"rubble chance").intValue)
+		return;
+	
 	self.type = loadValueString(@"Tiles", self.type, @"rubbles into");
 }
 
