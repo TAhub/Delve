@@ -42,14 +42,17 @@
 	</dict>
 	
 	<!-- counter-attacks -->
+	<!-- note that they have to have power, or else they use the no-damage color -->
 	<key>counter</key>
 	<dict>
+		<key>power</key> <integer>1</integer>
 		<key>attack effect</key> <string>direction slash</string>
 		<key>element</key> <string>cut</string>
 		<!-- special effects -->
 	</dict>
 	<key>slime counter</key>
 	<dict>
+		<key>power</key> <integer>1</integer>
 		<key>attack effect</key> <string>explosion</string>
 		<key>element</key> <string>no element</string>
 		<!-- special effects -->

@@ -24,6 +24,7 @@
 		<key>metabolism</key> <integer>100</integer>
 		<key>delay reduction</key> <integer>0</integer>
 		<key>counter</key> <integer>0</integer>
+		<key>racial counter attack</key> <string>counter</string>
 		<!-- slots -->
 		<key>skill slot types</key>
 		<array>
@@ -296,6 +297,7 @@
 		<key>burn resistance</key> <integer>-4</integer>
 		<key>metabolism</key> <integer>100</integer>
 		<key>counter</key> <integer>5</integer>
+		<key>racial counter attack</key> <string>slime counter</string>
 		<!-- slots -->
 		<!-- appearance -->
 		<key>sprite</key> <string>slime</string>

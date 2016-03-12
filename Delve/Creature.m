@@ -714,10 +714,17 @@
 				finalBlock();
 			else
 			{
-				//TODO: get real counter-attack virtual attack; probably put it in race (so slimes can have a unique counter anim)
-				NSString *virtualCounter = @"counter";
+				//get the race's counter attack, or the generic "counter" if it doesn't have one
+				NSString *virtualCounter;
+				if (loadValueBool(@"Races", counterAttacker.race, @"racial counter attack"))
+					virtualCounter = loadValueString(@"Races", counterAttacker.race, @"racial counter attack");
+				else
+					virtualCounter = @"counter";
+				
 				NSString *element = loadValueString(@"Attacks", virtualCounter, @"element");
 				NSString *attackEffect = loadValueString(@"Attacks", virtualCounter, @"attack effect");
+				
+				NSLog(@"Counter element = %@", element);
 				
 				[weakSelf.map.delegate attackAnimation:virtualCounter withElement:element andAttackEffect:attackEffect fromPerson:counterAttacker targetX:weakSelf.x andY:weakSelf.y withEffectBlock:
 				^(void (^nevermind)(void))

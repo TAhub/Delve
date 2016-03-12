@@ -88,9 +88,11 @@
 		<key>start equipment treasures</key> <integer>1</integer>
 		<key>encounters</key>
 		<array>
-			<!-- TODO: real encounters -->
 			<array>
 				<string>ruin feeder runt</string>
+			</array>
+			<array>
+				<string>slime</string>
 			</array>
 		</array>
 	</dict>

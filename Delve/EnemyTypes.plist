@@ -141,6 +141,7 @@
 			<string>filler monster skill</string>
 		</array>
 		<!-- equipment -->
+		<key>weapon</key> <string>slime bash</string>
 	</dict>
 	
 	<!-- great slime -->
@@ -159,6 +160,7 @@
 			<string>filler monster skill</string>
 		</array>
 		<!-- equipment -->
+		<key>weapon</key> <string>slime bash</string>
 	</dict>
 	
 	
