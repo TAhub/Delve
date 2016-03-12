@@ -78,7 +78,7 @@
 		_armors[0] = loadValueString(@"Races", race, @"race start armor");
 		
 		_skillTrees = skillTrees;
-		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(4), @(4), @(4), @(4), @(4), nil];
+		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
 		_implements = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
 		_weapon = loadValueString(@"Races", _race, @"race start weapon");
 		

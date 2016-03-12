@@ -203,7 +203,7 @@
 			<string>jewelry</string>
 		</array>
 		<key>race start weapon</key> <string>wooden club</string>
-		<key>race start armor</key> <string>peasant clothes</string>
+		<key>race start armor</key> <string>noble clothes</string>
 		<!-- appearance -->
 		<key>sprite</key> <string>highborn</string>
 		<key>colorations</key> <!-- coloration: brown skin and green hair, or olive skin and purplish hair -->
@@ -251,12 +251,12 @@
 		</array>
 		<key>armor slots</key>
 		<array>
+			<string>raider armor</string>
 			<string>helmet</string>
 			<string>tail ornament</string>
 		</array>
 		<key>race start weapon</key> <string>rusty blade</string>
-		<key>race start armor</key> <string></string>
-		<!-- TODO: give raiders a special "raider armor" slot at slot 0, which has a raider loincloth; this is where NPC raiders will have real armor -->
+		<key>race start armor</key> <string>raider loincloth</string>
 		<!-- appearance -->
 		<key>sprite</key> <string>raider</string>
 		<key>colorations</key> <!-- coloration: grey skin, orange hair, no exceptions -->
@@ -269,6 +269,7 @@
 		<key>hair styles</key> <integer>1</integer>
 		<key>armor slot y offsets</key>
 		<array>
+			<integer>0</integer>
 			<integer>-2</integer>
 			<integer>0</integer>
 		</array>
@@ -297,7 +298,19 @@
 		<key>counter</key> <integer>5</integer>
 		<!-- slots -->
 		<!-- appearance -->
-		<!-- TODO: appearance data -->
+		<key>sprite</key> <string>slime</string>
+		<key>colorations</key>
+		<array>
+			<dict>
+				<key>skin</key> <string>green hair</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>purple hair</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>blonde hair</string>
+			</dict>
+		</array>
 	</dict>
 	
 	<!-- great slime (strong) -->
@@ -313,7 +326,19 @@
 		<key>counter</key> <integer>10</integer>
 		<!-- slots -->
 		<!-- appearance -->
-		<!-- TODO: appearance data -->
+		<key>sprite</key> <string>great_slime</string>
+		<key>colorations</key>
+		<array>
+			<dict>
+				<key>skin</key> <string>green hair</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>purple hair</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>blonde hair</string>
+			</dict>
+		</array>
 	</dict>
 	
 	<!-- ruin feeder runts (weak) -->
@@ -444,8 +469,22 @@
 		<key>dodges</key> <integer>1</integer>
 		<key>metabolism</key> <integer>100</integer>
 		<!-- slots -->
+		<key>armor slots</key>
+		<array>
+			<string>monster</string>
+		</array>
 		<!-- appearance -->
-		<!-- TODO: appearance data; should look like a robo-Eol (so tall, with robot tail) -->
+		<key>sprite</key> <string>android</string>
+		<key>colorations</key>
+		<array>
+			<dict>
+				<key>skin</key> <string>relic</string>
+			</dict>
+		</array>
+		<key>armor slot y offsets</key>
+		<array>
+			<integer>0</integer>
+		</array>
 	</dict>
 	
 	<!-- war bot (strong) -->
@@ -460,7 +499,13 @@
 		<key>metabolism</key> <integer>100</integer>
 		<!-- slots -->
 		<!-- appearance -->
-		<!-- TODO: appearance data; think "fallout sentry robot" -->
+		<key>sprite</key> <string>war_bot</string>
+		<key>colorations</key>
+		<array>
+			<dict>
+				<key>skin</key> <string>relic</string>
+			</dict>
+		</array>
 	</dict>
 </dict>
 </plist>

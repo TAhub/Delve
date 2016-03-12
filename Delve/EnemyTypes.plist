@@ -307,7 +307,6 @@
 		</array>
 		<!-- equipment -->
 		<key>weapon</key> <string>holy baton</string>
-		<!-- TODO: should probably have a single piece of armor to tell apart from other androids -->
 	</dict>
 	
 	<!-- scout android -->
@@ -326,7 +325,10 @@
 			<string>filler monster skill</string>
 		</array>
 		<!-- equipment -->
-		<!-- TODO: should probably have a single piece of armor to tell apart from other androids -->
+		<key>armors</key>
+		<array>
+			<string>android cannon</string>
+		</array>
 	</dict>
 	
 	<!-- war bot -->

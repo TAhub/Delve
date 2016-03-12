@@ -44,6 +44,17 @@
 	<!-- etc -->
 	<!-- each equipment category can have an adjustment, like +0.5 level or whatever -->
 	
+	<!-- monster gear -->
+	<key>android cannon</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>monster</string>
+		<!-- stats -->
+		<!-- appearance -->
+		<key>sprite</key> <string>android_cannon</string>
+		<key>color</key> <string>relic</string>
+	</dict>
+	
 	
 	<!-- helmets -->
 	<!-- all helmets are at par -->
@@ -226,6 +237,25 @@
 	</dict>
 	
 	
+	<!-- raider armor -->
+	<!-- all raider armor gets a 0.5 advantage -->
+	<!-- they give resistances -->
+	
+	<!-- raider loincloth -->
+	<!-- level 0 "armor" -->
+	<key>raider loincloth</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>raider armor</string>
+		<!-- stats -->
+		<key>health</key> <integer>10</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>raider_loincloth</string>
+		<key>color</key> <string>relic</string>
+		<key>sprite gender</key> <true/>
+	</dict>
+	
+	
 	<!-- body armor -->
 	<!-- all body armor gets a 0.5 advantage -->
 	<!-- they give resistances -->
@@ -236,12 +266,27 @@
 	<dict>
 		<!-- basic identity -->
 		<key>slot</key> <string>body armor</string>
-		<key>description</key> <string>A pair of cheap cloth clothing, typically worn by starving human peasants.</string>
+		<key>description</key> <string>A set of cheap cloth clothing, typically worn by starving human peasants.</string>
 		<!-- stats -->
 		<key>metabolism</key> <integer>15</integer>
 		<!-- appearance -->
 		<key>sprite</key> <string>clothes</string>
 		<key>color</key> <string>grey fabric</string>
+		<key>sprite gender</key> <true/>
+	</dict>
+	
+	<!-- noble clothes -->
+	<!-- level 0 "armor" -->
+	<key>noble clothes</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>body armor</string>
+		<key>description</key> <string>A set of expensive but non-protective clothing.</string>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>10</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>clothes</string>
+		<key>color</key> <string>blue fabric</string>
 		<key>sprite gender</key> <true/>
 	</dict>
 	
@@ -580,7 +625,18 @@
 	<!-- all jewelry is at par -->
 	<!-- they give misc bonuses -->
 	
-	<!-- TODO: cooldown reduction jewelry (probably tier 4, alchemy creation only) -->
+	<!-- ring of acceleration -->
+	<!-- level 4 special jewelry -->
+	<key>ring of acceleration</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>jewelry</string>
+		<key>breaks into</key> <string>refined ingot</string>
+		<key>description</key> <string>An unusual ring. Warm to the touch.</string>
+		<!-- stats -->
+		<key>delay reduction</key> <integer>2</integer>
+		<!-- appearance -->
+	</dict>
 	
 	<!-- burnished ring -->
 	<!-- level 1 defensive jewelry -->
