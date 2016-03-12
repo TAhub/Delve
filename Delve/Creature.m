@@ -837,7 +837,10 @@
 			if (inStealth)
 				finalPower = (finalPower * CREATURE_STEALTH_MULT) / 100;
 			
-			finalPower = (power * finalPower) / (100 + resistance * CREATURE_RESISTANCEFACTOR);
+			if (resistance < 0)
+				finalPower = (power * finalPower) * (100 - resistance * CREATURE_RESISTANCEFACTOR) / (100 * 100);
+			else
+				finalPower = (power * finalPower) / (100 + resistance * CREATURE_RESISTANCEFACTOR);
 			
 			if (self.forceField >= finalPower)
 			{

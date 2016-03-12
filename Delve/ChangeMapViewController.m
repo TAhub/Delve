@@ -44,6 +44,9 @@
 {
 	[super viewWillAppear:animated];
 	
+	//recharge to remove all buffs, so your portrait isn't a weird color
+	[self.oldMap.player recharge];
+	
 	self.levelTable.delegate = self;
 	self.levelTable.dataSource = self;
 	[self.levelTable reloadData];

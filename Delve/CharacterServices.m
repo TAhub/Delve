@@ -97,7 +97,11 @@ void makeCreatureSpriteInView(Creature *cr, UIView *view)
 	//	[self drawArmorsOf:cr withLayer:2 inArray:images withYAdds:yAdds genderSuffix:genderSuffix];
 	drawArmorsOf(cr, 2, images, yAdds, genderSuffix);
 	
-	UIImageView *imageView = [[UIImageView alloc] initWithImage:mergeImages(images, CGPointMake(0.5f, 1.0f), yAdds)];
+	UIImage *merged = mergeImages(images, CGPointMake(0.5f, 1.0f), yAdds);
+	
+	//TODO: colorize the image based on status effects (IE damage-boost makes you red, I dunno)
+	
+	UIImageView *imageView = [[UIImageView alloc] initWithImage:merged];
 	imageView.frame = CGRectMake(GAMEPLAY_TILE_SIZE / 2 - imageView.frame.size.width / 2, GAMEPLAY_TILE_SIZE - imageView.frame.size.height, imageView.frame.size.width, imageView.frame.size.height);
 	[view addSubview:imageView];
 	
