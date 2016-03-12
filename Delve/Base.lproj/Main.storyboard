@@ -374,18 +374,51 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CsU-cX-gnS" userLabel="Last Attack Prompt">
+                                <rect key="frame" x="0.0" y="568" width="320" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQe-ur-LwJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="repeatButtonPress" destination="BYZ-38-t0r" eventType="touchUpInside" id="Gff-2l-dnH"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="CQe-ur-LwJ" firstAttribute="height" secondItem="CsU-cX-gnS" secondAttribute="height" id="3xn-T9-jFZ"/>
+                                    <constraint firstAttribute="height" constant="40" id="Hjr-Qg-eQB"/>
+                                    <constraint firstItem="CQe-ur-LwJ" firstAttribute="width" secondItem="CsU-cX-gnS" secondAttribute="width" id="Hk6-CV-WpP"/>
+                                    <constraint firstItem="CQe-ur-LwJ" firstAttribute="centerX" secondItem="CsU-cX-gnS" secondAttribute="centerX" id="Nq3-iG-ZuW"/>
+                                    <constraint firstItem="CQe-ur-LwJ" firstAttribute="centerY" secondItem="CsU-cX-gnS" secondAttribute="centerY" id="dwe-he-Qho"/>
+                                    <constraint firstItem="CQe-ur-LwJ" firstAttribute="centerX" secondItem="CsU-cX-gnS" secondAttribute="centerX" id="pgk-bd-rfk"/>
+                                    <constraint firstItem="CQe-ur-LwJ" firstAttribute="leading" secondItem="CsU-cX-gnS" secondAttribute="leading" constant="20" symbolic="YES" id="zkj-SE-74G"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="3xn-T9-jFZ"/>
+                                        <exclude reference="Hk6-CV-WpP"/>
+                                        <exclude reference="Nq3-iG-ZuW"/>
+                                        <exclude reference="zkj-SE-74G"/>
+                                    </mask>
+                                </variation>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.093164794147014618" green="0.2194344699382782" blue="0.60352116823196411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="CsU-cX-gnS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0Xq-32-3Tb"/>
                             <constraint firstItem="khZ-GA-8u0" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="2Vf-xO-4Mh"/>
                             <constraint firstItem="heJ-Kl-FYi" firstAttribute="leading" secondItem="khZ-GA-8u0" secondAttribute="trailing" constant="-320" id="3PG-VB-Cfw"/>
                             <constraint firstItem="heJ-Kl-FYi" firstAttribute="centerX" secondItem="khZ-GA-8u0" secondAttribute="centerX" id="3PP-WO-xPS"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CsU-cX-gnS" secondAttribute="bottom" constant="-40" id="BBc-Qw-roI"/>
                             <constraint firstItem="Qgd-z3-fMK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ERk-ow-NHa"/>
                             <constraint firstItem="heJ-Kl-FYi" firstAttribute="leading" secondItem="khZ-GA-8u0" secondAttribute="leading" constant="-320" id="Eer-D1-ILz"/>
                             <constraint firstItem="feh-tG-XLx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="G9M-pF-kd1"/>
                             <constraint firstItem="8TG-ed-Jwf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GrU-5K-uqc"/>
                             <constraint firstItem="Uew-pW-cr7" firstAttribute="centerX" secondItem="8TG-ed-Jwf" secondAttribute="centerX" id="Kkn-Pw-yxD"/>
                             <constraint firstItem="heJ-Kl-FYi" firstAttribute="height" secondItem="khZ-GA-8u0" secondAttribute="height" id="MHz-R6-x0E"/>
+                            <constraint firstItem="CsU-cX-gnS" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.2" id="NPJ-1q-VPE"/>
                             <constraint firstItem="Uew-pW-cr7" firstAttribute="width" secondItem="8TG-ed-Jwf" secondAttribute="width" id="QfR-tq-vb4"/>
                             <constraint firstItem="khZ-GA-8u0" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="VGf-W5-qBo"/>
                             <constraint firstItem="8TG-ed-Jwf" firstAttribute="top" secondItem="feh-tG-XLx" secondAttribute="bottom" id="VbX-7h-EOL"/>
@@ -396,6 +429,7 @@
                             <constraint firstItem="feh-tG-XLx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="fNU-QV-orW"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="khZ-GA-8u0" secondAttribute="bottom" id="geu-Kv-lS6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8TG-ed-Jwf" secondAttribute="trailing" id="hOh-Ah-vik"/>
+                            <constraint firstItem="CsU-cX-gnS" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="jq1-9D-NJT"/>
                             <constraint firstItem="heJ-Kl-FYi" firstAttribute="centerY" secondItem="khZ-GA-8u0" secondAttribute="centerY" id="kRp-E4-JTf"/>
                             <constraint firstItem="heJ-Kl-FYi" firstAttribute="width" secondItem="khZ-GA-8u0" secondAttribute="width" id="kUx-cx-uqf"/>
                             <constraint firstItem="khZ-GA-8u0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nNn-6X-vj8"/>
@@ -422,6 +456,7 @@
                                 <exclude reference="3PG-VB-Cfw"/>
                                 <exclude reference="3PP-WO-xPS"/>
                                 <exclude reference="s9f-YZ-djb"/>
+                                <exclude reference="NPJ-1q-VPE"/>
                                 <exclude reference="fNU-QV-orW"/>
                             </mask>
                         </variation>
@@ -460,6 +495,9 @@
                         <outlet property="mainPanelCord" destination="CNH-Vv-wbc" id="dn9-Ew-Ge2"/>
                         <outlet property="mapView" destination="8TG-ed-Jwf" id="bWQ-DB-nod"/>
                         <outlet property="pickUpButton" destination="JEe-Qq-0F7" id="xAL-HH-Olo"/>
+                        <outlet property="repeatButton" destination="CQe-ur-LwJ" id="s67-Vy-HQj"/>
+                        <outlet property="repeatPromptCord" destination="BBc-Qw-roI" id="8Rn-aW-oFS"/>
+                        <outlet property="repeatPromptPanel" destination="CsU-cX-gnS" id="ua8-kG-uMq"/>
                         <outlet property="statView" destination="kJW-Wn-2TC" id="PD8-la-a1t"/>
                         <outlet property="uiView" destination="Qgd-z3-fMK" id="7j9-fO-0zg"/>
                         <segue destination="A56-XN-4Dl" kind="show" identifier="changeMap" customClass="ReplaceSegue" id="xEW-H2-8cz"/>

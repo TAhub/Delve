@@ -31,6 +31,12 @@
 @property (weak, nonatomic) IBOutlet UIView *statView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mainPanelCord;
 
+
+@property (weak, nonatomic) IBOutlet UIView *repeatPromptPanel;
+@property (weak, nonatomic) IBOutlet UIButton *repeatButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *repeatPromptCord;
+
+
 @property (weak, nonatomic) IBOutlet UIView *attackSelectPanel;
 @property (weak, nonatomic) IBOutlet UIButton *attackB1;
 @property (weak, nonatomic) IBOutlet UIButton *attackB2;
@@ -73,6 +79,10 @@
 -(Item *)inventoryItemPicked;
 -(NSString *)recipiePicked;
 
+@property (strong, nonatomic) NSString *lastAttack;
+@property int lastX;
+@property int lastY;
+
 @end
 
 @implementation GameViewController
@@ -85,6 +95,8 @@
 	self.animating = false;
 	self.uiAnimating = false;
 	
+	self.lastAttack = nil;
+	
 	UITapGestureRecognizer *tappy = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
 	[self.creatureView addGestureRecognizer:tappy];
 	
@@ -94,6 +106,7 @@
 	[self formatPanel:self.attackConfirmPanel];
 	[self formatPanel:self.attackSelectPanel];
 	[self formatPanel:self.inventoryPanel];
+	[self formatPanel:self.repeatPromptPanel];
 	
 	//format buttons
 	[self formatButton:self.attackB1];
@@ -111,6 +124,7 @@
 	[self formatButton:self.attackConfirmCancel];
 	[self formatButton:self.inventoryButtonOne];
 	[self formatButton:self.inventoryButtonTwo];
+	[self formatPanel:self.repeatButton];
 }
 
 -(void)loadMap:(Map *)map
@@ -506,6 +520,8 @@
 	if (self.animating || self.uiAnimating)
 		return;
 	
+	[self resetLastAttack];
+	
 	if (self.map.canCraft)
 	{
 		//open crafting menu
@@ -516,10 +532,26 @@
 	}
 }
 
+- (IBAction)repeatButtonPress
+{
+	if (self.animating || self.uiAnimating)
+		return;
+	
+	NSString *attack = self.lastAttack;
+	[self resetLastAttack];
+	
+	//repeat the last attack
+	[self.map.player useAttackWithName:attack onX:self.lastX andY:self.lastY];
+	self.lastAttack = attack;
+}
+
+
 - (IBAction)attacksButtonPress
 {
 	if (self.animating || self.uiAnimating)
 		return;
+	
+	[self resetLastAttack];
 	
 	self.attackPage = 0;
 	[self reloadPanels];
@@ -742,6 +774,9 @@
 {
 	if (self.animating || self.uiAnimating)
 		return;
+	
+	[self resetLastAttack];
+	
 	if (self.map.inventory.count > 0)
 	{
 		//opens the inventory so you can use inventory buttons
@@ -757,6 +792,9 @@
 {
 	if (self.animating || self.uiAnimating)
 		return;
+	
+	[self resetLastAttack];
+	
 	if (self.map.canPickUp)
 	{
 		Tile *tile = self.map.tiles[self.map.player.y][self.map.player.x];
@@ -772,12 +810,25 @@
 	}
 }
 
+-(void)resetLastAttack
+{
+	self.lastAttack = nil;
+	
+	[self pullBackPanel];
+}
 
+-(void)pullBackPanel
+{
+	self.repeatPromptCord.constant = -self.repeatPromptPanel.frame.size.height;
+	[self.view layoutIfNeeded];
+}
 
 -(void)tapGesture:(UITapGestureRecognizer *)sender
 {
 	if (self.animating || self.uiAnimating)
 		return;
+	
+	[self resetLastAttack];
 	
 	CGPoint touchPoint = [sender locationInView:self.mapView];
 	int x = ((int)floorf(touchPoint.x) - self.mapView.xOffset) / GAMEPLAY_TILE_SIZE;
@@ -808,6 +859,10 @@
 					[self.aoeIndicatorView removeFromSuperview];
 					self.aoeIndicatorView = nil;
 				}
+				
+				self.lastAttack = self.attackChosen;
+				self.lastX = x;
+				self.lastY = y;
 				
 				//use the attack
 				[self.map.player useAttackWithName:self.attackChosen onX:x andY:y];
@@ -1029,6 +1084,29 @@
 			[weakSelf moveCreatureCompleteWithBlock:block];
 		}];
 	}
+}
+
+-(void)presentRepeatPrompt
+{
+	//CAN you repeat?)
+	if (self.lastAttack == nil || ![self.map.player canUseAttack:self.lastAttack] || [self.map.player targetLevelAtX:self.lastX andY:self.lastY withAttack:self.lastAttack] != TargetLevelTarget)
+		return;
+	
+	//set the repeat prompt's text
+	[self.repeatButton setTitle:[NSString stringWithFormat:@"Press to use %@ again.", self.lastAttack] forState:UIControlStateNormal];
+	
+	self.uiAnimating = true;
+	__weak typeof(self) weakSelf = self;
+	[UIView animateWithDuration:GAMEPLAY_PANEL_TIME animations:
+	^()
+	{
+		weakSelf.repeatPromptCord.constant = 0;
+		[weakSelf.view layoutIfNeeded];
+	} completion:
+	^(BOOL complete)
+	{
+		weakSelf.uiAnimating = false;
+	}];
 }
 
 -(void)attackAnimation:(NSString *)name withElement:(NSString *)element andAttackEffect:(NSString *)attackEffect fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void (^)(void)))block

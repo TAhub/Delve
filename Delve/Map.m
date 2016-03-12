@@ -83,6 +83,8 @@
 		{
 			cr.extraAction -= 1;
 			[cr startTurn];
+			if (cr.good)
+				[self.delegate presentRepeatPrompt];
 			return;
 		}
 		
@@ -95,7 +97,7 @@
 			if (self.countdown == 0)
 			{
 				//TODO: everything explodes! you lose
-				NSLog(@"BOOM!");
+				NSLog(@"BOOM! DEFEAT!");
 				return;
 			}
 			if (self.overtime)
@@ -109,7 +111,11 @@
 				return;
 			}
 			else if ([cr startTurn])
+			{
+				if (cr.good)
+					[self.delegate presentRepeatPrompt];
 				return;
+			}
 		}
 		else
 			if (!cr.dead && [cr startTurn])
