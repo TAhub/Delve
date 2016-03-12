@@ -74,7 +74,6 @@
 @property BOOL awake;
 
 #pragma mark: public interface functions
--(NSString *) takeAttack:(NSString *)attackType withPower:(int)power andElement:(NSString *)element;
 -(void) useAttackWithTreeNumber:(int)treeNumber andName:(NSString *)name onX:(int)x andY:(int)y;
 -(void) useAttackWithName:(NSString *)name onX:(int)x andY:(int)y;
 -(BOOL) startTurn;
