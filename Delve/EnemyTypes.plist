@@ -41,6 +41,14 @@
 	
 	<!-- real enemy types -->
 	
+	<!-- TODO: enemy design todos! -->
+	<!-- things to make sure of: -->
+	<!-- TODO: make sure there is decent representation for every damage type! so elemental resistances are useful -->
+	<!-- TODO: make sure there is decent representation for every RESISTANCE type too, for similar reasons; follow the class guidelines there, mostly -->
+	<!-- TODO: make sure there are at least some enemies who have AoE/delayed attacks! at least one enemy type every other floor; so shield bash, etc are useful -->
+	<!-- TODO: make sure there is a decent number of enemies who have NO dodges or blocks at all -->
+	
+	
 	
 	<!-- human bandits -->
 	<!-- human bandits have a player race, but are an early enemy type so they get shitty filler skills -->
@@ -70,7 +78,7 @@
 	</dict>
 	
 	<!-- archer bandit -->
-	<!-- more powerful, advanced bandit type enemy -->
+	<!-- more powerful, advanced bandit type enemy with a ranged focus -->
 	<key>archer bandit</key>
 	<dict>
 		<!-- identity -->
@@ -94,6 +102,35 @@
 			<string>rusty armor</string>
 		</array>
 		<key>weapon</key> <string>shortsword</string>
+	</dict>
+	
+	<!-- hammer bandit -->
+	<!-- more powerful, advanced bandit type enemy with a "delayed attack" focus -->
+	<key>hammer bandit</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>human</string>
+		<!-- TODO: AI -->
+		<!-- TODO: hammer bandits should have some "don't use normal attack" flag -->
+		<key>skills</key>
+		<array>
+			<string>hammer</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>sledgehammer</string>
+		</array>
+		<key>armors</key>
+		<array>
+			<string>rusty armor</string>
+			<string>pot helmet</string>
+		</array>
+		<key>weapon</key> <string>wooden club</string>
 	</dict>
 	
 	<!-- torch bandit -->
@@ -226,7 +263,7 @@
 	</dict>
 	
 	<!-- rabid ruin feeder -->
-	<!-- an advanced ruin feeder with a dangerous poison normal attack -->
+	<!-- an advanced ruin feeder with a dangerous poison normal attack; their unique skill lowers their max dodges to 0, for 25 more health -->
 	<key>rabid ruin feeder</key>
 	<dict>
 		<!-- identity -->

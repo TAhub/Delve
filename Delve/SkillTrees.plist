@@ -201,6 +201,8 @@
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
+				<key>health</key> <integer>25</integer>
+				<key>dodges</key> <integer>-1</integer>
 				<key>attack</key> <string>rabid bite</string>
 			</dict>
 			<dict> <!-- rank 2 -->
@@ -461,7 +463,7 @@
 				<key>health</key> <integer>12</integer>
 			</dict>
 			<dict> <!-- rank 3 -->
-				<key>damage bonus</key> <integer>6</integer>
+				<key>damage bonus</key> <integer>10</integer>
 				<key>metabolism</key> <integer>10</integer>
 				<key>attack</key> <string>tackle</string>
 			</dict>
@@ -731,7 +733,7 @@
 	
 	<!-- blood (pattern A) -->
 	<!-- a semi-defensive skill tree that has hard-to-resist attacks that cost the user's health -->
-	<!-- raises health -->
+	<!-- raises health and metabolism -->
 	<!-- implement: ritual knife -->
 	<key>blood</key>
 	<dict>
@@ -884,7 +886,7 @@
 	
 	<!-- alchemy (pattern D) -->
 	<!-- the ritual crafting tree, with a no element attack -->
-	<!-- raises metabolism -->
+	<!-- raises health -->
 	<!-- implement: none -->
 	<key>alchemy</key>
 	<dict>
@@ -895,20 +897,20 @@
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
-				<key>metabolism</key> <integer>15</integer>
+				<key>health</key> <integer>15</integer>
 				<key>recipies</key> <string>alchemy 1</string>
 			</dict>
 			<dict> <!-- rank 2 -->
-				<key>metabolism</key> <integer>15</integer>
+				<key>health</key> <integer>15</integer>
 				<key>recipies</key> <string>alchemy 2</string>
 			</dict>
 			<dict> <!-- rank 3 -->
-				<key>metabolism</key> <integer>15</integer>
+				<key>health</key> <integer>15</integer>
 				<key>attack</key> <string>poison</string>
 				<key>recipies</key> <string>alchemy 3</string>
 			</dict>
 			<dict> <!-- rank 4 -->
-				<key>metabolism</key> <integer>15</integer>
+				<key>health</key> <integer>20</integer>
 				<key>recipies</key> <string>alchemy 4</string>
 			</dict>
 		</array>

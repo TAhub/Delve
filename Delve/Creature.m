@@ -863,6 +863,8 @@
 			else
 				finalPower = (power * finalPower) / (100 + resistance * CREATURE_RESISTANCEFACTOR);
 			
+			finalPower = MAX(finalPower, 1);
+			
 			if (self.forceField >= finalPower)
 			{
 				self.forceField -= finalPower;
