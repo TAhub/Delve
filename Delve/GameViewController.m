@@ -605,12 +605,22 @@
 				NSString *floatText = @"";
 				if (item.healing > 0)
 				{
-					//TODO: show a healing number
 					int healingAmount = (item.healing * self.map.player.metabolism) / 100;
 					self.map.player.health = MIN(self.map.player.health + healingAmount, self.map.player.maxHealth);
 					floatText = [NSString stringWithFormat:@"%i", healingAmount];
 				}
-				//TODO: other effects (buffs, etc)
+				if (item.damageBuff > 0)
+					self.map.player.damageBoosted += item.damageBuff;
+				if (item.invisibilityBuff > 0)
+					self.map.player.stealthed += item.invisibilityBuff;
+				if (item.statusImmunityBuff > 0)
+					self.map.player.immunityBoosted += item.statusImmunityBuff;
+				if (item.timeBuff > 0)
+					self.map.player.extraAction += item.timeBuff;
+				if (item.skateBuff > 0)
+					self.map.player.skating += item.skateBuff;
+				if (item.defenseBuff > 0)
+					self.map.player.defenseBoosted += item.defenseBuff;
 				item.number -= 1;
 				
 				//unload crafts
@@ -619,6 +629,10 @@
 				//remove the item if it's at 0
 				if (item.number == 0)
 					[self.map.inventory removeObject:item];
+				
+				//remake your sprite if necessary
+				if (item.remakeSprite)
+					[self regenerateCreatureSprite:self.map.player];
 				
 				[self.itemTable reloadData];
 				

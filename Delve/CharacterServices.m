@@ -99,7 +99,25 @@ void makeCreatureSpriteInView(Creature *cr, UIView *view)
 	
 	UIImage *merged = mergeImages(images, CGPointMake(0.5f, 1.0f), yAdds);
 	
-	//TODO: colorize the image based on status effects (IE damage-boost makes you red, I dunno)
+	//colorize the image based on status effects
+	if (cr.damageBoosted > 0)
+		merged = colorImage(merged, loadColorFromName(@"damage boost"));
+	if (cr.immunityBoosted > 0)
+		merged = colorImage(merged, loadColorFromName(@"immunity boost"));
+	if (cr.skating > 0)
+		merged = colorImage(merged, loadColorFromName(@"skate"));
+	if (cr.defenseBoosted > 0)
+		merged = colorImage(merged, loadColorFromName(@"defense boost"));
+	
+	if (cr.forceField > 0)
+	{
+		float ffAlpha = 0.7f; //TODO: this should probably be a constant
+		ffAlpha *= MIN(1, cr.forceField * 2.0f / cr.maxHealth) * 0.8f + 0.2f;
+		
+		UIImage *ffImage = solidColorImage(merged, [UIColor whiteColor]);
+		merged = mergeImagesWithAlphas([NSArray arrayWithObjects:merged, ffImage, nil], CGPointMake(0.5f, 1.0f), [NSArray arrayWithObjects:@(0), @(0), nil], [NSArray arrayWithObjects:@(1), @(ffAlpha), nil]);
+	}
+	
 	
 	UIImageView *imageView = [[UIImageView alloc] initWithImage:merged];
 	imageView.frame = CGRectMake(GAMEPLAY_TILE_SIZE / 2 - imageView.frame.size.width / 2, GAMEPLAY_TILE_SIZE - imageView.frame.size.height, imageView.frame.size.width, imageView.frame.size.height);

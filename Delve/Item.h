@@ -20,7 +20,14 @@
 @property int number;
 
 -(int)healing;
+-(int)damageBuff;
+-(int)defenseBuff;
+-(int)statusImmunityBuff;
+-(int)invisibilityBuff;
+-(int)timeBuff;
+-(int)skateBuff;
 -(BOOL)usable;
+-(BOOL)remakeSprite;
 -(NSString *)itemDescriptionWithCreature:(Creature *)creature;
 
 @end

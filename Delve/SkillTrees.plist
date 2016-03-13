@@ -103,6 +103,7 @@
 	<!-- design note: -->
 	<!-- for start items, you get 2 potions/buff items, 3 basic healing items (ie bread), 3 crafting ingredients, or 4 crystals -->
 	<!-- obviously trees which have ammo-using attacks should make you start with some of that item! -->
+	<!-- that's a guideline though (like the time tree only gives one time core, not 2) -->
 	
 	
 	<!-- design note: -->
@@ -260,7 +261,7 @@
 		<key>type</key> <string>war</string>
 		<key>description</key> <string>A hammers!man is not the swiftest of attackers, but !he is an expert in powerful blows and area-of-effect attacks.</string>
 		<key>implement</key> <string>hammer</string>
-		<key>start item</key> <string>bread</string> <!-- TODO: a damage-boosting self-buff item, maybe? -->
+		<key>start item</key> <string>strength booster</string>
 		<key>start item number</key> <integer>2</integer>
 		<key>skills</key>
 		<array>
@@ -322,8 +323,8 @@
 		<key>type</key> <string>war</string>
 		<key>description</key> <string>Though it is not as powerful as an Eol weapon, a bow's ammo is very plentiful. A skilled bow!man can put one to great use.</string>
 		<key>implement</key> <string>bow</string>
-		<key>start item</key> <string>bread</string> <!-- TODO: a defensive self-buff item maybe? -->
-		<key>start item number</key> <integer>2</integer>
+		<key>start item</key> <string>skate core</string>
+		<key>start item number</key> <integer>4</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -418,7 +419,7 @@
 	<dict>
 		<key>type</key> <string>body</string>
 		<key>description</key> <string>A person with sharp reflexes can dodge much more effectively.</string>
-		<key>start item</key> <string>bread</string> <!-- TODO: a defensive self-buff item -->
+		<key>start item</key> <string>stability booster</string>
 		<key>start item number</key> <integer>2</integer>
 		<key>skills</key>
 		<array>
@@ -479,7 +480,7 @@
 	<dict>
 		<key>type</key> <string>body</string>
 		<key>description</key> <string>A person with great strength will hit harder with attacks of any type. !He can also effectively fight unarmed.</string>
-		<key>start item</key> <string>bread</string> <!-- TODO: a damage-boosting self-buff item -->
+		<key>start item</key> <string>strength booster</string>
 		<key>start item number</key> <integer>2</integer>
 		<key>skills</key>
 		<array>
@@ -507,7 +508,7 @@
 	<dict>
 		<key>type</key> <string>body</string>
 		<key>description</key> <string>A charming person is good at influencing, or at least distracting, foes. !He is also bound to pick up a variety of other skills, as conversation starters.</string>
-		<key>start item</key> <string>bread</string> <!-- TODO: a utility self-buff item -->
+		<key>start item</key> <string>immunity booster</string>
 		<key>start item number</key> <integer>2</integer>
 		<key>skills</key>
 		<array>
@@ -543,7 +544,7 @@
 	<dict>
 		<key>type</key> <string>body</string>
 		<key>description</key> <string>A stealthy person can creep up on others undetected, and then do all sorts of nasty things.</string>
-		<key>start item</key> <string>bread</string> <!-- TODO: an invisibility buff item -->
+		<key>start item</key> <string>stealth core</string>
 		<key>start item number</key> <integer>2</integer>
 		<key>skills</key>
 		<array>
@@ -798,7 +799,7 @@
 		<key>type</key> <string>ritual</string>
 		<key>description</key> <string>The rituals of energy focus on pure destruction. Those who practice them become more energetic themselves.</string>
 		<key>implement</key> <string>tome</string>
-		<key>start item</key> <string>bread</string> <!-- TODO: damage-boosting buff item -->
+		<key>start item</key> <string>strength booster</string>
 		<key>start item number</key> <integer>2</integer>
 		<key>skills</key>
 		<array>
@@ -860,8 +861,8 @@
 		<key>type</key> <string>ritual</string>
 		<key>description</key> <string>The rituals of time focus on getting to act faster, to overwhelm a foe. Those who practice them learn to use their abilities more often.</string>
 		<key>implement</key> <string>timepiece</string>
-		<key>start item</key> <string>bread</string> <!-- TODO: a utility self-buff item -->
-		<key>start item number</key> <integer>2</integer>
+		<key>start item</key> <string>time core</string>
+		<key>start item number</key> <integer>1</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->

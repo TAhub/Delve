@@ -148,11 +148,16 @@
 	
 	//status effect flags
 	self.forceField = 0;
+	self.forceFieldNoDegrade = 0;
 	self.stunned = 0;
 	self.extraAction = 0;
 	self.poisoned = 0;
 	self.sleeping = 0;
 	self.stealthed = 0;
+	self.damageBoosted = 0;
+	self.defenseBoosted = 0;
+	self.immunityBoosted = 0;
+	self.skating = 0;
 }
 
 #pragma mark: item interface functions
@@ -599,6 +604,10 @@
 	//get the power
 	int power = self.damageBonus + [self bonusFromImplement:implement withName:@"power"];
 	
+	//apply damage boost
+	if (self.damageBoosted > 0)
+		power = (power * CREATURE_DAMAGE_BOOST) / 100;
+	
 	//get the element
 	NSString *element = @"no element";
 	if (loadValueBool(@"Attacks", self.storedAttack, @"element"))
@@ -756,6 +765,11 @@
 
 -(BOOL) moveWithX:(int)x andY:(int)y
 {
+	return [self moveWithX:x andY:y withSkate:self.skating > 0];
+}
+
+-(BOOL) moveWithX:(int)x andY:(int)y withSkate:(BOOL)skate
+{
 	Tile *tile = self.map.tiles[self.y+y][self.x+x];
 	Tile *oldTile = self.map.tiles[self.y][self.x];
 	if (tile.canUnlock && self.good && self.hacks > 0)
@@ -773,8 +787,12 @@
 		oldTile.inhabitant = nil;
 		self.x += x;
 		self.y += y;
-		if (self.good)
+		if (self.good && !skate)
 			[self.map.delegate updateStats];
+		
+		//if you're skating, double-move
+		if (skate)
+			return [self moveWithX:x andY:y withSkate:false] || true;
 		return true;
 	}
 	return false;
@@ -834,6 +852,9 @@
 			else if ([element isEqualToString:@"shock"])
 				resistance = self.shockResistance;
 			
+			if (self.defenseBoosted > 0)
+				finalPower = (finalPower * CREATURE_DEFENSE_BOOST) / 100;
+			
 			if (inStealth)
 				finalPower = (finalPower * CREATURE_STEALTH_MULT) / 100;
 			
@@ -847,6 +868,7 @@
 				self.forceField -= finalPower;
 				//TODO: block sound effect
 				label = @"BLOCK";
+				[self.map.delegate updateCreature:self];
 			}
 			else
 			{
@@ -862,22 +884,27 @@
 		}
 	}
 	
+	//apply (negative) status effects
+	if (self.immunityBoosted == 0)
+	{
+		if (loadValueBool(@"Attacks", attackType, @"stun"))
+		{
+			self.stunned = CREATURE_STUNLENGTH;
+			self.storedAttack = nil;
+		}
+		if (loadValueBool(@"Attacks", attackType, @"sleep"))
+		{
+			self.sleeping = CREATURE_SLEEPLENGTH;
+			self.storedAttack = nil;
+		}
+		if (loadValueBool(@"Attacks", attackType, @"poison"))
+		{
+			self.poisoned = loadValueNumber(@"Attacks", attackType, @"poison").intValue;
+			self.storedAttack = nil;
+		}
+	}
+	
 	//apply special effects
-	if (loadValueBool(@"Attacks", attackType, @"stun"))
-	{
-		self.stunned = CREATURE_STUNLENGTH;
-		self.storedAttack = nil;
-	}
-	if (loadValueBool(@"Attacks", attackType, @"sleep"))
-	{
-		self.sleeping = CREATURE_SLEEPLENGTH;
-		self.storedAttack = nil;
-	}
-	if (loadValueBool(@"Attacks", attackType, @"poison"))
-	{
-		self.poisoned = loadValueNumber(@"Attacks", attackType, @"poison").intValue;
-		self.storedAttack = nil;
-	}
 	if (loadValueBool(@"Attacks", attackType, @"interrupt aoe"))
 		self.storedAttack = nil;
 	if (loadValueBool(@"Attacks", attackType, @"dodge restore"))
@@ -887,6 +914,8 @@
 		int forceFieldPower = loadValueNumber(@"Attacks", attackType, @"forcefield").intValue;
 		forceFieldPower = (forceFieldPower * power) / 100;
 		self.forceField += forceFieldPower;
+		self.forceFieldNoDegrade = CREATURE_FORCEFIELDNODEGRADE;
+		[self.map.delegate updateCreature:self];
 	}
 	if (loadValueBool(@"Attacks", attackType, @"extra actions"))
 		self.extraAction += loadValueNumber(@"Attacks", attackType, @"extra actions").intValue;
@@ -980,10 +1009,19 @@
 	}
 	
 	
-	if (self.forceField <= CREATURE_FORCEFIELDDECAY)
-		self.forceField = 0;
-	else
-		self.forceField /= CREATURE_FORCEFIELDDECAY;
+	if (self.forceField > 0)
+	{
+		if (self.forceFieldNoDegrade > 0)
+			self.forceFieldNoDegrade -= 1;
+		else
+		{
+			if (self.forceField <= CREATURE_FORCEFIELDDECAY)
+				self.forceField = 0;
+			else
+				self.forceField /= CREATURE_FORCEFIELDDECAY;
+			[self.map.delegate updateCreature:self];
+		}
+	}
 	
 	//reduce all cooldowns
 	for (NSString *attack in self.cooldowns.allKeys)
@@ -999,6 +1037,34 @@
 	{
 		self.stealthed -= 1;
 		if (self.stealthed == 0)
+			[self.map.delegate updateCreature:self];
+	}
+	
+	if (self.skating > 0)
+	{
+		self.skating -= 1;
+		if (self.skating == 0)
+			[self.map.delegate updateCreature:self];
+	}
+	
+	if (self.damageBoosted > 0)
+	{
+		self.damageBoosted -= 1;
+		if (self.damageBoosted == 0)
+			[self.map.delegate updateCreature:self];
+	}
+	
+	if (self.defenseBoosted > 0)
+	{
+		self.defenseBoosted -= 1;
+		if (self.defenseBoosted == 0)
+			[self.map.delegate updateCreature:self];
+	}
+	
+	if (self.immunityBoosted > 0)
+	{
+		self.immunityBoosted -= 1;
+		if (self.immunityBoosted == 0)
 			[self.map.delegate updateCreature:self];
 	}
 	

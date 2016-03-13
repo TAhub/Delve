@@ -477,11 +477,12 @@
 	<dict>
 		<key>attack effect</key> <string>shield</string>
 		<key>description</key> <string>Release the power of your light orb to create a holy shield around yourself that rapidly decays on its own if not struck.</string>
-		<key>cooldown</key> <integer>1</integer>
+		<key>cooldown</key> <integer>15</integer>
 		<key>friendly</key> <true/>
 		<key>ammo</key> <string>crystal</string>
 		<!-- special effects -->
 		<key>forcefield</key> <integer>50</integer>
+		<key>extra actions</key> <integer>1</integer>
 	</dict>
 	<key>blur move</key>
 	<dict>

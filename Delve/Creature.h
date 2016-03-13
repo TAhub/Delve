@@ -50,11 +50,16 @@
 
 #pragma mark: status effect flags
 @property int forceField;
+@property int forceFieldNoDegrade;
 @property int stunned;
 @property int extraAction;
 @property int sleeping;
 @property int poisoned;
 @property int stealthed;
+@property int damageBoosted;
+@property int defenseBoosted;
+@property int immunityBoosted;
+@property int skating;
 
 #pragma mark: base variables
 @property int health;

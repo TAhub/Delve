@@ -41,6 +41,11 @@
 	<key>ui text button</key> <string>AAAAFF</string>
 	<key>ui text</key> <string>222222</string>
 	<key>ui text grey</key> <string>888888</string>
+	<!-- status colors -->
+	<key>damage boost</key> <string>FFCCCC</string>
+	<key>immunity boost</key> <string>CCFFCC</string>
+	<key>defense boost</key> <string>CCCCFF</string>
+	<key>skate</key> <string>FFFFCC</string>
 	<!-- element colors -->
 	<key>element cut</key> <string>FF7700</string>
 	<key>element smash</key> <string>BBBBBB</string>

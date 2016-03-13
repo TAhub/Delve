@@ -39,7 +39,7 @@
 		<string>crystal</string>
 		<string>crystal</string>
 		<string>crystal</string>
-		<!-- TODO: one buff item -->
+		<string>strength booster</string>
 	</array>
 	<key>drops 2</key>
 	<array>
@@ -49,7 +49,7 @@
 		<string>cheese</string>
 		<string>crystal</string>
 		<string>crystal</string>
-		<!-- TODO: one buff item -->
+		<string>stability booster</string>
 	</array>
 	<key>drops 3</key>
 	<array>
@@ -59,7 +59,7 @@
 		<string>ration</string>
 		<string>crystal</string>
 		<string>crystal</string>
-		<!-- TODO: one buff item -->
+		<string>immunity booster</string>
 	</array>
 	<key>drops 4</key>
 	<array>
@@ -70,7 +70,7 @@
 		<string>steak</string>
 		<string>crystal</string>
 		<string>crystal</string>
-		<!-- TODO: one buff item -->
+		<string>time core</string>
 	</array>
 	
 	<!-- item drop leveled lists -->
@@ -324,6 +324,7 @@
 	<key>false prophet 1</key>
 	<array>
 		<string>crystals A</string>
+		<string>strength booster</string>
 		<string>glimmering orb</string>
 		<string>holy thunder</string>
 		<string>birthright</string>
@@ -332,6 +333,8 @@
 	<key>false prophet 2</key>
 	<array>
 		<string>crystals B</string>
+		<string>stability booster</string>
+		<string>skate core</string>
 		<string>holy baton</string>
 		<string>glowing orb</string>
 		<string>white lightning</string>
@@ -342,6 +345,8 @@
 	<key>false prophet 3</key>
 	<array>
 		<string>crystals C</string>
+		<string>immunity booster</string>
+		<string>stealth core</string>
 		<string>radiant orb</string>
 		<string>pearl arsenal</string>
 		<string>conviction</string>
@@ -349,6 +354,7 @@
 	</array>
 	<key>false prophet 4</key>
 	<array>
+		<string>time core</string>
 		<string>relic edge</string>
 		<string>relic goggles</string>
 		<string>speed rig</string>

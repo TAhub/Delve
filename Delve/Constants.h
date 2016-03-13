@@ -9,13 +9,17 @@
 #import <UIKit/UIKit.h>
 
 #pragma mark creature constants
+
 #define CREATURE_RESISTANCEFACTOR 35
 #define CREATURE_FORCEFIELDDECAY 3
+#define CREATURE_FORCEFIELDNODEGRADE 2
 #define CREATURE_STUNLENGTH 2
 #define CREATURE_SLEEPLENGTH 10
 #define CREATURE_POISONPERCENT 5
 #define CREATURE_NUM_TREES 5
 #define CREATURE_STEALTH_MULT 115
+#define CREATURE_DAMAGE_BOOST 160
+#define CREATURE_DEFENSE_BOOST 60
 
 #pragma mark gameplay constants
 
@@ -72,6 +76,8 @@ typedef NS_ENUM(NSInteger, TargetLevel) {
 #pragma mark image modification
 
 UIImage *mergeImages(NSArray *images, CGPoint anchorPoint, NSArray *yAdds);
+UIImage *mergeImagesWithAlphas(NSArray *images, CGPoint anchorPoint, NSArray *yAdds, NSArray *alphas);
+UIImage *solidColorImage(UIImage *image, UIColor *color);
 UIImage *colorImage(UIImage *image, UIColor *color);
 
 #pragma mark plist accessors

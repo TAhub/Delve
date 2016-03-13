@@ -13,6 +13,11 @@
 
 UIImage *mergeImages(NSArray *images, CGPoint anchorPoint, NSArray *yAdds)
 {
+	return mergeImagesWithAlphas(images, anchorPoint, yAdds, nil);
+}
+
+UIImage *mergeImagesWithAlphas(NSArray *images, CGPoint anchorPoint, NSArray *yAdds, NSArray *alphas)
+{
 	assert(images != nil);
 	assert(yAdds != nil);
 	CGRect boundsRect = CGRectMake(0, 0, 0, 0);
@@ -42,6 +47,9 @@ UIImage *mergeImages(NSArray *images, CGPoint anchorPoint, NSArray *yAdds)
 		//ie 0.5, 0.5 means they should all be centered
 		//0, 0 means they should all be drawn in the upper-left
 		imageView.frame = CGRectMake((boundsRect.size.width - imageView.frame.size.width) * anchorPoint.x, (boundsRect.size.height - imageView.frame.size.height) * anchorPoint.y + yAdd, imageView.frame.size.width, imageView.frame.size.height);
+		
+		if (alphas != nil)
+			imageView.alpha = ((NSNumber *)alphas[i]).floatValue;
 	}
 	
 	UIGraphicsBeginImageContext(boundsRect.size);

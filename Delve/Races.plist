@@ -277,6 +277,9 @@
 		<key>has gender</key> <true/>
 	</dict>
 	
+	<!-- TODO: maybe there should be an enemy race who has a built-in version of the skate effect? -->
+	
+	
 	<!-- design goal -->
 	<!-- weak enemy races should have a disadvantage of 2 -->
 	<!-- medium enemy races, an advantage of 0.5 -->

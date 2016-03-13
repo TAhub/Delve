@@ -13,7 +13,12 @@
 	<dict>
 		<key>description</key> <string>TODO: DESCRIPTION</string> 
 		<key>healing</key> <integer>100</integer>
-		<!-- TODO: status effect data -->
+		<key>damage buff</key> <integer>100</integer>
+		<key>defense buff</key> <integer>100</integer>
+		<key>status immunity buff</key> <integer>100</integer>
+		<key>invisibility buff</key> <integer>100</integer>
+		<key>time buff</key> <integer>100</integer>
+		<key>skate buff</key> <integer>100</integer>
 		<!-- TODO: appearance data -->
 	</dict>
 	
@@ -21,7 +26,6 @@
 	<key>crystal</key>
 	<dict>
 		<key>description</key> <string>This small crystal shines with an inner light.</string>
-		<!-- TODO: status effect data -->
 		<!-- TODO: appearance data -->
 	</dict>
 	
@@ -30,61 +34,88 @@
 	<dict>
 		<key>description</key> <string>This loaf of bread is a little stale, but still edible.</string>
 		<key>healing</key> <integer>35</integer>
-		<!-- TODO: status effect data -->
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>herbal draught</key>
 	<dict>
 		<key>description</key> <string>This draught has an unpleasant herbal odor.</string>
 		<key>healing</key> <integer>40</integer>
-		<!-- TODO: status effect data -->
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>cheese</key>
 	<dict>
 		<key>description</key> <string>This small block of cheese smells delicious.</string>
 		<key>healing</key> <integer>55</integer>
-		<!-- TODO: status effect data -->
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>blood pack</key>
 	<dict>
 		<key>description</key> <string>This wineskin is full of blood, to replace any blood you lose.</string>
 		<key>healing</key> <integer>60</integer>
-		<!-- TODO: status effect data -->
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>ration</key>
 	<dict>
 		<key>description</key> <string>This tin is full of well-preserved food.</string>
 		<key>healing</key> <integer>70</integer>
-		<!-- TODO: status effect data -->
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>silvery salve</key>
 	<dict>
 		<key>description</key> <string>This ointment is cool to the touch.</string>
 		<key>healing</key> <integer>80</integer>
-		<!-- TODO: status effect data -->
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>steak</key>
 	<dict>
 		<key>description</key> <string>This steak is strangely fresh-looking for something you found in an ancient ruin.</string>
 		<key>healing</key> <integer>90</integer>
-		<!-- TODO: status effect data -->
 		<!-- TODO: appearance data -->
 	</dict>
 	<key>fizzling drink</key>
 	<dict>
 		<key>description</key> <string>This medicinal drink fizzles in an unsettling manner.</string>
 		<key>healing</key> <integer>100</integer>
-		<!-- TODO: status effect data -->
 		<!-- TODO: appearance data -->
 	</dict>
 	
 	<!-- status effect items -->
-	<!-- TODO: make them -->
+	<key>strength booster</key>
+	<dict>
+		<key>description</key> <string>This one-use relic increases the user's strength.</string> 
+		<key>damage buff</key> <integer>30</integer>
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>stability booster</key>
+	<dict>
+		<key>description</key> <string>This expensive one-use relic toughen's the user's body.</string> 
+		<key>defense buff</key> <integer>30</integer>
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>immunity booster</key>
+	<dict>
+		<key>description</key> <string>This rare one-use relic bolster's the user's immune system.</string> 
+		<key>status immunity buff</key> <integer>40</integer>
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>skate core</key>
+	<dict>
+		<key>description</key> <string>This one-use relic wraps the user's feet in light.</string> 
+		<key>skate buff</key> <integer>10</integer>
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>stealth core</key>
+	<dict>
+		<key>description</key> <string>This expensive one-use relic warps light and turns the user invisible.</string> 
+		<key>invisibility buff</key> <integer>30</integer>
+		<!-- TODO: appearance data -->
+	</dict>
+	<key>time core</key>
+	<dict>
+		<key>description</key> <string>This rare one-use relic accelerates the user in time.</string> 
+		<key>time buff</key> <integer>3</integer>
+		<!-- TODO: appearance data -->
+	</dict>
 	
 	<!-- crafting material items -->
 	<key>iron ingot</key> <!-- level 1 material -->

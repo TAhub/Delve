@@ -220,7 +220,7 @@
 	NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
 	if ([def objectForKey:@"last skills"] != nil)
 	{
-		self.skills = [def objectForKey:@"last skills"];
+		self.skills = [NSMutableArray arrayWithArray:[def objectForKey:@"last skills"]];
 		self.raceNumber = [def integerForKey:@"last race"];
 		self.appearanceNumber = [def integerForKey:@"last appearance"];
 		[self.treeTable reloadData];
@@ -289,36 +289,33 @@
 	void (^alertBlock)(UIAlertAction *action) = nil;
 	
 	//select that skill
-	BOOL contains = false;
 	for (int i = 0; i < CREATURE_NUM_TREES; i++)
 		if ([self.skills[i] isEqualToString:key])
 		{
 			//you had it!
-			contains = true;
 			self.skills[i] = @"";
 			[tableView reloadData];
 			[self reloadCreature];
 			[self reloadLabels];
 			return;
 		}
-	if (!contains)
-		for (int i = 0; i < CREATURE_NUM_TREES; i++)
-			if ([self.skills[i] isEqualToString:@""])
-				if ([slots[i] isEqualToString:@"wildcard"] || [slots[i] isEqualToString:loadValueString(@"SkillTrees", key, @"type")])
+	for (int i = 0; i < CREATURE_NUM_TREES; i++)
+		if ([self.skills[i] isEqualToString:@""])
+			if ([slots[i] isEqualToString:@"wildcard"] || [slots[i] isEqualToString:loadValueString(@"SkillTrees", key, @"type")])
+			{
+				//make the alert
+				__weak typeof(self) weakSelf = self;
+				alertText = [self.creature treeDescription:key atLevel:0];
+				alertBlock =
+				^(UIAlertAction *action)
 				{
-					//make the alert
-					__weak typeof(self) weakSelf = self;
-					alertText = [self.creature treeDescription:key atLevel:0];
-					alertBlock =
-					^(UIAlertAction *action)
-					{
-						weakSelf.skills[i] = key;
-						[tableView reloadData];
-						[weakSelf reloadCreature];
-						[weakSelf reloadLabels];
-					};
-					break;
-				}
+					weakSelf.skills[i] = key;
+					[tableView reloadData];
+					[weakSelf reloadCreature];
+					[weakSelf reloadLabels];
+				};
+				break;
+			}
 	
 	if (alertText.length > 0)
 	{

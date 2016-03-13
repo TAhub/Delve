@@ -746,7 +746,66 @@
 		<key>result type</key> <string>inventory</string>
 		<key>result amount</key> <integer>5</integer>
 	</dict>
-	<!-- TODO: a bunch of consumable buff items -->
+	<key>strength booster</key>
+	<dict>
+		<key>ingredient a</key> <string>capacitor</string>
+		<key>ingredient a amount</key> <integer>1</integer>
+		<key>ingredient b</key> <string>crystal</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>strength booster</string>
+		<key>result type</key> <string>inventory</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>stability booster</key>
+	<dict>
+		<key>ingredient a</key> <string>battery</string>
+		<key>ingredient a amount</key> <integer>1</integer>
+		<key>ingredient b</key> <string>crystal</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>stability booster</string>
+		<key>result type</key> <string>inventory</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>immunity booster</key>
+	<dict>
+		<key>ingredient a</key> <string>circuit</string>
+		<key>ingredient a amount</key> <integer>1</integer>
+		<key>ingredient b</key> <string>crystal</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>immunity booster</string>
+		<key>result type</key> <string>inventory</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>skate core</key>
+	<dict>
+		<key>ingredient a</key> <string>capacitor</string>
+		<key>ingredient a amount</key> <integer>1</integer>
+		<key>ingredient b</key> <string>fang</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>skate core</string>
+		<key>result type</key> <string>inventory</string>
+		<key>result amount</key> <integer>2</integer>
+	</dict>
+	<key>stealth core</key>
+	<dict>
+		<key>ingredient a</key> <string>battery</string>
+		<key>ingredient a amount</key> <integer>1</integer>
+		<key>ingredient b</key> <string>quicksilver</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>stealth core</string>
+		<key>result type</key> <string>inventory</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>time core</key>
+	<dict>
+		<key>ingredient a</key> <string>circuit</string>
+		<key>ingredient a amount</key> <integer>1</integer>
+		<key>ingredient b</key> <string>diamond dust</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>time core</string>
+		<key>result type</key> <string>inventory</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
 	
 	
 	<!-- alchemy recipies -->
