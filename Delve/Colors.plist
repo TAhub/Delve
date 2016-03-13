@@ -41,6 +41,9 @@
 	<key>ui text button</key> <string>AAAAFF</string>
 	<key>ui text</key> <string>222222</string>
 	<key>ui text grey</key> <string>888888</string>
+	<key>ui block</key> <string>222266</string>
+	<key>ui dodge</key> <string>226622</string>
+	<key>ui hack</key> <string>666622</string>
 	<!-- status colors -->
 	<key>damage boost</key> <string>FFCCCC</string>
 	<key>immunity boost</key> <string>CCFFCC</string>

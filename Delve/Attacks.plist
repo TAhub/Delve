@@ -394,10 +394,10 @@
 	<dict>
 		<key>attack effect</key> <string>explosion</string>
 		<key>description</key> <string>Fully release the power of your light orb, shock all foes around you.</string>
-		<key>power</key> <integer>30</integer>
+		<key>power</key> <integer>35</integer>
 		<key>element</key> <string>shock</string>
 		<key>area</key> <integer>3</integer>
-		<key>cooldown</key> <integer>15</integer>
+		<key>cooldown</key> <integer>30</integer>
 		<key>ammo</key> <string>crystal</string>
 		<!-- special effects -->
 	</dict>
@@ -481,7 +481,7 @@
 		<key>friendly</key> <true/>
 		<key>ammo</key> <string>crystal</string>
 		<!-- special effects -->
-		<key>forcefield</key> <integer>50</integer>
+		<key>forcefield</key> <integer>45</integer>
 		<key>extra actions</key> <integer>1</integer>
 	</dict>
 	<key>blur move</key>

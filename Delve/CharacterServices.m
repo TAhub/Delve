@@ -130,22 +130,69 @@ void makeCreatureSpriteInView(Creature *cr, UIView *view)
 		view.alpha = 1;
 }
 
+CGPoint iconRow(NSString *baseName, UIColor *color, int cur, int max, CGPoint corner, UIView *addTo)
+{
+	//draw a row of icons, each representing two of something
+	
+	for (int i = 0; i < max;)
+	{
+		int pieces = 0;
+		int maxPieces = 0;
+		if (i == max - 1)
+		{
+			maxPieces = 1;
+			pieces = max == cur ? 1 : 0;
+			i += 1;
+		}
+		else
+		{
+			maxPieces = 2;
+			pieces = MAX(MIN(max - cur - i + 2, 2), 0);
+			i += 2;
+		}
+		NSString *suffix;
+		if (maxPieces == 1)
+			suffix = pieces == 1 ? @"_half_full" : @"_half_empty";
+		else
+		{
+			switch(pieces)
+			{
+				case 0: suffix = @"_empty"; break;
+				case 1: suffix = @"_halfEmpty"; break;
+				case 2: suffix = @"_full"; break;
+			}
+		}
+		
+		UIImage *loaded = colorImage([UIImage imageNamed:[NSString stringWithFormat:@"%@%@", baseName, suffix]], color);
+		UIImageView *iconView = [[UIImageView alloc] initWithImage:loaded];
+		iconView.frame = CGRectMake(corner.x, corner.y, loaded.size.width, loaded.size.height);
+		[addTo addSubview:iconView];
+		corner.x += loaded.size.width;
+	}
+	return corner;
+}
+
 void makeInfoLabelInView(Creature *cr, UIView *view)
 {
 	for (UIView *subView in view.subviews)
 		[subView removeFromSuperview];
 	UILabel *statLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-	statLabel.text = [NSString stringWithFormat:@"H%i/%i  D%i/%i  B%i/%i  K%i/%i", cr.health, cr.maxHealth, cr.dodges, cr.maxDodges, cr.blocks, cr.maxBlocks, cr.hacks, cr.maxHacks];
+	statLabel.text = [NSString stringWithFormat:@"H%i/%i ", cr.health, cr.maxHealth];
 	statLabel.textColor = loadColorFromName(@"ui text");
-	//TODO: display blocks, dodges, and hacks as rows of icons
 	[statLabel sizeToFit];
 	[view addSubview:statLabel];
 	
-	UILabel *statLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(0, statLabel.frame.size.height, 0, 0)];
-	statLabel2.text = [NSString stringWithFormat:@"%i%% dam", cr.damageBonus];
-	//TODO: display resistances as rows of icons
-	//in this order: blunt, cut, burn, shock
-	[statLabel2 sizeToFit];
-	statLabel2.textColor = loadColorFromName(@"ui text");
-	[view addSubview:statLabel2];
+	//display blocks, dodges, and hacks as rows of icons
+	CGPoint corner = CGPointMake(statLabel.frame.origin.x + statLabel.frame.size.width, statLabel.frame.origin.y);
+	corner = iconRow(@"ui_block", loadColorFromName(@"ui block"), cr.blocks, cr.maxBlocks, corner, view);
+	corner = iconRow(@"ui_dodge", loadColorFromName(@"ui dodge"), cr.dodges, cr.maxDodges, corner, view);
+	iconRow(@"ui_hack", loadColorFromName(@"ui hack"), cr.hacks, cr.maxHacks, corner, view);
+	
+	//display resistances as rows of icons
+	//in this order: smash, cut, burn, shock
+	CGPoint corner2 = CGPointMake(0, statLabel.frame.size.height + 10);
+	corner2 = iconRow(@"ui_resist", loadColorFromName(@"element smash"), cr.smashResistance, cr.smashResistance, corner2, view);
+	corner2 = iconRow(@"ui_resist", loadColorFromName(@"element cut"), cr.cutResistance, cr.cutResistance, corner2, view);
+	corner2 = iconRow(@"ui_resist", loadColorFromName(@"element burn"), cr.burnResistance, cr.burnResistance, corner2, view);
+	iconRow(@"ui_resist", loadColorFromName(@"element shock"), cr.shockResistance, cr.shockResistance, corner2, view);
 }
