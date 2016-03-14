@@ -974,8 +974,29 @@
 	if (tile.treasureType != TreasureTypeNone)
 	{
 		//TODO: get the real treasure image
-		UIImage *treasureSprite = [UIImage imageNamed:@"ui_warning"];
-		treasureSprite = colorImage(treasureSprite, loadColorFromName(@"gold"));
+		NSString *treasureName = nil;
+		UIColor *treasureColor = nil;
+		switch (tile.treasureType)
+		{
+			case TreasureTypeBag:
+				treasureName = @"pouch";
+				treasureColor = loadColorFromName(@"leather");
+				break;
+			case TreasureTypeChest:
+				treasureName = @"chest_open";
+				treasureColor = loadColorFromName(@"relic");
+				break;
+			case TreasureTypeLocked:
+				treasureName = @"chest";
+				treasureColor = loadColorFromName(@"relic");
+				break;
+			case TreasureTypeFree:
+				treasureName = loadValueString(@"InventoryItems", tile.treasure.name, @"sprite");
+				treasureColor = loadColorFromName(loadValueString(@"InventoryItems", tile.treasure.name, @"color"));
+				break;
+			default: break;
+		}
+		UIImage *treasureSprite = colorImage([UIImage imageNamed:treasureName], treasureColor);
 		
 		UIImageView *treasureView = [[UIImageView alloc] initWithImage:treasureSprite];
 		treasureView.center = CGPointMake(GAMEPLAY_TILE_SIZE / 2, GAMEPLAY_TILE_SIZE / 2);

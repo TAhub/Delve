@@ -19,14 +19,18 @@
 		<key>invisibility buff</key> <integer>100</integer>
 		<key>time buff</key> <integer>100</integer>
 		<key>skate buff</key> <integer>100</integer>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_ingot</string>
+		<key>color</key> <string>iron</string>
 	</dict>
 	
 	<!-- ammo items -->
 	<key>crystal</key>
 	<dict>
 		<key>description</key> <string>This small crystal shines with an inner light.</string>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>projectile_crystal</string>
+		<key>color</key> <string>element shock</string>
 	</dict>
 	
 	<!-- healing items -->
@@ -34,49 +38,65 @@
 	<dict>
 		<key>description</key> <string>This loaf of bread is a little stale, but still edible.</string>
 		<key>healing</key> <integer>35</integer>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_bread</string>
+		<key>color</key> <string>brown hair</string>
 	</dict>
 	<key>herbal draught</key>
 	<dict>
 		<key>description</key> <string>This draught has an unpleasant herbal odor.</string>
 		<key>healing</key> <integer>40</integer>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_potion</string>
+		<key>color</key> <string>green hair</string>
 	</dict>
 	<key>cheese</key>
 	<dict>
 		<key>description</key> <string>This small block of cheese smells delicious.</string>
 		<key>healing</key> <integer>55</integer>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_cheese</string>
+		<key>color</key> <string>gold</string>
 	</dict>
 	<key>blood pack</key>
 	<dict>
-		<key>description</key> <string>This wineskin is full of blood, to replace any blood you lose.</string>
+		<key>description</key> <string>This wineskin is full of artificial blood, to replace any blood you lose.</string>
 		<key>healing</key> <integer>60</integer>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>pouch</string>
+		<key>color</key> <string>rusty</string>
 	</dict>
 	<key>ration</key>
 	<dict>
 		<key>description</key> <string>This tin is full of well-preserved food.</string>
 		<key>healing</key> <integer>70</integer>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_can</string>
+		<key>color</key> <string>iron</string>
 	</dict>
 	<key>silvery salve</key>
 	<dict>
 		<key>description</key> <string>This ointment is cool to the touch.</string>
 		<key>healing</key> <integer>80</integer>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_can</string>
+		<key>color</key> <string>steel</string>
 	</dict>
 	<key>steak</key>
 	<dict>
 		<key>description</key> <string>This steak is strangely fresh-looking for something you found in an ancient ruin.</string>
 		<key>healing</key> <integer>90</integer>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_steak</string>
+		<key>color</key> <string>rusty</string>
 	</dict>
 	<key>fizzling drink</key>
 	<dict>
 		<key>description</key> <string>This medicinal drink fizzles in an unsettling manner.</string>
 		<key>healing</key> <integer>100</integer>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_potion</string>
+		<key>color</key> <string>blue fabric</string>
 	</dict>
 	
 	<!-- status effect items -->
@@ -84,100 +104,136 @@
 	<dict>
 		<key>description</key> <string>This one-use relic increases the user's strength.</string> 
 		<key>damage buff</key> <integer>30</integer>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_booster</string>
+		<key>color</key> <string>red fabric</string>
 	</dict>
 	<key>stability booster</key>
 	<dict>
 		<key>description</key> <string>This expensive one-use relic toughen's the user's body.</string> 
 		<key>defense buff</key> <integer>30</integer>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_booster</string>
+		<key>color</key> <string>blue fabric</string>
 	</dict>
 	<key>immunity booster</key>
 	<dict>
 		<key>description</key> <string>This rare one-use relic bolster's the user's immune system.</string> 
 		<key>status immunity buff</key> <integer>40</integer>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_booster</string>
+		<key>color</key> <string>green hair</string>
 	</dict>
 	<key>skate core</key>
 	<dict>
 		<key>description</key> <string>This one-use relic wraps the user's feet in light.</string> 
 		<key>skate buff</key> <integer>10</integer>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_core</string>
+		<key>color</key> <string>gold</string>
 	</dict>
 	<key>stealth core</key>
 	<dict>
 		<key>description</key> <string>This expensive one-use relic warps light and turns the user invisible.</string> 
 		<key>invisibility buff</key> <integer>30</integer>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_core</string>
+		<key>color</key> <string>grey fabric</string>
 	</dict>
 	<key>time core</key>
 	<dict>
 		<key>description</key> <string>This rare one-use relic accelerates the user in time.</string> 
 		<key>time buff</key> <integer>3</integer>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_core</string>
+		<key>color</key> <string>purple hair</string>
 	</dict>
 	
 	<!-- crafting material items -->
 	<key>iron ingot</key> <!-- level 1 material -->
 	<dict>
 		<key>description</key> <string>This is an ingot of solid iron.</string>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_ingot</string>
+		<key>color</key> <string>iron</string>
 	</dict>
 	<key>steel ingot</key> <!-- level 2 material -->
 	<dict>
 		<key>description</key> <string>This is an ingot of fine steel.</string>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_ingot</string>
+		<key>color</key> <string>steel</string>
 	</dict>
 	<key>refined ingot</key> <!-- level 3 material -->
 	<dict>
 		<key>description</key> <string>This is an ingot of an old Eol metal.</string>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_ingot</string>
+		<key>color</key> <string>relic</string>
 	</dict>
 	<key>capacitor</key> <!-- level 1 material -->
 	<dict>
 		<key>description</key> <string>This small metal object was a part of an Eol relic.</string>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_capacitor</string>
+		<key>color</key> <string>relic</string>
 	</dict>
 	<key>battery</key> <!-- level 2 material -->
 	<dict>
 		<key>description</key> <string>This small metal cylinder is strangely heavy.</string>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_battery</string>
+		<key>color</key> <string>relic</string>
 	</dict>
 	<key>circuit</key> <!-- level 3 material -->
 	<dict>
 		<key>description</key> <string>This is a flat wafer of some strange material, encrusted with metal filigree.</string>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_circuit</string>
+		<key>color</key> <string>relic</string>
 	</dict>
 	<key>herb</key> <!-- level 1.5 material -->
 	<dict>
 		<key>description</key> <string>This is a bundle of medicinal herbs. You could eat them, but they're much more effective as an ingredient.</string>
 		<key>healing</key> <integer>25</integer>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_herb</string>
+		<key>color</key> <string>green hair</string>
 	</dict>
 	<key>fang</key>
 	<dict>
 		<key>description</key> <string>This is a sharp fang, taken from some beast and carefully preserved.</string>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_fang</string>
+		<key>color</key> <string>relic</string>
 	</dict>
 	<key>quicksilver</key> <!-- level 2 material -->
 	<dict>
 		<key>description</key> <string>This is a small vial of quicksilver, a liquid metal with many unusual properties.</string>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_quicksilver</string>
+		<key>color</key> <string>steel</string>
 	</dict>
 	<key>diamond dust</key> <!-- level 3 material -->
 	<dict>
 		<key>description</key> <string>This is a pinch of valuable powdered diamond.</string>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_dust</string>
+		<key>color</key> <string>defense boost</string>
 	</dict>
 	<key>fabric</key> <!-- level 1.5 material -->
 	<dict>
 		<key>description</key> <string>This is a bolt of rough fabric.</string>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_fabric</string>
+		<key>color</key> <string>grey fabric</string>
 	</dict>
 	<key>silk</key> <!-- level 2.5 material -->
 	<dict>
 		<key>description</key> <string>This is a bolt of fine silk.</string>
-		<!-- TODO: appearance data -->
+		<!-- appearance data -->
+		<key>sprite</key> <string>item_fabric</string>
+		<key>color</key> <string>blue fabric</string>
 	</dict>
 </dict>
 </plist>

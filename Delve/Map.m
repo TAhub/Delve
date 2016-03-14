@@ -853,7 +853,7 @@
 				
 				Tile *centerTile = self.tiles[yC][xC];
 				if (centerTile.validPlacementSpot)
-					[self placeTreasureOn:centerTile equipmentTreasure:room.equipmentTreasure || room.lockedOnly isUnlocked:!room.lockedOnly];
+					[self placeTreasureOn:centerTile equipmentTreasure:room.equipmentTreasure || room.lockedOnly isUnlocked:room.lockedOnly];
 				else
 				{
 					//find a random spot in the tile to place a treasure
@@ -864,7 +864,7 @@
 						Tile *randomTile = self.tiles[yR][xR];
 						if (randomTile.validPlacementSpot)
 						{
-							[self placeTreasureOn:randomTile equipmentTreasure:room.equipmentTreasure || room.lockedOnly isUnlocked:!room.lockedOnly];
+							[self placeTreasureOn:randomTile equipmentTreasure:room.equipmentTreasure || room.lockedOnly isUnlocked:room.lockedOnly];
 							break;
 						}
 					}

@@ -190,7 +190,7 @@ void makeInfoLabelInView(Creature *cr, UIView *view)
 	
 	//display resistances as rows of icons
 	//in this order: smash, cut, burn, shock
-	CGPoint corner2 = CGPointMake(0, statLabel.frame.size.height + 10);
+	CGPoint corner2 = CGPointMake(0, statLabel.frame.size.height);
 	corner2 = iconRow(@"ui_resist", loadColorFromName(@"element smash"), cr.smashResistance, cr.smashResistance, corner2, view);
 	corner2 = iconRow(@"ui_resist", loadColorFromName(@"element cut"), cr.cutResistance, cr.cutResistance, corner2, view);
 	corner2 = iconRow(@"ui_resist", loadColorFromName(@"element burn"), cr.burnResistance, cr.burnResistance, corner2, view);
