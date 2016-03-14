@@ -73,6 +73,14 @@ typedef NS_ENUM(NSInteger, TargetLevel) {
 	TargetLevelOutOfRange
 };
 
+typedef NS_ENUM(NSInteger, PathDirection) {
+	PathDirectionPlusX,
+	PathDirectionPlusY,
+	PathDirectionMinusX,
+	PathDirectionMinusY,
+	PathDirectionNoPath
+};
+
 
 #pragma mark image modification
 

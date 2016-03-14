@@ -308,6 +308,92 @@
 	return (int)self.tiles.count;
 }
 
+-(PathDirection)pathFromX:(int)fX andY:(int)fY toX:(int)tX andY:(int)tY withRadius:(int)radius
+{
+	//prepare the tiles
+	int sX = MAX(fX - radius, 0);
+	int sY = MAX(fY - radius, 0);
+	int eX = MIN(fX + radius, self.width - 1);
+	int eY = MIN(fY + radius, self.height - 1);
+	for (int y = sY; y <= eY; y++)
+		for (int x = sX; x <= eX; x++)
+		{
+			Tile *tile = self.tiles[y][x];
+			tile.direction = PathDirectionNoPath;
+			tile.distance = radius * radius + 1;
+		}
+	
+	
+	//explore the tiles to find the optimal path
+	Tile *fromTile = self.tiles[fY][fX];
+	Tile *toTile = self.tiles[tY][tX];
+	NSMutableArray *toExplore = [NSMutableArray new];
+	fromTile.distance = 0;
+	[toExplore addObject:@(fX + fY * self.width)];
+	
+	for (int i = 0; i < toExplore.count; i++)
+	{
+		NSNumber *n = toExplore[i];
+		int x = n.intValue % self.width;
+		int y = n.intValue / self.width;
+		Tile *aTile = self.tiles[y][x];
+		int distance = aTile.distance + 1;
+		
+		int jAdd = arc4random_uniform(4);
+		for (int j = 0; j < 4; j++)
+		{
+			int nJ = (j + jAdd) % 4;
+			int nX = x;
+			int nY = y;
+			PathDirection dir;
+			switch(nJ)
+			{
+				case 0: nX += 1; dir = PathDirectionMinusX; break;
+				case 1: nY += 1; dir = PathDirectionMinusY; break;
+				case 2: nX -= 1; dir = PathDirectionPlusX; break;
+				default: nY -= 1; dir = PathDirectionPlusY; break;
+			}
+			if (nX >= sX && nY >= sY && nX <= eX && nY <= eY)
+			{
+				Tile *nTile = self.tiles[nY][nX];
+				if (nTile.distance > distance && //it has to be a better path than the last one, or else ignore this
+					!nTile.solid && //you can't walk through walls
+					(nTile.inhabitant == nil || nTile == toTile)) //you can't walk through people, but pretend you can when going to the destination
+				{
+					nTile.distance = distance;
+					nTile.direction = dir;
+					[toExplore addObject:@(nX + nY * self.width)];
+				}
+			}
+		}
+	}
+	
+	//follow the path back
+	while (true)
+	{
+		PathDirection dir = toTile.direction;
+		switch(dir)
+		{
+			case PathDirectionMinusX: tX -= 1; break;
+			case PathDirectionMinusY: tY -= 1; break;
+			case PathDirectionPlusX: tX += 1; break;
+			case PathDirectionPlusY: tY += 1; break;
+			case PathDirectionNoPath: return PathDirectionNoPath; //there isn't a path back
+		}
+		toTile = self.tiles[tY][tX];
+		
+		if (toTile == fromTile)
+			switch(dir)
+			{	//translate to a way forward
+				case PathDirectionPlusX: return PathDirectionMinusX;
+				case PathDirectionMinusX: return PathDirectionPlusX;
+				case PathDirectionPlusY: return PathDirectionMinusY;
+				case PathDirectionMinusY: return PathDirectionPlusY;
+				default: break;
+			}
+	}
+}
+
 #pragma mark: map generation
 
 -(void)mapGenerateWithMap:(Map *)map andGen:(Creature *)genPlayer

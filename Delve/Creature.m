@@ -201,7 +201,13 @@
 	if (loadValueNumber(@"Attacks", attack, @"cooldown").intValue > 1)
 		[properties addObject:[NSString stringWithFormat:@"%i cooldown", loadValueNumber(@"Attacks", attack, @"cooldown").intValue]];
 	if (loadValueBool(@"Attacks", attack, @"extra actions"))
-		[properties addObject:[NSString stringWithFormat:@"%i extra actions", loadValueNumber(@"Attacks", attack, @"extra actions").intValue]];
+	{
+		int extra = loadValueNumber(@"Attacks", attack, @"extra actions").intValue;
+		if (extra == 1)
+			[properties addObject:@"doesn't take an action"];
+		else
+			[properties addObject:[NSString stringWithFormat:@"gives %i extra actions", extra]];
+	}
 	
 	[desc appendString:[properties componentsJoinedByString:@", "]];
 	return desc;
@@ -1117,9 +1123,6 @@
 			return NO;
 		}
 		
-		
-		//for now, the AI just moves towards the player and attacks when possible
-		
 		//look for an attack you can use on the player
 		NSArray *attacks = [self attacks];
 		for (int i = 2; i < attacks.count; i++) //skip defend and attack, this is checking your normal attack
@@ -1156,20 +1159,62 @@
 			}
 		}
 		
+		
+		
 		//otherwise, try to walk towards the player
+		
 		//AIs shouldnt pursue the player if the AI isn't visible (IE it's far away or in a non-visible tile) AND the player is stealthed
 		if (tile.visible || self.map.player.stealthed == 0)
-			if ([self aiWalk:1])
+		{
+			//which kinds of walk should you try?
+			BOOL tryAIWalk = true;
+			BOOL tryPathWalk = true;
+			
+			if (tryPathWalk && !tile.visible)
+				tryAIWalk = false; //only path walk when offscreen, if you have the option
+			
+			
+			if (tryAIWalk && [self aiWalk:1])
 				return YES;
+			
+			if (tryPathWalk)
+			{
+				//TODO: get the real pathfinding radius
+				int pathRadius = 10;
+				PathDirection direction = [self.map pathFromX:self.x andY:self.y toX:self.map.player.x andY:self.map.player.y withRadius:pathRadius];
+				switch(direction)
+				{
+					case PathDirectionMinusX:
+						[self.map movePerson:self withX:-1 andY:0];
+						return YES;
+					case PathDirectionPlusX:
+						[self.map movePerson:self withX:1 andY:0];
+						return YES;
+					case PathDirectionMinusY:
+						[self.map movePerson:self withX:0 andY:-1];
+						return YES;
+					case PathDirectionPlusY:
+						[self.map movePerson:self withX:0 andY:1];
+						return YES;
+					case PathDirectionNoPath: break;
+				}
+			}
+		}
 		
 		
 		//TODO: maybe smarter AIs can do some actual pathfinding, within a certain radius?
 		//IE for if the player teleports away, or is behind a small wall or whatever
 		
 		
-		//otherwise, you are stuck, use defend
-		[self useAttackWithTreeNumber:0 andName:@"defend" onX:self.x andY:self.y];
-		return YES;
+		//if you are stuck and onscreen, defend
+		if (tile.visible)
+		{
+			[self useAttackWithTreeNumber:0 andName:@"defend" onX:self.x andY:self.y];
+			return YES;
+		}
+		
+		//if you can't defend, just skip your turn
+		return NO;
 	}
 	
 	if (self.good)
@@ -1200,10 +1245,13 @@
 {
 	int xDif = (self.map.player.x - self.x) * mult;
 	int yDif = (self.map.player.y - self.y) * mult;
+	int xDir = copysign(1, xDif);
+	int yDir = copysign(1, yDif);
+	
 	BOOL xFirst = ABS(xDif) > ABS(yDif);
-	if ([self.map movePerson:self withX:(xFirst ? copysign(1, xDif) : 0) andY:(!xFirst ? copysign(1, yDif) : 0)])
+	if ([self.map movePerson:self withX:(xFirst ? xDir : 0) andY:(!xFirst ? yDir : 0)])
 		return YES;
-	if (xDif != 0 && yDif != 0 && [self.map movePerson:self withX:(!xFirst ? copysign(1, xDif) : 0) andY:(xFirst ? copysign(1, yDif) : 0)])
+	if (xDif != 0 && yDif != 0 && [self.map movePerson:self withX:(!xFirst ? xDir : 0) andY:(xFirst ? yDir : 0)])
 		return YES;
 	return NO;
 }

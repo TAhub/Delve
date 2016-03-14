@@ -34,7 +34,12 @@
 @property BOOL discovered;
 @property BOOL changed;
 @property (strong, nonatomic) NSMutableSet *aoeTargeters;
+
 @property TargetLevel targetLevel;
+@property PathDirection direction;
+@property int distance;
+
+
 -(BOOL) validPlacementSpot;
 
 #pragma mark item info

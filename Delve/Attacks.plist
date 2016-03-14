@@ -394,7 +394,7 @@
 	<dict>
 		<key>attack effect</key> <string>explosion</string>
 		<key>description</key> <string>Fully release the power of your light orb, shock all foes around you.</string>
-		<key>power</key> <integer>35</integer>
+		<key>power</key> <integer>32</integer>
 		<key>element</key> <string>shock</string>
 		<key>area</key> <integer>3</integer>
 		<key>cooldown</key> <integer>30</integer>
@@ -405,7 +405,7 @@
 	<dict>
 		<key>attack effect</key> <string>arrow storm</string>
 		<key>description</key> <string>Fire many arrows at once from your bow, hitting everyone in an area.</string>
-		<key>power</key> <integer>25</integer>
+		<key>power</key> <integer>27</integer>
 		<key>element</key> <string>cut</string>
 		<key>range</key> <integer>4</integer>
 		<key>area</key> <integer>3</integer>
@@ -433,8 +433,7 @@
 		<key>range</key> <integer>4</integer>
 		<key>area</key> <integer>3</integer>
 		<key>cooldown</key> <integer>11</integer>
-		<key>dodgeable</key> <true/>
-		<!-- note that alchemy now has new recipies to turn steel ingo iron, etc, to fuel shatter -->
+		<!-- note that alchemy now has new recipies to turn steel into iron, etc, to fuel shatter -->
 		<key>ammo</key> <string>iron ingot</string>
 		<!-- special effects -->
 	</dict>

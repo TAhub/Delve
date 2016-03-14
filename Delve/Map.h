@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Constants.h"
 
 @class UIColor;
 @class Creature;
@@ -59,6 +60,7 @@
 -(void)payForRecipie:(NSString *)recipie;
 -(Item *)makeItemFromRecipie:(NSString *)recipie;
 -(void)addItem:(Item *)item;
+-(PathDirection)pathFromX:(int)fX andY:(int)fY toX:(int)tX andY:(int)tY withRadius:(int)radius;
 
 @property (weak, nonatomic) id<MapDelegate> delegate;
 
