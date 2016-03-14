@@ -924,15 +924,26 @@
 				}
 			}
 	
-	//TODO: if I do any recutting, it should be here
-	//I probably shouldn't though
-	
 	//place exit door tile
 	int doorX = exitRoom.xCorner + roomSize / 2;
 	int doorY = exitRoom.yCorner + roomSize / 2;
 	((Tile *)self.tiles[doorY][doorX]).type = stairsTile;
 	
-	//TODO: place columns in rooms, in spots that aren't stairs, have no enemies or treasures, and are surrounded by non-walls
+	
+	//TODO: place doodads in rooms (control panels, columns, etc)
+	//with the following conditions:
+	//	not on a creature tile
+	//	not on a treasure tile
+	//	MUST be on the "artificial floor" tile
+	//	all four cardinal directions must either be "artificial floor" or "artificial wall", no cave walls or door floors or w/e
+	//ideally one or two per accessable room, if possible
+	
+	//TODO: all doodad tiles should be non-sight-blocking (so you can also shoot past them)
+	
+	
+	//TODO: if there's any random variant replacement (ie replace cave wall with different texture, etc)
+	//put it here, after all that tile type dependent stuff in the doodad placement
+	
 	
 	return true;
 }
@@ -1170,7 +1181,20 @@
 	//if this complains about trying to find a list called "drops 999" or whatever, that's because there must be a gap in the listNum picking
 	NSArray *list = loadArrayEntry(@"Lists", [NSString stringWithFormat:@"%@ %i", listPrefix, listNum]);
 	int pick = arc4random_uniform((u_int32_t)list.count);
-	tile.treasure = [[Item alloc] initWithName:list[pick] andType:type];
+	Item *it = [[Item alloc] initWithName:list[pick] andType:type];
+	
+	if (equipment && arc4random_uniform(100) < GENERATOR_REJECT_BAD_TREASURE)
+	{
+		int slot = [self.player slotForItem:it];
+		if (slot == -1)
+		{
+			//reject it and try again
+			[self placeTreasureOn:tile equipmentTreasure:equipment isUnlocked:unlocked];
+			return;
+		}
+	}
+	
+	tile.treasure = it;
 	
 	NSLog(@"----Generated treasure %@!", tile.treasure.name.length == 0 ? @"INVALID NO NAME" : tile.treasure.name);
 	

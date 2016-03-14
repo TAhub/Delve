@@ -147,7 +147,7 @@ CGPoint iconRow(NSString *baseName, UIColor *color, int cur, int max, CGPoint co
 		else
 		{
 			maxPieces = 2;
-			pieces = MAX(MIN(max - cur - i + 2, 2), 0);
+			pieces = MAX(MIN(cur - i, 2), 0);
 			i += 2;
 		}
 		NSString *suffix;

@@ -272,27 +272,27 @@
 			case ItemTypeArmor:
 			case ItemTypeImplement:
 			{
-				int slot = [self.map.player slotForItem:self.examinationItem];
-				if (slot == -1)
+				Tile *tile = self.map.tiles[self.map.player.y][self.map.player.x];
+				if (tile.treasureType == TreasureTypeLocked)
 				{
-					NSString *material = loadValueString(self.examinationItem.type == ItemTypeArmor ? @"Armors" : @"Implements", self.examinationItem.name, @"breaks into");
-					inventoryLabelText = [NSString stringWithFormat:@"Break down %@ into %@?", self.examinationItem.name, material];
-					[self.inventoryButtonOne setTitle:@"Break Down" forState:UIControlStateNormal];
-					[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
-					[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
-					[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+					[self.inventoryButtonOne setTitle:@"Unlock" forState:UIControlStateNormal];
+					inventoryLabelText = [NSString stringWithFormat:@"This chest is locked.\nIt seems to contain a%@.", self.examinationItem.type == ItemTypeArmor ? @" piece of armor" : @"n implement"];
+					if (self.map.player.hacks > 0)
+						[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+					else
+						[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text grey") forState:UIControlStateNormal];
 				}
 				else
 				{
-					Tile *tile = self.map.tiles[self.map.player.y][self.map.player.x];
-					if (tile.treasureType == TreasureTypeLocked)
+					int slot = [self.map.player slotForItem:self.examinationItem];
+					if (slot == -1)
 					{
-						[self.inventoryButtonOne setTitle:@"Unlock" forState:UIControlStateNormal];
-						inventoryLabelText = [NSString stringWithFormat:@"This chest is locked.\nIt seems to contain a%@.", self.examinationItem.type == ItemTypeArmor ? @" piece of armor" : @"n implement"];
-						if (self.map.player.hacks > 0)
-							[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
-						else
-							[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text grey") forState:UIControlStateNormal];
+						NSString *material = loadValueString(self.examinationItem.type == ItemTypeArmor ? @"Armors" : @"Implements", self.examinationItem.name, @"breaks into");
+						inventoryLabelText = [NSString stringWithFormat:@"Break down %@ into %@?", self.examinationItem.name, material];
+						[self.inventoryButtonOne setTitle:@"Break Down" forState:UIControlStateNormal];
+						[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+						[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
+						[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 					}
 					else
 					{
@@ -317,10 +317,10 @@
 							NSString *eWeaponDesc = [self.map.player weaponDescription:comparison];
 							inventoryLabelText = [NSString stringWithFormat:@"Equip %@?\n\n%@\n\nVS\n\n%@", self.examinationItem.name, weaponDesc, eWeaponDesc];
 						}
+						
+						[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
+						[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 					}
-					
-					[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
-					[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 				}
 			}
 				break;

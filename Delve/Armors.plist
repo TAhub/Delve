@@ -373,7 +373,7 @@
 		<!-- stats -->
 		<key>damage bonus</key> <integer>10</integer>
 		<!-- appearance -->
-		<key>sprite</key> <string>glasses</string>
+		<key>sprite</key> <string>eyeglasses</string>
 		<key>color</key> <string>gold</string>
 		<key>sprite over hair</key> <true/>
 		<key>female y add</key> <integer>2</integer>
