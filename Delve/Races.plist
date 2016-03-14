@@ -384,6 +384,10 @@
 		<key>dodges</key> <integer>1</integer>
 		<key>metabolism</key> <integer>100</integer>
 		<!-- slots -->
+		<key>armor slots</key>
+		<array>
+			<string>monster</string>
+		</array>
 		<!-- appearance -->
 		<key>sprite</key> <string>ruin_feeder</string>
 		<key>colorations</key>
@@ -397,6 +401,10 @@
 			<dict>
 				<key>skin</key> <string>orange hair</string>
 			</dict>
+		</array>
+		<key>armor slot y offsets</key>
+		<array>
+			<integer>0</integer>
 		</array>
 	</dict>
 	

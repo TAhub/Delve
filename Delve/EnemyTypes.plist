@@ -225,6 +225,26 @@
 	</dict>
 	
 	<!-- ruin feeder -->
+	<!-- a very slightly tougher ruin feeder -->
+	<key>domesticated ruin feeder</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>ruin feeder</string>
+		<!-- TODO: AI -->
+		<key>skills</key>
+		<array>
+			<string>tough monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<!-- TODO: ruin feeder collar that gives 1 resistance to, say, smash -->
+		<key>weapon</key> <string>strong teeth</string>
+	</dict>
+	
+	<!-- ruin feeder -->
 	<!-- a stronger version of the ruin feeder runt, meant to be less dodgy but tougher -->
 	<key>ruin feeder</key>
 	<dict>

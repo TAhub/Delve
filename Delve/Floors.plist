@@ -93,6 +93,14 @@
 				<string>ruin feeder runt</string>
 			</array>
 			<array>
+				<string>ruin feeder runt</string>
+				<string>ruin feeder runt</string>
+			</array>
+			<array>
+				<string>slime</string>
+				<string>slime</string>
+			</array>
+			<array>
 				<string>slime</string>
 				<string>slime</string>
 			</array>
@@ -141,7 +149,30 @@
 		<key>encounters</key>
 		<array>
 			<array>
-				<string>ruin feeder runt</string>
+				<string>domesticated ruin feeder</string>
+				<string>domesticated ruin feeder</string>
+			</array>
+			<array>
+				<string>bandit</string>
+				<string>bandit</string>
+			</array>
+			<array>
+				<string>torch bandit</string>
+				<string>torch bandit</string>
+			</array>
+			<array>
+				<string>torch bandit</string>
+				<string>bandit</string>
+			</array>
+			<array>
+				<string>domesticated ruin feeder</string>
+				<string>bandit</string>
+			</array>
+			<array>
+				<string>archer bandit</string>
+			</array>
+			<array>
+				<string>hammer bandit</string>
 			</array>
 		</array>
 	</dict>
