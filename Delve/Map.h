@@ -18,7 +18,7 @@
 @protocol MapDelegate
 
 -(void)moveCreature:(Creature *)creature fromX:(int)x fromY:(int)y withBlock:(void (^)(void))block;
--(void)attackAnimation:(NSString *)name withElement:(NSString *)element andAttackEffect:(NSString *)attackEffect fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void (^)(void)))block;
+-(void)attackAnimation:(NSString *)name withElement:(NSString *)element andAttackEffect:(NSString *)attackEffect fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void (^)(void)))block andEndBlock:(void (^)(void))endBlock;
 -(void)updateTiles;
 -(void)updateStats;
 -(void)updateCreature:(Creature *)cr;

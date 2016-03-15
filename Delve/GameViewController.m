@@ -1145,7 +1145,7 @@
 	}];
 }
 
--(void)attackAnimation:(NSString *)name withElement:(NSString *)element andAttackEffect:(NSString *)attackEffect fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void (^)(void)))block
+-(void)attackAnimation:(NSString *)name withElement:(NSString *)element andAttackEffect:(NSString *)attackEffect fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void (^)(void)))block andEndBlock:(void (^)(void))endBlock
 {
 	//attack variables to relay to
 	BOOL delayed = loadValueBool(@"Attacks", name, @"area");
@@ -1175,12 +1175,11 @@
 							{
 								[weakSelf.map recalculateVisibility];
 								[weakSelf.mapView remake];
-								if (!delayed)
-									[weakSelf.map update];
+								endBlock();
 							}];
 				 }
-				 else if (!delayed) //and now it's the next turn!
-					 [weakSelf.map update];
+				 else
+					 endBlock();
 			 }];
 		});
 	}];
@@ -1266,7 +1265,7 @@
 	
 	//announce the attack
 	__weak typeof(self) weakSelf = self;
-	self.attackNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@!", creature.good ? @"Player" : @"Enemy", delayed ? @"unleashed" : @"used", name];
+	self.attackNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@!", creature.good ? @"Player" : creature.name, delayed ? @"unleashed" : @"used", name];
 	self.attackNameLabel.textColor = loadColorFromName(@"ui text");
 	[self switchToPanel:self.attackNamePanelCord withBlock:
 	^()

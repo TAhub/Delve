@@ -294,8 +294,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ci6-NX-G74">
                                         <rect key="frame" x="-320" y="0.0" width="320" height="140"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wq-hs-GT3">
-                                                <rect key="frame" x="139" y="60" width="42" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wq-hs-GT3">
+                                                <rect key="frame" x="0.0" y="60" width="320" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -305,6 +305,7 @@
                                         <constraints>
                                             <constraint firstItem="3wq-hs-GT3" firstAttribute="centerY" secondItem="Ci6-NX-G74" secondAttribute="centerY" id="VEo-eG-Rmr"/>
                                             <constraint firstItem="3wq-hs-GT3" firstAttribute="centerX" secondItem="Ci6-NX-G74" secondAttribute="centerX" id="eOt-XV-GkJ"/>
+                                            <constraint firstItem="3wq-hs-GT3" firstAttribute="width" secondItem="Ci6-NX-G74" secondAttribute="width" id="gf8-sT-nvI"/>
                                         </constraints>
                                     </view>
                                 </subviews>

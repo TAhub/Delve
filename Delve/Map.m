@@ -68,6 +68,8 @@
 
 -(void)update
 {
+	NSLog(@"UPDATE!!");
+	
 	if (self.player.dead)
 	{
 		//TODO: you died! you lose
@@ -459,6 +461,10 @@
 	//how long the "real" path to the end should be
 	int desiredPathLength = loadValueNumber(@"Floors", floorName, @"desired path length").intValue;
 	
+	//how many doodads do you want (dad)?
+	int minDoodads = loadValueNumber(@"Floors", floorName, @"min doodads per room").intValue;
+	int maxDoodads = loadValueNumber(@"Floors", floorName, @"max doodads per room").intValue;
+	
 	//what is the base chance of a cave wall
 	int caveWallChance = loadValueNumber(@"Floors", floorName, @"cave wall chance").intValue;
 	
@@ -495,6 +501,7 @@
 	NSString *doorFloorTile = loadValueString(@"Tilesets", tileset, @"door floor");
 	NSString *naturalWallTile = loadValueString(@"Tilesets", tileset, @"natural wall");
 	NSString *stairsTile = loadValueString(@"Tilesets", tileset, @"stairs");
+	NSArray *doodadTiles = loadValueArray(@"Tilesets", tileset, @"doodads");
 	
 	NSLog(@"Generating room array");
 	
@@ -1023,6 +1030,20 @@
 	//	MUST be on the "artificial floor" tile
 	//	all four cardinal directions must either be "artificial floor" or "artificial wall", no cave walls or door floors or w/e
 	//ideally one or two per accessable room, if possible
+	//load them from the doodadTile array
+	
+	//TODO: if you try to make a doodad and the artificial floor is the same as the natural floor
+	//or the artificial wall is the same as the natural wall
+	//use an assert to cancel
+	//since it'll mess up this algorithm
+	
+	if (maxDoodads > 0)
+		for (NSArray *row in rooms)
+			for (GeneratorRoom *room in row)
+			{
+				int doodads = minDoodads + arc4random_uniform(maxDoodads - minDoodads + 1);
+				
+			}
 	
 	//TODO: all doodad tiles should be non-sight-blocking (so you can also shoot past them)
 	

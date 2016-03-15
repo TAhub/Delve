@@ -22,6 +22,7 @@
 {
 	if (self = [super init])
 	{
+		_name = [type capitalizedString];
 		_race = loadValueString(@"EnemyTypes", type, @"race");
 		_skillTrees = loadValueArray(@"EnemyTypes", type, @"skills");
 		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
@@ -306,6 +307,8 @@
 			[passives addObject:[NSString stringWithFormat:@"+%i%% metabolism", ((NSNumber *)skillDict[@"metabolism"]).intValue]];
 		if (skillDict[@"delay reduction"] != nil)
 			[passives addObject:[NSString stringWithFormat:@"-%i all cooldowns", ((NSNumber *)skillDict[@"delay reduction"]).intValue]];
+		if (skillDict[@"counter"] != nil)
+			[passives addObject:[NSString stringWithFormat:@"%i damage counter-attack", ((NSNumber *)skillDict[@"counter"]).intValue]];
 		[desc appendString:[NSString stringWithFormat:@"\n%@ level will grant you:\n", level == 0 ? @"First" : @"Next"]];
 		[desc appendString:[passives componentsJoinedByString:@", "]];
 		
@@ -547,8 +550,13 @@
 	self.storedAttackX = x;
 	self.storedAttackY = y;
 	
+	__weak typeof(self) weakSelf = self;
 	if (!loadValueBool(@"Attacks", name, @"area"))
-		[self unleashAttack]; //release the attack immediately
+		[self unleashAttackWithBlock:
+		^()
+		{
+			[weakSelf.map update];
+		}];
 	else
 	{
 		if (!self.good)
@@ -597,7 +605,7 @@
 		[self.map.delegate updateStats];
 }
 
--(void) unleashAttack
+-(void) unleashAttackWithBlock:(void (^)(void))block
 {
 	//get the implement
 	NSString *implement = @"";
@@ -755,12 +763,12 @@
 					
 					UIColor *color = loadColorFromName([NSString stringWithFormat:@"element %@", element]);
 					[weakSelf.map.delegate floatLabelsOn:[NSArray arrayWithObject:weakSelf] withString:[NSArray arrayWithObject:[NSString stringWithFormat:@"%i", counterAttacker.counter]] andColor:color withBlock:finalBlock];
-				}];
+				} andEndBlock:nil];
 				
-				//note that this is DISCARDING the new final block, because I don't want to double-skip turns
+				//note that this is DISCARDING the new final block, because I don't want to double-skip turns, so no teleport counters
 			}
 		}];
-	}];
+	} andEndBlock:block];
 }
 
 -(void)killBoosts
@@ -912,6 +920,8 @@
 		}
 	}
 	
+	NSString *oldAoe = self.storedAttack;
+	
 	//apply special effects
 	if (loadValueBool(@"Attacks", attackType, @"interrupt aoe"))
 		self.storedAttack = nil;
@@ -931,6 +941,18 @@
 	{
 		self.stealthed += loadValueNumber(@"Attacks", attackType, @"stealth").intValue;
 		[self.map.delegate updateCreature:self];
+	}
+	
+	if (self.storedAttack == nil && oldAoe != nil && !self.good)
+	{
+		//remove the markers
+		[self applyBlock:
+		^(Tile *tile)
+		{
+			[tile.aoeTargeters removeObject:self];
+			tile.changed = true;
+		} forAttack:oldAoe onX:self.storedAttackX andY:self.storedAttackY];
+		[self.map.delegate updateTiles];
 	}
 	
 	return label;
@@ -990,14 +1012,30 @@
 		return true;
 	}
 	
-	
-	
 	return [self startTurnInner];
 }
 
 -(BOOL) startTurnInner
 {
-//	NSLog(@"Turn started for %@", self.good ? @"player" : @"enemy");
+	if (self.storedAttack != nil)
+	{
+		__weak typeof(self) weakSelf = self;
+		[self unleashAttackWithBlock:
+		^()
+		{
+			if (![weakSelf startTurnInnerer])
+				[weakSelf.map update]; //force it to update again
+		}];
+		return YES;
+	}
+	else
+		return [self startTurnInnerer];
+}
+
+-(BOOL) startTurnInnerer
+{
+//	NSLog(@"Turn started for %@", self.good ? @"player" : self.name);
+	
 	Tile *tile = self.map.tiles[self.y][self.x];
 	
 	if (self.map.overtime && !self.good)
@@ -1037,9 +1075,6 @@
 		NSNumber *cooldown = self.cooldowns[attack];
 		self.cooldowns[attack] = @(MAX(cooldown.intValue - 1, 0));
 	}
-	
-	if (self.storedAttack != nil)
-		[self unleashAttack];
 	
 	if (self.stealthed > 0)
 	{
@@ -1122,6 +1157,7 @@
 			//don't bother defending or anything, it's just a waste
 			return NO;
 		}
+		
 		
 		//look for an attack you can use on the player
 		NSArray *attacks = [self attacks];

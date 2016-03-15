@@ -17,6 +17,10 @@
 		<key>door floor</key> <string>template</string>
 		<key>natural wall</key> <string>template</string>
 		<key>stairs</key> <string>template</string>
+		<key>doodads</key>
+		<array>
+			<string>sample doodad</string>
+		</array>
 	</dict>
 	
     <key>red</key>
@@ -27,6 +31,10 @@
 		<key>door floor</key> <string>door floor red</string>
 		<key>natural wall</key> <string>natural wall red</string>
 		<key>stairs</key> <string>stairs red</string>
+		<key>doodads</key>
+		<array>
+			<string>sample doodad</string>
+		</array>
 	</dict>
 </dict>
 </plist>

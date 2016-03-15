@@ -24,6 +24,8 @@
 		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>7</integer>
+		<key>min doodads per room</key> <integer>1</integer>
+		<key>max doodads per room</key> <integer>2</integer>
 		<!-- cave generation data -->
 		<key>cave wall chance</key> <integer>50</integer>
 		<key>cave smooths</key> <integer>2</integer>
@@ -74,6 +76,8 @@
 		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>11</integer>
+		<key>min doodads per room</key> <integer>1</integer>
+		<key>max doodads per room</key> <integer>2</integer>
 		<!-- cave generation data -->
 		<key>cave wall chance</key> <integer>58</integer>
 		<key>cave smooths</key> <integer>1</integer>
@@ -134,6 +138,8 @@
 		<key>locked door chance</key> <integer>15</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>13</integer>
+		<key>min doodads per room</key> <integer>1</integer>
+		<key>max doodads per room</key> <integer>2</integer>
 		<!-- cave generation data -->
 		<key>cave wall chance</key> <integer>45</integer>
 		<key>cave smooths</key> <integer>2</integer>
@@ -198,6 +204,8 @@
 		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>7</integer>
+		<key>min doodads per room</key> <integer>1</integer>
+		<key>max doodads per room</key> <integer>2</integer>
 		<!-- cave generation data -->
 		<key>cave wall chance</key> <integer>50</integer>
 		<key>cave smooths</key> <integer>2</integer>
@@ -239,6 +247,8 @@
 		<key>locked door chance</key> <integer>45</integer>
 		<key>no door chance</key> <integer>50</integer>
 		<key>desired path length</key> <integer>30</integer>
+		<key>min doodads per room</key> <integer>1</integer>
+		<key>max doodads per room</key> <integer>2</integer>
 		<!-- cave generation data -->
 		<key>cave wall chance</key> <integer>0</integer>
 		<key>cave smooths</key> <integer>0</integer>
@@ -281,6 +291,8 @@
 		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>7</integer>
+		<key>min doodads per room</key> <integer>1</integer>
+		<key>max doodads per room</key> <integer>2</integer>
 		<!-- cave generation data -->
 		<key>cave wall chance</key> <integer>50</integer>
 		<key>cave smooths</key> <integer>2</integer>
@@ -322,6 +334,8 @@
 		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>7</integer>
+		<key>min doodads per room</key> <integer>1</integer>
+		<key>max doodads per room</key> <integer>2</integer>
 		<!-- cave generation data -->
 		<key>cave wall chance</key> <integer>50</integer>
 		<key>cave smooths</key> <integer>2</integer>
@@ -363,6 +377,8 @@
 		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>75</integer>
 		<key>desired path length</key> <integer>12</integer>
+		<key>min doodads per room</key> <integer>1</integer>
+		<key>max doodads per room</key> <integer>2</integer>
 		<!-- cave generation data -->
 		<key>cave wall chance</key> <integer>85</integer>
 		<key>cave smooths</key> <integer>0</integer>
@@ -405,6 +421,8 @@
 		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>7</integer>
+		<key>min doodads per room</key> <integer>1</integer>
+		<key>max doodads per room</key> <integer>2</integer>
 		<!-- cave generation data -->
 		<key>cave wall chance</key> <integer>50</integer>
 		<key>cave smooths</key> <integer>2</integer>
@@ -446,6 +464,8 @@
 		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>7</integer>
+		<key>min doodads per room</key> <integer>1</integer>
+		<key>max doodads per room</key> <integer>2</integer>
 		<!-- cave generation data -->
 		<key>cave wall chance</key> <integer>50</integer>
 		<key>cave smooths</key> <integer>2</integer>
@@ -486,6 +506,8 @@
 		<key>locked door chance</key> <integer>15</integer>
 		<key>no door chance</key> <integer>75</integer>
 		<key>desired path length</key> <integer>17</integer>
+		<key>min doodads per room</key> <integer>1</integer>
+		<key>max doodads per room</key> <integer>2</integer>
 		<!-- cave generation data -->
 		<key>cave wall chance</key> <integer>0</integer>
 		<key>cave smooths</key> <integer>0</integer>
