@@ -289,6 +289,8 @@
 		NSMutableArray *passives = [NSMutableArray new];
 		if (skillDict[@"damage bonus"] != nil)
 			[passives addObject:[NSString stringWithFormat:@"+%i%% damage", ((NSNumber *)skillDict[@"damage bonus"]).intValue]];
+		if (skillDict[@"attack bonus"] != nil)
+			[passives addObject:[NSString stringWithFormat:@"+%i%% damage to normal attacks", ((NSNumber *)skillDict[@"attack bonus"]).intValue]];
 		if (skillDict[@"health"] != nil)
 			[passives addObject:[NSString stringWithFormat:@"+%i health", ((NSNumber *)skillDict[@"health"]).intValue]];
 		if (skillDict[@"smash resistance"] != nil)
@@ -614,8 +616,9 @@
 -(void) unleashAttackWithBlock:(void (^)(void))block
 {
 	//get the implement
+	BOOL isNormalAttack = [self.storedAttack isEqualToString:@"attack"];
 	NSString *implement = @"";
-	if ([self.storedAttack isEqualToString:@"attack"]) //the implement should be your weapon
+	if (isNormalAttack) //the implement should be your weapon
 		implement = self.weapon;
 	else
 		implement = self.implements[self.storedAttackSlot];
@@ -623,6 +626,10 @@
 	
 	//get the power
 	int power = self.damageBonus + [self bonusFromImplement:implement withName:@"power"];
+	
+	//if this is a normal attack, apply attack bonus also
+	if (isNormalAttack)
+		power += self.attackBonus;
 	
 	//apply damage boost
 	if (self.damageBoosted > 0)
@@ -860,6 +867,7 @@
 		if (loadValueBool(@"Attacks", attackType, @"power"))
 		{
 			//apply damage
+			int basePower = loadValueNumber(@"Attacks", attackType, @"power").intValue;
 			int finalPower = loadValueNumber(@"Attacks", attackType, @"power").intValue;
 			
 			int resistance = 0;
@@ -883,9 +891,9 @@
 			else
 				finalPower = (power * finalPower) / (100 + resistance * CREATURE_RESISTANCEFACTOR);
 			
-			finalPower = MAX(finalPower, 1);
+			finalPower = MAX(finalPower, basePower > 0 ? 1 : 0);
 			
-			if (self.forceField >= finalPower)
+			if (self.forceField >= finalPower && basePower > 0)
 			{
 				self.forceField -= finalPower;
 				//TODO: block sound effect
@@ -894,7 +902,7 @@
 			}
 			else
 			{
-				if (self.forceField > 0)
+				if (self.forceField > 0 && basePower > 0)
 				{
 					finalPower -= self.forceField;
 					self.forceField = 0;
@@ -1314,6 +1322,10 @@
 -(int) damageBonus
 {
 	return [self totalBonus:@"damage bonus"];
+}
+-(int) attackBonus
+{
+	return [self totalBonus:@"attack bonus"];
 }
 -(int) maxHealth
 {

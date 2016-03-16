@@ -190,6 +190,7 @@ BOOL loadValueBool(NSString *category, NSString *entry, NSString *value)
 void passiveBalanceTest()
 {
 	int damageBonus = 0;
+	int attackBonus = 0;
 	int health = 0;
 	int smashResistance = 0;
 	int cutResistance = 0;
@@ -206,6 +207,7 @@ void passiveBalanceTest()
 		{
 			NSArray *skills = loadValueArray(@"SkillTrees", treeName, @"skills");
 			int lDamageBonus = 0;
+			int lAttackBonus = 0;
 			int lHealth = 0;
 			int lSmashResistance = 0;
 			int lCutResistance = 0;
@@ -221,6 +223,8 @@ void passiveBalanceTest()
 				NSDictionary *skill = skills[i];
 				if (skill[@"damage bonus"] != nil)
 					lDamageBonus += ((NSNumber *)skill[@"damage bonus"]).intValue;
+				if (skill[@"attack bonus"] != nil)
+					lAttackBonus += ((NSNumber *)skill[@"attack bonus"]).intValue;
 				if (skill[@"health"] != nil)
 					lHealth += ((NSNumber *)skill[@"health"]).intValue;
 				if (skill[@"smash resistance"] != nil)
@@ -244,6 +248,7 @@ void passiveBalanceTest()
 			}
 			
 			health += lHealth;
+			attackBonus += lAttackBonus;
 			damageBonus += lDamageBonus;
 			smashResistance += lSmashResistance;
 			cutResistance += lCutResistance;
@@ -258,12 +263,13 @@ void passiveBalanceTest()
 			//calculate points
 			float points = (lHealth / 25.0f) + (lDamageBonus / 25.0f) + (lSmashResistance / 2.0f) + (lCutResistance / 2.0f);
 			points += (lShockResistance / 2.0f) + (lBurnResistance / 2.0f) + (lDodges) + (lBlocks) + (lHacks / 2.0f) + (lMetabolism / 30.0f);
-			points += delayReduction;
+			points += lDelayReduction + (lAttackBonus / 35.0f);
 			NSLog(@"Passive points for %@: %f", treeName, points);
 		}
 	
 	NSLog(@"TOTALS:");
 	NSLog(@"damage bonus = %i", damageBonus);
+	NSLog(@"attack bonus = %i", attackBonus);
 	NSLog(@"health = %i", health);
 	NSLog(@"smash resistance = %i", smashResistance);
 	NSLog(@"cut resistance = %i", cutResistance);

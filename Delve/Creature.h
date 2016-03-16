@@ -31,6 +31,7 @@
 
 #pragma mark: derived statistics (from race, skill ranks, and equipment)
 -(int) damageBonus;
+-(int) attackBonus; //attack bonus is like damage bonus but only for the standard "attack" skill
 -(int) maxHealth;
 -(int) smashResistance; //smash damage is the "anti-warrior" damage type, so mage-type skills and light armors should give this resistance
 -(int) cutResistance; //cut damage is the "anti-mage" damage type, so warrior type skills and heavy armors should give this resistance

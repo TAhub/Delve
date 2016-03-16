@@ -107,6 +107,18 @@
 		<key>dodgeable</key> <true/>
 		<!-- special effects -->
 	</dict>
+	<key>feint</key>
+	<dict>
+		<key>attack effect</key> <string>slash</string>
+		<key>description</key> <string>Launch a quick but harmless attack to trick the opponent into blocking.</string>
+		<key>power</key> <integer>0</integer>
+		<key>element</key> <string>cut</string>
+		<key>range</key> <integer>1</integer>
+		<key>cooldown</key> <integer>4</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+		<key>extra actions</key> <integer>1</integer>
+	</dict>
 	<key>forge iron</key>
 	<dict>
 		<key>attack effect</key> <string>slam</string>

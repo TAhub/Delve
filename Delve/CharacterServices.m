@@ -195,4 +195,10 @@ void makeInfoLabelInView(Creature *cr, UIView *view)
 	corner2 = iconRow(@"ui_resist", loadColorFromName(@"element cut"), cr.cutResistance, cr.cutResistance, corner2, view);
 	corner2 = iconRow(@"ui_resist", loadColorFromName(@"element burn"), cr.burnResistance, cr.burnResistance, corner2, view);
 	iconRow(@"ui_resist", loadColorFromName(@"element shock"), cr.shockResistance, cr.shockResistance, corner2, view);
+	
+	UILabel *statLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(0, statLabel.frame.size.height + 18, 0, 0)];
+	statLabel2.text = [NSString stringWithFormat:@"%iD%@ %iM", cr.damageBonus, cr.attackBonus > 0 ? [NSString stringWithFormat:@"+%iA", cr.attackBonus] : @"", cr.metabolism];
+	statLabel2.textColor = statLabel.textColor;
+	[statLabel2 sizeToFit];
+	[view addSubview:statLabel2];
 }
