@@ -159,7 +159,6 @@
 		<key>element</key> <string>smash</string>
 		<key>range</key> <integer>1</integer>
 		<key>cooldown</key> <integer>4</integer>
-		<key>dodgeable</key> <true/>
 		<!-- special effects -->
 		<key>interrupt aoe</key> <true/>
 	</dict>

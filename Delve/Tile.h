@@ -21,6 +21,7 @@
 
 @property (strong, nonatomic) NSString *type;
 -(BOOL) solid;
+-(BOOL) opaque;
 -(BOOL) stairs;
 -(BOOL) canUnlock;
 -(void) unlock;

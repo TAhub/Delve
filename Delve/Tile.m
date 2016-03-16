@@ -10,6 +10,7 @@
 
 @interface Tile()
 
+@property BOOL opaqueInner;
 @property BOOL solidInner;
 @property BOOL stairsInner;
 @property (strong, nonatomic) NSString *spriteNameInner;
@@ -52,6 +53,7 @@
 		self.spriteNameInner = loadValueString(@"Tiles", self.type, @"sprite");
 	self.solidInner = loadValueBool(@"Tiles", self.type, @"solid");
 	self.stairsInner = loadValueBool(@"Tiles", self.type, @"stairs");
+	self.opaqueInner = loadValueBool(@"Tiles", self.type, @"opaque");
 	
 	self.valuesComputed = true;
 }
@@ -66,6 +68,13 @@
 -(BOOL) validPlacementSpot
 {
 	return self.inhabitant == nil && !self.solid && self.treasureType == TreasureTypeNone;
+}
+
+-(BOOL) opaque
+{
+	if (!self.valuesComputed)
+		[self computeValues];
+	return self.opaqueInner;
 }
 
 -(BOOL)solid

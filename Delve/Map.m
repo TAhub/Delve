@@ -270,7 +270,7 @@
 			if (rX < 0 || rY < 0 || rX >= self.width || rY >= self.height)
 				break;
 			Tile *tile = self.tiles[rY][rX];
-			if (tile.solid)
+			if (tile.opaque)
 			{
 				if (hitWall)
 					break;
@@ -1038,12 +1038,59 @@
 	//since it'll mess up this algorithm
 	
 	if (maxDoodads > 0)
+	{
+		//do some sanity tileset checks to make sure that the doodads code won't fail
+		assert(![wallTile isEqualToString:naturalWallTile]);
+		assert(![floorTile isEqualToString:loadValueString(@"Tiles", naturalWallTile, @"rubbles into")]);
+		
+		
 		for (NSArray *row in rooms)
 			for (GeneratorRoom *room in row)
 			{
-				int doodads = minDoodads + arc4random_uniform(maxDoodads - minDoodads + 1);
-				
+				if (room.accessable)
+				{
+					int doodads = minDoodads + arc4random_uniform(maxDoodads - minDoodads + 1);
+					for (int i = 0; i < doodads; i++)
+					{
+						//find valid tiles for a doodad
+						NSMutableArray *validTiles = [NSMutableArray new];
+						
+						//doodads are placed according to the following rules, to avoid pathing problems and etc:
+						//	not on a creature tile
+						//	not on a treasure tile
+						//	MUST be on the "artificial floor" tile
+						//	all eight surrounding tiles must either be "artificial floor" or "artificial wall", no cave walls or door floors or w/e
+						for (int y = room.yCorner; y < room.yCorner + roomSize; y++)
+							for (int x = room.xCorner; x < room.xCorner + roomSize; x++)
+							{
+								Tile *tile = self.tiles[y][x];
+								if (tile.inhabitant == nil && tile.treasureType == TreasureTypeNone && [tile.type isEqualToString:floorTile])
+								{
+									BOOL surroundingsValid = true;
+									for (int y2 = y - 1; y2 <= y + 1 && surroundingsValid; y2++)
+										for (int x2 = x - 1; x2 <= x + 1 && surroundingsValid; x2++)
+										{
+											Tile *surrounding = self.tiles[y2][x2];
+											if (![surrounding.type isEqualToString:floorTile] && ![surrounding.type isEqualToString:wallTile])
+												surroundingsValid = false;
+										}
+									if (surroundingsValid)
+										[validTiles addObject:tile];
+								}
+							}
+						
+						if (validTiles.count == 0)
+							break; //no point going on for this room
+						
+						//turn a randomly picked tile from that into a randomly picked doodad
+						int pick = arc4random_uniform(validTiles.count);
+						Tile *tile = validTiles[pick];
+						pick = arc4random_uniform(doodadTiles.count);
+						tile.type = doodadTiles[pick];
+					}
+				}
 			}
+	}
 	
 	//TODO: all doodad tiles should be non-sight-blocking (so you can also shoot past them)
 	
