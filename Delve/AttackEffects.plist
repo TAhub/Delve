@@ -88,6 +88,15 @@
 		<key>rotate</key> <true/>
 	</dict>
 	
+	<key>jet</key>
+	<dict>
+		<key>sprite</key> <string>projectile_slash</string>
+		<key>time per distance</key> <real>0.2</real>
+		<key>type</key> <string>projectile</string>
+		<key>rotate</key> <true/>
+		<key>projectile scale</key> <real>1.5</real>
+	</dict>
+	
 	<key>punch</key>
 	<dict>
 		<key>sprite</key> <string>projectile_bolt</string>

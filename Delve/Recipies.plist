@@ -648,6 +648,36 @@
 		<key>result type</key> <string>implement</string>
 		<key>result amount</key> <integer>1</integer>
 	</dict>
+	<key>guilt</key>
+	<dict>
+		<key>ingredient a</key> <string>iron ingot</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>capacitor</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>guilt</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>inferno</key>
+	<dict>
+		<key>ingredient a</key> <string>steel ingot</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>battery</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>inferno</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
+	<key>damnation</key>
+	<dict>
+		<key>ingredient a</key> <string>refined ingot</string>
+		<key>ingredient a amount</key> <integer>2</integer>
+		<key>ingredient b</key> <string>circuit</string>
+		<key>ingredient b amount</key> <integer>1</integer>
+		<key>result</key> <string>damnation</string>
+		<key>result type</key> <string>implement</string>
+		<key>result amount</key> <integer>1</integer>
+	</dict>
 	
 	<!-- false prophet armors -->
 	<key>correction glasses</key>

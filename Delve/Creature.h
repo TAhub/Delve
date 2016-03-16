@@ -63,6 +63,8 @@
 @property int defenseBoosted;
 @property int immunityBoosted;
 @property int skating;
+@property int counterBoosted;
+@property int counterBoostedStrength;
 
 #pragma mark: base variables
 @property int health;

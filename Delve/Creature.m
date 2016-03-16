@@ -161,6 +161,7 @@
 	self.defenseBoosted = 0;
 	self.immunityBoosted = 0;
 	self.skating = 0;
+	self.counterBoosted = 0;
 }
 
 #pragma mark: item interface functions
@@ -184,9 +185,11 @@
 	if (loadValueBool(@"Attacks", attack, @"area"))
 	{
 		int area = loadValueNumber(@"Attacks", attack, @"area").intValue;
-		if (area == 1)
+		if (!loadValueBool(@"Attacks", attack, @"instant area"))
 			[properties addObject:@"delayed"];
-		else
+		if (loadValueBool(@"Attacks", attack, @"line area"))
+			[properties addObject:@"line attack"];
+		else if (area > 1)
 			[properties addObject:[NSString stringWithFormat:@"%ix%i area", area, area]];
 	}
 	if (loadValueBool(@"Attacks", attack, @"power") && loadValueBool(@"Attacks", attack, @"friendly"))
@@ -450,6 +453,10 @@
 		if (!targetTile.visible)
 			return false;
 		
+		//line attacks must attack in cardinal directions
+		if (x != self.x && y != self.y && loadValueBool(@"Attacks", attack, @"line area"))
+			return false;
+		
 		if (openSpots || //if you're looking for in-range spots
 			(loadValueBool(@"Attacks", attack, @"teleport") && !loadValueBool(@"Attacks", attack, @"power"))) //damaging teleports are used normally
 		{
@@ -480,6 +487,33 @@
 	int startY = MAX(y - radius, 0);
 	int endX = MIN(x + radius, self.map.width - 1);
 	int endY = MIN(y + radius, self.map.height - 1);
+	
+	if (loadValueBool(@"Attacks", attack, @"line area"))
+	{
+		//line areas are a much different thing, that work by different rules
+		int range = loadValueNumber(@"Attacks", attack, @"range").intValue;
+		if (x < self.x)
+		{
+			startX = self.x - range;
+			endX = self.x - 1;
+		}
+		else if (x > self.x)
+		{
+			startX = self.x + 1;
+			endX = self.x + range;
+		}
+		else if (y < self.y)
+		{
+			startY = self.y - range;
+			endY = self.y - 1;
+		}
+		else
+		{
+			startY = self.y + 1;
+			endY = self.y + range;
+		}
+	}
+	
 	for (int y = startY; y <= endY; y++)
 		for (int x = startX; x <= endX; x++)
 		{
@@ -949,6 +983,14 @@
 		self.forceFieldNoDegrade = CREATURE_FORCEFIELDNODEGRADE;
 		[self.map.delegate updateCreature:self];
 	}
+	if (loadValueBool(@"Attacks", attackType, @"raise counter"))
+	{
+		int counterPower = loadValueNumber(@"Attacks", attackType, @"raise counter").intValue;
+		counterPower = (counterPower * power) / 100;
+		self.counterBoostedStrength = counterPower;
+		self.counterBoosted = CREATURE_STUNLENGTH;
+		[self.map.delegate updateCreature:self];
+	}
 	if (loadValueBool(@"Attacks", attackType, @"stealth"))
 	{
 		self.stealthed += loadValueNumber(@"Attacks", attackType, @"stealth").intValue;
@@ -1105,6 +1147,13 @@
 	{
 		self.damageBoosted -= 1;
 		if (self.damageBoosted == 0)
+			[self.map.delegate updateCreature:self];
+	}
+	
+	if (self.counterBoosted > 0)
+	{
+		self.counterBoosted -= 1;
+		if (self.counterBoosted == 0)
 			[self.map.delegate updateCreature:self];
 	}
 	
@@ -1369,7 +1418,10 @@
 }
 -(int) counter
 {
-	return [self totalBonus:@"counter"];
+	int c = [self totalBonus:@"counter"];
+	if (self.counterBoosted > 0)
+		c += self.counterBoostedStrength;
+	return c;
 }
 
 

@@ -403,6 +403,36 @@
 		<key>description</key> <string>A powerful holy weapon designed shortly before the fall of Eol.</string>
 	</dict>
 	
+	<!-- unholy weapons -->
+	<key>old scratch</key>
+	<dict>
+		<key>type</key> <string>unholy weapon</string>
+		<key>power</key> <integer>0</integer>
+		<key>description</key> <string>A forbidden weapon. Once very powerful, but weakened by lack of maintenance.</string>
+	</dict>
+	<key>guilt</key>
+	<dict>
+		<key>type</key> <string>unholy weapon</string>
+		<key>breaks into</key> <string>capacitor</string>
+		<key>power</key> <integer>15</integer>
+		<key>description</key> <string>A crude unholy weapon made of heavy iron. Despite the name, you don't feel bad about having one.</string>
+	</dict>
+	<key>inferno</key>
+	<dict>
+		<key>type</key> <string>unholy weapon</string>
+		<key>breaks into</key> <string>battery</string>
+		<key>power</key> <integer>30</integer>
+		<key>description</key> <string>An unholy weapon capable of generating intense heat. Old Eol writings suggest they were once commonly used by soldiers, before they were banned.</string>
+	</dict>
+	<key>damnation</key>
+	<dict>
+		<key>type</key> <string>unholy weapon</string>
+		<key>breaks into</key> <string>circuit</string>
+		<key>power</key> <integer>45</integer>
+		<key>description</key> <string>A weapon of great power designed in secret in modern times. Owning one is considered a capital offense by the Eolings.</string>
+	</dict>
+	
+	
 	<!-- godly implants -->
 	<key>innocence</key>
 	<dict>

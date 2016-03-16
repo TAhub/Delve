@@ -45,10 +45,11 @@
 	<key>ui dodge</key> <string>66AA66</string>
 	<key>ui hack</key> <string>AAAA66</string>
 	<!-- status colors -->
-	<key>damage boost</key> <string>FFCCCC</string>
+	<key>damage boost</key> <string>FFCCFF</string>
 	<key>immunity boost</key> <string>CCFFCC</string>
 	<key>defense boost</key> <string>CCCCFF</string>
 	<key>skate</key> <string>FFFFCC</string>
+	<key>counter boost</key> <string>FFCCCC</string>
 	<!-- element colors -->
 	<key>element cut</key> <string>FF7700</string>
 	<key>element smash</key> <string>BBBBBB</string>

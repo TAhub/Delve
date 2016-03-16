@@ -201,6 +201,7 @@ void passiveBalanceTest()
 	int hacks = 0;
 	int metabolism = 0;
 	int delayReduction = 0;
+	int counter = 0;
 	
 	for (NSString *treeName in loadEntries(@"SkillTrees").allKeys)
 		if (![loadValueString(@"SkillTrees", treeName, @"type") isEqualToString:@"invalid"])
@@ -218,6 +219,7 @@ void passiveBalanceTest()
 			int lHacks = 0;
 			int lMetabolism = 0;
 			int lDelayReduction = 0;
+			int lCounter = 0;
 			for (int i = 0; i < 4; i++)
 			{
 				NSDictionary *skill = skills[i];
@@ -245,8 +247,11 @@ void passiveBalanceTest()
 					lMetabolism += ((NSNumber *)skill[@"metabolism"]).intValue;
 				if (skill[@"delay reduction"] != nil)
 					lDelayReduction += ((NSNumber *)skill[@"delay reduction"]).intValue;
+				if (skill[@"counter"] != nil)
+					lCounter += ((NSNumber *)skill[@"counter"]).intValue;
 			}
 			
+			counter += lCounter;
 			health += lHealth;
 			attackBonus += lAttackBonus;
 			damageBonus += lDamageBonus;
@@ -263,7 +268,7 @@ void passiveBalanceTest()
 			//calculate points
 			float points = (lHealth / 25.0f) + (lDamageBonus / 25.0f) + (lSmashResistance / 2.0f) + (lCutResistance / 2.0f);
 			points += (lShockResistance / 2.0f) + (lBurnResistance / 2.0f) + (lDodges) + (lBlocks) + (lHacks / 2.0f) + (lMetabolism / 30.0f);
-			points += lDelayReduction + (lAttackBonus / 35.0f);
+			points += lDelayReduction + (lAttackBonus / 35.0f) + (lCounter / 4.0f);
 			NSLog(@"Passive points for %@: %f", treeName, points);
 		}
 	
@@ -280,6 +285,7 @@ void passiveBalanceTest()
 	NSLog(@"hacks = %i", hacks);
 	NSLog(@"metabolism = %i", metabolism);
 	NSLog(@"delay reduction = %i", delayReduction);
+	NSLog(@"counter = %i", counter);
 }
 
 void recipieBalanceTest()

@@ -108,6 +108,8 @@ void makeCreatureSpriteInView(Creature *cr, UIView *view)
 		merged = colorImage(merged, loadColorFromName(@"skate"));
 	if (cr.defenseBoosted > 0)
 		merged = colorImage(merged, loadColorFromName(@"defense boost"));
+	if (cr.counterBoosted > 0)
+		merged = colorImage(merged, loadColorFromName(@"counter boost"));
 	
 	if (cr.forceField > 0)
 	{

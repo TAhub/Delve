@@ -18,6 +18,8 @@
 		<key>range</key> <integer>1</integer>
 		<key>min range</key> <integer>1</integer>
 		<key>area</key> <integer>1</integer>
+		<key>line area</key> <true/>
+		<key>instant area</key> <true/>
 		<key>cooldown</key> <integer>11</integer>
 		<key>dodgeable</key> <true/>
 		<key>friendly</key> <true/>
@@ -34,6 +36,7 @@
 		<key>stealth</key> <integer>10</integer>
 		<key>extra actions</key> <integer>3</integer>
 		<key>teleport</key> <true/>
+		<key>raise counter</key> <integer>10</integer>
 	</dict>
 	<key>regen range finder</key>
 	<dict>
@@ -196,22 +199,10 @@
 		<key>cooldown</key> <integer>1</integer>
 		<!-- special effects -->
 	</dict>
-	<key>thrust</key>
-	<dict>
-		<key>attack effect</key> <string>dart</string>
-		<key>description</key> <string>Thrust powerfully with your spear, hitting at a short range.</string>
-		<key>power</key> <integer>30</integer>
-		<key>element</key> <string>cut</string>
-		<key>range</key> <integer>2</integer>
-		<key>min range</key> <integer>2</integer>
-		<key>cooldown</key> <integer>1</integer>
-		<key>dodgeable</key> <true/>
-		<!-- special effects -->
-	</dict>
 	<key>jab</key>
 	<dict>
 		<key>attack effect</key> <string>dart</string>
-		<key>description</key> <string>Quickly jab with your spear, hitting without giving the foe a chance to dodge.</string>
+		<key>description</key> <string>Quickly jab with your spear, hitting someone at a distance without giving the foe a chance to dodge.</string>
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>cut</string>
 		<key>range</key> <integer>2</integer>
@@ -243,10 +234,10 @@
 		<key>ammo</key> <string>crystal</string>
 		<!-- special effects -->
 	</dict>
-	<key>holy chop</key>
+	<key>holy uppercut</key>
 	<dict>
 		<key>attack effect</key> <string>punch</string>
-		<key>description</key> <string>Light your implant with holy power and chop at your foe.</string>
+		<key>description</key> <string>Light your implant with holy power and go for their chin.</string>
 		<key>power</key> <integer>35</integer>
 		<key>element</key> <string>shock</string>
 		<key>range</key> <integer>1</integer>
@@ -400,6 +391,37 @@
 		<!-- special effects -->
 	</dict>
 	
+	<!-- line AoEs -->
+	<key>flame spout</key>
+	<dict>
+		<key>attack effect</key> <string>jet</string>
+		<key>description</key> <string>Release a jet of flame, hitting everyone in a line.</string>
+		<key>power</key> <integer>25</integer>
+		<key>element</key> <string>burn</string>
+		<key>range</key> <integer>3</integer>
+		<key>min range</key> <integer>3</integer>
+		<key>area</key> <integer>1</integer>
+		<key>line area</key> <true/>
+		<key>cooldown</key> <integer>15</integer>
+		<key>ammo</key> <string>crystal</string>
+		<!-- special effects -->
+	</dict>
+	<key>thrust</key>
+	<dict>
+		<key>attack effect</key> <string>dart</string>
+		<key>description</key> <string>Thrust powerfully with your spear, hitting two people in a row.</string>
+		<key>power</key> <integer>25</integer>
+		<key>element</key> <string>cut</string>
+		<key>range</key> <integer>2</integer>
+		<key>min range</key> <integer>2</integer>
+		<key>area</key> <integer>1</integer>
+		<key>line area</key> <true/>
+		<key>instant area</key> <true/>
+		<key>cooldown</key> <integer>1</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+	</dict>
+	
 	<!-- (REAL) area of effect damaging attacks -->
 	<key>light orb eruption</key>
 	<dict>
@@ -522,6 +544,19 @@
 		<key>friendly</key> <true/>
 		<!-- special effects -->
 		<key>stealth</key> <integer>12</integer>
+	</dict>
+	<key>fire shroud</key>
+	<dict>
+		<key>attack effect</key> <string>shield</string>
+		<key>description</key> <string>Cover yourself in fire, greatly raising your counter for a short time.</string>
+		<key>power</key> <integer>1</integer>
+		<key>element</key> <string>burn</string>
+		<key>cooldown</key> <integer>15</integer>
+		<key>friendly</key> <true/>
+		<key>ammo</key> <string>crystal</string>
+		<!-- special effects -->
+		<key>raise counter</key> <integer>10</integer>
+		<key>hurt user</key> <integer>10</integer>
 	</dict>
 	
 	<!-- other-targeting utility/defensive attacks -->

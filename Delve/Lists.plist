@@ -24,6 +24,7 @@
 		<string>stopped clock</string>
 		<string>crumbling rod</string>
 		<string>shiv</string>
+		<string>old scratch</string>
 	</array>
 	
 	<!-- inventory item drop leveled lists -->
@@ -91,6 +92,7 @@
 		<string>wristwatch</string>
 		<string>iron rod</string>
 		<string>dagger</string>
+		<string>guilt</string>
 		<!-- common stuff again -->
 		<string>buckler</string>
 		<string>sledgehammer</string>
@@ -106,6 +108,7 @@
 		<string>wristwatch</string>
 		<string>iron rod</string>
 		<string>dagger</string>
+		<string>guilt</string>
 		<!-- rare stuff -->
 		<string>torch</string>
 	</array>
@@ -126,6 +129,7 @@
 		<string>pocket watch</string>
 		<string>silver rod</string>
 		<string>stiletto</string>
+		<string>inferno</string>
 		<!-- common stuff again -->
 		<string>kite shield</string>
 		<string>warhammer</string>
@@ -141,6 +145,7 @@
 		<string>pocket watch</string>
 		<string>silver rod</string>
 		<string>stiletto</string>
+		<string>inferno</string>
 		<!-- rare stuff -->
 		<string>holy baton</string>
 	</array>
@@ -161,6 +166,7 @@
 		<string>stopwatch</string>
 		<string>gold rod</string>
 		<string>combat knife</string>
+		<string>damnation</string>
 		<!-- common stuff again -->
 		<string>relic shield</string>
 		<string>greathammer</string>
@@ -176,6 +182,7 @@
 		<string>stopwatch</string>
 		<string>gold rod</string>
 		<string>combat knife</string>
+		<string>damnation</string>
 		<!-- rare stuff -->
 	</array>
 	<key>armors 1</key>
@@ -326,6 +333,7 @@
 		<string>crystals A</string>
 		<string>strength booster</string>
 		<string>glimmering orb</string>
+		<string>guilt</string>
 		<string>holy thunder</string>
 		<string>birthright</string>
 		<string>correction glasses</string>
@@ -337,6 +345,7 @@
 		<string>skate core</string>
 		<string>holy baton</string>
 		<string>glowing orb</string>
+		<string>inferno</string>
 		<string>white lightning</string>
 		<string>faith</string>
 		<string>goggles</string>
@@ -348,6 +357,7 @@
 		<string>immunity booster</string>
 		<string>stealth core</string>
 		<string>radiant orb</string>
+		<string>damnation</string>
 		<string>pearl arsenal</string>
 		<string>conviction</string>
 		<string>advanced goggles</string>

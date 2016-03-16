@@ -669,8 +669,8 @@
 	<dict>
 		<key>type</key> <string>sacred</string>
 		<key>description</key> <string>Those who follow the path of heresy are an untrustworthy lot, who excel at unlocking locked doors and chests.</string>
-		<key>start item</key> <string>crystal</string>
-		<key>start item number</key> <integer>4</integer>
+		<key>start item</key> <string>stealth core</string>
+		<key>start item number</key> <integer>2</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -712,8 +712,8 @@
 				<key>metabolism</key> <integer>30</integer>
 			</dict>
 			<dict> <!-- rank 3 -->
-				<key>burn resistance</key> <integer>1</integer>
-				<key>attack</key> <string>holy chop</string>
+				<key>cut resistance</key> <integer>1</integer>
+				<key>attack</key> <string>holy uppercut</string>
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>health</key> <integer>15</integer>
@@ -722,8 +722,36 @@
 		</array>
 	</dict>
 	
-	<!-- TODO: sixth sacred skill -->
-	<!-- maybe something status effect-focused, or counter-focused? I dunno -->
+	<!-- Oathbreaker (pattern A) -->
+	<!-- a slower, more efficient alternative to holy soldier, that focuses on burn damage instead -->
+	<!-- raises ??? -->
+	<!-- implement: unholy weapon -->
+	<key>oathbreaker</key>
+	<dict>
+		<key>type</key> <string>sacred</string>
+		<key>description</key> <string>Those who follow the path of the oathbreaker learn to use a forbidden Eol weapon to burn their foes with evil fire. They can even wreathe themselves in fire.</string>
+		<key>implement</key> <string>unholy weapon</string>
+		<key>start item</key> <string>crystal</string>
+		<key>start item number</key> <integer>4</integer>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>burn resistance</key> <integer>1</integer>
+				<key>attack</key> <string>flame spout</string>
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>counter</key> <integer>4</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>counter</key> <integer>2</integer>
+				<key>attack</key> <string>fire shroud</string>
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>damage bonus</key> <integer>15</integer>
+				<key>burn resistance</key> <integer>1</integer>
+			</dict>
+		</array>
+	</dict>
 	
 	<!-- false prophet (pattern D) -->
 	<!-- the sacred crafting skill, which gives a shock attack -->
