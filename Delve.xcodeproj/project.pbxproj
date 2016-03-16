@@ -14,6 +14,7 @@
 		E442C81C1C8B65950048DD95 /* AttackEffects.plist in Resources */ = {isa = PBXBuildFile; fileRef = E442C81B1C8B65950048DD95 /* AttackEffects.plist */; };
 		E442C81F1C8FA3730048DD95 /* CharacterCreatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E442C81E1C8FA3730048DD95 /* CharacterCreatorViewController.m */; };
 		E442C8221C8FA8050048DD95 /* CharacterServices.m in Sources */ = {isa = PBXBuildFile; fileRef = E442C8211C8FA8050048DD95 /* CharacterServices.m */; };
+		E44A6FCC1C98F8B20015852C /* AIs.plist in Resources */ = {isa = PBXBuildFile; fileRef = E44A6FCB1C98F8B20015852C /* AIs.plist */; };
 		E459C6881C7AB2E800422B0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C6871C7AB2E800422B0A /* main.m */; };
 		E459C68B1C7AB2E800422B0A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C68A1C7AB2E800422B0A /* AppDelegate.m */; };
 		E459C6911C7AB2E800422B0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E459C68F1C7AB2E800422B0A /* Main.storyboard */; };
@@ -53,6 +54,7 @@
 		E442C81E1C8FA3730048DD95 /* CharacterCreatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterCreatorViewController.m; sourceTree = "<group>"; };
 		E442C8201C8FA7FA0048DD95 /* CharacterServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CharacterServices.h; sourceTree = "<group>"; };
 		E442C8211C8FA8050048DD95 /* CharacterServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterServices.m; sourceTree = "<group>"; };
+		E44A6FCB1C98F8B20015852C /* AIs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AIs.plist; sourceTree = "<group>"; };
 		E459C6831C7AB2E800422B0A /* Delve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Delve.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E459C6871C7AB2E800422B0A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E459C6891C7AB2E800422B0A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 		E459C6861C7AB2E800422B0A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E44A6FCB1C98F8B20015852C /* AIs.plist */,
 				E442C81B1C8B65950048DD95 /* AttackEffects.plist */,
 				E46238311C8A6901009C9FC4 /* Tilesets.plist */,
 				E462382F1C8A1177009C9FC4 /* Floors.plist */,
@@ -271,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E459C6BE1C7C20AD00422B0A /* Colors.plist in Resources */,
+				E44A6FCC1C98F8B20015852C /* AIs.plist in Resources */,
 				E459C6961C7AB2E800422B0A /* LaunchScreen.storyboard in Resources */,
 				E43674B01C813CC900B59105 /* Assets.xcassets in Resources */,
 				E459C6BC1C7C201D00422B0A /* Armors.plist in Resources */,

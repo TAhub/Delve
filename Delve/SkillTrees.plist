@@ -201,7 +201,6 @@
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
-				<key>health</key> <integer>25</integer>
 				<key>dodges</key> <integer>-1</integer>
 				<key>attack</key> <string>rabid bite</string>
 			</dict>

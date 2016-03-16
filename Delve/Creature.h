@@ -27,6 +27,7 @@
 @property (strong, nonatomic) NSMutableArray *skillTreeLevels; //an array of integers
 @property BOOL good;
 @property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *ai;
 
 #pragma mark: derived statistics (from race, skill ranks, and equipment)
 -(int) damageBonus;

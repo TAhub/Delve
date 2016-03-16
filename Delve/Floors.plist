@@ -309,6 +309,29 @@
 		<array>
 			<array>
 				<string>ruin feeder runt</string>
+				<string>ruin feeder runt</string>
+				<string>ruin feeder runt</string>
+			</array>
+			<array>
+				<string>slime</string>
+				<string>slime</string>
+				<string>slime</string>
+			</array>
+			<array>
+				<string>ruin feeder</string>
+				<string>ruin feeder</string>
+			</array>
+			<array>
+				<string>fierce ruin feeder</string>
+			</array>
+			<array>
+				<string>fierce ruin feeder</string>
+			</array>
+			<array>
+				<string>rabid ruin feeder</string>
+			</array>
+			<array>
+				<string>rabid ruin feeder</string>
 			</array>
 		</array>
 	</dict>
@@ -316,7 +339,7 @@
 	
 	<!-- floor 5 -->
 	<!-- theme: eol research lab -->
-	<!-- enemy types: abominations, slimes, and a few robots -->
+	<!-- enemy types: abominations, slimes, and a few androids -->
 	<!-- color: grey -->
 	<!-- TODO: real data -->
 	<key>floor 5</key>
@@ -351,8 +374,22 @@
 		<key>encounters</key>
 		<array>
 			<array>
-				<string>ruin feeder runt</string>
+				<string>security android</string>
+				<string>security android</string>
 			</array>
+			<array>
+				<string>great slime</string>
+			</array>
+			<array>
+				<string>great slime</string>
+			</array>
+			<array>
+				<string>slime</string>
+				<string>slime</string>
+				<string>slime</string>
+				<string>slime</string>
+			</array>
+			<!-- TODO: abominations, two or three encounters -->
 		</array>
 	</dict>
 	
@@ -393,9 +430,31 @@
 		<key>start equipment treasures</key> <integer>4</integer>
 		<key>encounters</key>
 		<array>
-			<!-- TODO: real encounters -->
 			<array>
-				<string>ruin feeder runt</string>
+				<string>scuttler</string>
+				<string>scuttler</string>
+				<string>sentry</string>
+				<string>sentry</string>
+			</array>
+			<array>
+				<string>scuttler</string>
+				<string>sentry</string>
+				<string>sentry</string>
+				<string>sentry</string>
+			</array>
+			<array>
+				<string>scuttler</string>
+				<string>scuttler</string>
+				<string>scuttler</string>
+				<string>sentry</string>
+			</array>
+			<array>
+				<string>sentry bot</string>
+				<string>sentry</string>
+			</array>
+			<array>
+				<string>sentry bot</string>
+				<string>scuttler</string>
 			</array>
 		</array>
 	</dict>

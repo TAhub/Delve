@@ -345,7 +345,7 @@
 	<dict>
 		<key>attack effect</key> <string>explosion</string>
 		<key>description</key> <string>Sacrifice a lot of your own blood to heavily injure a foe.</string>
-		<key>power</key> <integer>50</integer>
+		<key>power</key> <integer>60</integer>
 		<key>element</key> <string>no element</string>
 		<key>range</key> <integer>3</integer>
 		<key>cooldown</key> <integer>11</integer>

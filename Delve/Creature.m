@@ -23,6 +23,7 @@
 	if (self = [super init])
 	{
 		_name = [type capitalizedString];
+		_ai = loadValueString(@"EnemyTypes", type, @"ai");
 		_race = loadValueString(@"EnemyTypes", type, @"race");
 		_skillTrees = loadValueArray(@"EnemyTypes", type, @"skills");
 		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
@@ -80,6 +81,7 @@
 		
 		_skillTrees = skillTrees;
 		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
+//		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(4), @(4), @(4), @(4), @(4), nil];
 		_implements = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
 		_weapon = loadValueString(@"Races", _race, @"race start weapon");
 		
@@ -597,6 +599,10 @@
 		}
 	}
 	
+	//grant extra actions
+	if (loadValueBool(@"Attacks", name, @"extra actions"))
+		self.extraAction += loadValueNumber(@"Attacks", name, @"extra actions").intValue;
+	
 	int cooldown = loadValueNumber(@"Attacks", name, @"cooldown").intValue;
 	cooldown = MAX(1, cooldown - self.delayReduction);
 	self.cooldowns[name] = @(cooldown);
@@ -935,8 +941,6 @@
 		self.forceFieldNoDegrade = CREATURE_FORCEFIELDNODEGRADE;
 		[self.map.delegate updateCreature:self];
 	}
-	if (loadValueBool(@"Attacks", attackType, @"extra actions"))
-		self.extraAction += loadValueNumber(@"Attacks", attackType, @"extra actions").intValue;
 	if (loadValueBool(@"Attacks", attackType, @"stealth"))
 	{
 		self.stealthed += loadValueNumber(@"Attacks", attackType, @"stealth").intValue;
@@ -960,10 +964,9 @@
 
 -(void) wakeUpNearby
 {
-	//TODO: wake distance should probably be an AI variable
+	//wake distance is an AI variable
 	//so some AIs are "louder" than others
-	//3 is pretty high, 2 might be a "normal" value
-	int wakeDistance = 3;
+	int wakeDistance = loadValueNumber(@"AIs", self.ai, @"wake distance").intValue;
 	
 	for (int y = self.y - wakeDistance; y <= self.y + wakeDistance; y++)
 		for (int x = self.x - wakeDistance; x <= self.x + wakeDistance; x++)
@@ -1127,16 +1130,14 @@
 	{
 		//AI action
 		
-		if (self.map.overtime)
+		if (self.map.overtime && loadValueBool(@"AIs", self.ai, @"flee during overtime"))
 		{
+			//during overtime, most enemies flee
+			//some don't give a shit (robots, etc)
+			
 			//TODO: bosses SHOULDN'T flee, or execute this block at all
 			//AND, if bosses have companion enemies, those shouldn't flee either (maybe just have a no-flee flag?)
 			//otherwise you won't see most of them!
-			
-			
-			
-			//during overtime, all AIs panic and flee
-			//TODO: maybe this behavior should be an ai variable (so robots don't give a damn about overtime)
 			
 			if (!tile.visible)
 			{
@@ -1176,7 +1177,7 @@
 		//and walk outside
 		
 		//try to attack
-		if ([self validTargetSpotFor:@"attack" atX:self.map.player.x andY:self.map.player.y openSpotsAreFine:NO])
+		if (loadValueBool(@"AIs", self.ai, @"can attack") && [self validTargetSpotFor:@"attack" atX:self.map.player.x andY:self.map.player.y openSpotsAreFine:NO])
 		{
 			//use attack
 			[self useAttackWithTreeNumber:0 andName:@"attack" onX:self.map.player.x andY:self.map.player.y];
@@ -1203,8 +1204,8 @@
 		if (tile.visible || self.map.player.stealthed == 0)
 		{
 			//which kinds of walk should you try?
-			BOOL tryAIWalk = true;
-			BOOL tryPathWalk = true;
+			BOOL tryAIWalk = loadValueBool(@"AIs", self.ai, @"do ai walk");
+			BOOL tryPathWalk = loadValueBool(@"AIs", self.ai, @"pathfinding radius");
 			
 			if (tryPathWalk && !tile.visible)
 				tryAIWalk = false; //only path walk when offscreen, if you have the option
@@ -1215,8 +1216,7 @@
 			
 			if (tryPathWalk)
 			{
-				//TODO: get the real pathfinding radius
-				int pathRadius = 10;
+				int pathRadius = loadValueNumber(@"AIs", self.ai, @"pathfinding radius").intValue;
 				PathDirection direction = [self.map pathFromX:self.x andY:self.y toX:self.map.player.x andY:self.map.player.y withRadius:pathRadius];
 				switch(direction)
 				{
@@ -1243,7 +1243,7 @@
 		
 		
 		//if you are stuck and onscreen, defend
-		if (tile.visible)
+		if (tile.visible && loadValueBool(@"AIs", self.ai, @"can defend"))
 		{
 			[self useAttackWithTreeNumber:0 andName:@"defend" onX:self.x andY:self.y];
 			return YES;
@@ -1279,16 +1279,28 @@
 
 -(BOOL)aiWalk:(int)mult
 {
+	BOOL skateAbility = loadValueBool(@"AIs", self.ai, @"skate ability");
+	
 	int xDif = (self.map.player.x - self.x) * mult;
 	int yDif = (self.map.player.y - self.y) * mult;
 	int xDir = copysign(1, xDif);
 	int yDir = copysign(1, yDif);
 	
+	if (skateAbility)
+		self.skating = 1;
+	
 	BOOL xFirst = ABS(xDif) > ABS(yDif);
 	if ([self.map movePerson:self withX:(xFirst ? xDir : 0) andY:(!xFirst ? yDir : 0)])
+	{
+		self.skating = 0;
 		return YES;
+	}
 	if (xDif != 0 && yDif != 0 && [self.map movePerson:self withX:(!xFirst ? xDir : 0) andY:(xFirst ? yDir : 0)])
+	{
+		self.skating = 0;
 		return YES;
+	}
+	self.skating = 0;
 	return NO;
 }
 

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   AIs.plist
+   Delve
+
+   Created by Theodore Abshire on 3/15/16.
+   Copyright (c) 2016 Theodore Abshire. All rights reserved.
+-->
+<plist version="1.0">
+<dict>
+	<key>template</key>
+	<dict>
+		<!-- waking self and other variables -->
+		<key>wake distance</key> <integer>4</integer>
+		<!-- pathfinding variables (remove all for immobile enemies) -->
+		<key>pathfinding radius</key> <integer>10</integer>
+		<key>do ai walk</key> <true/>
+		<!-- special abilities -->
+		<key>skate ability</key> <true/>
+		<!-- attack variables -->
+		<key>can attack</key> <true/>
+		<key>can defend</key> <true/>
+		<!-- misc variables -->
+		<key>flee during overtime</key> <true/>
+	</dict>
+	
+	<!-- real AIs -->
+	
+	<!-- bandit AIs -->
+	<!-- bandits are good at working with each other, and they can attack and defend (except the specialists) -->
+	<key>bandit</key>
+	<dict>
+		<!-- waking self and other variables -->
+		<key>wake distance</key> <integer>4</integer>
+		<!-- pathfinding variables (remove all for immobile enemies) -->
+		<key>pathfinding radius</key> <integer>8</integer>
+		<key>do ai walk</key> <true/>
+		<!-- special abilities -->
+		<!-- attack variables -->
+		<key>can attack</key> <true/>
+		<key>can defend</key> <true/>
+		<!-- misc variables -->
+		<key>flee during overtime</key> <true/>
+	</dict>
+	<key>bandit specialist</key>
+	<dict>
+		<!-- waking self and other variables -->
+		<key>wake distance</key> <integer>4</integer>
+		<!-- pathfinding variables (remove all for immobile enemies) -->
+		<key>pathfinding radius</key> <integer>8</integer>
+		<key>do ai walk</key> <true/>
+		<!-- special abilities -->
+		<!-- attack variables -->
+		<key>can defend</key> <true/>
+		<!-- misc variables -->
+		<key>flee during overtime</key> <true/>
+	</dict>
+	
+	<!-- animal AIs -->
+	<!-- animals have pretty shitty AIs; notably they can't defend -->
+	<key>animal</key>
+	<dict>
+		<!-- waking self and other variables -->
+		<key>wake distance</key> <integer>3</integer>
+		<!-- pathfinding variables (remove all for immobile enemies) -->
+		<key>pathfinding radius</key> <integer>6</integer>
+		<key>do ai walk</key> <true/>
+		<!-- special abilities -->
+		<!-- attack variables -->
+		<key>can attack</key> <true/>
+		<!-- misc variables -->
+		<key>flee during overtime</key> <true/>
+	</dict>
+	<key>animal charger</key>
+	<dict>
+		<!-- waking self and other variables -->
+		<key>wake distance</key> <integer>3</integer>
+		<!-- pathfinding variables (remove all for immobile enemies) -->
+		<key>pathfinding radius</key> <integer>6</integer>
+		<key>do ai walk</key> <true/>
+		<!-- special abilities -->
+		<key>skate ability</key> <true/>
+		<!-- attack variables -->
+		<key>can attack</key> <true/>
+		<!-- misc variables -->
+		<key>flee during overtime</key> <true/>
+	</dict>
+	
+	<!-- slime AIs -->
+	<!-- slimes are even worse than animals, but notably they don't fear overtime -->
+	<key>slime</key>
+	<dict>
+		<!-- waking self and other variables -->
+		<key>wake distance</key> <integer>1</integer>
+		<!-- pathfinding variables (remove all for immobile enemies) -->
+		<key>do ai walk</key> <true/>
+		<!-- special abilities -->
+		<!-- attack variables -->
+		<key>can attack</key> <true/>
+		<!-- misc variables -->
+	</dict>
+	
+	<!-- robots AIs -->
+	<!-- robots are excellent at working together, and don't fear overtime -->
+	<key>robot</key>
+	<dict>
+		<!-- waking self and other variables -->
+		<key>wake distance</key> <integer>5</integer>
+		<!-- pathfinding variables (remove all for immobile enemies) -->
+		<key>pathfinding radius</key> <integer>10</integer>
+		<key>do ai walk</key> <true/>
+		<!-- special abilities -->
+		<!-- attack variables -->
+		<key>can attack</key> <true/>
+		<key>can defend</key> <true/>
+		<!-- misc variables -->
+	</dict>
+	<key>robot specialist</key>
+	<dict>
+		<!-- waking self and other variables -->
+		<key>wake distance</key> <integer>5</integer>
+		<!-- pathfinding variables (remove all for immobile enemies) -->
+		<key>pathfinding radius</key> <integer>10</integer>
+		<key>do ai walk</key> <true/>
+		<!-- special abilities -->
+		<!-- attack variables -->
+		<key>can defend</key> <true/>
+		<!-- misc variables -->
+	</dict>
+</dict>
+</plist>

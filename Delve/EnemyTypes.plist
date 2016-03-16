@@ -13,7 +13,7 @@
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>template</string>
-		<!-- TODO: AI -->
+		<key>ai</key> <string>template</string>
 		<key>skills</key>
 		<array>
 			<string>template</string>
@@ -59,7 +59,7 @@
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>human</string>
-		<!-- TODO: AI -->
+		<key>ai</key> <string>bandit</string>
 		<key>skills</key>
 		<array>
 			<string>filler monster skill</string>
@@ -83,7 +83,7 @@
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>human</string>
-		<!-- TODO: AI -->
+		<key>ai</key> <string>bandit</string>
 		<key>skills</key>
 		<array>
 			<string>bow</string>
@@ -110,8 +110,7 @@
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>human</string>
-		<!-- TODO: AI -->
-		<!-- TODO: hammer bandits should have some "don't use normal attack" flag -->
+		<key>ai</key> <string>bandit</string>
 		<key>skills</key>
 		<array>
 			<string>hammer</string>
@@ -139,7 +138,7 @@
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>human</string>
-		<!-- TODO: AI -->
+		<key>ai</key> <string>bandit</string>
 		<key>skills</key>
 		<array>
 			<string>filler monster skill</string>
@@ -168,7 +167,7 @@
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>slime</string>
-		<!-- TODO: AI -->
+		<key>ai</key> <string>slime</string>
 		<key>skills</key>
 		<array>
 			<string>tough monster skill</string>
@@ -187,7 +186,7 @@
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>great slime</string>
-		<!-- TODO: AI -->
+		<key>ai</key> <string>slime</string>
 		<key>skills</key>
 		<array>
 			<string>tough monster skill</string>
@@ -211,7 +210,7 @@
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>ruin feeder runt</string>
-		<!-- TODO: AI -->
+		<key>ai</key> <string>animal</string>
 		<key>skills</key>
 		<array>
 			<string>dodgy monster skill</string>
@@ -230,7 +229,7 @@
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>ruin feeder</string>
-		<!-- TODO: AI -->
+		<key>ai</key> <string>animal</string>
 		<key>skills</key>
 		<array>
 			<string>tough monster skill</string>
@@ -250,7 +249,7 @@
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>ruin feeder</string>
-		<!-- TODO: AI -->
+		<key>ai</key> <string>animal</string>
 		<key>skills</key>
 		<array>
 			<string>tough monster skill</string>
@@ -269,7 +268,7 @@
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>fierce ruin feeder</string>
-		<!-- TODO: AI -->
+		<key>ai</key> <string>animal</string>
 		<key>skills</key>
 		<array>
 			<string>tough monster skill</string>
@@ -283,12 +282,12 @@
 	</dict>
 	
 	<!-- rabid ruin feeder -->
-	<!-- an advanced ruin feeder with a dangerous poison normal attack; their unique skill lowers their max dodges to 0, for 25 more health -->
+	<!-- an advanced ruin feeder with a dangerous poison normal attack; their unique skill lowers their max dodges to 0, in exchange for their skate AI ability -->
 	<key>rabid ruin feeder</key>
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>fierce ruin feeder</string>
-		<!-- TODO: AI -->
+		<key>ai</key> <string>animal charger</string>
 		<key>skills</key>
 		<array>
 			<string>rabid ruin feeder skill</string>
@@ -313,7 +312,7 @@
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>sentry</string>
-		<!-- TODO: AI -->
+		<key>ai</key> <string>robot</string>
 		<key>skills</key>
 		<array>
 			<string>tough monster skill</string>
@@ -332,8 +331,7 @@
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>scuttler</string>
-		<!-- TODO: AI -->
-		<!-- TODO: scuttlers should have some "don't use normal attack" flag -->
+		<key>ai</key> <string>robot specialist</string>
 		<key>skills</key>
 		<array>
 			<string>scuttler skill</string>
@@ -355,7 +353,7 @@
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>android</string>
-		<!-- TODO: AI -->
+		<key>ai</key> <string>robot</string>
 		<key>skills</key>
 		<array>
 			<string>strength</string>
@@ -374,7 +372,7 @@
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>android</string>
-		<!-- TODO: AI -->
+		<key>ai</key> <string>robot</string>
 		<key>skills</key>
 		<array>
 			<string>holy soldier</string>
@@ -396,7 +394,7 @@
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>war bot</string>
-		<!-- TODO: AI -->
+		<key>ai</key> <string>robot</string>
 		<key>skills</key>
 		<array>
 			<string>holy soldier</string>
