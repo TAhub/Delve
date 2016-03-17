@@ -11,4 +11,4 @@
 @class Creature;
 
 void makeCreatureSpriteInView(Creature *cr, UIView *view);
-void makeInfoLabelInView(Creature *cr, UIView *view);
+void makeInfoLabelInView(Creature *cr, UIView *view, int countdown);

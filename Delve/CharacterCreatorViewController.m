@@ -110,7 +110,7 @@
 
 -(void)reloadLabels
 {
-	makeInfoLabelInView(self.creature, self.statsView);
+	makeInfoLabelInView(self.creature, self.statsView, 0);
 	
 	[self.startButton setTitleColor:[self shouldPerformSegueWithIdentifier:@"" sender:nil] ? loadColorFromName(@"ui text") : loadColorFromName(@"ui text grey") forState:UIControlStateNormal];
 	

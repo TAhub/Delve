@@ -307,7 +307,6 @@
 	
 	//organizational flags
 	self.storedAttack = nil;
-	self.saveFlag = YES;
 }
 
 -(void) recharge
@@ -334,6 +333,8 @@
 	self.immunityBoosted = 0;
 	self.skating = 0;
 	self.counterBoosted = 0;
+	
+	self.saveFlag = YES;
 }
 
 #pragma mark: item interface functions

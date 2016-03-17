@@ -437,6 +437,8 @@
 			case PathDirectionPlusY: tY += 1; break;
 			case PathDirectionNoPath: return PathDirectionNoPath; //there isn't a path back
 		}
+		if (tX < sX || tY < sY || tX >= eX || tY >= eY)
+			return PathDirectionNoPath; //this case SHOULDN'T happen, but apparently it does sometimes?
 		toTile = self.tiles[tY][tX];
 		
 		if (toTile == fromTile)

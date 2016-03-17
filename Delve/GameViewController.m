@@ -206,7 +206,7 @@
 -(void)reloadPanels
 {
 	//reload the info panel
-	makeInfoLabelInView(self.map.player, self.statView);
+	makeInfoLabelInView(self.map.player, self.statView, self.map.countdown);
 	
 	
 	//set button color
@@ -1399,7 +1399,7 @@
 	
 	//TODO: make the warning label bigger
 	UILabel *warning = [[UILabel alloc] initWithFrame:CGRectZero];
-	warning.text = [NSString stringWithFormat:@"%i", countdown];
+	warning.text = [NSString stringWithFormat:@"YOU HAVE %i ROUNDS TO ESCAPE!", countdown];
 	warning.textColor = loadColorFromName(@"ui warning");
 	[warning sizeToFit];
 	warning.center = self.creatureView.center;
