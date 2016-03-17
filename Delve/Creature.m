@@ -18,6 +18,177 @@
 
 @implementation Creature
 
+#pragma mark: saving and loading
+
+-(void)saveWithName:(NSString *)name
+{
+	NSMutableArray *saveArray = [NSMutableArray new];
+	
+	//save identity
+	[saveArray addObject:@(self.good ? 1 : 0)];
+	[saveArray addObject:self.race];
+	if (!self.good)
+	{
+		[saveArray addObject:self.name];
+		[saveArray addObject:self.ai];
+	}
+	for (int i = 0; i < CREATURE_NUM_TREES; i++)
+	{
+		[saveArray addObject:self.skillTrees[i]];
+		[saveArray addObject:self.skillTreeLevels[i]];
+	}
+	
+	//save equipment
+	[saveArray addObject:self.weapon];
+	for (int i = 0; i < CREATURE_NUM_TREES; i++)
+		[saveArray addObject:self.implements[i]];
+	[saveArray addObject:@(self.armors.count)];
+	for (int i = 0; i < self.armors.count; i++)
+		[saveArray addObject:self.armors[i]];
+	
+	//save appearance
+	[saveArray addObject:@(self.gender ? 1 : 0)];
+	[saveArray addObject:@(self.hairStyle)];
+	[saveArray addObject:@(self.coloration)];
+	
+	//save variable stats
+	[saveArray addObject:@(self.x)];
+	[saveArray addObject:@(self.y)];
+	[saveArray addObject:@(self.health)];
+	[saveArray addObject:@(self.dodges)];
+	[saveArray addObject:@(self.blocks)];
+	[saveArray addObject:@(self.hacks)];
+	
+	//save status
+	[saveArray addObject:@(self.forceField)];
+	[saveArray addObject:@(self.forceFieldNoDegrade)];
+	[saveArray addObject:@(self.stunned)];
+	[saveArray addObject:@(self.extraAction)];
+	[saveArray addObject:@(self.sleeping)];
+	[saveArray addObject:@(self.poisoned)];
+	[saveArray addObject:@(self.stealthed)];
+	[saveArray addObject:@(self.damageBoosted)];
+	[saveArray addObject:@(self.defenseBoosted)];
+	[saveArray addObject:@(self.immunityBoosted)];
+	[saveArray addObject:@(self.skating)];
+	[saveArray addObject:@(self.counterBoosted)];
+	[saveArray addObject:@(self.counterBoostedStrength)];
+	
+	//save organizational info
+	[saveArray addObject:@(self.awake ? 1 : 0)];
+	[saveArray addObject:@(self.storedAttack != nil ? 1 : 0)];
+	if (self.storedAttack != nil)
+	{
+		[saveArray addObject:self.storedAttack];
+		[saveArray addObject:@(self.storedAttackSlot)];
+		[saveArray addObject:@(self.storedAttackX)];
+		[saveArray addObject:@(self.storedAttackY)];
+	}
+	[saveArray addObject:@(self.cooldowns.count)];
+	for (NSString *key in self.cooldowns.allKeys)
+	{
+		[saveArray addObject:key];
+		[saveArray addObject:self.cooldowns[key]];
+	}
+	
+	//and save it all away
+	[[NSUserDefaults standardUserDefaults] setObject:saveArray forKey:name];
+	self.saveFlag = false;
+}
+-(id)initFromName:(NSString *)name onMap:(Map *)map
+{
+	if (self = [super init])
+	{
+		NSArray *loadArray = [[NSUserDefaults standardUserDefaults] arrayForKey:name];
+		int j = 0;
+		
+		//save identity
+		_good = ((NSNumber *)loadArray[j++]).intValue == 1;
+		_race = loadArray[j++];
+		if (!_good)
+		{
+			_name = loadArray[j++];
+			_ai = loadArray[j++];
+		}
+		NSMutableArray *sT = [NSMutableArray new];
+		_skillTreeLevels = [NSMutableArray new];
+		for (int i = 0; i < CREATURE_NUM_TREES; i++)
+		{
+			[sT addObject:loadArray[j++]];
+			[_skillTreeLevels addObject:loadArray[j++]];
+		}
+		_skillTrees = [NSArray arrayWithArray:sT];
+		
+		//save equipment
+		_weapon = loadArray[j++];
+		_implements = [NSMutableArray new];
+		for (int i = 0; i < CREATURE_NUM_TREES; i++)
+			[_implements addObject:loadArray[j++]];
+		int nArmors = ((NSNumber *)loadArray[j++]).intValue;
+		_armors = [NSMutableArray new];
+		for (int i = 0; i < nArmors; i++)
+			[_armors addObject:loadArray[j++]];
+		
+		//save appearance
+		_gender = ((NSNumber *)loadArray[j++]).intValue == 1;
+		_hairStyle = ((NSNumber *)loadArray[j++]).intValue;
+		_coloration = ((NSNumber *)loadArray[j++]).intValue;
+		
+		//save variable stats
+		_x = ((NSNumber *)loadArray[j++]).intValue;
+		_y = ((NSNumber *)loadArray[j++]).intValue;
+		_health = ((NSNumber *)loadArray[j++]).intValue;
+		_dodges = ((NSNumber *)loadArray[j++]).intValue;
+		_blocks = ((NSNumber *)loadArray[j++]).intValue;
+		_hacks = ((NSNumber *)loadArray[j++]).intValue;
+		
+		//save status
+		_forceField = ((NSNumber *)loadArray[j++]).intValue;
+		_forceFieldNoDegrade = ((NSNumber *)loadArray[j++]).intValue;
+		_stunned = ((NSNumber *)loadArray[j++]).intValue;
+		_extraAction = ((NSNumber *)loadArray[j++]).intValue;
+		_sleeping = ((NSNumber *)loadArray[j++]).intValue;
+		_poisoned = ((NSNumber *)loadArray[j++]).intValue;
+		_stealthed = ((NSNumber *)loadArray[j++]).intValue;
+		_damageBoosted = ((NSNumber *)loadArray[j++]).intValue;
+		_defenseBoosted = ((NSNumber *)loadArray[j++]).intValue;
+		_immunityBoosted = ((NSNumber *)loadArray[j++]).intValue;
+		_skating = ((NSNumber *)loadArray[j++]).intValue;
+		_counterBoosted = ((NSNumber *)loadArray[j++]).intValue;
+		_counterBoostedStrength = ((NSNumber *)loadArray[j++]).intValue;
+		
+		//save organizational info
+		_awake = ((NSNumber *)loadArray[j++]).intValue == 1;
+		if (((NSNumber *)loadArray[j++]).intValue == 1)
+		{
+			_storedAttack = loadArray[j++];
+			_storedAttackSlot = ((NSNumber *)loadArray[j++]).intValue;
+			_storedAttackX = ((NSNumber *)loadArray[j++]).intValue;
+			_storedAttackY = ((NSNumber *)loadArray[j++]).intValue;
+		}
+		else
+			_storedAttack = nil;
+		int nCooldowns = ((NSNumber *)loadArray[j++]).intValue;
+		_cooldowns = [NSMutableDictionary new];
+		for (int i = 0; i < nCooldowns; i++)
+		{
+			NSString *key = loadArray[j++];
+			NSNumber *cooldown = loadArray[j++];
+			_cooldowns[key] = cooldown;
+		}
+		
+		//init misc
+		_saveFlag = false;
+		_map = map;
+		
+		//put yourself into the appropriate tile
+		((Tile *)map.tiles[_y][_x]).inhabitant = self;
+	}
+	return self;
+}
+
+#pragma mark: main initializers
+
 -(id)initWithX:(int)x andY:(int)y onMap:(Map *)map ofEnemyType:(NSString *)type
 {
 	if (self = [super init])
@@ -136,6 +307,7 @@
 	
 	//organizational flags
 	self.storedAttack = nil;
+	self.saveFlag = YES;
 }
 
 -(void) recharge
@@ -665,10 +837,6 @@
 	if (isNormalAttack)
 		power += self.attackBonus;
 	
-	//apply damage boost
-	if (self.damageBoosted > 0)
-		power = (power * CREATURE_DAMAGE_BOOST) / 100;
-	
 	//get the element
 	NSString *element = @"no element";
 	if (loadValueBool(@"Attacks", self.storedAttack, @"element"))
@@ -840,6 +1008,8 @@
 		self.hacks -= 1;
 		[self.map.delegate updateStats];
 		[self.map.delegate updateTiles];
+		[tile saveWithX:self.x andY:self.y];
+		
 		return true;
 	}
 	else if (!tile.solid && tile.inhabitant == nil)
@@ -861,6 +1031,8 @@
 
 -(NSString *) takeAttack:(NSString *)attackType withPower:(int)power andElement:(NSString *)element inStealth:(BOOL)inStealth
 {
+	self.saveFlag = true;
+	
 	if (!self.good && !self.awake)
 	{
 		//this is for if someone is somehow hit while asleep (for instance, by a stealthy player, or with a big AoE)
@@ -1030,6 +1202,8 @@
 
 -(BOOL) startTurn
 {
+	self.saveFlag = true;
+	
 	//fly starting labels
 	__weak typeof(self) weakSelf = self;
 	if (self.poisoned > 0)
@@ -1378,7 +1552,10 @@
 
 -(int) damageBonus
 {
-	return [self totalBonus:@"damage bonus"];
+	int b = [self totalBonus:@"damage bonus"];
+	if (self.damageBoosted > 0)
+		b = (b * CREATURE_DAMAGE_BOOST) / 100;
+	return b;
 }
 -(int) attackBonus
 {

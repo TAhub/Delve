@@ -38,11 +38,20 @@
 	[self formatPanel:self.textPanel];
 	[self formatPanel:self.tablePanel];
 	[self setInfoText:-1];
+	
+	[[NSUserDefaults standardUserDefaults] setObject:@"change" forKey:@"game phase"];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+	
+	if (self.oldMap == nil)
+	{
+		//this must be a loaded game then
+		//so load the map, to generate a new map from
+		[self loadMap:[[Map alloc] initFromSave]];
+	}
 	
 	//recharge to remove all buffs, so your portrait isn't a weird color
 	[self.oldMap.player recharge];

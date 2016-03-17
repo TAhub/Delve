@@ -21,6 +21,11 @@
 -(id)initWithRace:(NSString *)race skillTrees:(NSArray *)skillTrees andAppearanceNumber:(int)appearanceNumber;
 -(id)initWithX:(int)x andY:(int)y onMap:(Map *)map ofEnemyType:(NSString *)type;
 
+#pragma mark: saving and loading
+@property BOOL saveFlag;
+-(void)saveWithName:(NSString *)name;
+-(id)initFromName:(NSString *)name onMap:(Map *)map;
+
 #pragma mark: basic mechanical identity
 @property (strong, nonatomic) NSString *race;
 @property (strong, nonatomic) NSArray *skillTrees; //an array of NSStrings

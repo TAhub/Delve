@@ -15,5 +15,6 @@
 
 -(void)loadMap:(Map *)map;
 -(void)loadGen:(Creature *)genPlayer;
+-(void)loadSave;
 
 @end

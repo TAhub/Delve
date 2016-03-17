@@ -126,9 +126,17 @@
 	[self formatButton:self.repeatButton];
 }
 
+-(void)loadSave
+{
+	self.map = [[Map alloc] initFromSave];
+	[self preloadTileImages];
+	self.map.delegate = self;
+}
+
 -(void)loadMap:(Map *)map
 {
 	self.map = map;
+	[self.map saveFirst];
 	[self preloadTileImages];
 	self.map.delegate = self;
 }
@@ -136,6 +144,7 @@
 -(void)loadGen:(Creature *)genPlayer
 {
 	self.map = [[Map alloc] initWithGen:genPlayer];
+	[self.map saveFirst];
 	[self preloadTileImages];
 	self.map.delegate = self;
 }
@@ -584,9 +593,12 @@
 						tile.treasure = it;
 						tile.changed = true;
 						[self updateTiles];
+						[tile saveWithX:self.map.player.x andY:self.map.player.y];
 					}
 					else
 						[self.map addItem:it];
+					
+					[self.map saveInventory];
 					
 					[self reloadPanels];
 					__weak typeof(self) weakSelf = self;
@@ -629,6 +641,8 @@
 				//remove the item if it's at 0
 				if (item.number == 0)
 					[self.map.inventory removeObject:item];
+				
+				[self.map saveInventory];
 				
 				//remake your sprite if necessary
 				if (item.remakeSprite)
@@ -684,11 +698,14 @@
 					NSString *material = loadValueString(self.examinationItem.type == ItemTypeArmor ? @"Armors" : @"Implements", self.examinationItem.name, @"breaks into");
 					[self.map addItem:[[Item alloc] initWithName:material andType:ItemTypeInventory]];
 					
+					[self.map saveInventory];
+					
 					tile.treasure = nil;
 					tile.treasureType = TreasureTypeNone;
 					tile.changed = true;
 					[self reloadPanels];
 					[self updateTiles];
+					[tile saveWithX:self.map.player.x andY:self.map.player.y];
 					
 					//end turn
 					__weak typeof(self) weakSelf = self;
@@ -711,6 +728,7 @@
 							tile.treasureType = TreasureTypeNone;
 							tile.changed = true;
 							[self updateTiles];
+							[tile saveWithX:self.map.player.x andY:self.map.player.y];
 						}
 						[self.map.player equipArmor:self.examinationItem];
 						[self regenerateCreatureSprite:self.map.player];
@@ -753,9 +771,13 @@
 				//stack the item if possible
 				[self.map addItem:self.examinationItem];
 				
+				[self.map saveInventory];
+				
 				
 				tile.changed = true;
 				tile.treasureType = TreasureTypeNone;
+				[tile saveWithX:self.map.player.x andY:self.map.player.y];
+				
 				[self updateTiles];
 				[self reloadPanels];
 				[self switchToPanel:self.mainPanelCord];

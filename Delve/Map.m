@@ -21,6 +21,56 @@
 
 @implementation Map
 
+-(id)initFromSave
+{
+	if (self = [super init])
+	{
+		//load map
+		_floorNum = [[NSUserDefaults standardUserDefaults] integerForKey:@"floor number"];
+		int width = [[NSUserDefaults standardUserDefaults] integerForKey:@"width"];
+		int height = [[NSUserDefaults standardUserDefaults] integerForKey:@"height"];
+		NSMutableArray *tiles = [NSMutableArray new];
+		for (int y = 0; y < height; y++)
+		{
+			NSMutableArray *row = [NSMutableArray new];
+			for (int x = 0; x < width; x++)
+				[row addObject:[[Tile alloc] initWithX:x andY:y]];
+			[tiles addObject:row];
+		}
+		_tiles = tiles;
+		
+		//load countdown info
+		_countdown = [[NSUserDefaults standardUserDefaults] integerForKey:@"countdown"];
+		_overtimeCount = [[NSUserDefaults standardUserDefaults] integerForKey:@"overtime"];
+		
+		//load creatures
+		_personOn = [[NSUserDefaults standardUserDefaults] integerForKey:@"creature on"];
+		int nCreatures = [[NSUserDefaults standardUserDefaults] integerForKey:@"number creatures"];
+		_creatures = [NSMutableArray new];
+		for (int i = 0; i < nCreatures; i++)
+		{
+			Creature *cr = [[Creature alloc] initFromName:[NSString stringWithFormat:@"creature %i", i] onMap:self];
+			if (cr.good)
+				_player = cr;
+			[_creatures addObject:cr];
+		}
+		
+		//load inventory
+		NSArray *items = [[NSUserDefaults standardUserDefaults] arrayForKey:@"inventory"];
+		_inventory = [NSMutableArray new];
+		for (int i = 0; i < items.count; i += 2)
+		{
+			Item *it = [[Item alloc] initWithName:items[i] andType:ItemTypeInventory];
+			it.number = ((NSNumber *)items[i + 1]).intValue;
+			[_inventory addObject:it];
+		}
+		
+		[self recalculateVisibility];
+		
+	}
+	return self;
+}
+
 -(id)initWithGen:(Creature *)genPlayer
 {
 	if (self = [super init])
@@ -39,6 +89,8 @@
 			item.number = loadValueNumber(@"SkillTrees", tree, @"start item number").intValue;
 			[self addItem:item];
 		}
+		
+		[self saveInventory];
 	}
 	return self;
 }
@@ -69,6 +121,10 @@
 -(void)update
 {
 	NSLog(@"UPDATE!!");
+	
+	[[NSUserDefaults standardUserDefaults] setInteger:self.countdown forKey:@"countdown"];
+	
+	[self saveCreatures];
 	
 	if (self.player.dead)
 	{
@@ -393,6 +449,50 @@
 				default: break;
 			}
 	}
+}
+
+#pragma mark: saving and loading
+-(void)saveCreatures
+{
+	[[NSUserDefaults standardUserDefaults] setInteger:self.personOn forKey:@"creature on"];
+	[[NSUserDefaults standardUserDefaults] setInteger:self.creatures.count forKey:@"number creatures"];
+	for (int i = 0; i < self.creatures.count; i++)
+	{
+		Creature *cr = self.creatures[i];
+		if (cr.saveFlag)
+			[cr saveWithName:[NSString stringWithFormat:@"creature %i", i]];
+	}
+}
+
+-(void)saveFirst
+{
+	[self saveTiles];
+	[[NSUserDefaults standardUserDefaults] setInteger:self.overtimeCount forKey:@"overtime"];
+	[[NSUserDefaults standardUserDefaults] setObject:@"game" forKey:@"game phase"];
+}
+
+-(void)saveInventory
+{
+	NSMutableArray *saveArray = [NSMutableArray new];
+	for (Item *item in self.inventory)
+	{
+		[saveArray addObject:item.name];
+		[saveArray addObject:@(item.number)];
+	}
+	[[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithArray:saveArray] forKey:@"inventory"];
+}
+
+-(void)saveTiles
+{
+	[[NSUserDefaults standardUserDefaults] setInteger:self.floorNum forKey:@"floor number"];
+	[[NSUserDefaults standardUserDefaults] setInteger:self.width forKey:@"width"];
+	[[NSUserDefaults standardUserDefaults] setInteger:self.height forKey:@"height"];
+	for (int y = 0; y < self.height; y++)
+		for (int x = 0; x < self.width; x++)
+		{
+			Tile *tile = self.tiles[y][x];
+			[tile saveWithX:x andY:y];
+		}
 }
 
 #pragma mark: map generation

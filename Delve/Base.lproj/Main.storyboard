@@ -623,7 +623,121 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JFI-wJ-SVm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1549" y="255"/>
+            <point key="canvasLocation" x="1503" y="255"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="KBX-q2-IQo">
+            <objects>
+                <viewController id="8D6-NM-k5o" customClass="MainViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pUP-DI-mr9"/>
+                        <viewControllerLayoutGuide type="bottom" id="T9d-Pg-ck3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Mmi-C3-EbX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ylS-rs-1RY">
+                                <rect key="frame" x="0.0" y="28" width="320" height="175"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GAME TITLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UH8-Sc-bqT">
+                                        <rect key="frame" x="112" y="77" width="96" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="UH8-Sc-bqT" firstAttribute="centerX" secondItem="ylS-rs-1RY" secondAttribute="centerX" id="6wE-JT-4we"/>
+                                    <constraint firstItem="UH8-Sc-bqT" firstAttribute="centerY" secondItem="ylS-rs-1RY" secondAttribute="centerY" id="bgV-XM-KB2"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SsJ-cE-FNm">
+                                <rect key="frame" x="0.0" y="211" width="320" height="349"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xIm-RU-g1q">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="175"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruk-KC-HTm">
+                                                <rect key="frame" x="120" y="72" width="81" height="30"/>
+                                                <state key="normal" title="NEW GAME"/>
+                                                <connections>
+                                                    <action selector="startButtonPressed" destination="8D6-NM-k5o" eventType="touchUpInside" id="tY5-fS-WND"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="ruk-KC-HTm" firstAttribute="centerY" secondItem="xIm-RU-g1q" secondAttribute="centerY" id="03u-jy-eu5"/>
+                                            <constraint firstItem="ruk-KC-HTm" firstAttribute="centerX" secondItem="xIm-RU-g1q" secondAttribute="centerX" id="XqP-HU-6yv"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uoh-MY-rk6">
+                                        <rect key="frame" x="0.0" y="175" width="320" height="174"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1X-ng-bcE">
+                                                <rect key="frame" x="117" y="72" width="86" height="30"/>
+                                                <state key="normal" title="LOAD GAME"/>
+                                                <connections>
+                                                    <action selector="loadButtonPressed" destination="8D6-NM-k5o" eventType="touchUpInside" id="be5-55-mlG"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="K1X-ng-bcE" firstAttribute="centerX" secondItem="uoh-MY-rk6" secondAttribute="centerX" id="RAJ-ZZ-wi2"/>
+                                            <constraint firstItem="K1X-ng-bcE" firstAttribute="centerY" secondItem="uoh-MY-rk6" secondAttribute="centerY" id="VSz-oc-Q5h"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="uoh-MY-rk6" firstAttribute="centerX" secondItem="SsJ-cE-FNm" secondAttribute="centerX" id="3FT-ix-gxl"/>
+                                    <constraint firstItem="xIm-RU-g1q" firstAttribute="top" secondItem="SsJ-cE-FNm" secondAttribute="top" id="6VD-ic-vQb"/>
+                                    <constraint firstAttribute="bottom" secondItem="uoh-MY-rk6" secondAttribute="bottom" id="Ktg-wj-wj0"/>
+                                    <constraint firstItem="uoh-MY-rk6" firstAttribute="height" secondItem="xIm-RU-g1q" secondAttribute="height" id="U9m-c8-h8C"/>
+                                    <constraint firstItem="xIm-RU-g1q" firstAttribute="width" secondItem="SsJ-cE-FNm" secondAttribute="width" id="iUJ-Qq-iRd"/>
+                                    <constraint firstItem="uoh-MY-rk6" firstAttribute="top" secondItem="xIm-RU-g1q" secondAttribute="bottom" id="twa-iJ-dfT"/>
+                                    <constraint firstItem="xIm-RU-g1q" firstAttribute="centerX" secondItem="SsJ-cE-FNm" secondAttribute="centerX" id="vWO-8O-YSw"/>
+                                    <constraint firstItem="uoh-MY-rk6" firstAttribute="width" secondItem="SsJ-cE-FNm" secondAttribute="width" id="yxN-Bv-WMM"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.093164794147014618" green="0.2194344699382782" blue="0.60352116823196411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="SsJ-cE-FNm" firstAttribute="centerX" secondItem="Mmi-C3-EbX" secondAttribute="centerX" id="0n5-0b-weT"/>
+                            <constraint firstItem="ylS-rs-1RY" firstAttribute="height" secondItem="SsJ-cE-FNm" secondAttribute="height" multiplier="0.5" id="DXV-60-ZEu"/>
+                            <constraint firstItem="ylS-rs-1RY" firstAttribute="width" secondItem="Mmi-C3-EbX" secondAttribute="width" id="HhN-M9-xNI"/>
+                            <constraint firstItem="T9d-Pg-ck3" firstAttribute="top" secondItem="SsJ-cE-FNm" secondAttribute="bottom" constant="8" symbolic="YES" id="KPH-ox-0EX"/>
+                            <constraint firstItem="ylS-rs-1RY" firstAttribute="width" secondItem="SsJ-cE-FNm" secondAttribute="height" multiplier="15:8" id="QMj-qN-wzX"/>
+                            <constraint firstItem="SsJ-cE-FNm" firstAttribute="top" secondItem="ylS-rs-1RY" secondAttribute="bottom" constant="8" symbolic="YES" id="TqN-lr-r3w"/>
+                            <constraint firstItem="ylS-rs-1RY" firstAttribute="top" secondItem="pUP-DI-mr9" secondAttribute="bottom" constant="8" symbolic="YES" id="mU7-fY-dx2"/>
+                            <constraint firstItem="ylS-rs-1RY" firstAttribute="centerX" secondItem="Mmi-C3-EbX" secondAttribute="centerX" id="mcp-QF-Gme"/>
+                            <constraint firstItem="SsJ-cE-FNm" firstAttribute="width" secondItem="Mmi-C3-EbX" secondAttribute="width" id="xhI-ff-dUt"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="QMj-qN-wzX"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="jrQ-8a-qwW"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="contentPanel" destination="SsJ-cE-FNm" id="Ibe-TH-j8g"/>
+                        <outlet property="loadButton" destination="K1X-ng-bcE" id="8Ap-rE-T3M"/>
+                        <outlet property="startButton" destination="ruk-KC-HTm" id="OMq-dc-mEx"/>
+                        <outlet property="titleLabel" destination="UH8-Sc-bqT" id="oZ7-n3-U1L"/>
+                        <outlet property="titlePanel" destination="ylS-rs-1RY" id="bgC-Bv-pz2"/>
+                        <segue destination="m8D-VV-cYc" kind="custom" identifier="newGame" customClass="ReplaceSegue" id="ijh-d7-RyY"/>
+                        <segue destination="BYZ-38-t0r" kind="custom" identifier="loadGame" customClass="ReplaceSegue" id="5Fs-fc-33Y"/>
+                        <segue destination="A56-XN-4Dl" kind="custom" identifier="loadBetween" customClass="ReplaceSegue" id="Izn-QN-Bef"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aoV-Ga-wv3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="267" y="255"/>
         </scene>
         <!--Character Creator View Controller-->
         <scene sceneID="VUJ-2A-02x">
@@ -793,15 +907,16 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="m8D-VV-cYc" kind="relationship" relationship="rootViewController" id="5Av-nA-vGL"/>
+                        <segue destination="8D6-NM-k5o" kind="relationship" relationship="rootViewController" id="ljk-UJ-0yY"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2hO-KI-vvp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137" y="271"/>
+            <point key="canvasLocation" x="-285" y="271"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bRn-3v-Bao"/>
+        <segue reference="Izn-QN-Bef"/>
+        <segue reference="Sx7-4U-XOK"/>
     </inferredMetricsTieBreakers>
 </document>

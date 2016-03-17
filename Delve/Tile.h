@@ -43,6 +43,10 @@
 
 -(BOOL) validPlacementSpot;
 
+#pragma mark saving and loading
+-(void)saveWithX:(int)x andY:(int)y;
+-(id)initWithX:(int)x andY:(int)y;
+
 #pragma mark item info
 @property TreasureType treasureType;
 @property (strong, nonatomic) Item *treasure;

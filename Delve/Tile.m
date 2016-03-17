@@ -7,6 +7,7 @@
 //
 
 #import "Tile.h"
+#import "Item.h"
 
 @interface Tile()
 
@@ -20,21 +21,62 @@
 
 @implementation Tile
 
+-(void)saveWithX:(int)x andY:(int)y
+{
+//	NSArray *loadArray = [[NSUserDefaults standardUserDefaults] arrayForKey:[NSString stringWithFormat:@"tile %i-%i", x, y]];
+	NSMutableArray *saveArray = [NSMutableArray new];
+	[saveArray addObject:self.type];
+	[saveArray addObject:@(self.treasureType)];
+	if (self.treasureType != TreasureTypeNone)
+	{
+		[saveArray addObject:self.treasure.name];
+		[saveArray addObject:@(self.treasure.type)];
+		[saveArray addObject:@(self.treasure.number)];
+	}
+	
+	[[NSUserDefaults standardUserDefaults] setObject:saveArray forKey:[NSString stringWithFormat:@"tile %i-%i", x, y]];
+}
+-(id)initWithX:(int)x andY:(int)y
+{
+	if (self = [super init])
+	{
+		NSArray *loadArray = [[NSUserDefaults standardUserDefaults] arrayForKey:[NSString stringWithFormat:@"tile %i-%i", x, y]];
+		_type = loadArray[0];
+		_treasureType = ((NSNumber *)loadArray[1]).intValue;
+		if (_treasureType != TreasureTypeNone)
+		{
+			NSString *name = loadArray[2];
+			ItemType type = ((NSNumber *)loadArray[3]).intValue;
+			int number = ((NSNumber *)loadArray[4]).intValue;
+			_treasure = [[Item alloc] initWithName:name andType:type];
+			_treasure.number = number;
+		}
+		
+		[self miscInit];
+	}
+	return self;
+}
+
 -(id)initWithType:(NSString *)type
 {
 	if (self = [super init])
 	{
 		_type = type;
-		_inhabitant = nil;
-		_visible = NO;
-		_discovered = NO;
-		_aoeTargeters = [NSMutableSet new];
-		_targetLevel = TargetLevelOutOfRange;
 		_treasureType = TreasureTypeNone;
 		_treasure = nil;
-		_valuesComputed = false;
+		[self miscInit];
 	}
 	return self;
+}
+
+-(void)miscInit
+{
+	self.inhabitant = nil;
+	self.visible = NO;
+	self.discovered = NO;
+	self.aoeTargeters = [NSMutableSet new];
+	self.targetLevel = TargetLevelOutOfRange;
+	self.valuesComputed = false;
 }
 
 #pragma mark: preload values
