@@ -26,6 +26,7 @@
 -(void)floatLabelsOn:(NSArray *)creatures withString:(NSArray *)strings andColor:(UIColor *)color withBlock:(void (^)(void))block;
 -(void)countdownWarningWithBlock:(void (^)(void))block;
 -(void)presentRepeatPrompt;
+-(void)defeat:(NSString *)message;
 
 @end
 

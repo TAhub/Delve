@@ -128,8 +128,11 @@
 	
 	if (self.player.dead)
 	{
-		//TODO: you died! you lose
-		NSLog(@"DEFEAT!");
+		//you died! you lose
+		
+		//TODO: maybe keep track of the last thing that hit the player, so you can know WHAT killed you?
+		
+		[self.delegate defeat:@"You died!"];
 		return;
 	}
 	
@@ -153,8 +156,8 @@
 			self.countdown -= 1;
 			if (self.countdown == 0)
 			{
-				//TODO: everything explodes! you lose
-				NSLog(@"BOOM! DEFEAT!");
+				//everything explodes! you lose
+				[self.delegate defeat:@"You didn't get out in time, and were cleansed!"];
 				return;
 			}
 			if (self.overtime)

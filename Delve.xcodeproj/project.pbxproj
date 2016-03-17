@@ -16,6 +16,8 @@
 		E442C8221C8FA8050048DD95 /* CharacterServices.m in Sources */ = {isa = PBXBuildFile; fileRef = E442C8211C8FA8050048DD95 /* CharacterServices.m */; };
 		E44A6FCC1C98F8B20015852C /* AIs.plist in Resources */ = {isa = PBXBuildFile; fileRef = E44A6FCB1C98F8B20015852C /* AIs.plist */; };
 		E44A6FCF1C9B4D970015852C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44A6FCE1C9B4D970015852C /* MainViewController.m */; };
+		E44A6FD21C9B63430015852C /* DefeatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44A6FD11C9B63430015852C /* DefeatViewController.m */; };
+		E44A6FD51C9B66F90015852C /* BlueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44A6FD41C9B66F90015852C /* BlueViewController.m */; };
 		E459C6881C7AB2E800422B0A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C6871C7AB2E800422B0A /* main.m */; };
 		E459C68B1C7AB2E800422B0A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E459C68A1C7AB2E800422B0A /* AppDelegate.m */; };
 		E459C6911C7AB2E800422B0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E459C68F1C7AB2E800422B0A /* Main.storyboard */; };
@@ -58,6 +60,10 @@
 		E44A6FCB1C98F8B20015852C /* AIs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AIs.plist; sourceTree = "<group>"; };
 		E44A6FCD1C9B4D970015852C /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		E44A6FCE1C9B4D970015852C /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		E44A6FD01C9B63430015852C /* DefeatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefeatViewController.h; sourceTree = "<group>"; };
+		E44A6FD11C9B63430015852C /* DefeatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefeatViewController.m; sourceTree = "<group>"; };
+		E44A6FD31C9B66F90015852C /* BlueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueViewController.h; sourceTree = "<group>"; };
+		E44A6FD41C9B66F90015852C /* BlueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueViewController.m; sourceTree = "<group>"; };
 		E459C6831C7AB2E800422B0A /* Delve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Delve.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E459C6871C7AB2E800422B0A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E459C6891C7AB2E800422B0A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -205,6 +211,8 @@
 		E459C69F1C7AB31B00422B0A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E44A6FD31C9B66F90015852C /* BlueViewController.h */,
+				E44A6FD41C9B66F90015852C /* BlueViewController.m */,
 				E44A6FCD1C9B4D970015852C /* MainViewController.h */,
 				E44A6FCE1C9B4D970015852C /* MainViewController.m */,
 				E442C8201C8FA7FA0048DD95 /* CharacterServices.h */,
@@ -215,6 +223,8 @@
 				E46238271C875F28009C9FC4 /* FormattingViewController.m */,
 				E459C6B81C7BD25F00422B0A /* GameViewController.h */,
 				E459C6B91C7BD25F00422B0A /* GameViewController.m */,
+				E44A6FD01C9B63430015852C /* DefeatViewController.h */,
+				E44A6FD11C9B63430015852C /* DefeatViewController.m */,
 				E46238291C87657D009C9FC4 /* ChangeMapViewController.h */,
 				E462382A1C87657D009C9FC4 /* ChangeMapViewController.m */,
 			);
@@ -314,6 +324,8 @@
 				E462382B1C87657D009C9FC4 /* ChangeMapViewController.m in Sources */,
 				E459C6AE1C7BB36C00422B0A /* Map.m in Sources */,
 				E46238211C83F525009C9FC4 /* ItemTableViewCell.m in Sources */,
+				E44A6FD51C9B66F90015852C /* BlueViewController.m in Sources */,
+				E44A6FD21C9B63430015852C /* DefeatViewController.m in Sources */,
 				E44A6FCF1C9B4D970015852C /* MainViewController.m in Sources */,
 				E442C81F1C8FA3730048DD95 /* CharacterCreatorViewController.m in Sources */,
 				E459C6881C7AB2E800422B0A /* main.m in Sources */,

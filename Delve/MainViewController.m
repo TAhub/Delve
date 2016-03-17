@@ -34,6 +34,9 @@
 	self.titleLabel.textColor = loadColorFromName(@"ui text");
 	[self formatPanel:self.titlePanel];
 	[self formatPanel:self.contentPanel];
+	
+	if (self.phase == nil)
+		[self.loadButton setTitleColor:loadColorFromName(@"ui text grey") forState:UIControlStateNormal];
 }
 
 - (IBAction)startButtonPressed

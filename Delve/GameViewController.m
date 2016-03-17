@@ -16,6 +16,7 @@
 #import "ItemTableViewCell.h"
 #import "ChangeMapViewController.h"
 #import "CharacterServices.h"
+#import "DefeatViewController.h"
 
 @interface GameViewController () <MapViewDelegate, MapDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -81,6 +82,8 @@
 
 @property (strong, nonatomic) NSString *lastAttack;
 @property (weak, nonatomic) Creature *lastTarget;
+
+@property (strong, nonatomic) NSString *defeatMessage;
 
 @end
 
@@ -1468,13 +1471,32 @@
 	}];
 }
 
+-(void)defeat:(NSString *)message
+{
+	//null the save
+	[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"game phase"];
+	
+	//go to the defeat screen
+	self.defeatMessage = message;
+	[self performSegueWithIdentifier:@"defeat" sender:self];
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 	//make everything invisible
 	self.view.hidden = true;
 	
-	ChangeMapViewController *change = segue.destinationViewController;
-	[change loadMap:self.map];
+	if ([segue.identifier isEqualToString:@"defeat"])
+	{
+		DefeatViewController *dvc = segue.destinationViewController;
+		dvc.creature = self.map.player;
+		dvc.message = self.defeatMessage;
+	}
+	else if ([segue.identifier isEqualToString:@"changeMap"])
+	{
+		ChangeMapViewController *change = segue.destinationViewController;
+		[change loadMap:self.map];
+	}
 }
 
 #pragma mark table view delegate and datasource
