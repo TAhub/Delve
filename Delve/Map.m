@@ -83,7 +83,6 @@
 		Creature *cr = self.creatures[self.personOn];
 		if (cr.extraAction > 0)
 		{
-			cr.extraAction -= 1;
 			[cr startTurn];
 			if (cr.good)
 				[self.delegate presentRepeatPrompt];

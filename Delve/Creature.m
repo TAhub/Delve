@@ -988,7 +988,7 @@
 		int counterPower = loadValueNumber(@"Attacks", attackType, @"raise counter").intValue;
 		counterPower = (counterPower * power) / 100;
 		self.counterBoostedStrength = counterPower;
-		self.counterBoosted = CREATURE_STUNLENGTH;
+		self.counterBoosted = CREATURE_COUNTERBOOSTLENGTH;
 		[self.map.delegate updateCreature:self];
 	}
 	if (loadValueBool(@"Attacks", attackType, @"stealth"))
@@ -1107,70 +1107,6 @@
 		//TODO: awake ais who spend too many rounds offscreen (this should probably be an AI variable) should go asleep again
 	}
 	
-	
-	if (self.forceField > 0)
-	{
-		if (self.forceFieldNoDegrade > 0)
-			self.forceFieldNoDegrade -= 1;
-		else
-		{
-			if (self.forceField <= CREATURE_FORCEFIELDDECAY)
-				self.forceField = 0;
-			else
-				self.forceField /= CREATURE_FORCEFIELDDECAY;
-			[self.map.delegate updateCreature:self];
-		}
-	}
-	
-	//reduce all cooldowns
-	for (NSString *attack in self.cooldowns.allKeys)
-	{
-		NSNumber *cooldown = self.cooldowns[attack];
-		self.cooldowns[attack] = @(MAX(cooldown.intValue - 1, 0));
-	}
-	
-	if (self.stealthed > 0)
-	{
-		self.stealthed -= 1;
-		if (self.stealthed == 0)
-			[self.map.delegate updateCreature:self];
-	}
-	
-	if (self.skating > 0)
-	{
-		self.skating -= 1;
-		if (self.skating == 0)
-			[self.map.delegate updateCreature:self];
-	}
-	
-	if (self.damageBoosted > 0)
-	{
-		self.damageBoosted -= 1;
-		if (self.damageBoosted == 0)
-			[self.map.delegate updateCreature:self];
-	}
-	
-	if (self.counterBoosted > 0)
-	{
-		self.counterBoosted -= 1;
-		if (self.counterBoosted == 0)
-			[self.map.delegate updateCreature:self];
-	}
-	
-	if (self.defenseBoosted > 0)
-	{
-		self.defenseBoosted -= 1;
-		if (self.defenseBoosted == 0)
-			[self.map.delegate updateCreature:self];
-	}
-	
-	if (self.immunityBoosted > 0)
-	{
-		self.immunityBoosted -= 1;
-		if (self.immunityBoosted == 0)
-			[self.map.delegate updateCreature:self];
-	}
-	
 	if (self.stunned > 0)
 	{
 		self.stunned -= 1;
@@ -1181,6 +1117,78 @@
 	{
 		self.sleeping -= 1;
 		return false;
+	}
+	
+	
+	if (self.extraAction > 0)
+		self.extraAction -= 1;
+	else
+	{
+		//status effects don't degrade when using extra-action turns, nor do cooldowns go down
+		
+		if (self.forceField > 0)
+		{
+			if (self.forceFieldNoDegrade > 0)
+				self.forceFieldNoDegrade -= 1;
+			else
+			{
+				if (self.forceField <= CREATURE_FORCEFIELDDECAY)
+					self.forceField = 0;
+				else
+					self.forceField /= CREATURE_FORCEFIELDDECAY;
+				[self.map.delegate updateCreature:self];
+			}
+		}
+		
+		if (self.skating > 0)
+		{
+			self.skating -= 1;
+			if (self.skating == 0)
+				[self.map.delegate updateCreature:self];
+		}
+		
+		if (self.damageBoosted > 0)
+		{
+			self.damageBoosted -= 1;
+			if (self.damageBoosted == 0)
+				[self.map.delegate updateCreature:self];
+		}
+		
+		if (self.counterBoosted > 0)
+		{
+			self.counterBoosted -= 1;
+			if (self.counterBoosted == 0)
+				[self.map.delegate updateCreature:self];
+		}
+		
+		if (self.defenseBoosted > 0)
+		{
+			self.defenseBoosted -= 1;
+			if (self.defenseBoosted == 0)
+				[self.map.delegate updateCreature:self];
+		}
+		
+		if (self.immunityBoosted > 0)
+		{
+			self.immunityBoosted -= 1;
+			if (self.immunityBoosted == 0)
+				[self.map.delegate updateCreature:self];
+		}
+		
+		if (self.stealthed > 0)
+		{
+			self.stealthed -= 1;
+			if (self.stealthed == 0)
+				[self.map.delegate updateCreature:self];
+		}
+		
+	
+		//reduce all cooldowns
+		for (NSString *attack in self.cooldowns.allKeys)
+		{
+			NSNumber *cooldown = self.cooldowns[attack];
+			self.cooldowns[attack] = @(MAX(cooldown.intValue - 1, 0));
+		}
 	}
 	
 	if (self.awake)

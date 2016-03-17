@@ -87,17 +87,17 @@
 					if (self.healing > 0)
 						[desc appendFormat:@" Heals %i health.", self.healing * creature.metabolism / 100];
 					if (self.damageBuff > 0)
-						[desc appendFormat:@" Raises damage for %i actions.", self.damageBuff];
+						[desc appendFormat:@" Raises damage for %i rounds.", self.damageBuff];
 					if (self.defenseBuff > 0)
-						[desc appendFormat:@" Take less damage for %i actions.", self.defenseBuff];
+						[desc appendFormat:@" Take less damage for %i rounds.", self.defenseBuff];
 					if (self.invisibilityBuff > 0)
-						[desc appendFormat:@" Turn invisible for %i actions.", self.invisibilityBuff];
+						[desc appendFormat:@" Turn invisible for %i rounds.", self.invisibilityBuff];
 					if (self.statusImmunityBuff > 0)
-						[desc appendFormat:@" Immunity to status effects for %i actions.", self.statusImmunityBuff];
+						[desc appendFormat:@" Immunity to status effects for %i rounds.", self.statusImmunityBuff];
 					if (self.timeBuff > 0)
 						[desc appendFormat:@" Grants %i extra actions.", self.timeBuff];
 					if (self.skateBuff > 0)
-						[desc appendFormat:@" Allows the user to move twice as fast for %i actions.", self.skateBuff];
+						[desc appendFormat:@" Allows the user to move twice as fast for %i rounds.", self.skateBuff];
 				}
 				return desc;
 			}

@@ -555,7 +555,7 @@
 		<key>friendly</key> <true/>
 		<key>ammo</key> <string>crystal</string>
 		<!-- special effects -->
-		<key>raise counter</key> <integer>10</integer>
+		<key>raise counter</key> <integer>8</integer>
 		<key>hurt user</key> <integer>10</integer>
 	</dict>
 	
