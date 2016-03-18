@@ -365,10 +365,10 @@
 		else if (area > 1)
 			[properties addObject:[NSString stringWithFormat:@"%ix%i area", area, area]];
 	}
-	if (loadValueBool(@"Attacks", attack, @"power") && loadValueBool(@"Attacks", attack, @"friendly"))
-		[properties addObject:@"unavoidable"];
-	else if (!loadValueBool(@"Attacks", attack, @"dodgeable"))
+	if (!loadValueBool(@"Attacks", attack, @"dodgeable"))
 		[properties addObject:@"undodgeable"];
+	if (!loadValueBool(@"Attacks", attack, @"blockable"))
+		[properties addObject:@"unblockable"];
 	if (loadValueBool(@"Attacks", attack, @"stun"))
 		[properties addObject:@"stuns"];
 	if (loadValueBool(@"Attacks", attack, @"interrupt aoe"))
@@ -1063,7 +1063,7 @@
 				return @"DODGE";
 			}
 			
-			if (self.blocks > 0)
+			if (loadValueBool(@"Attacks", attackType, @"blockable") && self.blocks > 0)
 			{
 				self.blocks -= 1;
 				//TODO: block sound effect

@@ -439,7 +439,8 @@
 		<!-- stats -->
 		<key>damage bonus</key> <integer>63</integer>
 		<key>health</key> <integer>76</integer>
-		<key>burn resistance</key> <integer>3</integer>
+		<key>shock resistance</key> <integer>-1</integer>
+		<key>burn resistance</key> <integer>4</integer>
 		<key>metabolism</key> <integer>100</integer>
 		<!-- slots -->
 		<!-- appearance -->

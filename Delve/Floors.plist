@@ -117,6 +117,11 @@
 			</array>
 		</array>
 	</dict>
+	<!-- encounter analysis -->
+	<!-- player attack element ranking: burn > shock > smash = cut -->
+	<!-- player resistance ranking: cut > burn = shock = smash -->
+	<!-- special features: counter-attacks -->
+	<!-- ideal build: someone with energy and a little bit of cut resistance (ie shield) -->
 	
 	
 	<!-- floor 1 -->
@@ -182,6 +187,11 @@
 			</array>
 		</array>
 	</dict>
+	<!-- encounter analysis -->
+	<!-- player attack element ranking: smash > burn = shock > cut -->
+	<!-- player resistance ranking: cut > smash > burn > shock -->
+	<!-- special features: delayed attacks, ranged attacks -->
+	<!-- ideal build: probably a straightforward armored-ey warrior guy with hammer (though note everyone has one dodge!) -->
 	
 	
 	<!-- floor 2 -->
@@ -225,6 +235,7 @@
 			</array>
 		</array>
 	</dict>
+	<!-- TODO: encounter analysis -->
 	
 	
 	<!-- floor 3 -->
@@ -269,6 +280,7 @@
 			</array>
 		</array>
 	</dict>
+	<!-- TODO: encounter analysis -->
 	
 	
 	<!-- floor 4 -->
@@ -335,6 +347,11 @@
 			</array>
 		</array>
 	</dict>
+	<!-- encounter analysis -->
+	<!-- player attack element ranking: burn = shock > cut > smash -->
+	<!-- player resistance ranking: cut > burn = shock = smash -->
+	<!-- special features: counter-attacks, poison -->
+	<!-- ideal build: similar to floor 1, but burn damage is a bit worse (because the rabids are burn-resistant), and AoEs are more valuable -->
 	
 	
 	<!-- floor 5 -->
@@ -392,6 +409,7 @@
 			<!-- TODO: abominations, two or three encounters -->
 		</array>
 	</dict>
+	<!-- TODO: encounter analysis -->
 	
 	
 	<!-- floor 6 -->
@@ -449,15 +467,15 @@
 				<string>sentry</string>
 			</array>
 			<array>
-				<string>sentry bot</string>
-				<string>sentry</string>
-			</array>
-			<array>
-				<string>sentry bot</string>
-				<string>scuttler</string>
+				<string>war bot</string>
 			</array>
 		</array>
 	</dict>
+	<!-- encounter analysis -->
+	<!-- player attack element ranking: shock > smash > burn > cut -->
+	<!-- player resistance ranking: shock > cut > smash = burn -->
+	<!-- special features: ranged attacks, force-fields, position-swapping, undodgeable attacks, blocks -->
+	<!-- ideal build: probably someone with holy flash for the big crowds of robots, and maybe stealth to sneak past war bots if possible -->
 	
 	
 	<!-- floor 7 -->
@@ -496,16 +514,18 @@
 		<key>start equipment treasures</key> <integer>4</integer>
 		<key>encounters</key>
 		<array>
+			<!-- TODO: real encounters -->
 			<array>
 				<string>ruin feeder runt</string>
 			</array>
 		</array>
 	</dict>
+	<!-- TODO: encounter analysis -->
 	
 	
 	<!-- floor 8 -->
 	<!-- theme: rogue highborn expedition fortress -->
-	<!-- enemy types: some highborn with rituals, also lots of human warrior-slaves -->
+	<!-- enemy types: some highborn with rituals, also lots of human warrior-slaves; ONE person with AoEs per group max, please -->
 	<!-- color: red -->
 	<!-- TODO: real data -->
 	<key>floor 8</key>
@@ -539,11 +559,13 @@
 		<key>start equipment treasures</key> <integer>4</integer>
 		<key>encounters</key>
 		<array>
+			<!-- TODO: real encounters -->
 			<array>
 				<string>ruin feeder runt</string>
 			</array>
 		</array>
 	</dict>
+	<!-- TODO: encounter analysis -->
 	
 	
 	<!-- floor 9 -->
@@ -587,7 +609,7 @@
 			</array>
 		</array>
 	</dict>
-	
+	<!-- TODO: encounter analysis -->
 	
 </dict>
 </plist>

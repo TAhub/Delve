@@ -124,16 +124,16 @@
 			<dict> <!-- rank 1 -->
 			</dict>
 			<dict> <!-- rank 2 -->
-				<key>damage bonus</key> <integer>8</integer>
-				<key>health</key> <integer>8</integer>
+				<key>damage bonus</key> <integer>5</integer>
+				<key>health</key> <integer>5</integer>
 			</dict>
 			<dict> <!-- rank 3 -->
-				<key>damage bonus</key> <integer>8</integer>
-				<key>health</key> <integer>8</integer>
+				<key>damage bonus</key> <integer>5</integer>
+				<key>health</key> <integer>5</integer>
 			</dict>
 			<dict> <!-- rank 4 -->
-				<key>damage bonus</key> <integer>8</integer>
-				<key>health</key> <integer>8</integer>
+				<key>damage bonus</key> <integer>5</integer>
+				<key>health</key> <integer>5</integer>
 			</dict>
 		</array>
 	</dict>

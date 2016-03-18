@@ -22,6 +22,7 @@
 		<key>instant area</key> <true/>
 		<key>cooldown</key> <integer>11</integer>
 		<key>dodgeable</key> <true/>
+		<key>blockable</key> <true/>
 		<key>friendly</key> <true/>
 		<key>ammo</key> <string>crystal</string>
 		<!-- special effects -->
@@ -72,6 +73,7 @@
 		<key>range</key> <integer>1</integer>
 		<key>cooldown</key> <integer>4</integer>
 		<key>dodgeable</key> <true/>
+		<key>blockable</key> <true/>
 		<!-- special effects -->
 		<key>teleport</key> <true/>
 	</dict>
@@ -84,6 +86,7 @@
 		<key>min range</key> <integer>2</integer>
 		<key>cooldown</key> <integer>1</integer>
 		<key>dodgeable</key> <true/>
+		<key>blockable</key> <true/>
 		<!-- special effects -->
 	</dict>
 	<key>rabid bite</key>
@@ -94,6 +97,7 @@
 		<key>range</key> <integer>1</integer>
 		<key>cooldown</key> <integer>4</integer>
 		<key>dodgeable</key> <true/>
+		<key>blockable</key> <true/>
 		<!-- special effects -->
 		<key>poison</key> <integer>3</integer>
 	</dict>
@@ -108,6 +112,7 @@
 		<key>range</key> <integer>1</integer>
 		<key>cooldown</key> <integer>1</integer>
 		<key>dodgeable</key> <true/>
+		<key>blockable</key> <true/>
 		<!-- special effects -->
 	</dict>
 	<key>feint</key>
@@ -119,12 +124,13 @@
 		<key>range</key> <integer>1</integer>
 		<key>cooldown</key> <integer>4</integer>
 		<key>dodgeable</key> <true/>
+		<key>blockable</key> <true/>
 		<!-- special effects -->
 		<key>extra actions</key> <integer>1</integer>
 	</dict>
 	<key>forge iron</key>
 	<dict>
-		<key>attack effect</key> <string>slam</string>
+		<key>attack effect</key> <string>slash</string>
 		<key>description</key> <string>Strike a foe with a red-hot bar of iron from the forge.</string>
 		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>burn</string>
@@ -137,7 +143,7 @@
 	<dict>
 		<key>attack effect</key> <string>direction slash</string>
 		<key>description</key> <string>Release a little stolen holy energy from your tools, shocking a foe.</string>
-		<key>power</key> <integer>30</integer>
+		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>shock</string>
 		<key>range</key> <integer>2</integer>
 		<key>cooldown</key> <integer>15</integer>
@@ -152,6 +158,7 @@
 		<key>range</key> <integer>1</integer>
 		<key>cooldown</key> <integer>15</integer>
 		<key>dodgeable</key> <true/>
+		<key>blockable</key> <true/>
 		<!-- special effects -->
 		<key>interrupt aoe</key> <true/>
 	</dict>
@@ -174,6 +181,7 @@
 		<key>element</key> <string>smash</string>
 		<key>range</key> <integer>1</integer>
 		<key>cooldown</key> <integer>4</integer>
+		<key>blockable</key> <true/>
 		<!-- special effects -->
 		<key>interrupt aoe</key> <true/>
 	</dict>
@@ -187,6 +195,7 @@
 		<key>area</key> <integer>1</integer>
 		<key>cooldown</key> <integer>4</integer>
 		<key>dodgeable</key> <true/>
+		<key>blockable</key> <true/>
 		<!-- special effects -->
 	</dict>
 	<key>stab</key>
@@ -197,6 +206,7 @@
 		<key>element</key> <string>cut</string>
 		<key>range</key> <integer>1</integer>
 		<key>cooldown</key> <integer>1</integer>
+		<key>blockable</key> <true/>
 		<!-- special effects -->
 	</dict>
 	<key>jab</key>
@@ -208,6 +218,7 @@
 		<key>range</key> <integer>2</integer>
 		<key>min range</key> <integer>2</integer>
 		<key>cooldown</key> <integer>1</integer>
+		<key>blockable</key> <true/>
 		<!-- special effects -->
 	</dict>
 	<key>power swing</key>
@@ -231,6 +242,7 @@
 		<key>range</key> <integer>1</integer>
 		<key>cooldown</key> <integer>1</integer>
 		<key>dodgeable</key> <true/>
+		<key>blockable</key> <true/>
 		<key>ammo</key> <string>crystal</string>
 		<!-- special effects -->
 	</dict>
@@ -243,6 +255,7 @@
 		<key>range</key> <integer>1</integer>
 		<key>cooldown</key> <integer>1</integer>
 		<key>dodgeable</key> <true/>
+		<key>blockable</key> <true/>
 		<key>ammo</key> <string>crystal</string>
 		<!-- special effects -->
 	</dict>
@@ -266,6 +279,7 @@
 		<key>range</key> <integer>1</integer>
 		<key>cooldown</key> <integer>15</integer>
 		<key>dodgeable</key> <true/>
+		<key>blockable</key> <true/>
 		<!-- special effects -->
 		<key>poison</key> <integer>5</integer>
 	</dict>
@@ -283,6 +297,7 @@
 		<key>range</key> <integer>3</integer>
 		<key>cooldown</key> <integer>4</integer>
 		<key>dodgeable</key> <true/>
+		<key>blockable</key> <true/>
 		<!-- special effects -->
 	</dict>
 	<key>bow shot</key>
@@ -295,13 +310,14 @@
 		<key>min range</key> <integer>3</integer>
 		<key>cooldown</key> <integer>1</integer>
 		<key>dodgeable</key> <true/>
+		<key>blockable</key> <true/>
 		<!-- special effects -->
 	</dict>
 	<key>throwing knife</key>
 	<dict>
 		<key>attack effect</key> <string>dart</string>
 		<key>description</key> <string>Quickly throw a knife at a foe, interrupting them.</string>
-		<key>power</key> <integer>25</integer>
+		<key>power</key> <integer>20</integer>
 		<key>element</key> <string>cut</string>
 		<key>range</key> <integer>3</integer>
 		<key>cooldown</key> <integer>15</integer>
@@ -317,6 +333,7 @@
 		<key>range</key> <integer>4</integer>
 		<key>min range</key> <integer>2</integer>
 		<key>cooldown</key> <integer>1</integer>
+		<key>blockable</key> <true/>
 		<key>ammo</key> <string>crystal</string>
 		<!-- special effects -->
 	</dict>
@@ -359,12 +376,11 @@
 	<dict>
 		<key>attack effect</key> <string>explosion</string>
 		<key>description</key> <string>Use a secret ritual to poison a foe's blood directly.</string>
-		<key>power</key> <integer>20</integer>
+		<key>power</key> <integer>10</integer>
 		<key>element</key> <string>no element</string>
 		<key>range</key> <integer>3</integer>
 		<key>area</key> <integer>1</integer>
 		<key>cooldown</key> <integer>11</integer>
-		<key>friendly</key> <true/>
 		<!-- special effects -->
 		<key>poison</key> <integer>4</integer>
 	</dict>
@@ -376,6 +392,7 @@
 		<key>element</key> <string>burn</string>
 		<key>range</key> <integer>4</integer>
 		<key>cooldown</key> <integer>11</integer>
+		<key>blockable</key> <true/>
 		<!-- special effects -->
 	</dict>
 	<key>stone pillar</key>
@@ -396,7 +413,7 @@
 	<dict>
 		<key>attack effect</key> <string>jet</string>
 		<key>description</key> <string>Release a jet of flame, hitting everyone in a line.</string>
-		<key>power</key> <integer>25</integer>
+		<key>power</key> <integer>22</integer>
 		<key>element</key> <string>burn</string>
 		<key>range</key> <integer>3</integer>
 		<key>min range</key> <integer>3</integer>
@@ -419,6 +436,7 @@
 		<key>instant area</key> <true/>
 		<key>cooldown</key> <integer>1</integer>
 		<key>dodgeable</key> <true/>
+		<key>blockable</key> <true/>
 		<!-- special effects -->
 	</dict>
 	
@@ -444,12 +462,13 @@
 		<key>area</key> <integer>3</integer>
 		<key>cooldown</key> <integer>15</integer>
 		<key>dodgeable</key> <true/>
+		<key>blockable</key> <true/>
 		<!-- special effects -->
 	</dict>
 	<key>holy flash</key>
 	<dict>
 		<key>attack effect</key> <string>explosion</string>
-		<key>description</key> <string>Use a ritual to create a flash of holy light.</string>
+		<key>description</key> <string>Use a ritual to create a big flash of holy light.</string>
 		<key>power</key> <integer>15</integer>
 		<key>element</key> <string>shock</string>
 		<key>range</key> <integer>3</integer>
@@ -466,6 +485,7 @@
 		<key>range</key> <integer>4</integer>
 		<key>area</key> <integer>3</integer>
 		<key>cooldown</key> <integer>11</integer>
+		<key>blockable</key> <true/>
 		<!-- note that alchemy now has new recipies to turn steel into iron, etc, to fuel shatter -->
 		<key>ammo</key> <string>iron ingot</string>
 		<!-- special effects -->
@@ -474,7 +494,7 @@
 	<dict>
 		<key>attack effect</key> <string>slam</string>
 		<key>description</key> <string>Wind up for an incredibly powerful hammer swing that shakes the very earth.</string>
-		<key>power</key> <integer>30</integer>
+		<key>power</key> <integer>28</integer>
 		<key>element</key> <string>smash</string>
 		<key>range</key> <integer>1</integer>
 		<key>area</key> <integer>3</integer>
@@ -566,7 +586,6 @@
 		<key>description</key> <string>Use convincing arguments to make a foe briefly stop fighting.</string>
 		<key>range</key> <integer>3</integer>
 		<key>cooldown</key> <integer>15</integer>
-		<key>friendly</key> <true/>
 		<!-- special effects -->
 		<key>stun</key> <true/>
 	</dict>
@@ -577,7 +596,6 @@
 		<key>range</key> <integer>1</integer>
 		<key>area</key> <integer>1</integer>
 		<key>cooldown</key> <integer>15</integer>
-		<key>friendly</key> <true/>
 		<!-- special effects -->
 		<key>sleep</key> <true/>
 	</dict>
@@ -589,6 +607,7 @@
 		<key>element</key> <string>burn</string>
 		<key>range</key> <integer>4</integer>
 		<key>cooldown</key> <integer>11</integer>
+		<key>blockable</key> <true/>
 		<!-- special effects -->
 		<key>stun</key> <true/>
 	</dict>
@@ -598,7 +617,6 @@
 		<key>description</key> <string>Use a ritual to bend space itself, and quickly zoom to a nearby location.</string>
 		<key>range</key> <integer>4</integer>
 		<key>cooldown</key> <integer>11</integer>
-		<key>friendly</key> <true/>
 		<!-- special effects -->
 		<key>teleport</key> <true/>
 	</dict>
