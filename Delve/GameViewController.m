@@ -601,6 +601,7 @@
 					else
 						[self.map addItem:it];
 					
+					[self.map.player breakStealth];
 					[self.map saveInventory];
 					
 					[self reloadPanels];
@@ -653,7 +654,6 @@
 				
 				[self.itemTable reloadData];
 				
-				
 				[self reloadPanels];
 				__weak typeof(self) weakSelf = self;
 				[self switchToPanel:self.mainPanelCord withBlock:
@@ -689,6 +689,7 @@
 					{
 						self.map.player.hacks -= 1;
 						tile.treasureType = TreasureTypeChest;
+						[self.map.player breakStealth];
 						[self reloadPanels];
 					}
 					return;
@@ -706,6 +707,7 @@
 					tile.treasure = nil;
 					tile.treasureType = TreasureTypeNone;
 					tile.changed = true;
+					[self.map.player breakStealth];
 					[self reloadPanels];
 					[self updateTiles];
 					[tile saveWithX:self.map.player.x andY:self.map.player.y];
@@ -750,6 +752,8 @@
 						}
 					}
 					
+					[self.map.player breakStealth];
+					
 					//end turn
 					[self reloadPanels];
 					__weak typeof(self) weakSelf = self;
@@ -775,6 +779,8 @@
 				[self.map addItem:self.examinationItem];
 				
 				[self.map saveInventory];
+				
+				[self.map.player breakStealth];
 				
 				
 				tile.changed = true;

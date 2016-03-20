@@ -100,6 +100,7 @@
 -(void) equipArmor:(Item *)item;
 -(NSArray *) recipies;
 -(void) recharge;
+-(void) breakStealth;
 
 #pragma mark: item interface functions
 -(NSString *)weaponDescription:(NSString *)weapon;

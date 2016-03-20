@@ -309,6 +309,15 @@
 	self.storedAttack = nil;
 }
 
+-(void) breakStealth
+{
+	if (self.stealthed > 0)
+	{
+		self.stealthed = 0;
+		[self.map.delegate updateCreature:self];
+	}
+}
+
 -(void) recharge
 {
 	//base variables
@@ -931,11 +940,8 @@
 		} forAttack:weakSelf.storedAttack onX:weakSelf.storedAttackX andY:weakSelf.storedAttackY];
 		
 		//cancel stealth
-		if (weakSelf.stealthed > 0 && !loadValueBool(@"Attacks", weakSelf.storedAttack, @"stealth"))
-		{
-			weakSelf.stealthed = 0;
-			[weakSelf.map.delegate updateCreature:weakSelf];
-		}
+		if (!loadValueBool(@"Attacks", weakSelf.storedAttack, @"stealth"))
+			[weakSelf breakStealth];
 		
 		
 		if (tilesChanged)
