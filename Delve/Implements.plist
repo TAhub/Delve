@@ -62,6 +62,12 @@
 		<key>type</key> <string>weapon</string>
 		<key>power</key> <integer>45</integer>
 	</dict>
+	<key>abomination bash</key>
+	<dict>
+		<key>type</key> <string>weapon</string>
+		<key>power</key> <integer>15</integer>
+		<key>attack effect</key> <string>direction slam</string>
+	</dict>
 	
 	<!-- weapons -->
 	<key>rusty blade</key>

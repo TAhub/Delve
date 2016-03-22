@@ -57,6 +57,23 @@
 		<key>flee during overtime</key> <true/>
 	</dict>
 	
+	<!-- highborn AIs -->
+	<!-- highborns have pretty good all-round AIs; their wake distance, especially, is quite extreme -->
+	<key>highborn</key>
+	<dict>
+		<!-- waking self and other variables -->
+		<key>wake distance</key> <integer>10</integer>
+		<!-- pathfinding variables (remove all for immobile enemies) -->
+		<key>pathfinding radius</key> <integer>8</integer>
+		<key>do ai walk</key> <true/>
+		<!-- special abilities -->
+		<!-- attack variables -->
+		<key>can attack</key> <true/>
+		<key>can defend</key> <true/>
+		<!-- misc variables -->
+		<key>flee during overtime</key> <true/>
+	</dict>
+	
 	<!-- animal AIs -->
 	<!-- animals have pretty shitty AIs; notably they can't defend -->
 	<key>animal</key>
@@ -99,6 +116,21 @@
 		<!-- attack variables -->
 		<key>can attack</key> <true/>
 		<!-- misc variables -->
+	</dict>
+	
+	<!-- abomination AIs -->
+	<!-- abominations are like slightly smarter slimes with self-preservation instincts -->
+	<key>abomination</key>
+	<dict>
+		<!-- waking self and other variables -->
+		<key>wake distance</key> <integer>2</integer>
+		<!-- pathfinding variables (remove all for immobile enemies) -->
+		<key>do ai walk</key> <true/>
+		<!-- special abilities -->
+		<!-- attack variables -->
+		<key>can attack</key> <true/>
+		<!-- misc variables -->
+		<key>flee during overtime</key> <true/>
 	</dict>
 	
 	<!-- robots AIs -->

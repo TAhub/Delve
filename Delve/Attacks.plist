@@ -101,6 +101,28 @@
 		<!-- special effects -->
 		<key>poison</key> <integer>3</integer>
 	</dict>
+	<key>boulder toss</key>
+	<dict>
+		<key>attack effect</key> <string>slash</string> <!-- TODO: throw a big rock effect -->
+		<key>power</key> <integer>30</integer>
+		<key>element</key> <string>smash</string>
+		<key>range</key> <integer>3</integer>
+		<key>min range</key> <integer>2</integer>
+		<key>area</key> <integer>1</integer>
+		<key>cooldown</key> <integer>2</integer>
+		<key>dodgeable</key> <true/>
+		<!-- special effects -->
+	</dict>
+	<key>slime eruption</key>
+	<dict>
+		<key>attack effect</key> <string>explosion</string>
+		<key>power</key> <integer>15</integer>
+		<key>element</key> <string>smash</string>
+		<key>area</key> <integer>3</integer>
+		<key>cooldown</key> <integer>2</integer>
+		<!-- special effects -->
+		<key>poison</key> <integer>2</integer>
+	</dict>
 	
 	<!-- melee damaging attacks -->
 	<key>attack</key>

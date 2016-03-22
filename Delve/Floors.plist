@@ -274,13 +274,33 @@
 		<key>start equipment treasures</key> <integer>1</integer>
 		<key>encounters</key>
 		<array>
-			<!-- TODO: real encounters -->
 			<array>
-				<string>ruin feeder runt</string>
+				<string>eoling zealot</string>
+				<string>eoling zealot</string>
+				<string>eoling zealot</string>
+			</array>
+			<array>
+				<string>eoling zealot</string>
+				<string>eoling zealot</string>
+				<string>eoling zealot</string>
+			</array>
+			<array>
+				<string>eoling priest</string>
+				<string>sentry</string>
+				<string>sentry</string>
+			</array>
+			<array>
+				<string>eoling dancer</string>
+				<string>scuttler</string>
+				<string>scuttler</string>
 			</array>
 		</array>
 	</dict>
-	<!-- TODO: encounter analysis -->
+	<!-- encounter analysis -->
+	<!-- player attack element ranking: cut > burn = shock > smash -->
+	<!-- player resistance ranking: shock > cut = smash > burn -->
+	<!-- special features: counter-attacks, undodgeable attacks, ranged attacks, dodges, position-swapping -->
+	<!-- ideal build: someone with undodgeable cut attacks (dagger would be good) and maybe a little shock for the sentries -->
 	
 	
 	<!-- floor 4 -->
@@ -406,10 +426,25 @@
 				<string>slime</string>
 				<string>slime</string>
 			</array>
-			<!-- TODO: abominations, two or three encounters -->
+			<array>
+				<string>war abomination</string>
+				<string>abomination flinger</string>
+			</array>
+			<array>
+				<string>war abomination</string>
+				<string>war abomination</string>
+			</array>
+			<array>
+				<string>abomination flinger</string>
+				<string>abomination flinger</string>
+			</array>
 		</array>
 	</dict>
-	<!-- TODO: encounter analysis -->
+	<!-- encounter analysis -->
+	<!-- player attack element ranking: burn = cut > shock > smash -->
+	<!-- player resistance ranking: smash > shock > cut = burn -->
+	<!-- special features: counter-attacks, poison, ranged attacks -->
+	<!-- ideal build: someone who has both burn (for the slimes) and cut (for the aboms); archery could actually be pretty good here -->
 	
 	
 	<!-- floor 6 -->
@@ -559,13 +594,45 @@
 		<key>start equipment treasures</key> <integer>4</integer>
 		<key>encounters</key>
 		<array>
-			<!-- TODO: real encounters -->
 			<array>
-				<string>ruin feeder runt</string>
+				<string>highborn taskmaster</string>
+				<string>soldier slave</string>
+				<string>soldier slave</string>
+				<string>torchbearer slave</string>
+			</array>
+			<array>
+				<string>highborn taskmaster</string>
+				<string>soldier slave</string>
+				<string>torchbearer slave</string>
+				<string>torchbearer slave</string>
+			</array>
+			<array>
+				<string>highborn ritualist</string>
+				<string>soldier slave</string>
+				<string>soldier slave</string>
+				<string>soldier slave</string>
+			</array>
+			<array>
+				<string>highborn ritualist</string>
+				<string>torchbearer slave</string>
+				<string>torchbearer slave</string>
+				<string>torchbearer slave</string>
+			</array>
+			<array>
+				<string>great slime</string>
+				<string>great slime</string>
+				<string>slime</string>
+				<string>slime</string>
+				<string>slime</string>
+				<string>slime</string>
 			</array>
 		</array>
 	</dict>
-	<!-- TODO: encounter analysis -->
+	<!-- encounter analysis -->
+	<!-- player attack element ranking: smash = burn > shock > cut -->
+	<!-- player resistance ranking: burn > cut > shock > smash -->
+	<!-- special features: ranged attacks, area of effect attacks, stuns, position-swapping, undodgeable attacks, delayed attacks, counter-attacks -->
+	<!-- ideal build: probably a warrior with hammer and shield; smash AoE damage for the slaves and blocks to avoid dazzle would both be good -->
 	
 	
 	<!-- floor 9 -->

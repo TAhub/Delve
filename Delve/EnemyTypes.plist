@@ -411,5 +411,252 @@
 		</array>
 		<key>weapon</key> <string>advanced relic</string> <!-- some kind of slam attack -->
 	</dict>
+	
+	
+	<!-- eoling fanatics -->
+	<!-- eoling fanatics are a midgame enemy who all use the robot AI, since they are too fanatical to flee -->
+	<!-- they use a lot of shock damage -->
+	
+	<!-- eoling zealot -->
+	<!-- a basic fanatic; because it's an eoling, it's quite dodgy; also has good armor -->
+	<key>eoling zealot</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>eoling</string>
+		<key>ai</key> <string>robot</string>
+		<key>skills</key>
+		<array>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>armors</key>
+		<array>
+			<string>eoling armor</string>
+		</array>
+		<key>weapon</key> <string>holy baton</string>
+	</dict>
+	
+	<!-- eoling dancer -->
+	<!-- an uber-dodgy advanced fanatic; beware its dagger attacks -->
+	<key>eoling dancer</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>eoling</string>
+		<key>ai</key> <string>robot specialist</string>
+		<key>skills</key>
+		<array>
+			<string>dagger</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>stiletto</string>
+		</array>
+		<key>armors</key>
+		<array>
+			<string>temple dancer outfit</string>
+			<string></string>
+			<string>white tail banner</string>
+		</array>
+		<key>weapon</key> <string>shortsword</string>
+	</dict>
+	
+	<!-- eoling priest -->
+	<!-- the eoling ranged attacker -->
+	<key>eoling priest</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>eoling</string>
+		<key>ai</key> <string>robot</string>
+		<key>skills</key>
+		<array>
+			<string>holy soldier</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>holy thunder</string>
+		</array>
+		<key>armors</key>
+		<array>
+			<string>eoling robe</string>
+			<string>tiara</string>
+		</array>
+		<key>weapon</key> <string>mace</string>
+	</dict>
+	
+	<!-- highborn slaves -->
+	<!-- highborn slaves use the bandit AI and are the shitty filler enemies -->
+	<!-- of course, on this floor, even the shitty filler enemies are dangerous -->
+	
+	<!-- soldier slave -->
+	<!-- soldier slaves are the basic slave, a spear-wielding melee tank -->
+	<key>soldier slave</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>human</string>
+		<key>ai</key> <string>bandit specialist</string>
+		<key>skills</key>
+		<array>
+			<string>spear</string>
+			<string>tough monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>pike</string>
+		</array>
+		<key>armors</key>
+		<array>
+			<string>chestplate</string>
+			<string>winged helmet</string>
+			<string>reinforced boots</string>
+		</array>
+		<key>weapon</key> <string>shortsword</string>
+	</dict>
+	
+	<!-- torchbearer slave -->
+	<!-- torchbearer slaves are a more advanced slave, a tough finesse-fighting slave with a torch -->
+	<key>torchbearer slave</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>human</string>
+		<key>ai</key> <string>bandit</string>
+		<key>skills</key>
+		<array>
+			<string>finesse</string>
+			<string>tough monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>armors</key>
+		<array>
+			<string>chestplate</string>
+			<string>riveted helmet</string>
+			<string>steel-toed boots</string>
+		</array>
+		<key>weapon</key> <string>torch</string>
+	</dict>
+	
+	
+	<!-- highborn enemy types -->
+	<!-- highborn enemy types have the highborn AI, and powerful rituals -->
+	
+	<!-- highborn ritualist -->
+	<!-- a dangerous offensive ritualist -->
+	<key>highborn ritualist</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>highborn</string>
+		<key>ai</key> <string>highborn</string>
+		<key>skills</key>
+		<array>
+			<string>energy</string>
+			<string>mass</string>
+			<string>tough monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>ether dynamics</string>
+			<string>crumbling rod</string>
+		</array>
+		<key>armors</key>
+		<array>
+			<string>noble clothes</string>
+			<string>gold tiara</string>
+		</array>
+		<key>weapon</key> <string>flanged mace</string>
+	</dict>
+	
+	<!-- highborn taskmaster -->
+	<!-- a slightly more fighty highborn who uses more self-supportive rituals; beware their dazzle attack! -->
+	<key>highbord taskmaster</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>highborn</string>
+		<key>ai</key> <string>highborn</string>
+		<key>skills</key>
+		<array>
+			<string>time</string>
+			<string>wisdom</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>pocket watch</string>
+		</array>
+		<key>armors</key>
+		<array>
+			<string>hero armor</string>
+			<string>goggles</string>
+		</array>
+		<key>weapon</key> <string>masterwork sword</string>
+	</dict>
+	
+	
+	<!-- abomnations -->
+	<!-- abominations are stupid power-enemies -->
+	
+	<!-- abomination flinger -->
+	<!-- a dangerous ranged enemy -->
+	<key>abomination flinger</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>abomination</string>
+		<key>ai</key> <string>abomination</string>
+		<key>skills</key>
+		<array>
+			<string>flinger skill</string>
+			<string>tough monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>weapon</key> <string>abomination bash</string>
+	</dict>
+	
+	<!-- war abomination -->
+	<!-- a slightly tougher, melee abomination -->
+	<key>war abomination</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>abomination</string>
+		<key>ai</key> <string>abomination</string>
+		<key>skills</key>
+		<array>
+			<string>abomination skill</string>
+			<string>tough monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<!-- war abomination armor (probably gives a bit of resists) -->
+		<key>weapon</key> <string>abomination bash</string>
+	</dict>
 </dict>
 </plist>

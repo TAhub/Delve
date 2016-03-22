@@ -521,5 +521,36 @@
 			</dict>
 		</array>
 	</dict>
+	
+	<!-- abomination (medium) -->
+	<!-- abominations are a damaging enemy type that is weak to cut but resistant against smash -->
+	<key>abomination</key>
+	<dict>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>155</integer>
+		<key>health</key> <integer>95</integer>
+		<key>smash resistance</key> <integer>2</integer>
+		<key>cut resistance</key> <integer>-3</integer>
+		<key>metabolism</key> <integer>100</integer>
+		<!-- slots -->
+		<!-- appearance -->
+		<key>sprite</key> <string>abomination</string> <!-- TODO: they should look like the shapeshifter from gravity falls I guess; spindly and gross -->
+		<key>colorations</key>
+		<array>
+			<dict>
+				<key>skin</key> <string>pale skin</string>
+				<key>hair</key> <string>brown skin</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>pale skin</string>
+				<key>hair</key> <string>grey skin</string>
+			</dict>
+		</array>
+		<key>hair styles</key> <integer>0</integer>
+		<key>armor slot y offsets</key>
+		<array>
+			<integer>0</integer>
+		</array>
+	</dict>
 </dict>
 </plist>
