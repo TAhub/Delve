@@ -864,9 +864,14 @@
 	NSMutableArray *labels = [NSMutableArray new];
 	NSMutableArray *creatures = [NSMutableArray new];
 	
+	//get the suffix (for attacks)
+	NSString *suffix = nil;
+	if ([self.storedAttack isEqualToString:@"attack"])
+		suffix = implement.length == 0 ? @"unarmed" : [NSString stringWithFormat:@"with %@", implement];
+	
 	//use the map's delegate stuff to do an attack anim
 	__weak typeof(self) weakSelf = self;
-	[self.map.delegate attackAnimation:self.storedAttack withElement:element andAttackEffect:attackEffect fromPerson:self targetX:self.storedAttackX andY:self.storedAttackY withEffectBlock:
+	[self.map.delegate attackAnimation:self.storedAttack withElement:element suffix:suffix andAttackEffect:attackEffect fromPerson:self targetX:self.storedAttackX andY:self.storedAttackY withEffectBlock:
 	^(void (^finalBlock)(void))
 	{
 		__block Creature *counterAttacker = nil;
@@ -971,7 +976,7 @@
 				
 				NSLog(@"Counter element = %@", element);
 				
-				[weakSelf.map.delegate attackAnimation:virtualCounter withElement:element andAttackEffect:attackEffect fromPerson:counterAttacker targetX:weakSelf.x andY:weakSelf.y withEffectBlock:
+				[weakSelf.map.delegate attackAnimation:virtualCounter withElement:element suffix:nil andAttackEffect:attackEffect fromPerson:counterAttacker targetX:weakSelf.x andY:weakSelf.y withEffectBlock:
 				^(void (^nevermind)(void))
 				{
 					weakSelf.health = MAX(0, weakSelf.health - counterAttacker.counter);

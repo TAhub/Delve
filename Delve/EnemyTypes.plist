@@ -220,7 +220,7 @@
 			<string>filler monster skill</string>
 		</array>
 		<!-- equipment -->
-		<key>weapon</key> <string>strong teeth</string>
+		<key>weapon</key> <string>teeth</string>
 	</dict>
 	
 	<!-- ruin feeder -->

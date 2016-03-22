@@ -1176,7 +1176,7 @@
 	}];
 }
 
--(void)attackAnimation:(NSString *)name withElement:(NSString *)element andAttackEffect:(NSString *)attackEffect fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void (^)(void)))block andEndBlock:(void (^)(void))endBlock
+-(void)attackAnimation:(NSString *)name withElement:(NSString *)element suffix:(NSString *)suffix andAttackEffect:(NSString *)attackEffect fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void (^)(void)))block andEndBlock:(void (^)(void))endBlock
 {
 	//attack variables to relay to
 	BOOL delayed = loadValueBool(@"Attacks", name, @"area");
@@ -1184,7 +1184,7 @@
 	
 	//this function has all the gameplay code for the animation
 	__weak typeof(self) weakSelf = self;
-	[self attackAnimationInner:name withElement:element andAttackEffect:attackEffect fromPerson:creature targetX:x andY:y delayed:delayed withEffectBlock:
+	[self attackAnimationInner:name withElement:element suffix:suffix andAttackEffect:attackEffect fromPerson:creature targetX:x andY:y delayed:delayed withEffectBlock:
 	^()
 	{
 		block(^(){
@@ -1216,7 +1216,7 @@
 	}];
 }
 
--(void)attackAnimationInner:(NSString *)name withElement:(NSString *)element andAttackEffect:(NSString *)attackEffect fromPerson:(Creature *)creature targetX:(int)x andY:(int)y delayed:(BOOL)delayed withEffectBlock:(void (^)(void))block
+-(void)attackAnimationInner:(NSString *)name withElement:(NSString *)element suffix:(NSString *)suffix andAttackEffect:(NSString *)attackEffect fromPerson:(Creature *)creature targetX:(int)x andY:(int)y delayed:(BOOL)delayed withEffectBlock:(void (^)(void))block
 {
 	//TODO: I actually kinda liked the effect the background color changing thing had
 	//maybe it can be added back, as a rider to the panel switch?
@@ -1296,7 +1296,10 @@
 	
 	//announce the attack
 	__weak typeof(self) weakSelf = self;
-	self.attackNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@!", creature.good ? @"Player" : creature.name, delayed ? @"unleashed" : @"used", name];
+	if (suffix != nil)
+		self.attackNameLabel.text = [NSString stringWithFormat:@"%@ attacked %@!", creature.good ? @"Player" : creature.name, suffix];
+	else
+		self.attackNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@!", creature.good ? @"Player" : creature.name, delayed ? @"unleashed" : @"used", name];
 	self.attackNameLabel.textColor = loadColorFromName(@"ui text");
 	[self switchToPanel:self.attackNamePanelCord withBlock:
 	^()
