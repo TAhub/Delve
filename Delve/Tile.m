@@ -157,7 +157,9 @@
 
 -(UIColor *) color
 {
-	return loadColorFromName(loadValueString(@"Tiles", self.type, @"color"));
+	if (loadValueBool(@"Tiles", self.type, @"color"))
+		return loadColorFromName(loadValueString(@"Tiles", self.type, @"color"));
+	return nil;
 }
 
 @end

@@ -154,9 +154,15 @@
 
 -(void)preloadTileImageFor:(Tile *)tile
 {
+	//get the floor number's default color
+	UIColor *defColor = loadColorFromName(self.map.defaultColor);
+	
 	if (tile.type != nil && tile.spriteName != nil && self.preloadedTileImages[tile.type] == nil)
 	{
-		UIImage *tileSprite = colorImage([UIImage imageNamed:tile.spriteName], tile.color);
+		UIColor *color = tile.color;
+		if (color == nil)
+			color = defColor;
+		UIImage *tileSprite = colorImage([UIImage imageNamed:tile.spriteName], color);
 		self.preloadedTileImages[tile.type] = tileSprite;
 	}
 }

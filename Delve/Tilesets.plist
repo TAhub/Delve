@@ -23,17 +23,81 @@
 		</array>
 	</dict>
 	
-    <key>red</key>
+    <key>cave</key>
 	<dict>
-		<key>wall</key> <string>wall red</string>
-		<key>floor</key> <string>floor red</string>
-		<key>locked door</key> <string>locked door red</string>
-		<key>door floor</key> <string>door floor red</string>
-		<key>natural wall</key> <string>natural wall red</string>
-		<key>stairs</key> <string>stairs red</string>
+		<key>wall</key> <string>unnatural wall</string>
+		<key>floor</key> <string>unnatural floor</string>
+		<key>locked door</key> <string>locked door</string>
+		<key>door floor</key> <string>door floor</string>
+		<key>natural wall</key> <string>natural wall</string>
+		<key>stairs</key> <string>stairs</string>
 		<key>doodads</key>
 		<array>
-			<string>sample doodad</string>
+			<string>stalag 1</string>
+			<string>stalag 2</string>
+		</array>
+	</dict>
+	
+    <key>bandit</key>
+	<dict>
+		<key>wall</key> <string>wall</string>
+		<key>floor</key> <string>floor</string>
+		<key>locked door</key> <string>locked door</string>
+		<key>door floor</key> <string>door floor</string>
+		<key>natural wall</key> <string>natural wall</string>
+		<key>stairs</key> <string>stairs</string>
+		<key>doodads</key>
+		<array>
+			<string>chair</string>
+			<string>chair</string>
+			<string>firepit</string>
+		</array>
+	</dict>
+	
+    <key>default</key>
+	<dict>
+		<key>wall</key> <string>wall</string>
+		<key>floor</key> <string>floor</string>
+		<key>locked door</key> <string>locked door</string>
+		<key>door floor</key> <string>door floor</string>
+		<key>natural wall</key> <string>natural wall</string>
+		<key>stairs</key> <string>stairs</string>
+		<key>doodads</key>
+		<array>
+			<string>stalag 1</string>
+			<string>stalag 2</string>
+		</array>
+	</dict>
+	
+    <key>habitat</key>
+	<dict>
+		<key>wall</key> <string>wall</string>
+		<key>floor</key> <string>floor</string>
+		<key>locked door</key> <string>locked door</string>
+		<key>door floor</key> <string>door floor</string>
+		<key>natural wall</key> <string>natural wall</string>
+		<key>stairs</key> <string>stairs</string>
+		<key>doodads</key>
+		<array>
+			<string>stalag 1</string>
+			<string>stalag 2</string>
+			<string>console</string>
+		</array>
+	</dict>
+	
+    <key>ship</key>
+	<dict>
+		<key>wall</key> <string>rivet wall</string>
+		<key>floor</key> <string>rivet floor</string>
+		<key>locked door</key> <string>locked door</string>
+		<key>door floor</key> <string>door floor</string>
+		<key>natural wall</key> <string>natural wall</string>
+		<key>stairs</key> <string>stairs</string>
+		<key>doodads</key>
+		<array>
+			<string>console</string>
+			<string>console</string>
+			<string>chair</string>
 		</array>
 	</dict>
 </dict>

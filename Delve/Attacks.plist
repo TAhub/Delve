@@ -91,7 +91,7 @@
 	</dict>
 	<key>rabid bite</key>
 	<dict>
-		<key>attack effect</key> <string>slash</string> <!-- TODO: the same effect as the teeth implement -->
+		<key>attack effect</key> <string>bite</string>
 		<key>power</key> <integer>25</integer>
 		<key>element</key> <string>cut</string>
 		<key>range</key> <integer>1</integer>
@@ -103,7 +103,7 @@
 	</dict>
 	<key>boulder toss</key>
 	<dict>
-		<key>attack effect</key> <string>slash</string> <!-- TODO: throw a big rock effect -->
+		<key>attack effect</key> <string>boulder toss</string>
 		<key>power</key> <integer>30</integer>
 		<key>element</key> <string>smash</string>
 		<key>range</key> <integer>3</integer>

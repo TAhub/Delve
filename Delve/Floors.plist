@@ -11,8 +11,10 @@
 <dict>
 	<key>template</key>
 	<dict>
-		<!-- map generation data -->
+		<!-- appearance data -->
 		<key>tileset</key> <string>template</string>
+		<key>default color</key> <string>template</string>
+		<!-- map generation data -->
 		<key>room size</key> <integer>5</integer>
 		<key>rows</key> <integer>10</integer>
 		<key>columns</key> <integer>6</integer>
@@ -63,8 +65,10 @@
 	<!-- color: blue -->
 	<key>floor 0</key>
 	<dict>
+		<!-- appearance data -->
+		<key>tileset</key> <string>default</string>
+		<key>default color</key> <string>tile stone blue</string>
 		<!-- map generation data -->
-		<key>tileset</key> <string>red</string>
 		<key>room size</key> <integer>5</integer>
 		<key>rows</key> <integer>8</integer>
 		<key>columns</key> <integer>5</integer>
@@ -130,8 +134,10 @@
 	<!-- color: blue -->
 	<key>floor 1</key>
 	<dict>
+		<!-- appearance data -->
+		<key>tileset</key> <string>bandit</string>
+		<key>default color</key> <string>tile stone blue</string>
 		<!-- map generation data -->
-		<key>tileset</key> <string>red</string>
 		<key>room size</key> <integer>5</integer>
 		<key>rows</key> <integer>10</integer>
 		<key>columns</key> <integer>6</integer>
@@ -201,8 +207,10 @@
 	<!-- TODO: real data -->
 	<key>floor 2</key>
 	<dict>
+		<!-- appearance data -->
+		<key>tileset</key> <string>habitat</string>
+		<key>default color</key> <string>tile stone faded blue</string>
 		<!-- map generation data -->
-		<key>tileset</key> <string>red</string>
 		<key>room size</key> <integer>5</integer>
 		<key>rows</key> <integer>10</integer>
 		<key>columns</key> <integer>6</integer>
@@ -245,8 +253,10 @@
 	<!-- color: blue-grey -->
 	<key>floor 3</key>
 	<dict>
+		<!-- appearance data -->
+		<key>tileset</key> <string>habitat</string>
+		<key>default color</key> <string>tile stone faded blue</string>
 		<!-- map generation data -->
-		<key>tileset</key> <string>red</string>
 		<key>room size</key> <integer>3</integer>
 		<key>rows</key> <integer>11</integer>
 		<key>columns</key> <integer>10</integer>
@@ -310,8 +320,10 @@
 	<!-- TODO: real data -->
 	<key>floor 4</key>
 	<dict>
+		<!-- appearance data -->
+		<key>tileset</key> <string>default</string> <!-- TODO: forest tileset -->
+		<key>default color</key> <string>tile stone grey</string>
 		<!-- map generation data -->
-		<key>tileset</key> <string>red</string>
 		<key>room size</key> <integer>5</integer>
 		<key>rows</key> <integer>10</integer>
 		<key>columns</key> <integer>6</integer>
@@ -381,8 +393,10 @@
 	<!-- TODO: real data -->
 	<key>floor 5</key>
 	<dict>
+		<!-- appearance data -->
+		<key>tileset</key> <string>default</string> <!-- TODO: lab tileset -->
+		<key>default color</key> <string>tile stone grey</string>
 		<!-- map generation data -->
-		<key>tileset</key> <string>red</string>
 		<key>room size</key> <integer>5</integer>
 		<key>rows</key> <integer>10</integer>
 		<key>columns</key> <integer>6</integer>
@@ -454,8 +468,10 @@
 	<!-- color: red-grey -->
 	<key>floor 6</key>
 	<dict>
+		<!-- appearance data -->
+		<key>tileset</key> <string>ship</string>
+		<key>default color</key> <string>tile stone faded red</string>
 		<!-- map generation data -->
-		<key>tileset</key> <string>red</string>
 		<key>room size</key> <integer>3</integer>
 		<key>rows</key> <integer>11</integer>
 		<key>columns</key> <integer>3</integer>
@@ -517,36 +533,37 @@
 	<!-- theme: full cave (do room generation with natural walls too) -->
 	<!-- enemy types: raider expedition force (remember to give them raider body armor!) -->
 	<!-- color: red-grey -->
-	<!-- TODO: real data -->
 	<key>floor 7</key>
 	<dict>
+		<!-- appearance data -->
+		<key>tileset</key> <string>cave</string>
+		<key>default color</key> <string>tile stone faded red</string>
 		<!-- map generation data -->
-		<key>tileset</key> <string>red</string>
 		<key>room size</key> <integer>5</integer>
-		<key>rows</key> <integer>10</integer>
+		<key>rows</key> <integer>11</integer>
 		<key>columns</key> <integer>6</integer>
 		<key>reject undiscovered doors chance</key> <integer>60</integer>
 		<key>max door offset</key> <integer>1</integer>
 		<key>doors at a time</key> <integer>5</integer>
 		<key>min non orphans</key> <integer>20</integer>
-		<key>max non orphans</key> <integer>35</integer>
-		<key>locked door chance</key> <integer>35</integer>
-		<key>no door chance</key> <integer>25</integer>
-		<key>desired path length</key> <integer>7</integer>
-		<key>min doodads per room</key> <integer>1</integer>
+		<key>max non orphans</key> <integer>50</integer>
+		<key>locked door chance</key> <integer>0</integer>
+		<key>no door chance</key> <integer>80</integer>
+		<key>desired path length</key> <integer>12</integer>
+		<key>min doodads per room</key> <integer>0</integer>
 		<key>max doodads per room</key> <integer>2</integer>
 		<!-- cave generation data -->
-		<key>cave wall chance</key> <integer>50</integer>
-		<key>cave smooths</key> <integer>2</integer>
+		<key>cave wall chance</key> <integer>40</integer>
+		<key>cave smooths</key> <integer>3</integer>
 		<key>min floor tile percent</key> <integer>40</integer>
-		<key>max floor tile percent</key> <integer>60</integer>
+		<key>max floor tile percent</key> <integer>80</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>160</integer>
-		<key>overtime countdown</key> <integer>35</integer>
-		<key>equipment treasures</key> <integer>4</integer>
-		<key>normal treasures</key> <integer>6</integer>
-		<key>number of encounters</key> <integer>8</integer>
-		<key>start equipment treasures</key> <integer>4</integer>
+		<key>countdown</key> <integer>270</integer>
+		<key>overtime countdown</key> <integer>60</integer>
+		<key>equipment treasures</key> <integer>5</integer>
+		<key>normal treasures</key> <integer>9</integer>
+		<key>number of encounters</key> <integer>12</integer>
+		<key>start equipment treasures</key> <integer>3</integer>
 		<key>encounters</key>
 		<array>
 			<!-- TODO: real encounters -->
@@ -564,8 +581,10 @@
 	<!-- color: red -->
 	<key>floor 8</key>
 	<dict>
+		<!-- appearance data -->
+		<key>tileset</key> <string>bandit</string>
+		<key>default color</key> <string>tile stone red</string>
 		<!-- map generation data -->
-		<key>tileset</key> <string>red</string>
 		<key>room size</key> <integer>5</integer>
 		<key>rows</key> <integer>8</integer>
 		<key>columns</key> <integer>8</integer>
@@ -640,8 +659,10 @@
 	<!-- color: red -->
 	<key>floor 9</key>
 	<dict>
+		<!-- appearance data -->
+		<key>tileset</key> <string>ship</string>
+		<key>default color</key> <string>tile stone red</string>
 		<!-- map generation data -->
-		<key>tileset</key> <string>red</string>
 		<key>room size</key> <integer>5</integer>
 		<key>rows</key> <integer>15</integer>
 		<key>columns</key> <integer>4</integer>

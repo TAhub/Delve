@@ -54,6 +54,39 @@
 		<key>sprite</key> <string>android_cannon</string>
 		<key>color</key> <string>relic</string>
 	</dict>
+	<key>abomination armor</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>monster</string>
+		<!-- stats -->
+		<key>health</key> <integer>10</integer>
+		<key>cut resistance</key> <integer>1</integer>
+		<key>burn resistance</key> <integer>1</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>abomination_armor</string>
+		<key>color</key> <string>relic</string>
+	</dict>
+	<key>ruin feeder collar</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>monster</string>
+		<!-- stats -->
+		<key>health</key> <integer>10</integer>
+		<key>smash resistance</key> <integer>1</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>ruin_feeder_collar</string>
+		<key>color</key> <string>leather</string>
+	</dict>
+	<key>ruin feeder froth</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>monster</string>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>15</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>ruin_feeder_froth</string>
+		<key>color</key> <string>green hair</string>
+	</dict>
 	
 	
 	<!-- helmets -->
@@ -252,6 +285,21 @@
 		<!-- appearance -->
 		<key>sprite</key> <string>raider_loincloth</string>
 		<key>color</key> <string>relic</string>
+		<key>sprite gender</key> <true/>
+	</dict>
+	
+	<!-- raider armor -->
+	<!-- level 3 armor, enemy only -->
+	<key>raider armor</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>raider armor</string>
+		<!-- stats -->
+		<key>health</key> <integer>25</integer>
+		<key>cut resistance</key> <integer>2</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>raider_armor</string>
+		<key>color</key> <string>steel</string>
 		<key>sprite gender</key> <true/>
 	</dict>
 	

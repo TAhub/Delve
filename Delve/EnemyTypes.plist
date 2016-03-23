@@ -239,7 +239,10 @@
 			<string>filler monster skill</string>
 		</array>
 		<!-- equipment -->
-		<!-- TODO: ruin feeder collar that gives 1 resistance to, say, smash -->
+		<key>armors</key>
+		<array>
+			<string>ruin feeder collar</string>
+		</array>
 		<key>weapon</key> <string>strong teeth</string>
 	</dict>
 	
@@ -297,8 +300,11 @@
 			<string>filler monster skill</string>
 		</array>
 		<!-- equipment -->
+		<key>armors</key>
+		<array>
+			<string>ruin feeder froth</string>
+		</array>
 		<key>weapon</key> <string>strong teeth</string>
-		<!-- TODO: green ruin feeder mouth froth "armor" -->
 	</dict>
 	
 	
@@ -655,7 +661,10 @@
 			<string>filler monster skill</string>
 		</array>
 		<!-- equipment -->
-		<!-- war abomination armor (probably gives a bit of resists) -->
+		<key>armors</key>
+		<array>
+			<string>abomination armor</string>
+		</array>
 		<key>weapon</key> <string>abomination bash</string>
 	</dict>
 </dict>

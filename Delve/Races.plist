@@ -113,7 +113,7 @@
 				<key>hair</key> <string>blonde hair</string>
 			</dict>
 		</array>
-		<key>hair styles</key> <integer>1</integer>
+		<key>hair styles</key> <integer>2</integer>
 		<key>armor slot y offsets</key>
 		<array>
 			<integer>0</integer>
@@ -534,7 +534,7 @@
 		<key>metabolism</key> <integer>100</integer>
 		<!-- slots -->
 		<!-- appearance -->
-		<key>sprite</key> <string>abomination</string> <!-- TODO: they should look like the shapeshifter from gravity falls I guess; spindly and gross -->
+		<key>sprite</key> <string>abomination</string>
 		<key>colorations</key>
 		<array>
 			<dict>

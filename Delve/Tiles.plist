@@ -25,80 +25,102 @@
 	
 	<!-- red tileset -->
 	
-	<key>wall red</key>
+	<key>wall</key>
 	<dict>
 		<key>solid</key> <true/>
 		<key>opaque</key> <true/>
-		<key>rubbles into</key> <string>rubble red</string>
-		<key>color</key> <string>tile stone red</string>
-		<key>sprite</key> <string>tile_big_tile</string>
+		<key>rubbles into</key> <string>rubble</string>
+		<key>sprite</key> <string>tile_wall_tile</string>
 	</dict>
-	<key>floor red</key>
+	<key>floor</key>
 	<dict>
-		<key>color</key> <string>tile stone red back</string>
-		<key>rubbles into</key> <string>rubble red</string>
+		<key>rubbles into</key> <string>rubble</string>
 		<key>rubble chance</key> <integer>15</integer>
-		<key>sprite</key> <string>tile_small_tiles</string>
+		<key>sprite</key> <string>tile_floor_tile</string>
 	</dict>
-	<key>rivet wall red</key>
+	<key>rivet wall</key>
 	<dict>
 		<key>solid</key> <true/>
 		<key>opaque</key> <true/>
-		<key>rubbles into</key> <string>rubble red</string>
-		<key>color</key> <string>tile stone red</string>
-		<key>sprite</key> <string>tile_big_rivet_tile</string>
+		<key>rubbles into</key> <string>rubble</string>
+		<key>sprite</key> <string>tile_wall_rivet_tile</string>
 	</dict>
-	<key>rivet floor red</key>
+	<key>rivet floor</key>
 	<dict>
-		<key>color</key> <string>tile stone red back</string>
-		<key>rubbles into</key> <string>rubble red</string>
+		<key>rubbles into</key> <string>rubble</string>
 		<key>rubble chance</key> <integer>10</integer>
-		<key>sprite</key> <string>tile_small_rivet_tiles</string>
+		<key>sprite</key> <string>tile_floor_rivet_tile</string>
 	</dict>
-	<key>natural wall red</key>
+	<key>natural wall</key>
 	<dict>
 		<key>solid</key> <true/>
 		<key>opaque</key> <true/>
-		<key>rubbles into</key> <string>natural floor red</string>
-		<key>color</key> <string>tile stone red</string>
-		<key>sprite</key> <string>tile_textured</string>
+		<key>rubbles into</key> <string>natural floor</string>
+		<key>sprite</key> <string>tile_wall_cave</string>
 	</dict>
-	<key>natural floor red</key>
+	<key>natural floor</key>
 	<dict>
-		<key>color</key> <string>tile stone red back</string>
-		<key>sprite</key> <string>tile_pebbles</string>
+		<key>sprite</key> <string>tile_floor_cave</string>
 	</dict>
-	<key>rubble red</key>
-	<dict>
-		<key>color</key> <string>tile stone red back</string>
-		<key>sprite</key> <string>tile_rubble</string>
-	</dict>
-	<key>door floor red</key>
-	<dict>
-		<key>rubbles into</key> <string>rubble red</string>
-		<key>color</key> <string>tile stone red back</string>
-		<key>sprite</key> <string>tile_mechanism</string>
-	</dict>
-	<key>locked door red</key>
+	<key>unnatural wall</key>
 	<dict>
 		<key>solid</key> <true/>
 		<key>opaque</key> <true/>
-		<key>unlocks into</key> <string>door floor red</string>
-		<key>rubbles into</key> <string>rubble red</string>
-		<key>color</key> <string>tile stone red</string>
-		<key>sprite</key> <string>tile_mechanism</string>
+		<key>rubbles into</key> <string>natural floor</string>
+		<key>sprite</key> <string>tile_wall_cave</string>
 	</dict>
-	<key>stairs red</key>
+	<key>unnatural floor</key>
+	<dict>
+		<key>sprite</key> <string>tile_floor_cave</string>
+	</dict>
+	<key>rubble</key>
+	<dict>
+		<key>sprite</key> <string>tile_floor_rubble</string>
+	</dict>
+	<key>door floor</key>
+	<dict>
+		<key>rubbles into</key> <string>rubble</string>
+		<key>sprite</key> <string>tile_floor_mechanism</string>
+	</dict>
+	<key>locked door</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>opaque</key> <true/>
+		<key>unlocks into</key> <string>door floor</string>
+		<key>rubbles into</key> <string>rubble</string>
+		<key>sprite</key> <string>tile_wall_mechanism</string>
+	</dict>
+	<key>stairs</key>
 	<dict>
 		<key>stairs</key> <true/>
-		<key>color</key> <string>tile stone red back</string>
-		<key>sprite</key> <string>tile_stairs</string>
+		<key>sprite</key> <string>tile_floor_exit</string>
 	</dict>
-	<key>sample doodad</key>
+	
+	<!-- doodads -->
+	<key>chair</key>
 	<dict>
 		<key>solid</key> <true/>
-		<key>color</key> <string>tile stone red</string>
-		<key>sprite</key> <string>tile_stairs</string>
+		<key>sprite</key> <string>tile_doodad_chair</string>
+	</dict>
+	<key>firepit</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>sprite</key> <string>tile_doodad_firepit</string>
+	</dict>
+	<key>console</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>sprite</key> <string>tile_doodad_console</string>
+	</dict>
+	<key>stalag 1</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>sprite</key> <string>tile_doodad_stalag1</string>
+	</dict>
+	<key>stalag 2</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>sprite</key> <string>tile_doodad_stalag2</string>
 	</dict>
 </dict>
 </plist>

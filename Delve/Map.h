@@ -53,6 +53,8 @@
 @property int countdown;
 @property int overtimeCount;
 
+@property (strong, nonatomic) NSString *defaultColor;
+
 -(void)update;
 -(void)recalculateVisibility;
 

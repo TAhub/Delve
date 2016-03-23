@@ -37,14 +37,14 @@
 		<key>type</key> <string>weapon</string>
 		<key>power</key> <integer>10</integer>
 		<key>element</key> <string>cut</string>
-		<key>attack effect</key> <string>slash</string> <!-- TODO: special "bite" down melee with a row of teeth projectile -->
+		<key>attack effect</key> <string>bite</string>
 	</dict>
 	<key>strong teeth</key>
 	<dict>
 		<key>type</key> <string>weapon</string>
 		<key>power</key> <integer>20</integer>
 		<key>element</key> <string>cut</string>
-		<key>attack effect</key> <string>slash</string> <!-- TODO: the same effect as teeth -->
+		<key>attack effect</key> <string>bite</string>
 	</dict>
 	<key>claw relic</key>
 	<dict>

@@ -27,6 +27,7 @@
 	{
 		//load map
 		_floorNum = [[NSUserDefaults standardUserDefaults] integerForKey:@"floor number"];
+		_defaultColor = [[NSUserDefaults standardUserDefaults] stringForKey:@"default color"];
 		int width = [[NSUserDefaults standardUserDefaults] integerForKey:@"width"];
 		int height = [[NSUserDefaults standardUserDefaults] integerForKey:@"height"];
 		NSMutableArray *tiles = [NSMutableArray new];
@@ -490,6 +491,7 @@
 -(void)saveTiles
 {
 	[[NSUserDefaults standardUserDefaults] setInteger:self.floorNum forKey:@"floor number"];
+	[[NSUserDefaults standardUserDefaults] setObject:self.defaultColor forKey:@"default color"];
 	[[NSUserDefaults standardUserDefaults] setInteger:self.width forKey:@"width"];
 	[[NSUserDefaults standardUserDefaults] setInteger:self.height forKey:@"height"];
 	for (int y = 0; y < self.height; y++)
@@ -598,6 +600,7 @@
 	
 
 	//load tileset info
+	self.defaultColor = loadValueString(@"Floors", floorName, @"default color");
 	NSString *tileset = loadValueString(@"Floors", floorName, @"tileset");
 	NSString *wallTile = loadValueString(@"Tilesets", tileset, @"wall");
 	NSString *floorTile = loadValueString(@"Tilesets", tileset, @"floor");
