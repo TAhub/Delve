@@ -351,6 +351,7 @@
 		<array>
 			<string>basic relic</string> <!-- pulse rifle turret -->
 		</array>
+		<key>weapon</key> <string>shortsword</string>
 	</dict>
 	
 	<!-- security android -->
@@ -596,7 +597,7 @@
 	
 	<!-- highborn taskmaster -->
 	<!-- a slightly more fighty highborn who uses more self-supportive rituals; beware their dazzle attack! -->
-	<key>highbord taskmaster</key>
+	<key>highborn taskmaster</key>
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>highborn</string>
@@ -667,5 +668,68 @@
 		</array>
 		<key>weapon</key> <string>abomination bash</string>
 	</dict>
+	
+	
+	<!-- raiders -->
+	<!-- raiders are powerful and tend to have lots of blocks -->
+	
+	<!-- raider warrior -->
+	<!-- the basic raider fighting person type, with lots of blocks to tie up the player -->
+	<key>raider warrior</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>raider</string>
+		<key>ai</key> <string>bandit</string>
+		<key>skills</key>
+		<array>
+			<string>shield</string>
+			<string>tough monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>kite shield</string>
+		</array>
+		<key>armors</key>
+		<array>
+			<string>raider armor</string>
+			<string>winged helmet</string>
+		</array>
+		<key>weapon</key> <string>bastard sword</string>
+	</dict>
+	
+	<!-- raider archer -->
+	<!-- the basic ranged raider -->
+	<key>raider archer</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>raider</string>
+		<key>ai</key> <string>bandit</string>
+		<key>skills</key>
+		<array>
+			<string>bow</string>
+			<string>tough monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>bodkin bow</string>
+		</array>
+		<key>armors</key>
+		<array>
+			<string>raider armor</string>
+			<string></string>
+			<string>red tail banner</string>
+		</array>
+		<key>weapon</key> <string>bastard sword</string>
+	</dict>
+	
+	<!-- TODO: at least two advanced raiders, with two war skills each (maybe a knight w/ knight helmet, spear and dagger, plus flanged mace)-->
 </dict>
 </plist>

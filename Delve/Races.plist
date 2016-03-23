@@ -331,7 +331,7 @@
 		<key>counter</key> <integer>10</integer>
 		<!-- slots -->
 		<!-- appearance -->
-		<key>sprite</key> <string>great_slime</string>
+		<key>sprite</key> <string>greater_slime</string>
 		<key>colorations</key>
 		<array>
 			<dict>
@@ -539,14 +539,11 @@
 		<array>
 			<dict>
 				<key>skin</key> <string>pale skin</string>
-				<key>hair</key> <string>brown skin</string>
 			</dict>
 			<dict>
 				<key>skin</key> <string>pale skin</string>
-				<key>hair</key> <string>grey skin</string>
 			</dict>
 		</array>
-		<key>hair styles</key> <integer>0</integer>
 		<key>armor slot y offsets</key>
 		<array>
 			<integer>0</integer>

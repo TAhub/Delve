@@ -495,7 +495,7 @@
 		<key>overtime countdown</key> <integer>40</integer>
 		<key>equipment treasures</key> <integer>10</integer>
 		<key>normal treasures</key> <integer>12</integer>
-		<key>number of encounters</key> <integer>11</integer>
+		<key>number of encounters</key> <integer>10</integer>
 		<key>start equipment treasures</key> <integer>3</integer>
 		<key>encounters</key>
 		<array>
