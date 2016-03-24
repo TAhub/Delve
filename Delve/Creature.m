@@ -1216,6 +1216,8 @@
 {
 	self.saveFlag = true;
 	
+	Tile *tile = self.map.tiles[self.y][self.x];
+	
 	//fly starting labels
 	__weak typeof(self) weakSelf = self;
 	if (self.poisoned > 0)
@@ -1228,13 +1230,18 @@
 		{
 			//show the damage number
 			self.health -= pDamage;
-			[self.map.delegate floatLabelsOn:[NSArray arrayWithObject:self] withString:[NSArray arrayWithObject:[NSString stringWithFormat:@"%i", pDamage]] andColor:loadColorFromName(@"element no element") withBlock:
-			^()
+			if (tile.visible)
 			{
-				if (![weakSelf startTurnInner])
-					[weakSelf.map update];
-			}];
-			return true;
+				[self.map.delegate floatLabelsOn:[NSArray arrayWithObject:self] withString:[NSArray arrayWithObject:[NSString stringWithFormat:@"%i", pDamage]] andColor:loadColorFromName(@"element no element") withBlock:
+				^()
+				{
+					if (![weakSelf startTurnInner])
+						[weakSelf.map update];
+				}];
+				return true;
+			}
+			else
+				return [self startTurnInner];
 		}
 		else //the poison runs its course instantly
 			self.poisoned = 0;
@@ -1242,13 +1249,18 @@
 	
 	if (self.sleeping > 0)
 	{
-		[self.map.delegate floatLabelsOn:[NSArray arrayWithObject:self] withString:[NSArray arrayWithObject:@"Z"] andColor:loadColorFromName(@"element no damage") withBlock:
-		^()
+		if (tile.visible)
 		{
-			if (![weakSelf startTurnInner])
-				[weakSelf.map update];
-		}];
-		return true;
+			[self.map.delegate floatLabelsOn:[NSArray arrayWithObject:self] withString:[NSArray arrayWithObject:@"Z"] andColor:loadColorFromName(@"element no damage") withBlock:
+			^()
+			{
+				if (![weakSelf startTurnInner])
+					[weakSelf.map update];
+			}];
+			return true;
+		}
+		else
+			return [self startTurnInner];
 	}
 	
 	return [self startTurnInner];
@@ -1279,6 +1291,9 @@
 	
 	if (self.map.overtime && !self.good)
 		self.awake = true; //automatically wake up in overtime
+	
+	if (self.awake && self.sleeping > 0)
+		self.awake = false; //sleeping also makes your AI sleep
 	
 	//wake up when the player gets onscreen, unless they are stealthed
 	if (!self.awake && !self.good && tile.visible &&

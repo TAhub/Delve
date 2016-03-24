@@ -328,7 +328,7 @@
 		<key>description</key> <string>Shoot your bow at a foe.</string>
 		<key>power</key> <integer>18</integer>
 		<key>element</key> <string>cut</string>
-		<key>range</key> <integer>4</integer>
+		<key>range</key> <integer>5</integer>
 		<key>min range</key> <integer>3</integer>
 		<key>cooldown</key> <integer>1</integer>
 		<key>dodgeable</key> <true/>
