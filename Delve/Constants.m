@@ -185,6 +185,17 @@ BOOL loadValueBool(NSString *category, NSString *entry, NSString *value)
 	return e[value] != nil;
 }
 
+#pragma mark misc
+
+void shuffleArray(NSMutableArray *array)
+{
+	for (int i = 0; i < array.count; i++)
+	{
+		int rand = arc4random_uniform((u_int32_t)array.count);
+		[array exchangeObjectAtIndex:rand withObjectAtIndex:0];
+	}
+}
+
 #pragma mark tests
 
 void passiveBalanceTest()

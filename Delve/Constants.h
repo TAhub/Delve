@@ -104,6 +104,9 @@ UIColor *loadValueColor(NSString *category, NSString *entry, NSString *value);
 NSArray *loadValueArray(NSString *category, NSString *entry, NSString *value);
 BOOL loadValueBool(NSString *category, NSString *entry, NSString *value);
 
+#pragma mark misc
+void shuffleArray(NSMutableArray *array);
+
 #pragma mark tests
 void passiveBalanceTest();
 void recipieBalanceTest();

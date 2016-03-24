@@ -1425,10 +1425,15 @@
 			return NO;
 		}
 		
+		//make a shuffled attacks array, to randomize which attacks you use
+		NSMutableArray *attacks = [NSMutableArray arrayWithArray:[self attacks]];
+		[attacks removeObjectAtIndex:0]; //skip attack
+		[attacks removeObjectAtIndex:0]; //skip defend
+		shuffleArray(attacks);
+		
 		
 		//look for an attack you can use on the player
-		NSArray *attacks = [self attacks];
-		for (int i = 2; i < attacks.count; i++) //skip defend and attack, this is checking your normal attack
+		for (int i = 0; i < attacks.count; i++)
 		{
 			NSString *attack = attacks[i];
 			if ([self canUseAttack:attack] && [self validTargetSpotFor:attack atX:self.map.player.x andY:self.map.player.y openSpotsAreFine:NO])
@@ -1451,7 +1456,7 @@
 		}
 		
 		//see if you can use any self-targeting attacks
-		for (int i = 2; i < attacks.count; i++) //skip defend and attack, this is checking your normal attack
+		for (int i = 0; i < attacks.count; i++)
 		{
 			NSString *attack = attacks[i];
 			if ([self canUseAttack:attack] && [self validTargetSpotFor:attack atX:self.x andY:self.y openSpotsAreFine:NO])

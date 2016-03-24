@@ -566,13 +566,32 @@
 		<key>start equipment treasures</key> <integer>3</integer>
 		<key>encounters</key>
 		<array>
-			<!-- TODO: real encounters -->
 			<array>
-				<string>ruin feeder runt</string>
+				<string>raider warrior</string>
+				<string>raider warrior</string>
+				<string>raider archer</string>
+			</array>
+			<array>
+				<string>raider warrior</string>
+				<string>raider archer</string>
+				<string>raider archer</string>
+			</array>
+			<array>
+				<string>raider knight</string>
+				<string>raider archer</string>
+			</array>
+			<array>
+				<string>raider specialist</string>
+				<string>domesticated ruin feeder</string>
+				<string>domesticated ruin feeder</string>
 			</array>
 		</array>
 	</dict>
-	<!-- TODO: encounter analysis -->
+	<!-- encounter analysis -->
+	<!-- player attack element ranking: shock > burn > smash > cut -->
+	<!-- player resistance ranking: cut > smash > burn > shock -->
+	<!-- special features: ranged attacks, blocks, counter-attacks -->
+	<!-- ideal build: holy soldier would be good, for the unblockable shock damage, plus warrior skills for defense -->
 	
 	
 	<!-- floor 8 -->

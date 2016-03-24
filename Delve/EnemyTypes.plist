@@ -730,6 +730,63 @@
 		<key>weapon</key> <string>bastard sword</string>
 	</dict>
 	
-	<!-- TODO: at least two advanced raiders, with two war skills each (maybe a knight w/ knight helmet, spear and dagger, plus flanged mace)-->
+	<!-- raider knight -->
+	<!-- the advanced melee raider type -->
+	<key>raider knight</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>raider</string>
+		<key>ai</key> <string>bandit</string>
+		<key>skills</key>
+		<array>
+			<string>spear</string>
+			<string>dagger</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>pike</string>
+			<string>combat knife</string>
+		</array>
+		<key>armors</key>
+		<array>
+			<string>raider armor</string>
+			<string>knight helmet</string>
+		</array>
+		<key>weapon</key> <string>flanged mace</string>
+	</dict>
+	
+	<!-- raider specialist -->
+	<!-- the sacred raider type -->
+	<key>raider specialist</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>raider</string>
+		<key>ai</key> <string>bandit specialist</string>
+		<key>skills</key>
+		<array>
+			<string>oathbreaker</string>
+			<string>bow</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>inferno</string>
+			<string>longbow</string>
+		</array>
+		<key>armors</key>
+		<array>
+			<string>raider armor</string>
+			<string>bandit helmet</string>
+			<string>gold tail ring</string>
+		</array>
+		<key>weapon</key> <string>shortsword</string>
+	</dict>
 </dict>
 </plist>

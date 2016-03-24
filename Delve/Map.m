@@ -990,8 +990,8 @@
 				else
 					[encounterRoomsNoPath addObject:room];
 			}
-	[self shuffleArray:encounterRooms];
-	[self shuffleArray:encounterRoomsNoPath];
+	shuffleArray(encounterRooms);
+	shuffleArray(encounterRoomsNoPath);
 	[encounterRooms addObjectsFromArray:encounterRoomsNoPath];
 	for (GeneratorRoom *room in encounterRooms)
 		if (room.validEncounterRoom)
@@ -1018,8 +1018,8 @@
 				else
 					[noEncounterTreasureRooms addObject:room];
 			}
-	[self shuffleArray:encounterTreasureRooms];
-	[self shuffleArray:noEncounterTreasureRooms];
+	shuffleArray(encounterTreasureRooms);
+	shuffleArray(noEncounterTreasureRooms);
 	[noEncounterTreasureRooms addObjectsFromArray:encounterTreasureRooms];
 	for (GeneratorRoom *room in noEncounterTreasureRooms)
 	{
@@ -1032,7 +1032,7 @@
 	
 	
 	//turn some treasures into equipment treasures
-	[self shuffleArray:finalTreasureRooms];
+	shuffleArray(finalTreasureRooms);
 	for (int i = 0; i < numEquipmentTreasures && i < finalTreasureRooms.count; i++)
 		((GeneratorRoom *)finalTreasureRooms[i]).equipmentTreasure = true;
 	
@@ -1109,7 +1109,7 @@
 						if (tile.validPlacementSpot)
 							[openSpaces addObject:@(xA+yA*self.width)];
 					}
-				[self shuffleArray:openSpaces];
+				shuffleArray(openSpaces);
 				
 				NSLog(@"--Placing in those %lu spaces", (unsigned long)openSpaces.count);
 				for (int i = 0; i < openSpaces.count && i < encounter.count; i++)
@@ -1480,15 +1480,6 @@
 			case 9:
 				tile.treasure.number *= 6; break;
 		}
-	}
-}
-
--(void)shuffleArray:(NSMutableArray *)array
-{
-	for (int i = 0; i < array.count; i++)
-	{
-		int rand = arc4random_uniform((u_int32_t)array.count);
-		[array exchangeObjectAtIndex:rand withObjectAtIndex:0];
 	}
 }
 
