@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *attacksButton;
 @property (weak, nonatomic) IBOutlet UIButton *inventoryButton;
 @property (weak, nonatomic) IBOutlet UIButton *craftButton;
+@property (weak, nonatomic) IBOutlet UIButton *examineButton;
 @property (weak, nonatomic) IBOutlet UIView *statView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *mainPanelCord;
 
@@ -127,6 +128,7 @@
 	[self formatButton:self.inventoryButtonOne];
 	[self formatButton:self.inventoryButtonTwo];
 	[self formatButton:self.repeatButton];
+	[self formatButton:self.examineButton];
 }
 
 -(void)loadSave
@@ -531,6 +533,12 @@
 		[self switchToPanel:self.attackSelectPanelCord];
 	}
 }
+
+- (IBAction)examineButtonPress
+{
+	
+}
+
 
 - (IBAction)craftButtonPress
 {
