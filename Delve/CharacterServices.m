@@ -136,6 +136,9 @@ CGPoint iconRow(NSString *baseName, UIColor *color, int cur, int max, CGPoint co
 {
 	//draw a row of icons, each representing two of something
 	
+	if (cur < 0 || max < 0)
+		return corner;
+	
 	for (int i = 0; i < max;)
 	{
 		int pieces = 0;
@@ -203,4 +206,49 @@ void makeInfoLabelInView(Creature *cr, UIView *view, int countdown)
 	statLabel2.textColor = statLabel.textColor;
 	[statLabel2 sizeToFit];
 	[view addSubview:statLabel2];
+}
+
+void makeExamineLabelInView(Creature *cr, UIView *view)
+{
+	UILabel *descLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, view.frame.size.width, 0)];
+	descLabel.text = [NSString stringWithFormat:@"%@\n%@", cr.name, cr.typeDescription];
+	descLabel.numberOfLines = 0;
+	descLabel.textColor = loadColorFromName(@"ui text");
+	[descLabel sizeToFit];
+	[view addSubview:descLabel];
+	
+	float height = descLabel.frame.size.height;
+	
+	if (cr.smashResistance > 0 || cr.cutResistance > 0 || cr.burnResistance > 0 || cr.shockResistance > 0)
+	{
+		UILabel *strengthLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, height, 0, 0)];
+		strengthLabel.text = @"RESISTANCES: ";
+		strengthLabel.textColor = descLabel.textColor;
+		[strengthLabel sizeToFit];
+		[view addSubview:strengthLabel];
+		
+		CGPoint corner = CGPointMake(strengthLabel.frame.size.width, height);
+		corner = iconRow(@"ui_resist", loadColorFromName(@"element smash"), cr.smashResistance, cr.smashResistance, corner, view);
+		corner = iconRow(@"ui_resist", loadColorFromName(@"element cut"), cr.cutResistance, cr.cutResistance, corner, view);
+		corner = iconRow(@"ui_resist", loadColorFromName(@"element burn"), cr.burnResistance, cr.burnResistance, corner, view);
+		iconRow(@"ui_resist", loadColorFromName(@"element shock"), cr.shockResistance, cr.shockResistance, corner, view);
+		
+		height += strengthLabel.frame.size.height;
+	}
+	if (cr.smashResistance < 0 || cr.cutResistance < 0 || cr.burnResistance < 0 || cr.shockResistance < 0)
+	{
+		UILabel *weaknessLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, height, 0, 0)];
+		weaknessLabel.text = @"WEAKNESSES: ";
+		weaknessLabel.textColor = descLabel.textColor;
+		[weaknessLabel sizeToFit];
+		[view addSubview:weaknessLabel];
+		
+		CGPoint corner = CGPointMake(weaknessLabel.frame.size.width, height);
+		corner = iconRow(@"ui_resist", loadColorFromName(@"element smash"), -cr.smashResistance, -cr.smashResistance, corner, view);
+		corner = iconRow(@"ui_resist", loadColorFromName(@"element cut"), -cr.cutResistance, -cr.cutResistance, corner, view);
+		corner = iconRow(@"ui_resist", loadColorFromName(@"element burn"), -cr.burnResistance, -cr.burnResistance, corner, view);
+		iconRow(@"ui_resist", loadColorFromName(@"element shock"), -cr.shockResistance, -cr.shockResistance, corner, view);
+		
+		height += weaknessLabel.frame.size.height;
+	}
 }

@@ -449,13 +449,17 @@
 	[desc appendFormat:@"\n%@", loadValueString(@"Armors", armor, @"description")];
 	return desc;
 }
+-(NSString *)stringTranslate:(NSString *)string
+{
+	string = [string stringByReplacingOccurrencesOfString:@"!he" withString:self.gender ? @"she" : @"he"];
+	string = [string stringByReplacingOccurrencesOfString:@"!He" withString:self.gender ? @"She" : @"He"];
+	string = [string stringByReplacingOccurrencesOfString:@"!man" withString:self.gender ? @"woman" : @"man"];
+	string = [string stringByReplacingOccurrencesOfString:@"!his" withString:self.gender ? @"her" : @"his"];
+	return string;
+}
 -(NSString *)treeDescription:(NSString *)tree atLevel:(int)level
 {
-	NSString *skillDesc = loadValueString(@"SkillTrees", tree, @"description");
-	skillDesc = [skillDesc stringByReplacingOccurrencesOfString:@"!he" withString:self.gender ? @"she" : @"he"];
-	skillDesc = [skillDesc stringByReplacingOccurrencesOfString:@"!He" withString:self.gender ? @"She" : @"He"];
-	skillDesc = [skillDesc stringByReplacingOccurrencesOfString:@"!man" withString:self.gender ? @"woman" : @"man"];
-	skillDesc = [skillDesc stringByReplacingOccurrencesOfString:@"!his" withString:self.gender ? @"her" : @"his"];
+	NSString *skillDesc = [self stringTranslate:loadValueString(@"SkillTrees", tree, @"description")];
 	
 	NSMutableString *desc = [NSMutableString stringWithFormat:@"%@: %i/4", tree, level];
 	[desc appendFormat:@"\n%@", skillDesc];
@@ -516,11 +520,17 @@
 }
 -(NSString *) typeDescription
 {
-	return loadValueString(@"EnemyTypes", self.enemyType, @"description");
+	return [self stringTranslate:loadValueString(@"EnemyTypes", self.enemyType, @"description")];
 }
 -(int) aiWakeDistance
 {
 	return loadValueNumber(@"AIs", self.ai, @"wake distance").intValue;
+}
+-(int) aiStealthSightDistance
+{
+	if (!loadValueBool(@"AIs", self.ai, @"stealth sight distance"))
+		return 1;
+	return loadValueNumber(@"AIs", self.ai, @"stealth sight distance").intValue;
 }
 -(BOOL) aiFlee
 {
@@ -673,8 +683,9 @@
 		if (targetTile.solid)
 			return false;
 		
-		//check for line of sight
-		if (!targetTile.visible)
+		//check for line of sight (if you're offscreen it's assumed that you can't hit them)
+		Tile *tile = self.map.tiles[self.y][self.x];
+		if (tile != targetTile && (!tile.visible || !targetTile.visible))
 			return false;
 		
 		//line attacks must attack in cardinal directions
@@ -813,7 +824,7 @@
 	self.storedAttackY = y;
 	
 	__weak typeof(self) weakSelf = self;
-	if (!loadValueBool(@"Attacks", name, @"area"))
+	if (!loadValueBool(@"Attacks", name, @"area") || loadValueBool(@"Attacks", name, @"instant area"))
 		[self unleashAttackWithBlock:
 		^()
 		{
@@ -864,7 +875,10 @@
 		self.extraAction += loadValueNumber(@"Attacks", name, @"extra actions").intValue;
 	
 	int cooldown = loadValueNumber(@"Attacks", name, @"cooldown").intValue;
-	cooldown = MAX(1, cooldown - self.delayReduction);
+	if (cooldown == 1)
+		cooldown = 0; //things marked as having a cooldown of 1 should have a "real" cooldown of 0
+	else
+		cooldown = MAX(1, cooldown - self.delayReduction);
 	self.cooldowns[name] = @(cooldown);
 	
 	if (self.good)
@@ -1174,6 +1188,8 @@
 		}
 	}
 	
+	NSString *oldAoe = self.storedAttack;
+	
 	//apply (negative) status effects
 	if (self.immunityBoosted == 0)
 	{
@@ -1188,13 +1204,8 @@
 			self.storedAttack = nil;
 		}
 		if (loadValueBool(@"Attacks", attackType, @"poison"))
-		{
 			self.poisoned = loadValueNumber(@"Attacks", attackType, @"poison").intValue;
-			self.storedAttack = nil;
-		}
 	}
-	
-	NSString *oldAoe = self.storedAttack;
 	
 	//apply special effects
 	if (loadValueBool(@"Attacks", attackType, @"interrupt aoe"))
@@ -1339,7 +1350,7 @@
 	
 	//wake up when the player gets onscreen, unless they are stealthed
 	if (!self.awake && !self.good && tile.visible &&
-		(self.map.player.stealthed == 0 || ABS(self.x - self.map.player.x) + ABS(self.y - self.map.player.y) == 1)) //you can detect stealth at range 1
+		(self.map.player.stealthed == 0 || ABS(self.x - self.map.player.x) + ABS(self.y - self.map.player.y) <= self.aiStealthSightDistance)) //you can detect stealth at close range
 	{
 		self.awake = true;
 		[self wakeUpNearby];
@@ -1633,7 +1644,10 @@
 }
 -(int) attackBonus
 {
-	return [self totalBonus:@"attack bonus"];
+	int b = [self totalBonus:@"attack bonus"];
+	if (self.damageBoosted > 0)
+		b = (b * CREATURE_DAMAGE_BOOST) / 100;
+	return b;
 }
 -(int) maxHealth
 {

@@ -14,7 +14,7 @@
 		<!-- identity -->
 		<key>race</key> <string>template</string>
 		<key>ai</key> <string>template</string>
-		<key>ai</key> <string>template</string>
+		<key>description</key> <string>TODO: enemy type description!</string>
 		<key>skills</key>
 		<array>
 			<string>template</string>
@@ -61,6 +61,7 @@
 		<!-- identity -->
 		<key>race</key> <string>human</string>
 		<key>ai</key> <string>bandit</string>
+		<key>description</key> <string>This disreputable human is probably waiting here to ambush people trying to leave.</string>
 		<key>skills</key>
 		<array>
 			<string>filler monster skill</string>
@@ -84,7 +85,8 @@
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>human</string>
-		<key>ai</key> <string>bandit</string>
+		<key>ai</key> <string>bandit sentry</string>
+		<key>description</key> <string>This human looks sharper, more alert than the others.</string>
 		<key>skills</key>
 		<array>
 			<string>bow</string>
@@ -112,6 +114,7 @@
 		<!-- identity -->
 		<key>race</key> <string>human</string>
 		<key>ai</key> <string>bandit</string>
+		<key>description</key> <string>This burly human is carrying a sledgehammer.</string>
 		<key>skills</key>
 		<array>
 			<string>hammer</string>
@@ -140,6 +143,7 @@
 		<!-- identity -->
 		<key>race</key> <string>human</string>
 		<key>ai</key> <string>bandit</string>
+		<key>description</key> <string>This shabby human has a burning torch in one hand.</string>
 		<key>skills</key>
 		<array>
 			<string>filler monster skill</string>
@@ -169,6 +173,7 @@
 		<!-- identity -->
 		<key>race</key> <string>slime</string>
 		<key>ai</key> <string>slime</string>
+		<key>description</key> <string>This strange monster seems to be a single mass of some kind of viscous substance.</string>
 		<key>skills</key>
 		<array>
 			<string>tough monster skill</string>
@@ -188,6 +193,7 @@
 		<!-- identity -->
 		<key>race</key> <string>great slime</string>
 		<key>ai</key> <string>slime</string>
+		<key>description</key> <string>This large slime-monster is firmer and stronger than its smaller siblings.</string>
 		<key>skills</key>
 		<array>
 			<string>tough monster skill</string>
@@ -212,6 +218,7 @@
 		<!-- identity -->
 		<key>race</key> <string>ruin feeder runt</string>
 		<key>ai</key> <string>animal</string>
+		<key>description</key> <string>This is a small animal that seems to be native to the area.</string>
 		<key>skills</key>
 		<array>
 			<string>dodgy monster skill</string>
@@ -231,6 +238,7 @@
 		<!-- identity -->
 		<key>race</key> <string>ruin feeder</string>
 		<key>ai</key> <string>animal</string>
+		<key>description</key> <string>This strange species of animal seems to be a native to these caves. This one has been trained as an attack animal.</string>
 		<key>skills</key>
 		<array>
 			<string>tough monster skill</string>
@@ -254,6 +262,7 @@
 		<!-- identity -->
 		<key>race</key> <string>ruin feeder</string>
 		<key>ai</key> <string>animal</string>
+		<key>description</key> <string>This strange species of animal seems to be a native to these caves.</string>
 		<key>skills</key>
 		<array>
 			<string>tough monster skill</string>
@@ -273,6 +282,7 @@
 		<!-- identity -->
 		<key>race</key> <string>fierce ruin feeder</string>
 		<key>ai</key> <string>animal</string>
+		<key>description</key> <string>This is an especially strong and ruthless ruin feeder.</string>
 		<key>skills</key>
 		<array>
 			<string>tough monster skill</string>
@@ -292,6 +302,7 @@
 		<!-- identity -->
 		<key>race</key> <string>fierce ruin feeder</string>
 		<key>ai</key> <string>animal charger</string>
+		<key>description</key> <string>This ruin feeder has contracted some illness, that causes it to charge you with reckless abandon.</string>
 		<key>skills</key>
 		<array>
 			<string>rabid ruin feeder skill</string>
@@ -320,6 +331,7 @@
 		<!-- identity -->
 		<key>race</key> <string>sentry</string>
 		<key>ai</key> <string>robot</string>
+		<key>description</key> <string>This old construct has sharp metal claws, and it does not look afraid to use them.</string>
 		<key>skills</key>
 		<array>
 			<string>tough monster skill</string>
@@ -339,6 +351,7 @@
 		<!-- identity -->
 		<key>race</key> <string>scuttler</string>
 		<key>ai</key> <string>robot specialist</string>
+		<key>description</key> <string>This old construct moves back and forth erratically, looking for targets for its built-in holy weapon.</string>
 		<key>skills</key>
 		<array>
 			<string>scuttler skill</string>
@@ -362,6 +375,7 @@
 		<!-- identity -->
 		<key>race</key> <string>android</string>
 		<key>ai</key> <string>robot</string>
+		<key>description</key> <string>This slick construct is made in the form of an Eol.</string>
 		<key>skills</key>
 		<array>
 			<string>strength</string>
@@ -381,6 +395,7 @@
 		<!-- identity -->
 		<key>race</key> <string>android</string>
 		<key>ai</key> <string>robot</string>
+		<key>description</key> <string>This slick construct has one arm replaced with a powerful holy weapon.</string>
 		<key>skills</key>
 		<array>
 			<string>holy soldier</string>
@@ -403,6 +418,7 @@
 		<!-- identity -->
 		<key>race</key> <string>war bot</string>
 		<key>ai</key> <string>robot</string>
+		<key>description</key> <string>This heavily armored construct is armed with the mightiest weapons of the ancient Eol.</string>
 		<key>skills</key>
 		<array>
 			<string>holy soldier</string>
@@ -432,6 +448,7 @@
 		<!-- identity -->
 		<key>race</key> <string>eoling</string>
 		<key>ai</key> <string>robot</string>
+		<key>description</key> <string>This Eoling soldier does not look happy to see a trespasser.</string>
 		<key>skills</key>
 		<array>
 			<string>filler monster skill</string>
@@ -455,6 +472,7 @@
 		<!-- identity -->
 		<key>race</key> <string>eoling</string>
 		<key>ai</key> <string>robot specialist</string>
+		<key>description</key> <string>This Eoling parishioner has been trained in an old Eol form of ritual combat.</string>
 		<key>skills</key>
 		<array>
 			<string>dagger</string>
@@ -484,6 +502,7 @@
 		<!-- identity -->
 		<key>race</key> <string>eoling</string>
 		<key>ai</key> <string>robot</string>
+		<key>description</key> <string>This Eoling priest has been brought here in the hopes of re-activating old Eol devices.</string>
 		<key>skills</key>
 		<array>
 			<string>holy soldier</string>
@@ -515,7 +534,8 @@
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>human</string>
-		<key>ai</key> <string>bandit specialist</string>
+		<key>ai</key> <string>bandit</string>
+		<key>description</key> <string>This human looks strangely dazed. !He is heavily armored and armored.</string>
 		<key>skills</key>
 		<array>
 			<string>spear</string>
@@ -545,6 +565,7 @@
 		<!-- identity -->
 		<key>race</key> <string>human</string>
 		<key>ai</key> <string>bandit</string>
+		<key>description</key> <string>This human looks strangely dazed. !He is wielding a lit torch with great skill.</string>
 		<key>skills</key>
 		<array>
 			<string>finesse</string>
@@ -574,6 +595,7 @@
 		<!-- identity -->
 		<key>race</key> <string>highborn</string>
 		<key>ai</key> <string>highborn</string>
+		<key>description</key> <string>This Highborn sneers at you arrogantly.</string>
 		<key>skills</key>
 		<array>
 			<string>energy</string>
@@ -603,6 +625,7 @@
 		<!-- identity -->
 		<key>race</key> <string>highborn</string>
 		<key>ai</key> <string>highborn</string>
+		<key>description</key> <string>This heavily-armed Highborn looks frustrated at the Highborn expedition being stalled so close to the end. !He seems inclined to take this out on you.</string>
 		<key>skills</key>
 		<array>
 			<string>time</string>
@@ -635,6 +658,7 @@
 		<!-- identity -->
 		<key>race</key> <string>abomination</string>
 		<key>ai</key> <string>abomination</string>
+		<key>description</key> <string>This bizarre creature's skin glistens with clear mucus, and its muscles ripple with strength.</string>
 		<key>skills</key>
 		<array>
 			<string>flinger skill</string>
@@ -654,6 +678,7 @@
 		<!-- identity -->
 		<key>race</key> <string>abomination</string>
 		<key>ai</key> <string>abomination</string>
+		<key>description</key> <string>This horrid creature seems to have been fitted with crude armor.</string>
 		<key>skills</key>
 		<array>
 			<string>abomination skill</string>
@@ -681,6 +706,7 @@
 		<!-- identity -->
 		<key>race</key> <string>raider</string>
 		<key>ai</key> <string>bandit</string>
+		<key>description</key> <string>This fearsome soldier is armed with sword and shield.</string>
 		<key>skills</key>
 		<array>
 			<string>shield</string>
@@ -709,6 +735,7 @@
 		<!-- identity -->
 		<key>race</key> <string>raider</string>
 		<key>ai</key> <string>bandit</string>
+		<key>description</key> <string>This burly archer nocks a blunted arrow when !he sees you.</string>
 		<key>skills</key>
 		<array>
 			<string>bow</string>
@@ -738,6 +765,7 @@
 		<!-- identity -->
 		<key>race</key> <string>raider</string>
 		<key>ai</key> <string>bandit</string>
+		<key>description</key> <string>This Raider looks to be from the elite Raider knights.</string>
 		<key>skills</key>
 		<array>
 			<string>spear</string>
@@ -766,7 +794,8 @@
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>raider</string>
-		<key>ai</key> <string>bandit specialist</string>
+		<key>ai</key> <string>bandit</string>
+		<key>description</key> <string>This Raider was gearing up for some kind of offensive push when you arrived. Unlucky you.</string>
 		<key>skills</key>
 		<array>
 			<string>oathbreaker</string>

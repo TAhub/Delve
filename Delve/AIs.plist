@@ -13,6 +13,7 @@
 	<dict>
 		<!-- waking self and other variables -->
 		<key>wake distance</key> <integer>4</integer>
+		<key>stealth sight distance</key> <integer>2</integer>
 		<!-- pathfinding variables (remove all for immobile enemies) -->
 		<key>pathfinding radius</key> <integer>10</integer>
 		<key>do ai walk</key> <true/>
@@ -35,6 +36,21 @@
 		<key>wake distance</key> <integer>4</integer>
 		<!-- pathfinding variables (remove all for immobile enemies) -->
 		<key>pathfinding radius</key> <integer>8</integer>
+		<key>do ai walk</key> <true/>
+		<!-- special abilities -->
+		<!-- attack variables -->
+		<key>can attack</key> <true/>
+		<key>can defend</key> <true/>
+		<!-- misc variables -->
+		<key>flee during overtime</key> <true/>
+	</dict>
+	<key>bandit sentry</key>
+	<dict>
+		<!-- waking self and other variables -->
+		<key>wake distance</key> <integer>4</integer>
+		<key>stealth sight distance</key> <integer>2</integer>
+		<!-- pathfinding variables (remove all for immobile enemies) -->
+		<key>pathfinding radius</key> <integer>9</integer>
 		<key>do ai walk</key> <true/>
 		<!-- special abilities -->
 		<!-- attack variables -->

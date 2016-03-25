@@ -193,28 +193,28 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JEe-Qq-0F7">
-                                                <rect key="frame" x="172" y="111" width="78" height="29"/>
+                                                <rect key="frame" x="164" y="111" width="74" height="29"/>
                                                 <state key="normal" title="Pick Up"/>
                                                 <connections>
                                                     <action selector="pickUpButtonPress" destination="BYZ-38-t0r" eventType="touchUpInside" id="ycy-5o-zMZ"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KRE-jY-jtU">
-                                                <rect key="frame" x="86" y="111" width="78" height="29"/>
+                                                <rect key="frame" x="82" y="111" width="74" height="29"/>
                                                 <state key="normal" title="Inventory"/>
                                                 <connections>
                                                     <action selector="inventoryOpenButtonPress" destination="BYZ-38-t0r" eventType="touchUpInside" id="NFY-5f-fdf"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOn-Wq-CoZ">
-                                                <rect key="frame" x="0.0" y="111" width="78" height="29"/>
+                                                <rect key="frame" x="0.0" y="111" width="74" height="29"/>
                                                 <state key="normal" title="Craft"/>
                                                 <connections>
                                                     <action selector="craftButtonPress" destination="BYZ-38-t0r" eventType="touchUpInside" id="3WG-xU-fFL"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3a1-bQ-tUp">
-                                                <rect key="frame" x="242" y="111" width="78" height="29"/>
+                                                <rect key="frame" x="246" y="111" width="74" height="29"/>
                                                 <state key="normal" title="Examine"/>
                                                 <connections>
                                                     <action selector="examineButtonPress" destination="BYZ-38-t0r" eventType="touchUpInside" id="yIs-PW-9a6"/>
@@ -226,7 +226,7 @@
                                             <constraint firstItem="kQT-EW-nNY" firstAttribute="bottom" secondItem="vOn-Wq-CoZ" secondAttribute="top" constant="-10" id="0P6-NR-CaX"/>
                                             <constraint firstAttribute="trailing" secondItem="3a1-bQ-tUp" secondAttribute="trailing" id="12P-OJ-LDy"/>
                                             <constraint firstItem="kJW-Wn-2TC" firstAttribute="height" secondItem="ghM-ST-HWQ" secondAttribute="height" multiplier="0.45" id="1PG-Rx-GkX"/>
-                                            <constraint firstItem="JEe-Qq-0F7" firstAttribute="trailing" secondItem="3a1-bQ-tUp" secondAttribute="leading" constant="8" symbolic="YES" id="287-K3-iml"/>
+                                            <constraint firstItem="3a1-bQ-tUp" firstAttribute="leading" secondItem="JEe-Qq-0F7" secondAttribute="trailing" constant="8" symbolic="YES" id="287-K3-iml"/>
                                             <constraint firstItem="KRE-jY-jtU" firstAttribute="leading" secondItem="vOn-Wq-CoZ" secondAttribute="trailing" constant="8" symbolic="YES" id="4eN-iQ-mLn"/>
                                             <constraint firstAttribute="bottom" secondItem="vOn-Wq-CoZ" secondAttribute="bottom" id="8Pl-hG-G2P"/>
                                             <constraint firstAttribute="bottom" secondItem="JEe-Qq-0F7" secondAttribute="bottom" id="DJl-qa-hU7"/>
@@ -234,7 +234,6 @@
                                             <constraint firstItem="kJW-Wn-2TC" firstAttribute="width" secondItem="ghM-ST-HWQ" secondAttribute="width" id="HJK-kS-jvK"/>
                                             <constraint firstItem="3a1-bQ-tUp" firstAttribute="width" secondItem="vOn-Wq-CoZ" secondAttribute="width" id="JsY-h7-gJh"/>
                                             <constraint firstAttribute="bottom" secondItem="KRE-jY-jtU" secondAttribute="bottom" id="N7S-BV-7hY"/>
-                                            <constraint firstAttribute="bottom" secondItem="kQT-EW-nNY" secondAttribute="bottom" id="SeR-ls-q2O"/>
                                             <constraint firstItem="kQT-EW-nNY" firstAttribute="top" secondItem="kJW-Wn-2TC" secondAttribute="bottom" constant="8" symbolic="YES" id="TQi-Dt-x1k"/>
                                             <constraint firstAttribute="bottom" secondItem="3a1-bQ-tUp" secondAttribute="bottom" id="WNM-ZW-voD"/>
                                             <constraint firstItem="kJW-Wn-2TC" firstAttribute="top" secondItem="ghM-ST-HWQ" secondAttribute="top" id="Wm4-WY-kAI"/>
@@ -249,11 +248,6 @@
                                             <constraint firstItem="vOn-Wq-CoZ" firstAttribute="width" secondItem="JEe-Qq-0F7" secondAttribute="width" id="olA-2c-9b2"/>
                                             <constraint firstItem="kQT-EW-nNY" firstAttribute="bottom" secondItem="3a1-bQ-tUp" secondAttribute="top" constant="-10" id="rRW-Kk-dbl"/>
                                         </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="SeR-ls-q2O"/>
-                                            </mask>
-                                        </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JmI-Z2-fTU">
                                         <rect key="frame" x="-320" y="0.0" width="320" height="140"/>
@@ -427,24 +421,59 @@
                                             <constraint firstItem="3wq-hs-GT3" firstAttribute="width" secondItem="Ci6-NX-G74" secondAttribute="width" id="gf8-sT-nvI"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="daS-vK-1kd">
+                                        <rect key="frame" x="-320" y="0.0" width="320" height="140"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7c-6x-w6g">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCL-h0-M0L">
+                                                <rect key="frame" x="286" y="110" width="34" height="30"/>
+                                                <state key="normal" title="Back"/>
+                                                <connections>
+                                                    <action selector="examineBackPress" destination="BYZ-38-t0r" eventType="touchUpInside" id="klT-3M-pEw"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="D7c-6x-w6g" firstAttribute="top" secondItem="daS-vK-1kd" secondAttribute="top" id="0e2-De-1hm"/>
+                                            <constraint firstItem="OCL-h0-M0L" firstAttribute="top" secondItem="D7c-6x-w6g" secondAttribute="bottom" constant="8" symbolic="YES" id="7s4-Up-YWF"/>
+                                            <constraint firstAttribute="bottom" secondItem="OCL-h0-M0L" secondAttribute="bottom" id="SRZ-Gq-JQp"/>
+                                            <constraint firstItem="OCL-h0-M0L" firstAttribute="centerX" secondItem="daS-vK-1kd" secondAttribute="centerX" id="Tlj-kL-EQ3"/>
+                                            <constraint firstAttribute="trailing" secondItem="OCL-h0-M0L" secondAttribute="trailing" id="b0e-Wl-Mte"/>
+                                            <constraint firstItem="D7c-6x-w6g" firstAttribute="centerX" secondItem="daS-vK-1kd" secondAttribute="centerX" id="gtt-bB-1AZ"/>
+                                            <constraint firstItem="D7c-6x-w6g" firstAttribute="width" secondItem="daS-vK-1kd" secondAttribute="width" id="r69-i6-qfL"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="Tlj-kL-EQ3"/>
+                                            </mask>
+                                        </variation>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96826761960983276" green="0.26876074075698853" blue="0.052105836570262909" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="ghM-ST-HWQ" firstAttribute="width" secondItem="Qgd-z3-fMK" secondAttribute="width" id="0te-bi-GzQ"/>
                                     <constraint firstItem="JmI-Z2-fTU" firstAttribute="centerY" secondItem="Qgd-z3-fMK" secondAttribute="centerY" id="4Qz-bb-qwM"/>
+                                    <constraint firstItem="daS-vK-1kd" firstAttribute="width" secondItem="Qgd-z3-fMK" secondAttribute="width" id="Bfa-8g-6bC"/>
                                     <constraint firstItem="ghM-ST-HWQ" firstAttribute="trailing" secondItem="Qgd-z3-fMK" secondAttribute="leading" id="CNH-Vv-wbc"/>
                                     <constraint firstItem="ghM-ST-HWQ" firstAttribute="height" secondItem="Qgd-z3-fMK" secondAttribute="height" id="EhG-qD-QBg"/>
                                     <constraint firstItem="HxB-A2-aaI" firstAttribute="trailing" secondItem="Qgd-z3-fMK" secondAttribute="leading" id="FIB-Fk-Dm5"/>
                                     <constraint firstItem="Ci6-NX-G74" firstAttribute="width" secondItem="Qgd-z3-fMK" secondAttribute="width" id="FR7-Jw-Szf"/>
                                     <constraint firstItem="ghM-ST-HWQ" firstAttribute="centerY" secondItem="Qgd-z3-fMK" secondAttribute="centerY" id="Kok-xz-Fah"/>
                                     <constraint firstItem="JmI-Z2-fTU" firstAttribute="width" secondItem="Qgd-z3-fMK" secondAttribute="width" id="Wkl-45-870"/>
+                                    <constraint firstItem="daS-vK-1kd" firstAttribute="height" secondItem="Qgd-z3-fMK" secondAttribute="height" id="Y8n-i9-0ck"/>
                                     <constraint firstItem="HxB-A2-aaI" firstAttribute="width" secondItem="Qgd-z3-fMK" secondAttribute="width" id="b6T-hs-9Py"/>
                                     <constraint firstItem="HxB-A2-aaI" firstAttribute="height" secondItem="Qgd-z3-fMK" secondAttribute="height" id="bq3-hp-eYl"/>
                                     <constraint firstItem="JmI-Z2-fTU" firstAttribute="trailing" secondItem="Qgd-z3-fMK" secondAttribute="leading" id="cSF-q6-HL6"/>
                                     <constraint firstItem="Ci6-NX-G74" firstAttribute="height" secondItem="Qgd-z3-fMK" secondAttribute="height" id="fYH-AB-I7E"/>
                                     <constraint firstItem="Ci6-NX-G74" firstAttribute="trailing" secondItem="Qgd-z3-fMK" secondAttribute="leading" id="inr-sA-yFt"/>
+                                    <constraint firstItem="daS-vK-1kd" firstAttribute="trailing" secondItem="Qgd-z3-fMK" secondAttribute="leading" id="mpC-Mo-I1i"/>
                                     <constraint firstItem="HxB-A2-aaI" firstAttribute="centerY" secondItem="Qgd-z3-fMK" secondAttribute="centerY" id="nyh-mT-nEU"/>
                                     <constraint firstItem="Ci6-NX-G74" firstAttribute="centerY" secondItem="Qgd-z3-fMK" secondAttribute="centerY" id="pdg-t5-nbq"/>
+                                    <constraint firstItem="daS-vK-1kd" firstAttribute="centerY" secondItem="Qgd-z3-fMK" secondAttribute="centerY" id="qev-FG-nww"/>
                                     <constraint firstItem="JmI-Z2-fTU" firstAttribute="height" secondItem="Qgd-z3-fMK" secondAttribute="height" id="wFA-Xk-CZg"/>
                                 </constraints>
                             </view>
@@ -608,6 +637,10 @@
                         <outlet property="craftButton" destination="vOn-Wq-CoZ" id="gRn-z4-IeC"/>
                         <outlet property="creatureView" destination="Uew-pW-cr7" id="z2A-zu-aY4"/>
                         <outlet property="examineButton" destination="3a1-bQ-tUp" id="v37-6S-RpH"/>
+                        <outlet property="examinePanel" destination="daS-vK-1kd" id="zub-5o-G8A"/>
+                        <outlet property="examinePanelBack" destination="OCL-h0-M0L" id="uuU-DV-Zcy"/>
+                        <outlet property="examinePanelContents" destination="D7c-6x-w6g" id="6gj-OW-erg"/>
+                        <outlet property="examinePanelCord" destination="mpC-Mo-I1i" id="Kcp-HU-DI0"/>
                         <outlet property="inventoryButton" destination="KRE-jY-jtU" id="SuH-JM-Dgu"/>
                         <outlet property="inventoryButtonOne" destination="P4R-zs-srk" id="5o5-id-RHw"/>
                         <outlet property="inventoryButtonTwo" destination="vVC-zd-UKl" id="hKC-7t-6GB"/>
@@ -1063,7 +1096,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="2bc-k8-xxw"/>
-        <segue reference="bRn-3v-Bao"/>
+        <segue reference="5Fs-fc-33Y"/>
         <segue reference="xEW-H2-8cz"/>
     </inferredMetricsTieBreakers>
 </document>

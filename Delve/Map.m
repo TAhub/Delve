@@ -512,7 +512,7 @@
 	{
 		if ([self mapGenerateInnerWithMap:map andGen:genPlayer])
 		{
-			NSLog(@"Map generation finished on try #%i, with %u enemies", try, self.creatures.count - 1);
+			NSLog(@"Map generation finished on try #%i, with %u enemies", try, (int)(self.creatures.count - 1));
 			return;
 		}
 	}
@@ -523,7 +523,7 @@
 	//first, get map generator variables
 	self.floorNum = map == nil ? 0 : map.floorNum + 1;
 	NSString *floorName = [NSString stringWithFormat:@"floor %i", self.floorNum];
-//	floorName = @"floor 9";
+//	floorName = @"floor 7";
 	
 	
 	//get overtime info

@@ -50,6 +50,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *attackCancel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *attackSelectPanelCord;
 
+@property (weak, nonatomic) IBOutlet UIView *examinePanel;
+@property (weak, nonatomic) IBOutlet UIButton *examinePanelBack;
+@property (weak, nonatomic) IBOutlet UIView *examinePanelContents;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *examinePanelCord;
+
+
 @property (weak, nonatomic) IBOutlet UIView *attackConfirmPanel;
 @property (weak, nonatomic) IBOutlet UILabel *attackConfirmLabel;
 @property (weak, nonatomic) IBOutlet UIButton *attackConfirmCancel;
@@ -81,6 +87,8 @@
 -(Item *)inventoryItemPicked;
 -(NSString *)recipiePicked;
 
+@property (weak, nonatomic) Creature *examinationCreature;
+
 @property (strong, nonatomic) NSString *lastAttack;
 @property (weak, nonatomic) Creature *lastTarget;
 
@@ -110,6 +118,7 @@
 	[self formatPanel:self.attackSelectPanel];
 	[self formatPanel:self.inventoryPanel];
 	[self formatPanel:self.repeatPromptPanel];
+	[self formatPanel:self.examinePanel];
 	
 	//format buttons
 	[self formatButton:self.attackB1];
@@ -129,6 +138,7 @@
 	[self formatButton:self.inventoryButtonTwo];
 	[self formatButton:self.repeatButton];
 	[self formatButton:self.examineButton];
+	[self formatButton:self.examinePanelBack];
 }
 
 -(void)loadSave
@@ -408,6 +418,20 @@
 		inventoryLabel.lineBreakMode = NSLineBreakByWordWrapping;
 	}
 	[self.inventoryContent addSubview:inventoryLabel];
+	
+	//set up examination stuff
+	for (UIView *subview in self.examinePanelContents.subviews)
+		[subview removeFromSuperview];
+	if (self.examinationCreature != nil)
+		makeExamineLabelInView(self.examinationCreature, self.examinePanelContents);
+	else
+	{
+		UILabel *desc = [[UILabel alloc] initWithFrame:CGRectZero];
+		desc.text = @"Pick a creature to examine.";
+		desc.textColor = loadColorFromName(@"ui text");
+		[desc sizeToFit];
+		[self.examinePanelContents addSubview:desc];
+	}
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -461,7 +485,7 @@
 	self.activePanelCord = panelCord;
 }
 
--(void)reloadAttackTargets
+-(void)reloadAttackTargets:(BOOL)forExamine
 {
 	int yStart = MAX(self.map.player.y - GAMEPLAY_TARGET_RANGE, 0);
 	int xStart = MAX(self.map.player.x - GAMEPLAY_TARGET_RANGE, 0);
@@ -469,7 +493,15 @@
 		for (int x = xStart; x < self.map.width && x < self.map.player.x + GAMEPLAY_TARGET_RANGE; x++)
 		{
 			Tile *tile = self.map.tiles[y][x];
-			if (self.attackChosen == nil)
+			
+			if (forExamine)
+			{
+				if (self.examinationCreature != nil)
+					tile.targetLevel = tile.inhabitant == self.examinationCreature ? TargetLevelTarget : TargetLevelOutOfRange;
+				else
+					tile.targetLevel = (tile.inhabitant != nil && !tile.inhabitant.good) ? TargetLevelInRange : TargetLevelOutOfRange;
+			}
+			else if (self.attackChosen == nil)
 				tile.targetLevel = TargetLevelOutOfRange;
 			else
 				tile.targetLevel = [self.map.player targetLevelAtX:x andY:y withAttack:self.attackChosen];
@@ -493,7 +525,7 @@
 	self.attackChosen = attackChosen;
 	NSLog(@"Picked attack #%li: %@", (long)sender.tag, self.attackChosen);
 	
-	[self reloadAttackTargets];
+	[self reloadAttackTargets:NO];
 	[self reloadPanels];
 	[self switchToPanel:self.attackConfirmPanelCord];
 }
@@ -529,14 +561,40 @@
 	else
 	{
 		self.attackChosen = nil;
-		[self reloadAttackTargets];
+		[self reloadAttackTargets:NO];
 		[self switchToPanel:self.attackSelectPanelCord];
 	}
 }
 
+- (IBAction)examineBackPress
+{
+	if (self.animating || self.uiAnimating)
+		return;
+	
+	if (self.examinationCreature != nil)
+	{
+		//un-examine that creature
+		self.examinationCreature = nil;
+		[self reloadPanels];
+		[self reloadAttackTargets:YES];
+	}
+	else
+	{
+		//go back to main
+		[self switchToPanel:self.mainPanelCord];
+		[self reloadAttackTargets:NO];
+	}
+}
+
+
 - (IBAction)examineButtonPress
 {
+	if (self.animating || self.uiAnimating)
+		return;
 	
+	[self reloadPanels];
+	[self reloadAttackTargets:YES];
+	[self switchToPanel:self.examinePanelCord];
 }
 
 
@@ -561,6 +619,8 @@
 {
 	if (self.animating || self.uiAnimating)
 		return;
+	
+	self.examinationCreature = nil;
 	
 	NSString *attack = self.lastAttack;
 	Creature *target = self.lastTarget;
@@ -929,9 +989,20 @@
 				
 				//and switch the UI back
 				self.attackChosen = nil;
-				[self reloadAttackTargets];
+				[self reloadAttackTargets:NO];
 //				[self switchToPanel:self.mainPanelCord];
 			}
+		}
+		return;
+	}
+	else if (self.activePanelCord == self.examinePanelCord)
+	{
+		//you are in examine view
+		if (tile.targetLevel == TargetLevelInRange)
+		{
+			self.examinationCreature = tile.inhabitant;
+			[self reloadPanels];
+			[self reloadAttackTargets:YES];
 		}
 		return;
 	}
