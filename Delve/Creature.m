@@ -28,10 +28,7 @@
 	[saveArray addObject:@(self.good ? 1 : 0)];
 	[saveArray addObject:self.race];
 	if (!self.good)
-	{
-		[saveArray addObject:self.name];
-		[saveArray addObject:self.ai];
-	}
+		[saveArray addObject:self.enemyType];
 	for (int i = 0; i < CREATURE_NUM_TREES; i++)
 	{
 		[saveArray addObject:self.skillTrees[i]];
@@ -106,10 +103,7 @@
 		_good = ((NSNumber *)loadArray[j++]).intValue == 1;
 		_race = loadArray[j++];
 		if (!_good)
-		{
-			_name = loadArray[j++];
-			_ai = loadArray[j++];
-		}
+			_enemyType = loadArray[j++];
 		NSMutableArray *sT = [NSMutableArray new];
 		_skillTreeLevels = [NSMutableArray new];
 		for (int i = 0; i < CREATURE_NUM_TREES; i++)
@@ -193,8 +187,7 @@
 {
 	if (self = [super init])
 	{
-		_name = [type capitalizedString];
-		_ai = loadValueString(@"EnemyTypes", type, @"ai");
+		_enemyType = type;
 		_race = loadValueString(@"EnemyTypes", type, @"race");
 		_skillTrees = loadValueArray(@"EnemyTypes", type, @"skills");
 		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
@@ -507,6 +500,55 @@
 			[desc appendString:@"\n\nUnlocks new recipies."];
 	}
 	return desc;
+}
+
+#pragma mark: enemy type stuff
+-(NSString *) ai
+{
+	return loadValueString(@"EnemyTypes", self.enemyType, @"ai");
+}
+-(NSString *) name
+{
+	if (self.good)
+		return @"Player";
+	else
+		return [self.enemyType capitalizedString];
+}
+-(NSString *) typeDescription
+{
+	return loadValueString(@"EnemyTypes", self.enemyType, @"description");
+}
+-(int) aiWakeDistance
+{
+	return loadValueNumber(@"AIs", self.ai, @"wake distance").intValue;
+}
+-(BOOL) aiFlee
+{
+	return loadValueBool(@"AIs", self.ai, @"flee during overtime");
+}
+-(BOOL) aiAttack
+{
+	return loadValueBool(@"AIs", self.ai, @"can attack");
+}
+-(BOOL) aiWalk
+{
+	return loadValueBool(@"AIs", self.ai, @"do ai walk");
+}
+-(BOOL) aiPath
+{
+	return loadValueBool(@"AIs", self.ai, @"pathfinding radius");
+}
+-(int) aiPathRadius
+{
+	return loadValueNumber(@"AIs", self.ai, @"pathfinding radius").intValue;
+}
+-(BOOL) aiDefend
+{
+	return loadValueBool(@"AIs", self.ai, @"can defend");
+}
+-(BOOL) aiSkate
+{
+	return loadValueBool(@"AIs", self.ai, @"skate ability");
 }
 
 #pragma mark: public interface functions
@@ -1200,7 +1242,7 @@
 {
 	//wake distance is an AI variable
 	//so some AIs are "louder" than others
-	int wakeDistance = loadValueNumber(@"AIs", self.ai, @"wake distance").intValue;
+	int wakeDistance = self.aiWakeDistance;
 	
 	for (int y = self.y - wakeDistance; y <= self.y + wakeDistance; y++)
 		for (int x = self.x - wakeDistance; x <= self.x + wakeDistance; x++)
@@ -1396,7 +1438,7 @@
 	{
 		//AI action
 		
-		if (self.map.overtime && loadValueBool(@"AIs", self.ai, @"flee during overtime"))
+		if (self.map.overtime && self.aiFlee)
 		{
 			//during overtime, most enemies flee
 			//some don't give a shit (robots, etc)
@@ -1417,7 +1459,7 @@
 			}
 			
 			//try to flee
-			if ([self aiWalk:-1])
+			if ([self doAiWalk:-1])
 				return YES;
 			
 			//otherwise, skip your turn
@@ -1448,7 +1490,7 @@
 		//and walk outside
 		
 		//try to attack
-		if (loadValueBool(@"AIs", self.ai, @"can attack") && [self validTargetSpotFor:@"attack" atX:self.map.player.x andY:self.map.player.y openSpotsAreFine:NO])
+		if (self.aiAttack && [self validTargetSpotFor:@"attack" atX:self.map.player.x andY:self.map.player.y openSpotsAreFine:NO])
 		{
 			//use attack
 			[self useAttackWithTreeNumber:0 andName:@"attack" onX:self.map.player.x andY:self.map.player.y];
@@ -1475,19 +1517,19 @@
 		if (tile.visible || self.map.player.stealthed == 0)
 		{
 			//which kinds of walk should you try?
-			BOOL tryAIWalk = loadValueBool(@"AIs", self.ai, @"do ai walk");
-			BOOL tryPathWalk = loadValueBool(@"AIs", self.ai, @"pathfinding radius");
+			BOOL tryAIWalk = self.aiWalk;
+			BOOL tryPathWalk = self.aiPath;
 			
 			if (tryPathWalk && !tile.visible)
 				tryAIWalk = false; //only path walk when offscreen, if you have the option
 			
 			
-			if (tryAIWalk && [self aiWalk:1])
+			if (tryAIWalk && [self doAiWalk:1])
 				return YES;
 			
 			if (tryPathWalk)
 			{
-				int pathRadius = loadValueNumber(@"AIs", self.ai, @"pathfinding radius").intValue;
+				int pathRadius = self.aiPathRadius;
 				PathDirection direction = [self.map pathFromX:self.x andY:self.y toX:self.map.player.x andY:self.map.player.y withRadius:pathRadius];
 				switch(direction)
 				{
@@ -1514,7 +1556,7 @@
 		
 		
 		//if you are stuck and onscreen, defend
-		if (tile.visible && loadValueBool(@"AIs", self.ai, @"can defend"))
+		if (tile.visible && self.aiDefend)
 		{
 			[self useAttackWithTreeNumber:0 andName:@"defend" onX:self.x andY:self.y];
 			return YES;
@@ -1548,9 +1590,9 @@
 	return self.good || self.awake;
 }
 
--(BOOL)aiWalk:(int)mult
+-(BOOL)doAiWalk:(int)mult
 {
-	BOOL skateAbility = loadValueBool(@"AIs", self.ai, @"skate ability");
+	BOOL skateAbility = self.aiSkate;
 	
 	int xDif = (self.map.player.x - self.x) * mult;
 	int yDif = (self.map.player.y - self.y) * mult;

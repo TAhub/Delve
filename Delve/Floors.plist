@@ -166,8 +166,8 @@
 		<key>encounters</key>
 		<array>
 			<array>
-				<string>domesticated ruin feeder</string>
-				<string>domesticated ruin feeder</string>
+				<string>trained ruin feeder</string>
+				<string>trained ruin feeder</string>
 			</array>
 			<array>
 				<string>bandit</string>
@@ -182,7 +182,7 @@
 				<string>bandit</string>
 			</array>
 			<array>
-				<string>domesticated ruin feeder</string>
+				<string>trained ruin feeder</string>
 				<string>bandit</string>
 			</array>
 			<array>
@@ -582,8 +582,8 @@
 			</array>
 			<array>
 				<string>raider specialist</string>
-				<string>domesticated ruin feeder</string>
-				<string>domesticated ruin feeder</string>
+				<string>trained ruin feeder</string>
+				<string>trained ruin feeder</string>
 			</array>
 		</array>
 	</dict>

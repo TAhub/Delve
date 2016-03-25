@@ -31,8 +31,6 @@
 @property (strong, nonatomic) NSArray *skillTrees; //an array of NSStrings
 @property (strong, nonatomic) NSMutableArray *skillTreeLevels; //an array of integers
 @property BOOL good;
-@property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSString *ai;
 
 #pragma mark: derived statistics (from race, skill ranks, and equipment)
 -(int) damageBonus;
@@ -80,6 +78,12 @@
 @property int y;
 @property (weak, nonatomic) Map *map;
 @property (strong, nonatomic) NSMutableDictionary *cooldowns;
+
+#pragma mark: enemy type stuff
+@property (strong, nonatomic) NSString *enemyType;
+-(NSString *) ai;
+-(NSString *) name;
+-(NSString *) typeDescription;
 
 #pragma mark: organizational flags
 @property (strong, nonatomic) NSString *storedAttack;

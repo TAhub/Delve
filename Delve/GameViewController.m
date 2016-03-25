@@ -434,7 +434,7 @@
 		return;
 	}
 	
-	panelCord.constant = -self.view.frame.size.width;
+	panelCord.constant = 0;
 //	[self.uiView layoutIfNeeded];
 	[self.view layoutIfNeeded];
 	
@@ -444,8 +444,8 @@
 	^()
 	{
 		if (weakSelf.activePanelCord != nil)
-			weakSelf.activePanelCord.constant = weakSelf.view.frame.size.width;
-		panelCord.constant = 0;
+			weakSelf.activePanelCord.constant = 2 * weakSelf.view.frame.size.width;
+		panelCord.constant = weakSelf.view.frame.size.width;
 //		[weakSelf.uiView layoutIfNeeded];
 		[weakSelf.view layoutIfNeeded];
 	} completion:
@@ -1303,9 +1303,9 @@
 	//announce the attack
 	__weak typeof(self) weakSelf = self;
 	if (suffix != nil)
-		self.attackNameLabel.text = [NSString stringWithFormat:@"%@ attacked %@!", creature.good ? @"Player" : creature.name, suffix];
+		self.attackNameLabel.text = [NSString stringWithFormat:@"%@ attacked %@!", creature.name, suffix];
 	else
-		self.attackNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@!", creature.good ? @"Player" : creature.name, delayed ? @"unleashed" : @"used", name];
+		self.attackNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@!", creature.name, delayed ? @"unleashed" : @"used", name];
 	self.attackNameLabel.textColor = loadColorFromName(@"ui text");
 	[self switchToPanel:self.attackNamePanelCord withBlock:
 	^()

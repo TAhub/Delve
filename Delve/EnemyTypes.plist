@@ -14,6 +14,7 @@
 		<!-- identity -->
 		<key>race</key> <string>template</string>
 		<key>ai</key> <string>template</string>
+		<key>ai</key> <string>template</string>
 		<key>skills</key>
 		<array>
 			<string>template</string>
@@ -223,9 +224,9 @@
 		<key>weapon</key> <string>teeth</string>
 	</dict>
 	
-	<!-- ruin feeder -->
+	<!-- trained ruin feeder -->
 	<!-- a very slightly tougher ruin feeder -->
-	<key>domesticated ruin feeder</key>
+	<key>trained ruin feeder</key>
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>ruin feeder</string>
