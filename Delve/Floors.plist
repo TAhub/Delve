@@ -239,11 +239,32 @@
 		<key>encounters</key>
 		<array>
 			<array>
-				<string>ruin feeder runt</string>
+				<string>sentry</string>
+				<string>sentry</string>
+				<string>sentry</string>
+			</array>
+			<array>
+				<string>scuttler</string>
+				<string>scuttler</string>
+				<string>scuttler</string>
+			</array>
+			<array>
+				<string>sentry</string>
+				<string>scuttler</string>
+				<string>scuttler</string>
+			</array>
+			<array>
+				<string>scuttler</string>
+				<string>sentry</string>
+				<string>sentry</string>
 			</array>
 		</array>
 	</dict>
-	<!-- TODO: encounter analysis -->
+	<!-- encounter analysis -->
+	<!-- player attack element ranking: shock > cut > smash > burn -->
+	<!-- player resistance ranking: shock > cut > smash = burn -->
+	<!-- special features: ranged attacks, position swapping -->
+	<!-- ideal build: you can have level 3 energy by this point, and holy flash should be pretty useful here; couple with a defensive skill or two (shield?) -->
 	
 	
 	<!-- floor 3 -->
@@ -420,7 +441,7 @@
 		<key>overtime countdown</key> <integer>35</integer>
 		<key>equipment treasures</key> <integer>4</integer>
 		<key>normal treasures</key> <integer>6</integer>
-		<key>number of encounters</key> <integer>8</integer>
+		<key>number of encounters</key> <integer>9</integer>
 		<key>start equipment treasures</key> <integer>4</integer>
 		<key>encounters</key>
 		<array>
@@ -709,13 +730,38 @@
 		<key>start equipment treasures</key> <integer>4</integer>
 		<key>encounters</key>
 		<array>
-			<!-- TODO: real encounters -->
 			<array>
-				<string>ruin feeder runt</string>
+				<string>war bot</string>
+				<string>war bot</string>
+			</array>
+			<array>
+				<string>war bot</string>
+				<string>scuttler</string>
+				<string>scuttler</string>
+				<string>scuttler</string>
+				<string>scuttler</string>
+			</array>
+			<array>
+				<string>war bot</string>
+				<string>sentry</string>
+				<string>sentry</string>
+				<string>sentry</string>
+				<string>sentry</string>
+			</array>
+			<array>
+				<string>security android</string>
+				<string>security android</string>
+				<string>scout android</string>
+				<string>scout android</string>
+				<string>scout android</string>
 			</array>
 		</array>
 	</dict>
-	<!-- TODO: encounter analysis -->
+	<!-- encounter analysis -->
+	<!-- player attack element ranking: smash > shock > burn > cut -->
+	<!-- player resistance ranking: shock > smash > cut > burn -->
+	<!-- special features: ranged attacks, area of effect attacks, aoe interrupt, position-swapping, undodgeable attacks, delayed attacks -->
+	<!-- ideal build: since this is the last floor, honestly someone with holy soldier + sacred light + false prophet would be good; spam down everyone! -->
 	
 </dict>
 </plist>

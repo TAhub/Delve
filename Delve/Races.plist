@@ -295,9 +295,9 @@
 	<dict>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>75</integer>
-		<key>health</key> <integer>95</integer>
+		<key>health</key> <integer>80</integer>
 		<key>cut resistance</key> <integer>2</integer>
-		<key>burn resistance</key> <integer>-4</integer>
+		<key>burn resistance</key> <integer>-3</integer>
 		<key>metabolism</key> <integer>100</integer>
 		<key>counter</key> <integer>5</integer>
 		<key>racial counter attack</key> <string>slime counter</string>
@@ -324,9 +324,9 @@
 	<dict>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>87</integer>
-		<key>health</key> <integer>100</integer>
+		<key>health</key> <integer>85</integer>
 		<key>cut resistance</key> <integer>3</integer>
-		<key>burn resistance</key> <integer>-4</integer>
+		<key>burn resistance</key> <integer>-3</integer>
 		<key>metabolism</key> <integer>100</integer>
 		<key>counter</key> <integer>10</integer>
 		<!-- slots -->
