@@ -278,7 +278,7 @@ void passiveBalanceTest()
 			
 			//calculate points
 			float points = (lHealth / 25.0f) + (lDamageBonus / 25.0f) + (lSmashResistance / 2.0f) + (lCutResistance / 2.0f);
-			points += (lShockResistance / 2.0f) + (lBurnResistance / 2.0f) + (lDodges) + (lBlocks) + (lHacks / 2.0f) + (lMetabolism / 30.0f);
+			points += (lShockResistance / 2.0f) + (lBurnResistance / 2.0f) + (lDodges) + (lBlocks) + (lHacks / 3.0f) + (lMetabolism / 30.0f);
 			points += lDelayReduction + (lAttackBonus / 35.0f) + (lCounter / 4.0f);
 			NSLog(@"Passive points for %@: %f", treeName, points);
 		}

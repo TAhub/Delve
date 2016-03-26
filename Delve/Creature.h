@@ -104,6 +104,7 @@
 -(void) equipArmor:(Item *)item;
 -(NSArray *) recipies;
 -(void) recharge;
+-(void) invalidateCache;
 -(void) breakStealth;
 
 #pragma mark: item interface functions

@@ -258,7 +258,8 @@
 			case 5: b = self.attackB6; break;
 		}
 		NSString *attack = attacks[i + self.attackPage * 6];
-		[b setTitle:attack forState:UIControlStateNormal];
+		NSNumber *cooldown = self.map.player.cooldowns[attack];
+		[b setTitle:(cooldown != nil && cooldown.intValue > 0 ? [NSString stringWithFormat:@"%@ (%i)", attack, cooldown.intValue] : attack) forState:UIControlStateNormal];
 		b.hidden = false;
 		UIColor *color = [self.map.player canUseAttack:attack] ? loadColorFromName(@"ui text") : loadColorFromName(@"ui text grey");
 		[b setTitleColor:color forState:UIControlStateNormal];
@@ -826,6 +827,7 @@
 						}
 					}
 					
+					[self.map.player invalidateCache];
 					[self.map.player breakStealth];
 					
 					//end turn
@@ -1241,6 +1243,9 @@
 -(void)presentRepeatPrompt
 {
 	//CAN you repeat?)
+	if (self.lastTarget.dead)
+		self.lastTarget = nil;
+	
 	if (self.lastAttack == nil || self.lastTarget == nil || ![self.map.player canUseAttack:self.lastAttack] || [self.map.player targetLevelAtX:self.lastTarget.x andY:self.lastTarget.y withAttack:self.lastAttack] != TargetLevelTarget)
 		return;
 	

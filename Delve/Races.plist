@@ -130,7 +130,7 @@
 	<key>eoling</key>
 	<dict>
 		<!-- stats -->
-		<key>damage bonus</key> <integer>110</integer>
+		<key>damage bonus</key> <integer>115</integer>
 		<key>health</key> <integer>75</integer>
 		<key>shock resistance</key> <integer>2</integer>
 		<key>dodges</key> <integer>2</integer>

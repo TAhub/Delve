@@ -13,6 +13,9 @@
 
 @interface Creature()
 
+@property (strong, nonatomic) NSMutableDictionary *cached;
+
+
 @end
 
 
@@ -311,8 +314,15 @@
 	}
 }
 
+-(void) invalidateCache
+{
+	self.cached = [NSMutableDictionary new];
+}
+
 -(void) recharge
 {
+	[self invalidateCache];
+	
 	//base variables
 	self.health = self.maxHealth;
 	self.dodges = self.maxDodges;
@@ -1465,6 +1475,7 @@
 				//IE loot drops or whatnot
 				//I should come up with a mechanic to make an enemy vanish without killing it
 				self.health = 0;
+				tile.inhabitant = nil;
 				[self.map.delegate updateCreature:self];
 				return NO;
 			}
@@ -1740,6 +1751,11 @@
 
 -(int)totalBonus:(NSString *)name
 {
+	//check to see if it's cached
+	NSNumber *cachedValue = self.cached[name];
+	if (cachedValue != nil)
+		return cachedValue.intValue;
+	
 	//get the base bonus from your race
 	int bonus = 0;
 	if (loadValueBool(@"Races", self.race, name))
@@ -1759,6 +1775,9 @@
 		NSString *armorName = self.armors[i];
 		bonus += [self bonusFromArmor:armorName withName:name];
 	}
+	
+	//cache what you got
+	self.cached[name] = @(bonus);
 	
 	return bonus;
 }
