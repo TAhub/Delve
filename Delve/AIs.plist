@@ -14,6 +14,7 @@
 		<!-- waking self and other variables -->
 		<key>wake distance</key> <integer>4</integer>
 		<key>stealth sight distance</key> <integer>2</integer>
+		<key>sight distance</key> <integer>4</integer>
 		<!-- pathfinding variables (remove all for immobile enemies) -->
 		<key>pathfinding radius</key> <integer>10</integer>
 		<key>do ai walk</key> <true/>
@@ -34,6 +35,7 @@
 	<dict>
 		<!-- waking self and other variables -->
 		<key>wake distance</key> <integer>4</integer>
+		<key>sight distance</key> <integer>4</integer>
 		<!-- pathfinding variables (remove all for immobile enemies) -->
 		<key>pathfinding radius</key> <integer>8</integer>
 		<key>do ai walk</key> <true/>
@@ -49,6 +51,7 @@
 		<!-- waking self and other variables -->
 		<key>wake distance</key> <integer>4</integer>
 		<key>stealth sight distance</key> <integer>2</integer>
+		<key>sight distance</key> <integer>5</integer>
 		<!-- pathfinding variables (remove all for immobile enemies) -->
 		<key>pathfinding radius</key> <integer>9</integer>
 		<key>do ai walk</key> <true/>
@@ -63,6 +66,7 @@
 	<dict>
 		<!-- waking self and other variables -->
 		<key>wake distance</key> <integer>4</integer>
+		<key>sight distance</key> <integer>4</integer>
 		<!-- pathfinding variables (remove all for immobile enemies) -->
 		<key>pathfinding radius</key> <integer>8</integer>
 		<key>do ai walk</key> <true/>
@@ -79,6 +83,7 @@
 	<dict>
 		<!-- waking self and other variables -->
 		<key>wake distance</key> <integer>10</integer>
+		<key>sight distance</key> <integer>4</integer>
 		<!-- pathfinding variables (remove all for immobile enemies) -->
 		<key>pathfinding radius</key> <integer>8</integer>
 		<key>do ai walk</key> <true/>
@@ -96,6 +101,7 @@
 	<dict>
 		<!-- waking self and other variables -->
 		<key>wake distance</key> <integer>3</integer>
+		<key>sight distance</key> <integer>4</integer>
 		<!-- pathfinding variables (remove all for immobile enemies) -->
 		<key>pathfinding radius</key> <integer>6</integer>
 		<key>do ai walk</key> <true/>
@@ -109,6 +115,7 @@
 	<dict>
 		<!-- waking self and other variables -->
 		<key>wake distance</key> <integer>3</integer>
+		<key>sight distance</key> <integer>4</integer>
 		<!-- pathfinding variables (remove all for immobile enemies) -->
 		<key>pathfinding radius</key> <integer>6</integer>
 		<key>do ai walk</key> <true/>
@@ -126,6 +133,7 @@
 	<dict>
 		<!-- waking self and other variables -->
 		<key>wake distance</key> <integer>1</integer>
+		<key>sight distance</key> <integer>2</integer>
 		<!-- pathfinding variables (remove all for immobile enemies) -->
 		<key>do ai walk</key> <true/>
 		<!-- special abilities -->
@@ -140,6 +148,7 @@
 	<dict>
 		<!-- waking self and other variables -->
 		<key>wake distance</key> <integer>2</integer>
+		<key>sight distance</key> <integer>3</integer>
 		<!-- pathfinding variables (remove all for immobile enemies) -->
 		<key>do ai walk</key> <true/>
 		<!-- special abilities -->
@@ -155,6 +164,7 @@
 	<dict>
 		<!-- waking self and other variables -->
 		<key>wake distance</key> <integer>5</integer>
+		<key>sight distance</key> <integer>5</integer>
 		<!-- pathfinding variables (remove all for immobile enemies) -->
 		<key>pathfinding radius</key> <integer>10</integer>
 		<key>do ai walk</key> <true/>
@@ -168,6 +178,7 @@
 	<dict>
 		<!-- waking self and other variables -->
 		<key>wake distance</key> <integer>5</integer>
+		<key>sight distance</key> <integer>5</integer>
 		<!-- pathfinding variables (remove all for immobile enemies) -->
 		<key>pathfinding radius</key> <integer>10</integer>
 		<key>do ai walk</key> <true/>

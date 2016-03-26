@@ -107,7 +107,7 @@
 
 -(void)setPositionWithX:(float)x andY:(float)y withAnimBlock:(void (^)(void))animBlock andCompleteBlock:(void (^)(void))completeBlock
 {
-	NSLog(@"Moving map to %f %f", x, y);
+//	NSLog(@"Moving map to %f %f", x, y);
 	
 	//add all tiles that are going to be visible after this position change
 	[self generateTilesAroundX:self.x andY:self.y withOldDict:nil];

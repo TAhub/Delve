@@ -542,6 +542,10 @@
 		return 1;
 	return loadValueNumber(@"AIs", self.ai, @"stealth sight distance").intValue;
 }
+-(int) aiSightDistance
+{
+	return loadValueNumber(@"AIs", self.ai, @"sight distance").intValue;
+}
 -(BOOL) aiFlee
 {
 	return loadValueBool(@"AIs", self.ai, @"flee during overtime");
@@ -1114,6 +1118,7 @@
 	if (!self.good && !self.awake)
 	{
 		//this is for if someone is somehow hit while asleep (for instance, by a stealthy player, or with a big AoE)
+		NSLog(@"Woken by touch!");
 		self.awake = true;
 		[self wakeUpNearby];
 	}
@@ -1275,8 +1280,11 @@
 			if (x >= 0 && y >= 0 && x < self.map.width && y < self.map.height)
 			{
 				Tile *tile = self.map.tiles[self.y][self.x];
-				if (tile.inhabitant != nil && !tile.inhabitant.good)
+				if (tile.inhabitant != nil && !tile.inhabitant.good && !tile.inhabitant.awake)
+				{
+					NSLog(@"Woken by hearing!");
 					tile.inhabitant.awake = true;
+				}
 			}
 }
 
@@ -1357,18 +1365,25 @@
 	
 	Tile *tile = self.map.tiles[self.y][self.x];
 	
-	if (self.map.overtime && !self.good)
+	if (self.map.overtime && !self.good && !self.awake)
+	{
+		NSLog(@"Woken by fear!");
 		self.awake = true; //automatically wake up in overtime
+	}
 	
 	if (self.awake && self.sleeping > 0)
 		self.awake = false; //sleeping also makes your AI sleep
 	
 	//wake up when the player gets onscreen, unless they are stealthed
-	if (!self.awake && !self.good && tile.visible &&
-		(self.map.player.stealthed == 0 || ABS(self.x - self.map.player.x) + ABS(self.y - self.map.player.y) <= self.aiStealthSightDistance)) //you can detect stealth at close range
+	if (!self.awake && !self.good && tile.visible)
 	{
-		self.awake = true;
-		[self wakeUpNearby];
+		int distance = ABS(self.x - self.map.player.x) + ABS(self.y - self.map.player.y);
+		if (distance <= (self.map.player.stealthed == 0 ? self.aiSightDistance : self.aiStealthSightDistance))
+		{
+			NSLog(@"Woken by sight!");
+			self.awake = true;
+			[self wakeUpNearby];
+		}
 	}
 	
 	if (!self.map.overtime)
