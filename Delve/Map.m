@@ -523,7 +523,7 @@
 	//first, get map generator variables
 	self.floorNum = map == nil ? 0 : map.floorNum + 1;
 	NSString *floorName = [NSString stringWithFormat:@"floor %i", self.floorNum];
-//	floorName = @"floor 7";
+//	floorName = @"floor 2";
 	
 	
 	//get overtime info

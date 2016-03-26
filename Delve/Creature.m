@@ -1170,6 +1170,11 @@
 			if (inStealth)
 				finalPower = (finalPower * CREATURE_STEALTH_MULT) / 100;
 			
+			if (!self.good)
+				finalPower = (finalPower * CREATURE_BADGUY_DAMAGE_TAKEN_MULT) / 100;
+			else
+				finalPower = (finalPower * CREATURE_BADGUY_DAMAGE_DONE_MULT) / 100;
+			
 			if (resistance < 0)
 				finalPower = (power * finalPower) * (100 - resistance * CREATURE_RESISTANCEFACTOR) / (100 * 100);
 			else
