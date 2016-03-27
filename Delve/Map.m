@@ -144,7 +144,7 @@
 		if (cr.extraAction > 0)
 		{
 			[cr startTurn];
-			if (cr.good)
+			if (cr.good && cr.storedAttack == nil)
 				[self.delegate presentRepeatPrompt];
 			return;
 		}
@@ -173,7 +173,7 @@
 			}
 			else if ([cr startTurn])
 			{
-				if (cr.good)
+				if (cr.good && cr.storedAttack == nil)
 					[self.delegate presentRepeatPrompt];
 				return;
 			}
@@ -523,7 +523,7 @@
 	//first, get map generator variables
 	self.floorNum = map == nil ? 0 : map.floorNum + 1;
 	NSString *floorName = [NSString stringWithFormat:@"floor %i", self.floorNum];
-//	floorName = @"floor 2";
+//	floorName = @"floor 1";
 	
 	
 	//get overtime info

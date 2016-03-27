@@ -15,6 +15,8 @@
 
 @property (strong, nonatomic) NSMutableDictionary *cached;
 
+@property (strong, nonatomic) NSString *attackCacheName;
+@property (strong, nonatomic) NSMutableDictionary *attackCache;
 
 @end
 
@@ -178,8 +180,9 @@
 		_saveFlag = false;
 		_map = map;
 		
-		//put yourself into the appropriate tile
-		((Tile *)map.tiles[_y][_x]).inhabitant = self;
+		//put yourself into the appropriate tile (if you aren't dead already)
+		if (_health > 0)
+			((Tile *)map.tiles[_y][_x]).inhabitant = self;
 	}
 	return self;
 }
@@ -516,6 +519,56 @@
 	return desc;
 }
 
+#pragma mark: attack cache stuff
+-(NSString *)attackCacheLoadString:(NSString *)attack fromValue:(NSString *)value
+{
+	id loaded = [self attackCacheLoad:attack fromValue:value];
+	assert([loaded isKindOfClass:[NSString class]]);
+	return loaded;
+}
+-(int)attackCacheLoadInt:(NSString *)attack fromValue:(NSString *)value
+{
+	id loaded = [self attackCacheLoad:attack fromValue:value];
+	assert([loaded isKindOfClass:[NSNumber class]]);
+	return ((NSNumber *)loaded).intValue;
+}
+-(BOOL)attackCacheLoadBool:(NSString *)attack fromValue:(NSString *)value
+{
+	id loaded = [self attackCacheLoad:attack fromValue:value];
+	return loaded != nil;
+}
+-(id)attackCacheLoad:(NSString *)attack fromValue:(NSString *)value
+{
+	//remake the cache if necessary
+	if (self.attackCacheName == nil || ![self.attackCacheName isEqualToString:attack])
+	{
+		self.attackCacheName = attack;
+		self.attackCache = [NSMutableDictionary new];
+	}
+	
+	//load from the cache
+	id loaded = self.attackCache[value];
+	if (loaded != nil)
+	{
+		if ([loaded isEqual:[NSNull null]])
+			return nil;
+		return loaded;
+	}
+	
+	//load from the plists
+	if (!loadValueBool(@"Attacks", attack, value))
+	{
+		self.attackCache[value] = [NSNull null];
+		return nil;
+	}
+	else
+	{
+		loaded = loadValue(@"Attacks", attack, value);
+		self.attackCache[value] = loaded;
+		return loaded;
+	}
+}
+
 #pragma mark: enemy type stuff
 -(NSString *) ai
 {
@@ -671,11 +724,15 @@
 	return TargetLevelOutOfRange;
 }
 
+
+//POSSIBLE IDEA:
+//make an "attack" object that exists just to cache attack values? I dunno
+
 -(BOOL) validTargetSpotFor:(NSString *)attack atX:(int)x andY:(int)y openSpotsAreFine:(BOOL)openSpots
 {
 	//set openSpotsAreFine to true if you want to find any place you can theoretically attack, not just places with people to hit
 	
-	if (!loadValueBool(@"Attacks", attack, @"range"))
+	if (![self attackCacheLoadBool:attack fromValue:@"range"])
 	{
 		//it's a 0-range attack
 		//so it can only target your own square
@@ -684,10 +741,10 @@
 	else
 	{
 		//are you in range?
-		int range = loadValueNumber(@"Attacks", attack, @"range").intValue;
+		int range = [self attackCacheLoadInt:attack fromValue:@"range"];
 		int minRange = 1;
-		if (loadValueBool(@"Attacks", attack, @"min range"))
-			minRange = loadValueNumber(@"Attacks", attack, @"min range").intValue;
+		if ([self attackCacheLoadBool:attack fromValue:@"min range"])
+			minRange = [self attackCacheLoadInt:attack fromValue:@"min range"];
 		int distance = ABS(x - self.x) + ABS(y - self.y);
 		if (distance > range || distance < minRange)
 			return false;
@@ -703,11 +760,11 @@
 			return false;
 		
 		//line attacks must attack in cardinal directions
-		if (x != self.x && y != self.y && loadValueBool(@"Attacks", attack, @"line area"))
+		if (x != self.x && y != self.y && [self attackCacheLoadBool:attack fromValue:@"line area"])
 			return false;
 		
 		if (openSpots || //if you're looking for in-range spots
-			(loadValueBool(@"Attacks", attack, @"teleport") && !loadValueBool(@"Attacks", attack, @"power"))) //damaging teleports are used normally
+			([self attackCacheLoadBool:attack fromValue:@"teleport"] && ![self attackCacheLoadBool:attack fromValue:@"power"])) //damaging teleports are used normally
 		{
 			//it's ok as long as there isn't an ally there
 			return (targetTile.inhabitant == nil || targetTile.inhabitant.good != self.good);
@@ -730,17 +787,17 @@
 -(void)applyBlock:(void (^)(Tile *))block forAttack:(NSString *)attack onX:(int)x andY:(int)y
 {
 	int radius = 0;
-	if (loadValueBool(@"Attacks", attack, @"area"))
-		radius = (loadValueNumber(@"Attacks", attack, @"area").intValue - 1) / 2;
+	if ([self attackCacheLoadBool:attack fromValue:@"area"])
+		radius = ([self attackCacheLoadInt:attack fromValue:@"area"] - 1) / 2;
 	int startX = MAX(x - radius, 0);
 	int startY = MAX(y - radius, 0);
 	int endX = MIN(x + radius, self.map.width - 1);
 	int endY = MIN(y + radius, self.map.height - 1);
 	
-	if (loadValueBool(@"Attacks", attack, @"line area"))
+	if ([self attackCacheLoadBool:attack fromValue:@"line area"])
 	{
 		//line areas are a much different thing, that work by different rules
-		int range = loadValueNumber(@"Attacks", attack, @"range").intValue;
+		int range = [self attackCacheLoadInt:attack fromValue:@"range"];
 		if (x < self.x)
 		{
 			startX = self.x - range;
@@ -975,8 +1032,7 @@
 						[weakSelf killBoosts];
 						
 						//remove the dead person from the map
-						tile.inhabitant = nil;
-						[weakSelf.map.delegate updateCreature:hit];
+						[hit kill];
 					}
 					else if (!wasAsleep && hit.sleeping == 0 && hit.stunned == 0 && !hit.dead && //inactive people can't counter
 							 ABS(weakSelf.x - hit.x) + ABS(weakSelf.y - hit.y) == 1 && //can only counter in melee
@@ -1054,8 +1110,7 @@
 					{
 						//yes, counter-attacks can kill you
 						[counterAttacker killBoosts];
-						((Tile *)weakSelf.map.tiles[weakSelf.y][weakSelf.x]).inhabitant = nil;
-						[weakSelf.map.delegate updateCreature:weakSelf];
+						[weakSelf kill];
 					}
 					
 					UIColor *color = loadColorFromName([NSString stringWithFormat:@"element %@", element]);
@@ -1066,6 +1121,23 @@
 			}
 		}];
 	} andEndBlock:block];
+}
+
+-(void)kill
+{
+	((Tile *)self.map.tiles[self.y][self.x]).inhabitant = nil;
+	[self.map.delegate updateCreature:self];
+	
+	if (self.storedAttack != nil)
+	{
+		[self applyBlock:
+		^(Tile *tile)
+		{
+			[tile.aoeTargeters removeObject:self];
+			tile.changed = true;
+		} forAttack:self.storedAttack onX:self.storedAttackX andY:self.storedAttackY];
+		[self.map.delegate updateTiles];
+	}
 }
 
 -(void)killBoosts
@@ -1352,6 +1424,8 @@
 		{
 			if (![weakSelf startTurnInnerer])
 				[weakSelf.map update]; //force it to update again
+			else if (weakSelf.good)
+				[weakSelf.map.delegate presentRepeatPrompt]; //present the repeat prompt
 		}];
 		return YES;
 	}
@@ -1495,8 +1569,7 @@
 				//IE loot drops or whatnot
 				//I should come up with a mechanic to make an enemy vanish without killing it
 				self.health = 0;
-				tile.inhabitant = nil;
-				[self.map.delegate updateCreature:self];
+				[self kill];
 				return NO;
 			}
 			

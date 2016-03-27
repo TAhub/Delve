@@ -238,200 +238,213 @@
 	
 	
 	//set up attacks panel with a list of attacks (greyed out buttons for attacks you can't use)
-	NSArray *attacks = self.map.player.attacks;
-	self.attackB1.hidden = true;
-	self.attackB2.hidden = true;
-	self.attackB3.hidden = true;
-	self.attackB4.hidden = true;
-	self.attackB5.hidden = true;
-	self.attackB6.hidden = true;
-	for (int i = 0; i < 6 && i < attacks.count - 6 * self.attackPage; i++)
+	if (self.activePanelCord == self.attackSelectPanelCord)
 	{
-		UIButton *b;
-		switch(i)
+		NSArray *attacks = self.map.player.attacks;
+		self.attackB1.hidden = true;
+		self.attackB2.hidden = true;
+		self.attackB3.hidden = true;
+		self.attackB4.hidden = true;
+		self.attackB5.hidden = true;
+		self.attackB6.hidden = true;
+		for (int i = 0; i < 6 && i < attacks.count - 6 * self.attackPage; i++)
 		{
-			case 0: b = self.attackB1; break;
-			case 1: b = self.attackB2; break;
-			case 2: b = self.attackB3; break;
-			case 3: b = self.attackB4; break;
-			case 4: b = self.attackB5; break;
-			case 5: b = self.attackB6; break;
+			UIButton *b;
+			switch(i)
+			{
+				case 0: b = self.attackB1; break;
+				case 1: b = self.attackB2; break;
+				case 2: b = self.attackB3; break;
+				case 3: b = self.attackB4; break;
+				case 4: b = self.attackB5; break;
+				case 5: b = self.attackB6; break;
+			}
+			NSString *attack = attacks[i + self.attackPage * 6];
+			NSNumber *cooldown = self.map.player.cooldowns[attack];
+			[b setTitle:(cooldown != nil && cooldown.intValue > 0 ? [NSString stringWithFormat:@"%@ (%i)", attack, cooldown.intValue] : attack) forState:UIControlStateNormal];
+			b.hidden = false;
+			UIColor *color = [self.map.player canUseAttack:attack] ? loadColorFromName(@"ui text") : loadColorFromName(@"ui text grey");
+			[b setTitleColor:color forState:UIControlStateNormal];
 		}
-		NSString *attack = attacks[i + self.attackPage * 6];
-		NSNumber *cooldown = self.map.player.cooldowns[attack];
-		[b setTitle:(cooldown != nil && cooldown.intValue > 0 ? [NSString stringWithFormat:@"%@ (%i)", attack, cooldown.intValue] : attack) forState:UIControlStateNormal];
-		b.hidden = false;
-		UIColor *color = [self.map.player canUseAttack:attack] ? loadColorFromName(@"ui text") : loadColorFromName(@"ui text grey");
-		[b setTitleColor:color forState:UIControlStateNormal];
+		self.attackNext.hidden = attacks.count <= 6;
+		[self.attackSelectPanel layoutIfNeeded];
 	}
-	self.attackNext.hidden = attacks.count <= 6;
-	[self.attackSelectPanel layoutIfNeeded];
 	
 	
 	//set up attack confirm panel
-	if (self.aoeIndicatorView == nil)
-		self.attackConfirmLabel.text = [NSString stringWithFormat:@"Pick a target for %@.", self.attackChosen];
-	else
-		self.attackConfirmLabel.text = [NSString stringWithFormat:@"This is the area %@ will hit.\nTap again to confirm.", self.attackChosen];
-	self.attackConfirmLabel.textColor = loadColorFromName(@"ui text");
+	if (self.activePanelCord == self.attackConfirmPanelCord)
+	{
+		if (self.aoeIndicatorView == nil)
+			self.attackConfirmLabel.text = [NSString stringWithFormat:@"Pick a target for %@.", self.attackChosen];
+		else
+			self.attackConfirmLabel.text = [NSString stringWithFormat:@"This is the area %@ will hit.\nTap again to confirm.", self.attackChosen];
+		self.attackConfirmLabel.textColor = loadColorFromName(@"ui text");
+	}
 	
 	
 	//set up inventory panel
-	for (UIView *subview in self.inventoryContent.subviews)
-		if (subview != self.itemTable)
-			[subview removeFromSuperview];
-	NSString *inventoryLabelText;
-	if (self.examinationItem == nil)
+	if (self.activePanelCord == self.inventoryPanelCord)
 	{
-		inventoryLabelText = self.examineRecipies != nil ? @"Pick a recipie to craft" : @"Pick an item to use";
-		if (self.examineRecipies == nil && self.inventoryItemPicked != nil)
+		for (UIView *subview in self.inventoryContent.subviews)
+			if (subview != self.itemTable)
+				[subview removeFromSuperview];
+		NSString *inventoryLabelText;
+		if (self.examinationItem == nil)
 		{
-			Item *picked = [self inventoryItemPicked];
-			inventoryLabelText = [picked itemDescriptionWithCreature:self.map.player];
-		}
-		else if (self.examineRecipies != nil && self.recipiePicked != nil)
-		{
-			Item *sample = [self.map makeItemFromRecipie:self.recipiePicked];
-			inventoryLabelText = [sample itemDescriptionWithCreature:self.map.player];
-			
-		}
-	}
-	else
-	{
-		switch(self.examinationItem.type)
-		{
-			case ItemTypeArmor:
-			case ItemTypeImplement:
+			inventoryLabelText = self.examineRecipies != nil ? @"Pick a recipie to craft" : @"Pick an item to use";
+			if (self.examineRecipies == nil && self.inventoryItemPicked != nil)
 			{
-				Tile *tile = self.map.tiles[self.map.player.y][self.map.player.x];
-				if (tile.treasureType == TreasureTypeLocked)
+				Item *picked = [self inventoryItemPicked];
+				inventoryLabelText = [picked itemDescriptionWithCreature:self.map.player];
+			}
+			else if (self.examineRecipies != nil && self.recipiePicked != nil)
+			{
+				Item *sample = [self.map makeItemFromRecipie:self.recipiePicked];
+				inventoryLabelText = [sample itemDescriptionWithCreature:self.map.player];
+				
+			}
+		}
+		else
+		{
+			switch(self.examinationItem.type)
+			{
+				case ItemTypeArmor:
+				case ItemTypeImplement:
 				{
-					[self.inventoryButtonOne setTitle:@"Unlock" forState:UIControlStateNormal];
-					inventoryLabelText = [NSString stringWithFormat:@"This chest is locked.\nIt seems to contain a%@.", self.examinationItem.type == ItemTypeArmor ? @" piece of armor" : @"n implement"];
-					if (self.map.player.hacks > 0)
-						[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
-					else
-						[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text grey") forState:UIControlStateNormal];
-				}
-				else
-				{
-					int slot = [self.map.player slotForItem:self.examinationItem];
-					if (slot == -1)
+					Tile *tile = self.map.tiles[self.map.player.y][self.map.player.x];
+					if (tile.treasureType == TreasureTypeLocked)
 					{
-						NSString *material = loadValueString(self.examinationItem.type == ItemTypeArmor ? @"Armors" : @"Implements", self.examinationItem.name, @"breaks into");
-						inventoryLabelText = [NSString stringWithFormat:@"Break down %@ into %@?", self.examinationItem.name, material];
-						[self.inventoryButtonOne setTitle:@"Break Down" forState:UIControlStateNormal];
-						[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+						[self.inventoryButtonOne setTitle:@"Unlock" forState:UIControlStateNormal];
 						[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
-						[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+						inventoryLabelText = [NSString stringWithFormat:@"This chest is locked.\nIt seems to contain a%@.", self.examinationItem.type == ItemTypeArmor ? @" piece of armor" : @"n implement"];
+						if (self.map.player.hacks > 0)
+							[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+						else
+							[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text grey") forState:UIControlStateNormal];
 					}
 					else
 					{
-						[self.inventoryButtonOne setTitle:@"Equip" forState:UIControlStateNormal];
-						[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
-						
-						if (self.examinationItem.type == ItemTypeArmor)
+						int slot = [self.map.player slotForItem:self.examinationItem];
+						if (slot == -1)
 						{
-							NSString *comparison = self.map.player.armors[slot];
-							NSString *armorDesc = [self.map.player armorDescription:self.examinationItem.name];
-							NSString *eArmorDesc = (comparison == nil ? @"Nothing" : [self.map.player armorDescription:comparison]);
-							inventoryLabelText = [NSString stringWithFormat:@"Equip %@?\n\n%@\n\nVS\n\n%@", self.examinationItem.name, armorDesc, eArmorDesc];
+							NSString *material = loadValueString(self.examinationItem.type == ItemTypeArmor ? @"Armors" : @"Implements", self.examinationItem.name, @"breaks into");
+							inventoryLabelText = [NSString stringWithFormat:@"Break down %@ into %@?", self.examinationItem.name, material];
+							[self.inventoryButtonOne setTitle:@"Break Down" forState:UIControlStateNormal];
+							[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+							[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
+							[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 						}
 						else
 						{
-							NSString *comparison;
-							if (slot == -2)
-								comparison = self.map.player.weapon;
+							[self.inventoryButtonOne setTitle:@"Equip" forState:UIControlStateNormal];
+							[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+							
+							if (self.examinationItem.type == ItemTypeArmor)
+							{
+								NSString *comparison = self.map.player.armors[slot];
+								NSString *armorDesc = [self.map.player armorDescription:self.examinationItem.name];
+								NSString *eArmorDesc = (comparison == nil ? @"Nothing" : [self.map.player armorDescription:comparison]);
+								inventoryLabelText = [NSString stringWithFormat:@"Equip %@?\n\n%@\n\nVS\n\n%@", self.examinationItem.name, armorDesc, eArmorDesc];
+							}
 							else
-								comparison = self.map.player.implements[slot];
-							NSString *weaponDesc = [self.map.player weaponDescription:self.examinationItem.name];
-							NSString *eWeaponDesc = [self.map.player weaponDescription:comparison];
-							inventoryLabelText = [NSString stringWithFormat:@"Equip %@?\n\n%@\n\nVS\n\n%@", self.examinationItem.name, weaponDesc, eWeaponDesc];
+							{
+								NSString *comparison;
+								if (slot == -2)
+									comparison = self.map.player.weapon;
+								else
+									comparison = self.map.player.implements[slot];
+								NSString *weaponDesc = [self.map.player weaponDescription:self.examinationItem.name];
+								NSString *eWeaponDesc = [self.map.player weaponDescription:comparison];
+								inventoryLabelText = [NSString stringWithFormat:@"Equip %@?\n\n%@\n\nVS\n\n%@", self.examinationItem.name, weaponDesc, eWeaponDesc];
+							}
+							
+							[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
+							[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 						}
-						
-						[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
-						[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 					}
 				}
+					break;
+				case ItemTypeInventory:
+					inventoryLabelText = [NSString stringWithFormat:@"Pick up %@%@?", self.examinationItem.name, self.examinationItem.number > 1 ? [NSString stringWithFormat:@" x%i", self.examinationItem.number] : @""];
+					
+					//TODO: probably write some kind of description of the item, or something?
+					//or maybe how many you have already, if you have any
+					
+					[self.inventoryButtonOne setTitle:@"Pick Up" forState:UIControlStateNormal];
+					[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+					[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
+					[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+					break;
 			}
-				break;
-			case ItemTypeInventory:
-				inventoryLabelText = [NSString stringWithFormat:@"Pick up %@%@?", self.examinationItem.name, self.examinationItem.number > 1 ? [NSString stringWithFormat:@" x%i", self.examinationItem.number] : @""];
-				
-				//TODO: probably write some kind of description of the item, or something?
-				//or maybe how many you have already, if you have any
-				
-				[self.inventoryButtonOne setTitle:@"Pick Up" forState:UIControlStateNormal];
-				[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
-				[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
-				[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
-				break;
 		}
-	}
-	UILabel *inventoryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.inventoryContent.frame.size.width, self.inventoryContent.frame.size.height)];
-	inventoryLabel.text = inventoryLabelText;
-	inventoryLabel.numberOfLines = 0;
-	inventoryLabel.textColor = loadColorFromName(@"ui text");
-	if (self.examinationItem == nil)
-	{
-		[inventoryLabel sizeToFit];
-		CGRect tableFrame = CGRectMake(0, inventoryLabel.frame.size.height, self.inventoryContent.frame.size.width, self.inventoryContent.frame.size.height - inventoryLabel.frame.size.height);
-		
-		if (self.itemTable == nil)
-		{
-			self.itemTable = [[UITableView alloc] initWithFrame:tableFrame];
-			[self.inventoryContent addSubview:self.itemTable];
-			self.itemTable.delegate = self;
-			self.itemTable.dataSource = self;
-			self.itemTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-			[self.itemTable registerNib:[UINib nibWithNibName:@"ItemCell" bundle:nil] forCellReuseIdentifier:@"itemCell"];
-		}
-		else
-		{
-			NSIndexPath *oldPath = self.itemTable.indexPathForSelectedRow;
-			self.itemTable.frame = tableFrame;
-			[self.itemTable reloadData];
-			[self.itemTable selectRowAtIndexPath:oldPath animated:NO scrollPosition:UITableViewScrollPositionTop];
-		}
-		
-		if (self.examineRecipies != nil)
-		{
-			[self.inventoryButtonOne setTitle:@"Craft" forState:UIControlStateNormal];
-			[self.inventoryButtonOne setTitleColor:(self.recipiePicked == nil ? loadColorFromName(@"ui text grey") : loadColorFromName(@"ui text")) forState:UIControlStateNormal];
-
-		}
-		else
-		{
-			[self.inventoryButtonOne setTitle:@"Use" forState:UIControlStateNormal];
-			[self.inventoryButtonOne setTitleColor:(self.inventoryItemPicked == nil || !self.inventoryItemPicked.usable ? loadColorFromName(@"ui text grey") : loadColorFromName(@"ui text")) forState:UIControlStateNormal];
-		}
-		[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
-		[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
-	}
-	else
-	{
-		if (self.itemTable != nil)
-		{
-			[self.itemTable removeFromSuperview];
-			self.itemTable = nil;
-		}
+		UILabel *inventoryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.inventoryContent.frame.size.width, self.inventoryContent.frame.size.height)];
+		inventoryLabel.text = inventoryLabelText;
 		inventoryLabel.numberOfLines = 0;
-		inventoryLabel.lineBreakMode = NSLineBreakByWordWrapping;
+		inventoryLabel.textColor = loadColorFromName(@"ui text");
+		if (self.examinationItem == nil)
+		{
+			[inventoryLabel sizeToFit];
+			CGRect tableFrame = CGRectMake(0, inventoryLabel.frame.size.height, self.inventoryContent.frame.size.width, self.inventoryContent.frame.size.height - inventoryLabel.frame.size.height);
+			
+			if (self.itemTable == nil)
+			{
+				self.itemTable = [[UITableView alloc] initWithFrame:tableFrame];
+				[self.inventoryContent addSubview:self.itemTable];
+				self.itemTable.delegate = self;
+				self.itemTable.dataSource = self;
+				self.itemTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+				[self.itemTable registerNib:[UINib nibWithNibName:@"ItemCell" bundle:nil] forCellReuseIdentifier:@"itemCell"];
+			}
+			else
+			{
+				NSIndexPath *oldPath = self.itemTable.indexPathForSelectedRow;
+				self.itemTable.frame = tableFrame;
+				[self.itemTable reloadData];
+				[self.itemTable selectRowAtIndexPath:oldPath animated:NO scrollPosition:UITableViewScrollPositionTop];
+			}
+			
+			if (self.examineRecipies != nil)
+			{
+				[self.inventoryButtonOne setTitle:@"Craft" forState:UIControlStateNormal];
+				[self.inventoryButtonOne setTitleColor:(self.recipiePicked == nil ? loadColorFromName(@"ui text grey") : loadColorFromName(@"ui text")) forState:UIControlStateNormal];
+
+			}
+			else
+			{
+				[self.inventoryButtonOne setTitle:@"Use" forState:UIControlStateNormal];
+				[self.inventoryButtonOne setTitleColor:(self.inventoryItemPicked == nil || !self.inventoryItemPicked.usable ? loadColorFromName(@"ui text grey") : loadColorFromName(@"ui text")) forState:UIControlStateNormal];
+			}
+			[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
+			[self.inventoryButtonTwo setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
+		}
+		else
+		{
+			if (self.itemTable != nil)
+			{
+				[self.itemTable removeFromSuperview];
+				self.itemTable = nil;
+			}
+			inventoryLabel.numberOfLines = 0;
+			inventoryLabel.lineBreakMode = NSLineBreakByWordWrapping;
+		}
+		[self.inventoryContent addSubview:inventoryLabel];
 	}
-	[self.inventoryContent addSubview:inventoryLabel];
 	
-	//set up examination stuff
-	for (UIView *subview in self.examinePanelContents.subviews)
-		[subview removeFromSuperview];
-	if (self.examinationCreature != nil)
-		makeExamineLabelInView(self.examinationCreature, self.examinePanelContents);
-	else
+	if (self.activePanelCord == self.examinePanelCord)
 	{
-		UILabel *desc = [[UILabel alloc] initWithFrame:CGRectZero];
-		desc.text = @"Pick a creature to examine.";
-		desc.textColor = loadColorFromName(@"ui text");
-		[desc sizeToFit];
-		[self.examinePanelContents addSubview:desc];
+		//set up examination stuff
+		for (UIView *subview in self.examinePanelContents.subviews)
+			[subview removeFromSuperview];
+		if (self.examinationCreature != nil)
+			makeExamineLabelInView(self.examinationCreature, self.examinePanelContents);
+		else
+		{
+			UILabel *desc = [[UILabel alloc] initWithFrame:CGRectZero];
+			desc.text = @"Pick a creature to examine.";
+			desc.textColor = loadColorFromName(@"ui text");
+			[desc sizeToFit];
+			[self.examinePanelContents addSubview:desc];
+		}
 	}
 }
 
@@ -484,6 +497,7 @@
 	}];
 	
 	self.activePanelCord = panelCord;
+	[self reloadPanels];
 }
 
 -(void)reloadAttackTargets:(BOOL)forExamine
@@ -527,7 +541,6 @@
 	NSLog(@"Picked attack #%li: %@", (long)sender.tag, self.attackChosen);
 	
 	[self reloadAttackTargets:NO];
-	[self reloadPanels];
 	[self switchToPanel:self.attackConfirmPanelCord];
 }
 
@@ -538,7 +551,6 @@
 	NSArray *attacks = self.map.player.attacks;
 	int numberPanels = (int)ceilf(attacks.count / 6.0f);
 	self.attackPage = (self.attackPage + 1) % numberPanels;
-	[self reloadPanels];
 }
 
 - (IBAction)pickCancel
@@ -593,7 +605,6 @@
 	if (self.animating || self.uiAnimating)
 		return;
 	
-	[self reloadPanels];
 	[self reloadAttackTargets:YES];
 	[self switchToPanel:self.examinePanelCord];
 }
@@ -611,7 +622,6 @@
 		//open crafting menu
 		self.examinationItem = nil;
 		self.examineRecipies = self.map.preloadedCrafts;
-		[self reloadPanels];
 		[self switchToPanel:self.inventoryPanelCord];
 	}
 }
@@ -642,7 +652,6 @@
 	[self resetLastAttack];
 	
 	self.attackPage = 0;
-	[self reloadPanels];
 	[self switchToPanel:self.attackSelectPanelCord];
 }
 
@@ -679,7 +688,6 @@
 					[self.map.player breakStealth];
 					[self.map saveInventory];
 					
-					[self reloadPanels];
 					__weak typeof(self) weakSelf = self;
 					[self switchToPanel:self.mainPanelCord withBlock:
 					^()
@@ -729,7 +737,6 @@
 				
 				[self.itemTable reloadData];
 				
-				[self reloadPanels];
 				__weak typeof(self) weakSelf = self;
 				[self switchToPanel:self.mainPanelCord withBlock:
 				^()
@@ -764,8 +771,10 @@
 					{
 						self.map.player.hacks -= 1;
 						tile.treasureType = TreasureTypeChest;
+						tile.changed = true;
 						[self.map.player breakStealth];
 						[self reloadPanels];
+						[self updateTiles];
 					}
 					return;
 				}
@@ -783,7 +792,6 @@
 					tile.treasureType = TreasureTypeNone;
 					tile.changed = true;
 					[self.map.player breakStealth];
-					[self reloadPanels];
 					[self updateTiles];
 					[tile saveWithX:self.map.player.x andY:self.map.player.y];
 					
@@ -831,7 +839,6 @@
 					[self.map.player breakStealth];
 					
 					//end turn
-					[self reloadPanels];
 					__weak typeof(self) weakSelf = self;
 					[self switchToPanel:self.mainPanelCord withBlock:
 					^()
@@ -864,7 +871,6 @@
 				[tile saveWithX:self.map.player.x andY:self.map.player.y];
 				
 				[self updateTiles];
-				[self reloadPanels];
 				[self switchToPanel:self.mainPanelCord];
 			}
 			else
@@ -904,7 +910,6 @@
 		//opens the inventory so you can use inventory buttons
 		self.examinationItem = nil;
 		self.examineRecipies = nil;
-		[self reloadPanels];
 		[self switchToPanel:self.inventoryPanelCord];
 	}
 }
@@ -927,7 +932,6 @@
 			[self.itemTable removeFromSuperview];
 			self.itemTable = nil;
 		}
-		[self reloadPanels];
 		[self switchToPanel:self.inventoryPanelCord];
 	}
 }
