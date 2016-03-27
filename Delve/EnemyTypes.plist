@@ -818,5 +818,37 @@
 		</array>
 		<key>weapon</key> <string>longsword</string>
 	</dict>
+	
+	
+	<!-- guardians -->
+	<!-- guardians are a "boss enemy", meant to protect the exit of a room -->
+	<!-- as a design goal, they should be used to match the general elemental resists/damages of an area -->
+	
+	<!-- TODO: this is the basic guardian template; don't actually use this! -->
+	<key>template guardian</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>guardian</string>
+		<key>ai</key> <string>guardian</string>
+		<key>description</key> <string>TODO: enemy type description!</string>
+		<key>skills</key>
+		<array>
+			<string>guardian skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>mace</string> <!-- TODO: appropriate guardian weapon, to change guardian shot element -->
+		</array>
+		<key>armors</key>
+		<array>
+			<string>rough ring</string> <!-- TODO: appropriate guardian armor, to give elemental resist -->
+		</array>
+		<key>weapon</key> <string>shortsword</string>
+	</dict>
 </dict>
 </plist>

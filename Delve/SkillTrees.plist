@@ -258,6 +258,28 @@
 			</dict>
 		</array>
 	</dict>
+	<key>guardian skill</key>
+	<dict>
+		<key>type</key> <string>invalid</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>attack</key> <string>guardian shot</string>
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>damage bonus</key> <integer>10</integer>
+				<key>health</key> <integer>15</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>damage bonus</key> <integer>10</integer>
+				<key>health</key> <integer>15</integer>
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>damage bonus</key> <integer>10</integer>
+				<key>health</key> <integer>15</integer>
+			</dict>
+		</array>
+	</dict>
 	
 	
 	<!-- war skills -->

@@ -289,6 +289,29 @@
 	
 	<!-- enemy races -->
 	
+	<!-- guardian (strong) -->
+	<!-- guardians are a powerful enemy meant to guard the exit -->
+	<key>guardian</key>
+	<dict>
+		<!-- stats -->
+		<key>damage bonus</key> <integer>100</integer>
+		<key>health</key> <integer>200</integer>
+		<key>metabolism</key> <integer>100</integer>
+		<!-- slots -->
+		<!-- appearance -->
+		<key>sprite</key> <string>sentry</string> <!-- TODO: immobile robot turret-ey sprite, with an armor layer for colored armors to show elemental resist -->
+		<key>colorations</key>
+		<array>
+			<dict>
+				<key>skin</key> <string>relic</string>
+			</dict>
+		</array>
+		<key>armor slot y offsets</key>
+		<array>
+			<integer>0</integer>
+		</array>
+	</dict>
+	
 	<!-- slime (weak) -->
 	<!-- slimes are a very tanky enemy with a built-in counter-attack, good cut resistance, and a significant burn weakness -->
 	<key>slime</key>

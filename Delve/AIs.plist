@@ -29,6 +29,20 @@
 	
 	<!-- real AIs -->
 	
+	<!-- guardian AI -->
+	<!-- the guardian AI is an immobile but perceptive enemy, to guard the exit -->
+	<key>guardian</key>
+	<dict>
+		<!-- waking self and other variables -->
+		<key>wake distance</key> <integer>50</integer>
+		<key>sight distance</key> <integer>5</integer>
+		<!-- pathfinding variables (remove all for immobile enemies) -->
+		<!-- special abilities -->
+		<!-- attack variables -->
+		<key>can defend</key> <true/>
+		<!-- misc variables -->
+	</dict>
+	
 	<!-- bandit AIs -->
 	<!-- bandits are good at working with each other, and they can attack and defend (except the specialists) -->
 	<key>bandit</key>

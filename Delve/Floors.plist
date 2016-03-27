@@ -48,6 +48,7 @@
 				<string>ruin feeder runt</string>
 			</array>
 		</array>
+		<key>guardian type</key> <string>template guardian</string>
 	</dict>
 	
 	<!-- design guideline -->
@@ -120,6 +121,7 @@
 				<string>ruin feeder</string>
 			</array>
 		</array>
+		<key>guardian type</key> <string>template guardian</string>
 	</dict>
 	<!-- encounter analysis -->
 	<!-- player attack element ranking: burn > shock > smash = cut -->
@@ -192,6 +194,7 @@
 				<string>hammer bandit</string>
 			</array>
 		</array>
+		<key>guardian type</key> <string>template guardian</string>
 	</dict>
 	<!-- encounter analysis -->
 	<!-- player attack element ranking: smash > burn = shock > cut -->
@@ -258,6 +261,7 @@
 				<string>sentry</string>
 			</array>
 		</array>
+		<key>guardian type</key> <string>template guardian</string>
 	</dict>
 	<!-- encounter analysis -->
 	<!-- player attack element ranking: shock > cut > smash > burn -->
@@ -325,6 +329,7 @@
 				<string>scuttler</string>
 			</array>
 		</array>
+		<key>guardian type</key> <string>template guardian</string>
 	</dict>
 	<!-- encounter analysis -->
 	<!-- player attack element ranking: cut > burn = shock > smash -->
@@ -397,6 +402,7 @@
 				<string>rabid ruin feeder</string>
 			</array>
 		</array>
+		<key>guardian type</key> <string>template guardian</string>
 	</dict>
 	<!-- encounter analysis -->
 	<!-- player attack element ranking: burn = shock > cut > smash -->
@@ -471,6 +477,7 @@
 				<string>abomination flinger</string>
 			</array>
 		</array>
+		<key>guardian type</key> <string>template guardian</string>
 	</dict>
 	<!-- encounter analysis -->
 	<!-- player attack element ranking: burn = cut > shock > smash -->
@@ -539,6 +546,7 @@
 				<string>war bot</string>
 			</array>
 		</array>
+		<key>guardian type</key> <string>template guardian</string>
 	</dict>
 	<!-- encounter analysis -->
 	<!-- player attack element ranking: shock > smash > burn > cut -->
@@ -604,6 +612,7 @@
 				<string>trained ruin feeder</string>
 			</array>
 		</array>
+		<key>guardian type</key> <string>template guardian</string>
 	</dict>
 	<!-- encounter analysis -->
 	<!-- player attack element ranking: shock > burn > smash > cut -->
@@ -682,6 +691,7 @@
 				<string>slime</string>
 			</array>
 		</array>
+		<key>guardian type</key> <string>template guardian</string>
 	</dict>
 	<!-- encounter analysis -->
 	<!-- player attack element ranking: smash = burn > shock > cut -->
@@ -753,6 +763,7 @@
 				<string>scout android</string>
 			</array>
 		</array>
+		<key>guardian type</key> <string>template guardian</string>
 	</dict>
 	<!-- encounter analysis -->
 	<!-- player attack element ranking: smash > shock > burn > cut -->

@@ -598,6 +598,7 @@
 	
 	//the list of encounter arrays
 	NSArray *encounters = loadValueArray(@"Floors", floorName, @"encounters");
+	NSString *guardianType = loadValueString(@"Floors", floorName, @"guardian type");
 	
 
 	//load tileset info
@@ -975,6 +976,11 @@
 	}
 	else
 		NSLog(@"Skipping cave wall generation.");
+	
+	//the exit always has an encounter
+	exitRoom.encounter = true;
+	numEncounters -= 1;
+	
  
 	NSLog(@"Finding encounter locations");
 	
@@ -1036,10 +1042,6 @@
 	for (int i = 0; i < numEquipmentTreasures && i < finalTreasureRooms.count; i++)
 		((GeneratorRoom *)finalTreasureRooms[i]).equipmentTreasure = true;
 	
-	//the exit always has an encounter
-	exitRoom.encounter = true;
-	numEncounters -= 1;
-	
 	//place treasures
 	//these try to go in the center of their respecive rooms
 	for (NSArray *row in rooms)
@@ -1085,6 +1087,12 @@
 		}
 	}
 	
+	//place exit door tile
+	int doorX = exitRoom.xCorner + roomSize / 2;
+	int doorY = exitRoom.yCorner + roomSize / 2;
+	((Tile *)self.tiles[doorY][doorX]).type = stairsTile;
+	
+	
 	NSLog(@"Placing encounters");
 	
 	//place encounters
@@ -1097,38 +1105,55 @@
 				int pick = (int)arc4random_uniform((u_int32_t)encounters.count);
 				NSArray *encounter = encounters[pick];
 				
-				NSLog(@"--Finding open spaces");
-				//find every open space for a person in the area
-				NSMutableArray *openSpaces = [NSMutableArray new];
-				for (int y = 0; y < roomSize; y++)
-					for (int x = 0; x < roomSize; x++)
-					{
-						int xA = room.xCorner + x;
-						int yA = room.yCorner + y;
-						Tile *tile = self.tiles[yA][xA];
-						if (tile.validPlacementSpot)
-							[openSpaces addObject:@(xA+yA*self.width)];
-					}
-				shuffleArray(openSpaces);
-				
-				NSLog(@"--Placing in those %lu spaces", (unsigned long)openSpaces.count);
-				for (int i = 0; i < openSpaces.count && i < encounter.count; i++)
+				if (room == exitRoom)
 				{
-					NSString *type = encounter[i];
-					NSNumber *position = openSpaces[i];
-					int x = position.intValue % self.width;
-					int y = position.intValue / self.width;
-					Tile *tile = self.tiles[y][x];
-					Creature *enemy = [[Creature alloc] initWithX:x andY:y onMap:self ofEnemyType:type];
-					[self.creatures addObject:enemy];
-					tile.inhabitant = enemy;
+					NSLog(@"--Chose guardian encounter");
+					//place the appropriate type of guardian on the exit
+					for (int y = 0; y < roomSize; y++)
+						for (int x = 0; x < roomSize; x++)
+						{
+							int xA = room.xCorner + x;
+							int yA = room.yCorner + y;
+							Tile *tile = self.tiles[yA][xA];
+							if (tile.stairs)
+							{
+								Creature *guardian = [[Creature alloc] initWithX:xA andY:yA onMap:self ofEnemyType:guardianType];
+								[self.creatures addObject:guardian];
+								tile.inhabitant = guardian;
+								break;
+							}
+						}
+				}
+				else
+				{
+					NSLog(@"--Finding open spaces");
+					//find every open space for a person in the area
+					NSMutableArray *openSpaces = [NSMutableArray new];
+					for (int y = 0; y < roomSize; y++)
+						for (int x = 0; x < roomSize; x++)
+						{
+							int xA = room.xCorner + x;
+							int yA = room.yCorner + y;
+							Tile *tile = self.tiles[yA][xA];
+							if (tile.validPlacementSpot)
+								[openSpaces addObject:@(xA+yA*self.width)];
+						}
+					shuffleArray(openSpaces);
+					
+					NSLog(@"--Placing in those %lu spaces", (unsigned long)openSpaces.count);
+					for (int i = 0; i < openSpaces.count && i < encounter.count; i++)
+					{
+						NSString *type = encounter[i];
+						NSNumber *position = openSpaces[i];
+						int x = position.intValue % self.width;
+						int y = position.intValue / self.width;
+						Tile *tile = self.tiles[y][x];
+						Creature *enemy = [[Creature alloc] initWithX:x andY:y onMap:self ofEnemyType:type];
+						[self.creatures addObject:enemy];
+						tile.inhabitant = enemy;
+					}
 				}
 			}
-	
-	//place exit door tile
-	int doorX = exitRoom.xCorner + roomSize / 2;
-	int doorY = exitRoom.yCorner + roomSize / 2;
-	((Tile *)self.tiles[doorY][doorX]).type = stairsTile;
 	
 	
 	//place doodads in rooms, if you have doodads
