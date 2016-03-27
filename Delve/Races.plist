@@ -365,6 +365,9 @@
 				<key>skin</key> <string>brown hair</string>
 			</dict>
 			<dict>
+				<key>skin</key> <string>leather</string>
+			</dict>
+			<dict>
 				<key>skin</key> <string>brown skin</string>
 			</dict>
 			<dict>
@@ -394,6 +397,9 @@
 		<array>
 			<dict>
 				<key>skin</key> <string>brown hair</string>
+			</dict>
+			<dict>
+				<key>skin</key> <string>leather</string>
 			</dict>
 			<dict>
 				<key>skin</key> <string>brown skin</string>

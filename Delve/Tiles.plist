@@ -69,6 +69,21 @@
 		<key>rubbles into</key> <string>natural floor</string>
 		<key>sprite</key> <string>tile_wall_cave</string>
 	</dict>
+	<key>forest floor</key>
+	<dict>
+		<key>color</key> <string>green hair</string>
+		<key>rubbles into</key> <string>natural floor</string>
+		<key>rubble chance</key> <integer>35</integer>
+		<key>sprite</key> <string>tile_floor_cave</string>
+	</dict>
+	<key>forest wall</key> <!-- TODO: thicket of leaf-less trees -->
+	<dict>
+		<key>color</key> <string>brown hair</string>
+		<key>solid</key> <true/>
+		<key>opaque</key> <true/>
+		<key>rubbles into</key> <string>natural floor</string>
+		<key>sprite</key> <string>tile_wall_cave</string>
+	</dict>
 	<key>unnatural floor</key>
 	<dict>
 		<key>sprite</key> <string>tile_floor_cave</string>

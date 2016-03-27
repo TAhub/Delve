@@ -130,7 +130,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	//set the info text
-	[self setInfoText:indexPath.row];
+	[self setInfoText:(int)indexPath.row];
 }
 
 @end

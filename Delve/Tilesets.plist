@@ -28,11 +28,26 @@
 		<key>wall</key> <string>unnatural wall</string>
 		<key>floor</key> <string>unnatural floor</string>
 		<key>locked door</key> <string>locked door</string>
-		<key>door floor</key> <string>door floor</string>
+		<key>door floor</key> <string>natural floor</string>
 		<key>natural wall</key> <string>natural wall</string>
 		<key>stairs</key> <string>stairs</string>
 		<key>doodads</key>
 		<array>
+			<string>stalag 1</string>
+			<string>stalag 2</string>
+		</array>
+	</dict>
+	
+    <key>forest</key>
+	<dict>
+		<key>wall</key> <string>forest wall</string>
+		<key>floor</key> <string>forest floor</string>
+		<key>locked door</key> <string>locked door</string>
+		<key>door floor</key> <string>unnatural floor</string>
+		<key>natural wall</key> <string>natural wall</string>
+		<key>stairs</key> <string>stairs</string>
+		<key>doodads</key>
+		<array> <!-- TODO: foresty things, like shrubs or whatever -->
 			<string>stalag 1</string>
 			<string>stalag 2</string>
 		</array>
@@ -43,7 +58,7 @@
 		<key>wall</key> <string>wall</string>
 		<key>floor</key> <string>floor</string>
 		<key>locked door</key> <string>locked door</string>
-		<key>door floor</key> <string>door floor</string>
+		<key>door floor</key> <string>unnatural floor</string>
 		<key>natural wall</key> <string>natural wall</string>
 		<key>stairs</key> <string>stairs</string>
 		<key>doodads</key>

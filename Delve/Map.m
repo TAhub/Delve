@@ -26,10 +26,10 @@
 	if (self = [super init])
 	{
 		//load map
-		_floorNum = [[NSUserDefaults standardUserDefaults] integerForKey:@"floor number"];
+		_floorNum = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"floor number"];
 		_defaultColor = [[NSUserDefaults standardUserDefaults] stringForKey:@"default color"];
-		int width = [[NSUserDefaults standardUserDefaults] integerForKey:@"width"];
-		int height = [[NSUserDefaults standardUserDefaults] integerForKey:@"height"];
+		int width = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"width"];
+		int height = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"height"];
 		NSMutableArray *tiles = [NSMutableArray new];
 		for (int y = 0; y < height; y++)
 		{
@@ -41,12 +41,12 @@
 		_tiles = tiles;
 		
 		//load countdown info
-		_countdown = [[NSUserDefaults standardUserDefaults] integerForKey:@"countdown"];
-		_overtimeCount = [[NSUserDefaults standardUserDefaults] integerForKey:@"overtime"];
+		_countdown = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"countdown"];
+		_overtimeCount = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"overtime"];
 		
 		//load creatures
-		_personOn = [[NSUserDefaults standardUserDefaults] integerForKey:@"creature on"];
-		int nCreatures = [[NSUserDefaults standardUserDefaults] integerForKey:@"number creatures"];
+		_personOn = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"creature on"];
+		int nCreatures = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"number creatures"];
 		_creatures = [NSMutableArray new];
 		for (int i = 0; i < nCreatures; i++)
 		{
@@ -289,7 +289,7 @@
 		{
 			if (person.good && ((Tile *)self.tiles[person.y][person.x]).stairs) //if you walked onto a stair tile
 			{
-				weakSelf.personOn = weakSelf.creatures.count + 5; //to make sure it's not the player's turn
+				weakSelf.personOn = (int)weakSelf.creatures.count + 5; //to make sure it's not the player's turn
 				[weakSelf.delegate goToNextMap];
 			}
 			else
@@ -523,7 +523,7 @@
 	//first, get map generator variables
 	self.floorNum = map == nil ? 0 : map.floorNum + 1;
 	NSString *floorName = [NSString stringWithFormat:@"floor %i", self.floorNum];
-//	floorName = @"floor 1";
+//	floorName = @"floor 4";
 	
 	
 	//get overtime info
@@ -777,7 +777,7 @@
 			if (intendedPath == nil || ABS(path.count - desiredPathLength) < ABS(intendedPath.count - desiredPathLength))
 				intendedPath = path;
 	}
-	NSLog(@"--Picked path of length %i", intendedPath.count);
+	NSLog(@"--Picked path of length %lu", intendedPath.count);
 	
 	NSLog(@"Marking doors on path");
 	
@@ -1131,20 +1131,7 @@
 	((Tile *)self.tiles[doorY][doorX]).type = stairsTile;
 	
 	
-	//TODO: place doodads in rooms (control panels, columns, etc)
-	//with the following conditions:
-	//	not on a creature tile
-	//	not on a treasure tile
-	//	MUST be on the "artificial floor" tile
-	//	all four cardinal directions must either be "artificial floor" or "artificial wall", no cave walls or door floors or w/e
-	//ideally one or two per accessable room, if possible
-	//load them from the doodadTile array
-	
-	//TODO: if you try to make a doodad and the artificial floor is the same as the natural floor
-	//or the artificial wall is the same as the natural wall
-	//use an assert to cancel
-	//since it'll mess up this algorithm
-	
+	//place doodads in rooms, if you have doodads
 	if (maxDoodads > 0)
 	{
 		//do some sanity tileset checks to make sure that the doodads code won't fail
@@ -1191,16 +1178,14 @@
 							break; //no point going on for this room
 						
 						//turn a randomly picked tile from that into a randomly picked doodad
-						int pick = arc4random_uniform(validTiles.count);
+						int pick = arc4random_uniform((u_int32_t)validTiles.count);
 						Tile *tile = validTiles[pick];
-						pick = arc4random_uniform(doodadTiles.count);
+						pick = arc4random_uniform((u_int32_t)doodadTiles.count);
 						tile.type = doodadTiles[pick];
 					}
 				}
 			}
 	}
-	
-	//TODO: all doodad tiles should be non-sight-blocking (so you can also shoot past them)
 	
 	
 	//TODO: if there's any random variant replacement (ie replace cave wall with different texture, etc)

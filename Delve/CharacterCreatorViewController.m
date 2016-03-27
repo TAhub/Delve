@@ -221,8 +221,8 @@
 	if ([def objectForKey:@"last skills"] != nil)
 	{
 		self.skills = [NSMutableArray arrayWithArray:[def objectForKey:@"last skills"]];
-		self.raceNumber = [def integerForKey:@"last race"];
-		self.appearanceNumber = [def integerForKey:@"last appearance"];
+		self.raceNumber = (int)[def integerForKey:@"last race"];
+		self.appearanceNumber = (int)[def integerForKey:@"last appearance"];
 		[self.treeTable reloadData];
 		[self reloadCreature];
 		[self reloadLabels];
@@ -246,14 +246,14 @@
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	return [self skillTreeWithNumber:section];
+	return [self skillTreeWithNumber:(int)section];
 }
 
--(int)numberOfSectionsInTableView:(UITableView *)tableView
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 	return 4;
 }
--(int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	NSArray *type = self.preloadedTrees[section];
 	return type.count;

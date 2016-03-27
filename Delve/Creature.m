@@ -235,7 +235,7 @@
 
 -(int)maxAppearanceNumber
 {
-	return loadValueArray(@"Races", self.race, @"colorations").count * loadValueNumber(@"Races", self.race, @"hair styles").intValue * 2;
+	return (int)loadValueArray(@"Races", self.race, @"colorations").count * loadValueNumber(@"Races", self.race, @"hair styles").intValue * 2;
 }
 
 -(id)initWithRace:(NSString *)race skillTrees:(NSArray *)skillTrees andAppearanceNumber:(int)appearanceNumber
@@ -283,7 +283,7 @@
 		
 		//get appearance from appearance number
 		int numHairstyles = loadValueNumber(@"Races", self.race, @"hair styles").intValue;
-		int numColorations = loadValueArray(@"Races", self.race, @"colorations").count;
+		int numColorations = (int)loadValueArray(@"Races", self.race, @"colorations").count;
 		self.gender = appearanceNumber >= numHairstyles * numColorations;
 		appearanceNumber = appearanceNumber % (numHairstyles * numColorations);
 		self.coloration = appearanceNumber / numHairstyles;

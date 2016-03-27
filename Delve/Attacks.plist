@@ -582,7 +582,7 @@
 	<dict>
 		<key>attack effect</key> <string>poof</string>
 		<key>description</key> <string>Enter a state of stealth. Best used when not in combat.</string>
-		<key>cooldown</key> <integer>15</integer>
+		<key>cooldown</key> <integer>20</integer>
 		<key>friendly</key> <true/>
 		<!-- special effects -->
 		<key>stealth</key> <integer>12</integer>

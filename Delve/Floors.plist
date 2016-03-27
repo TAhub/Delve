@@ -340,7 +340,7 @@
 	<key>floor 4</key>
 	<dict>
 		<!-- appearance data -->
-		<key>tileset</key> <string>default</string> <!-- TODO: forest tileset -->
+		<key>tileset</key> <string>forest</string>
 		<key>default color</key> <string>tile stone grey</string>
 		<!-- map generation data -->
 		<key>room size</key> <integer>7</integer>
@@ -350,7 +350,7 @@
 		<key>max door offset</key> <integer>3</integer>
 		<key>doors at a time</key> <integer>7</integer>
 		<key>min non orphans</key> <integer>30</integer>
-		<key>max non orphans</key> <integer>50</integer>
+		<key>max non orphans</key> <integer>55</integer>
 		<key>locked door chance</key> <integer>25</integer>
 		<key>no door chance</key> <integer>50</integer>
 		<key>desired path length</key> <integer>10</integer>
@@ -360,7 +360,7 @@
 		<key>cave wall chance</key> <integer>40</integer>
 		<key>cave smooths</key> <integer>3</integer>
 		<key>min floor tile percent</key> <integer>40</integer>
-		<key>max floor tile percent</key> <integer>60</integer>
+		<key>max floor tile percent</key> <integer>80</integer>
 		<!-- map balance data -->
 		<key>countdown</key> <integer>260</integer>
 		<key>overtime countdown</key> <integer>35</integer>
