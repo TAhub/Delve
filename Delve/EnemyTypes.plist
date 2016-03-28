@@ -824,13 +824,13 @@
 	<!-- guardians are a "boss enemy", meant to protect the exit of a room -->
 	<!-- as a design goal, they should be used to match the general elemental resists/damages of an area -->
 	
-	<!-- TODO: this is the basic guardian template; don't actually use this! -->
-	<key>template guardian</key>
+	<!-- jury-rigged guardian, the floor 0 guardian -->
+	<key>jury-rigged guardian</key>
 	<dict>
 		<!-- identity -->
 		<key>race</key> <string>guardian</string>
 		<key>ai</key> <string>guardian</string>
-		<key>description</key> <string>TODO: enemy type description!</string>
+		<key>description</key> <string>This ancient machine seems to have been repaired recently. It's normal weapon has been replaced with a crossbow, and it's normal armor has been replaced with a simple iron replica.</string>
 		<key>skills</key>
 		<array>
 			<string>guardian skill</string>
@@ -842,11 +842,254 @@
 		<!-- equipment -->
 		<key>implements</key>
 		<array>
-			<string>mace</string> <!-- TODO: appropriate guardian weapon, to change guardian shot element -->
+			<string>guardian crossbow</string>
 		</array>
 		<key>armors</key>
 		<array>
-			<string>rough ring</string> <!-- TODO: appropriate guardian armor, to give elemental resist -->
+			<string>cut casing</string>
+		</array>
+		<key>weapon</key> <string>shortsword</string>
+	</dict>
+	
+	<!-- stolen guardian, the floor 1 guardian -->
+	<key>stolen guardian</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>guardian</string>
+		<key>ai</key> <string>guardian</string>
+		<key>description</key> <string>This ancient machine shows signs of having been moved recently, probably from deeper in. Luckily, it also seems to have been damaged in the process.</string>
+		<key>skills</key>
+		<array>
+			<string>guardian skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>guardian flamethrower</string>
+		</array>
+		<key>armors</key>
+		<array>
+			<string>shock casing</string>
+		</array>
+		<key>weapon</key> <string>shortsword</string>
+	</dict>
+	
+	<!-- stone guardian, the floor 2 guardian -->
+	<key>stone guardian</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>guardian</string>
+		<key>ai</key> <string>guardian</string>
+		<key>description</key> <string>This ancient machine seems to be outfitted with some kind of stone-throwing device.</string>
+		<key>skills</key>
+		<array>
+			<string>guardian skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>guardian catapult</string>
+		</array>
+		<key>armors</key>
+		<array>
+			<string>smash casing</string>
+		</array>
+		<key>weapon</key> <string>shortsword</string>
+	</dict>
+	
+	<!-- prayer guardian, the floor 3 guardian -->
+	<key>prayer guardian</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>guardian</string>
+		<key>ai</key> <string>guardian</string>
+		<key>description</key> <string>This ancient machine seems to have been well-cared-for by the Eoling force. It has a powerful holy weapon.</string>
+		<key>skills</key>
+		<array>
+			<string>guardian skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>guardian gun</string>
+		</array>
+		<key>armors</key>
+		<array>
+			<string>smash casing</string>
+		</array>
+		<key>weapon</key> <string>shortsword</string>
+	</dict>
+	
+	<!-- grounded guardian, the floor 4 guardian -->
+	<key>grounded guardian</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>guardian</string>
+		<key>ai</key> <string>guardian</string>
+		<key>description</key> <string>This ancient machine seems to be made to resist lightning, which is odd for a machine in a cave. Perhaps this park was once above ground?</string>
+		<key>skills</key>
+		<array>
+			<string>guardian skill</string>
+			<string>heresy</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>guardian catapult</string>
+		</array>
+		<key>armors</key>
+		<array>
+			<string>shock casing</string>
+		</array>
+		<key>weapon</key> <string>shortsword</string>
+	</dict>
+	
+	<!-- flame guardian, the floor 5 guardian -->
+	<key>flame guardian</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>guardian</string>
+		<key>ai</key> <string>guardian</string>
+		<key>description</key> <string>This ancient machine is equipped with an unholy weapon. The ancient Eols must have not wanted those monsters to leave this facility.</string>
+		<key>skills</key>
+		<array>
+			<string>guardian skill</string>
+			<string>oathbreaker</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>guardian flamethrower</string>
+		</array>
+		<key>armors</key>
+		<array>
+			<string>burn casing</string>
+		</array>
+		<key>weapon</key> <string>shortsword</string>
+	</dict>
+	
+	<!-- ship guardian, the floor 6 guardian -->
+	<key>ship guardian</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>guardian</string>
+		<key>ai</key> <string>guardian</string>
+		<key>description</key> <string>This ancient machine is of the same make as the one those bandits stole. This one, however, is in good condition.</string>
+		<key>skills</key>
+		<array>
+			<string>guardian skill</string>
+			<string>sacred light</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>guardian flamethrower</string>
+		</array>
+		<key>armors</key>
+		<array>
+			<string>shock casing</string>
+		</array>
+		<key>weapon</key> <string>shortsword</string>
+	</dict>
+	
+	<!-- strength guardian, the floor 7 guardian -->
+	<key>strength guardian</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>guardian</string>
+		<key>ai</key> <string>guardian</string>
+		<key>description</key> <string>This ancient machine has been re-activated by the Raider expedition. They must have found the key.</string>
+		<key>skills</key>
+		<array>
+			<string>guardian skill</string>
+			<string>blocky monster skill</string>
+			<string>tough monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>guardian catapult</string>
+		</array>
+		<key>armors</key>
+		<array>
+			<string>burn casing</string>
+		</array>
+		<key>weapon</key> <string>shortsword</string>
+	</dict>
+	
+	<!-- ritual guardian, the floor 8 guardian -->
+	<key>ritual guardian</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>guardian</string>
+		<key>ai</key> <string>guardian</string>
+		<key>description</key> <string>This ancient machine has been modified by the Highborn. Now, instead of its previous holy weapon, it has some kind of strange ritual weapon.</string>
+		<key>skills</key>
+		<array>
+			<string>guardian skill</string>
+			<string>energy</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>guardian fireball</string>
+		</array>
+		<key>armors</key>
+		<array>
+			<string>burn casing</string>
+		</array>
+		<key>weapon</key> <string>shortsword</string>
+	</dict>
+	
+	<!-- holy guardian, the floor 9 guardian -->
+	<key>holy guardian</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>guardian</string>
+		<key>ai</key> <string>guardian</string>
+		<key>description</key> <string>This ancient machine was made to guard the most sensitive of old Eol secrets. It is of the finest make.</string>
+		<key>skills</key>
+		<array>
+			<string>guardian skill</string>
+			<string>holy soldier</string>
+			<string>sacred light</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>implements</key>
+		<array>
+			<string>guardian gun</string>
+		</array>
+		<key>armors</key>
+		<array>
+			<string>shock casing</string>
 		</array>
 		<key>weapon</key> <string>shortsword</string>
 	</dict>

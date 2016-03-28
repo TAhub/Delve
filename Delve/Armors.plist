@@ -87,6 +87,46 @@
 		<key>sprite</key> <string>ruin_feeder_froth</string>
 		<key>color</key> <string>green hair</string>
 	</dict>
+	<key>smash casing</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>monster</string>
+		<!-- stats -->
+		<key>smash resistance</key> <integer>4</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>sentry</string> <!-- TODO: guardian armor sprite -->
+		<key>color</key> <string>element smash</string>
+	</dict>
+	<key>cut casing</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>monster</string>
+		<!-- stats -->
+		<key>cut resistance</key> <integer>4</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>sentry</string> <!-- TODO: guardian armor sprite -->
+		<key>color</key> <string>element cut</string>
+	</dict>
+	<key>burn casing</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>monster</string>
+		<!-- stats -->
+		<key>burn resistance</key> <integer>4</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>sentry</string> <!-- TODO: guardian armor sprite -->
+		<key>color</key> <string>element burn</string>
+	</dict>
+	<key>shock casing</key>
+	<dict>
+		<!-- basic identity -->
+		<key>slot</key> <string>monster</string>
+		<!-- stats -->
+		<key>shock resistance</key> <integer>4</integer>
+		<!-- appearance -->
+		<key>sprite</key> <string>sentry</string> <!-- TODO: guardian armor sprite -->
+		<key>color</key> <string>element shock</string>
+	</dict>
 	
 	
 	<!-- helmets -->

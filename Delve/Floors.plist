@@ -121,12 +121,13 @@
 				<string>ruin feeder</string>
 			</array>
 		</array>
-		<key>guardian type</key> <string>template guardian</string>
+		<key>guardian type</key> <string>jury-rigged guardian</string>
 	</dict>
 	<!-- encounter analysis -->
 	<!-- player attack element ranking: burn > shock > smash = cut -->
 	<!-- player resistance ranking: cut > burn = shock = smash -->
 	<!-- special features: counter-attacks -->
+	<!-- guardian: cut attack, cut casing -->
 	<!-- ideal build: someone with energy and a little bit of cut resistance (ie shield) -->
 	
 	
@@ -194,12 +195,13 @@
 				<string>hammer bandit</string>
 			</array>
 		</array>
-		<key>guardian type</key> <string>template guardian</string>
+		<key>guardian type</key> <string>stolen guardian</string>
 	</dict>
 	<!-- encounter analysis -->
 	<!-- player attack element ranking: smash > burn = shock > cut -->
 	<!-- player resistance ranking: cut > smash > burn > shock -->
 	<!-- special features: delayed attacks, ranged attacks -->
+	<!-- guardian: burn attack, shock casing -->
 	<!-- ideal build: probably a straightforward armored-ey warrior guy with hammer (though note everyone has one dodge!) -->
 	
 	
@@ -261,12 +263,13 @@
 				<string>sentry</string>
 			</array>
 		</array>
-		<key>guardian type</key> <string>template guardian</string>
+		<key>guardian type</key> <string>stone guardian</string>
 	</dict>
 	<!-- encounter analysis -->
 	<!-- player attack element ranking: shock > cut > smash > burn -->
 	<!-- player resistance ranking: shock > cut > smash = burn -->
 	<!-- special features: ranged attacks, position swapping -->
+	<!-- guardian: smash attack, smash casing -->
 	<!-- ideal build: you can have level 3 energy by this point, and holy flash should be pretty useful here; couple with a defensive skill or two (shield?) -->
 	
 	
@@ -329,12 +332,13 @@
 				<string>scuttler</string>
 			</array>
 		</array>
-		<key>guardian type</key> <string>template guardian</string>
+		<key>guardian type</key> <string>prayer guardian</string>
 	</dict>
 	<!-- encounter analysis -->
 	<!-- player attack element ranking: cut > burn = shock > smash -->
 	<!-- player resistance ranking: shock > cut = smash > burn -->
 	<!-- special features: counter-attacks, undodgeable attacks, ranged attacks, dodges, position-swapping -->
+	<!-- guardian: shock attack, smash casing -->
 	<!-- ideal build: someone with undodgeable cut attacks (dagger would be good) and maybe a little shock for the sentries -->
 	
 	
@@ -402,12 +406,13 @@
 				<string>rabid ruin feeder</string>
 			</array>
 		</array>
-		<key>guardian type</key> <string>template guardian</string>
+		<key>guardian type</key> <string>grounded guardian</string>
 	</dict>
 	<!-- encounter analysis -->
 	<!-- player attack element ranking: burn = shock > cut > smash -->
 	<!-- player resistance ranking: cut > burn = shock = smash -->
 	<!-- special features: counter-attacks, poison -->
+	<!-- guardian: smash attack, shock casing -->
 	<!-- ideal build: similar to floor 1, but burn damage is a bit worse (because the rabids are burn-resistant), and AoEs are more valuable -->
 	
 	
@@ -477,12 +482,13 @@
 				<string>abomination flinger</string>
 			</array>
 		</array>
-		<key>guardian type</key> <string>template guardian</string>
+		<key>guardian type</key> <string>flame guardian</string>
 	</dict>
 	<!-- encounter analysis -->
 	<!-- player attack element ranking: burn = cut > shock > smash -->
 	<!-- player resistance ranking: smash > shock > cut = burn -->
 	<!-- special features: counter-attacks, poison, ranged attacks -->
+	<!-- guardian: burn attack, burn casing -->
 	<!-- ideal build: someone who has both burn (for the slimes) and cut (for the aboms); archery could actually be pretty good here -->
 	
 	
@@ -546,12 +552,13 @@
 				<string>war bot</string>
 			</array>
 		</array>
-		<key>guardian type</key> <string>template guardian</string>
+		<key>guardian type</key> <string>ship guardian</string>
 	</dict>
 	<!-- encounter analysis -->
 	<!-- player attack element ranking: shock > smash > burn > cut -->
 	<!-- player resistance ranking: shock > cut > smash = burn -->
 	<!-- special features: ranged attacks, force-fields, position-swapping, undodgeable attacks, blocks, delayed attacks -->
+	<!-- guardian: burn attack, shock casing -->
 	<!-- ideal build: probably someone with holy flash for the big crowds of robots, and maybe stealth to sneak past war bots if possible -->
 	
 	
@@ -612,12 +619,13 @@
 				<string>trained ruin feeder</string>
 			</array>
 		</array>
-		<key>guardian type</key> <string>template guardian</string>
+		<key>guardian type</key> <string>strength guardian</string>
 	</dict>
 	<!-- encounter analysis -->
 	<!-- player attack element ranking: shock > burn > smash > cut -->
 	<!-- player resistance ranking: cut > smash > burn > shock -->
 	<!-- special features: ranged attacks, blocks, counter-attacks -->
+	<!-- guardian: smash attack, burn casing -->
 	<!-- ideal build: holy soldier would be good, for the unblockable shock damage, plus warrior skills for defense -->
 	
 	
@@ -691,12 +699,13 @@
 				<string>slime</string>
 			</array>
 		</array>
-		<key>guardian type</key> <string>template guardian</string>
+		<key>guardian type</key> <string>ritual guardian</string>
 	</dict>
 	<!-- encounter analysis -->
 	<!-- player attack element ranking: smash = burn > shock > cut -->
 	<!-- player resistance ranking: burn > cut > shock > smash -->
 	<!-- special features: ranged attacks, area of effect attacks, stuns, position-swapping, undodgeable attacks, delayed attacks, counter-attacks -->
+	<!-- guardian: cut attack, cut casing -->
 	<!-- ideal build: probably a warrior with hammer and shield; smash AoE damage for the slaves and blocks to avoid dazzle would both be good -->
 	
 	
@@ -763,12 +772,13 @@
 				<string>scout android</string>
 			</array>
 		</array>
-		<key>guardian type</key> <string>template guardian</string>
+		<key>guardian type</key> <string>holy guardian</string>
 	</dict>
 	<!-- encounter analysis -->
 	<!-- player attack element ranking: smash > shock > burn > cut -->
 	<!-- player resistance ranking: shock > smash > cut > burn -->
 	<!-- special features: ranged attacks, area of effect attacks, aoe interrupt, position-swapping, undodgeable attacks, delayed attacks -->
+	<!-- guardian: shock attack, shock casing -->
 	<!-- ideal build: since this is the last floor, honestly someone with holy soldier + sacred light + false prophet would be good; spam down everyone! -->
 	
 </dict>

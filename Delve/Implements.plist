@@ -68,6 +68,38 @@
 		<key>power</key> <integer>15</integer>
 		<key>attack effect</key> <string>direction slam</string>
 	</dict>
+	<key>guardian crossbow</key>
+	<dict>
+		<key>type</key> <string>weapon</string>
+		<key>power</key> <integer>0</integer>
+		<key>element</key> <string>cut</string>
+		<key>attack effect</key> <string>arrow</string>
+	</dict>
+	<key>guardian catapult</key>
+	<dict>
+		<key>type</key> <string>weapon</string>
+		<key>power</key> <integer>15</integer>
+		<key>attack effect</key> <string>boulder toss</string>
+	</dict>
+	<key>guardian flamethrower</key>
+	<dict>
+		<key>type</key> <string>weapon</string>
+		<key>power</key> <integer>15</integer>
+		<key>element</key> <string>burn</string>
+		<key>attack effect</key> <string>jet</string>
+	</dict>
+	<key>guardian fireball</key>
+	<dict>
+		<key>type</key> <string>weapon</string>
+		<key>power</key> <integer>30</integer>
+		<key>element</key> <string>burn</string>
+	</dict>
+	<key>guardian gun</key>
+	<dict>
+		<key>type</key> <string>weapon</string>
+		<key>power</key> <integer>15</integer>
+		<key>element</key> <string>shock</string>
+	</dict>
 	
 	<!-- weapons -->
 	<key>rusty blade</key>

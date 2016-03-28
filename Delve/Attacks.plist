@@ -126,7 +126,7 @@
 	<key>guardian shot</key>
 	<dict>
 		<key>attack effect</key> <string>exploding bolt</string>
-		<key>power</key> <integer>25</integer>
+		<key>power</key> <integer>20</integer>
 		<key>element</key> <string>smash</string>
 		<key>range</key> <integer>5</integer>
 		<key>cooldown</key> <integer>1</integer>

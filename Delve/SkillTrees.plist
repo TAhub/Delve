@@ -176,6 +176,24 @@
 			</dict>
 		</array>
 	</dict>
+	<key>blocky monster skill</key>
+	<dict>
+		<key>type</key> <string>invalid</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>blocks</key> <integer>1</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>blocks</key> <integer>1</integer>
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>blocks</key> <integer>1</integer>
+			</dict>
+		</array>
+	</dict>
 	
 	<!-- specific monster skills -->
 	<key>flinger skill</key>
