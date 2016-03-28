@@ -84,6 +84,20 @@
 		</array>
 	</dict>
 	
+    <key>lab</key>
+	<dict>
+		<key>wall</key> <string>rivet wall</string>
+		<key>floor</key> <string>floor</string>
+		<key>locked door</key> <string>locked door</string>
+		<key>door floor</key> <string>door floor</string>
+		<key>natural wall</key> <string>natural wall</string>
+		<key>stairs</key> <string>stairs</string>
+		<key>doodads</key>
+		<array> <!-- TODO: lab equipment (big tubes, broken big tubes, maybe giant microscopes or something) -->
+			<string>console</string>
+		</array>
+	</dict>
+	
     <key>habitat</key>
 	<dict>
 		<key>wall</key> <string>wall</string>

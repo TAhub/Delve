@@ -42,14 +42,6 @@
 	
 	<!-- real enemy types -->
 	
-	<!-- TODO: enemy design todos! -->
-	<!-- things to make sure of: -->
-	<!-- TODO: make sure there is decent representation for every damage type! so elemental resistances are useful -->
-	<!-- TODO: make sure there is decent representation for every RESISTANCE type too, for similar reasons; follow the class guidelines there, mostly -->
-	<!-- TODO: make sure there are at least some enemies who have AoE/delayed attacks! at least one enemy type every other floor; so shield bash, etc are useful -->
-	<!-- TODO: make sure there is a decent number of enemies who have NO dodges or blocks at all -->
-	
-	
 	
 	<!-- human bandits -->
 	<!-- human bandits have a player race, but are an early enemy type so they get shitty filler skills -->

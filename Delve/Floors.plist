@@ -423,7 +423,7 @@
 	<key>floor 5</key>
 	<dict>
 		<!-- appearance data -->
-		<key>tileset</key> <string>habitat</string> <!-- TODO: lab tileset -->
+		<key>tileset</key> <string>lab</string>
 		<key>default color</key> <string>tile stone grey</string>
 		<!-- map generation data -->
 		<key>room size</key> <integer>5</integer>
