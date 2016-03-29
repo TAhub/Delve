@@ -133,13 +133,37 @@ NSDictionary *loadEntries(NSString *category)
 	assert(d != nil);
 	return d;
 }
+
+//plist caching
+NSString *entryName = nil;
+NSString *categoryName = nil;
+NSDictionary *categoryCache = nil;
+NSDictionary *entryCache = nil;
+
 NSDictionary *loadEntry(NSString *category, NSString *entry)
 {
-	NSDictionary *p = loadEntries(category);
-	id e = p[entry];
-	assert(e != nil);
-	assert([e isKindOfClass:[NSDictionary class]]);
-	return e;
+	if (![category isEqualToString:categoryName])
+	{
+		categoryName = nil;
+		entryName = nil;
+	}
+	if (![entry isEqualToString:entryName])
+		entryName = nil;
+	
+	if (categoryName == nil)
+	{
+		categoryCache = loadEntries(category);
+		categoryName = category;
+	}
+	if (entryName == nil)
+	{
+		id e = categoryCache[entry];
+		assert(e != nil);
+		assert([e isKindOfClass:[NSDictionary class]]);
+		entryCache = e;
+		entryName = entry;
+	}
+	return entryCache;
 }
 NSArray *loadArrayEntry(NSString *category, NSString *entry)
 {

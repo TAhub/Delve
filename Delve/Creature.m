@@ -15,8 +15,8 @@
 
 @property (strong, nonatomic) NSMutableDictionary *cached;
 
-@property (strong, nonatomic) NSString *attackCacheName;
-@property (strong, nonatomic) NSMutableDictionary *attackCache;
+//@property (strong, nonatomic) NSString *attackCacheName;
+//@property (strong, nonatomic) NSMutableDictionary *attackCache;
 
 @end
 
@@ -520,54 +520,59 @@
 }
 
 #pragma mark: attack cache stuff
+//TODO: this stuff is probably unnecessary now, so it's all disabled
+
 -(NSString *)attackCacheLoadString:(NSString *)attack fromValue:(NSString *)value
 {
-	id loaded = [self attackCacheLoad:attack fromValue:value];
-	assert([loaded isKindOfClass:[NSString class]]);
-	return loaded;
+//	id loaded = [self attackCacheLoad:attack fromValue:value];
+//	assert([loaded isKindOfClass:[NSString class]]);
+//	return loaded;
+	return loadValueString(@"Attacks", attack, value);
 }
 -(int)attackCacheLoadInt:(NSString *)attack fromValue:(NSString *)value
 {
-	id loaded = [self attackCacheLoad:attack fromValue:value];
-	assert([loaded isKindOfClass:[NSNumber class]]);
-	return ((NSNumber *)loaded).intValue;
+//	id loaded = [self attackCacheLoad:attack fromValue:value];
+//	assert([loaded isKindOfClass:[NSNumber class]]);
+//	return ((NSNumber *)loaded).intValue;
+	return loadValueNumber(@"Attacks", attack, value).intValue;
 }
 -(BOOL)attackCacheLoadBool:(NSString *)attack fromValue:(NSString *)value
 {
-	id loaded = [self attackCacheLoad:attack fromValue:value];
-	return loaded != nil;
+//	id loaded = [self attackCacheLoad:attack fromValue:value];
+//	return loaded != nil;
+	return loadValueBool(@"Attacks", attack, value);
 }
--(id)attackCacheLoad:(NSString *)attack fromValue:(NSString *)value
-{
-	//remake the cache if necessary
-	if (self.attackCacheName == nil || ![self.attackCacheName isEqualToString:attack])
-	{
-		self.attackCacheName = attack;
-		self.attackCache = [NSMutableDictionary new];
-	}
-	
-	//load from the cache
-	id loaded = self.attackCache[value];
-	if (loaded != nil)
-	{
-		if ([loaded isEqual:[NSNull null]])
-			return nil;
-		return loaded;
-	}
-	
-	//load from the plists
-	if (!loadValueBool(@"Attacks", attack, value))
-	{
-		self.attackCache[value] = [NSNull null];
-		return nil;
-	}
-	else
-	{
-		loaded = loadValue(@"Attacks", attack, value);
-		self.attackCache[value] = loaded;
-		return loaded;
-	}
-}
+//-(id)attackCacheLoad:(NSString *)attack fromValue:(NSString *)value
+//{
+//	//remake the cache if necessary
+//	if (self.attackCacheName == nil || ![self.attackCacheName isEqualToString:attack])
+//	{
+//		self.attackCacheName = attack;
+//		self.attackCache = [NSMutableDictionary new];
+//	}
+//	
+//	//load from the cache
+//	id loaded = self.attackCache[value];
+//	if (loaded != nil)
+//	{
+//		if ([loaded isEqual:[NSNull null]])
+//			return nil;
+//		return loaded;
+//	}
+//	
+//	//load from the plists
+//	if (!loadValueBool(@"Attacks", attack, value))
+//	{
+//		self.attackCache[value] = [NSNull null];
+//		return nil;
+//	}
+//	else
+//	{
+//		loaded = loadValue(@"Attacks", attack, value);
+//		self.attackCache[value] = loaded;
+//		return loaded;
+//	}
+//}
 
 #pragma mark: enemy type stuff
 -(NSString *) ai
