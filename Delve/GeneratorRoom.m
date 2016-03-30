@@ -39,7 +39,7 @@
 		_downDoorInner = GeneratorRoomExitWall;
 		_rightDoorInner = GeneratorRoomExitWall;
 		_accessable = false;
-		_treasure = false;
+		_treasure = TreasureClassNone;
 		_encounter = false;
 		_lockedOnly = true;
 	}

@@ -34,9 +34,6 @@
 		<string>herb</string>
 		<string>fang</string>
 		<string>fabric</string>
-		<string>bread</string>
-		<string>bread</string>
-		<string>bread</string>
 		<string>crystal</string>
 		<string>crystal</string>
 		<string>crystal</string>
@@ -46,8 +43,6 @@
 	<array>
 		<string>herb</string>
 		<string>fabric</string>
-		<string>cheese</string>
-		<string>cheese</string>
 		<string>crystal</string>
 		<string>crystal</string>
 		<string>stability booster</string>
@@ -56,8 +51,6 @@
 	<array>
 		<string>herb</string>
 		<string>silk</string>
-		<string>ration</string>
-		<string>ration</string>
 		<string>crystal</string>
 		<string>crystal</string>
 		<string>immunity booster</string>
@@ -67,8 +60,6 @@
 		<string>herb</string>
 		<string>diamond dust</string>
 		<string>silk</string>
-		<string>steak</string>
-		<string>steak</string>
 		<string>crystal</string>
 		<string>crystal</string>
 		<string>time core</string>

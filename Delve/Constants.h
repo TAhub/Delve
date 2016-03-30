@@ -70,6 +70,13 @@ typedef NS_ENUM(NSInteger, TreasureType) {
 	TreasureTypeNone
 };
 
+typedef NS_ENUM(NSInteger, TreasureClass) {
+	TreasureClassNone,
+	TreasureClassHealing,
+	TreasureClassEquipment,
+	TreasureClassNormal
+};
+
 typedef NS_ENUM(NSInteger, TargetLevel) {
 	TargetLevelTarget,
 	TargetLevelInRange,

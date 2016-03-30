@@ -587,8 +587,14 @@
 	//how many treasures should be equipment
 	int numEquipmentTreasures = loadValueNumber(@"Floors", floorName, @"equipment treasures").intValue;
 	
+	//how many treasures should be healing items
+	int numHealingTreasures = loadValueNumber(@"Floors", floorName, @"healing treasures").intValue;
+	
 	//how many non-equipment treasures you want
-	int numTreasures = loadValueNumber(@"Floors", floorName, @"normal treasures").intValue + numEquipmentTreasures;
+	int numTreasures = loadValueNumber(@"Floors", floorName, @"normal treasures").intValue + numEquipmentTreasures + numHealingTreasures;
+	
+	//this is the exact identity of the healing item on this floor
+	NSString *healingItem = loadValueString(@"Floors", floorName, @"healing item");
 	
 	//how many enemy encounters you want
 	int numEncounters = loadValueNumber(@"Floors", floorName, @"number of encounters").intValue;
@@ -1017,7 +1023,7 @@
 	NSMutableArray *finalTreasureRooms = [NSMutableArray new];
 	for (NSArray *row in rooms)
 		for (GeneratorRoom *room in row)
-			if (room != startRoom && room != exitRoom && !room.treasure && room.accessable && !room.lockedOnly)
+			if (room != startRoom && room != exitRoom && room.treasure == TreasureClassNone && room.accessable && !room.lockedOnly)
 			{
 				if (room.encounter)
 					[encounterTreasureRooms addObject:room];
@@ -1029,7 +1035,7 @@
 	[noEncounterTreasureRooms addObjectsFromArray:encounterTreasureRooms];
 	for (GeneratorRoom *room in noEncounterTreasureRooms)
 	{
-		room.treasure = true;
+		room.treasure = TreasureClassNormal;
 		numTreasures -= 1;
 		[finalTreasureRooms addObject:room];
 		if (numTreasures <= 0)
@@ -1037,16 +1043,22 @@
 	}
 	
 	
-	//turn some treasures into equipment treasures
+	//turn some treasures into special treasures
 	shuffleArray(finalTreasureRooms);
-	for (int i = 0; i < numEquipmentTreasures && i < finalTreasureRooms.count; i++)
-		((GeneratorRoom *)finalTreasureRooms[i]).equipmentTreasure = true;
+	for (int i = 0; i < numEquipmentTreasures + numHealingTreasures && i < finalTreasureRooms.count; i++)
+	{
+		GeneratorRoom *room = finalTreasureRooms[i];
+		if (i < numEquipmentTreasures)
+			room.treasure = TreasureClassEquipment;
+		else
+			room.treasure = TreasureClassHealing;
+	}
 	
 	//place treasures
 	//these try to go in the center of their respecive rooms
 	for (NSArray *row in rooms)
 		for (GeneratorRoom *room in row)
-			if (room.accessable && (room.treasure || room.lockedOnly))
+			if (room.accessable && (room.treasure != TreasureClassNone || room.lockedOnly))
 			{
 				//if at all possible, go to the center of the room
 				int xC = room.xCorner + (roomSize / 2);
@@ -1056,7 +1068,7 @@
 				
 				Tile *centerTile = self.tiles[yC][xC];
 				if (centerTile.validPlacementSpot)
-					[self placeTreasureOn:centerTile equipmentTreasure:room.equipmentTreasure || room.lockedOnly isUnlocked:room.lockedOnly];
+					[self placeTreasureOn:centerTile treasureClass:room.lockedOnly ? TreasureClassEquipment : room.treasure isUnlocked:room.lockedOnly healingType:healingItem];
 				else
 				{
 					//find a random spot in the tile to place a treasure
@@ -1067,7 +1079,7 @@
 						Tile *randomTile = self.tiles[yR][xR];
 						if (randomTile.validPlacementSpot)
 						{
-							[self placeTreasureOn:randomTile equipmentTreasure:room.equipmentTreasure || room.lockedOnly isUnlocked:room.lockedOnly];
+							[self placeTreasureOn:randomTile treasureClass:room.lockedOnly ? TreasureClassEquipment : room.treasure isUnlocked:room.lockedOnly healingType:healingItem];
 							break;
 						}
 					}
@@ -1082,7 +1094,7 @@
 		Tile *randomTile = self.tiles[yR][xR];
 		if (randomTile.validPlacementSpot)
 		{
-			[self placeTreasureOn:randomTile equipmentTreasure:true isUnlocked:true];
+			[self placeTreasureOn:randomTile treasureClass:TreasureClassEquipment isUnlocked:true healingType:healingItem];
 			i++;
 		}
 	}
@@ -1369,99 +1381,113 @@
 	return smoothed;
 }
 
--(void)placeTreasureOn:(Tile *)tile equipmentTreasure:(BOOL)equipment isUnlocked:(BOOL)unlocked
+-(void)placeTreasureOn:(Tile *)tile treasureClass:(TreasureClass)treasureClass isUnlocked:(BOOL)unlocked healingType:(NSString *)healingType
 {
 	int listNum = 999;
 	NSString *listPrefix;
-	ItemType type;
-	if (equipment)
+	ItemType type = ItemTypeInventory;
+	switch(treasureClass)
 	{
-		if (unlocked)
-			tile.treasureType = TreasureTypeChest;
-		else
-			tile.treasureType = TreasureTypeLocked;
-		
-		//pick if it's an implement or an armor
-		if (arc4random_uniform(2) == 0)
+		case TreasureClassEquipment:
 		{
-			type = ItemTypeImplement;
-			listPrefix = @"implements";
-			switch(self.floorNum)
+			if (unlocked)
+				tile.treasureType = TreasureTypeChest;
+			else
+				tile.treasureType = TreasureTypeLocked;
+			
+			//pick if it's an implement or an armor
+			if (arc4random_uniform(2) == 0)
 			{
-				case 0:
-				case 1:
-				case 2:
-					listNum = 1; break;
-				case 3:
-				case 4:
-				case 5:
-					listNum = 2; break;
-				case 6:
-				case 7:
-				case 8:
-				case 9:
-					listNum = 4; break;
+				type = ItemTypeImplement;
+				listPrefix = @"implements";
+				switch(self.floorNum)
+				{
+					case 0:
+					case 1:
+					case 2:
+						listNum = 1; break;
+					case 3:
+					case 4:
+					case 5:
+						listNum = 2; break;
+					case 6:
+					case 7:
+					case 8:
+					case 9:
+						listNum = 4; break;
+				}
+			}
+			else
+			{
+				type = ItemTypeArmor;
+				listPrefix = @"armors";
+				switch(self.floorNum)
+				{
+					case 0:
+					case 1:
+					case 2:
+						listNum = 1; break;
+					case 3:
+					case 4:
+					case 5:
+						listNum = 2; break;
+					case 6:
+					case 7:
+					case 8:
+						listNum = 3; break;
+					case 9:
+						listNum = 4; break;
+				}
 			}
 		}
-		else
+			break;
+		case TreasureClassNormal:
 		{
-			type = ItemTypeArmor;
-			listPrefix = @"armors";
+			tile.treasureType = TreasureTypeFree;
+			listPrefix = @"drops";
 			switch(self.floorNum)
 			{
 				case 0:
 				case 1:
-				case 2:
 					listNum = 1; break;
+				case 2:
 				case 3:
+					listNum = 2; break;
 				case 4:
 				case 5:
-					listNum = 2; break;
 				case 6:
-				case 7:
-				case 8:
 					listNum = 3; break;
+				case 7:
+				case 8:
 				case 9:
 					listNum = 4; break;
 			}
 		}
-	}
-	else
-	{
-		tile.treasureType = TreasureTypeFree;
-		type = ItemTypeInventory;
-		listPrefix = @"drops";
-		switch(self.floorNum)
-		{
-			case 0:
-			case 1:
-				listNum = 1; break;
-			case 2:
-			case 3:
-				listNum = 2; break;
-			case 4:
-			case 5:
-			case 6:
-				listNum = 3; break;
-			case 7:
-			case 8:
-			case 9:
-				listNum = 4; break;
-		}
+			break;
+		case TreasureClassHealing:
+			tile.treasureType = TreasureTypeFree;
+			break;
+		case TreasureClassNone: break;
 	}
 	
 	//if this complains about trying to find a list called "drops 999" or whatever, that's because there must be a gap in the listNum picking
-	NSArray *list = loadArrayEntry(@"Lists", [NSString stringWithFormat:@"%@ %i", listPrefix, listNum]);
-	int pick = arc4random_uniform((u_int32_t)list.count);
-	Item *it = [[Item alloc] initWithName:list[pick] andType:type];
+	Item *it;
+	if (treasureClass == TreasureClassHealing)
+		it = [[Item alloc] initWithName:healingType andType:ItemTypeInventory];
+	else
+	{
+		NSArray *list = loadArrayEntry(@"Lists", [NSString stringWithFormat:@"%@ %i", listPrefix, listNum]);
+		int pick = arc4random_uniform((u_int32_t)list.count);
+		it = [[Item alloc] initWithName:list[pick] andType:type];
+	}
 	
-	if (equipment && arc4random_uniform(100) < GENERATOR_REJECT_BAD_TREASURE)
+	if (treasureClass == TreasureClassEquipment && arc4random_uniform(100) < GENERATOR_REJECT_BAD_TREASURE)
 	{
 		int slot = [self.player slotForItem:it];
 		if (slot == -1)
 		{
 			//reject it and try again
-			[self placeTreasureOn:tile equipmentTreasure:equipment isUnlocked:unlocked];
+			[self placeTreasureOn:tile treasureClass:treasureClass isUnlocked:unlocked healingType:nil];
 			return;
 		}
 	}
