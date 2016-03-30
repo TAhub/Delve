@@ -103,6 +103,7 @@
 -(int) slotForItem:(Item *)item;
 -(void) equipArmor:(Item *)item;
 -(NSArray *) recipies;
+-(NSString *) elementForAttack:(NSString *)attack;
 -(void) recharge;
 -(void) invalidateCache;
 -(void) breakStealth;

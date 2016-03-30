@@ -263,7 +263,17 @@
 			NSNumber *cooldown = self.map.player.cooldowns[attack];
 			[b setTitle:(cooldown != nil && cooldown.intValue > 0 ? [NSString stringWithFormat:@"%@ (%i)", attack, cooldown.intValue] : attack) forState:UIControlStateNormal];
 			b.hidden = false;
-			UIColor *color = [self.map.player canUseAttack:attack] ? loadColorFromName(@"ui text") : loadColorFromName(@"ui text grey");
+			UIColor *color;
+			if ([self.map.player canUseAttack:attack])
+			{
+				NSString *element = [self.map.player elementForAttack:attack];
+				
+				//TODO: if element isn't nil, display a little elemental orb too
+				
+				color = loadColorFromName(@"ui text");
+			}
+			else
+				color = loadColorFromName(@"ui text grey");
 			[b setTitleColor:color forState:UIControlStateNormal];
 		}
 		self.attackNext.hidden = attacks.count <= 6;
@@ -1492,6 +1502,8 @@
 
 -(void)countdownWarningWithBlock:(void (^)(void))block
 {
+	[self reloadPanels];
+	
 	int countdown = self.map.countdown;
 	
 	NSLog(@"COUNTDOWN: %i", countdown);
@@ -1515,19 +1527,59 @@
 	
 	self.animating = true;
 	__weak typeof(self) weakSelf = self;
-	[UIView animateWithDuration:0.5f animations:
+	[UIView animateWithDuration:0.3f animations:
 	^()
 	{
-		//TODO: shake the screen a bit
-		
-		//TODO: this is a temporary animation (though I do like how dramatic the effect is!)
 		weakSelf.view.backgroundColor = loadColorFromName(@"ui warning");
 	} completion:
 	^(BOOL finished)
 	{
-		[warning removeFromSuperview];
-		weakSelf.animating = false;
-		block();
+		[weakSelf shakeWithShakes:8 andBlock:
+		^()
+		{
+			[warning removeFromSuperview];
+			weakSelf.animating = false;
+			block();
+		}];
+	}];
+}
+
+-(void)shakeWithShakes:(int)shakes andBlock:(void (^)(void))block
+{
+	shakes -= 1;
+	
+	float xOff, yOff;
+	if (shakes > 0)
+	{
+		float direction = arc4random_uniform(100) * 0.01f * 2 * M_PI;
+		xOff = 4 * cos(direction);
+		yOff = 4 * sin(direction);
+	}
+	else
+	{
+		xOff = 0;
+		yOff = 0;
+	}
+	
+	CGRect cFrame = self.creatureView.frame;
+	CGRect mFrame = self.mapView.frame;
+	
+	__weak typeof(self) weakSelf = self;
+	[UIView animateWithDuration:0.1f animations:
+	^()
+	{
+		weakSelf.creatureView.frame = CGRectMake(cFrame.origin.x + xOff, cFrame.origin.y + yOff, cFrame.size.width, cFrame.size.height);
+		weakSelf.mapView.frame = CGRectMake(mFrame.origin.x + xOff, mFrame.origin.y + yOff, mFrame.size.width, mFrame.size.height);
+	} completion:
+	^(BOOL finished)
+	{
+		weakSelf.creatureView.frame = cFrame;
+		weakSelf.mapView.frame = mFrame;
+		
+		if (shakes == 0)
+			block();
+		else
+			[weakSelf shakeWithShakes:shakes andBlock:block];
 	}];
 }
 

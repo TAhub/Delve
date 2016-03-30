@@ -635,6 +635,21 @@
 
 #pragma mark: public interface functions
 
+-(NSString *) elementForAttack:(NSString *)attack
+{
+	int treeNum = [self findTreeNumberOfAttack:attack];
+	NSString *implement;
+	if (treeNum == -1)
+		implement = self.weapon;
+	else
+		implement = self.implements[treeNum];
+	if (!loadValueBool(@"Attacks", attack, @"element"))
+		return nil;
+	if (implement.length > 0 && loadValueBool(@"Implements", implement, @"element"))
+		return loadValueString(@"Implements", implement, @"element");
+	return loadValueString(@"Attacks", attack, @"element");
+}
+
 -(void) equipArmor:(Item *)item
 {
 	int slot = [self slotForItem:item];
@@ -865,7 +880,7 @@
 	return true;
 }
 
--(void) useAttackWithName:(NSString *)name onX:(int)x andY:(int)y
+-(int) findTreeNumberOfAttack:(NSString *)name
 {
 	//find which tree has that attack
 	int treeNum = -1;
@@ -882,7 +897,12 @@
 				treeNum = i;
 		}
 	}
-	
+	return treeNum;
+}
+
+-(void) useAttackWithName:(NSString *)name onX:(int)x andY:(int)y
+{
+	int treeNum = [self findTreeNumberOfAttack:name];
 	[self useAttackWithTreeNumber:treeNum == -1 ? 0 : treeNum andName:name onX:x andY:y];
 }
 
