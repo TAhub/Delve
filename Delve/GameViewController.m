@@ -1494,10 +1494,60 @@
 	[self regenerateCreatureSprite:cr];
 }
 
+-(void)fadeScreenInTime:(float)time withBlock:(void (^)(void))block
+{
+	//fade the screen away
+	__weak typeof(self) weakSelf = self;
+	[UIView animateWithDuration:time animations:
+	^()
+	{
+		weakSelf.view.backgroundColor = [UIColor blackColor];
+		for (int i = 0; i < weakSelf.creatureViews.count; i++)
+		{
+			UIView *view = weakSelf.creatureViews[i];
+			Creature *creature = weakSelf.map.creatures[i];
+			if (!creature.good)
+				view.alpha = 0;
+		}
+		weakSelf.mapView.alpha = 0;
+		
+	} completion:
+	^(BOOL finished)
+	{
+		block();
+	}];
+}
+
 -(void)goToNextMap
 {
 	NSLog(@"Finished map with %i left on the countdown!", self.map.countdown);
-	[self performSegueWithIdentifier:@"changeMap" sender:self];
+	
+	//do a fancy end-of-map animation
+	self.animating = true;
+	__weak typeof(self) weakSelf = self;
+	[self fadeScreenInTime:0.5f withBlock:
+	^()
+	{
+		int number = (int)[weakSelf.map.creatures indexOfObject:weakSelf.map.player];
+		UIView *view = weakSelf.creatureViews[number];
+		
+		[UIView animateWithDuration:1.0f animations:
+		^()
+		{
+			//the player gets tall and thin, like a megaman teleport or whatever
+			int cX = view.frame.origin.x + view.frame.size.width / 2;
+			int cY = view.frame.origin.y + view.frame.size.height / 2;
+			int newWidth = view.frame.size.width / 4;
+			int newHeight = weakSelf.view.frame.size.height * 2;
+			view.frame = CGRectMake(cX - newWidth / 2, cY - newHeight / 2, newWidth, newHeight);
+			
+		} completion:
+		^(BOOL finished)
+		{
+			view.alpha = 0;
+			[weakSelf performSegueWithIdentifier:@"changeMap" sender:self];
+		}];
+	}];
 }
 
 -(void)countdownWarningWithBlock:(void (^)(void))block
@@ -1631,9 +1681,16 @@
 	//null the save
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"game phase"];
 	
-	//go to the defeat screen
-	self.defeatMessage = message;
-	[self performSegueWithIdentifier:@"defeat" sender:self];
+	//do a fancy end-of-map animation
+	self.animating = true;
+	__weak typeof(self) weakSelf = self;
+	[self fadeScreenInTime:2.5f withBlock:
+	^()
+	{
+		//go to the defeat screen
+		weakSelf.defeatMessage = message;
+		[weakSelf performSegueWithIdentifier:@"defeat" sender:weakSelf];
+	}];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
