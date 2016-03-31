@@ -94,7 +94,7 @@
 		<!-- stats -->
 		<key>smash resistance</key> <integer>4</integer>
 		<!-- appearance -->
-		<key>sprite</key> <string>sentry</string> <!-- TODO: guardian armor sprite -->
+		<key>sprite</key> <string>guardian_casing</string>
 		<key>color</key> <string>element smash</string>
 	</dict>
 	<key>cut casing</key>
@@ -104,7 +104,7 @@
 		<!-- stats -->
 		<key>cut resistance</key> <integer>4</integer>
 		<!-- appearance -->
-		<key>sprite</key> <string>sentry</string> <!-- TODO: guardian armor sprite -->
+		<key>sprite</key> <string>guardian_casing</string>
 		<key>color</key> <string>element cut</string>
 	</dict>
 	<key>burn casing</key>
@@ -114,7 +114,7 @@
 		<!-- stats -->
 		<key>burn resistance</key> <integer>4</integer>
 		<!-- appearance -->
-		<key>sprite</key> <string>sentry</string> <!-- TODO: guardian armor sprite -->
+		<key>sprite</key> <string>guardian_casing</string>
 		<key>color</key> <string>element burn</string>
 	</dict>
 	<key>shock casing</key>
@@ -124,7 +124,7 @@
 		<!-- stats -->
 		<key>shock resistance</key> <integer>4</integer>
 		<!-- appearance -->
-		<key>sprite</key> <string>sentry</string> <!-- TODO: guardian armor sprite -->
+		<key>sprite</key> <string>guardian_casing</string>
 		<key>color</key> <string>element shock</string>
 	</dict>
 	

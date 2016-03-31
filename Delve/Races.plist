@@ -299,7 +299,7 @@
 		<key>metabolism</key> <integer>100</integer>
 		<!-- slots -->
 		<!-- appearance -->
-		<key>sprite</key> <string>sentry</string> <!-- TODO: immobile robot turret-ey sprite, with an armor layer for colored armors to show elemental resist -->
+		<key>sprite</key> <string>guardian</string>
 		<key>colorations</key>
 		<array>
 			<dict>

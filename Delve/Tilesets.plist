@@ -9,20 +9,6 @@
 -->
 <plist version="1.0">
 <dict>
-    <key>template</key>
-	<dict>
-		<key>wall</key> <string>template</string>
-		<key>floor</key> <string>template</string>
-		<key>locked door</key> <string>template</string>
-		<key>door floor</key> <string>template</string>
-		<key>natural wall</key> <string>template</string>
-		<key>stairs</key> <string>template</string>
-		<key>doodads</key>
-		<array>
-			<string>sample doodad</string>
-		</array>
-	</dict>
-	
     <key>cave</key>
 	<dict>
 		<key>wall</key> <string>unnatural wall</string>
@@ -47,9 +33,15 @@
 		<key>natural wall</key> <string>natural wall</string>
 		<key>stairs</key> <string>stairs</string>
 		<key>doodads</key>
-		<array> <!-- TODO: foresty things, like shrubs or whatever -->
+		<array>
+			<string>bush</string>
+			<string>bush</string>
+			<string>bush</string>
 			<string>stalag 1</string>
 			<string>stalag 2</string>
+			<string>column</string>
+			<string>broken column</string>
+			<string>broken column</string>
 		</array>
 	</dict>
 	
@@ -80,7 +72,11 @@
 		<key>doodads</key>
 		<array>
 			<string>stalag 1</string>
+			<string>stalag 1</string>
 			<string>stalag 2</string>
+			<string>stalag 2</string>
+			<string>column</string>
+			<string>broken column</string>
 		</array>
 	</dict>
 	
@@ -93,8 +89,12 @@
 		<key>natural wall</key> <string>natural wall</string>
 		<key>stairs</key> <string>stairs</string>
 		<key>doodads</key>
-		<array> <!-- TODO: lab equipment (big tubes, broken big tubes, maybe giant microscopes or something) -->
+		<array>
 			<string>console</string>
+			<string>console</string>
+			<string>tank</string>
+			<string>broken tank</string>
+			<string>broken tank</string>
 		</array>
 	</dict>
 	
@@ -110,6 +110,10 @@
 		<array>
 			<string>stalag 1</string>
 			<string>stalag 2</string>
+			<string>column</string>
+			<string>column</string>
+			<string>broken column</string>
+			<string>console</string>
 			<string>console</string>
 		</array>
 	</dict>

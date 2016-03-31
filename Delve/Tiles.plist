@@ -76,7 +76,7 @@
 		<key>rubble chance</key> <integer>35</integer>
 		<key>sprite</key> <string>tile_floor_cave</string>
 	</dict>
-	<key>forest wall</key> <!-- TODO: thicket of leaf-less trees -->
+	<key>forest wall</key>
 	<dict>
 		<key>color</key> <string>brown hair</string>
 		<key>solid</key> <true/>
@@ -136,6 +136,32 @@
 	<dict>
 		<key>solid</key> <true/>
 		<key>sprite</key> <string>tile_doodad_stalag2</string>
+	</dict>
+	<key>tank</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>sprite</key> <string>tile_doodad_tank</string>
+	</dict>
+	<key>broken tank</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>sprite</key> <string>tile_doodad_tank_broken</string>
+	</dict>
+	<key>column</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>sprite</key> <string>tile_doodad_column</string>
+	</dict>
+	<key>broken column</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>sprite</key> <string>tile_doodad_column_broken</string>
+	</dict>
+	<key>bush</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>color</key> <string>green hair</string>
+		<key>sprite</key> <string>tile_doodad_bush</string>
 	</dict>
 </dict>
 </plist>
