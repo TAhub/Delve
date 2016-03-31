@@ -140,30 +140,44 @@ NSString *categoryName = nil;
 NSDictionary *categoryCache = nil;
 NSDictionary *entryCache = nil;
 
+//turn the caching off when you go multithreaded
+BOOL cachingEnabled = true;
+
 NSDictionary *loadEntry(NSString *category, NSString *entry)
 {
-	if (![category isEqualToString:categoryName])
+	if (cachingEnabled)
 	{
-		categoryName = nil;
-		entryName = nil;
+		if (![category isEqualToString:categoryName])
+		{
+			categoryName = nil;
+			entryName = nil;
+		}
+		if (![entry isEqualToString:entryName])
+			entryName = nil;
+		
+		if (categoryName == nil)
+		{
+			categoryCache = loadEntries(category);
+			categoryName = category;
+		}
+		if (entryName == nil)
+		{
+			id e = categoryCache[entry];
+			assert(e != nil);
+			assert([e isKindOfClass:[NSDictionary class]]);
+			entryCache = e;
+			entryName = entry;
+		}
+		return entryCache;
 	}
-	if (![entry isEqualToString:entryName])
-		entryName = nil;
-	
-	if (categoryName == nil)
+	else
 	{
-		categoryCache = loadEntries(category);
-		categoryName = category;
-	}
-	if (entryName == nil)
-	{
-		id e = categoryCache[entry];
+		NSDictionary *d = loadEntries(category);
+		id e = d[entry];
 		assert(e != nil);
 		assert([e isKindOfClass:[NSDictionary class]]);
-		entryCache = e;
-		entryName = entry;
+		return e;
 	}
-	return entryCache;
 }
 NSArray *loadArrayEntry(NSString *category, NSString *entry)
 {

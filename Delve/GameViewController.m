@@ -1525,21 +1525,17 @@
 	//do a fancy end-of-map animation
 	self.animating = true;
 	__weak typeof(self) weakSelf = self;
-	[self fadeScreenInTime:0.5f withBlock:
+	[self fadeScreenInTime:0.6f withBlock:
 	^()
 	{
 		int number = (int)[weakSelf.map.creatures indexOfObject:weakSelf.map.player];
 		UIView *view = weakSelf.creatureViews[number];
 		
-		[UIView animateWithDuration:1.0f animations:
+		[UIView animateWithDuration:0.4f animations:
 		^()
 		{
-			//the player gets tall and thin, like a megaman teleport or whatever
-			int cX = view.frame.origin.x + view.frame.size.width / 2;
-			int cY = view.frame.origin.y + view.frame.size.height / 2;
-			int newWidth = view.frame.size.width / 4;
-			int newHeight = weakSelf.view.frame.size.height * 2;
-			view.frame = CGRectMake(cX - newWidth / 2, cY - newHeight / 2, newWidth, newHeight);
+			//the player zooms away
+			view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y - weakSelf.view.frame.size.height, view.frame.size.width, view.frame.size.height);
 			
 		} completion:
 		^(BOOL finished)

@@ -295,7 +295,7 @@
 	<dict>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>100</integer>
-		<key>health</key> <integer>200</integer>
+		<key>health</key> <integer>170</integer>
 		<key>metabolism</key> <integer>100</integer>
 		<!-- slots -->
 		<!-- appearance -->

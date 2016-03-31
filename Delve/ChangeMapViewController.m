@@ -11,6 +11,8 @@
 #import "Map.h"
 #import "Creature.h"
 
+extern BOOL cachingEnabled;
+
 @interface ChangeMapViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) Map *oldMap;
@@ -33,6 +35,8 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+	
+	cachingEnabled = false;
 	
 	[self formatButton:self.pickButton];
 	[self formatPanel:self.textPanel];
@@ -106,6 +110,8 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+	cachingEnabled = true;
+	
 	GameViewController *game = segue.destinationViewController;
 	[game loadMap:self.nextMap];
 }
