@@ -162,6 +162,15 @@
 	[self.map saveFirst];
 	[self preloadTileImages];
 	self.map.delegate = self;
+	
+	
+	//initialize player statistics
+	NSMutableDictionary *killsPerRace = [NSMutableDictionary new];
+	NSDictionary *races = loadEntries(@"Races");
+	for (NSString *race in races.allKeys)
+		killsPerRace[race] = @(0);
+	[[NSUserDefaults standardUserDefaults] setObject:killsPerRace forKey:@"statistics kills"];
+	[[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"statistics steps"];
 }
 
 -(void)preloadTileImageFor:(Tile *)tile
@@ -1676,6 +1685,8 @@
 {
 	if (self.map.floorNum == 9)
 	{
+		[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"game phase"];
+		
 		//you won!
 		NSMutableString *victoryMessage = [NSMutableString new];
 		[victoryMessage appendString:@"As you exit the portal, you find yourself in the control room of the old Eol vessel."];

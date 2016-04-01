@@ -122,8 +122,18 @@
 -(NSString *)endStatistics
 {
 	//displays various statistics to display at the end of a game
-	//TODO: return some statistics (number of steps? number of kills? I dunno)
-	return @"";
+	int steps = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"statistics steps"];
+	NSDictionary *killsPerRace = [[NSUserDefaults standardUserDefaults] objectForKey:@"statistics kills"];
+	int kills = 0;
+	for (NSString *race in killsPerRace.allKeys)
+		kills += ((NSNumber *)killsPerRace[race]).intValue;
+	//TODO: some races should have a flag that makes their kills not count towards the kill count
+	//IE robots, maybe slimes
+	
+	NSMutableString *stats = [NSMutableString stringWithString:@"Statistics:"];
+	[stats appendFormat:@"\n%i kill%@", kills, kills == 1 ? @"": @"s"];
+	[stats appendFormat:@"\n%i steps", steps];
+	return stats;
 }
 
 -(void)update
@@ -308,6 +318,13 @@
 		[self.delegate moveCreature:person fromX:person.x-x fromY:person.y-y withBlock:
 		^()
 		{
+			if (person.good)
+			{
+				//increment steps counter
+				int steps = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"statistics steps"];
+				[[NSUserDefaults standardUserDefaults] setInteger:steps+1 forKey:@"statistics steps"];
+			}
+			
 			if (person.good && ((Tile *)self.tiles[person.y][person.x]).stairs) //if you walked onto a stair tile
 			{
 				weakSelf.personOn = (int)weakSelf.creatures.count + 5; //to make sure it's not the player's turn

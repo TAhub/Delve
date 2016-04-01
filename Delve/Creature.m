@@ -1058,7 +1058,7 @@
 					if (hit.dead)
 					{
 						//you killed someone!
-						[weakSelf killBoosts];
+						[weakSelf killBoostsForKillingEnemyOfRace:hit.race];
 						
 						//remove the dead person from the map
 						[hit kill];
@@ -1138,7 +1138,7 @@
 					if (weakSelf.health == 0)
 					{
 						//yes, counter-attacks can kill you
-						[counterAttacker killBoosts];
+						[counterAttacker killBoostsForKillingEnemyOfRace:weakSelf.race];
 						[weakSelf kill];
 					}
 					
@@ -1169,10 +1169,19 @@
 	}
 }
 
--(void)killBoosts
+-(void)killBoostsForKillingEnemyOfRace:(NSString *)race
 {
 	self.blocks = MIN(self.blocks + 1, self.maxBlocks);
 	//TODO: any other bennies for getting a kill
+	
+	if (self.good)
+	{
+		//add some kill credit!
+		NSMutableDictionary *killsPerRace = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"statistics kills"]];
+		int kills = ((NSNumber *)killsPerRace[race]).intValue;
+		killsPerRace[race] = @(kills + 1);
+		[[NSUserDefaults standardUserDefaults] setObject:killsPerRace forKey:@"statistics kills"];
+	}
 }
 
 -(BOOL) moveWithX:(int)x andY:(int)y

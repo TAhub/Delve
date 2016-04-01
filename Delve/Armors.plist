@@ -75,7 +75,7 @@
 		<key>smash resistance</key> <integer>1</integer>
 		<!-- appearance -->
 		<key>sprite</key> <string>ruin_feeder_collar</string>
-		<key>color</key> <string>leather</string>
+		<key>color</key> <string>blue fabric</string>
 	</dict>
 	<key>ruin feeder froth</key>
 	<dict>
