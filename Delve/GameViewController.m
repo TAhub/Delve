@@ -1541,7 +1541,7 @@
 		^(BOOL finished)
 		{
 			view.alpha = 0;
-			[weakSelf performSegueWithIdentifier:@"changeMap" sender:self];
+			[weakSelf nextMapInner];
 		}];
 	}];
 }
@@ -1670,6 +1670,27 @@
 			[label removeFromSuperview];
 		block();
 	}];
+}
+
+-(void)nextMapInner
+{
+	if (self.map.floorNum == 9)
+	{
+		//you won!
+		NSMutableString *victoryMessage = [NSMutableString new];
+		[victoryMessage appendString:@"As you exit the portal, you find yourself in the control room of the old Eol vessel."];
+		[victoryMessage appendString:@"\nFrom here, you could reactivate it fully. You could do anything you wished."];
+		
+		//TODO: append more strings, probably from a loaded endings table based on what the player did in life, their race, etc
+		//IE maybe a raider who kills no raider enemies regains their honor, or an eoling with no unholy skills reactivates the ship and treats it as an amazing relic
+		
+		[victoryMessage appendFormat:@"\n%@", self.map.endStatistics];
+		
+		self.defeatMessage = victoryMessage;
+		[self performSegueWithIdentifier:@"defeat" sender:self];
+	}
+	else
+		[self performSegueWithIdentifier:@"changeMap" sender:self];
 }
 
 -(void)defeat:(NSString *)message

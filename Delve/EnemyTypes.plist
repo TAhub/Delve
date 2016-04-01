@@ -15,6 +15,7 @@
 		<key>race</key> <string>template</string>
 		<key>ai</key> <string>template</string>
 		<key>description</key> <string>TODO: enemy type description!</string>
+		<key>defeat message</key> <string>TODO: defeat message!</string>
 		<key>skills</key>
 		<array>
 			<string>template</string>
@@ -54,6 +55,7 @@
 		<key>race</key> <string>human</string>
 		<key>ai</key> <string>bandit</string>
 		<key>description</key> <string>This disreputable human is probably waiting here to ambush people trying to leave.</string>
+		<key>defeat message</key> <string>After your death, the bandits pick through your belongings.</string>
 		<key>skills</key>
 		<array>
 			<string>filler monster skill</string>
@@ -79,6 +81,7 @@
 		<key>race</key> <string>human</string>
 		<key>ai</key> <string>bandit sentry</string>
 		<key>description</key> <string>This human looks sharper, more alert than the others.</string>
+		<key>defeat message</key> <string>After your death, the bandits pick through your belongings.</string>
 		<key>skills</key>
 		<array>
 			<string>bow</string>
@@ -107,6 +110,7 @@
 		<key>race</key> <string>human</string>
 		<key>ai</key> <string>bandit</string>
 		<key>description</key> <string>This burly human is carrying a sledgehammer.</string>
+		<key>defeat message</key> <string>After your death, the bandits pick through your belongings.</string>
 		<key>skills</key>
 		<array>
 			<string>hammer</string>
@@ -136,6 +140,7 @@
 		<key>race</key> <string>human</string>
 		<key>ai</key> <string>bandit</string>
 		<key>description</key> <string>This shabby human has a burning torch in one hand.</string>
+		<key>defeat message</key> <string>TODO: defeat message!</string>
 		<key>skills</key>
 		<array>
 			<string>filler monster skill</string>
@@ -166,6 +171,7 @@
 		<key>race</key> <string>slime</string>
 		<key>ai</key> <string>slime</string>
 		<key>description</key> <string>This strange monster seems to be a single mass of some kind of viscous substance.</string>
+		<key>defeat message</key> <string>After your death, the slime digests your corpse.</string>
 		<key>skills</key>
 		<array>
 			<string>tough monster skill</string>
@@ -186,6 +192,7 @@
 		<key>race</key> <string>great slime</string>
 		<key>ai</key> <string>slime</string>
 		<key>description</key> <string>This large slime-monster is firmer and stronger than its smaller siblings.</string>
+		<key>defeat message</key> <string>After your death, the slime digests your corpse.</string>
 		<key>skills</key>
 		<array>
 			<string>tough monster skill</string>
@@ -211,6 +218,7 @@
 		<key>race</key> <string>ruin feeder runt</string>
 		<key>ai</key> <string>animal</string>
 		<key>description</key> <string>This is a small animal that seems to be native to the area.</string>
+		<key>defeat message</key> <string>After your death, the ruin feeder ignores your body and returns to hunting for tasty scrap.</string>
 		<key>skills</key>
 		<array>
 			<string>dodgy monster skill</string>
@@ -231,6 +239,7 @@
 		<key>race</key> <string>ruin feeder</string>
 		<key>ai</key> <string>animal</string>
 		<key>description</key> <string>This strange species of animal seems to be a native to these caves. This one has been trained as an attack animal.</string>
+		<key>defeat message</key> <string>After your death, the ruin feeder returns to its master for a treat.</string>
 		<key>skills</key>
 		<array>
 			<string>tough monster skill</string>
@@ -255,6 +264,7 @@
 		<key>race</key> <string>ruin feeder</string>
 		<key>ai</key> <string>animal</string>
 		<key>description</key> <string>This strange species of animal seems to be a native to these caves.</string>
+		<key>defeat message</key> <string>After your death, the ruin feeder ignores your body and returns to hunting for tasty scrap.</string>
 		<key>skills</key>
 		<array>
 			<string>tough monster skill</string>
@@ -275,6 +285,7 @@
 		<key>race</key> <string>fierce ruin feeder</string>
 		<key>ai</key> <string>animal</string>
 		<key>description</key> <string>This is an especially strong and ruthless ruin feeder.</string>
+		<key>defeat message</key> <string>After your death, the ruin feeder ignores your body and returns to hunting for tasty scrap.</string>
 		<key>skills</key>
 		<array>
 			<string>tough monster skill</string>
@@ -295,6 +306,7 @@
 		<key>race</key> <string>fierce ruin feeder</string>
 		<key>ai</key> <string>animal charger</string>
 		<key>description</key> <string>This ruin feeder has contracted some illness, that causes it to charge you with reckless abandon.</string>
+		<key>defeat message</key> <string>After your death, the ruin feeder tears your body apart.</string>
 		<key>skills</key>
 		<array>
 			<string>rabid ruin feeder skill</string>
@@ -324,6 +336,7 @@
 		<key>race</key> <string>sentry</string>
 		<key>ai</key> <string>robot</string>
 		<key>description</key> <string>This old construct has sharp metal claws, and it does not look afraid to use them.</string>
+		<key>defeat message</key> <string>After your death, the sentry switches back off.</string>
 		<key>skills</key>
 		<array>
 			<string>tough monster skill</string>
@@ -344,6 +357,7 @@
 		<key>race</key> <string>scuttler</string>
 		<key>ai</key> <string>robot specialist</string>
 		<key>description</key> <string>This old construct moves back and forth erratically, looking for targets for its built-in holy weapon.</string>
+		<key>defeat message</key> <string>After your death, the scuttler switches back off.</string>
 		<key>skills</key>
 		<array>
 			<string>scuttler skill</string>
@@ -368,6 +382,7 @@
 		<key>race</key> <string>android</string>
 		<key>ai</key> <string>robot</string>
 		<key>description</key> <string>This slick construct is made in the form of an Eol.</string>
+		<key>defeat message</key> <string>After your death, the android returns to its tasks.</string>
 		<key>skills</key>
 		<array>
 			<string>strength</string>
@@ -388,6 +403,7 @@
 		<key>race</key> <string>android</string>
 		<key>ai</key> <string>robot</string>
 		<key>description</key> <string>This slick construct has one arm replaced with a powerful holy weapon.</string>
+		<key>defeat message</key> <string>After your death, the android returns to its tasks.</string>
 		<key>skills</key>
 		<array>
 			<string>holy soldier</string>
@@ -401,6 +417,7 @@
 		<array>
 			<string>android cannon</string>
 		</array>
+		<key>weapon</key> <string>android bash</string>
 	</dict>
 	
 	<!-- war bot -->
@@ -411,6 +428,7 @@
 		<key>race</key> <string>war bot</string>
 		<key>ai</key> <string>robot</string>
 		<key>description</key> <string>This heavily armored construct is armed with the mightiest weapons of the ancient Eol.</string>
+		<key>defeat message</key> <string>After your death, the war bot goes back to its patrolling.</string>
 		<key>skills</key>
 		<array>
 			<string>holy soldier</string>
@@ -441,6 +459,7 @@
 		<key>race</key> <string>eoling</string>
 		<key>ai</key> <string>robot</string>
 		<key>description</key> <string>This Eoling soldier does not look happy to see a trespasser.</string>
+		<key>defeat message</key> <string>After your death, !he buries your body and returns to !his post.</string>
 		<key>skills</key>
 		<array>
 			<string>filler monster skill</string>
@@ -465,6 +484,7 @@
 		<key>race</key> <string>eoling</string>
 		<key>ai</key> <string>robot specialist</string>
 		<key>description</key> <string>This Eoling parishioner has been trained in an old Eol form of ritual combat.</string>
+		<key>defeat message</key> <string>After your death, !he turns your body over to a zealot to be buried.</string>
 		<key>skills</key>
 		<array>
 			<string>dagger</string>
@@ -495,6 +515,7 @@
 		<key>race</key> <string>eoling</string>
 		<key>ai</key> <string>robot</string>
 		<key>description</key> <string>This Eoling priest has been brought here in the hopes of re-activating old Eol devices.</string>
+		<key>defeat message</key> <string>After your death, !he returns to !his repair work.</string>
 		<key>skills</key>
 		<array>
 			<string>holy soldier</string>
@@ -528,6 +549,7 @@
 		<key>race</key> <string>human</string>
 		<key>ai</key> <string>bandit</string>
 		<key>description</key> <string>This human looks strangely dazed. !He is heavily armored and armored.</string>
+		<key>defeat message</key> <string>After your death, !he goes back to !his waking reverie.</string>
 		<key>skills</key>
 		<array>
 			<string>spear</string>
@@ -558,6 +580,7 @@
 		<key>race</key> <string>human</string>
 		<key>ai</key> <string>bandit</string>
 		<key>description</key> <string>This human looks strangely dazed. !He is wielding a lit torch with great skill.</string>
+		<key>defeat message</key> <string>After your death, !he goes back to !his waking reverie.</string>
 		<key>skills</key>
 		<array>
 			<string>finesse</string>
@@ -588,6 +611,7 @@
 		<key>race</key> <string>highborn</string>
 		<key>ai</key> <string>highborn</string>
 		<key>description</key> <string>This Highborn sneers at you arrogantly.</string>
+		<key>defeat message</key> <string>After your death, !he burns your body to ashes while cursing the interruption.</string>
 		<key>skills</key>
 		<array>
 			<string>energy</string>
@@ -618,6 +642,7 @@
 		<key>race</key> <string>highborn</string>
 		<key>ai</key> <string>highborn</string>
 		<key>description</key> <string>This heavily-armed Highborn looks frustrated at the Highborn expedition being stalled so close to the end. !He seems inclined to take this out on you.</string>
+		<key>defeat message</key> <string>After your death, !he has !his slaves get rid of your body, so !he can return to planning.</string>
 		<key>skills</key>
 		<array>
 			<string>time</string>
@@ -651,6 +676,7 @@
 		<key>race</key> <string>abomination</string>
 		<key>ai</key> <string>abomination</string>
 		<key>description</key> <string>This bizarre creature's skin glistens with clear mucus, and its muscles ripple with strength.</string>
+		<key>defeat message</key> <string>After your death, the creature examines your body for a long time, in complete incomprehension.</string>
 		<key>skills</key>
 		<array>
 			<string>flinger skill</string>
@@ -671,6 +697,7 @@
 		<key>race</key> <string>abomination</string>
 		<key>ai</key> <string>abomination</string>
 		<key>description</key> <string>This horrid creature seems to have been fitted with crude armor.</string>
+		<key>defeat message</key> <string>After your death, the creature examines your body for a long time, in complete incomprehension.</string>
 		<key>skills</key>
 		<array>
 			<string>abomination skill</string>
@@ -699,6 +726,7 @@
 		<key>race</key> <string>raider</string>
 		<key>ai</key> <string>bandit</string>
 		<key>description</key> <string>This fearsome soldier is armed with sword and shield.</string>
+		<key>defeat message</key> <string>After your death, !he returns to !his post for further orders.</string>
 		<key>skills</key>
 		<array>
 			<string>shield</string>
@@ -728,6 +756,7 @@
 		<key>race</key> <string>raider</string>
 		<key>ai</key> <string>bandit</string>
 		<key>description</key> <string>This burly archer nocks a blunted arrow when !he sees you.</string>
+		<key>defeat message</key> <string>After your death, !he returns to !his post for further orders.</string>
 		<key>skills</key>
 		<array>
 			<string>bow</string>
@@ -758,6 +787,7 @@
 		<key>race</key> <string>raider</string>
 		<key>ai</key> <string>bandit</string>
 		<key>description</key> <string>This Raider looks to be from the elite Raider knights.</string>
+		<key>defeat message</key> <string>After your death, !he commends you for your bravery before going back to !his training.</string>
 		<key>skills</key>
 		<array>
 			<string>spear</string>
@@ -788,6 +818,7 @@
 		<key>race</key> <string>raider</string>
 		<key>ai</key> <string>bandit</string>
 		<key>description</key> <string>This Raider was gearing up for some kind of offensive push when you arrived. Unlucky you.</string>
+		<key>defeat message</key> <string>After your death, !he gives you a quick field cremation in honor of your bravery.</string>
 		<key>skills</key>
 		<array>
 			<string>oathbreaker</string>
@@ -823,6 +854,7 @@
 		<key>race</key> <string>guardian</string>
 		<key>ai</key> <string>guardian</string>
 		<key>description</key> <string>This ancient machine seems to have been repaired recently. It's normal weapon has been replaced with a crossbow, and it's normal armor has been replaced with a simple iron replica.</string>
+		<key>defeat message</key> <string>After your death, the guardian switches back off. You were so close to the portal!</string>
 		<key>skills</key>
 		<array>
 			<string>guardian skill</string>
@@ -850,6 +882,7 @@
 		<key>race</key> <string>guardian</string>
 		<key>ai</key> <string>guardian</string>
 		<key>description</key> <string>This ancient machine shows signs of having been moved recently, probably from deeper in. Luckily, it also seems to have been damaged in the process.</string>
+		<key>defeat message</key> <string>After your death, the guardian switches back off. You were so close to the portal!</string>
 		<key>skills</key>
 		<array>
 			<string>guardian skill</string>
@@ -877,6 +910,7 @@
 		<key>race</key> <string>guardian</string>
 		<key>ai</key> <string>guardian</string>
 		<key>description</key> <string>This ancient machine seems to be outfitted with some kind of stone-throwing device.</string>
+		<key>defeat message</key> <string>After your death, the guardian switches back off. You were so close to the portal!</string>
 		<key>skills</key>
 		<array>
 			<string>guardian skill</string>
@@ -904,6 +938,7 @@
 		<key>race</key> <string>guardian</string>
 		<key>ai</key> <string>guardian</string>
 		<key>description</key> <string>This ancient machine seems to have been well-cared-for by the Eoling force. It has a powerful holy weapon.</string>
+		<key>defeat message</key> <string>After your death, the guardian switches back off. You were so close to the portal!</string>
 		<key>skills</key>
 		<array>
 			<string>guardian skill</string>
@@ -931,6 +966,7 @@
 		<key>race</key> <string>guardian</string>
 		<key>ai</key> <string>guardian</string>
 		<key>description</key> <string>This ancient machine seems to be made to resist lightning, which is odd for a machine in a cave. Perhaps this park was once above ground?</string>
+		<key>defeat message</key> <string>After your death, the guardian switches back off. You were so close to the portal!</string>
 		<key>skills</key>
 		<array>
 			<string>guardian skill</string>
@@ -958,6 +994,7 @@
 		<key>race</key> <string>guardian</string>
 		<key>ai</key> <string>guardian</string>
 		<key>description</key> <string>This ancient machine is equipped with an unholy weapon. The ancient Eols must have not wanted those monsters to leave this facility.</string>
+		<key>defeat message</key> <string>After your death, the guardian switches back off. You were so close to the portal!</string>
 		<key>skills</key>
 		<array>
 			<string>guardian skill</string>
@@ -985,6 +1022,7 @@
 		<key>race</key> <string>guardian</string>
 		<key>ai</key> <string>guardian</string>
 		<key>description</key> <string>This ancient machine is of the same make as the one those bandits stole. This one, however, is in good condition.</string>
+		<key>defeat message</key> <string>After your death, the guardian switches back off. You were so close to the portal!</string>
 		<key>skills</key>
 		<array>
 			<string>guardian skill</string>
@@ -1012,6 +1050,7 @@
 		<key>race</key> <string>guardian</string>
 		<key>ai</key> <string>guardian</string>
 		<key>description</key> <string>This ancient machine has been re-activated by the Raider expedition. They must have found the key.</string>
+		<key>defeat message</key> <string>After your death, the guardian switches back off. You were so close to the portal!</string>
 		<key>skills</key>
 		<array>
 			<string>guardian skill</string>
@@ -1039,6 +1078,7 @@
 		<key>race</key> <string>guardian</string>
 		<key>ai</key> <string>guardian</string>
 		<key>description</key> <string>This ancient machine has been modified by the Highborn. Now, instead of its previous holy weapon, it has some kind of strange ritual weapon.</string>
+		<key>defeat message</key> <string>After your death, the guardian switches back off. You were so close to the portal!</string>
 		<key>skills</key>
 		<array>
 			<string>guardian skill</string>
@@ -1066,6 +1106,7 @@
 		<key>race</key> <string>guardian</string>
 		<key>ai</key> <string>guardian</string>
 		<key>description</key> <string>This ancient machine was made to guard the most sensitive of old Eol secrets. It is of the finest make.</string>
+		<key>defeat message</key> <string>After your death, the guardian switches back off. You were so close to the end!</string>
 		<key>skills</key>
 		<array>
 			<string>guardian skill</string>

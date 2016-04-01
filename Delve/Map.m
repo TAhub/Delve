@@ -119,6 +119,13 @@
 	return self.countdown <= self.overtimeCount;
 }
 
+-(NSString *)endStatistics
+{
+	//displays various statistics to display at the end of a game
+	//TODO: return some statistics (number of steps? number of kills? I dunno)
+	return @"";
+}
+
 -(void)update
 {
 	NSLog(@"UPDATE!!");
@@ -131,9 +138,23 @@
 	{
 		//you died! you lose
 		
-		//TODO: maybe keep track of the last thing that hit the player, so you can know WHAT killed you?
+		//pick a defeat message based on the enemy type of the enemy whose turn it is
+		//or, if it's the player, pick a "you wasted away" message, since it was probably poison
 		
-		[self.delegate defeat:@"You died!"];
+		Creature *active = self.creatures[self.personOn];
+		NSMutableString *defeatMessage = [NSMutableString new];
+		if (active.good)
+			[defeatMessage appendFormat:@"\nYou wasted away."];
+		else
+		{
+			[defeatMessage appendFormat:@"You were killed by %@!", active.name];
+			[defeatMessage appendFormat:@"\n%@", active.typeDefeatMessage];
+		}
+		[defeatMessage appendFormat:@"\n%@", self.endStatistics];
+		
+		
+		[self.delegate defeat:defeatMessage];
+		
 		return;
 	}
 	
@@ -158,7 +179,7 @@
 			if (self.countdown == 0)
 			{
 				//everything explodes! you lose
-				[self.delegate defeat:@"You didn't get out in time, and were cleansed!"];
+				[self.delegate defeat:[NSString stringWithFormat:@"You didn't get out in time, and were cleansed!\n%@", self.endStatistics]];
 				return;
 			}
 			if (self.overtime)
@@ -1414,7 +1435,7 @@
 					case 7:
 					case 8:
 					case 9:
-						listNum = 4; break;
+						listNum = 3; break;
 				}
 			}
 			else

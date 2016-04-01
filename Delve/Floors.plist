@@ -228,7 +228,7 @@
 		<key>max door offset</key> <integer>0</integer>
 		<key>doors at a time</key> <integer>6</integer>
 		<key>min non orphans</key> <integer>20</integer>
-		<key>max non orphans</key> <integer>35</integer>
+		<key>max non orphans</key> <integer>45</integer>
 		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>7</integer>

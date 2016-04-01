@@ -68,6 +68,7 @@
 -(Item *)makeItemFromRecipie:(NSString *)recipie;
 -(void)addItem:(Item *)item;
 -(PathDirection)pathFromX:(int)fX andY:(int)fY toX:(int)tX andY:(int)tY withRadius:(int)radius;
+-(NSString *)endStatistics;
 
 @property (weak, nonatomic) id<MapDelegate> delegate;
 

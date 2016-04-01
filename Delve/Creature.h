@@ -84,6 +84,7 @@
 -(NSString *) ai;
 -(NSString *) name;
 -(NSString *) typeDescription;
+-(NSString *) typeDefeatMessage;
 
 #pragma mark: organizational flags
 @property (strong, nonatomic) NSString *storedAttack;

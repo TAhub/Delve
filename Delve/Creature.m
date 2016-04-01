@@ -590,6 +590,10 @@
 {
 	return [self stringTranslate:loadValueString(@"EnemyTypes", self.enemyType, @"description")];
 }
+-(NSString *) typeDefeatMessage
+{
+	return [self stringTranslate:loadValueString(@"EnemyTypes", self.enemyType, @"defeat message")];
+}
 -(int) aiWakeDistance
 {
 	return loadValueNumber(@"AIs", self.ai, @"wake distance").intValue;
