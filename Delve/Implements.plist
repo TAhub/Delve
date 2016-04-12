@@ -56,7 +56,7 @@
 	<dict>
 		<key>type</key> <string>weapon</string>
 		<key>power</key> <integer>15</integer>
-		<key>element</key> <string>cut</string>
+		<key>element</key> <string>slash</string>
 	</dict>
 	<key>basic relic</key>
 	<dict>

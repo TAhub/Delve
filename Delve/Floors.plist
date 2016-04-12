@@ -9,50 +9,6 @@
 -->
 <plist version="1.0">
 <dict>
-	<key>template</key>
-	<dict>
-		<!-- appearance data -->
-		<key>tileset</key> <string>template</string>
-		<key>default color</key> <string>template</string>
-		<!-- map generation data -->
-		<key>room size</key> <integer>5</integer>
-		<key>rows</key> <integer>10</integer>
-		<key>columns</key> <integer>6</integer>
-		<key>reject undiscovered doors chance</key> <integer>60</integer>
-		<key>max door offset</key> <integer>1</integer>
-		<key>doors at a time</key> <integer>5</integer>
-		<key>min non orphans</key> <integer>20</integer>
-		<key>max non orphans</key> <integer>35</integer>
-		<key>locked door chance</key> <integer>35</integer>
-		<key>no door chance</key> <integer>25</integer>
-		<key>desired path length</key> <integer>7</integer>
-		<key>min doodads per room</key> <integer>1</integer>
-		<key>max doodads per room</key> <integer>2</integer>
-		<!-- cave generation data -->
-		<key>cave wall chance</key> <integer>50</integer>
-		<key>cave smooths</key> <integer>2</integer>
-		<key>min floor tile percent</key> <integer>40</integer>
-		<key>max floor tile percent</key> <integer>60</integer>
-		<!-- map balance data -->
-		<key>countdown</key> <integer>160</integer>
-		<key>overtime countdown</key> <integer>20</integer>
-		<key>equipment treasures</key> <integer>4</integer>
-		<key>healing treasures</key> <integer>4</integer>
-		<key>normal treasures</key> <integer>3</integer>
-		<key>healing item</key> <string>bread</string>
-		<key>number of encounters</key> <integer>8</integer>
-		<key>start equipment treasures</key> <integer>4</integer>
-		<key>encounters</key>
-		<array>
-			<array>
-				<string>ruin feeder runt</string>
-				<string>ruin feeder runt</string>
-				<string>ruin feeder runt</string>
-			</array>
-		</array>
-		<key>guardian type</key> <string>template guardian</string>
-	</dict>
-	
 	<!-- design guideline -->
 	<!-- the values I start with for countdown should be around 2.5 * (room size) * (desired path length) + 10 * (number encounters) -->
 	<!-- with some extra padding and such, obviously -->
@@ -91,7 +47,7 @@
 		<key>min floor tile percent</key> <integer>40</integer>
 		<key>max floor tile percent</key> <integer>60</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>200</integer>
+		<key>countdown</key> <integer>230</integer>
 		<key>overtime countdown</key> <integer>30</integer>
 		<key>equipment treasures</key> <integer>4</integer>
 		<key>healing treasures</key> <integer>4</integer>
@@ -164,7 +120,7 @@
 		<key>min floor tile percent</key> <integer>50</integer>
 		<key>max floor tile percent</key> <integer>70</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>220</integer>
+		<key>countdown</key> <integer>250</integer>
 		<key>overtime countdown</key> <integer>40</integer>
 		<key>equipment treasures</key> <integer>4</integer>
 		<key>healing treasures</key> <integer>7</integer>
@@ -240,7 +196,7 @@
 		<key>min floor tile percent</key> <integer>40</integer>
 		<key>max floor tile percent</key> <integer>60</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>160</integer>
+		<key>countdown</key> <integer>190</integer>
 		<key>overtime countdown</key> <integer>20</integer>
 		<key>equipment treasures</key> <integer>4</integer>
 		<key>healing treasures</key> <integer>5</integer>
@@ -311,13 +267,13 @@
 		<key>min floor tile percent</key> <integer>0</integer>
 		<key>max floor tile percent</key> <integer>0</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>240</integer>
+		<key>countdown</key> <integer>270</integer>
 		<key>overtime countdown</key> <integer>50</integer>
 		<key>equipment treasures</key> <integer>0</integer>
 		<key>healing treasures</key> <integer>2</integer>
 		<key>normal treasures</key> <integer>0</integer>
 		<key>healing item</key> <string>cheese</string>
-		<key>number of encounters</key> <integer>10</integer>
+		<key>number of encounters</key> <integer>8</integer>
 		<key>start equipment treasures</key> <integer>1</integer>
 		<key>encounters</key>
 		<array>
@@ -381,13 +337,13 @@
 		<key>min floor tile percent</key> <integer>40</integer>
 		<key>max floor tile percent</key> <integer>80</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>260</integer>
+		<key>countdown</key> <integer>290</integer>
 		<key>overtime countdown</key> <integer>35</integer>
 		<key>equipment treasures</key> <integer>3</integer>
 		<key>healing treasures</key> <integer>5</integer>
 		<key>normal treasures</key> <integer>4</integer>
 		<key>healing item</key> <string>cheese</string>
-		<key>number of encounters</key> <integer>8</integer>
+		<key>number of encounters</key> <integer>10</integer>
 		<key>start equipment treasures</key> <integer>3</integer>
 		<key>encounters</key>
 		<array>
@@ -395,8 +351,12 @@
 				<string>ruin feeder runt</string>
 				<string>ruin feeder runt</string>
 				<string>ruin feeder runt</string>
+				<string>ruin feeder runt</string>
+				<string>ruin feeder runt</string>
 			</array>
 			<array>
+				<string>slime</string>
+				<string>slime</string>
 				<string>slime</string>
 				<string>slime</string>
 				<string>slime</string>
@@ -404,18 +364,28 @@
 			<array>
 				<string>ruin feeder</string>
 				<string>ruin feeder</string>
+				<string>ruin feeder runt</string>
+				<string>ruin feeder runt</string>
 			</array>
 			<array>
 				<string>fierce ruin feeder</string>
+				<string>ruin feeder runt</string>
+				<string>ruin feeder runt</string>
 			</array>
 			<array>
 				<string>fierce ruin feeder</string>
+				<string>ruin feeder runt</string>
+				<string>ruin feeder runt</string>
 			</array>
 			<array>
 				<string>rabid ruin feeder</string>
+				<string>ruin feeder runt</string>
+				<string>ruin feeder runt</string>
 			</array>
 			<array>
 				<string>rabid ruin feeder</string>
+				<string>ruin feeder runt</string>
+				<string>ruin feeder runt</string>
 			</array>
 		</array>
 		<key>guardian type</key> <string>grounded guardian</string>
@@ -457,7 +427,7 @@
 		<key>min floor tile percent</key> <integer>30</integer>
 		<key>max floor tile percent</key> <integer>60</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>220</integer>
+		<key>countdown</key> <integer>250</integer>
 		<key>overtime countdown</key> <integer>25</integer>
 		<key>equipment treasures</key> <integer>5</integer>
 		<key>healing treasures</key> <integer>3</integer>
@@ -473,25 +443,35 @@
 			</array>
 			<array>
 				<string>great slime</string>
+				<string>slime</string>
 			</array>
 			<array>
 				<string>great slime</string>
-			</array>
-			<array>
-				<string>slime</string>
-				<string>slime</string>
-				<string>slime</string>
 				<string>slime</string>
 			</array>
 			<array>
+				<string>slime</string>
+				<string>slime</string>
+				<string>slime</string>
+				<string>slime</string>
+			</array>
+			<array>
+				<string>war abomination</string>
 				<string>war abomination</string>
 				<string>abomination flinger</string>
 			</array>
 			<array>
 				<string>war abomination</string>
+				<string>abomination flinger</string>
+				<string>abomination flinger</string>
+			</array>
+			<array>
+				<string>war abomination</string>
+				<string>war abomination</string>
 				<string>war abomination</string>
 			</array>
 			<array>
+				<string>abomination flinger</string>
 				<string>abomination flinger</string>
 				<string>abomination flinger</string>
 			</array>
@@ -536,16 +516,28 @@
 		<key>min floor tile percent</key> <integer>0</integer>
 		<key>max floor tile percent</key> <integer>999</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>150</integer>
+		<key>countdown</key> <integer>180</integer>
 		<key>overtime countdown</key> <integer>20</integer>
 		<key>equipment treasures</key> <integer>10</integer>
 		<key>healing treasures</key> <integer>8</integer>
 		<key>normal treasures</key> <integer>6</integer>
 		<key>healing item</key> <string>ration</string>
-		<key>number of encounters</key> <integer>10</integer>
+		<key>number of encounters</key> <integer>8</integer>
 		<key>start equipment treasures</key> <integer>3</integer>
 		<key>encounters</key>
 		<array>
+			<array>
+				<string>scuttler</string>
+				<string>scuttler</string>
+				<string>sentry</string>
+				<string>sentry</string>
+			</array>
+			<array>
+				<string>scuttler</string>
+				<string>scuttler</string>
+				<string>sentry</string>
+				<string>sentry</string>
+			</array>
 			<array>
 				<string>scuttler</string>
 				<string>scuttler</string>
@@ -607,7 +599,7 @@
 		<key>min floor tile percent</key> <integer>40</integer>
 		<key>max floor tile percent</key> <integer>80</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>270</integer>
+		<key>countdown</key> <integer>300</integer>
 		<key>overtime countdown</key> <integer>30</integer>
 		<key>equipment treasures</key> <integer>5</integer>
 		<key>healing treasures</key> <integer>6</integer>
@@ -676,7 +668,7 @@
 		<key>min floor tile percent</key> <integer>30</integer>
 		<key>max floor tile percent</key> <integer>60</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>250</integer>
+		<key>countdown</key> <integer>280</integer>
 		<key>overtime countdown</key> <integer>30</integer>
 		<key>equipment treasures</key> <integer>6</integer>
 		<key>healing treasures</key> <integer>7</integer>
@@ -758,7 +750,7 @@
 		<key>min floor tile percent</key> <integer>0</integer>
 		<key>max floor tile percent</key> <integer>0</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>280</integer>
+		<key>countdown</key> <integer>310</integer>
 		<key>overtime countdown</key> <integer>45</integer>
 		<key>equipment treasures</key> <integer>5</integer>
 		<key>healing treasures</key> <integer>9</integer>

@@ -137,6 +137,29 @@
 			</dict>
 		</array>
 	</dict>
+	<key>fragile monster skill</key>
+	<dict>
+		<key>type</key> <string>invalid</string>
+		<key>skills</key>
+		<array>
+			<dict> <!-- rank 1 -->
+				<key>damage bonus</key> <integer>-25</integer>
+				<key>health</key> <integer>-25</integer>
+			</dict>
+			<dict> <!-- rank 2 -->
+				<key>damage bonus</key> <integer>5</integer>
+				<key>health</key> <integer>5</integer>
+			</dict>
+			<dict> <!-- rank 3 -->
+				<key>damage bonus</key> <integer>5</integer>
+				<key>health</key> <integer>5</integer>
+			</dict>
+			<dict> <!-- rank 4 -->
+				<key>damage bonus</key> <integer>5</integer>
+				<key>health</key> <integer>5</integer>
+			</dict>
+		</array>
+	</dict>
 	<key>dodgy monster skill</key>
 	<dict>
 		<key>type</key> <string>invalid</string>
@@ -537,11 +560,11 @@
 		<array>
 			<dict> <!-- rank 1 -->
 				<key>metabolism</key> <integer>15</integer>
-				<key>health</key> <integer>12</integer>
+				<key>health</key> <integer>15</integer>
 			</dict>
 			<dict> <!-- rank 2 -->
 				<key>metabolism</key> <integer>15</integer>
-				<key>health</key> <integer>12</integer>
+				<key>health</key> <integer>15</integer>
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>damage bonus</key> <integer>10</integer>
@@ -550,7 +573,7 @@
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>metabolism</key> <integer>15</integer>
-				<key>health</key> <integer>12</integer>
+				<key>health</key> <integer>15</integer>
 			</dict>
 		</array>
 	</dict>
@@ -719,7 +742,7 @@
 		<key>description</key> <string>Those who follow the path of the holy soldier learn to use holy weapons to smite their foes.</string>
 		<key>implement</key> <string>holy weapon</string>
 		<key>start item</key> <string>crystal</string>
-		<key>start item number</key> <integer>4</integer>
+		<key>start item number</key> <integer>8</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -779,7 +802,7 @@
 		<key>description</key> <string>Those who follow the path of the godly form learn to accept godly implants into themselves, and fight with their power.</string>
 		<key>implement</key> <string>godly implant</string>
 		<key>start item</key> <string>crystal</string>
-		<key>start item number</key> <integer>4</integer>
+		<key>start item number</key> <integer>8</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->

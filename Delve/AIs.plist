@@ -39,7 +39,6 @@
 		<!-- pathfinding variables (remove all for immobile enemies) -->
 		<!-- special abilities -->
 		<!-- attack variables -->
-		<key>can defend</key> <true/>
 		<!-- misc variables -->
 	</dict>
 	
@@ -185,7 +184,6 @@
 		<!-- special abilities -->
 		<!-- attack variables -->
 		<key>can attack</key> <true/>
-		<key>can defend</key> <true/>
 		<!-- misc variables -->
 	</dict>
 	<key>robot specialist</key>
@@ -198,7 +196,6 @@
 		<key>do ai walk</key> <true/>
 		<!-- special abilities -->
 		<!-- attack variables -->
-		<key>can defend</key> <true/>
 		<!-- misc variables -->
 	</dict>
 </dict>

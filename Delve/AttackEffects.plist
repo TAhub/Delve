@@ -33,7 +33,7 @@
 	<key>shield toss</key>
 	<dict>
 		<key>sprite</key> <string>projectile_disc</string>
-		<key>time per distance</key> <real>0.25</real>
+		<key>time per distance</key> <real>0.2</real>
 		<key>type</key> <string>projectile</string>
 	</dict>
 	
@@ -65,7 +65,7 @@
 	<dict>
 		<key>sprite</key> <string>projectile_crystal</string>
 		<key>explosion sprite</key> <string>explosion_explosion</string>
-		<key>time per distance</key> <real>0.3</real>
+		<key>time per distance</key> <real>0.2</real>
 		<key>explosion time</key> <real>0.4</real>
 		<key>type</key> <string>projectile</string>
 	</dict>
@@ -74,7 +74,7 @@
 	<dict>
 		<key>sprite</key> <string>projectile_rock</string>
 		<key>explosion sprite</key> <string>explosion_explosion</string>
-		<key>time per distance</key> <real>0.32</real>
+		<key>time per distance</key> <real>0.25</real>
 		<key>explosion time</key> <real>0.2</real>
 		<key>type</key> <string>projectile</string>
 		<key>projectile scale</key> <real>1.2</real>
@@ -110,7 +110,7 @@
 	<key>jet</key>
 	<dict>
 		<key>sprite</key> <string>projectile_slash</string>
-		<key>time per distance</key> <real>0.2</real>
+		<key>time per distance</key> <real>0.18</real>
 		<key>type</key> <string>projectile</string>
 		<key>rotate</key> <true/>
 		<key>projectile scale</key> <real>1.5</real>
@@ -163,10 +163,10 @@
 	<dict>
 		<key>sprite</key> <string>projectile_disc</string>
 		<key>explosion sprite</key> <string>explosion_explosion</string>
-		<key>time</key> <real>0.5</real>
+		<key>time</key> <real>0.3</real>
 		<key>explosion time</key> <real>0.1</real>
-		<key>start off</key> <integer>-40</integer>
-		<key>end off</key> <integer>0</integer>
+		<key>start off</key> <integer>30</integer>
+		<key>end off</key> <integer>-10</integer>
 		<key>type</key> <string>melee</string>
 	</dict>
 	
@@ -174,7 +174,7 @@
 	<dict>
 		<key>sprite</key> <string>projectile_bolt</string>
 		<key>explosion sprite</key> <string>explosion_poof</string>
-		<key>time</key> <real>0.5</real>
+		<key>time</key> <real>0.4</real>
 		<key>explosion time</key> <real>0.15</real>
 		<key>start off</key> <integer>-50</integer>
 		<key>end off</key> <integer>0</integer>
@@ -194,7 +194,7 @@
 	<key>bolt</key>
 	<dict>
 		<key>sprite</key> <string>projectile_bolt</string>
-		<key>time per distance</key> <real>0.15</real>
+		<key>time per distance</key> <real>0.14</real>
 		<key>type</key> <string>projectile</string>
 		<key>rotate</key> <true/>
 	</dict>
@@ -203,7 +203,7 @@
 	<dict>
 		<key>sprite</key> <string>projectile_bolt</string>
 		<key>explosion sprite</key> <string>explosion_explosion</string>
-		<key>time per distance</key> <real>0.15</real>
+		<key>time per distance</key> <real>0.14</real>
 		<key>explosion time</key> <real>0.3</real>
 		<key>type</key> <string>projectile</string>
 		<key>rotate</key> <true/>
