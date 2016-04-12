@@ -782,13 +782,17 @@
 		Tile *tile = self.map.tiles[self.y][self.x];
 		if (tile != targetTile && (!tile.visible || !targetTile.visible))
 			return false;
+        
+        BOOL teleport = [self attackCacheLoadBool:attack fromValue:@"teleport"];
+        if (teleport && tile.inhabitant != nil && [tile.inhabitant.race isEqualToString:@"guardian"])
+            return false; //you cannot use teleport attacks on guardians, for balance reasons
 		
 		//line attacks must attack in cardinal directions
 		if (x != self.x && y != self.y && [self attackCacheLoadBool:attack fromValue:@"line area"])
 			return false;
 		
 		if (openSpots || //if you're looking for in-range spots
-			([self attackCacheLoadBool:attack fromValue:@"teleport"] && ![self attackCacheLoadBool:attack fromValue:@"power"])) //damaging teleports are used normally
+			(teleport && ![self attackCacheLoadBool:attack fromValue:@"power"])) //damaging teleports are used normally
 		{
 			//it's ok as long as there isn't an ally there
 			return (targetTile.inhabitant == nil || targetTile.inhabitant.good != self.good);
@@ -1174,7 +1178,7 @@
 	self.blocks = MIN(self.blocks + 1, self.maxBlocks);
 	//TODO: any other bennies for getting a kill
 	
-	if (self.good)
+	if (!self.good)
 	{
 		//add some kill credit!
 		NSMutableDictionary *killsPerRace = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"statistics kills"]];
@@ -1389,7 +1393,7 @@
 		for (int x = self.x - wakeDistance; x <= self.x + wakeDistance; x++)
 			if (x >= 0 && y >= 0 && x < self.map.width && y < self.map.height)
 			{
-				Tile *tile = self.map.tiles[self.y][self.x];
+				Tile *tile = self.map.tiles[y][x];
 				if (tile.inhabitant != nil && !tile.inhabitant.good && !tile.inhabitant.awake)
 				{
 					NSLog(@"Woken by hearing!");
@@ -1667,7 +1671,8 @@
 		//otherwise, try to walk towards the player
 		
 		//AIs shouldnt pursue the player if the AI isn't visible (IE it's far away or in a non-visible tile) AND the player is stealthed
-		if (tile.visible || self.map.player.stealthed == 0)
+		if ((tile.visible || self.map.player.stealthed == 0) &&
+            ABS(self.x - self.map.player.x) + ABS(self.y - self.map.player.y) > 1) //don't move if you're next to them
 		{
 			//which kinds of walk should you try?
 			BOOL tryAIWalk = self.aiWalk;
@@ -1687,17 +1692,17 @@
 				switch(direction)
 				{
 					case PathDirectionMinusX:
-						[self.map movePerson:self withX:-1 andY:0];
-						return YES;
+						if ([self.map movePerson:self withX:-1 andY:0])
+                            return YES;
 					case PathDirectionPlusX:
-						[self.map movePerson:self withX:1 andY:0];
-						return YES;
+						if ([self.map movePerson:self withX:1 andY:0])
+                            return YES;
 					case PathDirectionMinusY:
-						[self.map movePerson:self withX:0 andY:-1];
-						return YES;
+						if ([self.map movePerson:self withX:0 andY:-1])
+                            return YES;
 					case PathDirectionPlusY:
-						[self.map movePerson:self withX:0 andY:1];
-						return YES;
+						if ([self.map movePerson:self withX:0 andY:1])
+                            return YES;
 					case PathDirectionNoPath: break;
 				}
 			}

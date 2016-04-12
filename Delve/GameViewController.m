@@ -80,6 +80,8 @@
 @property int attackPage;
 @property (strong, nonatomic) NSString *attackChosen;
 @property (weak, nonatomic) UIView *aoeIndicatorView;
+@property int aoeIndicatorX;
+@property int aoeIndicatorY;
 
 @property (strong, nonatomic) UITableView *itemTable;
 @property (strong, nonatomic) Item *examinationItem;
@@ -570,6 +572,7 @@
 	NSArray *attacks = self.map.player.attacks;
 	int numberPanels = (int)ceilf(attacks.count / 6.0f);
 	self.attackPage = (self.attackPage + 1) % numberPanels;
+    [self reloadPanels];
 }
 
 - (IBAction)pickCancel
@@ -996,6 +999,8 @@
 				indicator.frame = CGRectMake(GAMEPLAY_TILE_SIZE * (x - area / 2) + self.mapView.xOffset, GAMEPLAY_TILE_SIZE * (y - area / 2) + self.mapView.yOffset, GAMEPLAY_TILE_SIZE * area, GAMEPLAY_TILE_SIZE * area);
 				[self.creatureView addSubview:indicator];
 				self.aoeIndicatorView = indicator;
+                self.aoeIndicatorX = x;
+                self.aoeIndicatorY = y;
 				[self reloadPanels];
 			}
 			else
@@ -1004,6 +1009,8 @@
 				{
 					[self.aoeIndicatorView removeFromSuperview];
 					self.aoeIndicatorView = nil;
+                    x = self.aoeIndicatorX;
+                    y = self.aoeIndicatorY;
 				}
 				
 				self.lastAttack = self.attackChosen;
