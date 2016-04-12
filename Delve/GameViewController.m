@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIView *mainPanel;
 @property (weak, nonatomic) IBOutlet UIButton *pickUpButton;
 @property (weak, nonatomic) IBOutlet UIButton *attacksButton;
+@property (weak, nonatomic) IBOutlet UIButton *defendButton;
 @property (weak, nonatomic) IBOutlet UIButton *inventoryButton;
 @property (weak, nonatomic) IBOutlet UIButton *craftButton;
 @property (weak, nonatomic) IBOutlet UIButton *examineButton;
@@ -135,6 +136,7 @@
 	[self formatButton:self.pickUpButton];
 	[self formatButton:self.craftButton];
 	[self formatButton:self.attacksButton];
+    [self formatButton:self.defendButton];
 	[self formatButton:self.attackConfirmCancel];
 	[self formatButton:self.inventoryButtonOne];
 	[self formatButton:self.inventoryButtonTwo];
@@ -676,6 +678,16 @@
 	self.attackPage = 0;
 	[self switchToPanel:self.attackSelectPanelCord];
 }
+
+- (IBAction)defendButtonPress
+{
+    if (self.animating || self.uiAnimating)
+        return;
+    
+    [self resetLastAttack];
+    [self.map.player useAttackWithName:@"defend" onX:self.map.player.x andY:self.map.player.y];
+}
+
 
 - (IBAction)inventoryButtonPress:(UIButton *)sender
 {

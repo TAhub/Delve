@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Xp9-v0-ElG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Xp9-v0-ElG">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -186,7 +186,7 @@
                                                 <color key="backgroundColor" red="0.24769073724746704" green="0.99983483552932739" blue="0.19894224405288696" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQT-EW-nNY">
-                                                <rect key="frame" x="20" y="71" width="280" height="30"/>
+                                                <rect key="frame" x="20" y="71" width="179" height="30"/>
                                                 <state key="normal" title="Attacks"/>
                                                 <connections>
                                                     <action selector="attacksButtonPress" destination="BYZ-38-t0r" eventType="touchUpInside" id="Li5-QZ-GuE"/>
@@ -197,6 +197,13 @@
                                                 <state key="normal" title="Pick Up"/>
                                                 <connections>
                                                     <action selector="pickUpButtonPress" destination="BYZ-38-t0r" eventType="touchUpInside" id="ycy-5o-zMZ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="45v-8r-6zo">
+                                                <rect key="frame" x="207" y="71" width="93" height="30"/>
+                                                <state key="normal" title="Defend"/>
+                                                <connections>
+                                                    <action selector="defendButtonPress" destination="BYZ-38-t0r" eventType="touchUpInside" id="KyD-Dy-w3z"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KRE-jY-jtU">
@@ -223,17 +230,22 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.99580436944961548" green="0.99223476648330688" blue="0.99200111627578735" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstItem="45v-8r-6zo" firstAttribute="centerY" secondItem="kQT-EW-nNY" secondAttribute="centerY" id="0O3-f6-y4G"/>
                                             <constraint firstItem="kQT-EW-nNY" firstAttribute="bottom" secondItem="vOn-Wq-CoZ" secondAttribute="top" constant="-10" id="0P6-NR-CaX"/>
+                                            <constraint firstItem="45v-8r-6zo" firstAttribute="width" secondItem="vOn-Wq-CoZ" secondAttribute="width" multiplier="1.25" id="0dn-8E-D5w"/>
                                             <constraint firstAttribute="trailing" secondItem="3a1-bQ-tUp" secondAttribute="trailing" id="12P-OJ-LDy"/>
                                             <constraint firstItem="kJW-Wn-2TC" firstAttribute="height" secondItem="ghM-ST-HWQ" secondAttribute="height" multiplier="0.45" id="1PG-Rx-GkX"/>
                                             <constraint firstItem="3a1-bQ-tUp" firstAttribute="leading" secondItem="JEe-Qq-0F7" secondAttribute="trailing" constant="8" symbolic="YES" id="287-K3-iml"/>
                                             <constraint firstItem="KRE-jY-jtU" firstAttribute="leading" secondItem="vOn-Wq-CoZ" secondAttribute="trailing" constant="8" symbolic="YES" id="4eN-iQ-mLn"/>
                                             <constraint firstAttribute="bottom" secondItem="vOn-Wq-CoZ" secondAttribute="bottom" id="8Pl-hG-G2P"/>
+                                            <constraint firstItem="KRE-jY-jtU" firstAttribute="top" secondItem="45v-8r-6zo" secondAttribute="bottom" constant="10" id="9zG-CK-FsA"/>
+                                            <constraint firstItem="45v-8r-6zo" firstAttribute="height" secondItem="kQT-EW-nNY" secondAttribute="height" id="BJK-g2-ryJ"/>
                                             <constraint firstAttribute="bottom" secondItem="JEe-Qq-0F7" secondAttribute="bottom" id="DJl-qa-hU7"/>
                                             <constraint firstItem="vOn-Wq-CoZ" firstAttribute="leading" secondItem="ghM-ST-HWQ" secondAttribute="leading" id="F1n-3v-zjF"/>
                                             <constraint firstItem="kJW-Wn-2TC" firstAttribute="width" secondItem="ghM-ST-HWQ" secondAttribute="width" id="HJK-kS-jvK"/>
                                             <constraint firstItem="3a1-bQ-tUp" firstAttribute="width" secondItem="vOn-Wq-CoZ" secondAttribute="width" id="JsY-h7-gJh"/>
                                             <constraint firstAttribute="bottom" secondItem="KRE-jY-jtU" secondAttribute="bottom" id="N7S-BV-7hY"/>
+                                            <constraint firstItem="45v-8r-6zo" firstAttribute="leading" secondItem="kQT-EW-nNY" secondAttribute="trailing" constant="8" symbolic="YES" id="PcL-Rb-yRP"/>
                                             <constraint firstItem="kQT-EW-nNY" firstAttribute="top" secondItem="kJW-Wn-2TC" secondAttribute="bottom" constant="8" symbolic="YES" id="TQi-Dt-x1k"/>
                                             <constraint firstAttribute="bottom" secondItem="3a1-bQ-tUp" secondAttribute="bottom" id="WNM-ZW-voD"/>
                                             <constraint firstItem="kJW-Wn-2TC" firstAttribute="top" secondItem="ghM-ST-HWQ" secondAttribute="top" id="Wm4-WY-kAI"/>
@@ -245,9 +257,16 @@
                                             <constraint firstItem="kJW-Wn-2TC" firstAttribute="centerX" secondItem="ghM-ST-HWQ" secondAttribute="centerX" id="g3y-Bv-H0X"/>
                                             <constraint firstAttribute="trailing" secondItem="kQT-EW-nNY" secondAttribute="trailing" constant="20" symbolic="YES" id="iHq-AW-dSc"/>
                                             <constraint firstItem="kQT-EW-nNY" firstAttribute="height" secondItem="JEe-Qq-0F7" secondAttribute="height" id="ilo-xh-SIR"/>
+                                            <constraint firstAttribute="trailing" secondItem="45v-8r-6zo" secondAttribute="trailing" constant="20" symbolic="YES" id="kB1-qn-V8M"/>
                                             <constraint firstItem="vOn-Wq-CoZ" firstAttribute="width" secondItem="JEe-Qq-0F7" secondAttribute="width" id="olA-2c-9b2"/>
                                             <constraint firstItem="kQT-EW-nNY" firstAttribute="bottom" secondItem="3a1-bQ-tUp" secondAttribute="top" constant="-10" id="rRW-Kk-dbl"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="iHq-AW-dSc"/>
+                                                <exclude reference="9zG-CK-FsA"/>
+                                            </mask>
+                                        </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JmI-Z2-fTU">
                                         <rect key="frame" x="-320" y="0.0" width="320" height="140"/>
@@ -636,6 +655,7 @@
                         <outlet property="attacksButton" destination="kQT-EW-nNY" id="POu-sX-uyA"/>
                         <outlet property="craftButton" destination="vOn-Wq-CoZ" id="gRn-z4-IeC"/>
                         <outlet property="creatureView" destination="Uew-pW-cr7" id="z2A-zu-aY4"/>
+                        <outlet property="defendButton" destination="45v-8r-6zo" id="Y7h-rq-KQu"/>
                         <outlet property="examineButton" destination="3a1-bQ-tUp" id="v37-6S-RpH"/>
                         <outlet property="examinePanel" destination="daS-vK-1kd" id="zub-5o-G8A"/>
                         <outlet property="examinePanelBack" destination="OCL-h0-M0L" id="uuU-DV-Zcy"/>
@@ -1096,7 +1116,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="2bc-k8-xxw"/>
-        <segue reference="5Fs-fc-33Y"/>
+        <segue reference="bRn-3v-Bao"/>
         <segue reference="xEW-H2-8cz"/>
     </inferredMetricsTieBreakers>
 </document>

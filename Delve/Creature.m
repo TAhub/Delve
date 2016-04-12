@@ -278,6 +278,16 @@
 		_y = 0;
 		_map = nil;
 		_awake = false;
+        
+		
+        //TODO: quickstart
+//		_skillTrees = [NSArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
+//		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
+//		_implements = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
+//		_armors = [NSMutableArray arrayWithObjects:@"", @"", @"", nil];
+//		_weapon = @"";
+		
+        
 		
 		[self initializeMisc];
 		
@@ -699,7 +709,6 @@
 {
 	NSMutableArray *result = [NSMutableArray new];
 	[result addObject:@"attack"];
-	[result addObject:@"defend"];
 	for (int i = 0; i < self.skillTrees.count; i++)
 	{
 		NSString *skillTree = self.skillTrees[i];
@@ -1526,6 +1535,8 @@
 	{
 		//status effects don't degrade when using extra-action turns, nor do cooldowns go down
 		
+        BOOL remakeSprite = false;
+        
 		if (self.forceField > 0)
 		{
 			if (self.forceFieldNoDegrade > 0)
@@ -1536,7 +1547,7 @@
 					self.forceField = 0;
 				else
 					self.forceField /= CREATURE_FORCEFIELDDECAY;
-				[self.map.delegate updateCreature:self];
+                remakeSprite = true;
 			}
 		}
 		
@@ -1544,43 +1555,46 @@
 		{
 			self.skating -= 1;
 			if (self.skating == 0)
-				[self.map.delegate updateCreature:self];
+                remakeSprite = true;
 		}
 		
 		if (self.damageBoosted > 0)
 		{
 			self.damageBoosted -= 1;
 			if (self.damageBoosted == 0)
-				[self.map.delegate updateCreature:self];
+                remakeSprite = true;
 		}
 		
 		if (self.counterBoosted > 0)
 		{
 			self.counterBoosted -= 1;
 			if (self.counterBoosted == 0)
-				[self.map.delegate updateCreature:self];
+                remakeSprite = true;
 		}
 		
 		if (self.defenseBoosted > 0)
 		{
 			self.defenseBoosted -= 1;
 			if (self.defenseBoosted == 0)
-				[self.map.delegate updateCreature:self];
+                remakeSprite = true;
 		}
 		
 		if (self.immunityBoosted > 0)
 		{
 			self.immunityBoosted -= 1;
 			if (self.immunityBoosted == 0)
-				[self.map.delegate updateCreature:self];
+                remakeSprite = true;
 		}
 		
 		if (self.stealthed > 0)
 		{
 			self.stealthed -= 1;
 			if (self.stealthed == 0)
-				[self.map.delegate updateCreature:self];
+                remakeSprite = true;
 		}
+        
+        if (remakeSprite)
+            [self.map.delegate updateCreature:self];
 		
 	
 		//reduce all cooldowns
@@ -1627,7 +1641,6 @@
 		//make a shuffled attacks array, to randomize which attacks you use
 		NSMutableArray *attacks = [NSMutableArray arrayWithArray:[self attacks]];
 		[attacks removeObjectAtIndex:0]; //skip attack
-		[attacks removeObjectAtIndex:0]; //skip defend
 		shuffleArray(attacks);
 		
 		

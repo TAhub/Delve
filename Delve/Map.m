@@ -91,6 +91,9 @@
 			[self addItem:item];
 		}
 		
+		//TODO: quickstart
+//		[self addItem:[[Item alloc] initWithName:@"bread" andType:ItemTypeInventory]];
+		
 		[self saveInventory];
 	}
 	return self;
@@ -560,6 +563,10 @@
 {
 	//first, get map generator variables
 	self.floorNum = map == nil ? 0 : map.floorNum + 1;
+	
+	//TODO: quickstart
+//	self.floorNum = map == nil ? 1 : map.floorNum + 1;
+	
 	NSString *floorName = [NSString stringWithFormat:@"floor %i", self.floorNum];
 //	floorName = @"floor 4";
 	
