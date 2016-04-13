@@ -92,7 +92,9 @@
 		}
 		
 		//TODO: quickstart
-//		[self addItem:[[Item alloc] initWithName:@"bread" andType:ItemTypeInventory]];
+		[self addItem:[[Item alloc] initWithName:@"bread" andType:ItemTypeInventory]];
+		[self addItem:[[Item alloc] initWithName:@"bread" andType:ItemTypeInventory]];
+		[self addItem:[[Item alloc] initWithName:@"bread" andType:ItemTypeInventory]];
 		
 		[self saveInventory];
 	}
@@ -565,10 +567,9 @@
 	self.floorNum = map == nil ? 0 : map.floorNum + 1;
 	
 	//TODO: quickstart
-//	self.floorNum = map == nil ? 1 : map.floorNum + 1;
+	self.floorNum = map == nil ? 6 : map.floorNum + 1;
 	
 	NSString *floorName = [NSString stringWithFormat:@"floor %i", self.floorNum];
-//	floorName = @"floor 4";
 	
 	
 	//get overtime info
@@ -822,6 +823,12 @@
 	NSArray *intendedPath = [self pathExplore:pathStart aroundRooms:rooms toExit:exitRoom intoPaths:paths withDesiredLength:desiredPathLength];
 	if (intendedPath == nil)
 	{
+		if (paths.count == 0)
+		{
+			NSLog(@"--ERROR: no path found! Restarting");
+			return false;
+		}
+		
 		NSLog(@"--No correct path found, looking for best path");
 		//there was no path of EXACTLY the right length
 		//so look at paths from the path list
@@ -829,7 +836,7 @@
 			if (intendedPath == nil || ABS(path.count - desiredPathLength) < ABS(intendedPath.count - desiredPathLength))
 				intendedPath = path;
 	}
-	NSLog(@"--Picked path of length %lu", intendedPath.count);
+	NSLog(@"--Picked path of length %u", (unsigned int)intendedPath.count);
 	
 	NSLog(@"Marking doors on path");
 	
@@ -1586,6 +1593,9 @@
 	int orderAdd = arc4random_uniform((u_int32_t)surroundingRooms.count);
 	for (int i = 0; i < surroundingRooms.count; i++)
 	{
+		if (i >= GENERATOR_PATHEXPLORE_MAX)
+			return nil;
+		
 		GeneratorRoom *nextRoom = surroundingRooms[(i + orderAdd) % surroundingRooms.count];
 		if (![path containsObject:nextRoom])
 		{

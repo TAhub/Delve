@@ -425,7 +425,7 @@
 		<key>cave wall chance</key> <integer>95</integer>
 		<key>cave smooths</key> <integer>0</integer>
 		<key>min floor tile percent</key> <integer>30</integer>
-		<key>max floor tile percent</key> <integer>60</integer>
+		<key>max floor tile percent</key> <integer>70</integer>
 		<!-- map balance data -->
 		<key>countdown</key> <integer>250</integer>
 		<key>overtime countdown</key> <integer>25</integer>
