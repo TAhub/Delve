@@ -108,7 +108,7 @@
 		<key>max door offset</key> <integer>2</integer>
 		<key>doors at a time</key> <integer>7</integer>
 		<key>min non orphans</key> <integer>20</integer>
-		<key>max non orphans</key> <integer>40</integer>
+		<key>max non orphans</key> <integer>50</integer>
 		<key>locked door chance</key> <integer>15</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>13</integer>
@@ -120,7 +120,7 @@
 		<key>min floor tile percent</key> <integer>50</integer>
 		<key>max floor tile percent</key> <integer>70</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>250</integer>
+		<key>countdown</key> <integer>260</integer>
 		<key>overtime countdown</key> <integer>40</integer>
 		<key>equipment treasures</key> <integer>4</integer>
 		<key>healing treasures</key> <integer>7</integer>
@@ -196,8 +196,8 @@
 		<key>min floor tile percent</key> <integer>40</integer>
 		<key>max floor tile percent</key> <integer>60</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>190</integer>
-		<key>overtime countdown</key> <integer>20</integer>
+		<key>countdown</key> <integer>225</integer>
+		<key>overtime countdown</key> <integer>25</integer>
 		<key>equipment treasures</key> <integer>4</integer>
 		<key>healing treasures</key> <integer>5</integer>
 		<key>normal treasures</key> <integer>3</integer>
@@ -516,7 +516,7 @@
 		<key>min floor tile percent</key> <integer>0</integer>
 		<key>max floor tile percent</key> <integer>999</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>180</integer>
+		<key>countdown</key> <integer>250</integer>
 		<key>overtime countdown</key> <integer>20</integer>
 		<key>equipment treasures</key> <integer>10</integer>
 		<key>healing treasures</key> <integer>8</integer>

@@ -1441,7 +1441,7 @@
 				tile.treasureType = TreasureTypeLocked;
 			
 			//pick if it's an implement or an armor
-			if (arc4random_uniform(2) == 0)
+			if (arc4random_uniform(100) <= GENERATOR_IMPLEMENT_CHANCE)
 			{
 				type = ItemTypeImplement;
 				listPrefix = @"implements";

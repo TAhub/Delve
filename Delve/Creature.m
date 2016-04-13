@@ -282,7 +282,7 @@
 		
         //TODO: quickstart
 //		_skillTrees = [NSArray arrayWithObjects:@"energy", @"sacred light", @"dagger", @"shield", @"conditioning", nil];
-//		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(3), @(1), @(1), @(1), @(1), nil];
+//		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(3), @(1), @(3), @(3), @(1), nil];
 //		_implements = [NSMutableArray arrayWithObjects:@"ritual compendium", @"glimmering orb", @"dagger", @"buckler", @"", nil];
 //		_armors = [NSMutableArray arrayWithObjects:@"rusty armor", @"pot helmet", @"cheap shoes", nil];
 //		_weapon = @"shortsword";
@@ -1091,25 +1091,6 @@
 					[weakSelf.map.delegate updateStats];
 			}
 			
-			//teleport, if that's what the skill asks for
-			if (loadValueBool(@"Attacks", weakSelf.storedAttack, @"teleport"))
-			{
-				if (hit != nil)
-				{
-					((Tile *)weakSelf.map.tiles[weakSelf.y][weakSelf.x]).inhabitant = hit;
-					hit.x = weakSelf.x;
-					hit.y = weakSelf.y;
-				}
-				else
-					((Tile *)weakSelf.map.tiles[weakSelf.y][weakSelf.x]).inhabitant = nil;
-				((Tile *)weakSelf.map.tiles[weakSelf.storedAttackY][weakSelf.storedAttackX]).inhabitant = weakSelf;
-				weakSelf.x = weakSelf.storedAttackX;
-				weakSelf.y = weakSelf.storedAttackY;
-				
-				//for simplicity's sake, teleport attacks cannot trigger counters
-				counterAttacker = nil;
-			}
-			
 		} forAttack:weakSelf.storedAttack onX:weakSelf.storedAttackX andY:weakSelf.storedAttackY];
 		
 		//cancel stealth
@@ -1120,6 +1101,7 @@
 		if (tilesChanged)
 			[weakSelf.map.delegate updateTiles];
 		
+		BOOL teleport = loadValueBool(@"Attacks", weakSelf.storedAttack, @"teleport");
 		weakSelf.storedAttack = nil;
 		
 		UIColor *color = loadColorFromName([NSString stringWithFormat:@"element %@", element]);
@@ -1128,6 +1110,28 @@
 		[weakSelf.map.delegate floatLabelsOn:creatures withString:labels andColor:color withBlock:
 		^()
 		{
+			//teleport now, so the damage labels are on the right spot
+			if (teleport)
+			{
+				Tile *tile = weakSelf.map.tiles[weakSelf.storedAttackY][weakSelf.storedAttackX];
+				Creature *hit = tile.inhabitant;
+				if (hit != nil)
+				{
+					((Tile *)weakSelf.map.tiles[weakSelf.y][weakSelf.x]).inhabitant = hit;
+					hit.x = weakSelf.x;
+					hit.y = weakSelf.y;
+				}
+				else
+					((Tile *)weakSelf.map.tiles[weakSelf.y][weakSelf.x]).inhabitant = nil;
+				tile.inhabitant = weakSelf;
+				weakSelf.x = weakSelf.storedAttackX;
+				weakSelf.y = weakSelf.storedAttackY;
+				
+				//for simplicity's sake, teleport attacks cannot trigger counters
+				counterAttacker = nil;
+			}
+			
+			
 			if (counterAttacker == nil)
 				finalBlock();
 			else
@@ -1774,6 +1778,8 @@
 		self.skating = 1;
 	
 	BOOL xFirst = ABS(xDif) > ABS(yDif);
+	if (ABS(xDif) == ABS(yDif))
+		xFirst = arc4random_uniform(2) == 1;
 	if ([self.map movePerson:self withX:(xFirst ? xDir : 0) andY:(!xFirst ? yDir : 0)])
 	{
 		self.skating = 0;
