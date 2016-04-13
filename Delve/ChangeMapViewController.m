@@ -21,8 +21,6 @@ extern BOOL cachingEnabled;
 
 @property (weak, nonatomic) IBOutlet UITableView *levelTable;
 @property (weak, nonatomic) IBOutlet UIButton *pickButton;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionText;
-@property (weak, nonatomic) IBOutlet UIView *textPanel;
 @property (weak, nonatomic) IBOutlet UIView *tablePanel;
 
 
@@ -39,11 +37,12 @@ extern BOOL cachingEnabled;
 	cachingEnabled = false;
 	
 	[self formatButton:self.pickButton];
-	[self formatPanel:self.textPanel];
 	[self formatPanel:self.tablePanel];
 	[self setInfoText:-1];
 	
 	[[NSUserDefaults standardUserDefaults] setObject:@"change" forKey:@"game phase"];
+	
+	[self.pickButton setTitle:@"Loading map..." forState:UIControlStateNormal];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -87,14 +86,19 @@ extern BOOL cachingEnabled;
 	if (on == -1)
 	{
 		[self.pickButton setTitleColor:loadColorFromName(@"ui text grey") forState:UIControlStateNormal];
-		self.descriptionText.text = @"Pick a skill!";
 	}
 	else
 	{
 		NSString *tree = self.oldMap.player.skillTrees[on];
 		int oldLevel = ((NSNumber *)self.oldMap.player.skillTreeLevels[on]).intValue;
 		[self.pickButton setTitleColor:oldLevel == 4 ? loadColorFromName(@"ui text grey") : loadColorFromName(@"ui text") forState:UIControlStateNormal];
-		[self.descriptionText setText:[self.oldMap.player treeDescription:tree atLevel:oldLevel]];
+		
+		UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Skill Info" message:[self.oldMap.player treeDescription:tree atLevel:oldLevel] preferredStyle:UIAlertControllerStyleAlert];
+		
+		UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+		[alert addAction:ok];
+		
+		[self presentViewController:alert animated:YES completion:nil];
 	}
 }
 
@@ -103,8 +107,12 @@ extern BOOL cachingEnabled;
 	self.oldMap = map;
 	
 	//load new map in thread
+	__weak typeof(self) weakSelf = self;
 	dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^() {
-		self.nextMap = [[Map alloc] initWithMap:map];
+		weakSelf.nextMap = [[Map alloc] initWithMap:map];
+		dispatch_async(dispatch_get_main_queue(), ^() {
+			[weakSelf.pickButton setTitle:@"Level up!" forState:UIControlStateNormal];
+		});
 	});
 }
 

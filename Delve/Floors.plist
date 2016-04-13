@@ -35,7 +35,7 @@
 		<key>max door offset</key> <integer>1</integer>
 		<key>doors at a time</key> <integer>5</integer>
 		<key>min non orphans</key> <integer>15</integer>
-		<key>max non orphans</key> <integer>30</integer>
+		<key>max non orphans</key> <integer>35</integer>
 		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>11</integer>
@@ -184,7 +184,7 @@
 		<key>max door offset</key> <integer>0</integer>
 		<key>doors at a time</key> <integer>6</integer>
 		<key>min non orphans</key> <integer>20</integer>
-		<key>max non orphans</key> <integer>45</integer>
+		<key>max non orphans</key> <integer>53</integer>
 		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>7</integer>
@@ -255,7 +255,7 @@
 		<key>max door offset</key> <integer>1</integer>
 		<key>doors at a time</key> <integer>10</integer>
 		<key>min non orphans</key> <integer>40</integer>
-		<key>max non orphans</key> <integer>80</integer>
+		<key>max non orphans</key> <integer>85</integer>
 		<key>locked door chance</key> <integer>45</integer>
 		<key>no door chance</key> <integer>50</integer>
 		<key>desired path length</key> <integer>30</integer>
@@ -325,7 +325,7 @@
 		<key>max door offset</key> <integer>3</integer>
 		<key>doors at a time</key> <integer>7</integer>
 		<key>min non orphans</key> <integer>30</integer>
-		<key>max non orphans</key> <integer>55</integer>
+		<key>max non orphans</key> <integer>60</integer>
 		<key>locked door chance</key> <integer>25</integer>
 		<key>no door chance</key> <integer>50</integer>
 		<key>desired path length</key> <integer>10</integer>
@@ -415,7 +415,7 @@
 		<key>max door offset</key> <integer>1</integer>
 		<key>doors at a time</key> <integer>9</integer>
 		<key>min non orphans</key> <integer>20</integer>
-		<key>max non orphans</key> <integer>40</integer>
+		<key>max non orphans</key> <integer>50</integer>
 		<key>locked door chance</key> <integer>40</integer>
 		<key>no door chance</key> <integer>15</integer>
 		<key>desired path length</key> <integer>10</integer>
@@ -587,7 +587,7 @@
 		<key>max door offset</key> <integer>1</integer>
 		<key>doors at a time</key> <integer>5</integer>
 		<key>min non orphans</key> <integer>20</integer>
-		<key>max non orphans</key> <integer>50</integer>
+		<key>max non orphans</key> <integer>60</integer>
 		<key>locked door chance</key> <integer>0</integer>
 		<key>no door chance</key> <integer>80</integer>
 		<key>desired path length</key> <integer>12</integer>
@@ -656,7 +656,7 @@
 		<key>max door offset</key> <integer>1</integer>
 		<key>doors at a time</key> <integer>3</integer>
 		<key>min non orphans</key> <integer>25</integer>
-		<key>max non orphans</key> <integer>40</integer>
+		<key>max non orphans</key> <integer>50</integer>
 		<key>locked door chance</key> <integer>35</integer>
 		<key>no door chance</key> <integer>25</integer>
 		<key>desired path length</key> <integer>11</integer>
