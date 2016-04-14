@@ -553,7 +553,7 @@
 		<key>skills</key>
 		<array>
 			<string>spear</string>
-			<string>tough monster skill</string>
+			<string>filler monster skill</string>
 			<string>filler monster skill</string>
 			<string>filler monster skill</string>
 			<string>filler monster skill</string>
@@ -584,7 +584,7 @@
 		<key>skills</key>
 		<array>
 			<string>finesse</string>
-			<string>tough monster skill</string>
+			<string>filler monster skill</string>
 			<string>filler monster skill</string>
 			<string>filler monster skill</string>
 			<string>filler monster skill</string>
@@ -730,10 +730,10 @@
 		<key>skills</key>
 		<array>
 			<string>shield</string>
-			<string>tough monster skill</string>
 			<string>filler monster skill</string>
 			<string>filler monster skill</string>
 			<string>filler monster skill</string>
+			<string>fragile monster skill</string>
 		</array>
 		<!-- equipment -->
 		<key>implements</key>
@@ -760,10 +760,10 @@
 		<key>skills</key>
 		<array>
 			<string>bow</string>
-			<string>tough monster skill</string>
 			<string>filler monster skill</string>
 			<string>filler monster skill</string>
-			<string>filler monster skill</string>
+			<string>fragile monster skill</string>
+			<string>fragile monster skill</string>
 		</array>
 		<!-- equipment -->
 		<key>implements</key>
@@ -793,8 +793,8 @@
 			<string>spear</string>
 			<string>dagger</string>
 			<string>filler monster skill</string>
-			<string>filler monster skill</string>
-			<string>filler monster skill</string>
+			<string>fragile monster skill</string>
+			<string>fragile monster skill</string>
 		</array>
 		<!-- equipment -->
 		<key>implements</key>
@@ -808,6 +808,32 @@
 			<string>knight helmet</string>
 		</array>
 		<key>weapon</key> <string>flanged mace</string>
+	</dict>
+	
+	<!-- raider squire -->
+	<!-- the sidekick of the knight -->
+	<key>raider squire</key>
+	<dict>
+		<!-- identity -->
+		<key>race</key> <string>raider</string>
+		<key>ai</key> <string>bandit</string>
+		<key>description</key> <string>This young Raider has yet to earn !his armor.</string>
+		<key>defeat message</key> <string>After your death, !he goes to the others to boast about !his achievement.</string>
+		<key>skills</key>
+		<array>
+			<string>conditioning</string>
+			<string>filler monster skill</string>
+			<string>filler monster skill</string>
+			<string>fragile monster skill</string>
+			<string>fragile monster skill</string>
+		</array>
+		<!-- equipment -->
+		<key>armors</key>
+		<array>
+			<string>raider loincloth</string>
+			<string>pot helmet</string>
+		</array>
+		<key>weapon</key> <string>mace</string>
 	</dict>
 	
 	<!-- raider specialist -->
@@ -825,7 +851,7 @@
 			<string>bow</string>
 			<string>filler monster skill</string>
 			<string>filler monster skill</string>
-			<string>filler monster skill</string>
+			<string>fragile monster skill</string>
 		</array>
 		<!-- equipment -->
 		<key>implements</key>

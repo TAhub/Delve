@@ -605,23 +605,23 @@
 		<key>healing treasures</key> <integer>6</integer>
 		<key>normal treasures</key> <integer>5</integer>
 		<key>healing item</key> <string>ration</string>
-		<key>number of encounters</key> <integer>10</integer>
+		<key>number of encounters</key> <integer>14</integer>
 		<key>start equipment treasures</key> <integer>3</integer>
 		<key>encounters</key>
 		<array>
 			<array>
 				<string>raider warrior</string>
 				<string>raider warrior</string>
-				<string>raider archer</string>
 			</array>
 			<array>
-				<string>raider warrior</string>
 				<string>raider archer</string>
-				<string>raider archer</string>
+				<string>trained ruin feeder</string>
+				<string>trained ruin feeder</string>
+				<string>trained ruin feeder</string>
 			</array>
 			<array>
 				<string>raider knight</string>
-				<string>raider archer</string>
+				<string>raider squire</string>
 			</array>
 			<array>
 				<string>raider specialist</string>
@@ -681,24 +681,20 @@
 			<array>
 				<string>highborn taskmaster</string>
 				<string>soldier slave</string>
-				<string>soldier slave</string>
 				<string>torchbearer slave</string>
 			</array>
 			<array>
 				<string>highborn taskmaster</string>
 				<string>soldier slave</string>
 				<string>torchbearer slave</string>
-				<string>torchbearer slave</string>
 			</array>
 			<array>
 				<string>highborn ritualist</string>
 				<string>soldier slave</string>
 				<string>soldier slave</string>
-				<string>soldier slave</string>
 			</array>
 			<array>
 				<string>highborn ritualist</string>
-				<string>torchbearer slave</string>
 				<string>torchbearer slave</string>
 				<string>torchbearer slave</string>
 			</array>

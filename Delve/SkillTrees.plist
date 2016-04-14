@@ -975,7 +975,7 @@
 				<key>attack</key> <string>holy flash</string>
 			</dict>
 			<dict> <!-- rank 4 -->
-				<key>damage bonus</key> <integer>10</integer>
+				<key>damage bonus</key> <integer>15</integer>
 				<key>delay reduction</key> <integer>1</integer>
 			</dict>
 		</array>
