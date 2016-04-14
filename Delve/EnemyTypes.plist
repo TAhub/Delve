@@ -631,7 +631,7 @@
 			<string>noble clothes</string>
 			<string>gold tiara</string>
 		</array>
-		<key>weapon</key> <string>flanged mace</string>
+		<key>weapon</key> <string>mace</string>
 	</dict>
 	
 	<!-- highborn taskmaster -->
@@ -645,7 +645,7 @@
 		<key>defeat message</key> <string>After your death, !he has !his slaves get rid of your body, so !he can return to planning.</string>
 		<key>skills</key>
 		<array>
-			<string>time</string>
+			<string>alchemy</string>
 			<string>wisdom</string>
 			<string>filler monster skill</string>
 			<string>filler monster skill</string>

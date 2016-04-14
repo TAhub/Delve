@@ -751,7 +751,7 @@
 		<key>equipment treasures</key> <integer>5</integer>
 		<key>healing treasures</key> <integer>9</integer>
 		<key>normal treasures</key> <integer>5</integer>
-		<key>healing item</key> <string>steak</string>
+		<key>healing item</key> <string>ration</string>
 		<key>number of encounters</key> <integer>17</integer>
 		<key>start equipment treasures</key> <integer>4</integer>
 		<key>encounters</key>
