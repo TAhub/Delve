@@ -322,7 +322,7 @@
 		<key>cut resistance</key> <integer>2</integer>
 		<key>burn resistance</key> <integer>-3</integer>
 		<key>metabolism</key> <integer>100</integer>
-		<key>counter</key> <integer>5</integer>
+		<key>counter</key> <integer>7</integer>
 		<key>racial counter attack</key> <string>slime counter</string>
 		<!-- slots -->
 		<!-- appearance -->
@@ -351,7 +351,7 @@
 		<key>cut resistance</key> <integer>3</integer>
 		<key>burn resistance</key> <integer>-3</integer>
 		<key>metabolism</key> <integer>100</integer>
-		<key>counter</key> <integer>10</integer>
+		<key>counter</key> <integer>14</integer>
 		<!-- slots -->
 		<!-- appearance -->
 		<key>sprite</key> <string>greater_slime</string>

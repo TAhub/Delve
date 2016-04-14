@@ -64,10 +64,10 @@
 		<key>type</key> <string>weapon</string>
 		<key>power</key> <integer>15</integer>
 	</dict>
-	<key>advanced relic</key>
+	<key>war slam</key>
 	<dict>
 		<key>type</key> <string>weapon</string>
-		<key>power</key> <integer>45</integer>
+		<key>power</key> <integer>30</integer>
 	</dict>
 	<key>abomination bash</key>
 	<dict>

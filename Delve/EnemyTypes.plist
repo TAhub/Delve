@@ -433,7 +433,7 @@
 		<array>
 			<string>holy soldier</string>
 			<string>sacred light</string>
-			<string>tough monster skill</string>
+			<string>filler monster skill</string>
 			<string>filler monster skill</string>
 			<string>filler monster skill</string>
 		</array>
@@ -443,7 +443,7 @@
 			<string>white lightning</string>
 			<string>radiant orb</string>
 		</array>
-		<key>weapon</key> <string>advanced relic</string> <!-- some kind of slam attack -->
+		<key>weapon</key> <string>war slam</string> <!-- some kind of slam attack -->
 	</dict>
 	
 	

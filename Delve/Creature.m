@@ -282,8 +282,8 @@
 		
         //TODO: quickstart
 		_skillTrees = [NSArray arrayWithObjects:@"energy", @"sacred light", @"dagger", @"shield", @"conditioning", nil];
-		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(3), @(1), @(3), @(3), @(1), nil];
-		_implements = [NSMutableArray arrayWithObjects:@"ritual compendium", @"glimmering orb", @"dagger", @"buckler", @"", nil];
+		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(3), @(1), @(3), @(4), @(1), nil];
+		_implements = [NSMutableArray arrayWithObjects:@"ether dynamics", @"glowing orb", @"stiletto", @"kite shield", @"", nil];
 		_armors = [NSMutableArray arrayWithObjects:@"rusty armor", @"riveted helmet", @"cheap shoes", nil];
 		_weapon = @"flail";
 		
@@ -1490,7 +1490,7 @@
 
 -(BOOL) startTurnInnerer
 {
-//	NSLog(@"Turn started for %@", self.good ? @"player" : self.name);
+	NSLog(@"Turn started for %@", self.good ? @"player" : self.name);
 	
 	Tile *tile = self.map.tiles[self.y][self.x];
 	

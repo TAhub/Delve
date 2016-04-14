@@ -522,7 +522,7 @@
 		<key>healing treasures</key> <integer>8</integer>
 		<key>normal treasures</key> <integer>6</integer>
 		<key>healing item</key> <string>ration</string>
-		<key>number of encounters</key> <integer>8</integer>
+		<key>number of encounters</key> <integer>6</integer>
 		<key>start equipment treasures</key> <integer>3</integer>
 		<key>encounters</key>
 		<array>
@@ -605,7 +605,7 @@
 		<key>healing treasures</key> <integer>6</integer>
 		<key>normal treasures</key> <integer>5</integer>
 		<key>healing item</key> <string>ration</string>
-		<key>number of encounters</key> <integer>12</integer>
+		<key>number of encounters</key> <integer>10</integer>
 		<key>start equipment treasures</key> <integer>3</integer>
 		<key>encounters</key>
 		<array>

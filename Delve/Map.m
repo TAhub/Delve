@@ -92,9 +92,11 @@
 		}
 		
 		//TODO: quickstart
-		[self addItem:[[Item alloc] initWithName:@"bread" andType:ItemTypeInventory]];
-		[self addItem:[[Item alloc] initWithName:@"bread" andType:ItemTypeInventory]];
-		[self addItem:[[Item alloc] initWithName:@"bread" andType:ItemTypeInventory]];
+		[self addItem:[[Item alloc] initWithName:@"cheese" andType:ItemTypeInventory]];
+		[self addItem:[[Item alloc] initWithName:@"cheese" andType:ItemTypeInventory]];
+		[self addItem:[[Item alloc] initWithName:@"cheese" andType:ItemTypeInventory]];
+		[self addItem:[[Item alloc] initWithName:@"cheese" andType:ItemTypeInventory]];
+		[self addItem:[[Item alloc] initWithName:@"strength booster" andType:ItemTypeInventory]];
 		
 		[self saveInventory];
 	}
@@ -179,10 +181,12 @@
 		Creature *cr = self.creatures[self.personOn];
 		if (cr.extraAction > 0)
 		{
-			[cr startTurn];
-			if (cr.good && cr.storedAttack == nil)
-				[self.delegate presentRepeatPrompt];
-			return;
+			if (!cr.dead && [cr startTurn])
+			{
+				if (cr.good && cr.storedAttack == nil)
+					[self.delegate presentRepeatPrompt];
+				return;
+			}
 		}
 		
 		self.personOn = (self.personOn + 1) % self.creatures.count;
@@ -567,7 +571,7 @@
 	self.floorNum = map == nil ? 0 : map.floorNum + 1;
 	
 	//TODO: quickstart
-	self.floorNum = map == nil ? 6 : map.floorNum + 1;
+	self.floorNum = map == nil ? 7 : map.floorNum + 1;
 	
 	NSString *floorName = [NSString stringWithFormat:@"floor %i", self.floorNum];
 	
