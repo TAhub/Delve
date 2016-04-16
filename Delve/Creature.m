@@ -251,7 +251,6 @@
 		
 		_skillTrees = skillTrees;
 		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
-//		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(4), @(4), @(4), @(4), @(4), nil];
 		_implements = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", @"", nil];
 		_weapon = loadValueString(@"Races", _race, @"race start weapon");
 		
@@ -281,11 +280,11 @@
         
 		
         //TODO: quickstart
-		_skillTrees = [NSArray arrayWithObjects:@"energy", @"sacred light", @"dagger", @"shield", @"conditioning", nil];
-		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(3), @(2), @(3), @(4), @(1), nil];
-		_implements = [NSMutableArray arrayWithObjects:@"forbidden tome", @"glowing orb", @"combat knife", @"kite shield", @"", nil];
-		_armors = [NSMutableArray arrayWithObjects:@"hero armor", @"winged helmet", @"leather shoes", nil];
-		_weapon = @"flail";
+//		_skillTrees = [NSArray arrayWithObjects:@"energy", @"sacred light", @"dagger", @"shield", @"conditioning", nil];
+//		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(3), @(3), @(3), @(4), @(1), nil];
+//		_implements = [NSMutableArray arrayWithObjects:@"forbidden tome", @"glowing orb", @"combat knife", @"kite shield", @"", nil];
+//		_armors = [NSMutableArray arrayWithObjects:@"hero armor", @"winged helmet", @"leather shoes", nil];
+//		_weapon = @"flail";
 		
         
 		

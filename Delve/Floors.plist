@@ -671,10 +671,10 @@
 		<key>countdown</key> <integer>280</integer>
 		<key>overtime countdown</key> <integer>30</integer>
 		<key>equipment treasures</key> <integer>6</integer>
-		<key>healing treasures</key> <integer>7</integer>
+		<key>healing treasures</key> <integer>8</integer>
 		<key>normal treasures</key> <integer>5</integer>
 		<key>healing item</key> <string>steak</string>
-		<key>number of encounters</key> <integer>11</integer>
+		<key>number of encounters</key> <integer>9</integer>
 		<key>start equipment treasures</key> <integer>4</integer>
 		<key>encounters</key>
 		<array>
@@ -728,7 +728,7 @@
 		<key>default color</key> <string>tile stone red</string>
 		<!-- map generation data -->
 		<key>room size</key> <integer>5</integer>
-		<key>rows</key> <integer>15</integer>
+		<key>rows</key> <integer>16</integer>
 		<key>columns</key> <integer>4</integer>
 		<key>reject undiscovered doors chance</key> <integer>20</integer>
 		<key>max door offset</key> <integer>1</integer>
@@ -746,13 +746,13 @@
 		<key>min floor tile percent</key> <integer>0</integer>
 		<key>max floor tile percent</key> <integer>0</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>310</integer>
-		<key>overtime countdown</key> <integer>45</integer>
+		<key>countdown</key> <integer>340</integer>
+		<key>overtime countdown</key> <integer>50</integer>
 		<key>equipment treasures</key> <integer>5</integer>
 		<key>healing treasures</key> <integer>9</integer>
 		<key>normal treasures</key> <integer>5</integer>
 		<key>healing item</key> <string>ration</string>
-		<key>number of encounters</key> <integer>17</integer>
+		<key>number of encounters</key> <integer>11</integer>
 		<key>start equipment treasures</key> <integer>4</integer>
 		<key>encounters</key>
 		<array>
@@ -764,20 +764,15 @@
 				<string>war bot</string>
 				<string>scuttler</string>
 				<string>scuttler</string>
-				<string>scuttler</string>
-				<string>scuttler</string>
 			</array>
 			<array>
 				<string>war bot</string>
 				<string>sentry</string>
 				<string>sentry</string>
-				<string>sentry</string>
-				<string>sentry</string>
 			</array>
 			<array>
 				<string>security android</string>
 				<string>security android</string>
-				<string>scout android</string>
 				<string>scout android</string>
 				<string>scout android</string>
 			</array>

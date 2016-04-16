@@ -92,9 +92,24 @@
 		}
 		
 		//TODO: quickstart
-		[self addItem:[[Item alloc] initWithName:@"ration" andType:ItemTypeInventory]];
-		[self addItem:[[Item alloc] initWithName:@"ration" andType:ItemTypeInventory]];
-		[self addItem:[[Item alloc] initWithName:@"strength booster" andType:ItemTypeInventory]];
+//		[self addItem:[[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory]];
+//		[self addItem:[[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory]];
+//		[self addItem:[[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory]];
+//		[self addItem:[[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory]];
+//		[self addItem:[[Item alloc] initWithName:@"steak" andType:ItemTypeInventory]];
+//		[self addItem:[[Item alloc] initWithName:@"steak" andType:ItemTypeInventory]];
+//		[self addItem:[[Item alloc] initWithName:@"steak" andType:ItemTypeInventory]];
+//		[self addItem:[[Item alloc] initWithName:@"strength booster" andType:ItemTypeInventory]];
+//		[self addItem:[[Item alloc] initWithName:@"time core" andType:ItemTypeInventory]];
+//		for (int i = 0; i < self.inventory.count; i++) //I ate all my bread
+//		{
+//			Item *it = self.inventory[i];
+//			if ([it.name isEqualToString:@"bread"])
+//			{
+//				[self.inventory removeObjectAtIndex:i];
+//				break;
+//			}
+//		}
 		
 		[self saveInventory];
 	}
@@ -569,7 +584,7 @@
 	self.floorNum = map == nil ? 0 : map.floorNum + 1;
 	
 	//TODO: quickstart
-	self.floorNum = map == nil ? 8 : map.floorNum + 1;
+//	self.floorNum = map == nil ? 9 : map.floorNum + 1;
 	
 	NSString *floorName = [NSString stringWithFormat:@"floor %i", self.floorNum];
 	
@@ -822,7 +837,7 @@
 	//find paths from the start to the end
 	NSMutableArray *paths = [NSMutableArray new];
 	NSMutableArray *pathStart = [NSMutableArray arrayWithObject:startRoom];
-	NSArray *intendedPath = [self pathExplore:pathStart aroundRooms:rooms toExit:exitRoom intoPaths:paths withDesiredLength:desiredPathLength];
+	NSArray *intendedPath = [self pathExplore:pathStart aroundRooms:rooms toExit:exitRoom intoPaths:paths withDesiredLength:desiredPathLength depth:0];
 	if (intendedPath == nil)
 	{
 		if (paths.count == 0)
@@ -1573,8 +1588,11 @@
 	}
 }
 
--(NSArray *)pathExplore:(NSArray *)path aroundRooms:(NSArray *)rooms toExit:(GeneratorRoom *)exit intoPaths:(NSMutableArray *)paths withDesiredLength:(int)length
+-(NSArray *)pathExplore:(NSArray *)path aroundRooms:(NSArray *)rooms toExit:(GeneratorRoom *)exit intoPaths:(NSMutableArray *)paths withDesiredLength:(int)length depth:(int)depth
 {
+	if (depth >= GENERATOR_PATHEXPLORE_MAX)
+		return nil;
+	
 	//what is the room the path is on right now?
 	GeneratorRoom *room = path.lastObject;
 	
@@ -1595,9 +1613,6 @@
 	int orderAdd = arc4random_uniform((u_int32_t)surroundingRooms.count);
 	for (int i = 0; i < surroundingRooms.count; i++)
 	{
-		if (i >= GENERATOR_PATHEXPLORE_MAX)
-			return nil;
-		
 		GeneratorRoom *nextRoom = surroundingRooms[(i + orderAdd) % surroundingRooms.count];
 		if (![path containsObject:nextRoom])
 		{
@@ -1618,7 +1633,7 @@
 			else
 			{
 				//keep going down
-				NSArray *result = [self pathExplore:newPath aroundRooms:rooms toExit:exit intoPaths:paths withDesiredLength:length];
+				NSArray *result = [self pathExplore:newPath aroundRooms:rooms toExit:exit intoPaths:paths withDesiredLength:length depth:(depth + 1)];
 				if (result != nil)
 					return result; //just end instantly
 			}

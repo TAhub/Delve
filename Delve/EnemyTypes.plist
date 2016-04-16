@@ -556,7 +556,7 @@
 			<string>filler monster skill</string>
 			<string>filler monster skill</string>
 			<string>filler monster skill</string>
-			<string>filler monster skill</string>
+			<string>fragile monster skill</string>
 		</array>
 		<!-- equipment -->
 		<key>implements</key>
@@ -587,7 +587,7 @@
 			<string>filler monster skill</string>
 			<string>filler monster skill</string>
 			<string>filler monster skill</string>
-			<string>filler monster skill</string>
+			<string>fragile monster skill</string>
 		</array>
 		<!-- equipment -->
 		<key>armors</key>
@@ -616,7 +616,7 @@
 		<array>
 			<string>energy</string>
 			<string>mass</string>
-			<string>tough monster skill</string>
+			<string>filler monster skill</string>
 			<string>filler monster skill</string>
 			<string>filler monster skill</string>
 		</array>
@@ -1111,7 +1111,7 @@
 			<string>energy</string>
 			<string>filler monster skill</string>
 			<string>filler monster skill</string>
-			<string>filler monster skill</string>
+			<string>fragile monster skill</string>
 		</array>
 		<!-- equipment -->
 		<key>implements</key>
