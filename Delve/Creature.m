@@ -280,11 +280,11 @@
         
 		
         //TODO: quickstart
-//		_skillTrees = [NSArray arrayWithObjects:@"energy", @"sacred light", @"dagger", @"shield", @"conditioning", nil];
-//		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(3), @(3), @(3), @(4), @(1), nil];
-//		_implements = [NSMutableArray arrayWithObjects:@"forbidden tome", @"glowing orb", @"combat knife", @"kite shield", @"", nil];
-//		_armors = [NSMutableArray arrayWithObjects:@"hero armor", @"winged helmet", @"leather shoes", nil];
-//		_weapon = @"flail";
+		_skillTrees = [NSArray arrayWithObjects:@"bow", @"heresy", @"smithing", @"strength", @"reflexes", nil];
+		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(3), @(2), @(1), @(1), @(1), nil];
+		_implements = [NSMutableArray arrayWithObjects:@"shortbow", @"", @"", @"", @"", nil];
+		_armors = [NSMutableArray arrayWithObjects:@"raider loincloth", @"pot helmet", @"white tail banner", nil];
+		_weapon = @"shortsword";
 		
         
 		
@@ -1190,7 +1190,7 @@
 	self.blocks = MIN(self.blocks + 1, self.maxBlocks);
 	//TODO: any other bennies for getting a kill
 	
-	if (!self.good)
+	if (self.good)
 	{
 		//add some kill credit!
 		NSMutableDictionary *killsPerRace = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:@"statistics kills"]];

@@ -337,7 +337,7 @@
 	<dict>
 		<key>attack effect</key> <string>arrow</string>
 		<key>description</key> <string>Shoot your bow at a foe.</string>
-		<key>power</key> <integer>18</integer>
+		<key>power</key> <integer>14</integer>
 		<key>element</key> <string>cut</string>
 		<key>range</key> <integer>5</integer>
 		<key>min range</key> <integer>3</integer>
@@ -489,7 +489,7 @@
 	<dict>
 		<key>attack effect</key> <string>arrow storm</string>
 		<key>description</key> <string>Fire many arrows at once from your bow, hitting everyone in an area.</string>
-		<key>power</key> <integer>27</integer>
+		<key>power</key> <integer>26</integer>
 		<key>element</key> <string>cut</string>
 		<key>range</key> <integer>4</integer>
 		<key>area</key> <integer>3</integer>

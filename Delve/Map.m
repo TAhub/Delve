@@ -92,15 +92,10 @@
 		}
 		
 		//TODO: quickstart
-//		[self addItem:[[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory]];
-//		[self addItem:[[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory]];
-//		[self addItem:[[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory]];
-//		[self addItem:[[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory]];
-//		[self addItem:[[Item alloc] initWithName:@"steak" andType:ItemTypeInventory]];
-//		[self addItem:[[Item alloc] initWithName:@"steak" andType:ItemTypeInventory]];
-//		[self addItem:[[Item alloc] initWithName:@"steak" andType:ItemTypeInventory]];
-//		[self addItem:[[Item alloc] initWithName:@"strength booster" andType:ItemTypeInventory]];
-//		[self addItem:[[Item alloc] initWithName:@"time core" andType:ItemTypeInventory]];
+		for (int i = 0; i < 12; i++)
+			[self addItem:[[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory]];
+		[self addItem:[[Item alloc] initWithName:@"iron ingot" andType:ItemTypeInventory]];
+		[self addItem:[[Item alloc] initWithName:@"iron ingot" andType:ItemTypeInventory]];
 //		for (int i = 0; i < self.inventory.count; i++) //I ate all my bread
 //		{
 //			Item *it = self.inventory[i];
@@ -144,14 +139,30 @@
 	//displays various statistics to display at the end of a game
 	int steps = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"statistics steps"];
 	NSDictionary *killsPerRace = [[NSUserDefaults standardUserDefaults] objectForKey:@"statistics kills"];
+	
+	
 	int kills = 0;
+	int hunts = 0;
+	int destroys = 0;
 	for (NSString *race in killsPerRace.allKeys)
-		kills += ((NSNumber *)killsPerRace[race]).intValue;
-	//TODO: some races should have a flag that makes their kills not count towards the kill count
-	//IE robots, maybe slimes
+	{
+		int num = ((NSNumber *)killsPerRace[race]).intValue;
+		NSString *deathCategory = loadValueString(@"Races", race, @"death category");
+		if ([deathCategory isEqualToString:@"person"])
+			kills += num;
+		else if ([deathCategory isEqualToString:@"robot"])
+			destroys += num;
+		else if ([deathCategory isEqualToString:@"animal"])
+			hunts += num;
+	}
 	
 	NSMutableString *stats = [NSMutableString stringWithString:@"Statistics:"];
-	[stats appendFormat:@"\n%i kill%@", kills, kills == 1 ? @"": @"s"];
+	if (kills > 0)
+		[stats appendFormat:@"\n%i %@ killed", kills, kills == 1 ? @"person": @"people"];
+	if (hunts > 0)
+		[stats appendFormat:@"\n%i %@ slain", hunts, hunts == 1 ? @"animal": @"animals"];
+	if (destroys > 0)
+		[stats appendFormat:@"\n%i %@ destroyed", destroys, destroys == 1 ? @"machine": @"machines"];
 	[stats appendFormat:@"\n%i steps", steps];
 	return stats;
 }
@@ -584,7 +595,7 @@
 	self.floorNum = map == nil ? 0 : map.floorNum + 1;
 	
 	//TODO: quickstart
-//	self.floorNum = map == nil ? 9 : map.floorNum + 1;
+	self.floorNum = map == nil ? 3 : map.floorNum + 1;
 	
 	NSString *floorName = [NSString stringWithFormat:@"floor %i", self.floorNum];
 	

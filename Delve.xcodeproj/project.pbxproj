@@ -45,6 +45,7 @@
 		E462382E1C8766BA009C9FC4 /* ReplaceSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = E462382D1C8766BA009C9FC4 /* ReplaceSegue.m */; };
 		E46238301C8A1177009C9FC4 /* Floors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E462382F1C8A1177009C9FC4 /* Floors.plist */; };
 		E46238321C8A6901009C9FC4 /* Tilesets.plist in Resources */ = {isa = PBXBuildFile; fileRef = E46238311C8A6901009C9FC4 /* Tilesets.plist */; };
+		E4AE94A51CC318B900C1BC96 /* Endings.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4AE94A41CC318B900C1BC96 /* Endings.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +107,7 @@
 		E462382D1C8766BA009C9FC4 /* ReplaceSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplaceSegue.m; sourceTree = "<group>"; };
 		E462382F1C8A1177009C9FC4 /* Floors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Floors.plist; sourceTree = "<group>"; };
 		E46238311C8A6901009C9FC4 /* Tilesets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tilesets.plist; sourceTree = "<group>"; };
+		E4AE94A41CC318B900C1BC96 /* Endings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Endings.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 		E459C6861C7AB2E800422B0A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E4AE94A41CC318B900C1BC96 /* Endings.plist */,
 				E44A6FCB1C98F8B20015852C /* AIs.plist */,
 				E442C81B1C8B65950048DD95 /* AttackEffects.plist */,
 				E46238311C8A6901009C9FC4 /* Tilesets.plist */,
@@ -292,6 +295,7 @@
 				E459C6BE1C7C20AD00422B0A /* Colors.plist in Resources */,
 				E44A6FCC1C98F8B20015852C /* AIs.plist in Resources */,
 				E459C6961C7AB2E800422B0A /* LaunchScreen.storyboard in Resources */,
+				E4AE94A51CC318B900C1BC96 /* Endings.plist in Resources */,
 				E43674B01C813CC900B59105 /* Assets.xcassets in Resources */,
 				E459C6BC1C7C201D00422B0A /* Armors.plist in Resources */,
 				E462381E1C83F50D009C9FC4 /* ItemCell.xib in Resources */,
