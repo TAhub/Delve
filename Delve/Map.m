@@ -94,8 +94,9 @@
 		//TODO: quickstart
 		for (int i = 0; i < 12; i++)
 			[self addItem:[[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory]];
-		[self addItem:[[Item alloc] initWithName:@"iron ingot" andType:ItemTypeInventory]];
-		[self addItem:[[Item alloc] initWithName:@"iron ingot" andType:ItemTypeInventory]];
+		for (int i = 0; i < 4; i++)
+			[self addItem:[[Item alloc] initWithName:@"iron ingot" andType:ItemTypeInventory]];
+		[self addItem:[[Item alloc] initWithName:@"cheese" andType:ItemTypeInventory]];
 //		for (int i = 0; i < self.inventory.count; i++) //I ate all my bread
 //		{
 //			Item *it = self.inventory[i];
@@ -595,7 +596,7 @@
 	self.floorNum = map == nil ? 0 : map.floorNum + 1;
 	
 	//TODO: quickstart
-	self.floorNum = map == nil ? 3 : map.floorNum + 1;
+	self.floorNum = map == nil ? 5 : map.floorNum + 1;
 	
 	NSString *floorName = [NSString stringWithFormat:@"floor %i", self.floorNum];
 	
