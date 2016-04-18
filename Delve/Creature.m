@@ -1766,29 +1766,45 @@
 
 -(BOOL)doAiWalk:(int)mult
 {
-	BOOL skateAbility = self.aiSkate;
-	
 	int xDif = (self.map.player.x - self.x) * mult;
 	int yDif = (self.map.player.y - self.y) * mult;
 	int xDir = copysign(1, xDif);
 	int yDir = copysign(1, yDif);
 	
-	if (skateAbility)
-		self.skating = 1;
+	//skating depends on how far away you are
+	//don't try to skate if you are close, so you don't skip past them
+	BOOL firstSkate = false;
+	BOOL secondSkate = false;
+	if (self.aiSkate)
+	{
+		firstSkate = ABS(self.map.player.x - self.x) >= 2;
+		secondSkate = ABS(self.map.player.y - self.y) >= 2;
+	}
 	
 	BOOL xFirst = ABS(xDif) > ABS(yDif);
 	if (ABS(xDif) == ABS(yDif))
 		xFirst = arc4random_uniform(2) == 1;
+	if (!xFirst)
+	{
+		BOOL saveSkate = firstSkate;
+		firstSkate = secondSkate;
+		secondSkate = saveSkate;
+	}
+	
+	self.skating = firstSkate ? 1 : 0;
 	if ([self.map movePerson:self withX:(xFirst ? xDir : 0) andY:(!xFirst ? yDir : 0)])
 	{
 		self.skating = 0;
 		return YES;
 	}
+	
+	self.skating = secondSkate ? 1 : 0;
 	if (xDif != 0 && yDif != 0 && [self.map movePerson:self withX:(!xFirst ? xDir : 0) andY:(xFirst ? yDir : 0)])
 	{
 		self.skating = 0;
 		return YES;
 	}
+	
 	self.skating = 0;
 	return NO;
 }

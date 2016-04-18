@@ -343,7 +343,7 @@
 		<key>healing treasures</key> <integer>5</integer>
 		<key>normal treasures</key> <integer>4</integer>
 		<key>healing item</key> <string>cheese</string>
-		<key>number of encounters</key> <integer>11</integer>
+		<key>number of encounters</key> <integer>12</integer>
 		<key>start equipment treasures</key> <integer>3</integer>
 		<key>encounters</key>
 		<array>
@@ -386,6 +386,10 @@
 				<string>rabid ruin feeder</string>
 				<string>ruin feeder runt</string>
 				<string>ruin feeder runt</string>
+			</array>
+			<array>
+				<string>rabid ruin feeder</string>
+				<string>rabid ruin feeder</string>
 			</array>
 		</array>
 		<key>guardian type</key> <string>grounded guardian</string>
