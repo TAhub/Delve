@@ -117,6 +117,7 @@ BOOL loadValueBool(NSString *category, NSString *entry, NSString *value);
 
 #pragma mark misc
 void shuffleArray(NSMutableArray *array);
+void playSound(NSString *soundCategoryName);
 
 #pragma mark tests
 void passiveBalanceTest();

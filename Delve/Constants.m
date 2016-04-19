@@ -234,6 +234,62 @@ void shuffleArray(NSMutableArray *array)
 	}
 }
 
+void playSound(NSString *soundCategoryName)
+{
+	//TODO: put all the liscense info here
+	
+	
+	
+	//TODO: sound effect choices
+	// (store an array of the filenames inside a plist)
+	//dodge effect ("dodge")
+	//	https://www.freesound.org/people/Robinhood76/sounds/101432/
+	//	https://www.freesound.org/people/kwahmah_02/sounds/269294/
+	//	https://www.freesound.org/people/qubodup/sounds/59996/
+	//block effect ("block")
+	//	https://www.freesound.org/people/JohnBuhr/sounds/326794/
+	//	https://www.freesound.org/people/32cheeseman32/sounds/180825/
+	//burn damage effect ("burn")
+	//	https://www.freesound.org/people/sfx4animation/sounds/273663/
+	//shock damage effect ("shock")
+	//	https://www.freesound.org/people/JoelAudio/sounds/136542/
+	//cut damage effect ("cut")
+	//	TODO
+	//smash damage effect ("smash")
+	//	TODO
+	//heal sound effect ("heal")
+	//	TODO
+	//death sound male person ("death person male")
+	//	https://www.freesound.org/people/GentlemanWalrus/sounds/180005/
+	//death sound female person ("death person female")
+	//	https://www.freesound.org/people/Otakua/sounds/219891/
+	//	https://www.freesound.org/people/Otakua/sounds/219890/
+	//death sound machine ("death robot")
+	//	https://www.freesound.org/people/LittleRobotSoundFactory/sounds/316308/
+	//	https://www.freesound.org/people/dotY21/sounds/309512/
+	//death sound beast ("death animal")
+	//	https://www.freesound.org/people/vincentoliver/sounds/180490/
+	//	https://www.freesound.org/people/Adam_N/sounds/148972/
+	//various attack sound effects
+	//	TODO
+	//	basic ideas: fireball throwing swoosh, projectile shooting sound, flamethrower igniting, forcefield turn on, bow twanging etc
+	//	some attacks can use existing sounds though (IE dodge sounds for defense, etc)
+	//overtime siren ("siren")
+	//	TODO
+	//anything else I can think of (menu buttons? I dunno)
+	
+	//TODO: attack sounds should be assignable via implement too
+	//so that guardian weapons will give their projectile attacks different sounds, etc
+	
+	
+	if (soundCategoryName.length == 0)
+		return;
+	
+	//TODO: if the sound effect is INVALID, this should crash to alert me (maybe use an assert?)
+ 
+	//TODO: actually play the sound effect, picked randomly from the list
+}
+
 #pragma mark tests
 
 void passiveBalanceTest()

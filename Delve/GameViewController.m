@@ -775,6 +775,9 @@
 				[self switchToPanel:self.mainPanelCord withBlock:
 				^()
 				{
+					//make an item sound effect
+					playSound(@"heal");
+					
 					[weakSelf floatLabelsOn:[NSArray arrayWithObject:weakSelf.map.player] withString:[NSArray arrayWithObject:floatText] andColor:loadColorFromName(@"element heal") withBlock:
 					^()
 					{
@@ -1597,7 +1600,7 @@
 	warning.center = self.creatureView.center;
 	[self.view addSubview:warning];
 	
-	//TODO: warning siren sound
+	playSound(@"siren");
 	
 	self.animating = true;
 	__weak typeof(self) weakSelf = self;

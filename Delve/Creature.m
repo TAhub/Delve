@@ -1028,6 +1028,10 @@
 	if (implement.length > 0 && loadValueBool(@"Implements", implement, @"attack effect"))
 		attackEffect = loadValueString(@"Implements", implement, @"attack effect");
 	
+	NSString *baseHitSound = @"";
+	if (![element isEqualToString:@"no element"])
+		baseHitSound = element;
+	
 	
 	NSMutableArray *labels = [NSMutableArray new];
 	NSMutableArray *creatures = [NSMutableArray new];
@@ -1037,6 +1041,9 @@
 	if ([self.storedAttack isEqualToString:@"attack"])
 		suffix = implement.length == 0 ? @"unarmed" : [NSString stringWithFormat:@"with %@", implement];
 	
+	//TODO: play the attack's base sound (throwing fireball whoosh, whatever)
+	//note that this is the only sound effect you'll hear for buffs and non-elemental attacks
+	
 	//use the map's delegate stuff to do an attack anim
 	__weak typeof(self) weakSelf = self;
 	[self.map.delegate attackAnimation:self.storedAttack withElement:element suffix:suffix andAttackEffect:attackEffect fromPerson:self targetX:self.storedAttackX andY:self.storedAttackY withEffectBlock:
@@ -1044,6 +1051,10 @@
 	{
 		__block Creature *counterAttacker = nil;
 		__block BOOL tilesChanged = false;
+		
+		__block int numHits = 0;
+		__block int numBlocks = 0;
+		__block int numDodges = 0;
 		
 		[weakSelf applyBlock:
 		^void (Tile *tile)
@@ -1067,6 +1078,14 @@
 					NSString *hitResult = [hit takeAttack:weakSelf.storedAttack withPower:power andElement:element inStealth:weakSelf.stealthed > 0];
 					[labels addObject:hitResult];
 					[creatures addObject:hit];
+					
+					if ([hitResult isEqualToString:@"DODGE"])
+						numDodges += 1;
+					else if ([hitResult isEqualToString:@"BLOCK"])
+						numBlocks += 1;
+					else
+						numHits += 1;
+					
 					if (hit.dead)
 					{
 						//you killed someone!
@@ -1104,6 +1123,14 @@
 		weakSelf.storedAttack = nil;
 		
 		UIColor *color = loadColorFromName([NSString stringWithFormat:@"element %@", element]);
+		
+		//play sound for effects
+		if (numHits == 0 && numBlocks == 0 && numDodges > 0)
+			playSound(@"dodge");
+		else if (numHits == 0 && numDodges == 0 && numBlocks > 0)
+			playSound(@"block");
+		else if (loadValueBool(@"Attacks", weakSelf.storedAttack, @"area"))
+			playSound(baseHitSound);
 		
 		
 		[weakSelf.map.delegate floatLabelsOn:creatures withString:labels andColor:color withBlock:
@@ -1172,6 +1199,21 @@
 {
 	((Tile *)self.map.tiles[self.y][self.x]).inhabitant = nil;
 	[self.map.delegate updateCreature:self];
+	
+	if (!self.map.overtime)
+	{
+		//make a death sound
+		NSString *deathType = loadValueString(@"Races", self.race, @"death category");
+		if ([deathType isEqualToString:@"person"])
+		{
+			if (self.gender)
+				playSound(@"person death female");
+			else
+				playSound(@"person death male");
+		}
+		else
+			playSound([NSString stringWithFormat:@"%@ death", deathType]);
+	}
 	
 	if (self.storedAttack != nil)
 	{
@@ -1267,14 +1309,12 @@
 			if (loadValueBool(@"Attacks", attackType, @"dodgeable") && self.dodges > 0)
 			{
 				self.dodges -= 1;
-				//TODO: dodge sound effect
 				return @"DODGE";
 			}
 			
 			if (loadValueBool(@"Attacks", attackType, @"blockable") && self.blocks > 0)
 			{
 				self.blocks -= 1;
-				//TODO: block sound effect
 				return @"BLOCK";
 			}
 		}
@@ -1316,7 +1356,6 @@
 			if (self.forceField >= finalPower && basePower > 0)
 			{
 				self.forceField -= finalPower;
-				//TODO: block sound effect
 				label = @"BLOCK";
 				[self.map.delegate updateCreature:self];
 			}
