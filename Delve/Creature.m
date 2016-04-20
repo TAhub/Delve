@@ -1043,7 +1043,7 @@
 	
 	//play the attack's base sound (throwing fireball whoosh, whatever)
 	//note that this is the only sound effect you'll hear for buffs and non-elemental attacks
-	if (loadValueBool(@"Implements", implement, @"sound"))
+	if (implement.length > 0 && loadValueBool(@"Implements", implement, @"sound"))
 		playSound(loadValueString(@"Implements", implement, @"sound"));
 	else if (loadValueBool(@"Attacks", self.storedAttack, @"sound"))
 		playSound(loadValueString(@"Attacks", self.storedAttack, @"sound"));
