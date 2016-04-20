@@ -12,6 +12,10 @@
 	<key>template</key>
 	<dict>
 		<key>death category</key> <string>person</string>
+		<key>endings</key>
+		<array>
+			<string>template</string>
+		</array>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>100</integer>
 		<key>health</key> <integer>100</integer>
@@ -78,6 +82,10 @@
 	<key>human</key>
 	<dict>
 		<key>death category</key> <string>person</string>
+		<key>endings</key>
+		<array>
+			<string>template</string>
+		</array>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>100</integer>
 		<key>health</key> <integer>125</integer>
@@ -132,6 +140,12 @@
 	<key>eoling</key>
 	<dict>
 		<key>death category</key> <string>person</string>
+		<key>endings</key>
+		<array>
+			<string>eoling heretic</string>
+			<string>eoling redeemed</string>
+			<string>eoling faithful</string>
+		</array>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>115</integer>
 		<key>health</key> <integer>75</integer>
@@ -186,6 +200,10 @@
 	<key>highborn</key>
 	<dict>
 		<key>death category</key> <string>person</string>
+		<key>endings</key>
+		<array>
+			<string>template</string>
+		</array>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>125</integer>
 		<key>health</key> <integer>100</integer>
@@ -239,6 +257,10 @@
 	<key>raider</key>
 	<dict>
 		<key>death category</key> <string>person</string>
+		<key>endings</key>
+		<array>
+			<string>raider regain honor</string>
+		</array>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>115</integer>
 		<key>health</key> <integer>140</integer>

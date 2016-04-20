@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E43463171CC715E400956CC7 /* Sounds.plist in Resources */ = {isa = PBXBuildFile; fileRef = E43463161CC715E400956CC7 /* Sounds.plist */; };
 		E43674AA1C7FACF900B59105 /* Tiles.plist in Resources */ = {isa = PBXBuildFile; fileRef = E43674A91C7FACF900B59105 /* Tiles.plist */; };
 		E43674AC1C80FCAB00B59105 /* Implements.plist in Resources */ = {isa = PBXBuildFile; fileRef = E43674AB1C80FCAB00B59105 /* Implements.plist */; };
 		E43674AE1C80FFBA00B59105 /* Lists.plist in Resources */ = {isa = PBXBuildFile; fileRef = E43674AD1C80FFBA00B59105 /* Lists.plist */; };
@@ -49,6 +50,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E43463161CC715E400956CC7 /* Sounds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Sounds.plist; sourceTree = "<group>"; };
 		E43674A91C7FACF900B59105 /* Tiles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tiles.plist; sourceTree = "<group>"; };
 		E43674AB1C80FCAB00B59105 /* Implements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Implements.plist; sourceTree = "<group>"; };
 		E43674AD1C80FFBA00B59105 /* Lists.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Lists.plist; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 		E459C6861C7AB2E800422B0A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E43463161CC715E400956CC7 /* Sounds.plist */,
 				E4AE94A41CC318B900C1BC96 /* Endings.plist */,
 				E44A6FCB1C98F8B20015852C /* AIs.plist */,
 				E442C81B1C8B65950048DD95 /* AttackEffects.plist */,
@@ -306,6 +309,7 @@
 				E459C6A71C7ABB6400422B0A /* SkillTrees.plist in Resources */,
 				E43674AA1C7FACF900B59105 /* Tiles.plist in Resources */,
 				E43674AC1C80FCAB00B59105 /* Implements.plist in Resources */,
+				E43463171CC715E400956CC7 /* Sounds.plist in Resources */,
 				E43674AE1C80FFBA00B59105 /* Lists.plist in Resources */,
 				E46238301C8A1177009C9FC4 /* Floors.plist in Resources */,
 				E459C6AC1C7B7FC300422B0A /* Attacks.plist in Resources */,

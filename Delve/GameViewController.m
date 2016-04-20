@@ -1712,10 +1712,64 @@
 		//you won!
 		NSMutableString *victoryMessage = [NSMutableString new];
 		[victoryMessage appendString:@"As you exit the portal, you find yourself in the control room of the old Eol vessel."];
-		[victoryMessage appendString:@"\nFrom here, you could reactivate it fully. You could do anything you wished."];
 		
-		//TODO: append more strings, probably from a loaded endings table based on what the player did in life, their race, etc
-		//IE maybe a raider who kills no raider enemies regains their honor, or an eoling with no unholy skills reactivates the ship and treats it as an amazing relic
+		//append an ending based on your race and actions
+		NSDictionary *killsPerRace = [[NSUserDefaults standardUserDefaults] objectForKey:@"statistics kills"];
+		NSArray *endingsArray = loadValueArray(@"Races", self.map.player.race, @"endings");
+		for (NSString *ending in endingsArray)
+		{
+			BOOL valid = true;
+			
+			//check your kills in a specific race
+			if (loadValueBool(@"Endings", ending, @"no kills of race"))
+			{
+				NSString *noKillsRace = loadValueString(@"Endings", ending, @"no kills of race");
+				NSNumber *kills = killsPerRace[noKillsRace];
+				if (kills.intValue > 0)
+					valid = false;
+			}
+			
+			//check to see if you have the right skills
+			if (loadValueBool(@"Endings", ending, @"possess skill from list"))
+			{
+				BOOL has = false;
+				NSArray *skillList = loadValueArray(@"Endings", ending, @"possess skill from list");
+				for (NSString *skill in skillList)
+					for (NSString *mySkill in self.map.player.skillTrees)
+						if ([mySkill isEqualToString:skill])
+						{
+							has = true;
+							break;
+						}
+				if (!has)
+					valid = false;
+			}
+			
+			//check your kills in various categories
+			for (int i = 0; i < 3; i++)
+			{
+				NSString *deathCategory;
+				switch(i)
+				{
+					case 0: deathCategory = @"animal"; break;
+					case 1: deathCategory = @"person"; break;
+					case 2: deathCategory = @"robot"; break;
+				}
+				if (loadValueBool(@"Endings", ending, [NSString stringWithFormat:@"no %@ kills", deathCategory]))
+					for (NSString *race in killsPerRace.allKeys)
+						if ([loadValueString(@"Races", race, @"death category") isEqualToString:deathCategory])
+						{
+							valid = false;
+							break;
+						}
+			}
+			
+			if (valid)
+			{
+				[victoryMessage appendFormat:@"\n%@", loadValueString(@"Endings", ending, @"text")];
+				break;
+			}
+		}
 		
 		[victoryMessage appendFormat:@"\n%@", self.map.endStatistics];
 		

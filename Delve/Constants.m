@@ -8,6 +8,7 @@
 
 #import "Constants.h"
 #import "Assert.h"
+#import <AVFoundation/AVAudioPlayer.h>
 
 #pragma mark image modification
 
@@ -285,9 +286,16 @@ void playSound(NSString *soundCategoryName)
 	if (soundCategoryName.length == 0)
 		return;
 	
-	//TODO: if the sound effect is INVALID, this should crash to alert me (maybe use an assert?)
- 
-	//TODO: actually play the sound effect, picked randomly from the list
+	NSArray *soundArray = loadArrayEntry(@"Sounds", soundCategoryName);
+	NSString *pick = soundArray[arc4random_uniform((u_int32_t)soundArray.count)];
+	NSString *filePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], pick];
+	NSURL *fileURL = [NSURL fileURLWithPath:filePath];
+	
+	//TODO: play
+	AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
+	player.numberOfLoops = -1;
+	
+	[player play];
 }
 
 #pragma mark tests

@@ -8,7 +8,61 @@
    Copyright (c) 2016 Theodore Abshire. All rights reserved.
 -->
 <plist version="1.0">
-    <dict>
-    
-    </dict>
+<dict>
+    <key>template</key>
+	<dict>
+		<key>possess skill from list</key>
+		<array>
+		</array>
+		<key>no kills of race</key> <string>raider</string>
+		<key>no animal kills</key> <true/>
+		<key>no robot kills</key> <true/>
+		<key>no person kills</key> <true/>
+		<key>text</key> <string>TODO: ending text.</string>
+	</dict>
+	
+	<!-- human endings -->
+    <key>human sneak</key>
+	<dict>
+		<key>possess skill from list</key>
+		<array>
+			<string>stealth</string>
+		</array>
+		<key>no person kills</key> <true/>
+		<key>text</key> <string>TODO: you return, sell the loot, and become famous for your great stealth and cleverness.</string>
+	</dict>
+	
+	<!-- eoling endings -->
+    <key>eoling heretic</key>
+	<dict>
+		<key>possess skill from list</key>
+		<array>
+			<string>heresy</string>
+			<string>oathbreaker</string>
+			<string>false prophet</string>
+		</array>
+		<key>text</key> <string>TODO: you won't be forgiven because of your heretical knowledge, so you use the ship for power.</string>
+	</dict>
+	
+    <key>eoling redeemed</key>
+	<dict>
+		<key>no kills of race</key> <string>eoling</string>
+		<key>text</key> <string>TODO: your great example of piety and nonviolence inspired the eoling, and you got welcomed back with open arms.</string>
+	</dict>
+	
+    <key>eoling faithful</key>
+	<dict>
+		<key>text</key> <string>TODO: you aren't a heretic, but you did kill some eolings, so you are only welcomed back reluctantly.</string>
+	</dict>
+	
+	<!-- raider endings -->
+    <key>raider honor regained</key>
+	<dict>
+		<key>no kills of race</key> <string>raider</string>
+		<key>text</key> <string>TODO: you regain your honor, are re-accepted into raider society.</string>
+	</dict>
+	
+	<!-- highborn endings -->
+	
+</dict>
 </plist>
