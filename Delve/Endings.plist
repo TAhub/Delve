@@ -21,6 +21,18 @@
 		<key>text</key> <string>TODO: ending text.</string>
 	</dict>
 	
+	<!-- TODO: fluff notes -->
+	<!-- you have to have a "heresy" skill to re-activate the ship's weapons -->
+	
+	<!-- any endings -->
+    <key>any pacifist</key>
+	<dict>
+		<key>no animal kills</key> <true/>
+		<key>no robot kills</key> <true/>
+		<key>no person kills</key> <true/>
+		<key>text</key> <string>TODO: you find all these amazing weapons and a powerful ship, but you are a person who refuses to hurt anyone. you are unwilling or unable to activate the ship, and simply make the ship's defenses recognize you as not an intruder and live a peaceful life in the ship.</string>
+	</dict>
+	
 	<!-- human endings -->
     <key>human sneak</key>
 	<dict>
@@ -32,6 +44,43 @@
 		<key>text</key> <string>TODO: you return, sell the loot, and become famous for your great stealth and cleverness.</string>
 	</dict>
 	
+    <key>human saint</key>
+	<dict>
+		<key>no person kills</key> <true/>
+		<key>text</key> <string>TODO: you use the ship to prevent death, and right the wrongs in the world nonviolently.</string>
+	</dict>
+	
+    <key>human pilot</key>
+	<dict>
+		<key>possess skill from list</key>
+		<array>
+			<string>heresy</string>
+			<string>oathbreaker</string>
+			<string>false prophet</string>
+			<string>holy soldier</string>
+			<string>godly form</string>
+			<string>sacred light</string>
+		</array>
+		<key>text</key> <string>TODO: you use your ship to carve out your own, new empire. be vague about if the weapons were reactivated.</string>
+	</dict>
+	
+    <key>human idealogue</key>
+	<dict>
+		<key>possess skill from list</key>
+		<array>
+			<string>heresy</string>
+			<string>oathbreaker</string>
+			<string>false prophet</string>
+		</array>
+		<key>no kills of race</key> <string>human</string>
+		<key>text</key> <string>TODO: you reactivate the ship's weapons and use it to free humanity from the highborn.</string>
+	</dict>
+	
+    <key>human failure</key>
+	<dict>
+		<key>text</key> <string>TODO: you are unable to figure out how to operate the ship, and return sadly to sell what valuables you could find. at least you'll be rich.</string>
+	</dict>
+	
 	<!-- eoling endings -->
     <key>eoling heretic</key>
 	<dict>
@@ -41,18 +90,25 @@
 			<string>oathbreaker</string>
 			<string>false prophet</string>
 		</array>
-		<key>text</key> <string>TODO: you won't be forgiven because of your heretical knowledge, so you use the ship for power.</string>
+		<key>text</key> <string>TODO: you won't be forgiven because of your heretical knowledge, so you reactivate the ship's weapons and use it for power.</string>
 	</dict>
 	
     <key>eoling redeemed</key>
 	<dict>
 		<key>no kills of race</key> <string>eoling</string>
-		<key>text</key> <string>TODO: your great example of piety and nonviolence inspired the eoling, and you got welcomed back with open arms.</string>
+		<key>no robot kills</key> <true/>
+		<key>text</key> <string>TODO: your great example of piety and nonviolence inspired the eoling, and you return the ship for them to re-activate.</string>
 	</dict>
 	
     <key>eoling faithful</key>
 	<dict>
+		<key>no robot kills</key> <true/>
 		<key>text</key> <string>TODO: you aren't a heretic, but you did kill some eolings, so you are only welcomed back reluctantly.</string>
+	</dict>
+	
+    <key>eoling pragmatic</key>
+	<dict>
+		<key>text</key> <string>TODO: you can't go back, but you also don't have heretical knowledge, so you turn to the humans and use your ship to aid them.</string>
 	</dict>
 	
 	<!-- raider endings -->
@@ -62,7 +118,53 @@
 		<key>text</key> <string>TODO: you regain your honor, are re-accepted into raider society.</string>
 	</dict>
 	
+    <key>raider pilot</key>
+	<dict>
+		<key>possess skill from list</key>
+		<array>
+			<string>heresy</string>
+			<string>oathbreaker</string>
+			<string>false prophet</string>
+			<string>holy soldier</string>
+			<string>godly form</string>
+			<string>sacred light</string>
+		</array>
+		<key>text</key> <string>TODO: you use your ship to make a fortune as a mercenary. be vague about if the weapons were reactivated.</string>
+	</dict>
+	
+    <key>raider wanderer</key>
+	<dict>
+		<key>text</key> <string>TODO: you retrieve many powerful weapons for the ship, but are unable to activate the ship itself. you become a successful mercenary.</string>
+	</dict>
+	
 	<!-- highborn endings -->
+    <key>highborn saint</key>
+	<dict>
+		<key>no person kills</key> <true/>
+		<key>text</key> <string>TODO: you use the ship to help foster life, and help people. a bit less positive than human saint.</string>
+	</dict>
+	
+    <key>highborn hedonist</key>
+	<dict>
+		<key>text</key> <string>TODO: you use the ship to amass a great fortune, and enjoy life. note that the highborn are too pissed about your killing their expedition to welcome you back.</string>
+	</dict>
+	
+    <key>highborn loyalist</key>
+	<dict>
+		<key>no kills of race</key> <string>highborn</string>
+		<key>text</key> <string>TODO: you return the ship to the highborn, and they apologize for kicking you out. you get fame and fortune among them.</string>
+	</dict>
+	
+    <key>highborn powerhungry</key>
+	<dict>
+		<key>possess skill from list</key>
+		<array>
+			<string>heresy</string>
+			<string>oathbreaker</string>
+			<string>false prophet</string>
+		</array>
+		<key>text</key> <string>TODO: you use your religious knowledge to activate the ship's weapons and cow the world, setting yourself up as its ruler.</string>
+	</dict>
 	
 </dict>
 </plist>

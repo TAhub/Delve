@@ -283,7 +283,7 @@
 		_skillTrees = [NSArray arrayWithObjects:@"bow", @"heresy", @"smithing", @"strength", @"reflexes", nil];
 		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(3), @(2), @(1), @(1), @(3), nil];
 		_implements = [NSMutableArray arrayWithObjects:@"longbow", @"", @"", @"", @"", nil];
-		_armors = [NSMutableArray arrayWithObjects:@"raider loincloth", @"rivet helmet", @"red tail banner", nil];
+		_armors = [NSMutableArray arrayWithObjects:@"raider loincloth", @"riveted helmet", @"red tail banner", nil];
 		_weapon = @"shortsword";
 		
         
@@ -1120,7 +1120,6 @@
 			[weakSelf.map.delegate updateTiles];
 		
 		BOOL teleport = loadValueBool(@"Attacks", weakSelf.storedAttack, @"teleport");
-		weakSelf.storedAttack = nil;
 		
 		UIColor *color = loadColorFromName([NSString stringWithFormat:@"element %@", element]);
 		
@@ -1131,6 +1130,8 @@
 			playSound(@"block");
 		else if (loadValueBool(@"Attacks", weakSelf.storedAttack, @"area"))
 			playSound(baseHitSound);
+		
+		weakSelf.storedAttack = nil;
 		
 		
 		[weakSelf.map.delegate floatLabelsOn:creatures withString:labels andColor:color withBlock:

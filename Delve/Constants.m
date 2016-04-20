@@ -271,6 +271,9 @@ void playSound(NSString *soundCategoryName)
 	//death sound beast ("death animal")
 	//	https://www.freesound.org/people/vincentoliver/sounds/180490/
 	//	https://www.freesound.org/people/Adam_N/sounds/148972/
+	//death sound robot ("death guardian")
+	//	TODO
+	//	should be a nice, satisfying boom
 	//various attack sound effects
 	//	TODO
 	//	basic ideas: fireball throwing swoosh, projectile shooting sound, flamethrower igniting, forcefield turn on, bow twanging etc

@@ -84,7 +84,12 @@
 		<key>death category</key> <string>person</string>
 		<key>endings</key>
 		<array>
-			<string>template</string>
+			<string>any pacifist</string>
+			<string>human idealogue</string>
+			<string>human sneak</string>
+			<string>human saint</string>
+			<string>human pilot</string>
+			<string>human failure</string>
 		</array>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>100</integer>
@@ -142,9 +147,11 @@
 		<key>death category</key> <string>person</string>
 		<key>endings</key>
 		<array>
+			<string>any pacifist</string>
 			<string>eoling heretic</string>
 			<string>eoling redeemed</string>
 			<string>eoling faithful</string>
+			<string>eoling pragmatic</string>
 		</array>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>115</integer>
@@ -202,7 +209,11 @@
 		<key>death category</key> <string>person</string>
 		<key>endings</key>
 		<array>
-			<string>template</string>
+			<string>any pacifist</string>
+			<string>highborn saint</string>
+			<string>highborn loyalist</string>
+			<string>highborn powerhungry</string>
+			<string>highborn hedonist</string>
 		</array>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>125</integer>
@@ -259,7 +270,10 @@
 		<key>death category</key> <string>person</string>
 		<key>endings</key>
 		<array>
+			<string>any pacifist</string>
 			<string>raider regain honor</string>
+			<string>raider pilot</string>
+			<string>raider wanderer</string>
 		</array>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>115</integer>
@@ -320,7 +334,7 @@
 	<!-- guardians are a powerful enemy meant to guard the exit -->
 	<key>guardian</key>
 	<dict>
-		<key>death category</key> <string>robot</string>
+		<key>death category</key> <string>guardian</string>
 		<!-- stats -->
 		<key>damage bonus</key> <integer>100</integer>
 		<key>health</key> <integer>150</integer>
