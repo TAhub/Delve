@@ -255,11 +255,11 @@ void playSound(NSString *soundCategoryName)
 	//shock damage effect ("shock")
 	//	https://www.freesound.org/people/JoelAudio/sounds/136542/
 	//cut damage effect ("cut")
-	//	TODO
+	//	https://www.freesound.org/people/Black%20Snow/sounds/109423/
 	//smash damage effect ("smash")
-	//	TODO
+	//	https://www.freesound.org/people/dcolvin/sounds/193896/
 	//heal sound effect ("heal")
-	//	TODO
+	//	https://www.freesound.org/people/spectorjay/sounds/37632/
 	//death sound male person ("death person male")
 	//	https://www.freesound.org/people/GentlemanWalrus/sounds/180005/
 	//death sound female person ("death person female")
@@ -272,18 +272,28 @@ void playSound(NSString *soundCategoryName)
 	//	https://www.freesound.org/people/vincentoliver/sounds/180490/
 	//	https://www.freesound.org/people/Adam_N/sounds/148972/
 	//death sound robot ("death guardian")
-	//	TODO
-	//	should be a nice, satisfying boom
-	//various attack sound effects
-	//	TODO
-	//	basic ideas: fireball throwing swoosh, projectile shooting sound, flamethrower igniting, forcefield turn on, bow twanging etc
-	//	some attacks can use existing sounds though (IE dodge sounds for defense, etc)
+	//	https://www.freesound.org/people/jeremysykes/sounds/341239/
+	// confusion ("huh")
+	//	https://www.freesound.org/people/EiK/sounds/240104/
+	// pop ("pop")
+	//	https://www.freesound.org/people/deraj/sounds/202230/
+	//magic bolt throw ("bolt")
+	//	https://www.freesound.org/people/wjl/sounds/267887/
+	//animal snarl ("snarl")
+	//	https://www.freesound.org/people/Jamius/sounds/41526/
+	//flamethrower activate ("flamethrower")
+	//	https://www.freesound.org/people/HunteR4708/sounds/256799/
+	//bow shoot ("bow")
+	//	https://www.freesound.org/people/Erdie/sounds/65733/
+	//technology activate ("activate")
+	//	https://www.freesound.org/people/ZvinbergsA/sounds/273691/
+	//poison bubbles ("poison")
+	//	https://www.freesound.org/people/kwahmah_02/sounds/261597/
+	//metal screech ("screech")
+	//	https://www.freesound.org/people/Housed1J/sounds/175410/
 	//overtime siren ("siren")
-	//	TODO
+	//	https://www.freesound.org/people/plasterbrain/sounds/242856/
 	//anything else I can think of (menu buttons? I dunno)
-	
-	//TODO: attack sounds should be assignable via implement too
-	//so that guardian weapons will give their projectile attacks different sounds, etc
 	
 	
 	if (soundCategoryName.length == 0)

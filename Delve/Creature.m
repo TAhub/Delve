@@ -1041,8 +1041,12 @@
 	if ([self.storedAttack isEqualToString:@"attack"])
 		suffix = implement.length == 0 ? @"unarmed" : [NSString stringWithFormat:@"with %@", implement];
 	
-	//TODO: play the attack's base sound (throwing fireball whoosh, whatever)
+	//play the attack's base sound (throwing fireball whoosh, whatever)
 	//note that this is the only sound effect you'll hear for buffs and non-elemental attacks
+	if (loadValueBool(@"Implements", implement, @"sound"))
+		playSound(loadValueString(@"Implements", implement, @"sound"));
+	else if (loadValueBool(@"Attacks", self.storedAttack, @"sound"))
+		playSound(loadValueString(@"Attacks", self.storedAttack, @"sound"));
 	
 	//use the map's delegate stuff to do an attack anim
 	__weak typeof(self) weakSelf = self;
@@ -1656,10 +1660,6 @@
 		{
 			//during overtime, most enemies flee
 			//some don't give a shit (robots, etc)
-			
-			//TODO: bosses SHOULDN'T flee, or execute this block at all
-			//AND, if bosses have companion enemies, those shouldn't flee either (maybe just have a no-flee flag?)
-			//otherwise you won't see most of them!
 			
 			if (!tile.visible)
 			{

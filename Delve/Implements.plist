@@ -16,6 +16,7 @@
 		<key>power</key> <integer>0</integer>
 		<key>element</key> <string>cut</string>
 		<key>attack effect</key> <string>slash</string>
+		<key>sound</key> <string>template</string>
 		<key>description</key> <string>TODO: DESCRIPTION</string>
 	</dict>
 	
@@ -44,6 +45,7 @@
 		<key>power</key> <integer>10</integer>
 		<key>element</key> <string>cut</string>
 		<key>attack effect</key> <string>bite</string>
+		<key>sound</key> <string>snarl</string>
 	</dict>
 	<key>strong teeth</key>
 	<dict>
@@ -51,6 +53,7 @@
 		<key>power</key> <integer>20</integer>
 		<key>element</key> <string>cut</string>
 		<key>attack effect</key> <string>bite</string>
+		<key>sound</key> <string>snarl</string>
 	</dict>
 	<key>claw relic</key>
 	<dict>
@@ -78,6 +81,7 @@
 	<key>guardian crossbow</key>
 	<dict>
 		<key>type</key> <string>weapon</string>
+		<key>sound</key> <string>bow</string>
 		<key>power</key> <integer>0</integer>
 		<key>element</key> <string>cut</string>
 		<key>attack effect</key> <string>arrow</string>
@@ -91,6 +95,7 @@
 	<key>guardian flamethrower</key>
 	<dict>
 		<key>type</key> <string>weapon</string>
+		<key>sound</key> <string>flamethrower</string>
 		<key>power</key> <integer>15</integer>
 		<key>element</key> <string>burn</string>
 		<key>attack effect</key> <string>jet</string>
