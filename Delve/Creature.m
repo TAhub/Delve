@@ -1133,7 +1133,7 @@
 			[[SoundPlayer sharedPlayer] playSound:@"dodge"];
 		else if (numHits == 0 && numDodges == 0 && numBlocks > 0)
 			[[SoundPlayer sharedPlayer] playSound:@"block"];
-		else if (loadValueBool(@"Attacks", weakSelf.storedAttack, @"area"))
+		else if (numHits > 0)
 			[[SoundPlayer sharedPlayer] playSound:baseHitSound];
 		
 		weakSelf.storedAttack = nil;

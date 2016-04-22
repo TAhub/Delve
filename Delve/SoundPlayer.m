@@ -86,6 +86,8 @@
 	if (soundCategoryName.length == 0)
 		return;
 	
+	NSLog(@"Playing sound %@", soundCategoryName);
+	
 	//pick randomly from the sound array
 	NSArray *soundArray = loadArrayEntry(@"Sounds", soundCategoryName);
 	if (soundArray.count == 0)

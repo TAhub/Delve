@@ -1612,7 +1612,7 @@
 	} completion:
 	^(BOOL finished)
 	{
-		[weakSelf shakeWithShakes:8 andBlock:
+		[weakSelf shakeWithShakes:14 andBlock:
 		^()
 		{
 			[warning removeFromSuperview];
