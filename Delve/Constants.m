@@ -8,7 +8,7 @@
 
 #import "Constants.h"
 #import "Assert.h"
-#import <AVFoundation/AVAudioPlayer.h>
+#import "SoundPlayer.h"
 
 #pragma mark image modification
 
@@ -235,60 +235,6 @@ void shuffleArray(NSMutableArray *array)
 	}
 }
 
-void playSound(NSString *soundCategoryName)
-{
-	//TODO: get bgm (menu, floor 1-3, floor 4-6, floor 7-9, maybe a short song for defeat and for victory)
-	
-	
-	//TODO: put all the liscense info here
-	//NOTE: all sounds from freesound.org
-//		S: frumdum.wav by spectorjay | License: Sampling+
-//		S: Nuclear Alarm by plasterbrain | License: Creative Commons 0
-//		S: Moaning Chair.aif by Housed1J | License: Creative Commons 0
-//		S: Bubbles2.wav by kwahmah_02 | License: Attribution
-//		S: Radio.wav by ZvinbergsA | License: Creative Commons 0
-//		S: bow01.wav by Erdie | License: Attribution
-//		S: Match Ignition 8 by HunteR4708 | License: Creative Commons 0
-//		S: GrowlSnarl.wav by Jamius | License: Attribution
-//		S: Short-Fireball-Woosh.flac by wjl | License: Creative Commons 0
-//		S: Pop sound by deraj | License: Creative Commons 0
-//		S: huh.wav by EiK | License: Creative Commons 0
-//		S: Explosion00.wav by jeremysykes | License: Creative Commons 0
-//		S: Squelch_4.wav by Adam_N | License: Creative Commons 0
-//		S: BoneClicks&GoreSquelches_17.aif by vincentoliver | License: Attribution
-//		S: robotspeaking4 by dotY21 | License: Creative Commons 0
-//		S: Robot2_11.wav by LittleRobotSoundFactory | License: Attribution
-//		S: GirlShock01.wav by Otakua | License: Attribution
-//		S: GirlShock02.wav by Otakua | License: Attribution
-//		S: Shocked gasp.wav by GentlemanWalrus | License: Creative Commons 0
-//		S: hit lid with sledge hammer.wav by dcolvin | License: Attribution
-//		S: Sword Slice 14.wav by Black Snow | License: Attribution
-//		S: whoosh fire by sfx4animation | License: Attribution Noncommercial
-//		S: SwordClash05 by 32cheeseman32 | License: Attribution
-//		S: Sword_Clash (48).wav by JohnBuhr | License: Creative Commons 0
-//		S: swoosh wind 09.flac by qubodup | License: Creative Commons 0
-//		S: swoosh39.wav by kwahmah_02 | License: Attribution
-//		S: 01904 air swoosh.wav by Robinhood76 | License: Attribution Noncommercial
-	
-	
-	
-	if (soundCategoryName.length == 0)
-		return;
-	
-	//pick randomly from the sound array
-	NSArray *soundArray = loadArrayEntry(@"Sounds", soundCategoryName);
-	NSString *pick = soundArray[arc4random_uniform((u_int32_t)soundArray.count)];
-	NSString *filePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], pick];
-	NSURL *fileURL = [NSURL fileURLWithPath:filePath];
-
-	AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
-	player.numberOfLoops = -1;
-	
-	[player play];
-	
-	//TODO: ARC is removing these objects right after they are made! oops
-}
-
 #pragma mark tests
 
 void passiveBalanceTest()
@@ -481,5 +427,5 @@ void soundCheck()
 	NSArray *soundCategories = loadEntries(@"Sounds").allKeys;
 	for (NSString *soundCategory in soundCategories)
 		for (int i = 0; i < 20; i++)
-			playSound(soundCategory);
+			[[SoundPlayer sharedPlayer] playSound:soundCategory];
 }

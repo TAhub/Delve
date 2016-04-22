@@ -10,6 +10,7 @@
 #import "Map.h"
 #import "Tile.h"
 #import "Item.h"
+#import "SoundPlayer.h"
 
 @interface Creature()
 
@@ -1044,9 +1045,9 @@
 	//play the attack's base sound (throwing fireball whoosh, whatever)
 	//note that this is the only sound effect you'll hear for buffs and non-elemental attacks
 	if (implement.length > 0 && loadValueBool(@"Implements", implement, @"sound"))
-		playSound(loadValueString(@"Implements", implement, @"sound"));
+		[[SoundPlayer sharedPlayer] playSound:loadValueString(@"Implements", implement, @"sound")];
 	else if (loadValueBool(@"Attacks", self.storedAttack, @"sound"))
-		playSound(loadValueString(@"Attacks", self.storedAttack, @"sound"));
+		[[SoundPlayer sharedPlayer] playSound:loadValueString(@"Attacks", self.storedAttack, @"sound")];
 	
 	//use the map's delegate stuff to do an attack anim
 	__weak typeof(self) weakSelf = self;
@@ -1129,11 +1130,11 @@
 		
 		//play sound for effects
 		if (numHits == 0 && numBlocks == 0 && numDodges > 0)
-			playSound(@"dodge");
+			[[SoundPlayer sharedPlayer] playSound:@"dodge"];
 		else if (numHits == 0 && numDodges == 0 && numBlocks > 0)
-			playSound(@"block");
+			[[SoundPlayer sharedPlayer] playSound:@"block"];
 		else if (loadValueBool(@"Attacks", weakSelf.storedAttack, @"area"))
-			playSound(baseHitSound);
+			[[SoundPlayer sharedPlayer] playSound:baseHitSound];
 		
 		weakSelf.storedAttack = nil;
 		
@@ -1212,12 +1213,12 @@
 		if ([deathType isEqualToString:@"person"])
 		{
 			if (self.gender)
-				playSound(@"person death female");
+				[[SoundPlayer sharedPlayer] playSound:@"person death female"];
 			else
-				playSound(@"person death male");
+				[[SoundPlayer sharedPlayer] playSound:@"person death male"];
 		}
 		else
-			playSound([NSString stringWithFormat:@"%@ death", deathType]);
+			[[SoundPlayer sharedPlayer] playSound:[NSString stringWithFormat:@"death %@", deathType]];
 	}
 	
 	if (self.storedAttack != nil)

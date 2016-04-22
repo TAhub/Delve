@@ -35,6 +35,7 @@
 		E40689261CC9CD7F00BF17DD /* 59996__qubodup__swoosh-wind-09.flac in Resources */ = {isa = PBXBuildFile; fileRef = E406890A1CC9CD7F00BF17DD /* 59996__qubodup__swoosh-wind-09.flac */; };
 		E40689271CC9CD7F00BF17DD /* 269294__kwahmah-02__swoosh39.wav in Resources */ = {isa = PBXBuildFile; fileRef = E406890B1CC9CD7F00BF17DD /* 269294__kwahmah-02__swoosh39.wav */; };
 		E40689281CC9CD7F00BF17DD /* 101432__robinhood76__01904-air-swoosh.wav in Resources */ = {isa = PBXBuildFile; fileRef = E406890C1CC9CD7F00BF17DD /* 101432__robinhood76__01904-air-swoosh.wav */; };
+		E406892B1CC9CF9F00BF17DD /* SoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E406892A1CC9CF9F00BF17DD /* SoundPlayer.m */; };
 		E43463171CC715E400956CC7 /* Sounds.plist in Resources */ = {isa = PBXBuildFile; fileRef = E43463161CC715E400956CC7 /* Sounds.plist */; };
 		E43674AA1C7FACF900B59105 /* Tiles.plist in Resources */ = {isa = PBXBuildFile; fileRef = E43674A91C7FACF900B59105 /* Tiles.plist */; };
 		E43674AC1C80FCAB00B59105 /* Implements.plist in Resources */ = {isa = PBXBuildFile; fileRef = E43674AB1C80FCAB00B59105 /* Implements.plist */; };
@@ -106,6 +107,8 @@
 		E406890A1CC9CD7F00BF17DD /* 59996__qubodup__swoosh-wind-09.flac */ = {isa = PBXFileReference; lastKnownFileType = file; path = "59996__qubodup__swoosh-wind-09.flac"; sourceTree = "<group>"; };
 		E406890B1CC9CD7F00BF17DD /* 269294__kwahmah-02__swoosh39.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "269294__kwahmah-02__swoosh39.wav"; sourceTree = "<group>"; };
 		E406890C1CC9CD7F00BF17DD /* 101432__robinhood76__01904-air-swoosh.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "101432__robinhood76__01904-air-swoosh.wav"; sourceTree = "<group>"; };
+		E40689291CC9CF9500BF17DD /* SoundPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SoundPlayer.h; sourceTree = "<group>"; };
+		E406892A1CC9CF9F00BF17DD /* SoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundPlayer.m; sourceTree = "<group>"; };
 		E43463161CC715E400956CC7 /* Sounds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Sounds.plist; sourceTree = "<group>"; };
 		E43674A91C7FACF900B59105 /* Tiles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tiles.plist; sourceTree = "<group>"; };
 		E43674AB1C80FCAB00B59105 /* Implements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Implements.plist; sourceTree = "<group>"; };
@@ -275,6 +278,8 @@
 		E459C69D1C7AB31100422B0A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E40689291CC9CF9500BF17DD /* SoundPlayer.h */,
+				E406892A1CC9CF9F00BF17DD /* SoundPlayer.m */,
 				E462382C1C8766BA009C9FC4 /* ReplaceSegue.h */,
 				E462382D1C8766BA009C9FC4 /* ReplaceSegue.m */,
 				E462381D1C83F50D009C9FC4 /* ItemCell.xib */,
@@ -464,6 +469,7 @@
 				E459C6C01C7CCDB800422B0A /* GeneratorRoom.m in Sources */,
 				E459C6A11C7AB34300422B0A /* Creature.m in Sources */,
 				E459C6A91C7B602100422B0A /* Constants.m in Sources */,
+				E406892B1CC9CF9F00BF17DD /* SoundPlayer.m in Sources */,
 				E442C8221C8FA8050048DD95 /* CharacterServices.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

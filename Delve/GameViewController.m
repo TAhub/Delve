@@ -17,6 +17,7 @@
 #import "ChangeMapViewController.h"
 #import "CharacterServices.h"
 #import "DefeatViewController.h"
+#import "SoundPlayer.h"
 
 @interface GameViewController () <MapViewDelegate, MapDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -776,7 +777,7 @@
 				^()
 				{
 					//make an item sound effect
-					playSound(@"heal");
+					[[SoundPlayer sharedPlayer] playSound:@"heal"];
 					
 					[weakSelf floatLabelsOn:[NSArray arrayWithObject:weakSelf.map.player] withString:[NSArray arrayWithObject:floatText] andColor:loadColorFromName(@"element heal") withBlock:
 					^()
@@ -1600,7 +1601,7 @@
 	warning.center = self.creatureView.center;
 	[self.view addSubview:warning];
 	
-	playSound(@"siren");
+	[[SoundPlayer sharedPlayer] playSound:@"siren"];
 	
 	self.animating = true;
 	__weak typeof(self) weakSelf = self;
