@@ -769,13 +769,14 @@
 	{
 		//it's a 0-range attack
 		//so it can only target your own square
+		
 		return (x == self.x && y == self.y);
 	}
 	else
 	{
 		//are you in range?
 		int range = [self attackCacheLoadInt:attack fromValue:@"range"];
-		int minRange = 1;
+		int minRange = range == 0 ? 0 : 1;
 		if ([self attackCacheLoadBool:attack fromValue:@"min range"])
 			minRange = [self attackCacheLoadInt:attack fromValue:@"min range"];
 		int distance = ABS(x - self.x) + ABS(y - self.y);
@@ -1174,6 +1175,9 @@
 					virtualCounter = loadValueString(@"Races", counterAttacker.race, @"racial counter attack");
 				else
 					virtualCounter = @"counter";
+				
+				NSString *counterSound = loadValueString(@"Attacks", virtualCounter, @"sound");
+				[[SoundPlayer sharedPlayer] playSound:counterSound];
 				
 				NSString *element = loadValueString(@"Attacks", virtualCounter, @"element");
 				NSString *attackEffect = loadValueString(@"Attacks", virtualCounter, @"attack effect");
@@ -1686,6 +1690,19 @@
 		NSMutableArray *attacks = [NSMutableArray arrayWithArray:[self attacks]];
 		[attacks removeObjectAtIndex:0]; //skip attack
 		shuffleArray(attacks);
+		
+		
+		//see if you can use any self-AOE attacks
+		for (int i = 0; i < attacks.count; i++)
+		{
+			NSString *attack = attacks[i];
+			if ([self canUseAttack:attack] && loadValueBool(@"Attacks", attack, @"area") && [self validTargetSpotFor:attack atX:self.x andY:self.y openSpotsAreFine:NO])
+			{
+				//pick that attack
+				[self useAttackWithName:attack onX:self.x andY:self.y];
+				return YES;
+			}
+		}
 		
 		
 		//look for an attack you can use on the player

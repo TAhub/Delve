@@ -32,6 +32,7 @@
 		<key>power</key> <integer>-10</integer>
 		<key>element</key> <string>no element</string>
 		<key>attack effect</key> <string>direction slam</string>
+		<key>sound</key> <string>poison</string>
 	</dict>
 	<key>android bash</key>
 	<dict>

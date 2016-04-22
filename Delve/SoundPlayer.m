@@ -83,6 +83,11 @@
 	//	.ogg
 	
 	
+	
+	//TODO: new sounds to add
+	//	unlock door
+	
+	
 	if (soundCategoryName.length == 0)
 		return;
 	
@@ -99,11 +104,12 @@
 	NSError *error;
 	AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:&error];
 	
-	if (error != nil)
-	{
-		NSLog(@"SOUND ERROR: %@", [error description]);
-		return;
-	}
+//	if (error != nil)
+//	{
+//		NSLog(@"SOUND ERROR: %@", [error description]);
+//		return;
+//	}
+	assert(error == nil);
 	
 	
 	player.numberOfLoops = 0;
