@@ -78,18 +78,35 @@
 	//		S: 01904 air swoosh.wav by Robinhood76 | License: Attribution Noncommercial
 	
 	
+	//unsupported formats I've noticed so far:
+	//	.flac
+	//	.ogg
+	
 	
 	if (soundCategoryName.length == 0)
 		return;
 	
 	//pick randomly from the sound array
 	NSArray *soundArray = loadArrayEntry(@"Sounds", soundCategoryName);
+	if (soundArray.count == 0)
+		return;
 	NSString *pick = soundArray[arc4random_uniform((u_int32_t)soundArray.count)];
 	NSString *filePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], pick];
 	NSURL *fileURL = [NSURL fileURLWithPath:filePath];
 	
-	AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
+	NSError *error;
+	AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:&error];
+	
+	if (error != nil)
+	{
+		NSLog(@"SOUND ERROR: %@", [error description]);
+		return;
+	}
+	
+	
 	player.numberOfLoops = 0;
+	
+	player.volume = 0.3f;
 	
 	[player play];
 	

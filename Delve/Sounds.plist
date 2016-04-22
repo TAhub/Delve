@@ -14,7 +14,8 @@
 	<array>
 		<string>101432__robinhood76__01904-air-swoosh.wav</string>
 		<string>269294__kwahmah-02__swoosh39.wav</string>
-		<string>59996__qubodup__swoosh-wind-09.flac</string>
+		<!-- <string>59996__qubodup__swoosh-wind-09.flac</string> -->
+		<string>59996__qubodup__swoosh-wind-09.wav</string>
 	</array>
 	
     <key>block</key>
@@ -85,7 +86,8 @@
 	
     <key>bolt</key>
 	<array>
-		<string>267887__wjl__short-fireball-woosh.flac</string>
+		<!-- <string>267887__wjl__short-fireball-woosh.flac</string> -->
+		<string>267887__wjl__short-fireball-woosh.wav</string>
 	</array>
 	
     <key>snarl</key>
@@ -121,7 +123,8 @@
 	<!-- misc sounds -->
     <key>siren</key>
 	<array>
-		<string>242856__plasterbrain__nuclear-alarm.ogg</string>
+		<!-- <string>242856__plasterbrain__nuclear-alarm.ogg</string> -->
+		<string>242856__plasterbrain__nuclear-alarm.wav</string>
 	</array>
 	
     <key>heal</key>
