@@ -12,6 +12,7 @@
 //#import "Constants.h"
 
 int main(int argc, char * argv[]) {
+//	soundCheck();
 //	passiveBalanceTest();
 //	recipieBalanceTest();
 //	return 0;

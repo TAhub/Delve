@@ -237,78 +237,56 @@ void shuffleArray(NSMutableArray *array)
 
 void playSound(NSString *soundCategoryName)
 {
+	//TODO: get bgm (menu, floor 1-3, floor 4-6, floor 7-9, maybe a short song for defeat and for victory)
+	
+	
 	//TODO: put all the liscense info here
+	//NOTE: all sounds from freesound.org
+//		S: frumdum.wav by spectorjay | License: Sampling+
+//		S: Nuclear Alarm by plasterbrain | License: Creative Commons 0
+//		S: Moaning Chair.aif by Housed1J | License: Creative Commons 0
+//		S: Bubbles2.wav by kwahmah_02 | License: Attribution
+//		S: Radio.wav by ZvinbergsA | License: Creative Commons 0
+//		S: bow01.wav by Erdie | License: Attribution
+//		S: Match Ignition 8 by HunteR4708 | License: Creative Commons 0
+//		S: GrowlSnarl.wav by Jamius | License: Attribution
+//		S: Short-Fireball-Woosh.flac by wjl | License: Creative Commons 0
+//		S: Pop sound by deraj | License: Creative Commons 0
+//		S: huh.wav by EiK | License: Creative Commons 0
+//		S: Explosion00.wav by jeremysykes | License: Creative Commons 0
+//		S: Squelch_4.wav by Adam_N | License: Creative Commons 0
+//		S: BoneClicks&GoreSquelches_17.aif by vincentoliver | License: Attribution
+//		S: robotspeaking4 by dotY21 | License: Creative Commons 0
+//		S: Robot2_11.wav by LittleRobotSoundFactory | License: Attribution
+//		S: GirlShock01.wav by Otakua | License: Attribution
+//		S: GirlShock02.wav by Otakua | License: Attribution
+//		S: Shocked gasp.wav by GentlemanWalrus | License: Creative Commons 0
+//		S: hit lid with sledge hammer.wav by dcolvin | License: Attribution
+//		S: Sword Slice 14.wav by Black Snow | License: Attribution
+//		S: whoosh fire by sfx4animation | License: Attribution Noncommercial
+//		S: SwordClash05 by 32cheeseman32 | License: Attribution
+//		S: Sword_Clash (48).wav by JohnBuhr | License: Creative Commons 0
+//		S: swoosh wind 09.flac by qubodup | License: Creative Commons 0
+//		S: swoosh39.wav by kwahmah_02 | License: Attribution
+//		S: 01904 air swoosh.wav by Robinhood76 | License: Attribution Noncommercial
 	
-	
-	
-	//TODO: sound effect choices
-	// (store an array of the filenames inside a plist)
-	//dodge effect ("dodge")
-	//	https://www.freesound.org/people/Robinhood76/sounds/101432/
-	//	https://www.freesound.org/people/kwahmah_02/sounds/269294/
-	//	https://www.freesound.org/people/qubodup/sounds/59996/
-	//block effect ("block")
-	//	https://www.freesound.org/people/JohnBuhr/sounds/326794/
-	//	https://www.freesound.org/people/32cheeseman32/sounds/180825/
-	//burn damage effect ("burn")
-	//	https://www.freesound.org/people/sfx4animation/sounds/273663/
-	//shock damage effect ("shock")
-	//	https://www.freesound.org/people/JoelAudio/sounds/136542/
-	//cut damage effect ("cut")
-	//	https://www.freesound.org/people/Black%20Snow/sounds/109423/
-	//smash damage effect ("smash")
-	//	https://www.freesound.org/people/dcolvin/sounds/193896/
-	//heal sound effect ("heal")
-	//	https://www.freesound.org/people/spectorjay/sounds/37632/
-	//death sound male person ("death person male")
-	//	https://www.freesound.org/people/GentlemanWalrus/sounds/180005/
-	//death sound female person ("death person female")
-	//	https://www.freesound.org/people/Otakua/sounds/219891/
-	//	https://www.freesound.org/people/Otakua/sounds/219890/
-	//death sound machine ("death robot")
-	//	https://www.freesound.org/people/LittleRobotSoundFactory/sounds/316308/
-	//	https://www.freesound.org/people/dotY21/sounds/309512/
-	//death sound beast ("death animal")
-	//	https://www.freesound.org/people/vincentoliver/sounds/180490/
-	//	https://www.freesound.org/people/Adam_N/sounds/148972/
-	//death sound robot ("death guardian")
-	//	https://www.freesound.org/people/jeremysykes/sounds/341239/
-	// confusion ("huh")
-	//	https://www.freesound.org/people/EiK/sounds/240104/
-	// pop ("pop")
-	//	https://www.freesound.org/people/deraj/sounds/202230/
-	//magic bolt throw ("bolt")
-	//	https://www.freesound.org/people/wjl/sounds/267887/
-	//animal snarl ("snarl")
-	//	https://www.freesound.org/people/Jamius/sounds/41526/
-	//flamethrower activate ("flamethrower")
-	//	https://www.freesound.org/people/HunteR4708/sounds/256799/
-	//bow shoot ("bow")
-	//	https://www.freesound.org/people/Erdie/sounds/65733/
-	//technology activate ("activate")
-	//	https://www.freesound.org/people/ZvinbergsA/sounds/273691/
-	//poison bubbles ("poison")
-	//	https://www.freesound.org/people/kwahmah_02/sounds/261597/
-	//metal screech ("screech")
-	//	https://www.freesound.org/people/Housed1J/sounds/175410/
-	//overtime siren ("siren")
-	//	https://www.freesound.org/people/plasterbrain/sounds/242856/
-	//anything else I can think of (menu buttons? I dunno)
 	
 	
 	if (soundCategoryName.length == 0)
 		return;
 	
+	//pick randomly from the sound array
 	NSArray *soundArray = loadArrayEntry(@"Sounds", soundCategoryName);
 	NSString *pick = soundArray[arc4random_uniform((u_int32_t)soundArray.count)];
 	NSString *filePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], pick];
 	NSURL *fileURL = [NSURL fileURLWithPath:filePath];
-	
-	//TODO: play
+
 	AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
 	player.numberOfLoops = -1;
 	
 	[player play];
+	
+	//TODO: ARC is removing these objects right after they are made! oops
 }
 
 #pragma mark tests
@@ -495,4 +473,13 @@ void recipieBalanceTest()
 		float ratio = demand * 1.0f / supply;
 		NSLog(@"--%@: %f", key, ratio);
 	}
+}
+
+void soundCheck()
+{
+	//this check simply tests to see if any of the sound files I have loaded up will cause horrible errors
+	NSArray *soundCategories = loadEntries(@"Sounds").allKeys;
+	for (NSString *soundCategory in soundCategories)
+		for (int i = 0; i < 20; i++)
+			playSound(soundCategory);
 }

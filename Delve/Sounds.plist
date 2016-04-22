@@ -9,9 +9,124 @@
 -->
 <plist version="1.0">
 <dict>
-    <key>template</key>
+	<!-- basic combat sounds -->
+    <key>dodge</key>
 	<array>
-		<string>blah.m4a</string>
+		<string>101432__robinhood76__01904-air-swoosh.wav</string>
+		<string>269294__kwahmah-02__swoosh39.wav</string>
+		<string>59996__qubodup__swoosh-wind-09.flac</string>
+	</array>
+	
+    <key>block</key>
+	<array>
+		<string>326794__johnbuhr__sword-clash-48.wav</string>
+		<string>180825__32cheeseman32__swordclash05.wav</string>
+	</array>
+	
+    <key>burn</key>
+	<array>
+		<string>273663__sfx4animation__whoosh-fire.wav</string>
+	</array>
+	
+    <key>shock</key>
+	<array>
+		<string>136542__joelaudio__electric-zap-001.wav</string>
+	</array>
+	
+    <key>cut</key>
+	<array>
+		<string>109423__black-snow__sword-slice-14.wav</string>
+	</array>
+	
+    <key>smash</key>
+	<array>
+		<string>193896__dcolvin__hit-lid-with-sledge-hammer.wav</string>
+	</array>
+	
+	<!-- death sounds -->
+    <key>death person male</key>
+	<array>
+		<string>180005__gentlemanwalrus__shocked-gasp.wav</string>
+	</array>
+	
+    <key>death person female</key>
+	<array>
+		<string>219891__otakua__girlshock02.wav</string>
+		<string>219890__otakua__girlshock01.wav</string>
+	</array>
+	
+    <key>death robot</key>
+	<array>
+		<string>316308__littlerobotsoundfactory__robot2-11.wav</string>
+		<string>309512__doty21__robotspeaking4.wav</string>
+	</array>
+	
+    <key>death animal</key>
+	<array>
+		<string>180490__vincentoliver__boneclicks-goresquelches-17.aiff</string>
+		<string>148972__adam-n__squelch-4.wav</string>
+	</array>
+	
+    <key>death guardian</key>
+	<array>
+		<string>341239__jeremysykes__explosion00.wav</string>
+	</array>
+	
+	<!-- attack sounds -->
+    <key>huh</key>
+	<array>
+		<string>240104__eik__huh.wav</string>
+	</array>
+	
+    <key>pop</key>
+	<array>
+		<string>202230__deraj__pop-sound.wav</string>
+	</array>
+	
+    <key>bolt</key>
+	<array>
+		<string>267887__wjl__short-fireball-woosh.flac</string>
+	</array>
+	
+    <key>snarl</key>
+	<array>
+		<string>41526__jamius__growlsnarl.wav</string>
+	</array>
+	
+    <key>flamethrower</key>
+	<array>
+		<string>256799__hunter4708__match-ignition-8.wav</string>
+	</array>
+	
+    <key>bow</key>
+	<array>
+		<string>65733__erdie__bow01.wav</string>
+	</array>
+	
+    <key>activate</key>
+	<array>
+		<string>273691__zvinbergsa__radio.wav</string>
+	</array>
+	
+    <key>poison</key>
+	<array>
+		<string>261597__kwahmah-02__bubbles2.wav</string>
+	</array>
+	
+    <key>screech</key>
+	<array>
+		<string>175410__housed1j__moaning-chair.aiff</string>
+	</array>
+	
+	<!-- misc sounds -->
+    <key>siren</key>
+	<array>
+		<string>242856__plasterbrain__nuclear-alarm.ogg</string>
+	</array>
+	
+    <key>heal</key>
+	<array>
+		<string>37632__spectorjay__frumdum.wav</string>
 	</array>
 </dict>
 </plist>

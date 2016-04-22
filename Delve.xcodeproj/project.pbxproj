@@ -7,6 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E406890D1CC9CD7F00BF17DD /* 37632__spectorjay__frumdum.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40688F11CC9CD7F00BF17DD /* 37632__spectorjay__frumdum.wav */; };
+		E406890E1CC9CD7F00BF17DD /* 242856__plasterbrain__nuclear-alarm.ogg in Resources */ = {isa = PBXBuildFile; fileRef = E40688F21CC9CD7F00BF17DD /* 242856__plasterbrain__nuclear-alarm.ogg */; };
+		E406890F1CC9CD7F00BF17DD /* 175410__housed1j__moaning-chair.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E40688F31CC9CD7F00BF17DD /* 175410__housed1j__moaning-chair.aiff */; };
+		E40689101CC9CD7F00BF17DD /* 261597__kwahmah-02__bubbles2.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40688F41CC9CD7F00BF17DD /* 261597__kwahmah-02__bubbles2.wav */; };
+		E40689111CC9CD7F00BF17DD /* 273691__zvinbergsa__radio.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40688F51CC9CD7F00BF17DD /* 273691__zvinbergsa__radio.wav */; };
+		E40689121CC9CD7F00BF17DD /* 65733__erdie__bow01.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40688F61CC9CD7F00BF17DD /* 65733__erdie__bow01.wav */; };
+		E40689131CC9CD7F00BF17DD /* 256799__hunter4708__match-ignition-8.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40688F71CC9CD7F00BF17DD /* 256799__hunter4708__match-ignition-8.wav */; };
+		E40689141CC9CD7F00BF17DD /* 41526__jamius__growlsnarl.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40688F81CC9CD7F00BF17DD /* 41526__jamius__growlsnarl.wav */; };
+		E40689151CC9CD7F00BF17DD /* 267887__wjl__short-fireball-woosh.flac in Resources */ = {isa = PBXBuildFile; fileRef = E40688F91CC9CD7F00BF17DD /* 267887__wjl__short-fireball-woosh.flac */; };
+		E40689161CC9CD7F00BF17DD /* 202230__deraj__pop-sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40688FA1CC9CD7F00BF17DD /* 202230__deraj__pop-sound.wav */; };
+		E40689171CC9CD7F00BF17DD /* 240104__eik__huh.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40688FB1CC9CD7F00BF17DD /* 240104__eik__huh.wav */; };
+		E40689181CC9CD7F00BF17DD /* 341239__jeremysykes__explosion00.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40688FC1CC9CD7F00BF17DD /* 341239__jeremysykes__explosion00.wav */; };
+		E40689191CC9CD7F00BF17DD /* 148972__adam-n__squelch-4.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40688FD1CC9CD7F00BF17DD /* 148972__adam-n__squelch-4.wav */; };
+		E406891A1CC9CD7F00BF17DD /* 180490__vincentoliver__boneclicks-goresquelches-17.aiff in Resources */ = {isa = PBXBuildFile; fileRef = E40688FE1CC9CD7F00BF17DD /* 180490__vincentoliver__boneclicks-goresquelches-17.aiff */; };
+		E406891B1CC9CD7F00BF17DD /* 309512__doty21__robotspeaking4.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40688FF1CC9CD7F00BF17DD /* 309512__doty21__robotspeaking4.wav */; };
+		E406891C1CC9CD7F00BF17DD /* 316308__littlerobotsoundfactory__robot2-11.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40689001CC9CD7F00BF17DD /* 316308__littlerobotsoundfactory__robot2-11.wav */; };
+		E406891D1CC9CD7F00BF17DD /* 219890__otakua__girlshock01.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40689011CC9CD7F00BF17DD /* 219890__otakua__girlshock01.wav */; };
+		E406891E1CC9CD7F00BF17DD /* 219891__otakua__girlshock02.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40689021CC9CD7F00BF17DD /* 219891__otakua__girlshock02.wav */; };
+		E406891F1CC9CD7F00BF17DD /* 180005__gentlemanwalrus__shocked-gasp.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40689031CC9CD7F00BF17DD /* 180005__gentlemanwalrus__shocked-gasp.wav */; };
+		E40689201CC9CD7F00BF17DD /* 193896__dcolvin__hit-lid-with-sledge-hammer.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40689041CC9CD7F00BF17DD /* 193896__dcolvin__hit-lid-with-sledge-hammer.wav */; };
+		E40689211CC9CD7F00BF17DD /* 109423__black-snow__sword-slice-14.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40689051CC9CD7F00BF17DD /* 109423__black-snow__sword-slice-14.wav */; };
+		E40689221CC9CD7F00BF17DD /* 136542__joelaudio__electric-zap-001.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40689061CC9CD7F00BF17DD /* 136542__joelaudio__electric-zap-001.wav */; };
+		E40689231CC9CD7F00BF17DD /* 273663__sfx4animation__whoosh-fire.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40689071CC9CD7F00BF17DD /* 273663__sfx4animation__whoosh-fire.wav */; };
+		E40689241CC9CD7F00BF17DD /* 180825__32cheeseman32__swordclash05.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40689081CC9CD7F00BF17DD /* 180825__32cheeseman32__swordclash05.wav */; };
+		E40689251CC9CD7F00BF17DD /* 326794__johnbuhr__sword-clash-48.wav in Resources */ = {isa = PBXBuildFile; fileRef = E40689091CC9CD7F00BF17DD /* 326794__johnbuhr__sword-clash-48.wav */; };
+		E40689261CC9CD7F00BF17DD /* 59996__qubodup__swoosh-wind-09.flac in Resources */ = {isa = PBXBuildFile; fileRef = E406890A1CC9CD7F00BF17DD /* 59996__qubodup__swoosh-wind-09.flac */; };
+		E40689271CC9CD7F00BF17DD /* 269294__kwahmah-02__swoosh39.wav in Resources */ = {isa = PBXBuildFile; fileRef = E406890B1CC9CD7F00BF17DD /* 269294__kwahmah-02__swoosh39.wav */; };
+		E40689281CC9CD7F00BF17DD /* 101432__robinhood76__01904-air-swoosh.wav in Resources */ = {isa = PBXBuildFile; fileRef = E406890C1CC9CD7F00BF17DD /* 101432__robinhood76__01904-air-swoosh.wav */; };
 		E43463171CC715E400956CC7 /* Sounds.plist in Resources */ = {isa = PBXBuildFile; fileRef = E43463161CC715E400956CC7 /* Sounds.plist */; };
 		E43674AA1C7FACF900B59105 /* Tiles.plist in Resources */ = {isa = PBXBuildFile; fileRef = E43674A91C7FACF900B59105 /* Tiles.plist */; };
 		E43674AC1C80FCAB00B59105 /* Implements.plist in Resources */ = {isa = PBXBuildFile; fileRef = E43674AB1C80FCAB00B59105 /* Implements.plist */; };
@@ -50,6 +78,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E40688F11CC9CD7F00BF17DD /* 37632__spectorjay__frumdum.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 37632__spectorjay__frumdum.wav; sourceTree = "<group>"; };
+		E40688F21CC9CD7F00BF17DD /* 242856__plasterbrain__nuclear-alarm.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = "242856__plasterbrain__nuclear-alarm.ogg"; sourceTree = "<group>"; };
+		E40688F31CC9CD7F00BF17DD /* 175410__housed1j__moaning-chair.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "175410__housed1j__moaning-chair.aiff"; sourceTree = "<group>"; };
+		E40688F41CC9CD7F00BF17DD /* 261597__kwahmah-02__bubbles2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "261597__kwahmah-02__bubbles2.wav"; sourceTree = "<group>"; };
+		E40688F51CC9CD7F00BF17DD /* 273691__zvinbergsa__radio.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 273691__zvinbergsa__radio.wav; sourceTree = "<group>"; };
+		E40688F61CC9CD7F00BF17DD /* 65733__erdie__bow01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 65733__erdie__bow01.wav; sourceTree = "<group>"; };
+		E40688F71CC9CD7F00BF17DD /* 256799__hunter4708__match-ignition-8.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "256799__hunter4708__match-ignition-8.wav"; sourceTree = "<group>"; };
+		E40688F81CC9CD7F00BF17DD /* 41526__jamius__growlsnarl.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 41526__jamius__growlsnarl.wav; sourceTree = "<group>"; };
+		E40688F91CC9CD7F00BF17DD /* 267887__wjl__short-fireball-woosh.flac */ = {isa = PBXFileReference; lastKnownFileType = file; path = "267887__wjl__short-fireball-woosh.flac"; sourceTree = "<group>"; };
+		E40688FA1CC9CD7F00BF17DD /* 202230__deraj__pop-sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "202230__deraj__pop-sound.wav"; sourceTree = "<group>"; };
+		E40688FB1CC9CD7F00BF17DD /* 240104__eik__huh.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 240104__eik__huh.wav; sourceTree = "<group>"; };
+		E40688FC1CC9CD7F00BF17DD /* 341239__jeremysykes__explosion00.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 341239__jeremysykes__explosion00.wav; sourceTree = "<group>"; };
+		E40688FD1CC9CD7F00BF17DD /* 148972__adam-n__squelch-4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "148972__adam-n__squelch-4.wav"; sourceTree = "<group>"; };
+		E40688FE1CC9CD7F00BF17DD /* 180490__vincentoliver__boneclicks-goresquelches-17.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "180490__vincentoliver__boneclicks-goresquelches-17.aiff"; sourceTree = "<group>"; };
+		E40688FF1CC9CD7F00BF17DD /* 309512__doty21__robotspeaking4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 309512__doty21__robotspeaking4.wav; sourceTree = "<group>"; };
+		E40689001CC9CD7F00BF17DD /* 316308__littlerobotsoundfactory__robot2-11.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "316308__littlerobotsoundfactory__robot2-11.wav"; sourceTree = "<group>"; };
+		E40689011CC9CD7F00BF17DD /* 219890__otakua__girlshock01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 219890__otakua__girlshock01.wav; sourceTree = "<group>"; };
+		E40689021CC9CD7F00BF17DD /* 219891__otakua__girlshock02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 219891__otakua__girlshock02.wav; sourceTree = "<group>"; };
+		E40689031CC9CD7F00BF17DD /* 180005__gentlemanwalrus__shocked-gasp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "180005__gentlemanwalrus__shocked-gasp.wav"; sourceTree = "<group>"; };
+		E40689041CC9CD7F00BF17DD /* 193896__dcolvin__hit-lid-with-sledge-hammer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "193896__dcolvin__hit-lid-with-sledge-hammer.wav"; sourceTree = "<group>"; };
+		E40689051CC9CD7F00BF17DD /* 109423__black-snow__sword-slice-14.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "109423__black-snow__sword-slice-14.wav"; sourceTree = "<group>"; };
+		E40689061CC9CD7F00BF17DD /* 136542__joelaudio__electric-zap-001.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "136542__joelaudio__electric-zap-001.wav"; sourceTree = "<group>"; };
+		E40689071CC9CD7F00BF17DD /* 273663__sfx4animation__whoosh-fire.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "273663__sfx4animation__whoosh-fire.wav"; sourceTree = "<group>"; };
+		E40689081CC9CD7F00BF17DD /* 180825__32cheeseman32__swordclash05.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 180825__32cheeseman32__swordclash05.wav; sourceTree = "<group>"; };
+		E40689091CC9CD7F00BF17DD /* 326794__johnbuhr__sword-clash-48.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "326794__johnbuhr__sword-clash-48.wav"; sourceTree = "<group>"; };
+		E406890A1CC9CD7F00BF17DD /* 59996__qubodup__swoosh-wind-09.flac */ = {isa = PBXFileReference; lastKnownFileType = file; path = "59996__qubodup__swoosh-wind-09.flac"; sourceTree = "<group>"; };
+		E406890B1CC9CD7F00BF17DD /* 269294__kwahmah-02__swoosh39.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "269294__kwahmah-02__swoosh39.wav"; sourceTree = "<group>"; };
+		E406890C1CC9CD7F00BF17DD /* 101432__robinhood76__01904-air-swoosh.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "101432__robinhood76__01904-air-swoosh.wav"; sourceTree = "<group>"; };
 		E43463161CC715E400956CC7 /* Sounds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Sounds.plist; sourceTree = "<group>"; };
 		E43674A91C7FACF900B59105 /* Tiles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tiles.plist; sourceTree = "<group>"; };
 		E43674AB1C80FCAB00B59105 /* Implements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Implements.plist; sourceTree = "<group>"; };
@@ -123,6 +179,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E40688F01CC9C99D00BF17DD /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				E40688F11CC9CD7F00BF17DD /* 37632__spectorjay__frumdum.wav */,
+				E40688F21CC9CD7F00BF17DD /* 242856__plasterbrain__nuclear-alarm.ogg */,
+				E40688F31CC9CD7F00BF17DD /* 175410__housed1j__moaning-chair.aiff */,
+				E40688F41CC9CD7F00BF17DD /* 261597__kwahmah-02__bubbles2.wav */,
+				E40688F51CC9CD7F00BF17DD /* 273691__zvinbergsa__radio.wav */,
+				E40688F61CC9CD7F00BF17DD /* 65733__erdie__bow01.wav */,
+				E40688F71CC9CD7F00BF17DD /* 256799__hunter4708__match-ignition-8.wav */,
+				E40688F81CC9CD7F00BF17DD /* 41526__jamius__growlsnarl.wav */,
+				E40688F91CC9CD7F00BF17DD /* 267887__wjl__short-fireball-woosh.flac */,
+				E40688FA1CC9CD7F00BF17DD /* 202230__deraj__pop-sound.wav */,
+				E40688FB1CC9CD7F00BF17DD /* 240104__eik__huh.wav */,
+				E40688FC1CC9CD7F00BF17DD /* 341239__jeremysykes__explosion00.wav */,
+				E40688FD1CC9CD7F00BF17DD /* 148972__adam-n__squelch-4.wav */,
+				E40688FE1CC9CD7F00BF17DD /* 180490__vincentoliver__boneclicks-goresquelches-17.aiff */,
+				E40688FF1CC9CD7F00BF17DD /* 309512__doty21__robotspeaking4.wav */,
+				E40689001CC9CD7F00BF17DD /* 316308__littlerobotsoundfactory__robot2-11.wav */,
+				E40689011CC9CD7F00BF17DD /* 219890__otakua__girlshock01.wav */,
+				E40689021CC9CD7F00BF17DD /* 219891__otakua__girlshock02.wav */,
+				E40689031CC9CD7F00BF17DD /* 180005__gentlemanwalrus__shocked-gasp.wav */,
+				E40689041CC9CD7F00BF17DD /* 193896__dcolvin__hit-lid-with-sledge-hammer.wav */,
+				E40689051CC9CD7F00BF17DD /* 109423__black-snow__sword-slice-14.wav */,
+				E40689061CC9CD7F00BF17DD /* 136542__joelaudio__electric-zap-001.wav */,
+				E40689071CC9CD7F00BF17DD /* 273663__sfx4animation__whoosh-fire.wav */,
+				E40689081CC9CD7F00BF17DD /* 180825__32cheeseman32__swordclash05.wav */,
+				E40689091CC9CD7F00BF17DD /* 326794__johnbuhr__sword-clash-48.wav */,
+				E406890A1CC9CD7F00BF17DD /* 59996__qubodup__swoosh-wind-09.flac */,
+				E406890B1CC9CD7F00BF17DD /* 269294__kwahmah-02__swoosh39.wav */,
+				E406890C1CC9CD7F00BF17DD /* 101432__robinhood76__01904-air-swoosh.wav */,
+			);
+			name = sounds;
+			sourceTree = "<group>";
+		};
 		E459C67A1C7AB2E800422B0A = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +266,7 @@
 				E459C6891C7AB2E800422B0A /* AppDelegate.h */,
 				E459C68A1C7AB2E800422B0A /* AppDelegate.m */,
 				E459C6871C7AB2E800422B0A /* main.m */,
+				E40688F01CC9C99D00BF17DD /* sounds */,
 				E459C6941C7AB2E800422B0A /* LaunchScreen.storyboard */,
 			);
 			name = "Supporting Files";
@@ -295,27 +387,55 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E40689141CC9CD7F00BF17DD /* 41526__jamius__growlsnarl.wav in Resources */,
 				E459C6BE1C7C20AD00422B0A /* Colors.plist in Resources */,
+				E406891D1CC9CD7F00BF17DD /* 219890__otakua__girlshock01.wav in Resources */,
+				E40689111CC9CD7F00BF17DD /* 273691__zvinbergsa__radio.wav in Resources */,
+				E40689281CC9CD7F00BF17DD /* 101432__robinhood76__01904-air-swoosh.wav in Resources */,
+				E40689211CC9CD7F00BF17DD /* 109423__black-snow__sword-slice-14.wav in Resources */,
+				E40689221CC9CD7F00BF17DD /* 136542__joelaudio__electric-zap-001.wav in Resources */,
+				E406890D1CC9CD7F00BF17DD /* 37632__spectorjay__frumdum.wav in Resources */,
+				E40689121CC9CD7F00BF17DD /* 65733__erdie__bow01.wav in Resources */,
 				E44A6FCC1C98F8B20015852C /* AIs.plist in Resources */,
 				E459C6961C7AB2E800422B0A /* LaunchScreen.storyboard in Resources */,
 				E4AE94A51CC318B900C1BC96 /* Endings.plist in Resources */,
+				E40689201CC9CD7F00BF17DD /* 193896__dcolvin__hit-lid-with-sledge-hammer.wav in Resources */,
 				E43674B01C813CC900B59105 /* Assets.xcassets in Resources */,
+				E40689181CC9CD7F00BF17DD /* 341239__jeremysykes__explosion00.wav in Resources */,
+				E40689271CC9CD7F00BF17DD /* 269294__kwahmah-02__swoosh39.wav in Resources */,
+				E406890F1CC9CD7F00BF17DD /* 175410__housed1j__moaning-chair.aiff in Resources */,
 				E459C6BC1C7C201D00422B0A /* Armors.plist in Resources */,
+				E40689161CC9CD7F00BF17DD /* 202230__deraj__pop-sound.wav in Resources */,
+				E406891E1CC9CD7F00BF17DD /* 219891__otakua__girlshock02.wav in Resources */,
 				E462381E1C83F50D009C9FC4 /* ItemCell.xib in Resources */,
+				E406891C1CC9CD7F00BF17DD /* 316308__littlerobotsoundfactory__robot2-11.wav in Resources */,
 				E459C6911C7AB2E800422B0A /* Main.storyboard in Resources */,
 				E46238321C8A6901009C9FC4 /* Tilesets.plist in Resources */,
 				E442C81C1C8B65950048DD95 /* AttackEffects.plist in Resources */,
 				E46238251C84B746009C9FC4 /* Recipies.plist in Resources */,
+				E40689151CC9CD7F00BF17DD /* 267887__wjl__short-fireball-woosh.flac in Resources */,
+				E406890E1CC9CD7F00BF17DD /* 242856__plasterbrain__nuclear-alarm.ogg in Resources */,
 				E459C6A71C7ABB6400422B0A /* SkillTrees.plist in Resources */,
 				E43674AA1C7FACF900B59105 /* Tiles.plist in Resources */,
+				E40689171CC9CD7F00BF17DD /* 240104__eik__huh.wav in Resources */,
+				E40689251CC9CD7F00BF17DD /* 326794__johnbuhr__sword-clash-48.wav in Resources */,
+				E40689101CC9CD7F00BF17DD /* 261597__kwahmah-02__bubbles2.wav in Resources */,
 				E43674AC1C80FCAB00B59105 /* Implements.plist in Resources */,
 				E43463171CC715E400956CC7 /* Sounds.plist in Resources */,
 				E43674AE1C80FFBA00B59105 /* Lists.plist in Resources */,
 				E46238301C8A1177009C9FC4 /* Floors.plist in Resources */,
+				E406891A1CC9CD7F00BF17DD /* 180490__vincentoliver__boneclicks-goresquelches-17.aiff in Resources */,
+				E406891B1CC9CD7F00BF17DD /* 309512__doty21__robotspeaking4.wav in Resources */,
+				E406891F1CC9CD7F00BF17DD /* 180005__gentlemanwalrus__shocked-gasp.wav in Resources */,
 				E459C6AC1C7B7FC300422B0A /* Attacks.plist in Resources */,
 				E459C6A51C7ABB5200422B0A /* Races.plist in Resources */,
 				E46238231C83F8A1009C9FC4 /* InventoryItems.plist in Resources */,
 				E459C6B41C7BBCC400422B0A /* EnemyTypes.plist in Resources */,
+				E40689231CC9CD7F00BF17DD /* 273663__sfx4animation__whoosh-fire.wav in Resources */,
+				E40689241CC9CD7F00BF17DD /* 180825__32cheeseman32__swordclash05.wav in Resources */,
+				E40689261CC9CD7F00BF17DD /* 59996__qubodup__swoosh-wind-09.flac in Resources */,
+				E40689191CC9CD7F00BF17DD /* 148972__adam-n__squelch-4.wav in Resources */,
+				E40689131CC9CD7F00BF17DD /* 256799__hunter4708__match-ignition-8.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

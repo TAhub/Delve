@@ -122,3 +122,4 @@ void playSound(NSString *soundCategoryName);
 #pragma mark tests
 void passiveBalanceTest();
 void recipieBalanceTest();
+void soundCheck();
