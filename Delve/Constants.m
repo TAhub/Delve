@@ -424,8 +424,12 @@ void recipieBalanceTest()
 void soundCheck()
 {
 	//this check simply tests to see if any of the sound files I have loaded up will cause horrible errors
+	int sounds = 0;
 	NSArray *soundCategories = loadEntries(@"Sounds").allKeys;
 	for (NSString *soundCategory in soundCategories)
 		for (int i = 0; i < 20; i++)
+		{
+			sounds += 1;
 			[[SoundPlayer sharedPlayer] playSound:soundCategory];
+		}
 }

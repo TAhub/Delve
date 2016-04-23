@@ -116,7 +116,7 @@
 	
 	player.volume = 0.3f;
 	
-	[player play];
+//	[player play];
 	
 	//store the player into an array so it's not garbage-collected
 	[self.activeSounds addObject:player];

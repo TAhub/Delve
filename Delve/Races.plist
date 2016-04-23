@@ -396,6 +396,7 @@
 		<key>burn resistance</key> <integer>-3</integer>
 		<key>metabolism</key> <integer>100</integer>
 		<key>counter</key> <integer>14</integer>
+		<key>racial counter attack</key> <string>slime counter</string>
 		<!-- slots -->
 		<!-- appearance -->
 		<key>sprite</key> <string>greater_slime</string>
@@ -604,11 +605,12 @@
 	
 	<!-- abomination (medium) -->
 	<!-- abominations are a damaging enemy type that is weak to cut but resistant against smash -->
+	<!-- they have a bit more HP than they "should", to make up for being so cripplingly vulnerable to ranged attacks -->
 	<key>abomination</key>
 	<dict>
 		<key>death category</key> <string>animal</string>
 		<!-- stats -->
-		<key>damage bonus</key> <integer>155</integer>
+		<key>damage bonus</key> <integer>180</integer>
 		<key>health</key> <integer>95</integer>
 		<key>smash resistance</key> <integer>2</integer>
 		<key>cut resistance</key> <integer>-3</integer>
