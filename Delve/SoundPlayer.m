@@ -106,11 +106,11 @@
 	NSError *error;
 	AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:&error];
 	
-//	if (error != nil)
-//	{
-//		NSLog(@"SOUND ERROR: %@", [error description]);
+	if (error != nil)
+	{
+		NSLog(@"SOUND ERROR: %@", [error description]);
 //		return;
-//	}
+	}
 	assert(error == nil);
 	
 	

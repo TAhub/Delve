@@ -127,58 +127,37 @@ UIColor *loadColorFromName(NSString *name)
 	assert([e isKindOfClass:[NSString class]]);
 	return loadColor(e);
 }
+
+
+//plist caching
+NSMutableDictionary *plists = nil;
+
+//turn the caching off when you go multithreaded
+//TODO: this does nothing at the moment
+BOOL cachingEnabled = true;
+
 NSDictionary *loadEntries(NSString *category)
 {
-	NSString *p = [[NSBundle mainBundle] pathForResource:category ofType:@"plist"];
-	NSDictionary *d = [[NSDictionary alloc] initWithContentsOfFile:p];
-	assert(d != nil);
+	if (plists == nil)
+		plists = [NSMutableDictionary new];
+	
+	NSDictionary *d = plists[category];
+	if (d == nil)
+	{
+		NSString *p = [[NSBundle mainBundle] pathForResource:category ofType:@"plist"];
+		d = [[NSDictionary alloc] initWithContentsOfFile:p];
+		plists[category] = d;
+	}
 	return d;
 }
 
-//plist caching
-NSString *entryName = nil;
-NSString *categoryName = nil;
-NSDictionary *categoryCache = nil;
-NSDictionary *entryCache = nil;
-
-//turn the caching off when you go multithreaded
-BOOL cachingEnabled = true;
-
 NSDictionary *loadEntry(NSString *category, NSString *entry)
 {
-	if (cachingEnabled)
-	{
-		if (![category isEqualToString:categoryName])
-		{
-			categoryName = nil;
-			entryName = nil;
-		}
-		if (![entry isEqualToString:entryName])
-			entryName = nil;
-		
-		if (categoryName == nil)
-		{
-			categoryCache = loadEntries(category);
-			categoryName = category;
-		}
-		if (entryName == nil)
-		{
-			id e = categoryCache[entry];
-			assert(e != nil);
-			assert([e isKindOfClass:[NSDictionary class]]);
-			entryCache = e;
-			entryName = entry;
-		}
-		return entryCache;
-	}
-	else
-	{
-		NSDictionary *d = loadEntries(category);
-		id e = d[entry];
-		assert(e != nil);
-		assert([e isKindOfClass:[NSDictionary class]]);
-		return e;
-	}
+	NSDictionary *d = loadEntries(category);
+	id e = d[entry];
+	assert(e != nil);
+	assert([e isKindOfClass:[NSDictionary class]]);
+	return e;
 }
 NSArray *loadArrayEntry(NSString *category, NSString *entry)
 {
