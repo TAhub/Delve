@@ -109,16 +109,16 @@
 	if (error != nil)
 	{
 		NSLog(@"SOUND ERROR: %@", [error description]);
-//		return;
+		return;
 	}
-	assert(error == nil);
+//	assert(error == nil);
 	
 	
 	player.numberOfLoops = 0;
 	
 	player.volume = 0.3f;
 	
-//	[player play];
+	[player play];
 	
 	//store the player into an array so it's not garbage-collected
 	[self.activeSounds addObject:player];

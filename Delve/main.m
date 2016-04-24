@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-#import "Constants.h"
+//#import "Constants.h"
 
 int main(int argc, char * argv[]) {
-	soundCheck();
+//	soundCheck();
 //	passiveBalanceTest();
 //	recipieBalanceTest();
 //	return 0;
