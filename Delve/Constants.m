@@ -82,7 +82,14 @@ UIImage *solidColorImage(UIImage *image, UIColor *color)
 	CGContextFillRect(bitmapContext, rect);
 	
 	CGImageRef snapshot = CGBitmapContextCreateImage(bitmapContext);
-	return [UIImage imageWithCGImage:snapshot];
+	UIImage *finalImage = [UIImage imageWithCGImage:snapshot];
+	
+	//release things
+	CGImageRelease(snapshot);
+	CGContextRelease(bitmapContext);
+	CGColorSpaceRelease(colorSpace);
+	
+	return finalImage;
 }
 
 UIImage *colorImage(UIImage *image, UIColor *color)
