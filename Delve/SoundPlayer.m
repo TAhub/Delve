@@ -8,7 +8,8 @@
 
 #import "SoundPlayer.h"
 #import "Constants.h"
-#import <AVFoundation/AVAudioPlayer.h>
+//#import <AVFoundation/AVAudioPlayer.h>
+#import <AudioToolbox/AudioServices.h>
 
 @interface SoundPlayer()
 
@@ -103,35 +104,42 @@
 	NSString *filePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], pick];
 	NSURL *fileURL = [NSURL fileURLWithPath:filePath];
 	
-	NSError *error;
-	AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:&error];
-	
-	if (error != nil)
+	SystemSoundID soundID;
+	OSStatus error = AudioServicesCreateSystemSoundID((__bridge CFURLRef)fileURL, &soundID);
+	if (error == kAudioSessionNoError)
 	{
-		NSLog(@"SOUND ERROR: %@", [error description]);
-		return;
+		//play sound
+		AudioServicesPlaySystemSound(soundID);
+		
 	}
-//	assert(error == nil);
+	else
+		NSLog(@"Sound %@ failed with error #%d.", soundCategoryName, (int)error);
 	
 	
-	player.numberOfLoops = 0;
-	
-	player.volume = 0.3f;
-	
-	[player play];
+	//I was using AVAudioPlayer, but it might be too heavyweight for playing lots of short sound clips like I am doing
+//	NSError *error;
+//	AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:&error];
+//	if (error != nil)
+//	{
+//		NSLog(@"SOUND ERROR: %@", [error description]);
+//		return;
+//	}
+//	player.numberOfLoops = 0;
+//	player.volume = 0.3f;
+//	[player play];
 	
 	//store the player into an array so it's not garbage-collected
-	[self.activeSounds addObject:player];
+//	[self.activeSounds addObject:player];
 	
 	//add a timer to remove the sound
-	[NSTimer timerWithTimeInterval:player.duration + 0.1f target:self selector:@selector(soundPlayed:) userInfo:nil repeats:NO];
+//	[NSTimer timerWithTimeInterval:player.duration + 0.1f target:self selector:@selector(soundPlayed:) userInfo:nil repeats:NO];
 }
 
 -(void)soundPlayed:(NSTimer *)timer
 {
-	for (AVAudioPlayer *sound in self.activeSounds)
-		if (!sound.playing)
-			[self.activeSounds removeObject:sound];
+//	for (AVAudioPlayer *sound in self.activeSounds)
+//		if (!sound.playing)
+//			[self.activeSounds removeObject:sound];
 }
 
 
