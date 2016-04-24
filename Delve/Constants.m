@@ -53,10 +53,14 @@ UIImage *mergeImagesWithAlphas(NSArray *images, CGPoint anchorPoint, NSArray *yA
 			imageView.alpha = ((NSNumber *)alphas[i]).floatValue;
 	}
 	
-	UIGraphicsBeginImageContext(boundsRect.size);
-	[combinedView.layer renderInContext:UIGraphicsGetCurrentContext()];
-	UIImage *combinedImage = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
+	UIImage *combinedImage;
+	@autoreleasepool
+	{
+		UIGraphicsBeginImageContext(boundsRect.size);
+		[combinedView.layer renderInContext:UIGraphicsGetCurrentContext()];
+		combinedImage = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
+	}
 	return combinedImage;
 }
 

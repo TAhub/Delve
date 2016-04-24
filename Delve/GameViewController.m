@@ -562,7 +562,7 @@
 		return;
 	
 	self.attackChosen = attackChosen;
-	NSLog(@"Picked attack #%li: %@", (long)sender.tag, self.attackChosen);
+//	NSLog(@"Picked attack #%li: %@", (long)sender.tag, self.attackChosen);
 	
 	[self reloadAttackTargets:NO];
 	[self switchToPanel:self.attackConfirmPanelCord];
@@ -1000,7 +1000,7 @@
 	int y = ((int)floorf(touchPoint.y) - self.mapView.yOffset) / GAMEPLAY_TILE_SIZE;
 	Tile *tile = self.map.tiles[y][x];
 
-	NSLog(@"touched (%i %i), player is at (%i %i)", x, y, self.map.player.x, self.map.player.y);
+//	NSLog(@"touched (%i %i), player is at (%i %i)", x, y, self.map.player.x, self.map.player.y);
 	
 	if (self.attackChosen != nil)
 	{
@@ -1552,7 +1552,7 @@
 
 -(void)goToNextMap
 {
-	NSLog(@"Finished map with %i left on the countdown!", self.map.countdown);
+//	NSLog(@"Finished map with %i left on the countdown!", self.map.countdown);
 	
 	//do a fancy end-of-map animation
 	self.animating = true;
@@ -1584,7 +1584,7 @@
 	
 	int countdown = self.map.countdown;
 	
-	NSLog(@"COUNTDOWN: %i", countdown);
+//	NSLog(@"COUNTDOWN: %i", countdown);
 	
 	if (countdown % GAMEPLAY_COUNTDOWN_WARNING_INTERVAL != 0)
 	{

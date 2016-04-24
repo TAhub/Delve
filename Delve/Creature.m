@@ -926,7 +926,7 @@
 
 -(void) useAttackWithTreeNumber:(int)treeNumber andName:(NSString *)name onX:(int)x andY:(int)y
 {
-	NSLog(@"Using attack %@ from tree %i", name, treeNumber);
+//	NSLog(@"Using attack %@ from tree %i", name, treeNumber);
 	
 	//check to see if you can target that spot
 	if (![self validTargetSpotFor:name atX:x andY:y openSpotsAreFine:NO])
@@ -1182,7 +1182,7 @@
 				NSString *element = loadValueString(@"Attacks", virtualCounter, @"element");
 				NSString *attackEffect = loadValueString(@"Attacks", virtualCounter, @"attack effect");
 				
-				NSLog(@"Counter element = %@", element);
+//				NSLog(@"Counter element = %@", element);
 				
 				[weakSelf.map.delegate attackAnimation:virtualCounter withElement:element suffix:nil andAttackEffect:attackEffect fromPerson:counterAttacker targetX:weakSelf.x andY:weakSelf.y withEffectBlock:
 				^(void (^nevermind)(void))
@@ -1217,9 +1217,9 @@
 		if ([deathType isEqualToString:@"person"])
 		{
 			if (self.gender)
-				[[SoundPlayer sharedPlayer] playSound:@"person death female"];
+				[[SoundPlayer sharedPlayer] playSound:@"death person female"];
 			else
-				[[SoundPlayer sharedPlayer] playSound:@"person death male"];
+				[[SoundPlayer sharedPlayer] playSound:@"death person male"];
 		}
 		else
 			[[SoundPlayer sharedPlayer] playSound:[NSString stringWithFormat:@"death %@", deathType]];
@@ -1296,7 +1296,7 @@
 	if (!self.good && !self.awake)
 	{
 		//this is for if someone is somehow hit while asleep (for instance, by a stealthy player, or with a big AoE)
-		NSLog(@"Woken by touch!");
+//		NSLog(@"Woken by touch!");
 		self.awake = true;
 		[self wakeUpNearby];
 	}
@@ -1457,7 +1457,7 @@
 				Tile *tile = self.map.tiles[y][x];
 				if (tile.inhabitant != nil && !tile.inhabitant.good && !tile.inhabitant.awake)
 				{
-					NSLog(@"Woken by hearing!");
+//					NSLog(@"Woken by hearing!");
 					tile.inhabitant.awake = true;
 				}
 			}
@@ -1538,13 +1538,13 @@
 
 -(BOOL) startTurnInnerer
 {
-	NSLog(@"Turn started for %@", self.good ? @"player" : self.name);
+//	NSLog(@"Turn started for %@", self.good ? @"player" : self.name);
 	
 	Tile *tile = self.map.tiles[self.y][self.x];
 	
 	if (self.map.overtime && !self.good && !self.awake)
 	{
-		NSLog(@"Woken by fear!");
+//		NSLog(@"Woken by fear!");
 		self.awake = true; //automatically wake up in overtime
 	}
 	
@@ -1557,7 +1557,7 @@
 		int distance = ABS(self.x - self.map.player.x) + ABS(self.y - self.map.player.y);
 		if (distance <= (self.map.player.stealthed == 0 ? self.aiSightDistance : self.aiStealthSightDistance))
 		{
-			NSLog(@"Woken by sight!");
+//			NSLog(@"Woken by sight!");
 			self.awake = true;
 			[self wakeUpNearby];
 		}
@@ -1810,7 +1810,7 @@
 		} forAttack:@"regen range finder" onX:self.x andY:self.y];
 		if (!enemiesNear)
 		{
-			NSLog(@"Regen dodges!");
+//			NSLog(@"Regen dodges!");
 			
 			//regenerate dodges and blocks
 			self.dodges = MIN(self.dodges + 1, self.maxDodges);

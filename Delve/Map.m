@@ -169,7 +169,7 @@
 
 -(void)update
 {
-	NSLog(@"UPDATE!!");
+//	NSLog(@"UPDATE!!");
 	
 	[[NSUserDefaults standardUserDefaults] setInteger:self.countdown forKey:@"countdown"];
 	
