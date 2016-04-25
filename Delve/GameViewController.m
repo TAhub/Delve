@@ -280,7 +280,7 @@
 			UIColor *color;
 			if ([self.map.player canUseAttack:attack])
 			{
-				NSString *element = [self.map.player elementForAttack:attack];
+//				NSString *element = [self.map.player elementForAttack:attack];
 				
 				//TODO: if element isn't nil, display a little elemental orb too
 				
@@ -708,6 +708,8 @@
 					Item *it = [self.map makeItemFromRecipie:recipie];
 					[self.map payForRecipie:recipie];
 					
+					[[SoundPlayer sharedPlayer] playSound:@"craft"];
+					
 					if (it.type != ItemTypeInventory)
 					{
 						Tile *tile = self.map.tiles[self.map.player.y][self.map.player.x];
@@ -807,6 +809,8 @@
 					//unlock
 					if (self.map.player.hacks > 0)
 					{
+						[[SoundPlayer sharedPlayer] playSound:@"unlock"];
+						
 						self.map.player.hacks -= 1;
 						tile.treasureType = TreasureTypeChest;
 						tile.changed = true;
@@ -825,6 +829,8 @@
 					[self.map addItem:[[Item alloc] initWithName:material andType:ItemTypeInventory]];
 					
 					[self.map saveInventory];
+					
+					[[SoundPlayer sharedPlayer] playSound:@"craft"];
 					
 					tile.treasure = nil;
 					tile.treasureType = TreasureTypeNone;

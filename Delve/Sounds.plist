@@ -131,5 +131,20 @@
 	<array>
 		<string>37632__spectorjay__frumdum.wav</string>
 	</array>
+	
+    <key>teleport</key>
+	<array>
+		<string>172207__fins__teleport.wav</string>
+	</array>
+	
+    <key>craft</key>
+	<array>
+		<string>103628__benboncan__large-anvil-steel-hammer.wav</string>
+	</array>
+	
+    <key>unlock</key>
+	<array>
+		<string>131029__dymewiz__locking-a-door-02.wav</string>
+	</array>
 </dict>
 </plist>

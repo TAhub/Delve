@@ -1263,6 +1263,8 @@
 	Tile *oldTile = self.map.tiles[self.y][self.x];
 	if (tile.canUnlock && self.good && self.hacks > 0)
 	{
+		[[SoundPlayer sharedPlayer] playSound:@"unlock"];
+		
 		[tile unlock];
 		tile.changed = true;
 		self.hacks -= 1;

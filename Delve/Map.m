@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "GeneratorRoom.h"
 #import "Item.h"
+#import "SoundPlayer.h"
 
 @interface Map()
 
@@ -360,6 +361,8 @@
 			
 			if (person.good && ((Tile *)self.tiles[person.y][person.x]).stairs) //if you walked onto a stair tile
 			{
+				[[SoundPlayer sharedPlayer] playSound:@"teleport"];
+				
 				weakSelf.personOn = (int)weakSelf.creatures.count + 5; //to make sure it's not the player's turn
 				[weakSelf.delegate goToNextMap];
 			}

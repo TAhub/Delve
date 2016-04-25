@@ -84,13 +84,6 @@
 	//	.ogg
 	
 	
-	
-	//TODO: new sounds to add
-	//	unlock door/chest
-	//	teleport
-	//	crafting sound (just some generic hammering sound I guess)
-	
-	
 	if (soundCategoryName.length == 0)
 		return;
 	
