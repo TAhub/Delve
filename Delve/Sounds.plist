@@ -64,7 +64,8 @@
 	
     <key>death animal</key>
 	<array>
-		<string>180490__vincentoliver__boneclicks-goresquelches-17.aiff</string>
+		<!-- <string>180490__vincentoliver__boneclicks-goresquelches-17.aiff</string> -->
+		<string>180490__vincentoliver__boneclicks-goresquelches-17.wav</string>
 		<string>148972__adam-n__squelch-4.wav</string>
 	</array>
 	
@@ -117,7 +118,8 @@
 	
     <key>screech</key>
 	<array>
-		<string>175410__housed1j__moaning-chair.aiff</string>
+		<!-- <string>175410__housed1j__moaning-chair.aiff</string> -->
+		<string>175410__housed1j__moaning-chair.wav</string>
 	</array>
 	
 	<!-- misc sounds -->

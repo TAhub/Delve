@@ -77,6 +77,8 @@
 	//		S: swoosh wind 09.flac by qubodup | License: Creative Commons 0
 	//		S: swoosh39.wav by kwahmah_02 | License: Attribution
 	//		S: 01904 air swoosh.wav by Robinhood76 | License: Attribution Noncommercial
+	//		S: Large Anvil & Steel Hammer .wav by Benboncan | License: Attribution
+	//		S: locking a door_02.wav by Dymewiz | License: Attribution
 	
 	
 	//unsupported formats I've noticed so far:
