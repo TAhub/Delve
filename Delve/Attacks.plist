@@ -175,7 +175,7 @@
 		<key>attack effect</key> <string>slash</string>
 		<key>sound</key> <string>flamethrower</string>
 		<key>description</key> <string>Strike a foe with a red-hot bar of iron from the forge.</string>
-		<key>power</key> <integer>30</integer>
+		<key>power</key> <integer>32</integer>
 		<key>element</key> <string>burn</string>
 		<key>range</key> <integer>1</integer>
 		<key>cooldown</key> <integer>4</integer>
@@ -187,7 +187,7 @@
 		<key>attack effect</key> <string>direction slash</string>
 		<key>sound</key> <string>activate</string>
 		<key>description</key> <string>Release a little stolen holy energy from your tools, shocking a foe.</string>
-		<key>power</key> <integer>25</integer>
+		<key>power</key> <integer>27</integer>
 		<key>element</key> <string>shock</string>
 		<key>range</key> <integer>2</integer>
 		<key>cooldown</key> <integer>15</integer>
@@ -429,7 +429,7 @@
 		<key>attack effect</key> <string>explosion</string>
 		<key>sound</key> <string>poison</string>
 		<key>description</key> <string>Use a secret ritual to poison a foe's blood directly.</string>
-		<key>power</key> <integer>10</integer>
+		<key>power</key> <integer>12</integer>
 		<key>element</key> <string>no element</string>
 		<key>range</key> <integer>3</integer>
 		<key>area</key> <integer>1</integer>

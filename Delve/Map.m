@@ -97,6 +97,7 @@
 			[self addItem:[[Item alloc] initWithName:@"crystal" andType:ItemTypeInventory]];
 		for (int i = 0; i < 2; i++)
 			[self addItem:[[Item alloc] initWithName:@"ration" andType:ItemTypeInventory]];
+		[self addItem:[[Item alloc] initWithName:@"time core" andType:ItemTypeInventory]];
 //		for (int i = 0; i < self.inventory.count; i++) //I ate all my bread
 //		{
 //			Item *it = self.inventory[i];
@@ -598,7 +599,7 @@
 	self.floorNum = map == nil ? 0 : map.floorNum + 1;
 	
 	//TODO: quickstart
-	self.floorNum = map == nil ? 7 : map.floorNum + 1;
+	self.floorNum = map == nil ? 8 : map.floorNum + 1;
 	
 	NSString *floorName = [NSString stringWithFormat:@"floor %i", self.floorNum];
 	
