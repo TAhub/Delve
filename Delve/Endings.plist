@@ -19,6 +19,7 @@
 		<key>no robot kills</key> <true/>
 		<key>no person kills</key> <true/>
 		<key>text</key> <string>You do something generic.\nYou go on to do more generic things.</string>
+		<key>title</key> <string>Template</string>
 	</dict>
 	
 	<!-- TODO: fluff notes -->
@@ -31,6 +32,7 @@
 		<key>no robot kills</key> <true/>
 		<key>no person kills</key> <true/>
 		<key>text</key> <string>You are tempted by all of the power you could wield, but resist. After all, you've gotten this far without hurting a single thing.\nInstead, you register yourself as a crewmember of the ship, and live live a peaceful life with the ship's resources.</string>
+		<key>title</key> <string>Pacifist</string>
 	</dict>
 	
 	<!-- human endings -->
@@ -42,12 +44,14 @@
 		</array>
 		<key>no person kills</key> <true/>
 		<key>text</key> <string>You don't really have the knowledge to activate the ship, but you can recognize good loot when you see it./nSeveral weeks later, you return home with the juiciest relics you could find, and gain a great fortune.</string>
+		<key>title</key> <string>Thief</string>
 	</dict>
 	
     <key>human saint</key>
 	<dict>
 		<key>no person kills</key> <true/>
 		<key>text</key> <string>You could use the power of this ship to cause great damage, or to amass wealth, but something like that would be wrong./nInstead, you activate the ship so you can use it to stop wars and bring peace to the world. Maybe it'll even work.</string>
+		<key>title</key> <string>Saint</string>
 	</dict>
 	
     <key>human pilot</key>
@@ -62,6 +66,7 @@
 			<string>sacred light</string>
 		</array>
 		<key>text</key> <string>With your knowledge of Eol relics, you are able to reactivate the ship.\nYou use it's power to carve out your own empire.</string>
+		<key>title</key> <string>Pilot</string>
 	</dict>
 	
     <key>human idealogue</key>
@@ -74,11 +79,13 @@
 		</array>
 		<key>no kills of race</key> <string>human</string>
 		<key>text</key> <string>With your heretical knowledge, you are able to fully reactivate the ship.\nYou use it's weapons to strike against the Highborn, in the hopes of freeing humanity.</string>
+		<key>title</key> <string>Idealogue</string>
 	</dict>
 	
     <key>human failure</key>
 	<dict>
 		<key>text</key> <string>Try as you might, you cannot figure out how to operate the ship.\nYou return home in shame. At least you retrieved some valuable items.</string>
+		<key>title</key> <string>Failure</string>
 	</dict>
 	
 	<!-- eoling endings -->
@@ -91,6 +98,7 @@
 			<string>false prophet</string>
 		</array>
 		<key>text</key> <string>The Eols will never welcome you back, with the things you know.\nInstead, you use your heretical knowledge to fully reactivate the ship and use it's weapons for power.</string>
+		<key>title</key> <string>Heretic</string>
 	</dict>
 	
     <key>eoling redeemed</key>
@@ -98,18 +106,21 @@
 		<key>no kills of race</key> <string>eoling</string>
 		<key>no robot kills</key> <true/>
 		<key>text</key> <string>You reactivate the ship, and return it home.\NYour Eol brethren welcome you home with open arms, inspired by your devotion.</string>
+		<key>title</key> <string>Redeemed</string>
 	</dict>
 	
     <key>eoling faithful</key>
 	<dict>
 		<key>no robot kills</key> <true/>
 		<key>text</key> <string>You reactivate the ship, and return it home.\NYour Eol brethren are wary, having heard of how you killed those zealots, but in the end they welcome you back.</string>
+		<key>title</key> <string>Faithful</string>
 	</dict>
 	
     <key>eoling pragmatic</key>
 	<dict>
 		<key>text</key> <string>TODO: you can't go back, but you also don't have heretical knowledge, so you turn to the humans and use your ship to aid them.</string>
 		<key>text</key> <string>You know that the Eol will not forgive you for your actions.\NYou reactivate the ship and instead give it to the Humans. Hopefully they will know what to do with it.</string>
+		<key>title</key> <string>Pragmatic</string>
 	</dict>
 	
 	<!-- raider endings -->
@@ -117,6 +128,7 @@
 	<dict>
 		<key>no kills of race</key> <string>raider</string>
 		<key>text</key> <string>You have proven your strength, and you return home.\nYour old superior welcomes you back, and gives you back your family armor.</string>
+		<key>title</key> <string>Honored</string>
 	</dict>
 	
     <key>raider pilot</key>
@@ -131,11 +143,13 @@
 			<string>sacred light</string>
 		</array>
 		<key>text</key> <string>You might not have your honor back, but you do have the knowledge to reactivate the ship.\nYou use it's power to become a rich mercenary.</string>
+		<key>title</key> <string>Mercenary</string>
 	</dict>
 	
     <key>raider wanderer</key>
 	<dict>
 		<key>text</key> <string>You have proven your strength, but the Raiders will not welcome you back after you killed one of them.\nYou loot what weapons you can find in the control room, and use them to become a successful mercenary.</string>
+		<key>title</key> <string>Wanderer</string>
 	</dict>
 	
 	<!-- highborn endings -->
@@ -143,17 +157,20 @@
 	<dict>
 		<key>no person kills</key> <true/>
 		<key>text</key> <string>You could use this power of this ship to hurt people, or to win wars, but that would be wrong.\nInstead, you activate the ship and use it to help people. It is a treasure all must benefit from.</string>
+		<key>title</key> <string>Redeemer</string>
 	</dict>
 	
     <key>highborn hedonist</key>
 	<dict>
 		<key>text</key> <string>After having held back the Highborn expedition, you know you can never return.\nYou instead use the power of the ship to amass a great fortune, and live a life of pleasure.</string>
+		<key>title</key> <string>Hedonist</string>
 	</dict>
 	
     <key>highborn loyalist</key>
 	<dict>
 		<key>no kills of race</key> <string>highborn</string>
 		<key>text</key> <string>You activate the ship and return it to the Highborn.\nThey apologize for exiling you, and shower you with fame and fortune beyond your wildest dreams.</string>
+		<key>title</key> <string>Loyalist</string>
 	</dict>
 	
     <key>highborn powerhungry</key>
@@ -165,7 +182,7 @@
 			<string>false prophet</string>
 		</array>
 		<key>text</key> <string>Most people would not know how to activate the ship's weapons, but you have the heretical knowledge required.\nYou use the ship to carve out a new empire, one which will worship you as a god.</string>
+		<key>title</key> <string>Diety</string>
 	</dict>
-	
 </dict>
 </plist>

@@ -1090,6 +1090,57 @@
 	}
 }
 
+-(void) registerScore:(NSString *)score withSuccess:(BOOL)success
+{
+	int floor = self.map.floorNum;
+	if (success)
+		floor += 1;
+	
+	//pull down the scores list and the score floors list
+	NSMutableArray *scoreFloors = [[NSUserDefaults standardUserDefaults] objectForKey:@"score floors"];
+	NSMutableArray *scores = [[NSUserDefaults standardUserDefaults] objectForKey:@"scores"];
+	if (scoreFloors == nil)
+	{
+		//the scores weren't made, so initialize them
+		scoreFloors = [NSMutableArray new];
+		scores = [NSMutableArray new];
+	}
+	else
+	{
+		scoreFloors = [NSMutableArray arrayWithArray:scoreFloors];
+		scores = [NSMutableArray arrayWithArray:scores];
+	}
+	
+	//figure out where to insert the score
+	int placePosition = -1;
+	for (int i = 0; i < scores.count; i++)
+	{
+		NSNumber *sF = scoreFloors[i];
+		if (sF.intValue == floor)
+		{
+			placePosition = i;
+			break;
+		}
+	}
+	if (placePosition == -1)
+		placePosition = (int)scores.count;
+	
+	//insert at the right place
+	[scoreFloors insertObject:@(floor) atIndex:placePosition];
+	[scores insertObject:[NSString stringWithFormat:@"%@ %@: %@", self.map.player.gender ? @"F" : @"M", [self.map.player.race capitalizedString], score] atIndex:placePosition];
+	
+	//trim excess runs
+	int maxScores = 30;
+	while (scoreFloors.count > maxScores)
+		[scoreFloors removeLastObject];
+	while (scores.count > maxScores)
+		[scoreFloors removeLastObject];
+	
+	//save the scores away
+	[[NSUserDefaults standardUserDefaults] setObject:scoreFloors forKey:@"score floors"];
+	[[NSUserDefaults standardUserDefaults] setObject:scores forKey:@"scores"];
+}
+
 #pragma mark: map view delegate
 
 -(UIView *)viewAtTileWithX:(int)x andY:(int)y andOldView:(UIView *)oldView
@@ -1717,6 +1768,7 @@
 		[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"game phase"];
 		
 		//you won!
+		NSString *title;
 		NSMutableString *victoryMessage = [NSMutableString new];
 		[victoryMessage appendString:@"As you exit the portal, you find yourself in the control room of the old Eol vessel."];
 		
@@ -1774,11 +1826,15 @@
 			if (valid)
 			{
 				[victoryMessage appendFormat:@"\n%@", loadValueString(@"Endings", ending, @"text")];
+				title = loadValueString(@"Endings", ending, @"title");
 				break;
 			}
 		}
 		
 		[victoryMessage appendFormat:@"\n%@", self.map.endStatistics];
+		
+		//register the score
+		[self registerScore:title withSuccess:YES];
 		
 		self.defeatMessage = victoryMessage;
 		[self performSegueWithIdentifier:@"defeat" sender:self];
@@ -1798,6 +1854,9 @@
 	[self fadeScreenInTime:2.5f withBlock:
 	^()
 	{
+		//register the defeat
+		[self registerScore:[NSString stringWithFormat:@"Died on floor %i", self.map.floorNum] withSuccess:YES];
+		
 		//go to the defeat screen
 		weakSelf.defeatMessage = message;
 		[weakSelf performSegueWithIdentifier:@"defeat" sender:weakSelf];
