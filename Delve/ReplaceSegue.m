@@ -15,8 +15,22 @@
 	UIViewController *source = (UIViewController *)[self sourceViewController];
 	UIViewController *destination = (UIViewController *)[self destinationViewController];
 	UINavigationController *nav = source.navigationController;
+	
 	[nav popToRootViewControllerAnimated:NO];
-	[nav pushViewController:destination animated:YES];
+	[nav pushViewController:destination animated:NO];
+//	return;
+	
+	[destination.view addSubview:source.view];
+	
+	
+	[UIView animateWithDuration:0.4 animations:
+	^{
+		source.view.alpha = 0;
+	} completion:
+	^(BOOL finished)
+	{
+		[source.view removeFromSuperview];
+	}];
 }
 
 @end
