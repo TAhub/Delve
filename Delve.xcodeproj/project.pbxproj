@@ -80,6 +80,7 @@
 		E46238301C8A1177009C9FC4 /* Floors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E462382F1C8A1177009C9FC4 /* Floors.plist */; };
 		E46238321C8A6901009C9FC4 /* Tilesets.plist in Resources */ = {isa = PBXBuildFile; fileRef = E46238311C8A6901009C9FC4 /* Tilesets.plist */; };
 		E4AE94A51CC318B900C1BC96 /* Endings.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4AE94A41CC318B900C1BC96 /* Endings.plist */; };
+		E4DFE5D51CCF0BDB004D7E09 /* ScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DFE5D41CCF0BDB004D7E09 /* ScoresViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -177,6 +178,8 @@
 		E462382F1C8A1177009C9FC4 /* Floors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Floors.plist; sourceTree = "<group>"; };
 		E46238311C8A6901009C9FC4 /* Tilesets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tilesets.plist; sourceTree = "<group>"; };
 		E4AE94A41CC318B900C1BC96 /* Endings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Endings.plist; sourceTree = "<group>"; };
+		E4DFE5D31CCF0BDB004D7E09 /* ScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoresViewController.h; sourceTree = "<group>"; };
+		E4DFE5D41CCF0BDB004D7E09 /* ScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoresViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,6 +329,8 @@
 		E459C69F1C7AB31B00422B0A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E4DFE5D31CCF0BDB004D7E09 /* ScoresViewController.h */,
+				E4DFE5D41CCF0BDB004D7E09 /* ScoresViewController.m */,
 				E44A6FD31C9B66F90015852C /* BlueViewController.h */,
 				E44A6FD41C9B66F90015852C /* BlueViewController.m */,
 				E44A6FCD1C9B4D970015852C /* MainViewController.h */,
@@ -477,6 +482,7 @@
 				E44A6FD51C9B66F90015852C /* BlueViewController.m in Sources */,
 				E44A6FD21C9B63430015852C /* DefeatViewController.m in Sources */,
 				E44A6FCF1C9B4D970015852C /* MainViewController.m in Sources */,
+				E4DFE5D51CCF0BDB004D7E09 /* ScoresViewController.m in Sources */,
 				E442C81F1C8FA3730048DD95 /* CharacterCreatorViewController.m in Sources */,
 				E459C6881C7AB2E800422B0A /* main.m in Sources */,
 				E46238281C875F28009C9FC4 /* FormattingViewController.m in Sources */,

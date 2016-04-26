@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UIButton *loadButton;
+@property (weak, nonatomic) IBOutlet UIButton *scoresButton;
+
 
 
 
@@ -31,6 +33,7 @@
 	
 	[self formatButton:self.startButton];
 	[self formatButton:self.loadButton];
+	[self formatButton:self.scoresButton];
 	self.titleLabel.textColor = loadColorFromName(@"ui text");
 	[self formatPanel:self.titlePanel];
 	[self formatPanel:self.contentPanel];
@@ -56,6 +59,12 @@
 			NSLog(@"Unknown phase %@!", self.phase);
 	}
 }
+
+- (IBAction)scoresButtonPressed
+{
+	[self performSegueWithIdentifier:@"scores" sender:self];
+}
+
 
 -(NSString *)phase
 {

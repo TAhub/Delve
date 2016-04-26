@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Xp9-v0-ElG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Xp9-v0-ElG">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -808,7 +808,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="175"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruk-KC-HTm">
-                                                <rect key="frame" x="120" y="72" width="81" height="30"/>
+                                                <rect key="frame" x="120" y="29" width="81" height="30"/>
                                                 <state key="normal" title="NEW GAME"/>
                                                 <connections>
                                                     <action selector="startButtonPressed" destination="8D6-NM-k5o" eventType="touchUpInside" id="tY5-fS-WND"/>
@@ -817,35 +817,44 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="ruk-KC-HTm" firstAttribute="centerY" secondItem="xIm-RU-g1q" secondAttribute="centerY" id="03u-jy-eu5"/>
+                                            <constraint firstItem="ruk-KC-HTm" firstAttribute="centerY" secondItem="xIm-RU-g1q" secondAttribute="centerY" multiplier="0.5" id="03u-jy-eu5"/>
                                             <constraint firstItem="ruk-KC-HTm" firstAttribute="centerX" secondItem="xIm-RU-g1q" secondAttribute="centerX" id="XqP-HU-6yv"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uoh-MY-rk6">
                                         <rect key="frame" x="0.0" y="175" width="320" height="174"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1X-ng-bcE">
-                                                <rect key="frame" x="117" y="72" width="86" height="30"/>
-                                                <state key="normal" title="LOAD GAME"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flK-r8-0lU">
+                                                <rect key="frame" x="108" y="115" width="105" height="30"/>
+                                                <state key="normal" title="HALL OF FAME"/>
                                                 <connections>
-                                                    <action selector="loadButtonPressed" destination="8D6-NM-k5o" eventType="touchUpInside" id="be5-55-mlG"/>
+                                                    <action selector="scoresButtonPressed" destination="8D6-NM-k5o" eventType="touchUpInside" id="yND-gH-P1H"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="K1X-ng-bcE" firstAttribute="centerX" secondItem="uoh-MY-rk6" secondAttribute="centerX" id="RAJ-ZZ-wi2"/>
-                                            <constraint firstItem="K1X-ng-bcE" firstAttribute="centerY" secondItem="uoh-MY-rk6" secondAttribute="centerY" id="VSz-oc-Q5h"/>
+                                            <constraint firstItem="flK-r8-0lU" firstAttribute="centerY" secondItem="uoh-MY-rk6" secondAttribute="centerY" multiplier="1.5" id="5Wa-CT-lNa"/>
+                                            <constraint firstItem="flK-r8-0lU" firstAttribute="centerX" secondItem="uoh-MY-rk6" secondAttribute="centerX" id="QYB-D3-vAD"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1X-ng-bcE">
+                                        <rect key="frame" x="117" y="160" width="86" height="30"/>
+                                        <state key="normal" title="LOAD GAME"/>
+                                        <connections>
+                                            <action selector="loadButtonPressed" destination="8D6-NM-k5o" eventType="touchUpInside" id="be5-55-mlG"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="uoh-MY-rk6" firstAttribute="centerX" secondItem="SsJ-cE-FNm" secondAttribute="centerX" id="3FT-ix-gxl"/>
                                     <constraint firstItem="xIm-RU-g1q" firstAttribute="top" secondItem="SsJ-cE-FNm" secondAttribute="top" id="6VD-ic-vQb"/>
                                     <constraint firstAttribute="bottom" secondItem="uoh-MY-rk6" secondAttribute="bottom" id="Ktg-wj-wj0"/>
+                                    <constraint firstItem="K1X-ng-bcE" firstAttribute="centerY" secondItem="SsJ-cE-FNm" secondAttribute="centerY" id="Omn-Bp-onc"/>
                                     <constraint firstItem="uoh-MY-rk6" firstAttribute="height" secondItem="xIm-RU-g1q" secondAttribute="height" id="U9m-c8-h8C"/>
                                     <constraint firstItem="xIm-RU-g1q" firstAttribute="width" secondItem="SsJ-cE-FNm" secondAttribute="width" id="iUJ-Qq-iRd"/>
+                                    <constraint firstItem="K1X-ng-bcE" firstAttribute="centerX" secondItem="SsJ-cE-FNm" secondAttribute="centerX" id="qui-B9-LAz"/>
                                     <constraint firstItem="uoh-MY-rk6" firstAttribute="top" secondItem="xIm-RU-g1q" secondAttribute="bottom" id="twa-iJ-dfT"/>
                                     <constraint firstItem="xIm-RU-g1q" firstAttribute="centerX" secondItem="SsJ-cE-FNm" secondAttribute="centerX" id="vWO-8O-YSw"/>
                                     <constraint firstItem="uoh-MY-rk6" firstAttribute="width" secondItem="SsJ-cE-FNm" secondAttribute="width" id="yxN-Bv-WMM"/>
@@ -875,17 +884,112 @@
                     <connections>
                         <outlet property="contentPanel" destination="SsJ-cE-FNm" id="Ibe-TH-j8g"/>
                         <outlet property="loadButton" destination="K1X-ng-bcE" id="8Ap-rE-T3M"/>
+                        <outlet property="scoresButton" destination="flK-r8-0lU" id="UAK-jb-oI5"/>
                         <outlet property="startButton" destination="ruk-KC-HTm" id="OMq-dc-mEx"/>
                         <outlet property="titleLabel" destination="UH8-Sc-bqT" id="oZ7-n3-U1L"/>
                         <outlet property="titlePanel" destination="ylS-rs-1RY" id="bgC-Bv-pz2"/>
                         <segue destination="m8D-VV-cYc" kind="custom" identifier="newGame" customClass="ReplaceSegue" id="ijh-d7-RyY"/>
                         <segue destination="BYZ-38-t0r" kind="custom" identifier="loadGame" customClass="ReplaceSegue" id="5Fs-fc-33Y"/>
                         <segue destination="A56-XN-4Dl" kind="custom" identifier="loadBetween" customClass="ReplaceSegue" id="Izn-QN-Bef"/>
+                        <segue destination="bS1-Bz-lRb" kind="custom" identifier="scores" customClass="ReplaceSegue" id="kar-B5-Gft"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aoV-Ga-wv3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="233" y="223"/>
+        </scene>
+        <!--Scores View Controller-->
+        <scene sceneID="iut-Vd-LHF">
+            <objects>
+                <viewController id="bS1-Bz-lRb" customClass="ScoresViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2ne-9I-3tx"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ylq-j8-Pfs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aOe-hB-VSN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OUa-EJ-2Ou">
+                                <rect key="frame" x="0.0" y="28" width="320" height="65"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hall of Fame" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2kD-0o-d3Q">
+                                        <rect key="frame" x="112" y="22" width="95" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="2kD-0o-d3Q" firstAttribute="centerY" secondItem="OUa-EJ-2Ou" secondAttribute="centerY" id="bel-wf-0EW"/>
+                                    <constraint firstItem="2kD-0o-d3Q" firstAttribute="centerX" secondItem="OUa-EJ-2Ou" secondAttribute="centerX" id="fUa-QH-05K"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EpL-j5-ViK">
+                                <rect key="frame" x="0.0" y="101" width="320" height="387"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KZ6-JH-X6P">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="387"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="KZ6-JH-X6P" firstAttribute="height" secondItem="EpL-j5-ViK" secondAttribute="height" id="2Nw-Ev-s3M"/>
+                                    <constraint firstItem="KZ6-JH-X6P" firstAttribute="centerX" secondItem="EpL-j5-ViK" secondAttribute="centerX" id="3Ru-Ho-Evb"/>
+                                    <constraint firstItem="KZ6-JH-X6P" firstAttribute="centerY" secondItem="EpL-j5-ViK" secondAttribute="centerY" id="ftN-jT-A1m"/>
+                                    <constraint firstItem="KZ6-JH-X6P" firstAttribute="width" secondItem="EpL-j5-ViK" secondAttribute="width" id="wPt-ie-jeX"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPl-aw-lMD">
+                                <rect key="frame" x="0.0" y="496" width="320" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I28-2s-aFB">
+                                        <rect key="frame" x="137" y="17" width="46" height="30"/>
+                                        <state key="normal" title="Return"/>
+                                        <connections>
+                                            <action selector="pressReturnButton" destination="bS1-Bz-lRb" eventType="touchUpInside" id="6ng-YN-TpJ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="I28-2s-aFB" firstAttribute="centerY" secondItem="lPl-aw-lMD" secondAttribute="centerY" id="KDH-nT-x9y"/>
+                                    <constraint firstItem="I28-2s-aFB" firstAttribute="centerX" secondItem="lPl-aw-lMD" secondAttribute="centerX" id="Pe7-of-nwm"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.093164794149999994" green="0.21943446990000001" blue="0.60352116820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="lPl-aw-lMD" firstAttribute="top" secondItem="EpL-j5-ViK" secondAttribute="bottom" constant="8" symbolic="YES" id="1Yo-fw-WXe"/>
+                            <constraint firstItem="OUa-EJ-2Ou" firstAttribute="top" secondItem="2ne-9I-3tx" secondAttribute="bottom" constant="8" symbolic="YES" id="3mE-fK-Ku6"/>
+                            <constraint firstItem="lPl-aw-lMD" firstAttribute="centerX" secondItem="aOe-hB-VSN" secondAttribute="centerX" id="EGI-XE-mjS"/>
+                            <constraint firstItem="EpL-j5-ViK" firstAttribute="height" secondItem="OUa-EJ-2Ou" secondAttribute="height" multiplier="6" id="FXm-FJ-6XO"/>
+                            <constraint firstItem="Ylq-j8-Pfs" firstAttribute="top" secondItem="lPl-aw-lMD" secondAttribute="bottom" constant="8" symbolic="YES" id="KAY-eh-30U"/>
+                            <constraint firstItem="EpL-j5-ViK" firstAttribute="centerX" secondItem="aOe-hB-VSN" secondAttribute="centerX" id="PXf-iU-kEe"/>
+                            <constraint firstItem="EpL-j5-ViK" firstAttribute="width" secondItem="aOe-hB-VSN" secondAttribute="width" id="bIu-Mg-mq2"/>
+                            <constraint firstItem="OUa-EJ-2Ou" firstAttribute="centerX" secondItem="aOe-hB-VSN" secondAttribute="centerX" id="bTq-co-3jN"/>
+                            <constraint firstItem="lPl-aw-lMD" firstAttribute="height" secondItem="OUa-EJ-2Ou" secondAttribute="height" id="k79-ZF-YR7"/>
+                            <constraint firstItem="OUa-EJ-2Ou" firstAttribute="width" secondItem="aOe-hB-VSN" secondAttribute="width" id="oX0-0T-JiH"/>
+                            <constraint firstItem="EpL-j5-ViK" firstAttribute="top" secondItem="OUa-EJ-2Ou" secondAttribute="bottom" constant="8" symbolic="YES" id="oup-D9-Vj4"/>
+                            <constraint firstItem="lPl-aw-lMD" firstAttribute="width" secondItem="aOe-hB-VSN" secondAttribute="width" id="tkG-CE-wKU"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="label" destination="2kD-0o-d3Q" id="IYb-PN-8rM"/>
+                        <outlet property="labelPanel" destination="OUa-EJ-2Ou" id="hWM-RE-wpr"/>
+                        <outlet property="returnButton" destination="I28-2s-aFB" id="ZY6-JP-6Tw"/>
+                        <outlet property="returnPanel" destination="lPl-aw-lMD" id="vfZ-0b-OyX"/>
+                        <outlet property="table" destination="KZ6-JH-X6P" id="mTt-Tb-3Ql"/>
+                        <outlet property="tablePanel" destination="EpL-j5-ViK" id="ShG-Yc-cGd"/>
+                        <segue destination="8D6-NM-k5o" kind="custom" identifier="return" customClass="ReplaceSegue" id="Qnr-TU-rCw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LnX-xc-hqR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="233" y="914"/>
         </scene>
         <!--Blue View Controller-->
         <scene sceneID="MFp-Lr-DLc">
@@ -1087,8 +1191,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="2bc-k8-xxw"/>
-        <segue reference="Sx7-4U-XOK"/>
-        <segue reference="xEW-H2-8cz"/>
+        <segue reference="Izn-QN-Bef"/>
+        <segue reference="Qnr-TU-rCw"/>
+        <segue reference="5Fs-fc-33Y"/>
     </inferredMetricsTieBreakers>
 </document>
