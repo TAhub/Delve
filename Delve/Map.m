@@ -599,7 +599,7 @@
 	self.floorNum = map == nil ? 0 : map.floorNum + 1;
 	
 	//TODO: quickstart
-	self.floorNum = map == nil ? 8 : map.floorNum + 1;
+	self.floorNum = map == nil ? 9 : map.floorNum + 1;
 	
 	NSString *floorName = [NSString stringWithFormat:@"floor %i", self.floorNum];
 	

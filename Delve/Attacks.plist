@@ -684,7 +684,7 @@
 	<key>blink</key>
 	<dict>
 		<key>attack effect</key> <string>explosion</string>
-		<key>sound</key> <string>shock</string>
+		<key>sound</key> <string>teleport</string>
 		<key>description</key> <string>Use a ritual to bend space itself, and quickly zoom to a nearby location.</string>
 		<key>range</key> <integer>4</integer>
 		<key>cooldown</key> <integer>11</integer>
