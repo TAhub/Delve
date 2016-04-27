@@ -503,10 +503,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="heJ-Kl-FYi" userLabel="Inventory Panel">
                                 <rect key="frame" x="-320" y="28" width="320" height="540"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c2Q-jS-YGD">
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c2Q-jS-YGD">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="482"/>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kby-qM-1aW">
+                                        <rect key="frame" x="137" y="9999" width="46" height="30"/>
+                                        <state key="normal" title="Break Down"/>
+                                        <connections>
+                                            <action selector="inventoryButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nR1-3J-MAE"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vVC-zd-UKl">
                                         <rect key="frame" x="217" y="490" width="46" height="30"/>
                                         <state key="normal" title="Button"/>
@@ -524,11 +531,15 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="P4R-zs-srk" firstAttribute="top" secondItem="Kby-qM-1aW" secondAttribute="bottom" constant="8" symbolic="YES" id="2eH-il-m0G"/>
                                     <constraint firstItem="P4R-zs-srk" firstAttribute="centerX" secondItem="heJ-Kl-FYi" secondAttribute="centerX" multiplier="0.5" id="6c8-2o-zYf"/>
+                                    <constraint firstItem="Kby-qM-1aW" firstAttribute="top" secondItem="c2Q-jS-YGD" secondAttribute="bottom" constant="8" symbolic="YES" id="9z3-6n-gXC"/>
+                                    <constraint firstItem="Kby-qM-1aW" firstAttribute="top" secondItem="c2Q-jS-YGD" secondAttribute="bottom" constant="9517" id="FTt-af-C4L"/>
                                     <constraint firstItem="P4R-zs-srk" firstAttribute="leading" secondItem="heJ-Kl-FYi" secondAttribute="leading" constant="57" id="KND-my-NTC"/>
                                     <constraint firstItem="c2Q-jS-YGD" firstAttribute="height" secondItem="heJ-Kl-FYi" secondAttribute="height" multiplier="0.75" id="Nff-yV-CLZ"/>
                                     <constraint firstItem="c2Q-jS-YGD" firstAttribute="centerX" secondItem="heJ-Kl-FYi" secondAttribute="centerX" id="VVW-Dj-GeL"/>
                                     <constraint firstItem="c2Q-jS-YGD" firstAttribute="width" secondItem="heJ-Kl-FYi" secondAttribute="width" id="WAl-kR-XbC"/>
+                                    <constraint firstItem="Kby-qM-1aW" firstAttribute="centerX" secondItem="P4R-zs-srk" secondAttribute="centerX" id="avO-Uc-vBd"/>
                                     <constraint firstItem="P4R-zs-srk" firstAttribute="top" secondItem="c2Q-jS-YGD" secondAttribute="bottom" constant="8" symbolic="YES" id="hcb-ER-FEn"/>
                                     <constraint firstAttribute="bottom" secondItem="vVC-zd-UKl" secondAttribute="bottom" constant="20" symbolic="YES" id="mUL-N3-Ktu"/>
                                     <constraint firstItem="vVC-zd-UKl" firstAttribute="centerX" secondItem="heJ-Kl-FYi" secondAttribute="centerX" multiplier="1.5" id="owQ-xF-XcT"/>
@@ -539,6 +550,8 @@
                                     <mask key="constraints">
                                         <exclude reference="Nff-yV-CLZ"/>
                                         <exclude reference="KND-my-NTC"/>
+                                        <exclude reference="hcb-ER-FEn"/>
+                                        <exclude reference="FTt-af-C4L"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -662,6 +675,7 @@
                         <outlet property="examinePanelContents" destination="D7c-6x-w6g" id="6gj-OW-erg"/>
                         <outlet property="examinePanelCord" destination="mpC-Mo-I1i" id="Kcp-HU-DI0"/>
                         <outlet property="inventoryButton" destination="KRE-jY-jtU" id="SuH-JM-Dgu"/>
+                        <outlet property="inventoryButtonBreak" destination="Kby-qM-1aW" id="DWH-2h-fNJ"/>
                         <outlet property="inventoryButtonOne" destination="P4R-zs-srk" id="5o5-id-RHw"/>
                         <outlet property="inventoryButtonTwo" destination="vVC-zd-UKl" id="hKC-7t-6GB"/>
                         <outlet property="inventoryContent" destination="c2Q-jS-YGD" id="fC7-qX-hns"/>
@@ -1191,8 +1205,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Izn-QN-Bef"/>
+        <segue reference="bRn-3v-Bao"/>
         <segue reference="Qnr-TU-rCw"/>
-        <segue reference="5Fs-fc-33Y"/>
+        <segue reference="xEW-H2-8cz"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -69,6 +69,7 @@
 @property (weak, nonatomic) IBOutlet UIView *inventoryContent;
 @property (weak, nonatomic) IBOutlet UIButton *inventoryButtonTwo;
 @property (weak, nonatomic) IBOutlet UIButton *inventoryButtonOne;
+@property (weak, nonatomic) IBOutlet UIButton *inventoryButtonBreak;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inventoryPanelCord;
 
 @property (weak, nonatomic) NSLayoutConstraint *activePanelCord;
@@ -131,6 +132,7 @@
 	[self formatButton:self.attackConfirmCancel];
 	[self formatButton:self.inventoryButtonOne];
 	[self formatButton:self.inventoryButtonTwo];
+	[self formatButton:self.inventoryButtonBreak];
 	[self formatButton:self.repeatButton];
 	[self formatButton:self.examineButton];
 	[self formatButton:self.examinePanelBack];
@@ -218,6 +220,8 @@
 	//set up inventory panel
 	if (self.activePanelCord == self.inventoryPanelCord)
 	{
+		self.inventoryButtonBreak.hidden = true;
+		
 		for (UIView *subview in self.inventoryContent.subviews)
 			if (subview != self.itemTable)
 				[subview removeFromSuperview];
@@ -257,11 +261,12 @@
 					}
 					else
 					{
+						NSString *material = loadValueString(self.examinationItem.type == ItemTypeArmor ? @"Armors" : @"Implements", self.examinationItem.name, @"breaks into");
+						inventoryLabelText = [NSString stringWithFormat:@"Break down %@ into %@?", self.examinationItem.name, material];
+						
 						int slot = [self.map.player slotForItem:self.examinationItem];
 						if (slot == -1)
 						{
-							NSString *material = loadValueString(self.examinationItem.type == ItemTypeArmor ? @"Armors" : @"Implements", self.examinationItem.name, @"breaks into");
-							inventoryLabelText = [NSString stringWithFormat:@"Break down %@ into %@?", self.examinationItem.name, material];
 							[self.inventoryButtonOne setTitle:@"Break Down" forState:UIControlStateNormal];
 							[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 							[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
@@ -272,12 +277,15 @@
 							[self.inventoryButtonOne setTitle:@"Equip" forState:UIControlStateNormal];
 							[self.inventoryButtonOne setTitleColor:loadColorFromName(@"ui text") forState:UIControlStateNormal];
 							
+							//set the break down button to not-hidden, so you can break down
+							self.inventoryButtonBreak.hidden = false;
+							
 							if (self.examinationItem.type == ItemTypeArmor)
 							{
 								NSString *comparison = self.map.player.armors[slot];
 								NSString *armorDesc = [self.map.player armorDescription:self.examinationItem.name];
 								NSString *eArmorDesc = (comparison == nil ? @"Nothing" : [self.map.player armorDescription:comparison]);
-								inventoryLabelText = [NSString stringWithFormat:@"Equip %@?\n\n%@\n\nVS\n\n%@", self.examinationItem.name, armorDesc, eArmorDesc];
+								inventoryLabelText = [NSString stringWithFormat:@"Equip %@?\n\n%@\n\nVS\n\n%@\n\nOR\n\n%@", self.examinationItem.name, armorDesc, eArmorDesc, inventoryLabelText];
 							}
 							else
 							{
@@ -288,7 +296,7 @@
 									comparison = self.map.player.implements[slot];
 								NSString *weaponDesc = [self.map.player weaponDescription:self.examinationItem.name];
 								NSString *eWeaponDesc = [self.map.player weaponDescription:comparison];
-								inventoryLabelText = [NSString stringWithFormat:@"Equip %@?\n\n%@\n\nVS\n\n%@", self.examinationItem.name, weaponDesc, eWeaponDesc];
+								inventoryLabelText = [NSString stringWithFormat:@"Equip %@?\n\n%@\n\nVS\n\n%@\n\nOR\n\n%@", self.examinationItem.name, weaponDesc, eWeaponDesc, inventoryLabelText];
 							}
 							
 							[self.inventoryButtonTwo setTitle:@"Cancel" forState:UIControlStateNormal];
@@ -917,6 +925,32 @@
     [self.map.player useAttackWithName:@"defend" onX:self.map.player.x andY:self.map.player.y];
 }
 
+-(void) breakDownItem
+{
+	//convert to materials, and put them in your inventory
+	NSString *material = loadValueString(self.examinationItem.type == ItemTypeArmor ? @"Armors" : @"Implements", self.examinationItem.name, @"breaks into");
+	[self.map addItem:[[Item alloc] initWithName:material andType:ItemTypeInventory]];
+	
+	[self.map saveInventory];
+	
+	[[SoundPlayer sharedPlayer] playSound:@"craft"];
+	
+	Tile *tile = self.map.tiles[self.map.player.y][self.map.player.x];
+	tile.treasure = nil;
+	tile.treasureType = TreasureTypeNone;
+	tile.changed = true;
+	[self.map.player breakStealth];
+	[self updateTiles];
+	[tile saveWithX:self.map.player.x andY:self.map.player.y];
+	
+	//end turn
+	__weak typeof(self) weakSelf = self;
+	[self switchToPanel:self.mainPanelCord withBlock:
+	^()
+	{
+		[weakSelf.map update];
+	}];
+}
 
 - (IBAction)inventoryButtonPress:(UIButton *)sender
 {
@@ -1051,30 +1085,7 @@
 				
 				int slot = [self.map.player slotForItem:self.examinationItem];
 				if (slot == -1)
-				{
-					//convert to materials, and put them in your inventory
-					NSString *material = loadValueString(self.examinationItem.type == ItemTypeArmor ? @"Armors" : @"Implements", self.examinationItem.name, @"breaks into");
-					[self.map addItem:[[Item alloc] initWithName:material andType:ItemTypeInventory]];
-					
-					[self.map saveInventory];
-					
-					[[SoundPlayer sharedPlayer] playSound:@"craft"];
-					
-					tile.treasure = nil;
-					tile.treasureType = TreasureTypeNone;
-					tile.changed = true;
-					[self.map.player breakStealth];
-					[self updateTiles];
-					[tile saveWithX:self.map.player.x andY:self.map.player.y];
-					
-					//end turn
-					__weak typeof(self) weakSelf = self;
-					[self switchToPanel:self.mainPanelCord withBlock:
-					^()
-					{
-						[weakSelf.map update];
-					}];
-				}
+					[self breakDownItem];
 				else
 				{
 					//equip
@@ -1119,10 +1130,15 @@
 					}];
 				}
 			}
-			else
+			else if (sender.tag == 2)
 			{
 				//cancel
 				[self switchToPanel:self.mainPanelCord];
+			}
+			else
+			{
+				//break down
+				[self breakDownItem];
 			}
 			break;
 		case ItemTypeInventory:
