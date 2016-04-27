@@ -1825,7 +1825,7 @@
 			
 			if (valid)
 			{
-				[victoryMessage appendFormat:@"\n%@", loadValueString(@"Endings", ending, @"text")];
+				[victoryMessage appendFormat:@"\n%@", [loadValueString(@"Endings", ending, @"text") stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"]];
 				title = loadValueString(@"Endings", ending, @"title");
 				break;
 			}

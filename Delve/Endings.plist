@@ -124,7 +124,7 @@
 	</dict>
 	
 	<!-- raider endings -->
-    <key>raider honor regained</key>
+    <key>raider regain honor</key>
 	<dict>
 		<key>no kills of race</key> <string>raider</string>
 		<key>text</key> <string>You have proven your strength, and you return home.\nYour old superior welcomes you back, and gives you back your family armor.</string>
