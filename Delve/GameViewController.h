@@ -6,15 +6,8 @@
 //  Copyright © 2016 Theodore Abshire. All rights reserved.
 //
 
-#import "FormattingViewController.h"
+#import "GameMapViewController.h"
 
-@class Map;
-@class Creature;
-
-@interface GameViewController : FormattingViewController
-
--(void)loadMap:(Map *)map;
--(void)loadGen:(Creature *)genPlayer;
--(void)loadSave;
+@interface GameViewController : GameMapViewController
 
 @end

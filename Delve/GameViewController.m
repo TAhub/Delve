@@ -19,10 +19,8 @@
 #import "DefeatViewController.h"
 #import "SoundPlayer.h"
 
-@interface GameViewController () <MapViewDelegate, MapDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface GameViewController () <UITableViewDelegate, UITableViewDataSource, MapDelegate>
 
-@property (weak, nonatomic) IBOutlet MapView *mapView;
-@property (weak, nonatomic) IBOutlet UIView *creatureView;
 @property (weak, nonatomic) IBOutlet UIView *uiView;
 
 @property (weak, nonatomic) IBOutlet UIView *mainPanel;
@@ -73,14 +71,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *inventoryButtonOne;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inventoryPanelCord;
 
-@property (strong, nonatomic) NSMutableDictionary *preloadedTileImages;
-@property (strong, nonatomic) Map* map;
-@property (strong, nonatomic) NSMutableArray *creatureViews;
-@property BOOL animating;
-@property BOOL uiAnimating;
 @property (weak, nonatomic) NSLayoutConstraint *activePanelCord;
 @property int attackPage;
-@property (strong, nonatomic) NSString *attackChosen;
 @property (weak, nonatomic) UIView *aoeIndicatorView;
 @property int aoeIndicatorX;
 @property int aoeIndicatorY;
@@ -95,8 +87,6 @@
 
 @property (strong, nonatomic) NSString *lastAttack;
 @property (weak, nonatomic) Creature *lastTarget;
-
-@property (strong, nonatomic) NSString *defeatMessage;
 
 @end
 
@@ -146,93 +136,12 @@
 	[self formatButton:self.examinePanelBack];
 }
 
--(void)loadSave
-{
-	self.map = [[Map alloc] initFromSave];
-	[self preloadTileImages];
-	self.map.delegate = self;
-}
-
--(void)loadMap:(Map *)map
-{
-	self.map = map;
-	[self.map saveFirst];
-	[self preloadTileImages];
-	self.map.delegate = self;
-}
-
--(void)loadGen:(Creature *)genPlayer
-{
-	self.map = [[Map alloc] initWithGen:genPlayer];
-	[self.map saveFirst];
-	[self preloadTileImages];
-	self.map.delegate = self;
-	
-	
-	//initialize player statistics
-	NSMutableDictionary *killsPerRace = [NSMutableDictionary new];
-	NSDictionary *races = loadEntries(@"Races");
-	for (NSString *race in races.allKeys)
-		killsPerRace[race] = @(0);
-	[[NSUserDefaults standardUserDefaults] setObject:killsPerRace forKey:@"statistics kills"];
-	[[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"statistics steps"];
-}
-
--(void)preloadTileImageFor:(Tile *)tile
-{
-	//get the floor number's default color
-	UIColor *defColor = loadColorFromName(self.map.defaultColor);
-	
-	if (tile.type != nil && tile.spriteName != nil && self.preloadedTileImages[tile.type] == nil)
-	{
-		UIColor *color = tile.color;
-		if (color == nil)
-			color = defColor;
-		UIImage *tileSprite = colorImage([UIImage imageNamed:tile.spriteName], color);
-		self.preloadedTileImages[tile.type] = tileSprite;
-	}
-}
-
--(void)preloadTileImages
-{
-	self.preloadedTileImages = [NSMutableDictionary new];
-	for (NSArray *row in self.map.tiles)
-		for (Tile *tile in row)
-			[self preloadTileImageFor:tile];
-
-}
-
--(void)regenerateCreatureSprite:(Creature *)cr
-{
-	int number = (int)[self.map.creatures indexOfObject:cr];
-	UIView *view = self.creatureViews[number];
-//	[self regenerateCreatureSprite:cr atView:view];
-	makeCreatureSpriteInView(cr, view);
-	
-}
-
 -(void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
 	
+	self.map.delegate = self;
 	[self.map update];
-	self.mapView.delegate = self;
-	[self.mapView initializeMapAtX:self.map.player.x - GAMEPLAY_SCREEN_WIDTH * 0.5f + 0.5f andY:self.map.player.y - GAMEPLAY_SCREEN_HEIGHT * 0.5f + 0.5f];
-	
-	//make the creature views
-	self.creatureViews = [NSMutableArray new];
-	for (Creature *cr in self.map.creatures)
-	{
-		//make creature views
-		float x = cr.x * GAMEPLAY_TILE_SIZE + self.mapView.xOffset;
-		float y = cr.y * GAMEPLAY_TILE_SIZE + self.mapView.yOffset;
-		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(x, y, GAMEPLAY_TILE_SIZE, GAMEPLAY_TILE_SIZE)];
-		[self.creatureView addSubview:view];
-		[self.creatureViews addObject:view];
-		
-		[self regenerateCreatureSprite:cr];
-	}
-	[self recalculateHidden];
 	
 	//set up UI panels
 	[self reloadPanels];
@@ -547,6 +456,325 @@
 			tile.changed = true;
 		}
 	[self updateTiles];
+}
+
+#pragma mark map delegate
+
+-(void)floatLabelsOn:(NSArray *)creatures withString:(NSArray *)strings andColor:(UIColor *)color withBlock:(void (^)(void))block
+{
+	NSMutableArray *labels = [NSMutableArray new];
+	for (int i = 0; i < creatures.count; i++)
+	{
+		Creature *cr = creatures[i];
+		NSString *string = strings[i];
+		if ([self.mapView isPointOnscreenWithX:cr.x andY:cr.y] && string.length > 0)
+		{
+			UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+			label.text = string;
+			label.textColor = color;
+			[label sizeToFit];
+			label.center = CGPointMake((cr.x + 0.5f) * GAMEPLAY_TILE_SIZE + self.mapView.xOffset, (cr.y + 0.5f) * GAMEPLAY_TILE_SIZE + self.mapView.yOffset);
+			[self.creatureView addSubview:label];
+			[labels addObject:label];
+		}
+	}
+	
+	if (labels.count == 0)
+	{
+		block();
+		return;
+	}
+	
+	self.uiAnimating = true;
+	
+	__weak typeof(self) weakSelf = self;
+	[UIView animateWithDuration:GAMEPLAY_LABEL_TIME animations:
+	 ^()
+	 {
+		 for (UIView *label in labels)
+			 label.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y - GAMEPLAY_LABEL_DISTANCE, label.frame.size.width, label.frame.size.height);
+	 } completion:
+	 ^(BOOL complete)
+	 {
+		 weakSelf.uiAnimating = false;
+		 for (UIView *label in labels)
+			 [label removeFromSuperview];
+		 block();
+	 }];
+}
+
+-(void)presentRepeatPrompt
+{
+	//CAN you repeat?)
+	if (self.lastTarget.dead)
+		self.lastTarget = nil;
+	
+	if (self.lastAttack == nil || self.lastTarget == nil || ![self.map.player canUseAttack:self.lastAttack] || [self.map.player targetLevelAtX:self.lastTarget.x andY:self.lastTarget.y withAttack:self.lastAttack] != TargetLevelTarget)
+		return;
+	
+	//set the repeat prompt's text
+	[self.repeatButton setTitle:[NSString stringWithFormat:@"Press to use %@ again.", self.lastAttack] forState:UIControlStateNormal];
+	
+	self.uiAnimating = true;
+	__weak typeof(self) weakSelf = self;
+	[UIView animateWithDuration:GAMEPLAY_PANEL_TIME animations:
+	 ^()
+	 {
+		 weakSelf.repeatPromptCord.constant = 0;
+		 [weakSelf.view layoutIfNeeded];
+	 } completion:
+	 ^(BOOL complete)
+	 {
+		 weakSelf.uiAnimating = false;
+	 }];
+}
+
+-(void)attackAnimation:(NSString *)name withElement:(NSString *)element suffix:(NSString *)suffix andAttackEffect:(NSString *)attackEffect fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void (^)(void)))block andEndBlock:(void (^)(void))endBlock
+{
+	//attack variables to relay to
+	BOOL delayed = loadValueBool(@"Attacks", name, @"area");
+	BOOL teleport = loadValueBool(@"Attacks", name, @"teleport");
+	
+	//this function has all the gameplay code for the animation
+	__weak typeof(self) weakSelf = self;
+	[self attackAnimationInner:name withElement:element suffix:suffix andAttackEffect:attackEffect fromPerson:creature targetX:x andY:y delayed:delayed withEffectBlock:
+	 ^()
+	 {
+		 block(^(){
+			 [weakSelf switchToPanel:weakSelf.mainPanelCord withBlock:
+			  ^()
+			  {
+				  //NOTE:
+				  //if this is a counter-attack, this final block won't happen
+				  
+				  if (teleport)
+				  {
+					  //move everyone
+					  [weakSelf.mapView setPositionWithX:weakSelf.map.player.x - GAMEPLAY_SCREEN_WIDTH * 0.5f + 0.5f andY:weakSelf.map.player.y - GAMEPLAY_SCREEN_HEIGHT * 0.5f + 0.5f withAnimBlock:
+					   ^()
+					   {
+						   [weakSelf moveCreatureAnim];
+					   } andCompleteBlock:
+					   ^()
+					   {
+						   [weakSelf.map recalculateVisibility];
+						   [weakSelf.mapView remake];
+						   endBlock();
+					   }];
+				  }
+				  else
+					  endBlock();
+			  }];
+		 });
+	 }];
+}
+
+-(void)attackAnimationInner:(NSString *)name withElement:(NSString *)element suffix:(NSString *)suffix andAttackEffect:(NSString *)attackEffect fromPerson:(Creature *)creature targetX:(int)x andY:(int)y delayed:(BOOL)delayed withEffectBlock:(void (^)(void))block
+{
+	//TODO: I actually kinda liked the effect the background color changing thing had
+	//maybe it can be added back, as a rider to the panel switch?
+	//so, ie, the background turns red when someone uses a burn attack
+	
+	//set attack color by element
+	UIColor *color;
+	if (!loadValueBool(@"Attacks", name, @"power"))
+		color = loadColorFromName(@"element no damage");
+	else
+		color = loadColorFromName([NSString stringWithFormat:@"element %@", element]);
+	
+	
+	//pick relative positions based on anim type
+	int attackXFrom, attackYFrom, attackXTo, attackYTo;
+	BOOL rotate = loadValueBool(@"AttackEffects", attackEffect, @"rotate");
+	BOOL projectile = true;
+	float angle = 0;
+	NSString *animType = loadValueString(@"AttackEffects", attackEffect, @"type");
+	attackXTo = x * GAMEPLAY_TILE_SIZE + GAMEPLAY_TILE_SIZE / 2 + self.mapView.xOffset;
+	attackYTo = y * GAMEPLAY_TILE_SIZE + GAMEPLAY_TILE_SIZE / 2 + self.mapView.yOffset;
+	if ([animType isEqualToString:@"projectile"])
+	{
+		attackXFrom = creature.x * GAMEPLAY_TILE_SIZE + GAMEPLAY_TILE_SIZE / 2 + self.mapView.xOffset;
+		attackYFrom = creature.y * GAMEPLAY_TILE_SIZE + GAMEPLAY_TILE_SIZE / 2 + self.mapView.yOffset;
+	}
+	else if ([animType isEqualToString:@"melee"])
+	{
+		attackXFrom = attackXTo;
+		attackYFrom = attackYTo + loadValueNumber(@"AttackEffects", attackEffect, @"start off").intValue;
+		attackYTo += loadValueNumber(@"AttackEffects", attackEffect, @"end off").intValue;
+	}
+	else
+		projectile = false;
+	if (rotate)
+		angle = atan2f(attackYTo - attackYFrom, attackXTo - attackXFrom);
+	
+	
+	//load attack effect variables
+	UIImage *attackSprite = nil;
+	float projectileScale = 1;
+	if (projectile)
+	{
+		NSString *attackSpriteName = loadValueString(@"AttackEffects", attackEffect, @"sprite");
+		attackSprite = colorImage([UIImage imageNamed:attackSpriteName], color);
+		if (loadValueBool(@"AttackEffects", attackEffect, @"projectile scale"))
+			projectileScale = loadValueNumber(@"AttackEffects", attackEffect, @"projectile scale").floatValue;
+	}
+	
+	//load explosion effect variables
+	UIImage *explosionSprite = nil;
+	if (loadValueBool(@"AttackEffects", attackEffect, @"explosion sprite"))
+	{
+		NSString *explosionSpriteName = loadValueString(@"AttackEffects", attackEffect, @"explosion sprite");
+		explosionSprite = colorImage([UIImage imageNamed:explosionSpriteName], color);
+	}
+	
+	
+	//how long should it last?
+	Tile *to = self.map.tiles[y][x];
+	Tile *from = self.map.tiles[creature.y][creature.x];
+	float time, explosionTime = 0;
+	if (loadValueBool(@"AttackEffects", attackEffect, @"time per distance"))
+		time = loadValueNumber(@"AttackEffects", attackEffect, @"time per distance").floatValue * (ABS(creature.x - x) + ABS(creature.y - y));
+	else if (loadValueBool(@"AttackEffects", attackEffect, @"time"))
+		time = loadValueNumber(@"AttackEffects", attackEffect, @"time").floatValue;
+	else
+		time = 0.001f;
+	if (loadValueBool(@"AttackEffects", attackEffect, @"explosion time"))
+		explosionTime = loadValueNumber(@"AttackEffects", attackEffect, @"explosion time").floatValue;
+	if (!to.visible && !from.visible && !delayed)
+	{
+		//you can't see what's attacking, or what's being attacked, so it should be invisible; area attacks are exempt
+		time = 0.001f;
+		explosionTime = time;
+	}
+	
+	//announce the attack
+	__weak typeof(self) weakSelf = self;
+	if (suffix != nil)
+		self.attackNameLabel.text = [NSString stringWithFormat:@"%@ attacked %@!", creature.name, suffix];
+	else
+		self.attackNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@!", creature.name, delayed ? @"unleashed" : @"used", name];
+	self.attackNameLabel.textColor = loadColorFromName(@"ui text");
+	[self switchToPanel:self.attackNamePanelCord withBlock:
+	 ^()
+	 {
+		 UIView *projectileView = nil;
+		 UIImageView *image = nil;
+		 if (projectile)
+		 {
+			 projectileView = [UIView new];
+			 image = [[UIImageView alloc] initWithImage:attackSprite];
+			 int width = attackSprite.size.width * projectileScale;
+			 int height = attackSprite.size.height * projectileScale;
+			 image.frame = CGRectMake(-width/2, -height/2, width, height);
+			 projectileView.center = CGPointMake(attackXFrom, attackYFrom);
+			 [weakSelf.creatureView addSubview:projectileView];
+			 [projectileView addSubview:image];
+			 if (rotate)
+				 image.transform = CGAffineTransformMakeRotation(angle);
+		 }
+		 
+		 
+		 weakSelf.animating = true;
+		 [UIView animateWithDuration:time animations:
+		  ^()
+		  {
+			  //fling the projectile at the target
+			  if (projectile)
+			  {
+				  if (delayed && explosionSprite == nil) //only expand when there's no explosion
+				  {
+					  int projectileExtraSize = loadValueNumber(@"Attacks", name, @"area").intValue;
+					  int width = image.bounds.size.width * projectileExtraSize;
+					  int height = image.bounds.size.height * projectileExtraSize;
+					  image.bounds = CGRectMake(-width, -height, width, height);
+				  }
+				  projectileView.frame = CGRectMake(attackXTo, attackYTo, 0, 0);
+			  }
+			  
+		  } completion:
+		  ^(BOOL finished)
+		  {
+			  //get rid of the projectile
+			  if (projectile)
+				  [projectileView removeFromSuperview];
+			  
+			  if (explosionSprite == nil)
+			  {
+				  weakSelf.animating = false;
+				  block();
+			  }
+			  else
+			  {
+				  UIImageView *boom = [[UIImageView alloc] initWithImage:explosionSprite];
+				  boom.frame = CGRectMake(attackXTo - GAMEPLAY_TILE_SIZE / 4, attackYTo - GAMEPLAY_TILE_SIZE / 4, GAMEPLAY_TILE_SIZE / 2, GAMEPLAY_TILE_SIZE / 2);
+				  [weakSelf.creatureView addSubview:boom];
+				  [UIView animateWithDuration:explosionTime animations:
+				   ^()
+				   {
+					   int boomSize = 1;
+					   if (delayed)
+						   boomSize = loadValueNumber(@"Attacks", name, @"area").intValue;
+					   boom.frame = CGRectMake(attackXTo - GAMEPLAY_TILE_SIZE * boomSize / 2, attackYTo - GAMEPLAY_TILE_SIZE * boomSize / 2, GAMEPLAY_TILE_SIZE * boomSize, GAMEPLAY_TILE_SIZE * boomSize);
+				   } completion:
+				   ^(BOOL finished)
+				   {
+					   [boom removeFromSuperview];
+					   
+					   weakSelf.animating = false;
+					   block();
+				   }];
+			  }
+		  }];
+	 }];
+}
+
+-(void)updateStats
+{
+	[self reloadPanels];
+}
+
+-(void)countdownWarningWithBlock:(void (^)(void))block
+{
+	[self reloadPanels];
+	
+	int countdown = self.map.countdown;
+	
+	//	NSLog(@"COUNTDOWN: %i", countdown);
+	
+	if (countdown % GAMEPLAY_COUNTDOWN_WARNING_INTERVAL != 0)
+	{
+		//don't warn about the countdown
+		block();
+		return;
+	}
+	
+	//TODO: make the warning label bigger
+	UILabel *warning = [[UILabel alloc] initWithFrame:CGRectZero];
+	warning.text = [NSString stringWithFormat:@"YOU HAVE %i ROUNDS TO ESCAPE!", countdown];
+	warning.textColor = loadColorFromName(@"ui warning");
+	[warning sizeToFit];
+	warning.center = self.creatureView.center;
+	[self.view addSubview:warning];
+	
+	[[SoundPlayer sharedPlayer] playSound:@"siren"];
+	
+	self.animating = true;
+	__weak typeof(self) weakSelf = self;
+	[UIView animateWithDuration:0.3f animations:
+	 ^()
+	 {
+		 weakSelf.view.backgroundColor = loadColorFromName(@"ui warning");
+	 } completion:
+	 ^(BOOL finished)
+	 {
+		 [weakSelf shakeWithShakes:14 andBlock:
+		  ^()
+		  {
+			  [warning removeFromSuperview];
+			  weakSelf.animating = false;
+			  block();
+		  }];
+	 }];
 }
 
 #pragma mark user interaction
@@ -1088,779 +1316,6 @@
 				[self.map moveWithX:0 andY:1];
 		}
 	}
-}
-
--(void) registerScore:(NSString *)score withSuccess:(BOOL)success
-{
-	int floor = self.map.floorNum;
-	if (success)
-		floor += 1;
-	
-	//pull down the scores list and the score floors list
-	NSMutableArray *scoreFloors = [[NSUserDefaults standardUserDefaults] objectForKey:@"score floors"];
-	NSMutableArray *scores = [[NSUserDefaults standardUserDefaults] objectForKey:@"scores"];
-	if (scoreFloors == nil)
-	{
-		//the scores weren't made, so initialize them
-		scoreFloors = [NSMutableArray new];
-		scores = [NSMutableArray new];
-	}
-	else
-	{
-		scoreFloors = [NSMutableArray arrayWithArray:scoreFloors];
-		scores = [NSMutableArray arrayWithArray:scores];
-	}
-	
-	//figure out where to insert the score
-	int placePosition = -1;
-	for (int i = 0; i < scores.count; i++)
-	{
-		NSNumber *sF = scoreFloors[i];
-		if (sF.intValue == floor)
-		{
-			placePosition = i;
-			break;
-		}
-	}
-	if (placePosition == -1)
-		placePosition = (int)scores.count;
-	
-	//insert at the right place
-	[scoreFloors insertObject:@(floor) atIndex:placePosition];
-	[scores insertObject:[NSString stringWithFormat:@"%@ %@: %@", self.map.player.gender ? @"F" : @"M", [self.map.player.race capitalizedString], score] atIndex:placePosition];
-	
-	//trim excess runs
-	int maxScores = 30;
-	while (scoreFloors.count > maxScores)
-		[scoreFloors removeLastObject];
-	while (scores.count > maxScores)
-		[scoreFloors removeLastObject];
-	
-	//save the scores away
-	[[NSUserDefaults standardUserDefaults] setObject:scoreFloors forKey:@"score floors"];
-	[[NSUserDefaults standardUserDefaults] setObject:scores forKey:@"scores"];
-}
-
-#pragma mark: map view delegate
-
--(UIView *)viewAtTileWithX:(int)x andY:(int)y andOldView:(UIView *)oldView
-{
-	if (x < 0 || y < 0 || x >= self.map.width || y >= self.map.height)
-		return nil;
-	
-	//get the tile
-	Tile *tile = self.map.tiles[y][x];
-	
-	if (!tile.changed && oldView != nil && tile.visible == tile.lastVisible)
-		return oldView;
-	
-	//you responded to the change, so set changed to false
-	tile.changed = false;
-	
-	//just don't draw tiles that aren't visible
-	UIView *tileView = nil;
-	if (tile.visible || tile.discovered)
-	{
-		//make the tile view
-		tileView = [UIView new];
-		if (tile.spriteName != nil)
-		{
-			[self preloadTileImageFor:tile]; //preload that image if necessary
-			
-			//load a preloaded tile image
-			UIImageView *tileSpriteView = [[UIImageView alloc] initWithImage:self.preloadedTileImages[tile.type]];
-			[tileView addSubview:tileSpriteView];
-		}
-		else
-			tileView.backgroundColor = tile.color;
-		
-		//target color view
-		UIColor *targetColor = nil;
-		if (tile.targetLevel == TargetLevelInRange)
-			targetColor = loadColorFromName(@"ui warning pale");
-		else if (tile.targetLevel == TargetLevelTarget)
-			targetColor = loadColorFromName(@"ui warning");
-		if (targetColor != nil)
-		{
-			UIView *targetView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, GAMEPLAY_TILE_SIZE, GAMEPLAY_TILE_SIZE)];
-			targetView.backgroundColor = targetColor;
-			targetView.alpha = 0.5; //TODO: this should be a constant
-			[tileView addSubview:targetView];
-		}
-		
-		//discovered but invisible tiles should be transparent
-		if (!tile.visible && targetColor == nil)
-			tileView.alpha = 0.5; //TODO: this should be a constant
-	}
-	if (tile.treasureType != TreasureTypeNone)
-	{
-		//TODO: get the real treasure image
-		NSString *treasureName = nil;
-		UIColor *treasureColor = nil;
-		switch (tile.treasureType)
-		{
-			case TreasureTypeBag:
-				treasureName = @"pouch";
-				treasureColor = loadColorFromName(@"leather");
-				break;
-			case TreasureTypeChest:
-				treasureName = @"chest_open";
-				treasureColor = loadColorFromName(@"relic");
-				break;
-			case TreasureTypeLocked:
-				treasureName = @"chest";
-				treasureColor = loadColorFromName(@"relic");
-				break;
-			case TreasureTypeFree:
-				treasureName = loadValueString(@"InventoryItems", tile.treasure.name, @"sprite");
-				treasureColor = loadColorFromName(loadValueString(@"InventoryItems", tile.treasure.name, @"color"));
-				break;
-			default: break;
-		}
-		UIImage *treasureSprite = colorImage([UIImage imageNamed:treasureName], treasureColor);
-		
-		UIImageView *treasureView = [[UIImageView alloc] initWithImage:treasureSprite];
-		treasureView.center = CGPointMake(GAMEPLAY_TILE_SIZE / 2, GAMEPLAY_TILE_SIZE / 2);
-		[tileView addSubview:treasureView];
-	}
-	if (tile.aoeTargeters.count > 0 && self.attackChosen == nil)
-	{
-		if (tileView == nil)
-			tileView = [UIView new]; //make an empty container view
-		
-		//TODO: this image should be preloaded probably
-		UIImage *warning = [UIImage imageNamed:@"ui_warning"];
-		warning = colorImage(warning, loadColorFromName(@"ui warning"));
-		
-		UIImageView *warningView = [[UIImageView alloc] initWithImage:warning];
-		warningView.center = CGPointMake(GAMEPLAY_TILE_SIZE / 2, GAMEPLAY_TILE_SIZE / 2);
-		[tileView addSubview:warningView];
-	}
-	
-	return tileView;
-}
-
--(int)mapWidth
-{
-	return self.map.width;
-}
--(int)mapHeight
-{
-	return self.map.height;
-}
-
--(void)recalculateHidden
-{
-	for (int i = 0; i < self.creatureViews.count; i++)
-	{
-		Creature *cr = self.map.creatures[i];
-		UIView *view = self.creatureViews[i];
-		view.hidden = !((Tile *)self.map.tiles[cr.y][cr.x]).visible || !([self.mapView isPointOnscreenWithX:cr.x andY:cr.y]);
-	}
-}
-
-#pragma mark: map delegate
-
--(void)moveCreatureCompleteWithBlock:(void (^)(void))block
-{
-	//the action is over
-	self.animating = false;
-	[self recalculateHidden];
-	block();
-}
-
--(void)moveCreatureAnim
-{
-	//move everything, not just the one guy
-	for (int i = 0; i < self.creatureViews.count; i++)
-	{
-		Creature *cr = self.map.creatures[i];
-		UIView *view = self.creatureViews[i];
-		float x = (cr.x + 0.5) * GAMEPLAY_TILE_SIZE + self.mapView.xOffset;
-		float y = (cr.y + 0.5) * GAMEPLAY_TILE_SIZE + self.mapView.yOffset;
-		view.center = CGPointMake(x, y);
-		//view.frame = CGRectMake(x, y, GAMEPLAY_TILE_SIZE, GAMEPLAY_TILE_SIZE);
-	}
-}
-
--(void)moveCreature:(Creature *)creature fromX:(int)x fromY:(int)y withBlock:(void (^)(void))block
-{
-	__weak typeof(self) weakSelf = self;
-	self.animating = true;
-	
-	if (creature == self.map.player)
-	{
-		__block BOOL finishedFirst = true;
-		
-		//do some visibility recalculating on another thread
-		dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^() {
-			[weakSelf.map recalculateVisibility];
-			dispatch_async(dispatch_get_main_queue(), ^() {
-				if (finishedFirst)
-					finishedFirst = false;
-				else
-				{
-					[weakSelf updateTiles];
-					[weakSelf moveCreatureCompleteWithBlock:block];
-				}
-			});
-		});
-		
-		[self.mapView setPositionWithX:creature.x - GAMEPLAY_SCREEN_WIDTH * 0.5f + 0.5f andY:creature.y - GAMEPLAY_SCREEN_HEIGHT * 0.5f + 0.5f withAnimBlock:
-		^()
-		{
-			[weakSelf moveCreatureAnim];
-		} andCompleteBlock:
-		^()
-		{
-			if (finishedFirst)
-				finishedFirst = false;
-			else
-			{
-				[weakSelf updateTiles];
-				[weakSelf moveCreatureCompleteWithBlock:block];
-			}
-		}];
-	}
-	else
-	{
-		//invisible moves should be instant
-		Tile *from = self.map.tiles[y][x];
-		Tile *to = self.map.tiles[creature.y][creature.x];
-		float time = GAMEPLAY_MOVE_TIME;
-		if (!from.visible && !to.visible)
-			time = 0.01f;
-		
-		[UIView animateWithDuration:time animations:
-		^()
-		{
-			[weakSelf moveCreatureAnim];
-		} completion:
-		^(BOOL finished)
-		{
-			[weakSelf moveCreatureCompleteWithBlock:block];
-		}];
-	}
-}
-
--(void)presentRepeatPrompt
-{
-	//CAN you repeat?)
-	if (self.lastTarget.dead)
-		self.lastTarget = nil;
-	
-	if (self.lastAttack == nil || self.lastTarget == nil || ![self.map.player canUseAttack:self.lastAttack] || [self.map.player targetLevelAtX:self.lastTarget.x andY:self.lastTarget.y withAttack:self.lastAttack] != TargetLevelTarget)
-		return;
-	
-	//set the repeat prompt's text
-	[self.repeatButton setTitle:[NSString stringWithFormat:@"Press to use %@ again.", self.lastAttack] forState:UIControlStateNormal];
-	
-	self.uiAnimating = true;
-	__weak typeof(self) weakSelf = self;
-	[UIView animateWithDuration:GAMEPLAY_PANEL_TIME animations:
-	^()
-	{
-		weakSelf.repeatPromptCord.constant = 0;
-		[weakSelf.view layoutIfNeeded];
-	} completion:
-	^(BOOL complete)
-	{
-		weakSelf.uiAnimating = false;
-	}];
-}
-
--(void)attackAnimation:(NSString *)name withElement:(NSString *)element suffix:(NSString *)suffix andAttackEffect:(NSString *)attackEffect fromPerson:(Creature *)creature targetX:(int)x andY:(int)y withEffectBlock:(void (^)(void (^)(void)))block andEndBlock:(void (^)(void))endBlock
-{
-	//attack variables to relay to
-	BOOL delayed = loadValueBool(@"Attacks", name, @"area");
-	BOOL teleport = loadValueBool(@"Attacks", name, @"teleport");
-	
-	//this function has all the gameplay code for the animation
-	__weak typeof(self) weakSelf = self;
-	[self attackAnimationInner:name withElement:element suffix:suffix andAttackEffect:attackEffect fromPerson:creature targetX:x andY:y delayed:delayed withEffectBlock:
-	^()
-	{
-		block(^(){
-			[weakSelf switchToPanel:weakSelf.mainPanelCord withBlock:
-			 ^()
-			 {
-				 //NOTE:
-				 //if this is a counter-attack, this final block won't happen
-				 
-				 if (teleport)
-				 {
-					 //move everyone
-					 [weakSelf.mapView setPositionWithX:weakSelf.map.player.x - GAMEPLAY_SCREEN_WIDTH * 0.5f + 0.5f andY:weakSelf.map.player.y - GAMEPLAY_SCREEN_HEIGHT * 0.5f + 0.5f withAnimBlock:
-							^()
-							{
-								[weakSelf moveCreatureAnim];
-							} andCompleteBlock:
-							^()
-							{
-								[weakSelf.map recalculateVisibility];
-								[weakSelf.mapView remake];
-								endBlock();
-							}];
-				 }
-				 else
-					 endBlock();
-			 }];
-		});
-	}];
-}
-
--(void)attackAnimationInner:(NSString *)name withElement:(NSString *)element suffix:(NSString *)suffix andAttackEffect:(NSString *)attackEffect fromPerson:(Creature *)creature targetX:(int)x andY:(int)y delayed:(BOOL)delayed withEffectBlock:(void (^)(void))block
-{
-	//TODO: I actually kinda liked the effect the background color changing thing had
-	//maybe it can be added back, as a rider to the panel switch?
-	//so, ie, the background turns red when someone uses a burn attack
-	
-	//set attack color by element
-	UIColor *color;
-	if (!loadValueBool(@"Attacks", name, @"power"))
-		color = loadColorFromName(@"element no damage");
-	else
-		color = loadColorFromName([NSString stringWithFormat:@"element %@", element]);
-	
-	
-	//pick relative positions based on anim type
-	int attackXFrom, attackYFrom, attackXTo, attackYTo;
-	BOOL rotate = loadValueBool(@"AttackEffects", attackEffect, @"rotate");
-	BOOL projectile = true;
-	float angle = 0;
-	NSString *animType = loadValueString(@"AttackEffects", attackEffect, @"type");
-	attackXTo = x * GAMEPLAY_TILE_SIZE + GAMEPLAY_TILE_SIZE / 2 + self.mapView.xOffset;
-	attackYTo = y * GAMEPLAY_TILE_SIZE + GAMEPLAY_TILE_SIZE / 2 + self.mapView.yOffset;
-	if ([animType isEqualToString:@"projectile"])
-	{
-		attackXFrom = creature.x * GAMEPLAY_TILE_SIZE + GAMEPLAY_TILE_SIZE / 2 + self.mapView.xOffset;
-		attackYFrom = creature.y * GAMEPLAY_TILE_SIZE + GAMEPLAY_TILE_SIZE / 2 + self.mapView.yOffset;
-	}
-	else if ([animType isEqualToString:@"melee"])
-	{
-		attackXFrom = attackXTo;
-		attackYFrom = attackYTo + loadValueNumber(@"AttackEffects", attackEffect, @"start off").intValue;
-		attackYTo += loadValueNumber(@"AttackEffects", attackEffect, @"end off").intValue;
-	}
-	else
-		projectile = false;
-	if (rotate)
-		angle = atan2f(attackYTo - attackYFrom, attackXTo - attackXFrom);
-	
-	
-	//load attack effect variables
-	UIImage *attackSprite = nil;
-	float projectileScale = 1;
-	if (projectile)
-	{
-		NSString *attackSpriteName = loadValueString(@"AttackEffects", attackEffect, @"sprite");
-		attackSprite = colorImage([UIImage imageNamed:attackSpriteName], color);
-		if (loadValueBool(@"AttackEffects", attackEffect, @"projectile scale"))
-			projectileScale = loadValueNumber(@"AttackEffects", attackEffect, @"projectile scale").floatValue;
-	}
-	
-	//load explosion effect variables
-	UIImage *explosionSprite = nil;
-	if (loadValueBool(@"AttackEffects", attackEffect, @"explosion sprite"))
-	{
-		NSString *explosionSpriteName = loadValueString(@"AttackEffects", attackEffect, @"explosion sprite");
-		explosionSprite = colorImage([UIImage imageNamed:explosionSpriteName], color);
-	}
-	
-	
-	//how long should it last?
-	Tile *to = self.map.tiles[y][x];
-	Tile *from = self.map.tiles[creature.y][creature.x];
-	float time, explosionTime = 0;
-	if (loadValueBool(@"AttackEffects", attackEffect, @"time per distance"))
-		time = loadValueNumber(@"AttackEffects", attackEffect, @"time per distance").floatValue * (ABS(creature.x - x) + ABS(creature.y - y));
-	else if (loadValueBool(@"AttackEffects", attackEffect, @"time"))
-		time = loadValueNumber(@"AttackEffects", attackEffect, @"time").floatValue;
-	else
-		time = 0.001f;
-	if (loadValueBool(@"AttackEffects", attackEffect, @"explosion time"))
-		explosionTime = loadValueNumber(@"AttackEffects", attackEffect, @"explosion time").floatValue;
-	if (!to.visible && !from.visible && !delayed)
-	{
-		//you can't see what's attacking, or what's being attacked, so it should be invisible; area attacks are exempt
-		time = 0.001f;
-		explosionTime = time;
-	}
-	
-	//announce the attack
-	__weak typeof(self) weakSelf = self;
-	if (suffix != nil)
-		self.attackNameLabel.text = [NSString stringWithFormat:@"%@ attacked %@!", creature.name, suffix];
-	else
-		self.attackNameLabel.text = [NSString stringWithFormat:@"%@ %@ %@!", creature.name, delayed ? @"unleashed" : @"used", name];
-	self.attackNameLabel.textColor = loadColorFromName(@"ui text");
-	[self switchToPanel:self.attackNamePanelCord withBlock:
-	^()
-	{
-		UIView *projectileView = nil;
-		UIImageView *image = nil;
-		if (projectile)
-		{
-			projectileView = [UIView new];
-			image = [[UIImageView alloc] initWithImage:attackSprite];
-			int width = attackSprite.size.width * projectileScale;
-			int height = attackSprite.size.height * projectileScale;
-			image.frame = CGRectMake(-width/2, -height/2, width, height);
-			projectileView.center = CGPointMake(attackXFrom, attackYFrom);
-			[weakSelf.creatureView addSubview:projectileView];
-			[projectileView addSubview:image];
-			if (rotate)
-				image.transform = CGAffineTransformMakeRotation(angle);
-		}
-		
-		
-		weakSelf.animating = true;
-		[UIView animateWithDuration:time animations:
-		^()
-		{
-			//fling the projectile at the target
-			if (projectile)
-			{
-				if (delayed && explosionSprite == nil) //only expand when there's no explosion
-				{
-					int projectileExtraSize = loadValueNumber(@"Attacks", name, @"area").intValue;
-					int width = image.bounds.size.width * projectileExtraSize;
-					int height = image.bounds.size.height * projectileExtraSize;
-					image.bounds = CGRectMake(-width, -height, width, height);
-				}
-				projectileView.frame = CGRectMake(attackXTo, attackYTo, 0, 0);
-			}
-			
-		} completion:
-		^(BOOL finished)
-		{
-			//get rid of the projectile
-			if (projectile)
-				[projectileView removeFromSuperview];
-			
-			if (explosionSprite == nil)
-			{
-				weakSelf.animating = false;
-				block();
-			}
-			else
-			{
-				UIImageView *boom = [[UIImageView alloc] initWithImage:explosionSprite];
-				boom.frame = CGRectMake(attackXTo - GAMEPLAY_TILE_SIZE / 4, attackYTo - GAMEPLAY_TILE_SIZE / 4, GAMEPLAY_TILE_SIZE / 2, GAMEPLAY_TILE_SIZE / 2);
-				[weakSelf.creatureView addSubview:boom];
-				[UIView animateWithDuration:explosionTime animations:
-				^()
-				{
-					int boomSize = 1;
-					if (delayed)
-						boomSize = loadValueNumber(@"Attacks", name, @"area").intValue;
-					boom.frame = CGRectMake(attackXTo - GAMEPLAY_TILE_SIZE * boomSize / 2, attackYTo - GAMEPLAY_TILE_SIZE * boomSize / 2, GAMEPLAY_TILE_SIZE * boomSize, GAMEPLAY_TILE_SIZE * boomSize);
-				} completion:
-				^(BOOL finished)
-				{
-					[boom removeFromSuperview];
-					
-					weakSelf.animating = false;
-					block();
-				}];
-			}
-		}];
-	}];
-}
-
--(void)updateTiles
-{
-	[self.mapView remake];
-}
-
--(void)updateStats
-{
-	[self reloadPanels];
-}
-
--(void)updateCreature:(Creature *)cr
-{
-	[self regenerateCreatureSprite:cr];
-}
-
--(void)fadeScreenInTime:(float)time withBlock:(void (^)(void))block
-{
-	//fade the screen away
-	__weak typeof(self) weakSelf = self;
-	[UIView animateWithDuration:time animations:
-	^()
-	{
-		weakSelf.view.backgroundColor = [UIColor blackColor];
-		for (int i = 0; i < weakSelf.creatureViews.count; i++)
-		{
-			UIView *view = weakSelf.creatureViews[i];
-			Creature *creature = weakSelf.map.creatures[i];
-			if (!creature.good)
-				view.alpha = 0;
-		}
-		weakSelf.mapView.alpha = 0;
-		
-	} completion:
-	^(BOOL finished)
-	{
-		block();
-	}];
-}
-
--(void)goToNextMap
-{
-//	NSLog(@"Finished map with %i left on the countdown!", self.map.countdown);
-	
-	//do a fancy end-of-map animation
-	self.animating = true;
-	__weak typeof(self) weakSelf = self;
-	[self fadeScreenInTime:0.6f withBlock:
-	^()
-	{
-		int number = (int)[weakSelf.map.creatures indexOfObject:weakSelf.map.player];
-		UIView *view = weakSelf.creatureViews[number];
-		
-		[UIView animateWithDuration:0.4f animations:
-		^()
-		{
-			//the player zooms away
-			view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y - weakSelf.view.frame.size.height, view.frame.size.width, view.frame.size.height);
-			
-		} completion:
-		^(BOOL finished)
-		{
-			view.alpha = 0;
-			[weakSelf nextMapInner];
-		}];
-	}];
-}
-
--(void)countdownWarningWithBlock:(void (^)(void))block
-{
-	[self reloadPanels];
-	
-	int countdown = self.map.countdown;
-	
-//	NSLog(@"COUNTDOWN: %i", countdown);
-	
-	if (countdown % GAMEPLAY_COUNTDOWN_WARNING_INTERVAL != 0)
-	{
-		//don't warn about the countdown
-		block();
-		return;
-	}
-	
-	//TODO: make the warning label bigger
-	UILabel *warning = [[UILabel alloc] initWithFrame:CGRectZero];
-	warning.text = [NSString stringWithFormat:@"YOU HAVE %i ROUNDS TO ESCAPE!", countdown];
-	warning.textColor = loadColorFromName(@"ui warning");
-	[warning sizeToFit];
-	warning.center = self.creatureView.center;
-	[self.view addSubview:warning];
-	
-	[[SoundPlayer sharedPlayer] playSound:@"siren"];
-	
-	self.animating = true;
-	__weak typeof(self) weakSelf = self;
-	[UIView animateWithDuration:0.3f animations:
-	^()
-	{
-		weakSelf.view.backgroundColor = loadColorFromName(@"ui warning");
-	} completion:
-	^(BOOL finished)
-	{
-		[weakSelf shakeWithShakes:14 andBlock:
-		^()
-		{
-			[warning removeFromSuperview];
-			weakSelf.animating = false;
-			block();
-		}];
-	}];
-}
-
--(void)shakeWithShakes:(int)shakes andBlock:(void (^)(void))block
-{
-	shakes -= 1;
-	
-	float xOff, yOff;
-	if (shakes > 0)
-	{
-		float direction = arc4random_uniform(100) * 0.01f * 2 * M_PI;
-		xOff = 4 * cos(direction);
-		yOff = 4 * sin(direction);
-	}
-	else
-	{
-		xOff = 0;
-		yOff = 0;
-	}
-	
-	CGRect cFrame = self.creatureView.frame;
-	CGRect mFrame = self.mapView.frame;
-	
-	__weak typeof(self) weakSelf = self;
-	[UIView animateWithDuration:0.1f animations:
-	^()
-	{
-		weakSelf.creatureView.frame = CGRectMake(cFrame.origin.x + xOff, cFrame.origin.y + yOff, cFrame.size.width, cFrame.size.height);
-		weakSelf.mapView.frame = CGRectMake(mFrame.origin.x + xOff, mFrame.origin.y + yOff, mFrame.size.width, mFrame.size.height);
-	} completion:
-	^(BOOL finished)
-	{
-		weakSelf.creatureView.frame = cFrame;
-		weakSelf.mapView.frame = mFrame;
-		
-		if (shakes == 0)
-			block();
-		else
-			[weakSelf shakeWithShakes:shakes andBlock:block];
-	}];
-}
-
--(void)floatLabelsOn:(NSArray *)creatures withString:(NSArray *)strings andColor:(UIColor *)color withBlock:(void (^)(void))block
-{
-	NSMutableArray *labels = [NSMutableArray new];
-	for (int i = 0; i < creatures.count; i++)
-	{
-		Creature *cr = creatures[i];
-		NSString *string = strings[i];
-		if ([self.mapView isPointOnscreenWithX:cr.x andY:cr.y] && string.length > 0)
-		{
-			UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
-			label.text = string;
-			label.textColor = color;
-			[label sizeToFit];
-			label.center = CGPointMake((cr.x + 0.5f) * GAMEPLAY_TILE_SIZE + self.mapView.xOffset, (cr.y + 0.5f) * GAMEPLAY_TILE_SIZE + self.mapView.yOffset);
-			[self.creatureView addSubview:label];
-			[labels addObject:label];
-		}
-	}
-	
-	if (labels.count == 0)
-	{
-		block();
-		return;
-	}
-	
-	self.uiAnimating = true;
-	
-	__weak typeof(self) weakSelf = self;
-	[UIView animateWithDuration:GAMEPLAY_LABEL_TIME animations:
-	^()
-	{
-		for (UIView *label in labels)
-			label.frame = CGRectMake(label.frame.origin.x, label.frame.origin.y - GAMEPLAY_LABEL_DISTANCE, label.frame.size.width, label.frame.size.height);
-	} completion:
-	^(BOOL complete)
-	{
-		weakSelf.uiAnimating = false;
-		for (UIView *label in labels)
-			[label removeFromSuperview];
-		block();
-	}];
-}
-
--(void)nextMapInner
-{
-	if (self.map.floorNum == 9)
-	{
-		[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"game phase"];
-		
-		//you won!
-		NSString *title;
-		NSMutableString *victoryMessage = [NSMutableString new];
-		[victoryMessage appendString:@"As you exit the portal, you find yourself in the control room of the old Eol vessel."];
-		
-		//append an ending based on your race and actions
-		NSDictionary *killsPerRace = [[NSUserDefaults standardUserDefaults] objectForKey:@"statistics kills"];
-		NSArray *endingsArray = loadValueArray(@"Races", self.map.player.race, @"endings");
-		for (NSString *ending in endingsArray)
-		{
-			BOOL valid = true;
-			
-			//check your kills in a specific race
-			if (loadValueBool(@"Endings", ending, @"no kills of race"))
-			{
-				NSString *noKillsRace = loadValueString(@"Endings", ending, @"no kills of race");
-				NSNumber *kills = killsPerRace[noKillsRace];
-				if (kills.intValue > 0)
-					valid = false;
-			}
-			
-			//check to see if you have the right skills
-			if (loadValueBool(@"Endings", ending, @"possess skill from list"))
-			{
-				BOOL has = false;
-				NSArray *skillList = loadValueArray(@"Endings", ending, @"possess skill from list");
-				for (NSString *skill in skillList)
-					for (NSString *mySkill in self.map.player.skillTrees)
-						if ([mySkill isEqualToString:skill])
-						{
-							has = true;
-							break;
-						}
-				if (!has)
-					valid = false;
-			}
-			
-			//check your kills in various categories
-			for (int i = 0; i < 3; i++)
-			{
-				NSString *deathCategory;
-				switch(i)
-				{
-					case 0: deathCategory = @"animal"; break;
-					case 1: deathCategory = @"person"; break;
-					case 2: deathCategory = @"robot"; break;
-				}
-				if (loadValueBool(@"Endings", ending, [NSString stringWithFormat:@"no %@ kills", deathCategory]))
-					for (NSString *race in killsPerRace.allKeys)
-						if ([loadValueString(@"Races", race, @"death category") isEqualToString:deathCategory])
-						{
-							valid = false;
-							break;
-						}
-			}
-			
-			if (valid)
-			{
-				[victoryMessage appendFormat:@"\n%@", [loadValueString(@"Endings", ending, @"text") stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"]];
-				title = loadValueString(@"Endings", ending, @"title");
-				break;
-			}
-		}
-		
-		[victoryMessage appendFormat:@"\n%@", self.map.endStatistics];
-		
-		//register the score
-		[self registerScore:title withSuccess:YES];
-		
-		self.defeatMessage = victoryMessage;
-		[self performSegueWithIdentifier:@"defeat" sender:self];
-	}
-	else
-		[self performSegueWithIdentifier:@"changeMap" sender:self];
-}
-
--(void)defeat:(NSString *)message
-{
-	//null the save
-	[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"game phase"];
-	
-	//do a fancy end-of-map animation
-	self.animating = true;
-	__weak typeof(self) weakSelf = self;
-	[self fadeScreenInTime:2.5f withBlock:
-	^()
-	{
-		//register the defeat
-		[self registerScore:[NSString stringWithFormat:@"Died on floor %i", self.map.floorNum] withSuccess:YES];
-		
-		//go to the defeat screen
-		weakSelf.defeatMessage = message;
-		[weakSelf performSegueWithIdentifier:@"defeat" sender:weakSelf];
-	}];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

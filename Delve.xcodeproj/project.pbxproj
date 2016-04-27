@@ -80,6 +80,7 @@
 		E46238301C8A1177009C9FC4 /* Floors.plist in Resources */ = {isa = PBXBuildFile; fileRef = E462382F1C8A1177009C9FC4 /* Floors.plist */; };
 		E46238321C8A6901009C9FC4 /* Tilesets.plist in Resources */ = {isa = PBXBuildFile; fileRef = E46238311C8A6901009C9FC4 /* Tilesets.plist */; };
 		E4AE94A51CC318B900C1BC96 /* Endings.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4AE94A41CC318B900C1BC96 /* Endings.plist */; };
+		E4DA42E41CD04267005A293A /* GameMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DA42E31CD04267005A293A /* GameMapViewController.m */; };
 		E4DFE5D51CCF0BDB004D7E09 /* ScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DFE5D41CCF0BDB004D7E09 /* ScoresViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -178,6 +179,8 @@
 		E462382F1C8A1177009C9FC4 /* Floors.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Floors.plist; sourceTree = "<group>"; };
 		E46238311C8A6901009C9FC4 /* Tilesets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tilesets.plist; sourceTree = "<group>"; };
 		E4AE94A41CC318B900C1BC96 /* Endings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Endings.plist; sourceTree = "<group>"; };
+		E4DA42E21CD04267005A293A /* GameMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameMapViewController.h; sourceTree = "<group>"; };
+		E4DA42E31CD04267005A293A /* GameMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameMapViewController.m; sourceTree = "<group>"; };
 		E4DFE5D31CCF0BDB004D7E09 /* ScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoresViewController.h; sourceTree = "<group>"; };
 		E4DFE5D41CCF0BDB004D7E09 /* ScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoresViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -329,26 +332,52 @@
 		E459C69F1C7AB31B00422B0A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E4DFE5D31CCF0BDB004D7E09 /* ScoresViewController.h */,
-				E4DFE5D41CCF0BDB004D7E09 /* ScoresViewController.m */,
+				E4DA42E51CD04281005A293A /* Utility View Controllers */,
+				E4DA42E61CD04859005A293A /* Main View Controllers */,
+				E4DA42E71CD04860005A293A /* Smaller, Less Important View Controllers */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		E4DA42E51CD04281005A293A /* Utility View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E4DA42E21CD04267005A293A /* GameMapViewController.h */,
+				E4DA42E31CD04267005A293A /* GameMapViewController.m */,
+				E46238261C875F28009C9FC4 /* FormattingViewController.h */,
+				E46238271C875F28009C9FC4 /* FormattingViewController.m */,
+				E442C8201C8FA7FA0048DD95 /* CharacterServices.h */,
+				E442C8211C8FA8050048DD95 /* CharacterServices.m */,
+			);
+			name = "Utility View Controllers";
+			sourceTree = "<group>";
+		};
+		E4DA42E61CD04859005A293A /* Main View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E459C6B81C7BD25F00422B0A /* GameViewController.h */,
+				E459C6B91C7BD25F00422B0A /* GameViewController.m */,
+				E46238291C87657D009C9FC4 /* ChangeMapViewController.h */,
+				E462382A1C87657D009C9FC4 /* ChangeMapViewController.m */,
+				E442C81D1C8FA3730048DD95 /* CharacterCreatorViewController.h */,
+				E442C81E1C8FA3730048DD95 /* CharacterCreatorViewController.m */,
+			);
+			name = "Main View Controllers";
+			sourceTree = "<group>";
+		};
+		E4DA42E71CD04860005A293A /* Smaller, Less Important View Controllers */ = {
+			isa = PBXGroup;
+			children = (
 				E44A6FD31C9B66F90015852C /* BlueViewController.h */,
 				E44A6FD41C9B66F90015852C /* BlueViewController.m */,
 				E44A6FCD1C9B4D970015852C /* MainViewController.h */,
 				E44A6FCE1C9B4D970015852C /* MainViewController.m */,
-				E442C8201C8FA7FA0048DD95 /* CharacterServices.h */,
-				E442C8211C8FA8050048DD95 /* CharacterServices.m */,
-				E442C81D1C8FA3730048DD95 /* CharacterCreatorViewController.h */,
-				E442C81E1C8FA3730048DD95 /* CharacterCreatorViewController.m */,
-				E46238261C875F28009C9FC4 /* FormattingViewController.h */,
-				E46238271C875F28009C9FC4 /* FormattingViewController.m */,
-				E459C6B81C7BD25F00422B0A /* GameViewController.h */,
-				E459C6B91C7BD25F00422B0A /* GameViewController.m */,
 				E44A6FD01C9B63430015852C /* DefeatViewController.h */,
 				E44A6FD11C9B63430015852C /* DefeatViewController.m */,
-				E46238291C87657D009C9FC4 /* ChangeMapViewController.h */,
-				E462382A1C87657D009C9FC4 /* ChangeMapViewController.m */,
+				E4DFE5D31CCF0BDB004D7E09 /* ScoresViewController.h */,
+				E4DFE5D41CCF0BDB004D7E09 /* ScoresViewController.m */,
 			);
-			name = Controller;
+			name = "Smaller, Less Important View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -479,6 +508,7 @@
 				E462382B1C87657D009C9FC4 /* ChangeMapViewController.m in Sources */,
 				E459C6AE1C7BB36C00422B0A /* Map.m in Sources */,
 				E46238211C83F525009C9FC4 /* ItemTableViewCell.m in Sources */,
+				E4DA42E41CD04267005A293A /* GameMapViewController.m in Sources */,
 				E44A6FD51C9B66F90015852C /* BlueViewController.m in Sources */,
 				E44A6FD21C9B63430015852C /* DefeatViewController.m in Sources */,
 				E44A6FCF1C9B4D970015852C /* MainViewController.m in Sources */,
