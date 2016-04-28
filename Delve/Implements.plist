@@ -118,6 +118,7 @@
 	<key>rusty blade</key>
 	<dict>
 		<key>type</key> <string>weapon</string>
+		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>0</integer>
 		<key>element</key> <string>cut</string>
 		<key>attack effect</key> <string>slash</string>
@@ -162,6 +163,7 @@
 	<key>wooden club</key>
 	<dict>
 		<key>type</key> <string>weapon</string>
+		<key>breaks into</key> <string>herb</string>
 		<key>power</key> <integer>0</integer>
 		<key>description</key> <string>A simple wooden club.</string>
 	</dict>
@@ -231,6 +233,7 @@
 	<key>wooden shield</key>
 	<dict>
 		<key>type</key> <string>shield</string>
+		<key>breaks into</key> <string>herb</string>
 		<key>power</key> <integer>0</integer>
 		<key>description</key> <string>A crude shield made of wood.</string>
 	</dict>
@@ -260,6 +263,7 @@
 	<key>mallet</key>
 	<dict>
 		<key>type</key> <string>hammer</string>
+		<key>breaks into</key> <string>herb</string>
 		<key>power</key> <integer>0</integer>
 		<key>description</key> <string>A large hammer made of wood.</string>
 	</dict>
@@ -289,6 +293,7 @@
 	<key>wooden spear</key>
 	<dict>
 		<key>type</key> <string>spear</string>
+		<key>breaks into</key> <string>herb</string>
 		<key>power</key> <integer>0</integer>
 		<key>description</key> <string>A long wooden stick with a sharpened head.</string>
 	</dict>
@@ -318,6 +323,7 @@
 	<key>shiv</key>
 	<dict>
 		<key>type</key> <string>dagger</string>
+		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>0</integer>
 		<key>description</key> <string>A crude makeshift dagger, used by those with no real weapons.</string>
 	</dict>
@@ -347,6 +353,7 @@
 	<key>hunting bow</key>
 	<dict>
 		<key>type</key> <string>bow</string>
+		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>0</integer>
 		<key>description</key> <string>An old bow meant for hunting game, not people.</string>
 	</dict>
@@ -400,6 +407,7 @@
 	<key>depleted orb</key>
 	<dict>
 		<key>type</key> <string>light orb</string>
+		<key>breaks into</key> <string>capacitor</string>
 		<key>power</key> <integer>0</integer>
 		<key>description</key> <string>An old Eol relic that is barely functional anymore.</string>
 	</dict>
@@ -429,6 +437,7 @@
 	<key>holy bolt</key>
 	<dict>
 		<key>type</key> <string>holy weapon</string>
+		<key>breaks into</key> <string>capacitor</string>
 		<key>power</key> <integer>0</integer>
 		<key>description</key> <string>A simple holy weapon designed mostly for ceremonial use.</string>
 	</dict>
@@ -458,6 +467,7 @@
 	<key>old scratch</key>
 	<dict>
 		<key>type</key> <string>unholy weapon</string>
+		<key>breaks into</key> <string>capacitor</string>
 		<key>power</key> <integer>0</integer>
 		<key>description</key> <string>A forbidden weapon. Once very powerful, but weakened by lack of maintenance.</string>
 	</dict>
@@ -488,6 +498,7 @@
 	<key>innocence</key>
 	<dict>
 		<key>type</key> <string>godly implant</string>
+		<key>breaks into</key> <string>capacitor</string>
 		<key>power</key> <integer>0</integer>
 		<key>description</key> <string>A simple implant meant to train a person's body to accept implants.</string>
 	</dict>
@@ -517,6 +528,7 @@
 	<key>kitchen knife</key>
 	<dict>
 		<key>type</key> <string>ritual knife</string>
+		<key>breaks into</key> <string>iron ingot</string>
 		<key>power</key> <integer>0</integer>
 		<key>description</key> <string>An ordinary knife meant for chopping up vegetables.</string>
 	</dict>
@@ -546,6 +558,7 @@
 	<key>fundamentals</key>
 	<dict>
 		<key>type</key> <string>tome</string>
+		<key>breaks into</key> <string>herb</string>
 		<key>power</key> <integer>0</integer>
 		<key>description</key> <string>A threadbare old book that teaches basic ritual knowledge.</string>
 	</dict>
@@ -575,6 +588,7 @@
 	<key>crumbling rod</key>
 	<dict>
 		<key>type</key> <string>rod</string>
+		<key>breaks into</key> <string>fang</string>
 		<key>power</key> <integer>0</integer>
 		<key>description</key> <string>A crude stone rod that is beginning to fall apart.</string>
 	</dict>
@@ -604,6 +618,7 @@
 	<key>stopped clock</key>
 	<dict>
 		<key>type</key> <string>timepiece</string>
+		<key>breaks into</key> <string>fang</string>
 		<key>power</key> <integer>0</integer>
 		<key>description</key> <string>A broken old clock that is right only twice a day.</string>
 	</dict>

@@ -503,12 +503,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="heJ-Kl-FYi" userLabel="Inventory Panel">
                                 <rect key="frame" x="-320" y="28" width="320" height="540"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c2Q-jS-YGD">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="482"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c2Q-jS-YGD">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="444"/>
                                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kby-qM-1aW">
-                                        <rect key="frame" x="137" y="9999" width="46" height="30"/>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kby-qM-1aW">
+                                        <rect key="frame" x="38" y="452" width="83" height="30"/>
                                         <state key="normal" title="Break Down"/>
                                         <connections>
                                             <action selector="inventoryButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nR1-3J-MAE"/>
@@ -549,9 +549,9 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="Nff-yV-CLZ"/>
+                                        <exclude reference="FTt-af-C4L"/>
                                         <exclude reference="KND-my-NTC"/>
                                         <exclude reference="hcb-ER-FEn"/>
-                                        <exclude reference="FTt-af-C4L"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -1205,8 +1205,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bRn-3v-Bao"/>
+        <segue reference="5Fs-fc-33Y"/>
         <segue reference="Qnr-TU-rCw"/>
-        <segue reference="xEW-H2-8cz"/>
+        <segue reference="Izn-QN-Bef"/>
     </inferredMetricsTieBreakers>
 </document>

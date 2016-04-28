@@ -178,7 +178,7 @@
 		<key>default color</key> <string>tile stone faded blue</string>
 		<!-- map generation data -->
 		<key>room size</key> <integer>5</integer>
-		<key>rows</key> <integer>10</integer>
+		<key>rows</key> <integer>9</integer>
 		<key>columns</key> <integer>6</integer>
 		<key>reject undiscovered doors chance</key> <integer>60</integer>
 		<key>max door offset</key> <integer>0</integer>
@@ -196,13 +196,13 @@
 		<key>min floor tile percent</key> <integer>40</integer>
 		<key>max floor tile percent</key> <integer>60</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>225</integer>
+		<key>countdown</key> <integer>275</integer>
 		<key>overtime countdown</key> <integer>25</integer>
 		<key>equipment treasures</key> <integer>4</integer>
 		<key>healing treasures</key> <integer>5</integer>
 		<key>normal treasures</key> <integer>3</integer>
 		<key>healing item</key> <string>bread</string>
-		<key>number of encounters</key> <integer>8</integer>
+		<key>number of encounters</key> <integer>7</integer>
 		<key>start equipment treasures</key> <integer>4</integer>
 		<key>encounters</key>
 		<array>
@@ -210,11 +210,6 @@
 				<string>sentry</string>
 				<string>sentry</string>
 				<string>sentry</string>
-			</array>
-			<array>
-				<string>scuttler</string>
-				<string>scuttler</string>
-				<string>scuttler</string>
 			</array>
 			<array>
 				<string>sentry</string>
