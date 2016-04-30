@@ -262,7 +262,7 @@
 		<key>min floor tile percent</key> <integer>0</integer>
 		<key>max floor tile percent</key> <integer>0</integer>
 		<!-- map balance data -->
-		<key>countdown</key> <integer>305</integer>
+		<key>countdown</key> <integer>325</integer>
 		<key>overtime countdown</key> <integer>25</integer>
 		<key>equipment treasures</key> <integer>0</integer>
 		<key>healing treasures</key> <integer>5</integer>

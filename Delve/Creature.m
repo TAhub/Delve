@@ -282,8 +282,8 @@
 		
         //TODO: quickstart
 		_skillTrees = [NSArray arrayWithObjects:@"oathbreaker", @"false prophet", @"finesse", @"reflexes", @"charm", nil];
-		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(1), @(2), @(3), @(1), @(1), nil];
-		_implements = [NSMutableArray arrayWithObjects:@"old scratch", @"", @"", @"", @"", nil];
+		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(1), @(3), @(4), @(1), @(2), nil];
+		_implements = [NSMutableArray arrayWithObjects:@"inferno", @"", @"", @"", @"", nil];
 		_armors = [NSMutableArray arrayWithObjects:@"eoling robe", @"correction glasses", @"white tail banner", nil];
 		_weapon = @"mace";
 		
