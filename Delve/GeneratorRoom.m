@@ -138,7 +138,7 @@
 				room = self.rightRoom;
 				break;
 		}
-		if (room != nil && room.encounter)
+		if (room != nil && (room.encounter || room.startRoom))
 		{
 			//if the adjacent room is a cave room or you have a direct path to it, it's not a valid room
 			if (type != GeneratorRoomExitLockedDoor && type != GeneratorRoomExitWall)

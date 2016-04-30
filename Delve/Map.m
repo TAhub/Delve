@@ -731,6 +731,7 @@
 	}
 	
 	GeneratorRoom *startRoom = rooms[rows-1][columns / 2];
+	startRoom.startRoom = true;
 	GeneratorRoom *exitRoom = rooms[0][columns / 2];
 	
 	NSLog(@"Placing room exits");

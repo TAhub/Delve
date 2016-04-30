@@ -26,6 +26,7 @@
 @property (weak, nonatomic) GeneratorRoom *rightRoom;
 @property (weak, nonatomic) GeneratorRoom *downRoom;
 
+@property BOOL startRoom;
 @property BOOL accessable;
 @property BOOL encounter;
 @property TreasureClass treasure;
