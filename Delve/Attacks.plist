@@ -658,7 +658,7 @@
 		<!-- special effects -->
 		<key>stun</key> <true/>
 	</dict>
-	<key>flirt</key>
+	<key>kiss goodnight</key>
 	<dict>
 		<key>attack effect</key> <string>heart</string>
 		<key>sound</key> <string>pop</string>

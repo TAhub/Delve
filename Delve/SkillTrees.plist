@@ -659,7 +659,7 @@
 			</dict>
 			<dict> <!-- rank 3 -->
 				<key>health</key> <integer>10</integer>
-				<key>attack</key> <string>flirt</string>
+				<key>attack</key> <string>kiss goodnight</string>
 			</dict>
 			<dict> <!-- rank 4 -->
 				<key>health</key> <integer>10</integer>
