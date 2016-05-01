@@ -511,7 +511,7 @@
 	 ^()
 	 {
 		 //register the defeat
-		 [self registerScore:[NSString stringWithFormat:@"Died on floor %i", self.map.floorNum] withSuccess:YES];
+		 [self registerScore:[NSString stringWithFormat:@"Died on floor %i", self.map.floorNum + 1] withSuccess:YES];
 		 
 		 //go to the defeat screen
 		 weakSelf.defeatMessage = message;
