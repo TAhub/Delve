@@ -648,8 +648,8 @@
 			<string>alchemy</string>
 			<string>wisdom</string>
 			<string>filler monster skill</string>
-			<string>filler monster skill</string>
-			<string>filler monster skill</string>
+			<string>fragile monster skill</string>
+			<string>fragile monster skill</string>
 		</array>
 		<!-- equipment -->
 		<key>implements</key>
