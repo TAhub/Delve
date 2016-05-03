@@ -155,17 +155,16 @@
 		{
 			UIView *targetView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, GAMEPLAY_TILE_SIZE, GAMEPLAY_TILE_SIZE)];
 			targetView.backgroundColor = targetColor;
-			targetView.alpha = 0.5; //TODO: this should be a constant
+			targetView.alpha = APPEARANCE_TARGETTILE_ALPHA;
 			[tileView addSubview:targetView];
 		}
 		
 		//discovered but invisible tiles should be transparent
 		if (!tile.visible && targetColor == nil)
-			tileView.alpha = 0.5; //TODO: this should be a constant
+			tileView.alpha = APPEARANCE_TARGETTILE_ALPHA;
 	}
 	if (tile.treasureType != TreasureTypeNone)
 	{
-		//TODO: get the real treasure image
 		NSString *treasureName = nil;
 		UIColor *treasureColor = nil;
 		switch (tile.treasureType)

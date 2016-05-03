@@ -1240,7 +1240,6 @@
 -(void)killBoostsForKillingEnemyOfRace:(NSString *)race
 {
 	self.blocks = MIN(self.blocks + 1, self.maxBlocks);
-	//TODO: any other bennies for getting a kill
 	
 	if (self.good)
 	{
@@ -1565,11 +1564,6 @@
 		}
 	}
 	
-	if (!self.map.overtime)
-	{
-		//TODO: awake ais who spend too many rounds offscreen (this should probably be an AI variable) should go asleep again
-	}
-	
 	if (self.stunned > 0)
 	{
 		self.stunned -= 1;
@@ -1671,7 +1665,6 @@
 			if (!tile.visible)
 			{
 				//just vanish, you're fleeing
-				//TODO: if I add anything that benefits from deaths that aren't caused directly by the player
 				//IE loot drops or whatnot
 				//I should come up with a mechanic to make an enemy vanish without killing it
 				self.health = 0;
@@ -1718,9 +1711,6 @@
 				return YES;
 			}
 		}
-		
-		//TODO: maybe smarter AIs should be able to detect if they are in the target area of an AoE?
-		//and walk outside
 		
 		//try to attack
 		if (self.aiAttack && [self validTargetSpotFor:@"attack" atX:self.map.player.x andY:self.map.player.y openSpotsAreFine:NO])
@@ -1783,10 +1773,6 @@
 				}
 			}
 		}
-		
-		
-		//TODO: maybe smarter AIs can do some actual pathfinding, within a certain radius?
-		//IE for if the player teleports away, or is behind a small wall or whatever
 		
 		
 		//if you are stuck and onscreen, defend

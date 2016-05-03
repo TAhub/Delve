@@ -23,7 +23,6 @@
 
 -(void)saveWithX:(int)x andY:(int)y
 {
-//	NSArray *loadArray = [[NSUserDefaults standardUserDefaults] arrayForKey:[NSString stringWithFormat:@"tile %i-%i", x, y]];
 	NSMutableArray *saveArray = [NSMutableArray new];
 	[saveArray addObject:self.type];
 	[saveArray addObject:@(self.treasureType)];

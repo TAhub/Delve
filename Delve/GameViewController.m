@@ -579,10 +579,6 @@
 
 -(void)attackAnimationInner:(NSString *)name withElement:(NSString *)element suffix:(NSString *)suffix andAttackEffect:(NSString *)attackEffect fromPerson:(Creature *)creature targetX:(int)x andY:(int)y delayed:(BOOL)delayed withEffectBlock:(void (^)(void))block
 {
-	//TODO: I actually kinda liked the effect the background color changing thing had
-	//maybe it can be added back, as a rider to the panel switch?
-	//so, ie, the background turns red when someone uses a burn attack
-	
 	//set attack color by element
 	UIColor *color;
 	if (!loadValueBool(@"Attacks", name, @"power"))
@@ -756,7 +752,6 @@
 		return;
 	}
 	
-	//TODO: make the warning label bigger
 	UILabel *warning = [[UILabel alloc] initWithFrame:CGRectZero];
 	warning.text = [NSString stringWithFormat:@"YOU HAVE %i ROUNDS TO ESCAPE!", countdown];
 	warning.textColor = loadColorFromName(@"ui warning");

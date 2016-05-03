@@ -76,11 +76,6 @@
 	//grey out the last button if there is no last
 	if ([[NSUserDefaults standardUserDefaults] objectForKey:@"last skills"] == nil)
 		[self.lastButton setTitleColor:loadColorFromName(@"ui text grey") forState:UIControlStateNormal];
-	
-	
-	//TODO: convert the collection view into a table view, with sections
-	//and add a label that counts the number of attacks and of what type (IE look at every skill that's at "", and see what the slot type is)
-	//TODO: remember to remove the tree collection view cell when I do
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -104,7 +99,6 @@
 
 -(void)reloadCreature
 {
-	//TODO: set the skill trees with things the player picks
 	self.creature = [[Creature alloc] initWithRace:self.raceName skillTrees:self.skills andAppearanceNumber:self.appearanceNumber];
 }
 

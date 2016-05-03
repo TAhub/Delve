@@ -861,9 +861,6 @@
 		}
 	}
 	
-	//TODO: pathfinding can fail sometimes
-	//give it a release condition so it can't recuse too much (ie up to 1000 loops or w/e, find something reasonable)
-	
 	NSLog(@"Finding path");
 	
 	//find paths from the start to the end
@@ -975,7 +972,7 @@
 	int pX = startRoom.xCorner + (roomSize / 2);
 	int pY = startRoom.yCorner + (roomSize / 2);
 	Creature *player;
-	if (map == nil) //TODO: there should ALWAYS be a premade player, from the character screen, but for now make one here
+	if (map == nil)
 		player = genPlayer;
 	else
 		player = map.player;
@@ -1324,10 +1321,6 @@
 				}
 			}
 	}
-	
-	
-	//TODO: if there's any random variant replacement (ie replace cave wall with different texture, etc)
-	//put it here, after all that tile type dependent stuff in the doodad placement
 	
 	
 	return true;

@@ -48,6 +48,9 @@
 #define GENERATOR_IMPLEMENT_CHANCE 60
 #define GENERATOR_PATHEXPLORE_MAX 25
 
+#pragma mark appearance constants
+#define APPEARANCE_TARGETTILE_ALPHA 0.5
+
 #pragma mark enums
 
 typedef NS_ENUM(NSInteger, ItemType) {
