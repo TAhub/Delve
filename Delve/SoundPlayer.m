@@ -8,13 +8,14 @@
 
 #import "SoundPlayer.h"
 #import "Constants.h"
-//#import <AVFoundation/AVAudioPlayer.h>
+#import <AVFoundation/AVAudioPlayer.h>
 #import <AudioToolbox/AudioServices.h>
 
 @interface SoundPlayer()
 
 @property (strong, atomic) NSMutableSet *activeSounds;
-
+@property (strong, atomic) AVAudioPlayer *bgmPlayer;
+@property (strong, atomic) NSString *bgmName;
 
 @end
 
@@ -42,12 +43,8 @@
 	return self;
 }
 
-
 -(void) playSound:(NSString *)soundCategoryName
 {
-	//TODO: get bgm (menu, floor 1-3, floor 4-6, floor 7-9, maybe a short song for defeat and for victory)
-	
-	
 	//TODO: put all the liscense info here
 	//NOTE: all sounds from freesound.org
 	//		S: frumdum.wav by spectorjay | License: Sampling+
@@ -99,42 +96,61 @@
 	NSString *filePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], pick];
 	NSURL *fileURL = [NSURL fileURLWithPath:filePath];
 	
+	//using soundID because AVAudioPlayer is a bit too heavyweight for sound-effects like these
 	SystemSoundID soundID;
 	OSStatus error = AudioServicesCreateSystemSoundID((__bridge CFURLRef)fileURL, &soundID);
 	if (error == kAudioSessionNoError)
 	{
+		//set kAudioServicesPropertyIsUISound to 0 since this isn't a UI sound
+		UInt32 flag = 0;
+		AudioServicesSetProperty(kAudioServicesPropertyIsUISound, sizeof(UInt32), &soundID, sizeof(UInt32), &flag);
+		
 		//play sound
 		AudioServicesPlaySystemSound(soundID);
 		
 	}
 	else
 		NSLog(@"Sound %@ failed with error #%d.", soundCategoryName, (int)error);
-	
-	
-	//I was using AVAudioPlayer, but it might be too heavyweight for playing lots of short sound clips like I am doing
-//	NSError *error;
-//	AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:&error];
-//	if (error != nil)
-//	{
-//		NSLog(@"SOUND ERROR: %@", [error description]);
-//		return;
-//	}
-//	player.numberOfLoops = 0;
-//	player.volume = 0.3f;
-//	[player play];
-	
-	//store the player into an array so it's not garbage-collected
-//	[self.activeSounds addObject:player];
-	
-	//add a timer to remove the sound
-//	[NSTimer timerWithTimeInterval:player.duration + 0.1f target:self selector:@selector(soundPlayed:) userInfo:nil repeats:NO];
 }
 
--(void)soundPlayed:(NSTimer *)timer
+-(void) playBGM:(NSString *)songFilename
 {
-//	for (AVAudioPlayer *sound in self.activeSounds)
-//		if (!sound.playing)
-//			[self.activeSounds removeObject:sound];
+	//TODO: get bgm (menu, floor 1-3, floor 4-6, floor 7-9, maybe a short song for defeat and for victory)
+	//all songs from incompetech
+	//floor 0-2 song
+	//	floors in this range: start, bandits, first robots
+	//	"simplex" tense music
+	//floor 3-5 song
+	//	floors in this range: zealots, forest, research lab
+	//	"dreams become real" calm piano piece
+	//floor 6-8 song
+	//	floors in this range: broken ship, raider expedition, highborn fort
+	//	"failing defense" warlike battle theme, good since this is mostly fighting soldiers
+	//floor 9 song
+	//	floors in this range: true ship
+	//	"the way out" it has an appropriate name, okay
+	//defeat fanfare
+	//	"steel and seething"
+	//victory fanfare?
+	//	"feather waltz"
+	//menu music
+	//	"hypnothis"
+	
+	
+	if (self.bgmName != nil && [self.bgmName isEqualToString:songFilename])
+		return; //don't do anything
+	
+	NSString *filePath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], songFilename];
+	NSURL *fileURL = [NSURL fileURLWithPath:filePath];
+	
+	if (self.bgmPlayer != nil)
+		[self.bgmPlayer stop];
+	self.bgmPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
+	
+	self.bgmPlayer.numberOfLoops = -1;
+	self.bgmPlayer.volume = 0.4;
+	
+	[self.bgmPlayer play];
 }
 
 

@@ -12,5 +12,6 @@
 
 +(id)sharedPlayer;
 -(void) playSound:(NSString *)soundCategoryName;
+-(void) playBGM:(NSString *)songFilename;
 
 @end
