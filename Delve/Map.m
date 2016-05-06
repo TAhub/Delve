@@ -1348,6 +1348,12 @@
 			}
 	}
 	
+	//turn everything into alternates
+	NSLog(@"Switching to alternate tiles");
+	for (NSArray *row in self.tiles)
+		for (Tile *tile in row)
+			if (tile.canAlternate)
+				[tile alternate];
 	
 	return true;
 }

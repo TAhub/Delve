@@ -727,7 +727,7 @@
 	<key>floor 9</key>
 	<dict>
 		<!-- appearance data -->
-		<key>tileset</key> <string>ship</string>
+		<key>tileset</key> <string>active ship</string>
 		<key>default color</key> <string>tile stone red</string>
 		<!-- map generation data -->
 		<key>room size</key> <integer>5</integer>

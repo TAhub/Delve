@@ -17,8 +17,12 @@
 		<key>unlocks into</key> <string>template</string>
 		<key>rubbles into</key> <string>template</string>
 		<key>rubble chance</key> <integer>100</integer>
+		<key>alternate into</key> <string>template</string>
+		<key>alternate chance</key> <integer>100</integer>
 		<key>color</key> <string>iron</string>
 		<key>sprite</key> <string>tile_big_tile</string>
+		<key>glow layer color</key> <string>iron</string>
+		<key>glow layer</key> <string>tile_big_tile</string>
 	</dict>
 	
 	<!-- real tiles -->
@@ -51,21 +55,58 @@
 		<key>rubble chance</key> <integer>10</integer>
 		<key>sprite</key> <string>tile_floor_rivet_tile</string>
 	</dict>
+	<key>tron wall</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>opaque</key> <true/>
+		<key>rubbles into</key> <string>rubble</string>
+		<key>alternate into</key> <string>rivet wall</string>
+		<key>alternate chance</key> <integer>95</integer>
+		<key>sprite</key> <string>tile_wall_tron</string>
+		<key>glow layer color</key> <string>relic</string>
+		<key>glow layer</key> <string>glowlayer_wall_tron</string>
+	</dict>
+	<key>tron floor</key>
+	<dict>
+		<key>rubbles into</key> <string>rubble</string>
+		<key>rubble chance</key> <integer>10</integer>
+		<key>alternate into</key> <string>rivet floor</string>
+		<key>alternate chance</key> <integer>95</integer>
+		<key>sprite</key> <string>tile_floor_tron</string>
+		<key>glow layer color</key> <string>relic</string>
+		<key>glow layer</key> <string>glowlayer_floor_tron</string>
+	</dict>
 	<key>natural wall</key>
 	<dict>
 		<key>solid</key> <true/>
 		<key>opaque</key> <true/>
+		<key>alternate into</key> <string>natural wall alternate</string>
+		<key>alternate chance</key> <integer>45</integer>
 		<key>rubbles into</key> <string>natural floor</string>
 		<key>sprite</key> <string>tile_wall_cave</string>
 	</dict>
+	<key>natural wall alternate</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>opaque</key> <true/>
+		<key>sprite</key> <string>tile_wall_cave_alternate</string>
+	</dict>
 	<key>natural floor</key>
 	<dict>
+		<key>alternate into</key> <string>natural floor alternate</string>
+		<key>alternate chance</key> <integer>45</integer>
 		<key>sprite</key> <string>tile_floor_cave</string>
+	</dict>
+	<key>natural floor alternate</key>
+	<dict>
+		<key>sprite</key> <string>tile_floor_cave_alternate</string>
 	</dict>
 	<key>unnatural wall</key>
 	<dict>
 		<key>solid</key> <true/>
 		<key>opaque</key> <true/>
+		<key>alternate into</key> <string>natural wall alternate</string>
+		<key>alternate chance</key> <integer>45</integer>
 		<key>rubbles into</key> <string>natural floor</string>
 		<key>sprite</key> <string>tile_wall_cave</string>
 	</dict>
@@ -74,15 +115,31 @@
 		<key>color</key> <string>green hair</string>
 		<key>rubbles into</key> <string>natural floor</string>
 		<key>rubble chance</key> <integer>35</integer>
+		<key>alternate into</key> <string>forest floor alternate</string>
+		<key>alternate chance</key> <integer>45</integer>
 		<key>sprite</key> <string>tile_floor_cave</string>
+	</dict>
+	<key>forest floor alternate</key>
+	<dict>
+		<key>color</key> <string>green hair</string>
+		<key>sprite</key> <string>tile_floor_cave_alternate</string>
 	</dict>
 	<key>forest wall</key>
 	<dict>
 		<key>color</key> <string>brown hair</string>
 		<key>solid</key> <true/>
 		<key>opaque</key> <true/>
+		<key>alternate into</key> <string>forest wall alternate</string>
+		<key>alternate chance</key> <integer>45</integer>
 		<key>rubbles into</key> <string>natural floor</string>
 		<key>sprite</key> <string>tile_wall_cave</string>
+	</dict>
+	<key>forest wall alternate</key>
+	<dict>
+		<key>color</key> <string>brown hair</string>
+		<key>solid</key> <true/>
+		<key>opaque</key> <true/>
+		<key>sprite</key> <string>tile_wall_cave_alternate</string>
 	</dict>
 	<key>unnatural floor</key>
 	<dict>
@@ -90,7 +147,30 @@
 	</dict>
 	<key>rubble</key>
 	<dict>
+		<key>alternate into</key> <string>rubble alternate</string>
+		<key>alternate chance</key> <integer>45</integer>
 		<key>sprite</key> <string>tile_floor_rubble</string>
+	</dict>
+	<key>rubble alternate</key>
+	<dict>
+		<key>sprite</key> <string>tile_floor_rubble_alternate</string>
+	</dict>
+	<key>active door floor</key>
+	<dict>
+		<key>rubbles into</key> <string>rubble</string>
+		<key>sprite</key> <string>tile_floor_mechanism</string>
+		<key>glow layer color</key> <string>relic</string>
+		<key>glow layer</key> <string>glowlayer_wall_mechanism</string>
+	</dict>
+	<key>active locked door</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>opaque</key> <true/>
+		<key>unlocks into</key> <string>active door floor</string>
+		<key>rubbles into</key> <string>rubble</string>
+		<key>sprite</key> <string>tile_wall_mechanism</string>
+		<key>glow layer color</key> <string>relic</string>
+		<key>glow layer</key> <string>glowlayer_wall_mechanism</string>
 	</dict>
 	<key>door floor</key>
 	<dict>
@@ -109,6 +189,8 @@
 	<dict>
 		<key>stairs</key> <true/>
 		<key>sprite</key> <string>tile_floor_exit</string>
+		<key>glow layer color</key> <string>relic</string>
+		<key>glow layer</key> <string>glowlayer_floor_exit</string>
 	</dict>
 	
 	<!-- doodads -->
@@ -121,11 +203,20 @@
 	<dict>
 		<key>solid</key> <true/>
 		<key>sprite</key> <string>tile_doodad_firepit</string>
+		<key>glow layer color</key> <string>rusty</string>
+		<key>glow layer</key> <string>glowlayer_doodad_firepit</string>
 	</dict>
 	<key>console</key>
 	<dict>
 		<key>solid</key> <true/>
 		<key>sprite</key> <string>tile_doodad_console</string>
+	</dict>
+	<key>active console</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>sprite</key> <string>tile_doodad_console</string>
+		<key>glow layer color</key> <string>relic</string>
+		<key>glow layer</key> <string>glowlayer_doodad_console</string>
 	</dict>
 	<key>stalag 1</key>
 	<dict>
@@ -141,11 +232,15 @@
 	<dict>
 		<key>solid</key> <true/>
 		<key>sprite</key> <string>tile_doodad_tank</string>
+		<key>glow layer color</key> <string>green hair</string>
+		<key>glow layer</key> <string>glowlayer_doodad_tank</string>
 	</dict>
 	<key>broken tank</key>
 	<dict>
 		<key>solid</key> <true/>
 		<key>sprite</key> <string>tile_doodad_tank_broken</string>
+		<key>glow layer color</key> <string>green hair</string>
+		<key>glow layer</key> <string>glowlayer_doodad_tank_broken</string>
 	</dict>
 	<key>column</key>
 	<dict>

@@ -84,8 +84,8 @@
 	<dict>
 		<key>wall</key> <string>rivet wall</string>
 		<key>floor</key> <string>floor</string>
-		<key>locked door</key> <string>locked door</string>
-		<key>door floor</key> <string>door floor</string>
+		<key>locked door</key> <string>active locked door</string>
+		<key>door floor</key> <string>active door floor</string>
 		<key>natural wall</key> <string>natural wall</string>
 		<key>stairs</key> <string>stairs</string>
 		<key>doodads</key>
@@ -122,14 +122,30 @@
 	<dict>
 		<key>wall</key> <string>rivet wall</string>
 		<key>floor</key> <string>rivet floor</string>
-		<key>locked door</key> <string>locked door</string>
-		<key>door floor</key> <string>door floor</string>
+		<key>locked door</key> <string>active locked door</string>
+		<key>door floor</key> <string>active door floor</string>
 		<key>natural wall</key> <string>natural wall</string>
 		<key>stairs</key> <string>stairs</string>
 		<key>doodads</key>
 		<array>
 			<string>console</string>
 			<string>console</string>
+			<string>chair</string>
+		</array>
+	</dict>
+	
+	<key>active ship</key>
+	<dict>
+		<key>wall</key> <string>tron wall</string>
+		<key>floor</key> <string>tron floor</string>
+		<key>locked door</key> <string>active locked door</string>
+		<key>door floor</key> <string>active door floor</string>
+		<key>natural wall</key> <string>natural wall</string>
+		<key>stairs</key> <string>stairs</string>
+		<key>doodads</key>
+		<array>
+			<string>active console</string>
+			<string>active console</string>
 			<string>chair</string>
 		</array>
 	</dict>

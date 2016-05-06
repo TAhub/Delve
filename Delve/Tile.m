@@ -154,6 +154,20 @@
 	self.type = loadValueString(@"Tiles", self.type, @"rubbles into");
 }
 
+-(BOOL) canAlternate
+{
+	return loadValueBool(@"Tiles", self.type, @"alternate into");
+}
+
+-(void) alternate
+{
+	//all things that alternate do it on a random chance
+	if (arc4random_uniform(100) > loadValueNumber(@"Tiles", self.type, @"alternate chance").intValue)
+		return;
+	
+	self.type = loadValueString(@"Tiles", self.type, @"alternate into");
+}
+
 -(UIColor *) color
 {
 	if (loadValueBool(@"Tiles", self.type, @"color"))
