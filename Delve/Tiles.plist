@@ -23,6 +23,7 @@
 		<key>sprite</key> <string>tile_big_tile</string>
 		<key>glow layer color</key> <string>iron</string>
 		<key>glow layer</key> <string>tile_big_tile</string>
+		<key>glow duration</key> <real>0.5</real>
 	</dict>
 	
 	<!-- real tiles -->
@@ -63,8 +64,9 @@
 		<key>alternate into</key> <string>rivet wall</string>
 		<key>alternate chance</key> <integer>95</integer>
 		<key>sprite</key> <string>tile_wall_tron</string>
-		<key>glow layer color</key> <string>relic</string>
+		<key>glow layer color</key> <string>relic glow</string>
 		<key>glow layer</key> <string>glowlayer_wall_tron</string>
+		<key>glow duration</key> <real>1.0</real>
 	</dict>
 	<key>tron floor</key>
 	<dict>
@@ -73,23 +75,16 @@
 		<key>alternate into</key> <string>rivet floor</string>
 		<key>alternate chance</key> <integer>95</integer>
 		<key>sprite</key> <string>tile_floor_tron</string>
-		<key>glow layer color</key> <string>relic</string>
+		<key>glow layer color</key> <string>relic glow</string>
 		<key>glow layer</key> <string>glowlayer_floor_tron</string>
+		<key>glow duration</key> <real>1.0</real>
 	</dict>
 	<key>natural wall</key>
 	<dict>
 		<key>solid</key> <true/>
 		<key>opaque</key> <true/>
-		<key>alternate into</key> <string>natural wall alternate</string>
-		<key>alternate chance</key> <integer>45</integer>
 		<key>rubbles into</key> <string>natural floor</string>
 		<key>sprite</key> <string>tile_wall_cave</string>
-	</dict>
-	<key>natural wall alternate</key>
-	<dict>
-		<key>solid</key> <true/>
-		<key>opaque</key> <true/>
-		<key>sprite</key> <string>tile_wall_cave_alternate</string>
 	</dict>
 	<key>natural floor</key>
 	<dict>
@@ -105,8 +100,6 @@
 	<dict>
 		<key>solid</key> <true/>
 		<key>opaque</key> <true/>
-		<key>alternate into</key> <string>natural wall alternate</string>
-		<key>alternate chance</key> <integer>45</integer>
 		<key>rubbles into</key> <string>natural floor</string>
 		<key>sprite</key> <string>tile_wall_cave</string>
 	</dict>
@@ -129,17 +122,8 @@
 		<key>color</key> <string>brown hair</string>
 		<key>solid</key> <true/>
 		<key>opaque</key> <true/>
-		<key>alternate into</key> <string>forest wall alternate</string>
-		<key>alternate chance</key> <integer>45</integer>
 		<key>rubbles into</key> <string>natural floor</string>
 		<key>sprite</key> <string>tile_wall_cave</string>
-	</dict>
-	<key>forest wall alternate</key>
-	<dict>
-		<key>color</key> <string>brown hair</string>
-		<key>solid</key> <true/>
-		<key>opaque</key> <true/>
-		<key>sprite</key> <string>tile_wall_cave_alternate</string>
 	</dict>
 	<key>unnatural floor</key>
 	<dict>
@@ -159,8 +143,9 @@
 	<dict>
 		<key>rubbles into</key> <string>rubble</string>
 		<key>sprite</key> <string>tile_floor_mechanism</string>
-		<key>glow layer color</key> <string>relic</string>
+		<key>glow layer color</key> <string>relic glow</string>
 		<key>glow layer</key> <string>glowlayer_wall_mechanism</string>
+		<key>glow duration</key> <real>1.0</real>
 	</dict>
 	<key>active locked door</key>
 	<dict>
@@ -169,8 +154,9 @@
 		<key>unlocks into</key> <string>active door floor</string>
 		<key>rubbles into</key> <string>rubble</string>
 		<key>sprite</key> <string>tile_wall_mechanism</string>
-		<key>glow layer color</key> <string>relic</string>
+		<key>glow layer color</key> <string>relic glow</string>
 		<key>glow layer</key> <string>glowlayer_wall_mechanism</string>
+		<key>glow duration</key> <real>1.0</real>
 	</dict>
 	<key>door floor</key>
 	<dict>
@@ -189,8 +175,9 @@
 	<dict>
 		<key>stairs</key> <true/>
 		<key>sprite</key> <string>tile_floor_exit</string>
-		<key>glow layer color</key> <string>relic</string>
+		<key>glow layer color</key> <string>relic glow</string>
 		<key>glow layer</key> <string>glowlayer_floor_exit</string>
+		<key>glow duration</key> <real>0.5</real>
 	</dict>
 	
 	<!-- doodads -->
@@ -205,6 +192,7 @@
 		<key>sprite</key> <string>tile_doodad_firepit</string>
 		<key>glow layer color</key> <string>rusty</string>
 		<key>glow layer</key> <string>glowlayer_doodad_firepit</string>
+		<key>glow duration</key> <real>2.5</real>
 	</dict>
 	<key>console</key>
 	<dict>
@@ -215,8 +203,9 @@
 	<dict>
 		<key>solid</key> <true/>
 		<key>sprite</key> <string>tile_doodad_console</string>
-		<key>glow layer color</key> <string>relic</string>
+		<key>glow layer color</key> <string>relic glow</string>
 		<key>glow layer</key> <string>glowlayer_doodad_console</string>
+		<key>glow duration</key> <real>0.15</real>
 	</dict>
 	<key>stalag 1</key>
 	<dict>
@@ -234,13 +223,12 @@
 		<key>sprite</key> <string>tile_doodad_tank</string>
 		<key>glow layer color</key> <string>green hair</string>
 		<key>glow layer</key> <string>glowlayer_doodad_tank</string>
+		<key>glow duration</key> <real>1.5</real>
 	</dict>
 	<key>broken tank</key>
 	<dict>
 		<key>solid</key> <true/>
 		<key>sprite</key> <string>tile_doodad_tank_broken</string>
-		<key>glow layer color</key> <string>green hair</string>
-		<key>glow layer</key> <string>glowlayer_doodad_tank_broken</string>
 	</dict>
 	<key>column</key>
 	<dict>

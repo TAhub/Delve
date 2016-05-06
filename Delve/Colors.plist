@@ -17,6 +17,7 @@
 	<key>tile stone faded blue</key> <string>888899</string>
 	<!-- material colors -->
 	<key>relic</key> <string>DDDDBB</string>
+	<key>relic glow</key> <string>BBDDDD</string>
 	<key>iron</key> <string>999999</string>
 	<key>steel</key> <string>AAAABB</string>
 	<key>rusty</key> <string>AA8888</string>

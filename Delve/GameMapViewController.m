@@ -18,6 +18,7 @@
 @interface GameMapViewController () <MapViewDelegate>
 
 @property (strong, nonatomic) NSMutableDictionary *preloadedTileImages;
+@property (strong, nonatomic) NSMutableDictionary *preloadedGlowLayerImages;
 @property (strong, nonatomic) NSMutableArray *creatureViews;
 
 @end
@@ -96,12 +97,20 @@
 			color = defColor;
 		UIImage *tileSprite = colorImage([UIImage imageNamed:tile.spriteName], color);
 		self.preloadedTileImages[tile.type] = tileSprite;
+		
+		NSString *glowLayer = tile.glowLayerName;
+		if (glowLayer != nil)
+		{
+			UIImage *glowImage = colorImage([UIImage imageNamed:glowLayer], tile.glowLayerColor);
+			self.preloadedGlowLayerImages[tile.type] = glowImage;
+		}
 	}
 }
 
 -(void)preloadTileImages
 {
 	self.preloadedTileImages = [NSMutableDictionary new];
+	self.preloadedGlowLayerImages = [NSMutableDictionary new];
 	for (NSArray *row in self.map.tiles)
 		for (Tile *tile in row)
 			[self preloadTileImageFor:tile];
@@ -117,6 +126,66 @@
 }
 
 #pragma mark: map view delegate
+
+-(void) glowFade:(UIView *)view withDuration:(float)duration atStart:(BOOL)start
+{
+	__weak typeof(self) weakSelf = self;
+	
+	if (start)
+	{
+		//start at a random position, with a random direction
+		view.alpha = arc4random_uniform(100) * 0.01f;
+		
+		BOOL forward = arc4random_uniform(100) < 50;
+		float distance = forward ? (1 - view.alpha) : view.alpha;
+		
+		[UIView animateWithDuration:duration * distance animations:
+		^()
+		{
+			view.alpha = forward ? 1 : 0;
+		} completion:
+		^(BOOL complete)
+		{
+			if (forward) //it's at full alpha, so restart instantly
+				[weakSelf glowFade:view withDuration:duration atStart:NO];
+			else
+			{
+				//it's at 0 alpha, so fade in before restarting
+				[UIView animateWithDuration:duration animations:
+				^()
+				{
+					view.alpha = 1;
+				} completion:
+				^(BOOL complete)
+				{
+					[weakSelf glowFade:view withDuration:duration atStart:NO];
+				}];
+			}
+		}];
+		return;
+	}
+	
+	if (view.superview == nil)
+		return;
+	
+	[UIView animateWithDuration:duration animations:
+	^()
+	{
+		view.alpha = 0;
+	} completion:
+	^(BOOL complete)
+	{
+		[UIView animateWithDuration:duration animations:
+		^()
+		{
+			view.alpha = 1;
+		} completion:
+		^(BOOL complete)
+		{
+			[weakSelf glowFade:view withDuration:duration atStart:NO];
+		}];
+	}];
+}
 
 -(UIView *)viewAtTileWithX:(int)x andY:(int)y andOldView:(UIView *)oldView
 {
@@ -148,6 +217,18 @@
 		}
 		else
 			tileView.backgroundColor = tile.color;
+		
+		//make the glow layer view
+		if (tile.glowLayerName != nil)
+		{
+			UIImage *image = self.preloadedGlowLayerImages[tile.type];
+			if (image != nil)
+			{
+				UIImageView *glowView = [[UIImageView alloc] initWithImage:image];
+				[tileView addSubview:glowView];
+				[self glowFade:glowView withDuration:tile.glowDuration atStart:YES];
+			}
+		}
 		
 		//target color view
 		UIColor *targetColor = nil;

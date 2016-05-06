@@ -15,6 +15,7 @@
 @property BOOL solidInner;
 @property BOOL stairsInner;
 @property (strong, nonatomic) NSString *spriteNameInner;
+@property (strong, nonatomic) NSString *glowLayerNameInner;
 @property BOOL valuesComputed;
 
 @end
@@ -92,6 +93,11 @@
 		self.spriteNameInner = nil;
 	else
 		self.spriteNameInner = loadValueString(@"Tiles", self.type, @"sprite");
+	if (!loadValueBool(@"Tiles", self.type, @"glow layer"))
+		self.glowLayerNameInner = nil;
+	else
+		self.glowLayerNameInner = loadValueString(@"Tiles", self.type, @"glow layer");
+	
 	self.solidInner = loadValueBool(@"Tiles", self.type, @"solid");
 	self.stairsInner = loadValueBool(@"Tiles", self.type, @"stairs");
 	self.opaqueInner = loadValueBool(@"Tiles", self.type, @"opaque");
@@ -104,6 +110,13 @@
 	if (!self.valuesComputed)
 		[self computeValues];
 	return self.spriteNameInner;
+}
+
+-(NSString *) glowLayerName
+{
+	if (!self.valuesComputed)
+		[self computeValues];
+	return self.glowLayerNameInner;
 }
 
 -(BOOL) validPlacementSpot
@@ -173,6 +186,16 @@
 	if (loadValueBool(@"Tiles", self.type, @"color"))
 		return loadColorFromName(loadValueString(@"Tiles", self.type, @"color"));
 	return nil;
+}
+
+-(UIColor *) glowLayerColor
+{
+	return loadColorFromName(loadValueString(@"Tiles", self.type, @"glow layer color"));
+}
+
+-(float) glowDuration
+{
+	return loadValueNumber(@"Tiles", self.type, @"glow duration").floatValue;
 }
 
 @end

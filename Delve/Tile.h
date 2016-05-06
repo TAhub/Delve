@@ -30,7 +30,10 @@
 -(BOOL) canAlternate;
 -(void) alternate;
 -(NSString *) spriteName;
+-(NSString *) glowLayerName;
 -(UIColor *) color;
+-(UIColor *) glowLayerColor;
+-(float) glowDuration;
 @property (weak, nonatomic) Creature *inhabitant;
 @property BOOL visible;
 @property BOOL lastVisible;
