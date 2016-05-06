@@ -115,26 +115,34 @@
 
 -(void) playBGM:(NSString *)songFilename
 {
-	//TODO: get bgm (menu, floor 1-3, floor 4-6, floor 7-9, maybe a short song for defeat and for victory)
-	//all songs from incompetech
-	//floor 0-2 song
-	//	floors in this range: start, bandits, first robots
-	//	"simplex" tense music
-	//floor 3-5 song
-	//	floors in this range: zealots, forest, research lab
-	//	"dreams become real" calm piano piece
-	//floor 6-8 song
-	//	floors in this range: broken ship, raider expedition, highborn fort
-	//	"failing defense" warlike battle theme, good since this is mostly fighting soldiers
-	//floor 9 song
-	//	floors in this range: true ship
-	//	"the way out" it has an appropriate name, okay
-	//defeat fanfare
-	//	"steel and seething"
-	//victory fanfare?
-	//	"feather waltz"
-	//menu music
-	//	"hypnothis"
+	//TODO: put all liscense info here
+	//	Simplex Kevin MacLeod (incompetech.com)
+	//	Licensed under Creative Commons: By Attribution 3.0 License
+	//		http://creativecommons.org/licenses/by/3.0/
+	//
+	//	Dreams Become Real Kevin MacLeod (incompetech.com)
+	//	Licensed under Creative Commons: By Attribution 3.0 License
+	//		http://creativecommons.org/licenses/by/3.0/
+	//
+	//	Failing Defense Kevin MacLeod (incompetech.com)
+	//	Licensed under Creative Commons: By Attribution 3.0 License
+	//		http://creativecommons.org/licenses/by/3.0/
+	//
+	//	The Way Out Kevin MacLeod (incompetech.com)
+	//	Licensed under Creative Commons: By Attribution 3.0 License
+	//		http://creativecommons.org/licenses/by/3.0/
+	//
+	//	Steel and Seething Kevin MacLeod (incompetech.com)
+	//	Licensed under Creative Commons: By Attribution 3.0 License
+	//		http://creativecommons.org/licenses/by/3.0/
+	//
+	//	Feather Waltz Kevin MacLeod (incompetech.com)
+	//	Licensed under Creative Commons: By Attribution 3.0 License
+	//		http://creativecommons.org/licenses/by/3.0/
+	//
+	//	Hypnothis Kevin MacLeod (incompetech.com)
+	//	Licensed under Creative Commons: By Attribution 3.0 License
+	//		http://creativecommons.org/licenses/by/3.0/
 	
 	
 	if (self.bgmName != nil && [self.bgmName isEqualToString:songFilename])

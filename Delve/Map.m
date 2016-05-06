@@ -391,6 +391,32 @@
 	return NO;
 }
 
+-(void)playFloorMusic
+{
+	//plays the appropriate floor music
+	switch(self.floorNum)
+	{
+		case 0:
+		case 1:
+		case 2:
+			[[SoundPlayer sharedPlayer] playBGM:@"Simplex.mp3"];
+			break;
+		case 3:
+		case 4:
+		case 5:
+			[[SoundPlayer sharedPlayer] playBGM:@"Dreams Become Real.mp3"];
+			break;
+		case 6:
+		case 7:
+		case 8:
+			[[SoundPlayer sharedPlayer] playBGM:@"Failing Defense.mp3"];
+			break;
+		case 9:
+			[[SoundPlayer sharedPlayer] playBGM:@"THe Way Out.mp3"];
+			break;
+	}
+}
+
 -(void)recalculateVisibility
 {
 	int yS = MAX(self.player.y - GAMEPLAY_SCREEN_HEIGHT, 0);

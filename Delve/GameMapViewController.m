@@ -13,6 +13,7 @@
 #import "Tile.h"
 #import "Item.h"
 #import "CharacterServices.h"
+#import "SoundPlayer.h"
 
 @interface GameMapViewController () <MapViewDelegate>
 
@@ -30,6 +31,9 @@
 	//set up the map view
 	self.mapView.delegate = self;
 	[self.mapView initializeMapAtX:self.map.player.x - GAMEPLAY_SCREEN_WIDTH * 0.5f + 0.5f andY:self.map.player.y - GAMEPLAY_SCREEN_HEIGHT * 0.5f + 0.5f];
+	
+	//play the appropriate music
+	[self.map playFloorMusic];
 	
 	//make the creature views
 	self.creatureViews = [NSMutableArray new];
@@ -491,6 +495,9 @@
 		//register the score
 		[self registerScore:title withSuccess:YES];
 		
+		//play victory music
+		[[SoundPlayer sharedPlayer] playBGM:@"Feather Waltz.mp3"];
+		
 		self.defeatMessage = victoryMessage;
 		[self performSegueWithIdentifier:@"defeat" sender:self];
 	}
@@ -511,6 +518,9 @@
 	 {
 		 //register the defeat
 		 [self registerScore:[NSString stringWithFormat:@"Died on floor %i", self.map.floorNum + 1] withSuccess:YES];
+		 
+		 //play defeat music
+		 [[SoundPlayer sharedPlayer] playBGM:@"Steel and Seething.mp3"];
 		 
 		 //go to the defeat screen
 		 weakSelf.defeatMessage = message;

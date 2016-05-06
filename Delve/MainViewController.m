@@ -10,6 +10,7 @@
 #import "Constants.h"
 //#import "ChangeMapViewController.h"
 #import "GameViewController.h"
+#import "SoundPlayer.h"
 
 @interface MainViewController ()
 
@@ -40,6 +41,13 @@
 	
 	if (self.phase == nil)
 		[self.loadButton setTitleColor:loadColorFromName(@"ui text grey") forState:UIControlStateNormal];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	
+	[[SoundPlayer sharedPlayer] playBGM:@"Hypnothis.mp3"];
 }
 
 - (IBAction)startButtonPressed

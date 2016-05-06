@@ -57,6 +57,7 @@
 
 -(void)update;
 -(void)recalculateVisibility;
+-(void)playFloorMusic;
 
 -(BOOL)moveWithX:(int)x andY:(int)y;
 -(BOOL)movePerson:(Creature *)person withX:(int)x andY:(int)y;
