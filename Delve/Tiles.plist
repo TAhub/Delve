@@ -34,8 +34,16 @@
 	<dict>
 		<key>solid</key> <true/>
 		<key>opaque</key> <true/>
+		<key>alternate into</key> <string>inscription wall</string>
+		<key>alternate chance</key> <integer>3</integer>
 		<key>rubbles into</key> <string>rubble</string>
 		<key>sprite</key> <string>tile_wall_tile</string>
+	</dict>
+	<key>inscription wall</key>
+	<dict>
+		<key>solid</key> <true/>
+		<key>opaque</key> <true/>
+		<key>sprite</key> <string>tile_wall_tile_inscription</string>
 	</dict>
 	<key>floor</key>
 	<dict>

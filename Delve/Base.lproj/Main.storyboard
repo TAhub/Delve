@@ -799,21 +799,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ylS-rs-1RY">
+                            <view contentMode="scaleToFill" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="ylS-rs-1RY">
                                 <rect key="frame" x="0.0" y="28" width="320" height="105"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PATH   OF   THE   EOL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UH8-Sc-bqT">
-                                        <rect key="frame" x="43" y="38" width="234" height="29"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="PATH OF " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UH8-Sc-bqT">
+                                        <rect key="frame" x="20" y="38" width="102" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text=" THE EOL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uS-2d-cnp">
+                                        <rect key="frame" x="198" y="38" width="102" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="UH8-Sc-bqT" firstAttribute="centerX" secondItem="ylS-rs-1RY" secondAttribute="centerX" id="6wE-JT-4we"/>
+                                    <constraint firstItem="UH8-Sc-bqT" firstAttribute="leading" secondItem="ylS-rs-1RY" secondAttribute="leading" constant="20" symbolic="YES" id="LlX-bn-Bcf"/>
+                                    <constraint firstAttribute="trailing" secondItem="3uS-2d-cnp" secondAttribute="trailing" constant="20" symbolic="YES" id="Md3-SD-Khf"/>
                                     <constraint firstItem="UH8-Sc-bqT" firstAttribute="centerY" secondItem="ylS-rs-1RY" secondAttribute="centerY" id="bgV-XM-KB2"/>
+                                    <constraint firstItem="UH8-Sc-bqT" firstAttribute="centerX" secondItem="ylS-rs-1RY" secondAttribute="centerX" id="ugP-T2-nFs"/>
+                                    <constraint firstItem="3uS-2d-cnp" firstAttribute="centerY" secondItem="ylS-rs-1RY" secondAttribute="centerY" id="zeo-Oz-s6Z"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="6wE-JT-4we"/>
+                                        <exclude reference="ugP-T2-nFs"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SsJ-cE-FNm">
                                 <rect key="frame" x="0.0" y="141" width="320" height="419"/>
@@ -874,22 +890,38 @@
                                     <constraint firstItem="uoh-MY-rk6" firstAttribute="width" secondItem="SsJ-cE-FNm" secondAttribute="width" id="yxN-Bv-WMM"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" image="appicon_1024" translatesAutoresizingMaskIntoConstraints="NO" id="PEA-US-FSc">
+                                <rect key="frame" x="122" y="43" width="76" height="76"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="PEA-US-FSc" secondAttribute="height" multiplier="1:1" id="s9A-QN-yxh"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.093164794147014618" green="0.2194344699382782" blue="0.60352116823196411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="SsJ-cE-FNm" firstAttribute="centerX" secondItem="Mmi-C3-EbX" secondAttribute="centerX" id="0n5-0b-weT"/>
+                            <constraint firstItem="PEA-US-FSc" firstAttribute="leading" secondItem="ylS-rs-1RY" secondAttribute="trailing" id="3h1-7Q-vCB"/>
+                            <constraint firstItem="PEA-US-FSc" firstAttribute="centerX" secondItem="ylS-rs-1RY" secondAttribute="centerX" id="8pV-LG-f8S"/>
+                            <constraint firstItem="PEA-US-FSc" firstAttribute="leading" secondItem="UH8-Sc-bqT" secondAttribute="trailing" id="8wn-nq-IPk"/>
+                            <constraint firstItem="PEA-US-FSc" firstAttribute="top" secondItem="ylS-rs-1RY" secondAttribute="bottom" id="CSA-Ou-LU8"/>
                             <constraint firstItem="ylS-rs-1RY" firstAttribute="height" secondItem="SsJ-cE-FNm" secondAttribute="height" multiplier="0.25" id="DXV-60-ZEu"/>
+                            <constraint firstItem="PEA-US-FSc" firstAttribute="centerY" secondItem="ylS-rs-1RY" secondAttribute="centerY" id="GSz-wC-ggO"/>
                             <constraint firstItem="ylS-rs-1RY" firstAttribute="width" secondItem="Mmi-C3-EbX" secondAttribute="width" id="HhN-M9-xNI"/>
                             <constraint firstItem="T9d-Pg-ck3" firstAttribute="top" secondItem="SsJ-cE-FNm" secondAttribute="bottom" constant="8" symbolic="YES" id="KPH-ox-0EX"/>
                             <constraint firstItem="ylS-rs-1RY" firstAttribute="width" secondItem="SsJ-cE-FNm" secondAttribute="height" multiplier="15:8" id="QMj-qN-wzX"/>
                             <constraint firstItem="SsJ-cE-FNm" firstAttribute="top" secondItem="ylS-rs-1RY" secondAttribute="bottom" constant="8" symbolic="YES" id="TqN-lr-r3w"/>
                             <constraint firstItem="ylS-rs-1RY" firstAttribute="top" secondItem="pUP-DI-mr9" secondAttribute="bottom" constant="8" symbolic="YES" id="mU7-fY-dx2"/>
                             <constraint firstItem="ylS-rs-1RY" firstAttribute="centerX" secondItem="Mmi-C3-EbX" secondAttribute="centerX" id="mcp-QF-Gme"/>
+                            <constraint firstItem="PEA-US-FSc" firstAttribute="height" secondItem="ylS-rs-1RY" secondAttribute="height" id="pnQ-Kl-kRO"/>
                             <constraint firstItem="SsJ-cE-FNm" firstAttribute="width" secondItem="Mmi-C3-EbX" secondAttribute="width" id="xhI-ff-dUt"/>
+                            <constraint firstItem="3uS-2d-cnp" firstAttribute="leading" secondItem="PEA-US-FSc" secondAttribute="trailing" id="zRo-ps-f87"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="QMj-qN-wzX"/>
+                                <exclude reference="3h1-7Q-vCB"/>
+                                <exclude reference="CSA-Ou-LU8"/>
+                                <exclude reference="pnQ-Kl-kRO"/>
                             </mask>
                         </variation>
                     </view>
@@ -1204,6 +1236,9 @@
             <point key="canvasLocation" x="-749" y="239"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="appicon_1024" width="1024" height="1024"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5Fs-fc-33Y"/>
         <segue reference="Qnr-TU-rCw"/>
