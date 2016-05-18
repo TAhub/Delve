@@ -76,8 +76,8 @@ extern BOOL cachingEnabled;
 			[self performSegueWithIdentifier:@"changeMap" sender:self];
 		}
 	}
-	else
-		NSLog(@"Next map not ready!");
+//	else
+//		NSLog(@"Next map not ready!");
 }
 
 -(void)setInfoText:(int)on

@@ -86,7 +86,7 @@
 	if (soundCategoryName.length == 0)
 		return;
 	
-	NSLog(@"Playing sound %@", soundCategoryName);
+//	NSLog(@"Playing sound %@", soundCategoryName);
 	
 	//pick randomly from the sound array
 	NSArray *soundArray = loadArrayEntry(@"Sounds", soundCategoryName);
@@ -109,8 +109,8 @@
 		AudioServicesPlaySystemSound(soundID);
 		
 	}
-	else
-		NSLog(@"Sound %@ failed with error #%d.", soundCategoryName, (int)error);
+//	else
+//		NSLog(@"Sound %@ failed with error #%d.", soundCategoryName, (int)error);
 }
 
 -(void) playBGM:(NSString *)songFilename

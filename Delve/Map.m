@@ -629,7 +629,7 @@
 	{
 		if ([self mapGenerateInnerWithMap:map andGen:genPlayer])
 		{
-			NSLog(@"Map generation finished on try #%i, with %u enemies", try, (int)(self.creatures.count - 1));
+//			NSLog(@"Map generation finished on try #%i, with %u enemies", try, (int)(self.creatures.count - 1));
 			return;
 		}
 	}
@@ -738,7 +738,7 @@
 	NSString *stairsTile = loadValueString(@"Tilesets", tileset, @"stairs");
 	NSArray *doodadTiles = loadValueArray(@"Tilesets", tileset, @"doodads");
 	
-	NSLog(@"Generating room array");
+//	NSLog(@"Generating room array");
 	
 	//keep in mind that for the purposes of this
 	//"up" is negative y, "down" is positive y
@@ -766,7 +766,7 @@
 	startRoom.startRoom = true;
 	GeneratorRoom *exitRoom = rooms[0][columns / 2];
 	
-	NSLog(@"Placing room exits");
+//	NSLog(@"Placing room exits");
 	
 	//start room is at (columns/2, rows-1)
 	//end room is at (columns/2, 0)
@@ -778,11 +778,11 @@
 		{
 			//TODO: restarting is okay right now because I don't define any permanent variables before this point (tiles, etc)
 			//in the future though, I might add some
-			NSLog(@"--ERROR: hit max link layer! Restarting");
+//			NSLog(@"--ERROR: hit max link layer! Restarting");
 			return false;
 		}
 		
-		NSLog(@"--Making connections");
+//		NSLog(@"--Making connections");
 		
 		//add some random connections
 		int i = 0;
@@ -792,7 +792,7 @@
 			{
 				//TODO: restarting is okay right now because I don't define any permanent variables before this point (tiles, etc)
 				//in the future though, I might add some
-				NSLog(@"--ERROR: hit max connection tries! Restarting");
+//				NSLog(@"--ERROR: hit max connection tries! Restarting");
 				return false;
 			}
 			
@@ -836,7 +836,7 @@
 			}
 		}
 		
-		NSLog(@"--Checking accessability");
+//		NSLog(@"--Checking accessability");
 		
 		//update accessability in rooms, while counting accessable rooms
 		int accessableRooms = 0;
@@ -869,7 +869,7 @@
 		}
 		while (changes);
 		
-		NSLog(@"----Accessable rooms: %i", accessableRooms);
+//		NSLog(@"----Accessable rooms: %i", accessableRooms);
 		
 		if (accessableRooms >= minNonOrphans && exitRoom.accessable)
 		{
@@ -877,7 +877,7 @@
 			{
 				//TODO: restarting is okay right now because I don't define any permanent variables before this point (tiles, etc)
 				//in the future though, I might add some
-				NSLog(@"--ERROR: too many accessable rooms! Restarting");
+//				NSLog(@"--ERROR: too many accessable rooms! Restarting");
 				return false;
 			}
 			
@@ -887,7 +887,7 @@
 		}
 	}
 	
-	NSLog(@"Finding path");
+//	NSLog(@"Finding path");
 	
 	//find paths from the start to the end
 	NSMutableArray *paths = [NSMutableArray new];
@@ -897,20 +897,20 @@
 	{
 		if (paths.count == 0)
 		{
-			NSLog(@"--ERROR: no path found! Restarting");
+//			NSLog(@"--ERROR: no path found! Restarting");
 			return false;
 		}
 		
-		NSLog(@"--No correct path found, looking for best path");
+//		NSLog(@"--No correct path found, looking for best path");
 		//there was no path of EXACTLY the right length
 		//so look at paths from the path list
 		for (NSArray *path in paths)
 			if (intendedPath == nil || ABS(path.count - desiredPathLength) < ABS(intendedPath.count - desiredPathLength))
 				intendedPath = path;
 	}
-	NSLog(@"--Picked path of length %u", (unsigned int)intendedPath.count);
+//	NSLog(@"--Picked path of length %u", (unsigned int)intendedPath.count);
 	
-	NSLog(@"Marking doors on path");
+//	NSLog(@"Marking doors on path");
 	
 	//turn every door down the intended path into a path door
 	for (int i = 0; i < intendedPath.count - 1; i++)
@@ -927,7 +927,7 @@
 			nextRoom.upDoor = GeneratorRoomExitPathDoor;
 	}
 	
-	NSLog(@"Adding locked doors");
+//	NSLog(@"Adding locked doors");
 	
 	//turn non-path doors into locked doors
 	for (NSArray *row in rooms)
@@ -943,7 +943,7 @@
 				room.downDoor = GeneratorRoomExitLockedDoor;
 		}
 	
-	NSLog(@"Adding no-doors");
+//	NSLog(@"Adding no-doors");
 	
 	//turn normal doors into no-doors
 	for (NSArray *row in rooms)
@@ -980,7 +980,7 @@
 	//each room like that should have at least SOMETHING in it
 	[self mapGeneratorFindLockedOnlyRooms:rooms withStartRoom:startRoom];
 	
-	NSLog(@"Making tiles");
+//	NSLog(@"Making tiles");
 	
 	//make tile array
 	int width = columns*(roomSize+1)+1;
@@ -1051,7 +1051,7 @@
 	if (caveWallChance > 0)
 	{
 		//replace big parts of the map with cellular caves
-		NSLog(@"Generating cave tiles");
+//		NSLog(@"Generating cave tiles");
 		NSMutableArray *caveMask = [NSMutableArray new];
 		for (int y = 0; y < self.height; y++)
 		{
@@ -1061,7 +1061,7 @@
 			[caveMask addObject:row];
 		}
 		
-		NSLog(@"--Marking locked-only rooms to not be overwritten");
+//		NSLog(@"--Marking locked-only rooms to not be overwritten");
 		for (NSArray *row in rooms)
 			for (GeneratorRoom *room in row)
 				if (room.lockedOnly && room.accessable)
@@ -1069,14 +1069,14 @@
 						for (int x = -1; x < roomSize + 1; x++)
 							caveMask[y + room.yCorner][x + room.xCorner] = @(0);
 		
-		NSLog(@"--Generating cave tiles");
+//		NSLog(@"--Generating cave tiles");
 		[self mapGeneratorCaveWithFloorChance:caveWallChance andSmooths:caveSmooths andCaveMask:caveMask];
 	
-		NSLog(@"--Finding invalid floor tiles");
+//		NSLog(@"--Finding invalid floor tiles");
 		int floorTiles = [self mapGeneratorSealInaccessableWithStartX:startRoom.xCorner + (roomSize / 2) andY:startRoom.yCorner + (roomSize / 2) withWallTile:wallTile];
 		if ((floorTiles * 100 < self.width * self.height * minFloorTilePercent) || (floorTiles * 100 > self.width * self.height * maxFloorTilePercent))
 		{
-			NSLog(@"--ERROR: invalid number of floor tiles %i! Restarting!", floorTiles);
+//			NSLog(@"--ERROR: invalid number of floor tiles %i! Restarting!", floorTiles);
 			self.tiles = nil;
 			[self.creatures removeAllObjects];
 			return false;
@@ -1104,15 +1104,15 @@
 					}
 				}
 	}
-	else
-		NSLog(@"Skipping cave wall generation.");
+//	else
+//		NSLog(@"Skipping cave wall generation.");
 	
 	//the exit always has an encounter
 	exitRoom.encounter = true;
 	numEncounters -= 1;
 	
  
-	NSLog(@"Finding encounter locations");
+//	NSLog(@"Finding encounter locations");
 	
 	//place encounter spots based on rules, to prevent encounters from spawning next to each other
 	NSMutableArray *encounterRooms = [NSMutableArray new];
@@ -1139,7 +1139,7 @@
 		}
 	
 	
-	NSLog(@"Finding treasure locations");
+//	NSLog(@"Finding treasure locations");
 	
 	//place treasures based on rules also I guess
 	NSMutableArray *noEncounterTreasureRooms = [NSMutableArray new];
@@ -1188,7 +1188,7 @@
 				int xC = room.xCorner + (roomSize / 2);
 				int yC = room.yCorner + (roomSize / 2);
 				
-				NSLog(@"--Placing treasure on room with center (%i, %i)", xC, yC);
+//				NSLog(@"--Placing treasure on room with center (%i, %i)", xC, yC);
 				
 				Tile *centerTile = self.tiles[yC][xC];
 				if (centerTile.validPlacementSpot)
@@ -1229,7 +1229,7 @@
 	((Tile *)self.tiles[doorY][doorX]).type = stairsTile;
 	
 	
-	NSLog(@"Placing encounters");
+//	NSLog(@"Placing encounters");
 	
 	//place encounters
 	//these go wherever there is space inside the confines of the room
@@ -1237,13 +1237,13 @@
 		for (GeneratorRoom *room in row)
 			if (room.encounter)
 			{
-				NSLog(@"--Choosing encounter");
+//				NSLog(@"--Choosing encounter");
 				int pick = (int)arc4random_uniform((u_int32_t)encounters.count);
 				NSArray *encounter = encounters[pick];
 				
 				if (room == exitRoom)
 				{
-					NSLog(@"--Chose guardian encounter");
+//					NSLog(@"--Chose guardian encounter");
 					//place the appropriate type of guardian on the exit
 					for (int y = 0; y < roomSize; y++)
 						for (int x = 0; x < roomSize; x++)
@@ -1262,7 +1262,7 @@
 				}
 				else
 				{
-					NSLog(@"--Finding open spaces");
+//					NSLog(@"--Finding open spaces");
 					//find every open space for a person in the area
 					NSMutableArray *openSpaces = [NSMutableArray new];
 					for (int y = 0; y < roomSize; y++)
@@ -1276,7 +1276,7 @@
 						}
 					shuffleArray(openSpaces);
 					
-					NSLog(@"--Placing in those %lu spaces", (unsigned long)openSpaces.count);
+//					NSLog(@"--Placing in those %lu spaces", (unsigned long)openSpaces.count);
 					for (int i = 0; i < openSpaces.count && i < encounter.count; i++)
 					{
 						NSString *type = encounter[i];
@@ -1349,7 +1349,7 @@
 	}
 	
 	//turn everything into alternates
-	NSLog(@"Switching to alternate tiles");
+//	NSLog(@"Switching to alternate tiles");
 	for (NSArray *row in self.tiles)
 		for (Tile *tile in row)
 			if (tile.canAlternate)
@@ -1620,7 +1620,7 @@
 	
 	tile.treasure = it;
 	
-	NSLog(@"----Generated treasure %@!", tile.treasure.name.length == 0 ? @"INVALID NO NAME" : tile.treasure.name);
+//	NSLog(@"----Generated treasure %@!", tile.treasure.name.length == 0 ? @"INVALID NO NAME" : tile.treasure.name);
 	
 	if ([tile.treasure.name isEqualToString:@"crystal"])
 	{
