@@ -150,7 +150,7 @@
 		E45061DA1CCDCD9800007FC1 /* 316308__littlerobotsoundfactory__robot2-11.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "316308__littlerobotsoundfactory__robot2-11.wav"; sourceTree = "<group>"; };
 		E45061DB1CCDCD9800007FC1 /* 326794__johnbuhr__sword-clash-48.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "326794__johnbuhr__sword-clash-48.wav"; sourceTree = "<group>"; };
 		E45061DC1CCDCD9800007FC1 /* 341239__jeremysykes__explosion00.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 341239__jeremysykes__explosion00.wav; sourceTree = "<group>"; };
-		E459C6831C7AB2E800422B0A /* Delve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Delve.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E459C6831C7AB2E800422B0A /* PathOfTheEol.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PathOfTheEol.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E459C6871C7AB2E800422B0A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E459C6891C7AB2E800422B0A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E459C68A1C7AB2E800422B0A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -274,7 +274,7 @@
 		E459C6841C7AB2E800422B0A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E459C6831C7AB2E800422B0A /* Delve.app */,
+				E459C6831C7AB2E800422B0A /* PathOfTheEol.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -412,9 +412,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E459C6821C7AB2E800422B0A /* Delve */ = {
+		E459C6821C7AB2E800422B0A /* PathOfTheEol */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E459C69A1C7AB2E800422B0A /* Build configuration list for PBXNativeTarget "Delve" */;
+			buildConfigurationList = E459C69A1C7AB2E800422B0A /* Build configuration list for PBXNativeTarget "PathOfTheEol" */;
 			buildPhases = (
 				E459C67F1C7AB2E800422B0A /* Sources */,
 				E459C6801C7AB2E800422B0A /* Frameworks */,
@@ -424,9 +424,9 @@
 			);
 			dependencies = (
 			);
-			name = Delve;
+			name = PathOfTheEol;
 			productName = Delve;
-			productReference = E459C6831C7AB2E800422B0A /* Delve.app */;
+			productReference = E459C6831C7AB2E800422B0A /* PathOfTheEol.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -457,7 +457,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E459C6821C7AB2E800422B0A /* Delve */,
+				E459C6821C7AB2E800422B0A /* PathOfTheEol */,
 			);
 		};
 /* End PBXProject section */
@@ -704,7 +704,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E459C69A1C7AB2E800422B0A /* Build configuration list for PBXNativeTarget "Delve" */ = {
+		E459C69A1C7AB2E800422B0A /* Build configuration list for PBXNativeTarget "PathOfTheEol" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E459C69B1C7AB2E800422B0A /* Debug */,

@@ -78,11 +78,6 @@
 	//		S: locking a door_02.wav by Dymewiz | License: Attribution
 	
 	
-	//unsupported formats I've noticed so far:
-	//	.flac
-	//	.ogg
-	
-	
 	if (soundCategoryName.length == 0)
 		return;
 	

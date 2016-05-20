@@ -85,6 +85,7 @@
 -(NSString *) name;
 -(NSString *) typeDescription;
 -(NSString *) typeDefeatMessage;
+@property BOOL pathFlag;
 
 #pragma mark: organizational flags
 @property (strong, nonatomic) NSString *storedAttack;

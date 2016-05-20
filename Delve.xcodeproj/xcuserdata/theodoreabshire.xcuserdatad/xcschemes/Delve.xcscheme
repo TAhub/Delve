@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E459C6821C7AB2E800422B0A"
-               BuildableName = "Delve.app"
-               BlueprintName = "Delve"
+               BuildableName = "PathOfTheEol.app"
+               BlueprintName = "PathOfTheEol"
                ReferencedContainer = "container:Delve.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E459C6821C7AB2E800422B0A"
-            BuildableName = "Delve.app"
-            BlueprintName = "Delve"
+            BuildableName = "PathOfTheEol.app"
+            BlueprintName = "PathOfTheEol"
             ReferencedContainer = "container:Delve.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -56,8 +56,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E459C6821C7AB2E800422B0A"
-            BuildableName = "Delve.app"
-            BlueprintName = "Delve"
+            BuildableName = "PathOfTheEol.app"
+            BlueprintName = "PathOfTheEol"
             ReferencedContainer = "container:Delve.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -75,8 +75,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E459C6821C7AB2E800422B0A"
-            BuildableName = "Delve.app"
-            BlueprintName = "Delve"
+            BuildableName = "PathOfTheEol.app"
+            BlueprintName = "PathOfTheEol"
             ReferencedContainer = "container:Delve.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -34,7 +34,10 @@
 	[saveArray addObject:@(self.good ? 1 : 0)];
 	[saveArray addObject:self.race];
 	if (!self.good)
+	{
 		[saveArray addObject:self.enemyType];
+		[saveArray addObject:@(self.pathFlag ? 1 : 0)];
+	}
 	for (int i = 0; i < CREATURE_NUM_TREES; i++)
 	{
 		[saveArray addObject:self.skillTrees[i]];
@@ -109,7 +112,10 @@
 		_good = ((NSNumber *)loadArray[j++]).intValue == 1;
 		_race = loadArray[j++];
 		if (!_good)
+		{
 			_enemyType = loadArray[j++];
+			_pathFlag = ((NSNumber *)loadArray[j++]).intValue == 1;
+		}
 		NSMutableArray *sT = [NSMutableArray new];
 		_skillTreeLevels = [NSMutableArray new];
 		for (int i = 0; i < CREATURE_NUM_TREES; i++)
@@ -195,6 +201,7 @@
 	if (self = [super init])
 	{
 		_enemyType = type;
+		_pathFlag = false;
 		_race = loadValueString(@"EnemyTypes", type, @"race");
 		_skillTrees = loadValueArray(@"EnemyTypes", type, @"skills");
 		_skillTreeLevels = [NSMutableArray arrayWithObjects:@(1), @(1), @(1), @(1), @(1), nil];
@@ -1747,12 +1754,17 @@
 			if (tryPathWalk && !tile.visible)
 				tryAIWalk = false; //only path walk when offscreen, if you have the option
 			
+			if (tryPathWalk && tryAIWalk && self.pathFlag)
+				tryAIWalk = false;
 			
 			if (tryAIWalk && [self doAiWalk:1])
 				return YES;
 			
 			if (tryPathWalk)
 			{
+				//start path-walking
+				self.pathFlag = true;
+				
 				int pathRadius = self.aiPathRadius;
 				PathDirection direction = [self.map pathFromX:self.x andY:self.y toX:self.map.player.x andY:self.map.player.y withRadius:pathRadius];
 				switch(direction)
