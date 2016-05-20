@@ -20,8 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UIButton *loadButton;
 @property (weak, nonatomic) IBOutlet UIButton *scoresButton;
-
-
+@property (weak, nonatomic) IBOutlet UIButton *howtoplayButton;
 
 
 
@@ -35,6 +34,7 @@
 	[self formatButton:self.startButton];
 	[self formatButton:self.loadButton];
 	[self formatButton:self.scoresButton];
+	[self formatButton:self.howtoplayButton];
 	self.titleLabel.textColor = loadColorFromName(@"ui text");
 	[self formatPanel:self.titlePanel];
 	[self formatPanel:self.contentPanel];

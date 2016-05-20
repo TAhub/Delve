@@ -89,6 +89,7 @@
 		E4AE94A51CC318B900C1BC96 /* Endings.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4AE94A41CC318B900C1BC96 /* Endings.plist */; };
 		E4DA42E41CD04267005A293A /* GameMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DA42E31CD04267005A293A /* GameMapViewController.m */; };
 		E4DFE5D51CCF0BDB004D7E09 /* ScoresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DFE5D41CCF0BDB004D7E09 /* ScoresViewController.m */; };
+		E4F6EB3C1CEFBAB300FFDE78 /* HowToPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F6EB3B1CEFBAB300FFDE78 /* HowToPlayViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -197,6 +198,8 @@
 		E4DA42E31CD04267005A293A /* GameMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameMapViewController.m; sourceTree = "<group>"; };
 		E4DFE5D31CCF0BDB004D7E09 /* ScoresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoresViewController.h; sourceTree = "<group>"; };
 		E4DFE5D41CCF0BDB004D7E09 /* ScoresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoresViewController.m; sourceTree = "<group>"; };
+		E4F6EB3A1CEFBAB300FFDE78 /* HowToPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowToPlayViewController.h; sourceTree = "<group>"; };
+		E4F6EB3B1CEFBAB300FFDE78 /* HowToPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToPlayViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -397,6 +400,8 @@
 		E4DA42E71CD04860005A293A /* Smaller, Less Important View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E4F6EB3A1CEFBAB300FFDE78 /* HowToPlayViewController.h */,
+				E4F6EB3B1CEFBAB300FFDE78 /* HowToPlayViewController.m */,
 				E44A6FD31C9B66F90015852C /* BlueViewController.h */,
 				E44A6FD41C9B66F90015852C /* BlueViewController.m */,
 				E44A6FCD1C9B4D970015852C /* MainViewController.h */,
@@ -557,6 +562,7 @@
 				E459C6C01C7CCDB800422B0A /* GeneratorRoom.m in Sources */,
 				E459C6A11C7AB34300422B0A /* Creature.m in Sources */,
 				E459C6A91C7B602100422B0A /* Constants.m in Sources */,
+				E4F6EB3C1CEFBAB300FFDE78 /* HowToPlayViewController.m in Sources */,
 				E406892B1CC9CF9F00BF17DD /* SoundPlayer.m in Sources */,
 				E442C8221C8FA8050048DD95 /* CharacterServices.m in Sources */,
 			);
