@@ -651,7 +651,7 @@
 	//the overtime count is how many turns overtime lasts, before you die
 	//a high overtime count means you have a lot of time to seek the exit
 	self.overtimeCount = loadValueNumber(@"Floors", floorName, @"overtime countdown").intValue;
-	self.countdown = loadValueNumber(@"Floors", floorName, @"countdown").intValue + self.overtimeCount;
+	self.countdown = loadValueNumber(@"Floors", floorName, @"countdown").intValue + self.overtimeCount + 1;
 	
 	
 	//how big a room is
@@ -1629,18 +1629,18 @@
 		{
 			case 0:
 			case 1:
-				tile.treasure.number *= 3; break;
+				tile.treasure.number *= 4; break;
 			case 2:
 			case 3:
-				tile.treasure.number *= 4; break;
+				tile.treasure.number *= 5; break;
 			case 4:
 			case 5:
-				tile.treasure.number *= 5; break;
+				tile.treasure.number *= 6; break;
 			case 6:
 			case 7:
 			case 8:
 			case 9:
-				tile.treasure.number *= 6; break;
+				tile.treasure.number *= 7; break;
 		}
 	}
 }

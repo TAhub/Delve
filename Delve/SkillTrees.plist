@@ -710,7 +710,7 @@
 		<key>description</key> <string>Those who follow the path of the sacred light learn to unleash the inner light of a light orb to protect themselves.</string>
 		<key>implement</key> <string>light orb</string>
 		<key>start item</key> <string>crystal</string>
-		<key>start item number</key> <integer>4</integer>
+		<key>start item number</key> <integer>8</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -742,7 +742,7 @@
 		<key>description</key> <string>Those who follow the path of the holy soldier learn to use holy weapons to smite their foes.</string>
 		<key>implement</key> <string>holy weapon</string>
 		<key>start item</key> <string>crystal</string>
-		<key>start item number</key> <integer>8</integer>
+		<key>start item number</key> <integer>14</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -802,7 +802,7 @@
 		<key>description</key> <string>Those who follow the path of the godly form learn to accept godly implants into themselves, and fight with their power.</string>
 		<key>implement</key> <string>godly implant</string>
 		<key>start item</key> <string>crystal</string>
-		<key>start item number</key> <integer>8</integer>
+		<key>start item number</key> <integer>14</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->
@@ -833,7 +833,7 @@
 		<key>description</key> <string>Those who follow the path of the oathbreaker learn to use a forbidden Eol weapon to burn their foes with evil fire. They can even wreathe themselves in fire.</string>
 		<key>implement</key> <string>unholy weapon</string>
 		<key>start item</key> <string>crystal</string>
-		<key>start item number</key> <integer>4</integer>
+		<key>start item number</key> <integer>8</integer>
 		<key>skills</key>
 		<array>
 			<dict> <!-- rank 1 -->

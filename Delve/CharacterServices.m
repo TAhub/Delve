@@ -202,7 +202,7 @@ void makeInfoLabelInView(Creature *cr, UIView *view, int countdown)
 	iconRow(@"ui_resist", loadColorFromName(@"element shock"), cr.shockResistance, cr.shockResistance, corner2, view);
 	
 	UILabel *statLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(0, statLabel.frame.size.height + 18, 0, 0)];
-	statLabel2.text = [NSString stringWithFormat:@"%iD%@ %iM   %@", cr.damageBonus, cr.attackBonus > 0 ? [NSString stringWithFormat:@"+%iA", cr.attackBonus] : @"", cr.metabolism, countdown == 0 ? @"" : [NSString stringWithFormat:@"ROUNDS LEFT: %i", countdown]];
+	statLabel2.text = [NSString stringWithFormat:@"%iD%@ %iM   %@", cr.damageBonus, cr.attackBonus > 0 ? [NSString stringWithFormat:@"+%iA", cr.attackBonus] : @"", cr.metabolism, countdown == 0 ? @"" : [NSString stringWithFormat:@"ROUNDS UNTIL CLEANSING: %i", countdown]];
 	statLabel2.textColor = statLabel.textColor;
 	[statLabel2 sizeToFit];
 	[view addSubview:statLabel2];

@@ -191,11 +191,13 @@
 			UIColor *color;
 			if ([self.map.player canUseAttack:attack])
 			{
-//				NSString *element = [self.map.player elementForAttack:attack];
+				NSString *element = [self.map.player elementForAttack:attack];
 				
-				//TODO: if element isn't nil, display a little elemental orb too
-				
-				color = loadColorFromName(@"ui text");
+				//display the element as an item color
+				if (element != nil)
+					color = loadColorFromName(element);
+				else
+					color = loadColorFromName(@"ui text");
 			}
 			else
 				color = loadColorFromName(@"ui text grey");

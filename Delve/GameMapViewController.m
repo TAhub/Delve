@@ -330,14 +330,14 @@
 	}
 }
 
--(void)fadeScreenInTime:(float)time withBlock:(void (^)(void))block
+-(void)fadeScreenInTime:(float)time toColor:(UIColor *)color withBlock:(void (^)(void))block
 {
 	//fade the screen away
 	__weak typeof(self) weakSelf = self;
 	[UIView animateWithDuration:time animations:
 	 ^()
 	 {
-		 weakSelf.view.backgroundColor = [UIColor blackColor];
+		 weakSelf.view.backgroundColor = color;
 		 for (int i = 0; i < weakSelf.creatureViews.count; i++)
 		 {
 			 UIView *view = weakSelf.creatureViews[i];
@@ -361,7 +361,7 @@
 	//do a fancy end-of-map animation
 	self.animating = true;
 	__weak typeof(self) weakSelf = self;
-	[self fadeScreenInTime:0.6f withBlock:
+	[self fadeScreenInTime:0.6f toColor:[UIColor blackColor] withBlock:
 	 ^()
 	 {
 		 int number = (int)[weakSelf.map.creatures indexOfObject:weakSelf.map.player];
@@ -591,22 +591,50 @@
 	//null the save
 	[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"game phase"];
 	
+	UIColor *fadeColor = [UIColor blackColor];
+	float fadeTime = 2.5f;
+	if (self.map.countdown <= 0)
+	{
+		//it should fade to white instead of black
+		fadeColor = [UIColor whiteColor];
+		fadeTime = 1.5f;
+		
+		[[SoundPlayer sharedPlayer] playSound:@"shock"];
+	}
+	
 	//do a fancy end-of-map animation
 	self.animating = true;
 	__weak typeof(self) weakSelf = self;
-	[self fadeScreenInTime:2.5f withBlock:
-	 ^()
-	 {
-		 //register the defeat
-		 [self registerScore:[NSString stringWithFormat:@"Died on floor %i", self.map.floorNum + 1] withSuccess:YES];
-		 
-		 //play defeat music
-		 [[SoundPlayer sharedPlayer] playBGM:@"Steel and Seething.mp3"];
-		 
-		 //go to the defeat screen
-		 weakSelf.defeatMessage = message;
-		 [weakSelf performSegueWithIdentifier:@"defeat" sender:weakSelf];
+	[self fadeScreenInTime:fadeTime toColor:fadeColor withBlock:
+	^()
+	{
+		//if the floor is cleansed, there should also be some nice screen-shaking
+		if (weakSelf.map.countdown <= 0)
+		{
+			[[SoundPlayer sharedPlayer] playSound:@"flamethrower"];
+			
+			[weakSelf shakeWithShakes:10 andBlock:
+			^()
+			{
+				[weakSelf defeatInner:message];
+			}];
+		}
+		else
+			[weakSelf defeatInner:message];
 	 }];
+}
+
+-(void)defeatInner:(NSString *)message
+{
+	//register the defeat
+	[self registerScore:[NSString stringWithFormat:@"Died on floor %i", self.map.floorNum + 1] withSuccess:YES];
+	
+	//play defeat music
+	[[SoundPlayer sharedPlayer] playBGM:@"Steel and Seething.mp3"];
+	
+	//go to the defeat screen
+	self.defeatMessage = message;
+	[self performSegueWithIdentifier:@"defeat" sender:self];
 }
 
 -(void) registerScore:(NSString *)score withSuccess:(BOOL)success

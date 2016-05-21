@@ -34,6 +34,13 @@
 	[self formatPanel:self.textPanel];
 	[self formatPanel:self.returnPanel];
 	self.titleLabel.textColor = loadColorFromName(@"ui text");
+	
+	//TODO: things to explain in this:
+	//	what all the things on the upper UI bar mean
+	//	how the combat works (dodge, block, and unlock as a resource)
+	//	some basic description of elements, etc
+	//	a mention of warning indicators, and what they mean
+	//	a simple description of your objective (get to the final floor, where a functional Eol vessel awaits)
 }
 
 - (void)didReceiveMemoryWarning {
