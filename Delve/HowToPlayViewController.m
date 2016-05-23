@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *returnButton;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UILabel *textLabel;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UILabel *pageTitleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *previousButton;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
@@ -41,8 +41,12 @@
 	[self formatPanel:self.textPanel];
 	[self formatPanel:self.returnPanel];
 	self.titleLabel.textColor = loadColorFromName(@"ui text");
-	self.textLabel.textColor = loadColorFromName(@"ui text");
+	self.textView.textColor = loadColorFromName(@"ui text");
 	self.pageTitleLabel.textColor = loadColorFromName(@"ui text");
+	
+	//give the image a black border
+	[self.imageView.layer setBorderWidth: 3.0];
+	[self.imageView.layer setBorderColor:[UIColor blackColor].CGColor];
 	
 	self.pageOn = 0;
 	
@@ -51,39 +55,23 @@
 
 -(void)formatPage
 {
-	//TODO: change the contents of the text label to contain the correct text, and the image to contain the right image
-	
-	//TODO: screen structure
-	//all screenshots should be about as wide as the screen, but significantly narrower vertically
-	//PAGE 0:
-	//	a picture of the top bar (make a character with finesse, shield, and dodge, to explain the concept of those icons)
-	//	text is an explanation of each row
-	//PAGE 1:
-	//	a screenshot of that sample character in a fight on the first floor
-	//	text is a basic overview of combat
-	//		dodges and blocks are resources that refill when not in a fight, or manually with dodge and other special moves
-	//		some attacks cannot be blocked or dodged, as mentioned in their descriptions
-	//		many moves have minimum or maximum range
-	//		every attack has an element; some enemies may be resistant or weak to various elements
-	//PAGE 2:
-	//	a screenshot of a guardian on top of a teleport pad
-	//	text is a simple statement of your goal and very barebones plot overview
-	//		this series of caverns inhabited by the ancient Eol was recently re-discovered
-	//		everyone wants to get to the bottom-most layer, where there is a functional Eol vessel (maybe super-quick faction overview if there's room)
-	//		you were, for some reason or another, exiled; your only hope is to get past EVERYONE to get to the vessel
-	//		get to the teleporter at the top of each floor to continue down
-	
 	switch(self.pageOn)
 	{
-	case 0:
-		self.pageTitleLabel.text = @"Top Bar";
-		break;
-	case 1:
-		self.pageTitleLabel.text = @"Combat Overview";
-		break;
-	case 2:
-		self.pageTitleLabel.text = @"Goal";
-		break;
+		case 0:
+			self.pageTitleLabel.text = @"Top Bar";
+			self.imageView.image = [UIImage imageNamed:@"illustrationTopbar.png"];
+			self.textView.text = @"The first row is, left to right, your health, blue icons representing your blocks, green icons representing your dodges, and yellow icons representing your hacks.\n\nThe second row is icons representing your elemental resistances.\n\nThe third row is, left to right, your damage, your bonus normal-attack-only damage, your bonus healing item power, and the rounds left in this floor until you die.";
+			break;
+		case 1:
+			self.pageTitleLabel.text = @"Combat Notes";
+			self.imageView.image = [UIImage imageNamed:@"illustrationCombat.png"];
+			self.textView.text = @"Dodges and blocks are resources that are depleted as you dodge or block attacks. They refill between fights, or when using some special moves (such as defend).\n\nEach attack has an element; examine enemies to see what elements they are weak to.\n\nKeep in mind that most ranged attacks have minimum ranges, and most powerful attacks have long cooldowns and/or ammo costs.";
+			break;
+		case 2:
+			self.pageTitleLabel.text = @"Goal";
+			self.imageView.image = [UIImage imageNamed:@"illustrationGoal.png"];
+			self.textView.text = @"The ancient Path of the Eol has recently re-opened. Every faction in the world wants to control the prize at the end, a functional Eol vessel.\nYou are, for one reason or another, exiled. Your only hope is to find the vessel for yourself.\nYou'll have to fight (or run) past every single person in your way.\n\nTo continue down the path, locate the teleporter in the north-most end of the floor and defeat it's guardian.\nBut be warned, the ancient defenses of the Path are re-activating, and each floor has a time limit before it is cleansed!";
+			break;
 	}
 	
 	

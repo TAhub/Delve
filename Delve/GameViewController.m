@@ -195,7 +195,7 @@
 				
 				//display the element as an item color
 				if (element != nil)
-					color = loadColorFromName(element);
+					color = loadColorFromName([NSString stringWithFormat:@"element %@", element]);
 				else
 					color = loadColorFromName(@"ui text");
 			}
