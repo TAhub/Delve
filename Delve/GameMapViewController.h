@@ -33,7 +33,6 @@
 -(void)moveCreatureAnim;
 -(void)updateTiles;
 -(void)updateCreature:(Creature *)cr;
--(void)fadeScreenInTime:(float)time withBlock:(void (^)(void))block;
 -(void)shakeWithShakes:(int)shakes andBlock:(void (^)(void))block;
 -(void)moveCreature:(Creature *)creature fromX:(int)x fromY:(int)y withBlock:(void (^)(void))block;
 -(void)defeat:(NSString *)message;

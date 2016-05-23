@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *returnButton;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
+@property (weak, nonatomic) IBOutlet UILabel *pageTitleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *previousButton;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 
@@ -41,6 +42,7 @@
 	[self formatPanel:self.returnPanel];
 	self.titleLabel.textColor = loadColorFromName(@"ui text");
 	self.textLabel.textColor = loadColorFromName(@"ui text");
+	self.pageTitleLabel.textColor = loadColorFromName(@"ui text");
 	
 	self.pageOn = 0;
 	
@@ -70,6 +72,19 @@
 	//		everyone wants to get to the bottom-most layer, where there is a functional Eol vessel (maybe super-quick faction overview if there's room)
 	//		you were, for some reason or another, exiled; your only hope is to get past EVERYONE to get to the vessel
 	//		get to the teleporter at the top of each floor to continue down
+	
+	switch(self.pageOn)
+	{
+	case 0:
+		self.pageTitleLabel.text = @"Top Bar";
+		break;
+	case 1:
+		self.pageTitleLabel.text = @"Combat Overview";
+		break;
+	case 2:
+		self.pageTitleLabel.text = @"Goal";
+		break;
+	}
 	
 	
 	//hide buttons to keep you from going off of the text
